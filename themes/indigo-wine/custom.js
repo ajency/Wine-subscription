@@ -70,7 +70,21 @@ jQuery('.about-details').readmore({
  });
 
 
+
+jQuery('.o-menu').click(function(){
+    jQuery('.cols .bottom,.head-overlay').addClass('active');
+    jQuery('body').addClass('blocked');
 });
+
+jQuery('.m-close').click(function(){
+    jQuery('.cols .bottom,.head-overlay').removeClass('active');
+    jQuery('body').removeClass('blocked');
+});
+
+
+
+});
+
 
 
 

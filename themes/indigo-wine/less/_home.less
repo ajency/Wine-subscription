@@ -32,6 +32,9 @@ body{
 	background-color: #fff;
 }
 
+.blocked{
+	overflow: hidden;
+}
 
 @media handheld, only screen and (max-width: 767px){
 	.container.container {
@@ -214,6 +217,20 @@ body{
 	}
 }
 
+@media screen and (min-width: 993px) and (max-width: 1200px){
+	.ind-custom-menu{
+		.col{
+			ul{
+    			top: 15px; 
+				li{
+					padding: 0 1em;
+				}
+			}
+		}
+	}
+}
+
+
 // ---------------------------
 // BANNER -----------
 // ---------------------------
@@ -352,7 +369,8 @@ body{
     			width: 150px;
     			padding-bottom: 1.5em;
 			    .msg{
-		    		font-size: 1.05em;
+			    	font-weight: 600;
+		    		font-size: 1.25em;
 			    }
 			}
 			.social-link{
@@ -393,6 +411,9 @@ body{
     margin-top: -3em;
     @media screen and (max-width: 768px){
     	min-height: 80px;
+    }
+    @media screen and (max-width: 500px){
+    	min-height: 0;
     }
 }
 
@@ -910,17 +931,27 @@ a[data-readmore-toggle]{
 }
 
 
-
+@media screen and (min-width: 768px) and (max-width: 992px){
+	.our-wine{
+		.timeline{
+			&:before{
+				width: calc(~'100% - 9em');
+			}
+		}
+	} 
+}
 
 @media screen and (max-width: 767px){
 	.our-wine{
 		.timeline{
-			flex-direction: column;
-	    	align-items: baseline;
-	    	margin: 2em 5em;
+			// flex-direction: column;
+	    	// align-items: baseline;
+	    	justify-content: flex-start;
+	    	margin: 2em 0;
 	    	li{
-	    		display: flex;
-	    		width: 100%;
+	    		flex: 1 0 33.33%;
+    			display: flex;
+    			max-width: 33.33%;
 	    		.dot{
 				    margin-left: 0;
 	    			margin-right: 0;
@@ -931,11 +962,7 @@ a[data-readmore-toggle]{
 	    		font-size: 1.2em;
 	    	}
 	    	&:before{
-	    		content: '';
-	    		width: 2px;
-	    		top: 0.5em;
-	    		height: 100%;
-	    		left: 6px;
+	    		display: none;
 	    	}
 		}
 	}
@@ -967,6 +994,18 @@ a[data-readmore-toggle]{
 	}
 }
 	
+
+@media screen and (max-width: 480px){
+	.our-wine{
+		.timeline{
+	    	margin: 2em 0;
+	    	li{
+    			max-width: inherit;
+	    	}
+		}
+	}
+}
+
 
 
 // ---------------------------
@@ -1416,21 +1455,94 @@ a[data-readmore-toggle]{
 	display: none;
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 992px){
 	.indigo-m-menu{
 		display: block;
-		background-image: url('./img/bg-repeat.png');
+		background-image: url('./img/bg-repeat.jpg');
+		// background-color: @brand-secondary;
+		background-position: 67px 100px;
+    	background-size: 45px;
 		.top{
+			display: flex;
+	    	align-items: center;
+	    	padding: 0.3em 0;
 			.site-logo{
-				background-image: url('./img/logo-half.png');
+				background-image: url('./img/logo-diamond.png');
+				height: 53px;
+			    width: 46px;
+			    display: block;
+			    background-size: 45px;
+			    background-repeat: no-repeat;
+			}
+			i{
+				color: #fff;
+    			padding: 0 0.5em;
+    			font-size: 1.7em;
 			}
 		}
+		.bottom{
+			position: fixed;
+		    z-index: 2;
+		    width: 290px;
+		    top: 0;
+		    height: 100%;
+		    transition: transform 0.5s cubic-bezier(0.44, -0.25, 0.75, 1);
+		    transform: translate3d(-500px, 0, 0); 
+		    background-color: #022c4c;
+		    overflow-y: scroll;
+		    li{
+		    	font-family: roboto;
+    			padding: 1em;
+    			border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    			a{
+    				color: #fff;
+    				text-transform: uppercase;
+    			}
+		    }
+		    &.active{
+		    	transform: translate3d(0,0,0);
+		    	& + .m-close{
+		    		// left: inherit;
+		    		// right: 2em;
+		    		opacity: 1;
+		    		z-index: 2;
+		    	}
+		    }
+		}
+	    .m-close{
+			position: fixed;
+			top: 0.5em;
+			// left: -10em;
+			left: 13em;
+			opacity: 0;
+			color: #fff;
+			font-size: 1.7em;
+			transition: all 0.5s cubic-bezier(0.44, -0.25, 0.75, 1);
+	    }
+	    .head-overlay.active{
+	    	box-shadow: rgba(0,0,0,0.6) 0 0 0 500px inset;
+		    position: fixed;
+		    width: 100%;
+		    height: 100%;
+		    top: 0;
+		    bottom: 0;
+		    z-index: 0;
+	    }
 	}
 	.ind-custom-menu{
 		display: none;
 	}
-	.header-inner-bg{
+	#header-inner{
+		height: auto !important;
+		line-height: inherit !important;
+	}
+	#main-content{
+		padding-top: 0;
+    	margin-top: 0;
+	}
+	#header-inner-bg{
 		min-height: 0;
+		position: relative;
 	}
 }
 

@@ -146,22 +146,30 @@
                     </div>
                 </div>
 
+                <!-- mobile menu  -->
+    
                 <div class="indigo-m-menu">
-                    <div class="col top">
-                      <i class="fa fa-bars" aria-hidden="true"></i>
+                    <div class="cols top">
+                      <i class="fa fa-bars o-menu" aria-hidden="true"></i>
                       <span class="site-logo"></span>
                     </div>
-                    <div class="col bottom">
-                        <?php
-                        wp_nav_menu( array( 
-                            'theme_location' => 'my-custom-menu', 
-                            'container_class' => 'custom-menu-class' ) ); 
-                        ?>
-                        <?php
-                        wp_nav_menu( array( 
-                            'theme_location' => 'my-custom-menuu', 
-                            'container_class' => 'custom-menu-class' ) ); 
-                        ?>
+                    <div class="cols slide">
+                        <div class="bottom">
+                            <?php
+                            wp_nav_menu( array( 
+                                'theme_location' => 'my-custom-menu', 
+                                'container_class' => 'custom-menu-class' ) ); 
+                            ?>
+                            <?php
+                            wp_nav_menu( array( 
+                                'theme_location' => 'my-custom-menuu', 
+                                'container_class' => 'custom-menu-class' ) ); 
+                            ?>
+                        </div>
+                        <div class="m-close">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                        <div class="head-overlay"></div>
                     </div>
                 </div>
 
@@ -302,5 +310,6 @@
             <!-- END #header-inner-bg -->
 
         </div>
+
         <!-- END #header-inner -->
 
