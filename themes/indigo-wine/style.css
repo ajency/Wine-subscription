@@ -870,25 +870,29 @@ a[data-readmore-toggle] {
   text-align: center;
   margin: 0 auto;
 }
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .our-wine .timeline:before {
+    width: calc(100% - 9em);
+  }
+}
 @media screen and (max-width: 767px) {
   .our-wine .timeline {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: baseline;
-    -webkit-align-items: baseline;
-        -ms-flex-align: baseline;
-            align-items: baseline;
-    margin: 2em 5em;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    margin: 2em 0;
   }
   .our-wine .timeline li {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 33.33%;
+        -ms-flex: 1 0 33.33%;
+            flex: 1 0 33.33%;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 100%;
+    max-width: 33.33%;
   }
   .our-wine .timeline li .dot {
     margin-left: 0;
@@ -899,11 +903,7 @@ a[data-readmore-toggle] {
     font-size: 1.2em;
   }
   .our-wine .timeline:before {
-    content: '';
-    width: 2px;
-    top: 0.5em;
-    height: 100%;
-    left: 6px;
+    display: none;
   }
   .why-wines {
     margin-top: 3em;
@@ -935,6 +935,14 @@ a[data-readmore-toggle] {
     -webkit-flex-direction: row;
         -ms-flex-direction: row;
             flex-direction: row;
+  }
+}
+@media screen and (max-width: 480px) {
+  .our-wine .timeline {
+    margin: 2em 0;
+  }
+  .our-wine .timeline li {
+    max-width: inherit;
   }
 }
 .row.trade-sperator {
