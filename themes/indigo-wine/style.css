@@ -1575,6 +1575,8 @@ a[data-readmore-toggle] {
 .left-sidebar .widget-item h4 {
   font-size: 14px;
   font-weight: 800;
+  color: #dbc497;
+  width: 100%;
 }
 .left-sidebar .widget-item li a {
   display: inline;
@@ -1583,17 +1585,17 @@ a[data-readmore-toggle] {
 }
 .left-sidebar .widget-item input {
   background: transparent;
-  border-bottom: 2px solid #ccc !important;
-  border: 0px;
+  border: 1px solid #022c4c !important;
   line-height: 10px;
 }
 .left-sidebar .widget_product_search input[type=submit],
 .left-sidebar .ui-slider-range {
-  background-color: #dbc497 !important;
+  background-color: #022c4c !important;
 }
 .left-sidebar .Callout-action {
   background: url(img/joinnow-img.png) no-repeat;
   background-size: cover;
+  margin-top: 60px;
   padding: 50px 20px;
   color: #fff;
 }
@@ -1619,6 +1621,13 @@ a[data-readmore-toggle] {
     -webkit-transition: all 0.15s ease-in-out;
             transition: all 0.15s ease-in-out;
     box-shadow: 1px 1px 4px #000;
+  }
+  #main-wrapper .widget_product_search .woocommerce-product-search {
+    position: relative;
+  }
+  #main-wrapper .widget_product_search .woocommerce-product-search input[type=submit] {
+    text-indent: -9999px;
+    top: 0!important;
   }
   .ti-filter {
     background: url(img/sprite.png) no-repeat;

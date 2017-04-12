@@ -45,7 +45,9 @@
 	.widget-item {
 				h4 {				    
 				    font-size: 14px;			
-				    font-weight: 800;
+				    font-weight: 800; 
+				    color: @brand-primary;
+				    width: 100%;
 				  	}
 		li{
 			a{
@@ -56,19 +58,19 @@
 		}
 		input{
 			    background: transparent;
-			    border-bottom: 2px solid #ccc !important;
-			    border: 0px;
+			    border: 1px solid @brand-secondary !important;
 			    line-height: 10px;
 		}
 			
 	}
 	.widget_product_search input[type=submit],.ui-slider-range {
-				background-color: @brand-primary!important;
+				background-color: @brand-secondary!important;
 	}		
 
 	.Callout-action{
 	    background: url(img/joinnow-img.png) no-repeat;
 	    background-size: cover;
+	    margin-top: 60px;
 	    padding: 50px 20px;
 	    color: #fff;
 	    h3{
@@ -95,6 +97,15 @@
     min-width: 56px;
     transition: all 0.15s ease-in-out;
     box-shadow: 1px 1px 4px #000;
+}
+#main-wrapper .widget_product_search {
+	.woocommerce-product-search{
+		position: relative;
+			input[type=submit] {
+			    text-indent: -9999px;
+			    top: 0!important;
+			}
+		}
 }
 .ti-filter{
 	    background: url(img/sprite.png) no-repeat;
