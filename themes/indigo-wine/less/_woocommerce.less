@@ -1,0 +1,147 @@
+// ---------------------------
+// PRODUCT LIST -----------
+// ---------------------------
+
+
+#hb-page-title {
+    padding-top: 100px;
+    margin-top: 0;
+}
+.hb-animate-element {
+		opacity: 1;
+}
+.woocommerce-page{
+	#main-content{
+		margin-top: 0px;
+	}
+}
+.woocommerce{
+	.wc-new-badge{
+		background: #002b4e !important;
+	}
+	.hb-more-details:hover, .hb-buy-button:hover {
+	    color: #FFF;
+	    background: @brand-primary;
+	}
+}
+
+.hb-product-meta-wrapper {
+	.hb-woo-product-details {
+		max-width: 100%;
+		float: none;
+	}
+	.price{
+		position: relative !important;
+		float: none!important;
+		color: @brand-secondary!important;
+	}
+}
+
+
+// ---------------------------
+// LEFT SIDEBAR -----------
+// ---------------------------
+.left-sidebar{
+	.widget-item {
+				h4 {				    
+				    font-size: 14px;			
+				    font-weight: 800;
+				  	}
+		li{
+			a{
+				display: inline;
+				font-family: arial;
+    			font-weight: 200;
+			}
+		}
+		input{
+			    background: transparent;
+			    border-bottom: 2px solid #ccc !important;
+			    border: 0px;
+			    line-height: 10px;
+		}
+			
+	}
+	.widget_product_search input[type=submit],.ui-slider-range {
+				background-color: @brand-primary!important;
+	}		
+
+	.Callout-action{
+	    background: url(img/joinnow-img.png) no-repeat;
+	    background-size: cover;
+	    padding: 50px 20px;
+	    color: #fff;
+	    h3{
+	    	font-weight: 800;
+	    }
+	}
+	.sort-count {
+		display: none;
+	}
+}
+
+@media (max-width: 768px) {
+	.menu-title {
+    display: block;
+    position: fixed;
+    z-index: 10;
+    background-color:@brand-secondary;
+    color: #fff;
+    border-radius: 50%;
+    right: 11px;
+    bottom: 80px;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    transition: all 0.15s ease-in-out;
+    box-shadow: 1px 1px 4px #000;
+}
+.ti-filter{
+	    background: url(img/sprite.png) no-repeat;
+	    width: 24px;
+	    height: 24px;
+	    background-position: -72px -1152px;
+	    display: block;
+	    margin: auto;
+	    padding: 15px;
+	}
+.isDown{
+	.ti-filter{
+	    background: url(img/sprite.png) no-repeat;
+	    width: 24px;
+	    height: 24px;
+	    background-position: -14px -1152px;
+	    display: block;
+	    margin: auto;
+	    padding: 15px;
+	}
+}
+ body .hb-sidebar {
+    position: fixed;
+    .widget-item {
+    	padding: 20px !important;
+    	margin-left: 20px !important;
+    }
+  }
+ body .hb-sidebar {
+    left: -300px;
+    z-index: 999;
+  }
+  body .hb-sidebar {
+    padding-top: 20px;
+    width: 240px;
+    padding-left: 20px;
+    height: 100%;
+    left: -780px;
+    background-color: #fff;
+    position: fixed !important;
+    box-shadow: 0px 0 214px rgba(0, 0, 0, 0.28);
+    -moz-transition: -moz-transform 0.5s cubic-bezier(0.44, -0.25, 0.75, 1);
+    -o-transition: -o-transform 0.5s cubic-bezier(0.44, -0.25, 0.75, 1);
+    -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.44, -0.25, 0.75, 1);
+    transition: transform 0.5s cubic-bezier(0.44, -0.25, 0.75, 1);
+    z-index: 9999;
+    top: 0;
+    overflow-y: scroll;
+  }
+}
