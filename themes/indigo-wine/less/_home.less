@@ -88,7 +88,7 @@ body{
 
 .ind-custom-menu{
 	display: flex;
-	transition: all 0.3s ease;
+	transition: all 0.5s ease;
 	align-items: flex-end;
 	justify-content: center;
 	padding: 1.5em 15px;
@@ -258,7 +258,7 @@ body{
 		}
 		.banner-caption{
 			position: absolute;
-		    bottom: -3em;
+		    bottom: -4em;
 		    width: 400px;
 		    text-align: left;
 		    left: 15em;
@@ -281,6 +281,7 @@ body{
 		.owl-pagination{
 			position: absolute;
 	    	left: 16em;
+	    	bottom: -3em;
 			.owl-page.owl-page{
 				span{
 					position: relative;
@@ -361,7 +362,7 @@ body{
 			.item{
 				position: relative;
 				img{
-					max-width: 160% !important;
+					max-width: 200% !important;
 					width: auto;
 				}
 			}
@@ -372,7 +373,7 @@ body{
     			bottom: inherit;
     			left: 0;
     			width: 150px;
-    			padding-bottom: 1.5em;
+    			padding: 1em;
 			    .msg{
 			    	font-weight: 600;
 		    		font-size: 1.25em;
@@ -386,7 +387,7 @@ body{
 			.owl-pagination{
 				left: 0;
 	    		right: 0;
-	    		bottom: 0;
+	    		bottom: 0.5em;
 			}
 		}
 	}
@@ -396,9 +397,10 @@ body{
 	.banner-row{
 		.owl-carousel{
 			.banner-caption{
-    			width: 250px;
+    			width: 300px;
+    			padding: 2em;
 			    .msg{
-		    		font-size: 2em;
+		    		font-size: 2.5em;
 			    }
 			}
 		}
@@ -477,7 +479,8 @@ body{
 
 a[data-readmore-toggle]{
 	font-size: 1.2em;
-    color: #022c4c;
+    color: @brand-secondary;
+	margin-top: 0.5em;
 }
 
 
@@ -686,6 +689,7 @@ a[data-readmore-toggle]{
 	}
 	.why-caption{
 		font-size: 1.2em;
+		text-align: center;
 	}
 	.why-points{
 		.stats{
@@ -952,7 +956,20 @@ a[data-readmore-toggle]{
 				width: calc(~'100% - 9em');
 			}
 		}
-	} 
+	}
+	.why-wines{
+		.points{
+			ul.left{
+				padding-left: 0;
+				li{
+					align-items: baseline;
+					.reason{
+						font-size: 1.25em;
+					}
+				}
+			}
+		}
+	}
 }
 
 @media screen and (max-width: 767px){
