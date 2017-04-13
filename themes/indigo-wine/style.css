@@ -1609,6 +1609,129 @@ a[data-readmore-toggle] {
 .icn-distribution {
   background-position: -99px -493px !important;
 }
+#simplemodal-login-container-osx.simplemodal-container {
+  width: 550px !important;
+  left: 0 !important;
+  right: 0 !important;
+  margin: 0 auto;
+  top: 3em !important;
+  background-color: #022c4c;
+}
+#simplemodal-login-container-osx.simplemodal-container .close {
+  top: 0.5em;
+  right: 0.5em;
+}
+#simplemodal-login-container-osx.simplemodal-container .close a {
+  font-family: roboto;
+  font-size: 1.5em;
+}
+#simplemodal-login-container-osx.simplemodal-container form {
+  font-family: roboto;
+}
+#simplemodal-login-container-osx.simplemodal-container form .title {
+  background-color: #fff;
+  padding: .8em;
+  font-size: 1.35em;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+#simplemodal-login-container-osx.simplemodal-container form .simplemodal-login-fields {
+  padding: 1.5em 1em;
+  color: #fff;
+}
+#simplemodal-login-container-osx.simplemodal-container form .simplemodal-login-fields #login_error {
+  color: #c00;
+}
+#simplemodal-login-container-osx.simplemodal-container form .simplemodal-login-fields label {
+  font-size: 1.4em;
+  margin: 0.5em 0 1em 0;
+  text-indent: 0;
+  opacity: 0.8;
+}
+#simplemodal-login-container-osx.simplemodal-container form .simplemodal-login-fields label input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid #dbc497;
+  line-height: 0;
+  padding: 0.2em !important;
+  font-size: 0.8em;
+  color: #fff;
+  font-weight: 600;
+  font-family: roboto;
+  margin: 0.5em 0;
+}
+#simplemodal-login-container-osx.simplemodal-container form .forgetmenot {
+  float: none;
+}
+#simplemodal-login-container-osx.simplemodal-container form .forgetmenot label {
+  font-size: 1.3em;
+  color: #fff;
+}
+#simplemodal-login-container-osx.simplemodal-container form .forgetmenot label input {
+  margin-right: 0.2em;
+}
+#simplemodal-login-container-osx.simplemodal-container form .reg_passmail {
+  padding-bottom: 0;
+  color: #dbc497;
+  font-size: 1.25em;
+  opacity: 0.8;
+}
+#simplemodal-login-container-osx.simplemodal-container form .submit {
+  float: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 2em 0 0.5em 0;
+}
+#simplemodal-login-container-osx.simplemodal-container form .submit input {
+  border-radius: 0;
+  box-shadow: none;
+  background-color: #dbc497;
+  border: 0;
+  padding: 0.8em 1.5em !important;
+  font-size: 1.2em;
+  font-family: roboto;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+#simplemodal-login-container-osx.simplemodal-container form .submit input[type='submit']:hover {
+  background-color: #ceaf71;
+}
+#simplemodal-login-container-osx.simplemodal-container form .submit .simplemodal-close {
+  background-color: #fff;
+  color: #000;
+}
+#simplemodal-login-container-osx.simplemodal-container form .submit .simplemodal-close:hover {
+  background-color: #ffffff;
+}
+#simplemodal-login-container-osx.simplemodal-container form .nav {
+  color: #fff;
+  font-size: 1.2em;
+  opacity: 0.8;
+}
+#simplemodal-login-container-osx.simplemodal-container form .nav a {
+  color: #fff;
+}
+#simplemodal-login-container-osx.simplemodal-container form .nav a:hover {
+  color: #dbc497;
+}
+#simplemodal-login-container-osx.simplemodal-container.register-stuff #loginform {
+  display: none !important;
+}
+#simplemodal-login-container-osx.simplemodal-container.register-stuff #registerform {
+  display: block !important;
+}
+@media screen and (max-width: 550px) {
+  #simplemodal-login-container-osx.simplemodal-container {
+    width: 95% !important;
+  }
+}
 #hb-page-title {
   padding-top: 100px;
   margin-top: 0;
