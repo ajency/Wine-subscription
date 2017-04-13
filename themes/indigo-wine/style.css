@@ -69,18 +69,17 @@ body {
     padding: 0.8em 1.5em;
   }
 }
+#header-inner {
+  height: auto !important;
+}
 #header-inner-bg {
   border: 0;
   background-color: transparent;
   min-height: 140px;
+  position: relative;
 }
 #main-content {
-  margin-top: 4em;
-}
-@media screen and (max-width: 1400px) {
-  #main-content {
-    margin-top: 2em;
-  }
+  padding-top: 0;
 }
 .ind-custom-menu {
   display: -webkit-box;
@@ -1736,7 +1735,6 @@ a[data-readmore-toggle] {
   margin: 0px;
 }
 #hb-page-title {
-  padding-top: 100px;
   margin-top: 0;
 }
 .hb-animate-element {
