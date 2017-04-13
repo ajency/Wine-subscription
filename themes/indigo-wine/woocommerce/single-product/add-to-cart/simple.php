@@ -25,7 +25,7 @@ if ( ! $product->is_purchasable() ) {
 	return;
 } ?>
 
-<div class="hb-separator"></div>
+<div class="hb-separator" style="display:none;"></div>
 
 <?php
 
@@ -35,7 +35,7 @@ if ( $product->is_in_stock() ) : ?>
 
 	<?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
-	<form class="cart" method="post" enctype='multipart/form-data'>
+	<form class="cart" method="post" enctype='multipart/form-data' style="display:none;">
 		<?php
 			/**
 			 * @since 2.1.0.

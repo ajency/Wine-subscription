@@ -1553,6 +1553,9 @@ a[data-readmore-toggle] {
 .icn-distribution {
   background-position: -99px -493px !important;
 }
+.m-0 {
+  margin: 0px;
+}
 #hb-page-title {
   padding-top: 100px;
   margin-top: 0;
@@ -1681,5 +1684,113 @@ a[data-readmore-toggle] {
     top: 0;
     overflow-y: scroll;
   }
+}
+.tabs li a {
+  font-size: 20px !important;
+  text-transform: capitalize!important;
+}
+#reviews .submit {
+  background-color: #022c4c !important;
+  color: #fff;
+  font-weight: 600 !important;
+  font-family: roboto!important;
+  font-size: 1.4em!important;
+  border: 0;
+  background-image: none;
+  border-radius: 4px !important;
+  padding: 0.8em 1.8em!important;
+  letter-spacing: 0.5px;
+  text-transform: capitalize !important;
+  width: auto!important;
+}
+.single-cart-option h3 {
+  margin-bottom: 0px;
+}
+.single-cart-option b {
+  font-size: 20px;
+}
+.single-cart-option .hb-accordion-tab {
+  padding: 14px;
+}
+.woocommerce p.stars a {
+  height: 2em;
+  width: 1.2em;
+  font-size: 21px;
+}
+.woocommerce p.stars a:hover {
+  color: #dbc497;
+}
+.summary .hb-text-large {
+  font-size: 33px;
+  margin-bottom: 20px;
+}
+.summary .price {
+  display: none;
+}
+.summary .hb-separator {
+  display: none;
+}
+.woocommerce-product-gallery__image a {
+  background: #ccc;
+  display: block;
+}
+.woocommerce-product-gallery__image a img {
+  max-width: 70% !important;
+  margin: auto;
+}
+.rating-reviews h1 {
+  text-align: center;
+  font-size: 50px;
+  margin: 0px;
+}
+.rating-reviews h1 i {
+  color: #dbc497;
+}
+.rating-reviews h4 {
+  margin: 0px;
+}
+.woocommerce-cart-form {
+  background: #f2f2f2;
+  padding: 20px;
+}
+.woocommerce-cart-form table th {
+  border-top: 0px !important;
+  font-weight: 800;
+}
+.woocommerce-cart-form .hb-update-cart {
+  text-transform: lowercase;
+  font-weight: 600 !important;
+  font-family: roboto!important;
+  border: 0;
+  border-radius: 4px !important;
+  text-transform: capitalize !important;
+  width: auto!important;
+}
+.woocommerce-cart-form .checkout-button {
+  text-transform: lowercase;
+  background-color: #022c4c !important;
+  color: #fff;
+  font-weight: 600 !important;
+  font-family: roboto!important;
+  border: 0;
+  border-radius: 4px !important;
+  text-transform: capitalize !important;
+  width: auto!important;
+}
+.hb-box-cont {
+  background: #dbc497;
+  font-weight: 500;
+  font-family: roboto;
+}
+.hb-box-cont .hb-box-cont-header {
+  background-color: transparent;
+  padding: 20px 0px 10px 20px;
+}
+.hb-box-cont .cart-total-value .amount {
+  font-weight: 800 !important;
+  color: #022c4c !important;
+}
+.woocommerce h4 {
+  font-weight: bold;
 }
 /*# sourceMappingURL=style.css.map */

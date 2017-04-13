@@ -143,6 +143,10 @@
                             'theme_location' => 'my-custom-menuu', 
                             'container_class' => 'custom-menu-class' ) ); 
                         ?>
+                        <!--?php 
+                        if ( hb_options('hb_top_header_checkout') && class_exists('Woocommerce') ) {
+                            echo hb_woo_cart();
+                        } ?-->
                     </div>
                 </div>
 
