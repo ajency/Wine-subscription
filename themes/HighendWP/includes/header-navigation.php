@@ -89,7 +89,7 @@
 
             <!-- BEGIN #header-inner-bg -->
             <div id="header-inner-bg">
-                
+                <!-- Main menu -->
                 <div class="ind-custom-menu">
                     <div class="col col-left">
                         <?php
@@ -164,11 +164,13 @@
                                 'theme_location' => 'my-custom-menu', 
                                 'container_class' => 'custom-menu-class' ) ); 
                             ?>
+                            <div class="end">
                             <?php
-                            wp_nav_menu( array( 
-                                'theme_location' => 'my-custom-menuu', 
-                                'container_class' => 'custom-menu-class' ) ); 
-                            ?>
+                                wp_nav_menu( array( 
+                                    'theme_location' => 'my-custom-menuu', 
+                                    'container_class' => 'custom-menu-class' ) ); 
+                                ?>
+                            </div>
                         </div>
                         <div class="m-close">
                             <i class="fa fa-times" aria-hidden="true"></i>
