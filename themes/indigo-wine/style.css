@@ -176,6 +176,47 @@ body {
 }
 .ind-custom-menu .col-right {
   padding-left: 1em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.ind-custom-menu .col-right .user-detail {
+  position: relative;
+  color: #dbc497;
+  cursor: pointer;
+}
+.ind-custom-menu .col-right .user-detail .user .arrow-down {
+  padding-left: 0.25em;
+  font-size: 1.15em;
+}
+.ind-custom-menu .col-right .user-detail .user:hover .drop {
+  display: block;
+}
+.ind-custom-menu .col-right .user-detail .drop {
+  position: absolute;
+  background-color: #fff;
+  right: 0;
+  top: 4.2em;
+  display: none;
+  min-width: 150px;
+  padding: 0.5em 0;
+  box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.11);
+}
+.ind-custom-menu .col-right .user-detail .drop ul {
+  display: block;
+  top: 0;
+}
+.ind-custom-menu .col-right .user-detail .drop ul li {
+  line-height: 2;
+  padding: 0.5em 1.5em;
+  font-size: 0.9em;
+}
+.ind-custom-menu .col-right .user-detail .drop ul li a .fa {
+  padding-right: 0.2em;
+}
+.ind-custom-menu .col-right .user-detail .drop ul li a:after {
+  top: 0;
 }
 .ind-custom-menu.fixed {
   position: fixed;
