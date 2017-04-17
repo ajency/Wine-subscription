@@ -1790,8 +1790,11 @@ a[data-readmore-toggle]{
 // ---------------------------
 
 
-#to-top{
+#to-top#to-top{
 	background-color: @brand-primary;
+	&:hover{
+		background-color: lighten(@brand-primary,10%);
+	}
 }
 
 

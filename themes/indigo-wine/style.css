@@ -1666,8 +1666,11 @@ a[data-readmore-toggle] {
   border-top-color: #dbc497;
   border-left-color: #dbc497;
 }
-#to-top {
+#to-top#to-top {
   background-color: #dbc497;
+}
+#to-top#to-top:hover {
+  background-color: #e8d9bd;
 }
 #simplemodal-login-container-osx.simplemodal-container {
   width: 550px !important;
