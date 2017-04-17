@@ -640,11 +640,13 @@ a[data-readmore-toggle] {
   position: absolute;
   bottom: -1.5em;
   height: 2px;
-  width: 30%;
+  width: 25%;
   background-color: #dbc497;
   left: 0;
   right: 0;
   margin: 0 auto;
+  -webkit-transition: width 0.8s ease;
+          transition: width 0.8s ease;
 }
 .why-points .stats .section .info {
   font-family: roboto;
@@ -658,6 +660,9 @@ a[data-readmore-toggle] {
 }
 .why-points .stats .section:hover {
   box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.11);
+}
+.why-points .stats .section:hover .iconTitle:after {
+  width: 50%;
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
   .why-indigo {
@@ -687,6 +692,46 @@ a[data-readmore-toggle] {
     -webkit-flex: 1 0 calc(100% - 2em);
         -ms-flex: 1 0 calc(100% - 2em);
             flex: 1 0 calc(100% - 2em);
+  }
+}
+.row.featuredRow {
+  margin-bottom: 0;
+}
+.row-gap .featuredProduct.featuredProduct {
+  text-align: center;
+  margin: 1em 0 5em 0;
+}
+.hb-woo-product .hb-woo-image-wrap {
+  box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.11);
+}
+.hb-product-meta .woo-cats {
+  min-height: initial;
+}
+.hb-product-meta .woo-cats .hb-woo-shop-cats {
+  margin: 0.2em 0 0.4em 0;
+  font-weight: 600;
+  font-family: roboto;
+}
+.hb-product-meta .woo-cats .hb-woo-shop-cats a {
+  font-size: 0.95em;
+}
+.hb-product-meta .woo-cats .hb-woo-shop-cats a:before {
+  content: "\f02b";
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  padding-right: 0.3em;
+  font-size: 0.9em;
+}
+.hb-product-meta .like-holder {
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  #main-wrapper .hb-woo-product.hb-woo-product img {
+    width: 50%;
+    margin: 0 auto;
   }
 }
 #service-section {
@@ -892,6 +937,7 @@ a[data-readmore-toggle] {
 }
 .featured-product .down {
   position: relative;
+  cursor: pointer;
 }
 .featured-product .down:before {
   content: "\f107";
@@ -1157,9 +1203,11 @@ a[data-readmore-toggle] {
 .logoCarousel .owl-theme .owl-controls .owl-buttons > div i {
   margin: 0;
 }
-.row.logocar-row {
-  margin-top: 0;
-  margin-bottom: 2em;
+.logocar-row {
+  margin: 0;
+}
+.logocar-row + .without-border {
+  border-top: 1px solid #ddd;
 }
 .row.logo-car-row {
   margin-top: 0;
@@ -1611,6 +1659,13 @@ a[data-readmore-toggle] {
 .icn-distribution {
   background-position: -99px -493px !important;
 }
+.pace.pace .pace-progress {
+  background: #dbc497;
+}
+.pace.pace .pace-activity {
+  border-top-color: #dbc497;
+  border-left-color: #dbc497;
+}
 #simplemodal-login-container-osx.simplemodal-container {
   width: 550px !important;
   left: 0 !important;
@@ -1744,7 +1799,7 @@ a[data-readmore-toggle] {
   opacity: 1;
 }
 .woocommerce-page #main-content {
-  margin-top: 0px;
+  margin-top: 3em;
 }
 .woocommerce .wc-new-badge {
   background: #002b4e !important;

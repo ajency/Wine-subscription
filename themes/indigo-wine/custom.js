@@ -79,6 +79,16 @@ jQuery(function(){
 	   lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
 	 });
 
+
+	// featured product scroll
+
+	jQuery(".featured-product .down").click(function() {
+	    jQuery('html, body').animate({
+	        scrollTop: jQuery(".featuredRow").offset().top - 150
+	    }, 2000);
+	});
+
+
 	// mobile menu
 
 	jQuery('.o-menu').click(function(){

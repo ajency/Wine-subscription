@@ -698,11 +698,12 @@ a[data-readmore-toggle]{
 			    	position: absolute;
 				    bottom: -1.5em;
 				    height: 2px;
-				    width: 30%;
+				    width: 25%;
 				    background-color: @brand-primary;
 				    left: 0;
 				    right: 0;
 				    margin: 0 auto;
+			    	transition: width 0.8s ease;
 			    }
 			}
 			.info{
@@ -717,6 +718,11 @@ a[data-readmore-toggle]{
 			}
 			&:hover{
 				box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.11);
+				.iconTitle{
+					&:after{
+						width: 50%;
+					}
+				}
 			}
 		}
 	}
@@ -759,6 +765,64 @@ a[data-readmore-toggle]{
 			}
 		}
 	}
+}
+
+
+
+
+// ---------------------------
+// FEATURED PRODUCTS -----------
+// ---------------------------
+
+.row.featuredRow{
+	margin-bottom: 0;
+}
+
+.row-gap .featuredProduct.featuredProduct{
+	text-align: center;
+    margin: 1em 0 5em 0;
+}
+
+.hb-woo-product{
+	.hb-woo-image-wrap{
+		box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.11);
+	}
+}
+
+.hb-product-meta{
+	.woo-cats{
+		min-height: initial;
+		.hb-woo-shop-cats{
+			margin: 0.2em 0 0.4em 0;
+	    	font-weight: 600;
+	    	font-family: roboto;
+	    	a{
+	    		font-size: 0.95em;
+	    		&:before{
+	    			content: "\f02b";
+	    			display: inline-block;
+				    font: normal normal normal 14px/1 FontAwesome;
+				    font-size: inherit;
+				    text-rendering: auto;
+	    			-webkit-font-smoothing: antialiased;
+	    			padding-right: 0.3em;
+    				font-size: 0.9em;
+	    		}
+	    	}
+		}
+	}
+	.like-holder{
+		display: none;
+	}
+}
+
+
+
+@media screen and (max-width: 600px){
+	#main-wrapper .hb-woo-product.hb-woo-product img{
+		width: 50%;
+		margin: 0 auto;
+	}	
 }
 
 
@@ -965,6 +1029,7 @@ a[data-readmore-toggle]{
     }
     .down{
     	position: relative;
+    	cursor: pointer;
     	&:before{
     		content: "\f107";
     		font: normal normal normal 14px/1 FontAwesome;
@@ -1230,15 +1295,12 @@ a[data-readmore-toggle]{
 	}
 }
 
-.row.logocar-row{
-	margin-top: 0;
-    margin-bottom: 2em;
-    & + .without-border{
-    	// border-top: 1px solid #ddd;
-
-    }
+.logocar-row{
+	margin: 0;
+	& + .without-border{
+		border-top: 1px solid #ddd;
+	}
 }
-
 
 .row.logo-car-row{
     margin-top: 0;
@@ -1627,6 +1689,13 @@ a[data-readmore-toggle]{
 
 
 
+
+// ---------------------------
+// SERVICES -----------
+// ---------------------------
+
+
+
 @media (max-width: 767px) {
   .line-grid li:hover .overlay-box {
     padding: 15px;
@@ -1662,7 +1731,7 @@ a[data-readmore-toggle]{
   }
 }
 
-// Services-icon
+
 .icn-services{
 	    background: url(img/sprite.png) no-repeat;
 	    width: 80px !important;
@@ -1695,5 +1764,37 @@ a[data-readmore-toggle]{
 .icn-distribution{
 		    background-position: -99px -493px !important;
 }
+
+
+
+
+// ---------------------------
+// LOADER STYLES -----------
+// ---------------------------
+
+
+.pace.pace{
+	.pace-progress{
+		background: @brand-primary;	
+	}
+	.pace-activity{
+		border-top-color: @brand-primary;
+		border-left-color: @brand-primary;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
