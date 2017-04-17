@@ -70,8 +70,6 @@ jQuery(function(){
 	setTimeout(slideCarousel, 1000);
 
 
-
-
 	// Readmore
 
 	jQuery('.about-details').readmore({
@@ -88,32 +86,10 @@ jQuery(function(){
 	    jQuery('body').addClass('blocked');
 	});
 
-	jQuery('.m-close').click(function(){
+	jQuery('.m-close,.custom-menu-class a').click(function(){
 	    jQuery('.cols .bottom,.head-overlay').removeClass('active');
 	    jQuery('body').removeClass('blocked');
 	});
-
-
-		// jQuery('#menu-left-menu li a').click(function(){
-		// 	event.preventDefault();
-		// 	var a = jQuery(this).parent().index();
-		// 	jQuery(this).addClass('active').parent().siblings().children().removeClass('active');
-		// 	jQuery('html, body').animate({
-	 //         scrollTop: jQuery('.scroll-'+a).offset().top - 110
-	 //     }, 2000);
-		// });
-	
-		// jQuery(window).scroll(function (event) {
-		//     var scroll = jQuery(window).scrollTop();
-		//     jQuery('#menu-left-menu li').each(function(){
-		//     	var a = jQuery(this).parent().index();
-		// 	    jQuery(this).toggleClass('ok',
-		// 	      scroll >= jQuery('.scroll-'+a).offset().top
-		// 	    );
-		//     });
-		// });
-
-		// jQuery(window).scroll();
 
 
 		// Custom menu click and scroll to particular ID
