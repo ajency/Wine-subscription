@@ -795,9 +795,6 @@ a[data-readmore-toggle] {
 .row.why-indigo-row + .without-border .services-section {
   margin: 0;
 }
-.row.why-indigo-row + .without-border .services-section .why-caption {
-  line-height: 1.3;
-}
 .row.pattern-gap {
   margin: 0;
 }
@@ -819,6 +816,9 @@ a[data-readmore-toggle] {
 }
 .row.service-row-2 + .without-border .services-section {
   margin-bottom: -10em;
+}
+.row.service-row-2 + .without-border .services-section .why-caption {
+  line-height: 1.3;
 }
 #service-section {
   background: url(img/transperent-bg.png) repeat-x !important;
