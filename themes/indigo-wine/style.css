@@ -441,18 +441,19 @@ body {
     font-size: 2.5em;
   }
 }
-.pattern-bg {
+.row.pattern-bg {
   background-image: url('img/transperent-bg.png');
-  min-height: 160px;
+  min-height: 100px;
   margin-top: -3em;
+  margin-bottom: -1em;
 }
 @media screen and (max-width: 768px) {
-  .pattern-bg {
+  .row.pattern-bg {
     min-height: 80px;
   }
 }
 @media screen and (max-width: 500px) {
-  .pattern-bg {
+  .row.pattern-bg {
     min-height: 0;
   }
 }
