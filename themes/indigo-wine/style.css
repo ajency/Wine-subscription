@@ -846,7 +846,7 @@ a[data-readmore-toggle] {
 .line-grid li:hover .overlay-box p a {
   color: #dbc497;
 }
-.why-indigo-row + .without-border {
+.services-row + .without-border {
   background-image: url('img/wineyard.png');
   background-repeat: no-repeat;
   background-size: cover;
