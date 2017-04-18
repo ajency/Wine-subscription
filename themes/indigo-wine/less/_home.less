@@ -171,49 +171,6 @@ body{
 		&-right{
 			padding-left: 1em;
 			display: flex;
-			.user-detail{
-				position: relative;
-				color: @brand-primary;
-				cursor: pointer;
-				.user{
-					.arrow-down{
-						padding-left: 0.25em;
-    					font-size: 1.15em;
-					}
-					&:hover{
-						.drop{
-							display: block;
-						}
-					}
-				}
-				.drop{
-					position: absolute;
-    				background-color: #fff;
-    				right: 0;
-    				top: 4.2em;
-    				display: none;
-    				min-width: 150px;
-    				padding: 0.5em 0;
-    				box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.11);
-    				ul{
-    					display: block;
-    					top: 0;
-    					li{
-    						line-height: 2;
-    						padding: 0.5em 1.5em;
-    						font-size: 0.9em;
-    						a{
-    							.fa{
-    								padding-right: 0.2em;
-    							}
-    							&:after{
-    								top: 0;
-    							}
-    						}
-    					}
-    				}
-				}
-			}
 		}
 	}
 	&.fixed{
@@ -243,6 +200,50 @@ body{
     			top: 0
     		}
     	}
+	}
+}
+
+.user-detail{
+	position: relative;
+	color: @brand-primary;
+	cursor: pointer;
+	.user{
+		.arrow-down{
+			padding-left: 0.25em;
+			font-size: 1.15em;
+		}
+		&:hover{
+			.drop{
+				display: block;
+			}
+		}
+	}
+	.drop{
+		position: absolute;
+		background-color: #fff;
+		right: 0;
+		top: 4.2em;
+		display: none;
+		min-width: 150px;
+		padding: 0.5em 0;
+		box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.11);
+		ul{
+			display: block;
+			top: 0;
+			li{
+				line-height: 2;
+				padding: 0.5em 1.5em;
+				font-size: 0.9em;
+				a{
+					.fa{
+						padding-right: 0.2em;
+					}
+					&:after{
+						top: 0;
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -431,11 +432,11 @@ body{
     			margin: 0 auto;
     			bottom: inherit;
     			left: 0;
-    			width: 150px;
+    			width: 200px;
     			padding: 1em;
 			    .msg{
 			    	font-weight: 600;
-		    		font-size: 1.25em;
+		    		font-size: 1.2em;
 			    }
 			}
 			.social-link{
@@ -504,7 +505,7 @@ body{
     }
     @media screen and (max-width: 768px){
     	text-align: center;
-    	font-size: 2.2em;
+    	font-size: 2em;
     }
 }
 
@@ -1642,6 +1643,7 @@ a[data-readmore-toggle]{
 		.top{
 			display: flex;
 	    	align-items: center;
+	    	justify-content: space-between;
 	    	padding: 0.3em 0;
 			.site-logo{
 				background-image: url('./img/logo-diamond.png');
@@ -1655,6 +1657,33 @@ a[data-readmore-toggle]{
 				color: #fff;
     			padding: 0 0.5em;
     			font-size: 1.7em;
+			}
+			.left-data{
+    			display: flex;
+    			align-items: center;
+			}
+			.user-detail{
+				padding-right: 0.5em;
+				.user{
+					.fa{
+						padding-right: 0;
+					}
+				}
+				.drop{
+					min-width: 120px;
+					top: 2.2em;
+					li{
+						padding: 0 0 0 0.5em;
+    					font-size: 0.95em;
+    					a{
+    						color: @brand-primary;
+    						i{
+    							color: @brand-primary;
+    							font-size: 1.1em;
+    						}
+    					}
+					}
+				}
 			}
 		}
 		.bottom{
