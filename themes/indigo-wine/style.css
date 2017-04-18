@@ -410,9 +410,6 @@ body {
     max-width: 200% !important;
     width: auto;
   }
-  .banner-row .owl-carousel .social-link {
-    display: none;
-  }
   .banner-row .owl-controls .owl-pagination {
     left: 0;
     right: 0;
@@ -430,6 +427,9 @@ body {
   .banner-caption .msg {
     font-weight: 600;
     font-size: 1.2em;
+  }
+  .social-link {
+    display: none;
   }
 }
 @media screen and (min-width: 600px) and (max-width: 991px) {
@@ -1461,6 +1461,10 @@ a[data-readmore-toggle]:hover {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin: 0 6em;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 .contact-footer > div {
   -webkit-box-flex: 1;
@@ -1491,6 +1495,10 @@ a[data-readmore-toggle]:hover {
 }
 .contact-footer .social-link {
   position: static;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .contact-footer .social-link .title {
   margin: 0;

@@ -433,9 +433,6 @@ body{
 					width: auto;
 				}
 			}
-			.social-link{
-				display: none;
-			}
 		}
 		.owl-controls{
 			.owl-pagination{
@@ -457,6 +454,9 @@ body{
 	    	font-weight: 600;
     		font-size: 1.2em;
 	    }
+	}
+	.social-link{
+		display: none;
 	}
 }
 
@@ -1551,6 +1551,7 @@ a[data-readmore-toggle]{
 	display: flex;
 	justify-content: space-between;
 	margin: 0 6em;
+	align-items: flex-start;
 	& > div{
 		flex: 1 0 33.33%;
 		display: flex;
@@ -1571,6 +1572,7 @@ a[data-readmore-toggle]{
 	}
 	.social-link{
 		position: static;
+		align-items: center;
 		.title{
 			margin: 0;
     		font-size: 1em;
