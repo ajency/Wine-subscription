@@ -970,6 +970,12 @@ a[data-readmore-toggle]{
 	  -moz-transition: all 1s ease-in-out;
 	  -o-transition: all 1s ease-in-out;
 	  transition: all 1s ease-in-out;
+	  .s-title{
+	  	font-size: 1.5em;
+	  }
+	  .hidden-xs{
+	  	font-family: roboto;
+	  }
 	}
 	&:hover{
 		.overlay-box {
@@ -1841,6 +1847,21 @@ a[data-readmore-toggle]{
   .line-grid li:after {
     bottom: -10px;
   }
+}
+
+
+@media screen and (max-width: 600px){
+	.line-grid li{
+		&:nth-child(-n+2){
+			margin: 2em 0;
+		}
+		&:nth-child(even){
+			border-right: 0;
+		}
+		.s-title{
+			font-size: 1.15em;
+		}
+	}
 }
 
 

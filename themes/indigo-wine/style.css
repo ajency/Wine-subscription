@@ -859,6 +859,12 @@ a[data-readmore-toggle] {
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
+.line-grid li .overlay-box .s-title {
+  font-size: 1.5em;
+}
+.line-grid li .overlay-box .hidden-xs {
+  font-family: roboto;
+}
 .line-grid li:hover .overlay-box {
   background: #fff;
   cursor: pointer;
@@ -1736,6 +1742,17 @@ a[data-readmore-toggle] {
 @media (max-width: 767px) {
   .line-grid li:after {
     bottom: -10px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .line-grid li:nth-child(-n+2) {
+    margin: 2em 0;
+  }
+  .line-grid li:nth-child(even) {
+    border-right: 0;
+  }
+  .line-grid li .s-title {
+    font-size: 1.15em;
   }
 }
 .icn-services {
