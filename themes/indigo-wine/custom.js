@@ -125,7 +125,7 @@ jQuery(function(){
                 id = href.substring(href.indexOf('#'));
                   offsetTop = href === "#" ? 0 : jQuery(id).offset().top-topMenuHeight+1;
               jQuery('html, body').stop().animate({ 
-                  scrollTop: offsetTop
+                  scrollTop: offsetTop - 120
               }, 1000);
               e.preventDefault();
             });
