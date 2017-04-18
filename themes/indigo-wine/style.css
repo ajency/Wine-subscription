@@ -75,7 +75,6 @@ body {
 #header-inner-bg {
   border: 0;
   background-color: transparent;
-  min-height: 140px;
   position: relative;
 }
 #main-content {
@@ -506,8 +505,9 @@ a[data-readmore-toggle]:hover {
 }
 @media screen and (max-width: 500px) {
   .about-us .about-data {
-    font-size: 1.5em;
+    font-size: 1.4em;
     line-height: 1.4;
+    text-align: center;
   }
   .about-details .data {
     font-size: 0.9em;
@@ -1778,6 +1778,12 @@ a[data-readmore-toggle]:hover {
   }
 }
 @media screen and (max-width: 600px) {
+  .services-section .spacer {
+    display: none;
+  }
+  .line-grid li {
+    padding-bottom: 10px;
+  }
   .line-grid li:nth-child(-n+2) {
     margin: 2em 0;
   }
@@ -1786,6 +1792,18 @@ a[data-readmore-toggle]:hover {
   }
   .line-grid li .s-title {
     font-size: 1.15em;
+  }
+  .list-2 li:nth-child(-n+2) {
+    margin: 0;
+  }
+  .list-2 li:nth-child(n+3) {
+    margin: 2em 0;
+  }
+  .list-2 li:nth-child(n+3):after {
+    display: none;
+  }
+  .list-2 li:after {
+    display: block;
   }
 }
 .icn-services {
