@@ -316,22 +316,6 @@ body{
 		.item{
 			position: relative;
 		}
-		.banner-caption{
-			position: absolute;
-		    bottom: -4em;
-		    width: 400px;
-		    text-align: left;
-		    left: 15em;
-		    background-color: @brand-primary;
-		    padding: 1.5em;
-		    padding-bottom: 4em;
-		    .msg{
-				color: #fff;
-	    		font-size: 2.4em;
-	    		font-weight: 600;
-	    		line-height: 1.3;
-		    }
-		}
 		.owl-wrapper-outer{
 			overflow: visible !important;
 		}
@@ -342,6 +326,7 @@ body{
 			position: absolute;
 	    	left: 16em;
 	    	bottom: -3em;
+	    	z-index: 1;
 			.owl-page.owl-page{
 				span{
 					position: relative;
@@ -381,11 +366,25 @@ body{
 			display: none;
 		}
 	}
-
-
 }
 
 
+.banner-caption{
+	position: absolute;
+    bottom: -4em;
+    width: 400px;
+    text-align: left;
+    left: 15em;
+    background-color: @brand-primary;
+    padding: 1.5em;
+    padding-bottom: 4em;
+    .msg{
+		color: #fff;
+		font-size: 2.4em;
+		font-weight: 600;
+		line-height: 1.3;
+    }
+}
 
 .social-link{
 	position: absolute;
@@ -395,11 +394,16 @@ body{
     	color: #fff;
     	font-weight: 600;
     	font-size: 1.3em;
+    	padding-left: 0.5em;
+    	margin-bottom: 0.5em;
     }
     .socialIcons{
     	display: flex;
     	align-items: center;
     	justify-content: space-between;
+    	a{
+    		text-align: center;
+    	}
     	.data{
     		background-color: @brand-primary;
     		padding: 0.8em;
@@ -426,19 +430,6 @@ body{
 					width: auto;
 				}
 			}
-			.banner-caption{
-				top: 25%;
-    			right: 0;
-    			margin: 0 auto;
-    			bottom: inherit;
-    			left: 0;
-    			width: 200px;
-    			padding: 1em;
-			    .msg{
-			    	font-weight: 600;
-		    		font-size: 1.2em;
-			    }
-			}
 			.social-link{
 				display: none;
 			}
@@ -451,19 +442,28 @@ body{
 			}
 		}
 	}
+	.banner-caption{
+		top: 25%;
+		right: 0;
+		margin: 0 auto;
+		bottom: inherit;
+		left: 0;
+		width: 200px;
+		padding: 1em;
+	    .msg{
+	    	font-weight: 600;
+    		font-size: 1.2em;
+	    }
+	}
 }
 
 @media screen and (min-width: 600px) and (max-width: 991px){
-	.banner-row{
-		.owl-carousel{
-			.banner-caption{
-    			width: 300px;
-    			padding: 2em;
-			    .msg{
-		    		font-size: 2.5em;
-			    }
-			}
-		}
+	.banner-caption{
+		width: 300px;
+		padding: 2em;
+	    .msg{
+    		font-size: 2.5em;
+	    }
 	}
 }
 
