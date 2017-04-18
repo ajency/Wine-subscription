@@ -52,18 +52,23 @@ jQuery(function(){
 		    navigation : true,
 		    navigationText : ["",""],
 		    pagination : true,
-		    // paginationNumbers: true,
+		    paginationNumbers: true,
 		    // startDragging: bmoved,
-		    // afterMove: amoved	
+		    afterMove: amoved	
 		    // afterInit: checkfirstlast
 		});
 
-		// function bmoved(){
-		// 	jQuery('.banner-row .owl-pagination').addClass('hidden');
-		// }
-		// function amoved(){
-		// 	jQuery('.banner-row .owl-pagination').removeClass('hidden');
-		// }
+		function amoved(){
+			var slideText = jQuery('.owl-page.active .owl-numbers').text();
+			if(slideText == 2){
+				jQuery('.banner-caption .msg').text('Hand selected boutique Australian wines');
+			}
+			else
+			{
+				jQuery('.banner-caption .msg').text('Purveyors of hand selected boutique Australian wines');	
+			}
+
+		}
 
 	}
 
