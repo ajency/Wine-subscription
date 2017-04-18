@@ -974,14 +974,23 @@ a[data-readmore-toggle]{
   		font-weight: bold;
   	}
   	.overlay-box {
-		display: none;
-		-webkit-transition: all 1s ease-in-out;
-		-moz-transition: all 1s ease-in-out;
-		-o-transition: all 1s ease-in-out;
-		transition: all 1s ease-in-out;
+		opacity: 0;
+		transition: all 0.8s ease;
 		background-image: url('./img/services-hover.png');
 		background-repeat: no-repeat;
 		background-position: right bottom;
+	    background-color: #fff;
+	    cursor: pointer;
+	    text-align: center;
+	    display: block;
+	    width: 83%;
+	    height: 100%;
+	    position: absolute;
+	    top: -30px;
+	    left: 0px;
+	    padding: 25px;
+	    z-index: 1;
+	    box-shadow: 2px 1px 30px rgba(0, 0, 0, 0.22);
 		.s-title{
 			font-size: 1.5em;
 		}
@@ -991,18 +1000,7 @@ a[data-readmore-toggle]{
 	}
 	&:hover{
 		.overlay-box {
-		    background-color: #fff;
-		    cursor: pointer;
-		    text-align: center;
-		    display: block;
-		    width: 83%;
-		    height: 100%;
-		    position: absolute;
-		    top: -30px;
-		    left: 0px;
-		    padding: 25px;
-		    z-index: 999;
-		    box-shadow: 2px 1px 30px rgba(0, 0, 0, 0.22);
+			opacity: 1;
 		    p{
 		    color: #A8A8A8;
 		    a{
@@ -1600,6 +1598,7 @@ a[data-readmore-toggle]{
 
 .row.contact-row{
 	margin-bottom: 0;
+	margin-top: 2em;
     border-bottom: 1px solid #024982;
 }
 

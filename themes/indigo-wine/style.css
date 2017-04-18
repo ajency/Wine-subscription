@@ -871,20 +871,12 @@ a[data-readmore-toggle]:hover {
   font-weight: bold;
 }
 .line-grid li .overlay-box {
-  display: none;
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
+  opacity: 0;
+  -webkit-transition: all 0.8s ease;
+          transition: all 0.8s ease;
   background-image: url('img/services-hover.png');
   background-repeat: no-repeat;
   background-position: right bottom;
-}
-.line-grid li .overlay-box .s-title {
-  font-size: 1.5em;
-}
-.line-grid li .overlay-box .hidden-xs {
-  font-family: roboto;
-}
-.line-grid li:hover .overlay-box {
   background-color: #fff;
   cursor: pointer;
   text-align: center;
@@ -895,8 +887,17 @@ a[data-readmore-toggle]:hover {
   top: -30px;
   left: 0px;
   padding: 25px;
-  z-index: 999;
+  z-index: 1;
   box-shadow: 2px 1px 30px rgba(0, 0, 0, 0.22);
+}
+.line-grid li .overlay-box .s-title {
+  font-size: 1.5em;
+}
+.line-grid li .overlay-box .hidden-xs {
+  font-family: roboto;
+}
+.line-grid li:hover .overlay-box {
+  opacity: 1;
 }
 .line-grid li:hover .overlay-box p {
   color: #A8A8A8;
@@ -1526,6 +1527,7 @@ a[data-readmore-toggle]:hover {
 }
 .row.contact-row {
   margin-bottom: 0;
+  margin-top: 2em;
   border-bottom: 1px solid #024982;
 }
 #footer {
