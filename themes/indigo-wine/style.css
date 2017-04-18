@@ -501,6 +501,9 @@ a[data-readmore-toggle] {
   color: #022c4c;
   margin-top: 0.5em;
 }
+a[data-readmore-toggle]:hover {
+  color: #03497e;
+}
 @media screen and (max-width: 500px) {
   .about-us .about-data {
     font-size: 1.5em;
@@ -871,6 +874,9 @@ a[data-readmore-toggle] {
   display: none;
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
+  background-image: url('img/services-hover.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
 }
 .line-grid li .overlay-box .s-title {
   font-size: 1.5em;
@@ -879,7 +885,7 @@ a[data-readmore-toggle] {
   font-family: roboto;
 }
 .line-grid li:hover .overlay-box {
-  background: #fff;
+  background-color: #fff;
   cursor: pointer;
   text-align: center;
   display: block;
@@ -897,6 +903,9 @@ a[data-readmore-toggle] {
 }
 .line-grid li:hover .overlay-box p a {
   color: #dbc497;
+}
+.list-2 li:after {
+  display: none;
 }
 .row.services-row {
   margin: 0;
