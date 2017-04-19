@@ -89,7 +89,7 @@
 
             <!-- BEGIN #header-inner-bg -->
             <div id="header-inner-bg">
-                
+                <!-- Main menu -->
                 <div class="ind-custom-menu">
                     <div class="col col-left">
                         <?php
@@ -147,6 +147,19 @@
                         if ( hb_options('hb_top_header_checkout') && class_exists('Woocommerce') ) {
                             echo hb_woo_cart();
                         } ?-->
+                        
+                        <?php
+                        if ( is_user_logged_in() ) {
+                           echo '<ul><li class="user-detail"><div class="user"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-angle-down arrow-down" aria-hidden="true"></i><div class="drop">
+                           <ul>
+                           <li>
+                            <a href="'.wp_logout_url( get_permalink() ).'"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li></ul></div></div></li></ul>';
+                        }
+                        else{
+                            echo '<ul><li class="user-detail"><a class="simplemodal-login" href="/wp-login.php"><i class="fa fa-user" aria-hidden="true" title="Login"></i></a></li></ul>';
+                        }
+                        ?>
+                       
                     </div>
                 </div>
 
@@ -154,8 +167,21 @@
     
                 <div class="indigo-m-menu">
                     <div class="cols top">
-                      <i class="fa fa-bars o-menu" aria-hidden="true"></i>
-                      <span class="site-logo"></span>
+                        <div class="left-data">
+                            <i class="fa fa-bars o-menu" aria-hidden="true"></i>
+                            <span class="site-logo"></span>
+                        </div>
+                      <?php
+                        if ( is_user_logged_in() ) {
+                           echo '<div class="user-detail"><div class="user"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-angle-down arrow-down" aria-hidden="true"></i><div class="drop">
+                           <ul>
+                           <li>
+                            <a href="'.wp_logout_url( get_permalink() ).'"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li></ul></div></div></div>';
+                        }
+                        else{
+                            echo '<div class="user-detail"><a class="simplemodal-login" href="/wp-login.php"><i class="fa fa-user" aria-hidden="true" title="Login"></i></a></div>';
+                        }
+                        ?>
                     </div>
                     <div class="cols slide">
                         <div class="bottom">
@@ -164,11 +190,13 @@
                                 'theme_location' => 'my-custom-menu', 
                                 'container_class' => 'custom-menu-class' ) ); 
                             ?>
+                            <div class="end">
                             <?php
-                            wp_nav_menu( array( 
-                                'theme_location' => 'my-custom-menuu', 
-                                'container_class' => 'custom-menu-class' ) ); 
-                            ?>
+                                wp_nav_menu( array( 
+                                    'theme_location' => 'my-custom-menuu', 
+                                    'container_class' => 'custom-menu-class' ) ); 
+                                ?>
+                            </div>
                         </div>
                         <div class="m-close">
                             <i class="fa fa-times" aria-hidden="true"></i>

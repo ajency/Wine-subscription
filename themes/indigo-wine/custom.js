@@ -52,24 +52,27 @@ jQuery(function(){
 		    navigation : true,
 		    navigationText : ["",""],
 		    pagination : true,
-		    // paginationNumbers: true,
+		    paginationNumbers: true,
 		    // startDragging: bmoved,
-		    // afterMove: amoved	
+		    afterMove: amoved	
 		    // afterInit: checkfirstlast
 		});
 
-		// function bmoved(){
-		// 	jQuery('.banner-row .owl-pagination').addClass('hidden');
-		// }
-		// function amoved(){
-		// 	jQuery('.banner-row .owl-pagination').removeClass('hidden');
-		// }
+		function amoved(){
+			var slideText = jQuery('.owl-page.active .owl-numbers').text();
+			if(slideText == 2){
+				jQuery('.banner-caption .msg').text('Hand selected boutique Australian wines');
+			}
+			else
+			{
+				jQuery('.banner-caption .msg').text('Purveyors of hand selected boutique Australian wines');	
+			}
+
+		}
 
 	}
 
 	setTimeout(slideCarousel, 1000);
-
-
 
 
 	// Readmore
@@ -81,6 +84,16 @@ jQuery(function(){
 	   lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
 	 });
 
+
+	// featured product scroll
+
+	jQuery(".featured-product .down").click(function() {
+	    jQuery('html, body').animate({
+	        scrollTop: jQuery(".featuredRow").offset().top - 150
+	    }, 2000);
+	});
+
+
 	// mobile menu
 
 	jQuery('.o-menu').click(function(){
@@ -88,32 +101,10 @@ jQuery(function(){
 	    jQuery('body').addClass('blocked');
 	});
 
-	jQuery('.m-close').click(function(){
+	jQuery('.m-close,.custom-menu-class a').click(function(){
 	    jQuery('.cols .bottom,.head-overlay').removeClass('active');
 	    jQuery('body').removeClass('blocked');
 	});
-
-
-		// jQuery('#menu-left-menu li a').click(function(){
-		// 	event.preventDefault();
-		// 	var a = jQuery(this).parent().index();
-		// 	jQuery(this).addClass('active').parent().siblings().children().removeClass('active');
-		// 	jQuery('html, body').animate({
-	 //         scrollTop: jQuery('.scroll-'+a).offset().top - 110
-	 //     }, 2000);
-		// });
-	
-		// jQuery(window).scroll(function (event) {
-		//     var scroll = jQuery(window).scrollTop();
-		//     jQuery('#menu-left-menu li').each(function(){
-		//     	var a = jQuery(this).parent().index();
-		// 	    jQuery(this).toggleClass('ok',
-		// 	      scroll >= jQuery('.scroll-'+a).offset().top
-		// 	    );
-		//     });
-		// });
-
-		// jQuery(window).scroll();
 
 
 		// Custom menu click and scroll to particular ID
