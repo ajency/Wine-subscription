@@ -2175,6 +2175,15 @@ a[data-readmore-toggle]:hover {
 .rating-reviews h4 {
   margin: 0px;
 }
+#hb-woo-notif li div {
+  background: #022c4c !important;
+}
+#hb-woo-notif li div a {
+  background: #dbc497;
+}
+#main-wrapper .product-loading-icon {
+  background: #022c4c !important;
+}
 .woocommerce-cart-form {
   background: #f2f2f2;
   padding: 20px;
