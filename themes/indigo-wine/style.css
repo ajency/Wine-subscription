@@ -402,9 +402,6 @@ body {
   color: #fff;
 }
 @media screen and (max-width: 991px) {
-  .banner-row .owl-carousel .item {
-    position: relative;
-  }
   .banner-row .owl-carousel .item img {
     max-width: 200% !important;
     width: auto;
@@ -1264,6 +1261,11 @@ a[data-readmore-toggle]:hover {
     bottom: 0;
   }
 }
+@media screen and (min-width: 767px) and (max-width: 1200px) {
+  .trade-banner {
+    background-size: cover;
+  }
+}
 .logoCarousel {
   position: relative;
 }
@@ -1773,6 +1775,11 @@ a[data-readmore-toggle]:hover {
   left: 0%;
   right: 0%;
   margin: auto;
+}
+@media screen and (max-width: 1200px) {
+  .line-grid li .s-title {
+    font-size: 1.2em;
+  }
 }
 @media (max-width: 767px) {
   .line-grid li:after {

@@ -427,7 +427,6 @@ body{
 	.banner-row{
 		.owl-carousel{
 			.item{
-				position: relative;
 				img{
 					max-width: 200% !important;
 					width: auto;
@@ -1363,6 +1362,14 @@ a[data-readmore-toggle]{
 	}
 }
 
+@media screen and (min-width: 767px) and (max-width: 1200px){
+	.trade{
+		&-banner{
+			background-size: cover;
+		}
+	}
+}
+
 
 // ---------------------------
 // LOGO CAROUSEL -----------
@@ -1865,6 +1872,18 @@ a[data-readmore-toggle]{
   right: 0%;
   margin: auto;
 }
+
+@media screen and (max-width: 1200px){
+	.line-grid{
+		li{
+			.s-title{
+				font-size: 1.2em;
+			}
+		}
+	}
+}
+
+
 @media (max-width: 767px) {
   .line-grid li:after {
     bottom: -10px;
