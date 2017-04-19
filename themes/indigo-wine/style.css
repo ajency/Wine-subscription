@@ -1609,6 +1609,10 @@ a[data-readmore-toggle] {
 .icn-distribution {
   background-position: -99px -493px !important;
 }
+.text-2 {
+  margin-top: 70px;
+  margin-bottom: 0px;
+}
 #simplemodal-login-container-osx.simplemodal-container {
   width: 550px !important;
   left: 0 !important;
@@ -1971,5 +1975,35 @@ a[data-readmore-toggle] {
 }
 .woocommerce h4 {
   font-weight: bold;
+}
+.woocommerce-billing-fields__field-wrapper input {
+  background: transparent;
+  border-width: 0px 0px 1px 0px;
+}
+.woocommerce-billing-fields__field-wrapper .select2-selection--single {
+  border-bottom: 1px solid #ccc !important;
+  border: 0px;
+  border-radius: 0px;
+  height: 40px;
+  margin-top: 10px;
+}
+.payout-box {
+  background: #dbc497;
+  padding: 10px;
+}
+.woocommerce form .form-row {
+  padding: 3px;
+  margin: 0 0 36px;
+}
+.woocommerce h4 {
+  font-size: 28px;
+}
+.woocommerce table.shop_table thead th {
+  border-bottom: 1px solid #bba478;
+}
+.woocommerce table.shop_table tr td {
+  border-width: 0px 0px 1px 0px !important;
+  border-top: 0px !important;
+  font-family: arial ;
 }
 /*# sourceMappingURL=style.css.map */

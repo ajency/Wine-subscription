@@ -34,12 +34,13 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 
 			<div class="col-8">
 				<?php do_action( 'woocommerce_checkout_billing' ); ?>
-				<br>
+				<br><br>
 				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
 			</div>
 
 			
 			<div class="col-4">
+				<div class="payout-box">
 				<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
 
 		<h4 id="order_review_heading" class="hb-heading hb-center-heading"><span><?php _e( 'Your order', 'woocommerce' ); ?></span></h4>
@@ -52,6 +53,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 
 	<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
 			</div>
+		</div>
 		</div>
 
 		
