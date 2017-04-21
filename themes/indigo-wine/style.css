@@ -714,7 +714,7 @@ a[data-readmore-toggle]:hover {
   text-decoration: underline;
 }
 .why-points .stats .section:hover {
-  box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.11);
+  box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.39);
 }
 .why-points .stats .section:hover .iconTitle:after {
   width: 50%;
@@ -2175,6 +2175,11 @@ a[data-readmore-toggle]:hover {
 .rating-reviews h4 {
   margin: 0px;
 }
+.cart-image {
+  width: 20%;
+  display: block;
+  margin: auto auto 20px;
+}
 #hb-woo-notif li div {
   background: #022c4c !important;
 }
@@ -2228,6 +2233,9 @@ a[data-readmore-toggle]:hover {
 .woocommerce h4 {
   font-weight: bold;
 }
+.woocommerce-cart #hb-page-title {
+  padding-top: 20px !important;
+}
 .woocommerce-billing-fields__field-wrapper input {
   background: transparent;
   border-width: 0px 0px 1px 0px;
@@ -2257,6 +2265,38 @@ a[data-readmore-toggle]:hover {
   border-width: 0px 0px 1px 0px !important;
   border-top: 0px !important;
   font-family: arial ;
+}
+.wc_payment_methods {
+  font-family: arial;
+  font-size: 13px;
+}
+body #place_order {
+  background-color: #022c4c!important;
+  color: #fff;
+  font-weight: 600!important;
+  font-family: roboto!important;
+  font-size: 1.4em!important;
+  border: 0;
+  background-image: none;
+  border-radius: 4px!important;
+  padding: 0.8em 1.8em !important;
+  letter-spacing: 0.5px;
+  text-transform: capitalize!important;
+  box-shadow: none!important;
+}
+.woocommerce-info {
+  border-top-color: #022c4c !important;
+}
+.woocommerce-info::before {
+  color: #022c4c !important;
+}
+body .woocommerce form .form-row {
+  padding: 3px;
+  margin-bottom: 0px!important;
+}
+body .woocommerce form .form-row .button {
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
 }
 .not-found-box {
   min-height: calc(100vh - 36.2em);
