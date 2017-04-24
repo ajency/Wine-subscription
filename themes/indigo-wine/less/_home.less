@@ -110,13 +110,20 @@ body{
 	background-image: url('./img/bg-repeat.jpg');
 	background-size: 5%;
     background-position: 13.3% 1px;
+    .col-center {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 23% !important;
+    -ms-flex: 1 0 23%!important;
+    flex: 1 0 23%!important;
+    text-align: center;
+}
 	#logo{
 		max-width: initial !important;
 		height: auto !important;
 		float: none;
     	display: inline-block;
     	position: relative;
-    	top: -5px;
+    	top: -10px;
     	img{
     		max-width: 100%;
     		height: auto;
@@ -186,7 +193,8 @@ body{
 		    background-image: url('./img/logo-half.png');
 		    display: block;
 		    background-position: center;
-		    background-size: 90%;
+		    background-size: 100%;
+		    top: -2px;
     		img{
 				display: none !important;
     		}
@@ -254,7 +262,7 @@ body{
 		.col{
 			ul{
 				position: relative;
-    			top: 10px; 
+    			top: 0px; 
 				li{
 					padding: 0 1.2em;
 					a,.active{
