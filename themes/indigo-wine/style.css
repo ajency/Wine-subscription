@@ -257,6 +257,37 @@ body {
 .user-detail .drop ul li a:after {
   top: 0;
 }
+@media only screen and (min-width: 1920px) {
+  .ind-custom-menu {
+    background-position: 13.3% 2px;
+  }
+  .ind-custom-menu .col ul {
+    position: relative;
+    top: -12px;
+  }
+  .ind-custom-menu .col ul li {
+    padding: 0 1.2em;
+  }
+  .ind-custom-menu .col ul li a,
+  .ind-custom-menu .col ul li .active {
+    font-size: 1em;
+  }
+  .ind-custom-menu.fixed {
+    background-position: 13.5% -5px;
+  }
+  .ind-custom-menu.fixed .col ul {
+    top: 0;
+  }
+  .ind-custom-menu.fixed #logo {
+    height: 118px !important;
+    background-repeat: no-repeat;
+    background-image: url(img/logo-half.png);
+    display: block;
+    background-position: center;
+    background-size: 100%;
+    top: -1px;
+  }
+}
 @media screen and (max-width: 1400px) {
   .ind-custom-menu {
     background-position: 13.3% 2px;

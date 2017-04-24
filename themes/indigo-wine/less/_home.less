@@ -255,6 +255,40 @@ body{
 	}
 }
 
+@media only screen and (min-width: 1920px){
+	.ind-custom-menu{
+	   	background-position: 13.3% 2px;
+		.col{
+			ul{
+				position: relative;
+    			top: -12px; 
+				li{
+					padding: 0 1.2em;
+					a,.active{
+						font-size: 1em;
+					}
+				}
+			}
+		}
+		&.fixed{
+			background-position: 13.5% -5px;
+			.col{
+				ul{
+					top: 0
+				}
+			}
+		}
+	}
+	.ind-custom-menu.fixed #logo {
+    height: 118px !important;
+    background-repeat: no-repeat;
+    background-image: url(img/logo-half.png);
+    display: block;
+    background-position: center;
+    background-size: 100%;
+    top: -1px;
+}
+}
 
 @media screen and (max-width: 1400px){
 	.ind-custom-menu{
