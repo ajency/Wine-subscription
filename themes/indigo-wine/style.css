@@ -951,7 +951,7 @@ a[data-readmore-toggle]:hover {
   margin: 0;
 }
 .row.services-row + .without-border {
-  background-image: url('img/wineyard.png');
+  background-image: url('img/wineyard.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   padding: 0;
@@ -1223,7 +1223,7 @@ a[data-readmore-toggle]:hover {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-image: url('img/trade-image.png');
+  background-image: url('img/trade-image.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
