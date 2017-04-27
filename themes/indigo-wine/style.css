@@ -524,7 +524,8 @@ body {
   }
   .banner-caption .msg {
     font-weight: 600;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    text-align: center;
   }
   .social-link {
     display: none;
@@ -916,7 +917,7 @@ a[data-readmore-toggle]:hover {
 }
 .row.pattern-gap + .without-border {
   background-image: url('img/transperent-bg.png');
-  padding: 6em 0 8em 0;
+  padding: 6em 0 4em 0;
   background-size: contain;
   background-repeat: repeat;
   background-color: rgba(238, 238, 238, 0.48);
@@ -1201,6 +1202,15 @@ a[data-readmore-toggle]:hover {
   }
 }
 @media screen and (max-width: 767px) {
+  .row.row-gap {
+    margin: 5em 0 4em;
+  }
+  .line-grid li:hover .overlay-box p {
+    font-size: 12px;
+  }
+  .line-grid li:hover .overlay-box .s-title {
+    margin-top: 1em;
+  }
   .our-wine .timeline {
     -webkit-box-pack: start;
     -webkit-justify-content: flex-start;

@@ -532,7 +532,8 @@ body{
 		padding: 1em;
 	    .msg{
 	    	font-weight: 600;
-    		font-size: 1.2em;
+    		font-size: 1.1em;
+    		text-align: center;
 	    }
 	}
 	.social-link{
@@ -993,7 +994,7 @@ a[data-readmore-toggle]{
 	margin: 0;
 	& + .without-border{
 		background-image: url('./img/transperent-bg.png');
-		padding: 6em 0 8em 0;
+		padding: 6em 0 4em 0;
     	background-size: contain;
     	background-repeat: repeat;
     	background-color: rgba(238, 238, 238, 0.48);
@@ -1287,6 +1288,25 @@ a[data-readmore-toggle]{
 }
 
 @media screen and (max-width: 767px){
+	.row.row-gap {
+	    margin: 5em 0 4em;
+	}
+	.line-grid {
+		li{
+			&:hover{
+				.overlay-box{
+					p{
+						 font-size: 12px;
+					}
+					.s-title{
+						margin-top: 1em;
+					}
+				}
+			}
+		}
+	}
+
+
 	.our-wine{
 		.timeline{
 			// flex-direction: column;
