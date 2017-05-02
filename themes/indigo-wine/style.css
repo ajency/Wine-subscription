@@ -1029,7 +1029,6 @@ a[data-readmore-toggle]:hover {
   background-repeat: no-repeat;
   background-size: cover;
   padding: 0;
-  overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 500px inset;
 }
 .our-wine {
@@ -1160,11 +1159,12 @@ a[data-readmore-toggle]:hover {
   font-size: 1.4em;
   margin-bottom: 0;
 }
-.featured-product .down {
+.featured-product .down.down {
   position: relative;
   cursor: pointer;
+  margin-bottom: 5.5em;
 }
-.featured-product .down:before {
+.featured-product .down.down:before {
   content: "\f107";
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
