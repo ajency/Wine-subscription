@@ -157,9 +157,9 @@ body {
 }
 .ind-custom-menu .col {
   -webkit-box-flex: 1;
-  -webkit-flex: 1 0 40%;
-      -ms-flex: 1 0 40%;
-          flex: 1 0 40%;
+  -webkit-flex: 1 0 38%;
+      -ms-flex: 1 0 38%;
+          flex: 1 0 38%;
 }
 .ind-custom-menu .col ul {
   display: -webkit-box;
@@ -196,6 +196,9 @@ body {
 }
 .ind-custom-menu .col ul li .active:after {
   width: 100%;
+}
+.ind-custom-menu .col ul li.right {
+  padding: 0;
 }
 .ind-custom-menu .col-left {
   display: -webkit-box;
@@ -2044,6 +2047,9 @@ a[data-readmore-toggle]:hover {
   font-weight: 600;
   font-family: roboto;
   margin: 0.5em 0;
+}
+#simplemodal-login-container-osx.simplemodal-container form .simplemodal-login-fields .message {
+  color: #000;
 }
 #simplemodal-login-container-osx.simplemodal-container form .forgetmenot {
   float: none;
