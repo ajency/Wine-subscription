@@ -1321,22 +1321,22 @@ a[data-readmore-toggle]:hover {
 }
 .trade-banner .service {
   width: 400px;
-  padding: 1.5em;
+  padding: 1.3em;
   background-color: #fff;
 }
 .trade-banner .service .title {
   font-family: 'gotham_mediumregular';
-  font-size: 2.2em;
-  line-height: 1.3;
+  font-size: 1.6em;
+  line-height: 1.2;
 }
 .trade-banner .service .lists {
   font-family: roboto;
   font-weight: 500;
-  margin-top: 2em;
+  margin-top: 1em;
 }
 .trade-banner .service .lists li {
-  font-size: 1.35em;
-  margin-bottom: 1em;
+  font-size: 1.12em;
+  margin-bottom: 0.6em;
   font-family: 'gotham_lightregular';
 }
 .trade-banner .service .lists li:last-child {
