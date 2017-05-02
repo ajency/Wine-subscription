@@ -2118,6 +2118,9 @@ a[data-readmore-toggle]:hover {
 #simplemodal-login-container-osx.simplemodal-container.register-stuff #registerform {
   display: block !important;
 }
+#simplemodal-login-container-osx.simplemodal-container.register-stuff #registerform .nav {
+  display: none;
+}
 @media screen and (max-width: 550px) {
   #simplemodal-login-container-osx.simplemodal-container {
     width: 95% !important;
