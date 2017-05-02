@@ -157,9 +157,9 @@ body {
 }
 .ind-custom-menu .col {
   -webkit-box-flex: 1;
-  -webkit-flex: 1 0 40%;
-      -ms-flex: 1 0 40%;
-          flex: 1 0 40%;
+  -webkit-flex: 1 0 38%;
+      -ms-flex: 1 0 38%;
+          flex: 1 0 38%;
 }
 .ind-custom-menu .col ul {
   display: -webkit-box;
@@ -196,6 +196,9 @@ body {
 }
 .ind-custom-menu .col ul li .active:after {
   width: 100%;
+}
+.ind-custom-menu .col ul li.right {
+  padding: 0;
 }
 .ind-custom-menu .col-left {
   display: -webkit-box;
@@ -314,7 +317,7 @@ body {
     width: 120%;
   }
   .our-wine .timeline:before {
-    width: calc(100% - 20em) !important;
+    width: calc(80%) !important;
   }
   .ind-custom-menu {
     background-position: 13.3% 2px;
@@ -501,9 +504,6 @@ body {
   color: #fff;
 }
 @media screen and (max-width: 991px) {
-  .banner-row .owl-carousel .item {
-    position: relative;
-  }
   .banner-row .owl-carousel .item img {
     max-width: 200% !important;
     width: auto;
@@ -1394,6 +1394,11 @@ a[data-readmore-toggle]:hover {
     bottom: 0;
   }
 }
+@media screen and (min-width: 767px) and (max-width: 1200px) {
+  .trade-banner {
+    background-size: cover;
+  }
+}
 .logoCarousel {
   position: relative;
 }
@@ -1904,6 +1909,11 @@ a[data-readmore-toggle]:hover {
   right: 0%;
   margin: auto;
 }
+@media screen and (max-width: 1200px) {
+  .line-grid li .s-title {
+    font-size: 1.2em;
+  }
+}
 @media (max-width: 767px) {
   .line-grid li:after {
     bottom: -10px;
@@ -2037,6 +2047,9 @@ a[data-readmore-toggle]:hover {
   font-weight: 600;
   font-family: roboto;
   margin: 0.5em 0;
+}
+#simplemodal-login-container-osx.simplemodal-container form .simplemodal-login-fields .message {
+  color: #000;
 }
 #simplemodal-login-container-osx.simplemodal-container form .forgetmenot {
   float: none;

@@ -141,7 +141,7 @@ body{
     	}
 	}
 	.col{
-		flex: 1 0 40%;
+		flex: 1 0 38%;
 		ul{
 			display: flex;
 			position: relative;
@@ -173,6 +173,9 @@ body{
 					&:after{
 						width: 100%;
 					}
+				}
+				&.right{
+					padding: 0;
 				}
 			}
 		}
@@ -317,14 +320,14 @@ body{
 		}
 	}
 	.ind-custom-menu.fixed #logo {
-    height: 118px !important;
-    background-repeat: no-repeat;
-    background-image: url(img/logo-half.png);
-    display: block;
-    background-position: center;
-    background-size: 100%;
-    top: -1px;
-}
+	    height: 118px !important;
+	    background-repeat: no-repeat;
+	    background-image: url(img/logo-half.png);
+	    display: block;
+	    background-position: center;
+	    background-size: 100%;
+	    top: -1px;
+	}
 }
 
 @media screen and (max-width: 1400px){
@@ -507,7 +510,6 @@ body{
 	.banner-row{
 		.owl-carousel{
 			.item{
-				position: relative;
 				img{
 					max-width: 200% !important;
 					width: auto;
@@ -1488,6 +1490,14 @@ a[data-readmore-toggle]{
 	}
 }
 
+@media screen and (min-width: 767px) and (max-width: 1200px){
+	.trade{
+		&-banner{
+			background-size: cover;
+		}
+	}
+}
+
 
 // ---------------------------
 // LOGO CAROUSEL -----------
@@ -1990,6 +2000,18 @@ a[data-readmore-toggle]{
   right: 0%;
   margin: auto;
 }
+
+@media screen and (max-width: 1200px){
+	.line-grid{
+		li{
+			.s-title{
+				font-size: 1.2em;
+			}
+		}
+	}
+}
+
+
 @media (max-width: 767px) {
   .line-grid li:after {
     bottom: -10px;
