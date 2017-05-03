@@ -177,6 +177,12 @@ body {
   color: #d1b57c;
   font-size: 1.2em;
 }
+@media screen and (min-width: 1450px) {
+  .ind-custom-menu .col ul li a,
+  .ind-custom-menu .col ul li .active {
+    font-size: 1.15em;
+  }
+}
 .ind-custom-menu .col ul li a:after,
 .ind-custom-menu .col ul li .active:after {
   content: "";

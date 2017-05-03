@@ -121,12 +121,12 @@ body{
 	background-size: 5%;
     background-position: 13.3% 1px;
     .col-center {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1 0 23% !important;
-    -ms-flex: 1 0 23%!important;
-    flex: 1 0 23%!important;
-    text-align: center;
-}
+	    -webkit-box-flex: 1;
+	    -webkit-flex: 1 0 23% !important;
+	    -ms-flex: 1 0 23%!important;
+	    flex: 1 0 23%!important;
+	    text-align: center;
+	}
 	#logo{
 		max-width: initial !important;
 		height: auto !important;
@@ -151,6 +151,9 @@ body{
 				a,.active{
 					color: @brand-primary;
 					font-size: 1.2em;
+					@media screen and (min-width: 1450px){
+						font-size: 1.15em;
+					}
 					&:after{
 						content: "";
 						position: relative;
