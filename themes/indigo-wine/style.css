@@ -537,7 +537,7 @@ body {
   }
   .banner-caption .msg {
     font-weight: 600;
-    font-size: 1.1em;
+    font-size: 1.25em;
     text-align: center;
   }
   .social-link {
@@ -636,7 +636,7 @@ a[data-readmore-toggle].more:before {
 }
 @media screen and (max-width: 500px) {
   .about-us .about-data {
-    font-size: 1.4em;
+    font-size: 1.25em;
     line-height: 1.4;
     text-align: center;
   }
@@ -646,6 +646,12 @@ a[data-readmore-toggle].more:before {
   a[data-readmore-toggle] {
     font-size: 1em;
     margin-top: 0.5em;
+  }
+  .vc_custom_1493288017171.vc_custom_1493288017171 {
+    margin-bottom: 10px !important;
+  }
+  .row.about-row.about-row {
+    margin-bottom: 0;
   }
 }
 .row.delight-row {
@@ -722,11 +728,22 @@ a[data-readmore-toggle].more:before {
   }
 }
 @media screen and (max-width: 650px) {
-  .row.delight-row {
+  .row.delight-row.delight-row {
     margin-top: 1em;
   }
-  .row.delight-row .brand-button {
+  .row.delight-row.delight-row .brand-button {
     padding: 0;
+  }
+  .row.why-indigo-row.why-indigo-row {
+    margin-bottom: 0;
+    margin-top: 3em;
+  }
+  .row.our-wine-row.our-wine-row {
+    margin-top: 1em;
+  }
+  .row.featuredRow.featuredRow {
+    margin-bottom: 0;
+    margin-top: 2em;
   }
   .delight {
     -webkit-box-orient: vertical;
@@ -928,6 +945,9 @@ a[data-readmore-toggle].more:before {
   #main-wrapper .hb-woo-product.hb-woo-product img {
     width: 50%;
     margin: 0 auto;
+  }
+  .row-gap .featuredProduct.featuredProduct {
+    margin-bottom: 0;
   }
 }
 .row.why-indigo-row {
@@ -1413,6 +1433,10 @@ a[data-readmore-toggle].more:before {
   text-decoration: underline;
 }
 @media screen and (max-width: 600px) {
+  .trade-banner {
+    padding: 1em;
+    background-size: cover;
+  }
   .trade-banner .service.service {
     width: 75%;
     position: relative;
@@ -1420,10 +1444,10 @@ a[data-readmore-toggle].more:before {
     margin-bottom: 5em;
   }
   .trade-banner .service.service .title {
-    font-size: 1.5em;
+    font-size: 1.3em;
   }
   .trade-banner .service.service .lists li {
-    font-size: 1.15em;
+    font-size: 1em;
   }
   .pricelist {
     bottom: 0;
@@ -1503,6 +1527,9 @@ a[data-readmore-toggle].more:before {
   .logoCarousel .owl-theme .owl-controls .owl-buttons {
     width: calc(100% + 4em);
     left: -2em;
+  }
+  .row.logo-car-row .wait-msg {
+    font-size: 1.2em;
   }
 }
 .row.contact-from-row {
@@ -2195,6 +2222,11 @@ a[data-readmore-toggle].more:before {
   position: relative !important;
   float: none!important;
   color: #022c4c !important;
+}
+@media screen and (max-width: 500px) {
+  .hb-product-meta-wrapper {
+    text-align: center;
+  }
 }
 .hb-equal-col-height .products-4 {
   display: -webkit-box;
