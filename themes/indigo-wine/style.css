@@ -1037,7 +1037,7 @@ a[data-readmore-toggle]:hover {
   background-image: url('img/wineyard.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 0;
+  padding: 3em 0;
   box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 500px inset;
 }
 .our-wine {
@@ -1171,7 +1171,7 @@ a[data-readmore-toggle]:hover {
 .featured-product .down.down {
   position: relative;
   cursor: pointer;
-  margin-bottom: 5.5em;
+  margin-bottom: -3.2em;
 }
 .featured-product .down.down:before {
   content: "\f107";
@@ -2451,7 +2451,7 @@ a[data-readmore-toggle]:hover {
   margin: 0 0 36px;
 }
 .woocommerce h4 {
-  font-size: 28px;
+  font-size: 15px;
 }
 .woocommerce table.shop_table thead th {
   border-bottom: 1px solid #bba478;
