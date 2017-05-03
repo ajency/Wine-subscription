@@ -526,22 +526,8 @@ body {
     right: 0;
     bottom: 0.5em;
   }
-  .banner-row .wpb_wrapper {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
   .banner-caption {
-    top: inherit;
+    top: 25%;
     right: 0;
     margin: 0 auto;
     bottom: inherit;
