@@ -2575,6 +2575,72 @@ body .woocommerce form .form-row .button {
   margin-bottom: 0px !important;
   margin-top: 0px !important;
 }
+#main-content {
+  overflow: inherit;
+}
+.discount {
+  margin: -3em 0 4.5em 0;
+  padding: 1.8em 0;
+  background-color: #ddc69a;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s cubic-bezier(0.44, -0.25, 0.75, 1);
+          transition: opacity 0.5s cubic-bezier(0.44, -0.25, 0.75, 1);
+}
+.discount .col-12 {
+  margin-bottom: 0;
+}
+.discount .site-offer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.discount .message {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.discount .percent {
+  background-image: url('img/discount-icon.png');
+  height: 38px;
+  width: 35px;
+  display: inline-block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-right: 1em;
+}
+.discount .title {
+  margin-bottom: 0;
+  font-family: 'gotham_lightregular';
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.45em;
+  color: #022c4c;
+}
+.discount .title b {
+  font-family: 'gotham_mediumregular';
+}
+.discount .close {
+  color: #022c4c;
+  font-size: 1.4em;
+  cursor: pointer;
+}
+.discount.active {
+  opacity: 1;
+}
 .not-found-box {
   min-height: calc(100vh - 36.2em);
 }

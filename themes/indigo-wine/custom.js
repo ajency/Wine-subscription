@@ -116,6 +116,16 @@ jQuery(function(){
 	    jQuery('body').removeClass('blocked');
 	  }
 	});
+
+	function opacShow(){
+		jQuery('.discount').addClass('active');	
+	}
+	setTimeout(opacShow, 2000);
+
+	jQuery('.site-offer .close').click(function(){
+	    jQuery('.discount').hide();
+	});
+
 		// Custom menu click and scroll to particular ID
 
 
