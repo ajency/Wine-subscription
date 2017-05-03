@@ -17,7 +17,7 @@ jQuery( function( $ ) {
                     quantity: currentVal
                 },
                 success: function(data) {
-                    $( '.col-12, .hb-main-content' ).html(data);
+                    $( '.hb-main-content' ).html(data);
                 }
             });  
 

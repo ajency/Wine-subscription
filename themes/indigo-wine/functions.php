@@ -124,4 +124,89 @@ add_action('wp_ajax_qty_cart', 'ajax_qty_cart');
 add_action('wp_ajax_nopriv_qty_cart', 'ajax_qty_cart');
 
 
+// Display Fields
+add_action( 'woocommerce_product_options_general_product_data', 'woo_add_custom_general_fields' );
+
+function woo_add_custom_general_fields() {
+
+  global $woocommerce, $post;
+  
+  echo '<div class="options_group">';
+  
+ woocommerce_wp_text_input( 
+    array( 
+        'id'          => '_sale_discount_price', 
+        'label'       => __( 'Discount Price (&pound;)', 'woocommerce' ), 
+        'placeholder' => '',
+        'desc_tip'    => 'true',
+        'class'    => 'discountvalue',
+        'description' => __( 'Product Discount in Price.', 'woocommerce' ),
+        'type'              => 'number', 
+        'custom_attributes' => array(
+                'step'  => 'any',
+                'min'   => '0'
+            )  
+    )
+);
+ 
+ echo '<div style=" margin-left: 380px;"> OR </div>';
+
+  woocommerce_wp_text_input( 
+    array( 
+        'id'          => '_sale_discount_percentage', 
+        'label'       => __( 'Discount %', 'woocommerce' ), 
+        'placeholder' => '',
+        'desc_tip'    => 'true',
+        'class'    => 'discountvalue',
+        'description' => __( 'Product Discount in %.', 'woocommerce' ),
+        'type'              => 'number', 
+        'custom_attributes' => array(
+                'step'  => 'any',
+                'min'   => '0'
+            )  
+    )
+);
+
+
+  
+  echo '</div>';
+    
+}
+
+// Save Fields
+add_action( 'woocommerce_process_product_meta', 'woo_add_custom_general_fields_save' );
+
+function woo_add_custom_general_fields_save( $post_id ){
+    
+    // Text Field
+    $woocommerce_text_field = isset($_POST['_sale_discount_price']) ? $_POST['_sale_discount_price'] : 0 ;
+    update_post_meta( $post_id, '_sale_discount_price', esc_attr( $woocommerce_text_field ) );
+        
+    // Number Field
+    $woocommerce_number_field = isset($_POST['_sale_discount_percentage']) ? $_POST['_sale_discount_percentage'] : 0 ;
+    update_post_meta( $post_id, '_sale_discount_percentage', esc_attr( $woocommerce_number_field ) );
+    
+}
+
+
+
+function add_product_admin_scripts( $hook ) {
+
+    global $post;
+
+    if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+        if ( 'product' === $post->post_type ) {     
+            wp_enqueue_script(  'addproduct', get_template_directory_uri().'/js/addproduct.js' );
+        }
+    }
+}
+add_action( 'admin_enqueue_scripts', 'add_product_admin_scripts', 10, 1 );
+
+
+
 require get_template_directory()."/subscription/product-subscription.php";
+
+
+
+
+

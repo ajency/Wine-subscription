@@ -45,7 +45,7 @@ function filter_woocommerce_cart_item_subtotal( $wc, $cart_item, $cart_item_key 
                     quantity: currentVal
                 },
                 success: function(data) {
-                    jQuery( '.col-12, .hb-main-content' ).html(data);
+                    jQuery( '.hb-main-content' ).html(data);
                 }
             });  
 
