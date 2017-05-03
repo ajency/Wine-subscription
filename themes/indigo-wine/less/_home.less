@@ -486,9 +486,10 @@ body{
     .title{
     	color: #fff;
     	font-weight: 600;
-    	font-size: 1.3em;
+    	font-size: 1.1em;
     	padding-left: 0.5em;
     	margin-bottom: 0.5em;
+    	font-family: 'gotham_mediumregular';
     }
     .socialIcons{
     	display: flex;
@@ -567,9 +568,11 @@ body{
 
 .row.pattern-bg{
 	background-image: url('./img/transperent-bg.png');
-	min-height: 100px;
+	min-height: 155px;
     margin-top: -3em;
     margin-bottom: -1em;
+    background-size: 5%;
+    background-color: rgba(238, 238, 238, 0.18);
     @media screen and (max-width: 768px){
     	min-height: 80px;
     }
@@ -585,7 +588,7 @@ body{
 // ---------------------------
 
 .row.about-row{
-	margin-top: 5em;
+	margin-top: 3em;
 	margin-bottom: 1em;
 }
 
@@ -608,13 +611,13 @@ body{
 
 .about-us{
 	.about-data{
-		font-size: 1.85em;
+		font-size: 1.75em;
 	    font-weight: 400;
 	    font-family:'gotham_lightregular';
-	    line-height: 1.35;
+	    line-height: 1.2;
 	    color: @brand-primary;
 		b{
-		font-family:'gotham_mediumregular';
+			font-family:'gotham_mediumregular';
 		}
 	}
 }
@@ -641,9 +644,21 @@ a[data-readmore-toggle]{
 	font-size: 1.2em;
     color: @brand-secondary;
 	margin-top: 0.5em;
+	position: relative;
 	&:hover{
 		color: lighten(@brand-secondary,10%);
 	}
+    &.more{
+	    &:before{
+	    	content: '';
+	    	position: absolute;
+	    	top: -2.6em;
+	    	width: 100%;
+	    	background-color: #fff;
+	    	height: 35px;
+	    	opacity: 0.7;
+	    }
+    }
 }
 
 

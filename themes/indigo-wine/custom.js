@@ -79,7 +79,7 @@ jQuery(function(){
 
 	jQuery('.about-details').readmore({
 	   speed: 25,
-	   collapsedHeight: 210,
+	   collapsedHeight: 235,
 	   moreLink: '<a href="#" class="more">Show More <i class="fa fa-angle-down" aria-hidden="true"></i></a>',
 	   lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
 	 });
