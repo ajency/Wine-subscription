@@ -2182,6 +2182,8 @@ a[data-readmore-toggle]:hover {
   margin-left: 8px;
   margin-right: 8px;
   width: calc(33.33% - 16px);
+  -webkit-animation: none !important;
+          animation: none !important;
 }
 .hb-equal-col-height .hb-woo-product:first-child {
   border-left: 0;
