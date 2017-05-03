@@ -106,7 +106,16 @@ jQuery(function(){
 	    jQuery('body').removeClass('blocked');
 	});
 
+	// click outside hide
 
+	jQuery(document).mouseup(function(e) {
+	  var Click_todo;
+	  Click_todo = jQuery('.cols .bottom');
+	  if (!Click_todo.is(e.target) && Click_todo.has(e.target).length === 0) {
+	    jQuery('.cols .bottom,.head-overlay').removeClass('active');
+	    jQuery('body').removeClass('blocked');
+	  }
+	});
 		// Custom menu click and scroll to particular ID
 
 
