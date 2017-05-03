@@ -161,6 +161,12 @@ body {
       -ms-flex: 1 0 38%;
           flex: 1 0 38%;
 }
+@media screen and (min-width: 1400px) {
+  .ind-custom-menu .col {
+    position: relative;
+    top: -10px;
+  }
+}
 .ind-custom-menu .col ul {
   display: -webkit-box;
   display: -webkit-flex;
@@ -177,7 +183,7 @@ body {
   color: #d1b57c;
   font-size: 1.2em;
 }
-@media screen and (min-width: 1450px) {
+@media screen and (min-width: 1400px) {
   .ind-custom-menu .col ul li a,
   .ind-custom-menu .col ul li .active {
     font-size: 1.15em;
