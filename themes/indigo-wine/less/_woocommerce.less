@@ -28,6 +28,28 @@
 	}
 }
 
+.hb-image-bg-wrap{
+	background-image: url('../../uploads/2017/04/yvnEeuC-2.png') !important;
+}
+
+.hb-page-title.simple-title,.hb-page-title.light-text{
+	& > h1{
+    	color: rgba(255,255,255,1)!important;
+    	font-family: 'gotham_mediumregular' !important;
+	}
+	& + .breadcrumbs-wrapper.breadcrumbs-wrapper{
+		span,a{
+			color: rgba(255,255,255,1) !important;
+			opacity: 1;
+			font-family: 'gotham_mediumregular' !important;
+    		font-size: 1.05em;
+			&:hover{
+				color: @brand-primary !important;
+			}
+		}
+	}
+}
+
 .hb-product-meta-wrapper {
 	.hb-woo-product-details {
 		max-width: 100%;
