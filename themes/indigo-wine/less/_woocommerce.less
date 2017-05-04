@@ -538,32 +538,6 @@ body
     }
 }
 
-@media screen and (max-width: 500px){
-	.discount{
-		padding-bottom: 0em;
-	    .site-offer{
-	    	flex-direction: column;
-    		position: relative;
-	    }
-	    .message{
-	    	flex-direction: column;
-	    }
-	    .percent{
-	    	margin: 0;
-	    }
-	    .title{
-	    	font-size: 1.15em;
-    		text-align: center;
-    		margin-top: 0.35em;
-	    }
-	    .close{
-	    	position: absolute;
-    		top: 0;
-    		right: 0;
-	    }
-	}
-}
-
 
 .productTitle{
 	font-size: 2.2em;
@@ -708,7 +682,46 @@ body
 
 
 
+@media screen and (max-width: 500px){
+	.discount{
+		padding-bottom: 0em;
+	    .site-offer{
+	    	flex-direction: column;
+    		position: relative;
+	    }
+	    .message{
+	    	flex-direction: column;
+	    }
+	    .percent{
+	    	margin: 0;
+	    }
+	    .title{
+	    	font-size: 1.15em;
+    		text-align: center;
+    		margin-top: 0.35em;
+	    }
+	    .close{
+	    	position: absolute;
+    		top: 0;
+    		right: 0;
+	    }
+	}
+	.summary .productTitle{
+		font-size: 1.5em;
+	}
+	.summary .hb-accordion-single{
 
+	}
+	.woocommerce-tabs.woocommerce-tabs{
+		padding-top: 0;
+		.wc-tabs li a{
+			font-size: 1.05em !important;
+		}
+	}
+	.woocommerce div.product div.summary{
+		margin-bottom: 0;
+	}
+}
 
 
 
