@@ -968,9 +968,9 @@ a[data-readmore-toggle].more:before {
   margin: 0;
 }
 .row.pattern-gap + .without-border {
-  background-image: url('img/transperent-bg.png');
-  padding: 6em 0 4em 0;
-  background-size: contain;
+  background-image: url('img/transperent-bg-old.png');
+  padding: 7em 0 5em 0;
+  background-size: 4.5%;
   background-repeat: repeat;
   background-color: rgba(238, 238, 238, 0.48);
 }
@@ -981,7 +981,7 @@ a[data-readmore-toggle].more:before {
   margin: 0;
 }
 .row.service-row-2 + .without-border {
-  top: -10em;
+  top: -12em;
 }
 .row.service-row-2 + .without-border .services-section {
   margin-bottom: -10em;
