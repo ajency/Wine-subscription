@@ -14,7 +14,8 @@ jQuery( function( $ ) {
                 data: {
                     action: 'qty_cart',
                     hash: item_hash,
-                    quantity: currentVal
+                    quantity: currentVal,
+                    popup:false
                 },
                 success: function(data) {
                     $( '.hb-main-content' ).html(data);

@@ -21,41 +21,45 @@ function filter_woocommerce_cart_item_subtotal( $wc, $cart_item, $cart_item_key 
             break;
           }
      }
+
      if($cart_item['quantity']!=$updateqty) {  // added as new functio
 ?>
       <script type="text/javascript">
-      var r = confirm("Do You Want to Create a Subscription! Click Yes to Create one Else click No !");
-      if (r == true) {
-        
-           jQuery('input[name="cart[<?php echo $cart_item_key;?>][qty]"]').val(<?php echo $updateqty;?>);
-       
-        var item_hash = jQuery( 'input[name="cart[<?php echo $cart_item_key;?>][qty]"]' ).attr( 'name' ).replace(/cart\[([\w]+)\]\[qty\]/g, "$1");
-        var item_quantity = jQuery('input[name="cart[<?php echo $cart_item_key;?>][qty]"]').val();
-        var currentVal = parseFloat(item_quantity);
-        var ajax_url= "<?php echo admin_url( 'admin-ajax.php' ) ; ?>";
+      
+      var popup= "<?php echo isset($_REQUEST['popup'])?$_REQUEST['popup']: "true";  ?>";
 
-        function qty_cart() {
+      if(popup=="true"){
+        var r = confirm("Do You Want to Create a Subscription! Click Yes to Create one Else click No !");
+        if (r == true) {
+          
+             jQuery('input[name="cart[<?php echo $cart_item_key;?>][qty]"]').val(<?php echo $updateqty;?>);
+         
+          var item_hash = jQuery( 'input[name="cart[<?php echo $cart_item_key;?>][qty]"]' ).attr( 'name' ).replace(/cart\[([\w]+)\]\[qty\]/g, "$1");
+          var item_quantity = jQuery('input[name="cart[<?php echo $cart_item_key;?>][qty]"]').val();
+          var currentVal = parseFloat(item_quantity);
+          var ajax_url= "<?php echo admin_url( 'admin-ajax.php' ) ; ?>";
 
-            jQuery.ajax({
-                type: 'POST',
-                url: ajax_url,
-                data: {
-                    action: 'qty_cart',
-                    hash: item_hash,
-                    quantity: currentVal
-                },
-                success: function(data) {
-                    jQuery( '.hb-main-content' ).html(data);
-                }
-            });  
+          function qty_cart() {
+
+              jQuery.ajax({
+                  type: 'POST',
+                  url: ajax_url,
+                  data: {
+                      action: 'qty_cart',
+                      hash: item_hash,
+                      quantity: currentVal,
+                      popup:true
+                  },
+                  success: function(data) {
+                      jQuery( '.hb-main-content' ).html(data);
+                  }
+              });  
+
+          }
+
+         qty_cart();
 
         }
-
-       qty_cart();
-
-      } 
-      else {
-       
       }      
  </script>
   <?
