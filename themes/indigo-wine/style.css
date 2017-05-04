@@ -2442,12 +2442,36 @@ a[data-readmore-toggle].more:before {
   display: none;
 }
 .woocommerce-product-gallery__image a {
-  background: #ccc;
+  border: 1px solid #eee;
   display: block;
 }
 .woocommerce-product-gallery__image a img {
   max-width: 70% !important;
   margin: auto;
+}
+.woocommerce-product-gallery__wrapper div.thumbnails.thumbnails {
+  margin: 0 !important;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.woocommerce-product-gallery__wrapper div.thumbnails.thumbnails .woocommerce-product-gallery__image {
+  width: auto !important;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin: 0 0.8em;
+}
+.woocommerce-product-gallery__wrapper div.thumbnails.thumbnails .woocommerce-product-gallery__image:first-child {
+  margin-left: 0;
+}
+.woocommerce-product-gallery__wrapper div.thumbnails.thumbnails .woocommerce-product-gallery__image:last-child {
+  margin-right: 0;
 }
 .rating-reviews h1 {
   text-align: center;
@@ -2587,7 +2611,7 @@ body .woocommerce form .form-row .button {
   overflow: inherit;
 }
 .discount {
-  margin: -3em 0 4.5em 0;
+  margin: -3em 0 2.5em 0;
   padding: 1.8em 0;
   background-color: #ddc69a;
   opacity: 0;
@@ -2721,11 +2745,46 @@ body .woocommerce form .form-row .button {
   font-size: 0.9em;
   color: #999;
 }
+.related.products {
+  clear: both;
+}
+.related.products .hb-heading {
+  text-align: left;
+  color: #022c4c;
+  font-family: 'gotham_lightregular';
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-top: 0;
+}
+.related.products .hb-heading span {
+  padding-left: 0;
+}
+.related.products .hb-heading span:after,
+.related.products .hb-heading span:before {
+  display: none;
+}
 .share-product .share-holder {
   color: #022c4c;
   font-size: 1.15em;
 }
 .share-product .share-holder i {
+  color: #022c4c;
+}
+.woocommerce-tabs.woocommerce-tabs {
+  padding: 2.5em 0 3em 0;
+}
+.woocommerce-tabs.woocommerce-tabs .wc-tabs li {
+  margin-bottom: 0.8em !important;
+}
+.woocommerce-tabs.woocommerce-tabs .wc-tabs li a {
+  color: #022c4c !important;
+  font-family: 'gotham_lightregular';
+  font-size: 1.2em !important;
+  padding: 0.3em 0 !important;
+}
+.woocommerce-tabs.woocommerce-tabs #tab-description p {
+  font-size: 1.15em;
+  font-family: 'gotham_thinregular';
   color: #022c4c;
 }
 .not-found-box {
