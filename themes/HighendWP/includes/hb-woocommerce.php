@@ -102,7 +102,7 @@
 		}
 
 		?>
-		<div id="main-content">
+		<div id="main-content" class="singleContent">
 			<?php if ( $sidebar_layout == 'fullwidth' ) { ?>
 				<div class="discount">
 					<div class="container">

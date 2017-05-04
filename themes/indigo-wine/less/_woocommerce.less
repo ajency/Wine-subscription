@@ -467,9 +467,9 @@ body
 // SINGLE PRODUCT OFFER -----------
 // ---------------------------
 
-// #main-content{
-// 	overflow: inherit;
-// }
+#main-content.singleContent{
+	overflow: inherit;
+}
 
 .discount{
 	margin: -3em 0 4.5em 0;
@@ -519,12 +519,91 @@ body
     }
 }
 
+.productTitle{
+	font-size: 2.2em;
+	color: @brand-secondary;
+}
 
+.summary{
+	.hb-accordion-single{
+		padding-bottom: 3.5em;
+    	border-bottom: 1px solid #eee;
+	}
+}
 
+.product_amount{
+	border-bottom: 1px solid #eee;
+    margin-bottom: 1.5em;
+    .title{
+    	font-family: 'gotham_mediumregular';
+    	color: @brand-primary;
+    	font-size: 2.5em;
+    	margin-bottom: 0.2em;
+    }
+}
 
+.product_desc{
+	color: @brand-secondary;
+	margin-top: 2.5em;
+	label{
+		font-family: 'gotham_mediumregular';
+    	margin: 0.5em 0 0.8em 0;
+    	font-size: 1.2em;
+	}
+	p{
+		font-size: 1.15em;
+    	font-family: 'gotham_thinregular';
+	}
+}
 
+.cartStuff{
+	display: flex;
+    align-items: center;
+    margin-top: 2em;
+}
 
+.woocommerce .cart .quantity.quantity input{
+	&.qty,&.minus,&.plus{
+		height: 50px;
+		line-height: 50px;
+	}
+}
 
+.product_attr{
+	.meta-div{
+		color: @brand-secondary;
+    	font-size: 1.1em;
+    	font-family: 'gotham_mediumregular';
+    	margin-bottom: .5em;
+    	a{
+    		color: @brand-secondary;
+    		font-family: 'gotham_lightregular';
+    		&:hover{
+    			color: lighten(@brand-secondary,10%);
+    		}
+    	}
+	}
+	.tagged_as{
+		a{
+			&:before{
+				content: "\f02b";
+			    display: inline-block;
+			    font: normal normal normal 14px/1 FontAwesome;
+			    font-size: inherit;
+			    text-rendering: auto;
+			    -webkit-font-smoothing: antialiased;
+			    padding-right: 0.3em;
+			    font-size: 0.9em;
+			    color: #999;
+			}
+		}
+	}
+}
 
-
+.share-product{
+	.share-holder{
+		color: @brand-secondary;
+    	font-size: 1.15em;
+	}
+}
 
