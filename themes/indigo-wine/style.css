@@ -558,8 +558,7 @@ body {
   min-height: 155px;
   margin-top: -3em;
   margin-bottom: -2em;
-  background-size: 5%;
-  background-color: rgba(238, 238, 238, 0.18);
+  background-size: 22%;
 }
 @media screen and (max-width: 768px) {
   .row.pattern-bg {
