@@ -102,8 +102,24 @@
 		}
 
 		?>
-		
 		<div id="main-content">
+			<?php if ( $sidebar_layout == 'fullwidth' ) { ?>
+				<div class="discount">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="site-offer">
+									<div class="message">
+										<span class="percent"></span>
+										<h2 class="title">Buy <b>6 bottles</b> and avail a flat 30% off</h2>
+									</div>
+									<i class="fa fa-times close" aria-hidden="true"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
 			<div class="container">
 				<div class="row <?php echo $sidebar_layout; ?> main-row">
 					<div id="page-<?php the_ID(); ?>" class="hb-woo-wrapper">

@@ -59,15 +59,16 @@ jQuery(function(){
 		});
 
 		function amoved(){
-			var slideText = jQuery('.owl-page.active .owl-numbers').text();
-			if(slideText == 2){
-				jQuery('.banner-caption .msg').text('Hand selected boutique Australian wines');
-			}
-			else
-			{
-				jQuery('.banner-caption .msg').text('Purveyors of hand selected boutique Australian wines');	
-			}
-
+			// var slideText = jQuery('.owl-page.active .owl-numbers').text();
+			// if(slideText == 2){
+			// 	jQuery('.banner-caption .msg').text('Hand selected boutique Australian wines');
+			// }
+			// else
+			// {
+			// 	jQuery('.banner-caption .msg').text('Purveyors of hand selected boutique Australian wines');	
+			// }
+			var activeText = jQuery('.owl-carousel .owl-item.active img').attr("data-text");
+			jQuery('.banner-caption .msg').text(activeText);
 		}
 
 	}
@@ -106,6 +107,25 @@ jQuery(function(){
 	    jQuery('body').removeClass('blocked');
 	});
 
+	// click outside hide
+
+	jQuery(document).mouseup(function(e) {
+	  var Click_todo;
+	  Click_todo = jQuery('.cols .bottom');
+	  if (!Click_todo.is(e.target) && Click_todo.has(e.target).length === 0) {
+	    jQuery('.cols .bottom,.head-overlay').removeClass('active');
+	    jQuery('body').removeClass('blocked');
+	  }
+	});
+
+	function opacShow(){
+		jQuery('.discount').addClass('active');	
+	}
+	setTimeout(opacShow, 2000);
+
+	jQuery('.site-offer .close').click(function(){
+	    jQuery('.discount').hide();
+	});
 
 		// Custom menu click and scroll to particular ID
 
