@@ -603,7 +603,7 @@ body{
     font-family:'gotham_lightregular';
     color: @brand-secondary;
     letter-spacing: 1.5px;
-    margin-bottom: 1em;
+    margin-bottom: 0.6em;
     &:first-letter{
     	border-bottom: 3px solid @brand-primary;
     }
@@ -657,7 +657,7 @@ a[data-readmore-toggle]{
 	    &:before{
 	    	content: '';
 	    	position: absolute;
-	    	top: -2.6em;
+	    	top: -2.5em;
 	    	width: 100%;
 	    	background-color: #fff;
 	    	height: 35px;
@@ -835,7 +835,7 @@ a[data-readmore-toggle]{
 	font-family:'gotham_thinregular';
     font-size: 1.3em;
     color: @brand-secondary;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     margin: 1em 0;
 }
 
@@ -1495,6 +1495,21 @@ a[data-readmore-toggle]{
     	}
 	}
 }
+
+
+@media screen and (min-width: 1024px){
+	.trade-banner{
+		.service{
+			padding: 2em 1.3em;
+		 .lists{
+				li{
+					margin-bottom: 1.2em;
+				}
+			}
+		}
+	}
+}
+
 
 .pricelist{
 	display: flex;

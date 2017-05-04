@@ -59,15 +59,16 @@ jQuery(function(){
 		});
 
 		function amoved(){
-			var slideText = jQuery('.owl-page.active .owl-numbers').text();
-			if(slideText == 2){
-				jQuery('.banner-caption .msg').text('Hand selected boutique Australian wines');
-			}
-			else
-			{
-				jQuery('.banner-caption .msg').text('Purveyors of hand selected boutique Australian wines');	
-			}
-
+			// var slideText = jQuery('.owl-page.active .owl-numbers').text();
+			// if(slideText == 2){
+			// 	jQuery('.banner-caption .msg').text('Hand selected boutique Australian wines');
+			// }
+			// else
+			// {
+			// 	jQuery('.banner-caption .msg').text('Purveyors of hand selected boutique Australian wines');	
+			// }
+			var activeText = jQuery('.owl-carousel .owl-item.active img').attr("data-text");
+			jQuery('.banner-caption .msg').text(activeText);
 		}
 
 	}
