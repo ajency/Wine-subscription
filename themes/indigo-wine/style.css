@@ -2575,9 +2575,6 @@ body .woocommerce form .form-row .button {
   margin-bottom: 0px !important;
   margin-top: 0px !important;
 }
-#main-content {
-  overflow: inherit;
-}
 .discount {
   margin: -3em 0 4.5em 0;
   padding: 1.8em 0;
