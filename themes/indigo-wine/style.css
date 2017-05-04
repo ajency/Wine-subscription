@@ -270,6 +270,11 @@ body {
 .ind-custom-menu.fixed .col ul {
   top: 0;
 }
+@media screen and (min-width: 1550px) {
+  .ind-custom-menu.fixed .col ul {
+    top: 5px;
+  }
+}
 .user-detail {
   position: relative;
   color: #d1b57c;
@@ -2671,6 +2676,39 @@ body .woocommerce form .form-row .button {
 }
 .discount.active {
   opacity: 1;
+}
+@media screen and (max-width: 500px) {
+  .discount {
+    padding-bottom: 0em;
+  }
+  .discount .site-offer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    position: relative;
+  }
+  .discount .message {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .discount .percent {
+    margin: 0;
+  }
+  .discount .title {
+    font-size: 1.15em;
+    text-align: center;
+    margin-top: 0.35em;
+  }
+  .discount .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }
 .productTitle {
   font-size: 2.2em;
