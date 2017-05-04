@@ -658,11 +658,23 @@ body
 	    	padding: 0.3em 0 !important;
 		}
 	}
-	#tab-description{
+	.entry-content{
+		.shop_attributes{
+			border: 0 !important;
+			td{
+				font-style: initial;
+				border: 0;
+    			padding: 0;
+			}
+			th{
+				display: none;
+			}
+		}
 		p{
 			font-size: 1.15em;
 	    	font-family: 'gotham_thinregular';
 	    	color: @brand-secondary;
+	    	padding: 0;
 		}
 	}
 }

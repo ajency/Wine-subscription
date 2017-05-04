@@ -2782,10 +2782,22 @@ body .woocommerce form .form-row .button {
   font-size: 1.2em !important;
   padding: 0.3em 0 !important;
 }
-.woocommerce-tabs.woocommerce-tabs #tab-description p {
+.woocommerce-tabs.woocommerce-tabs .entry-content .shop_attributes {
+  border: 0 !important;
+}
+.woocommerce-tabs.woocommerce-tabs .entry-content .shop_attributes td {
+  font-style: initial;
+  border: 0;
+  padding: 0;
+}
+.woocommerce-tabs.woocommerce-tabs .entry-content .shop_attributes th {
+  display: none;
+}
+.woocommerce-tabs.woocommerce-tabs .entry-content p {
   font-size: 1.15em;
   font-family: 'gotham_thinregular';
   color: #022c4c;
+  padding: 0;
 }
 .not-found-box {
   min-height: calc(100vh - 36.2em);
