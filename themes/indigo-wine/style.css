@@ -2725,6 +2725,9 @@ body .woocommerce form .form-row .button {
   color: #022c4c;
   font-size: 1.15em;
 }
+.share-product .share-holder i {
+  color: #022c4c;
+}
 .not-found-box {
   min-height: calc(100vh - 36.2em);
 }
