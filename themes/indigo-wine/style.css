@@ -2884,7 +2884,7 @@ body .woocommerce form .form-row .button {
   color: #9c9c9c;
 }
 .woocommerce .col-9 {
-  margin-bottom: 20em;
+  min-height: 650px;
 }
 .element-row .woocommerce .shop_table,
 .hb-main-content .woocommerce .shop_table {
