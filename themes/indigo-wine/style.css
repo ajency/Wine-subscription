@@ -2883,6 +2883,29 @@ body .woocommerce form .form-row .button {
   font-size: 0.9em;
   color: #9c9c9c;
 }
+.filter-title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.filter-title h2 {
+  margin-bottom: 0;
+}
+.filter-title .reset {
+  text-decoration: underline;
+  color: #022c4c;
+  font-family: 'gotham_lightregular';
+  font-size: 1.05em;
+}
 .woocommerce .col-9 {
   min-height: 650px;
 }
