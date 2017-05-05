@@ -2985,17 +2985,24 @@ body .woocommerce form .form-row .button {
   font-family: 'gotham_lightregular';
   font-weight: 600;
   color: #022c4c;
+  text-align: center;
 }
 #subscribe-modal .woocommerce .shop_table.shop_table tr td {
   font-family: 'gotham_lightregular';
   font-weight: 600;
   color: #022c4c;
+  text-align: center;
 }
 #subscribe-modal .woocommerce .shop_table.shop_table tr td a {
   color: #022c4c;
 }
-#subscribe-modal .woocommerce .shop_table.shop_table .product-remove {
+#subscribe-modal .woocommerce .shop_table.shop_table .product-remove,
+#subscribe-modal .woocommerce .shop_table.shop_table .product-subtotal,
+#subscribe-modal .woocommerce .shop_table.shop_table .product-price {
   display: none;
+}
+#subscribe-modal .woocommerce .shop_table.shop_table .product-thumbnail img {
+  margin: 0 auto;
 }
 #subscribe-modal .woocommerce .shop_table.shop_table .product-quantity input.minus,
 #subscribe-modal .woocommerce .shop_table.shop_table .product-quantity input.plus {
@@ -3010,6 +3017,35 @@ body .woocommerce form .form-row .button {
 }
 #subscribe-modal .woocommerce .shop_table.shop_table .actions {
   display: none;
+}
+.no-subscription {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 1em;
+}
+.no-subscription .title {
+  font-family: 'gotham_mediumregular';
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1em;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-bottom: 0;
+  padding-right: 0.5em;
+}
+.no-subscription .cart-bottle {
+  background-image: url('img/cart-bottles.png');
+  height: 75px;
+  width: 80px;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 .not-found-box {
   min-height: calc(100vh - 36.2em);

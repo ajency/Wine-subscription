@@ -126,6 +126,7 @@
 					font-family: 'gotham_lightregular';
     				font-weight: 600;
     				color: @brand-secondary;
+    				text-align: center;
 				}
 			}
 			tr{
@@ -133,13 +134,19 @@
 					font-family: 'gotham_lightregular';
     				font-weight: 600;
     				color: @brand-secondary;
+    				text-align: center;
     				a{
     					color: @brand-secondary;
     				}
 				}
 			}
-			.product-remove{
+			.product-remove,.product-subtotal,.product-price{
 				display: none;
+			}
+			.product-thumbnail{
+				img{
+					margin: 0 auto;
+				}
 			}
 			.product-quantity{
 				input.minus,input.plus{
@@ -162,9 +169,32 @@
 
 
 
+// ---------------------------
+// SUBSCRIPTION/NOSUBSCRIPTION -----------
+// ---------------------------
 
 
-
+.no-subscription{
+	display: flex;
+    // align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1em;
+	.title{
+		font-family: 'gotham_mediumregular';
+    	color: rgba(0, 0, 0, 0.6);
+    	font-size: 1em;
+    	flex: 1;
+    	margin-bottom: 0;
+    	padding-right: 0.5em;
+	}
+	.cart-bottle{
+		background-image: url('./img/cart-bottles.png');
+		height: 75px;
+    	width: 80px;
+    	background-repeat: no-repeat;
+    	background-size: contain;
+	}
+}
 
 
 

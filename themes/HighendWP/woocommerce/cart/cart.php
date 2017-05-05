@@ -153,6 +153,10 @@ do_action( 'woocommerce_before_cart' ); ?>
 </div>
 
 <div class="col-3">
+<div class="no-subscription">
+	<h5 class="title">Change the ordered qty to multiples of 6 and subscribe to this order</h5>
+	<div class="cart-bottle"></div>
+</div>
 <div class="cart-collaterals">
 	<?php woocommerce_cart_totals(); ?>
 </div>
