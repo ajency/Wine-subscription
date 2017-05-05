@@ -2851,6 +2851,79 @@ body .woocommerce form .form-row .button {
 .woocommerce .col-9 {
   margin-bottom: 20em;
 }
+.element-row .woocommerce .shop_table,
+.hb-main-content .woocommerce .shop_table {
+  border-collapse: collapse;
+  margin-bottom: 0 !important;
+}
+.element-row .woocommerce .shop_table th,
+.hb-main-content .woocommerce .shop_table th,
+.element-row .woocommerce .shop_table td,
+.hb-main-content .woocommerce .shop_table td {
+  font-family: 'gotham_lightregular';
+  font-weight: 600;
+  color: #022c4c;
+}
+.element-row .woocommerce .shop_table th a,
+.hb-main-content .woocommerce .shop_table th a,
+.element-row .woocommerce .shop_table td a,
+.hb-main-content .woocommerce .shop_table td a {
+  color: #022c4c;
+}
+.element-row .woocommerce .shop_table .cart_item,
+.hb-main-content .woocommerce .shop_table .cart_item {
+  border-bottom: 1px solid #ddd;
+}
+.element-row .woocommerce .shop_table .actions,
+.hb-main-content .woocommerce .shop_table .actions {
+  padding-bottom: 0 !important;
+}
+.element-row .woocommerce .hb-update-cart,
+.hb-main-content .woocommerce .hb-update-cart {
+  display: none !important;
+}
+.element-row .woocommerce .simple-read-more,
+.hb-main-content .woocommerce .simple-read-more {
+  margin-top: 2em;
+}
+.element-row .woocommerce .checkout-button,
+.hb-main-content .woocommerce .checkout-button {
+  font-family: 'gotham_mediumregular' !important;
+}
+.element-row .calculated_shipping .hb-cart-totals-wrap,
+.hb-main-content .calculated_shipping .hb-cart-totals-wrap {
+  font-family: 'gotham_lightregular';
+  font-weight: 600;
+}
+.element-row .calculated_shipping .hb-box-cont-header,
+.hb-main-content .calculated_shipping .hb-box-cont-header {
+  font-family: 'gotham_mediumregular';
+  font-weight: 600;
+  color: #022c4c;
+  border-color: #000;
+  margin: 0 20px;
+  padding: 20px 0px 10px 0;
+}
+.element-row .calculated_shipping .hb-box-cont-body,
+.hb-main-content .calculated_shipping .hb-box-cont-body {
+  padding-top: 10px;
+  line-height: 2.3;
+}
+.element-row .calculated_shipping .hb-box-cont-body .hb-cart-totals li,
+.hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li {
+  border-color: #000;
+  border-top-style: solid;
+}
+.element-row .coupon-toggle .hb-accordion-tab,
+.hb-main-content .coupon-toggle .hb-accordion-tab {
+  font-family: 'gotham_lightregular';
+  font-weight: 600;
+  color: #022c4c;
+}
+.element-row .coupon-toggle .hb-accordion-tab .icon-angle-right,
+.hb-main-content .coupon-toggle .hb-accordion-tab .icon-angle-right {
+  color: #022c4c;
+}
 #subscribe-modal {
   width: 650px;
 }
