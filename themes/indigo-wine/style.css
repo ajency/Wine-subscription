@@ -2906,6 +2906,24 @@ body .woocommerce form .form-row .button {
   font-family: 'gotham_lightregular';
   font-size: 1.05em;
 }
+.woocommerce .price_slider_amount.price_slider_amount button.button {
+  background-color: #022c4c !important;
+  color: #fff !important;
+  font-family: 'gotham_lightregular';
+  border: 0 !important;
+  padding: 0.5em 1.5em !important;
+}
+.woocommerce .price_slider_amount.price_slider_amount button.button:hover {
+  background-color: #03497e !important;
+}
+.woocommerce .price_slider_amount.price_slider_amount .price_label {
+  background-color: transparent !important;
+  border: 0 !important;
+  font-family: 'gotham_lightregular';
+  color: #022c4c !important;
+  font-size: 1.2em;
+  margin-top: 0.8em;
+}
 .woocommerce .col-9 {
   min-height: 650px;
 }
