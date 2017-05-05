@@ -62,9 +62,11 @@ function filter_woocommerce_cart_item_subtotal( $wc, $cart_item, $cart_item_key 
         }
       }      
  </script>
-  <?
+  <?php
   }
     return $wc; 
 }; 
 
 add_filter( 'woocommerce_cart_item_subtotal', 'filter_woocommerce_cart_item_subtotal', 10, 3 ); 
+
+?>
