@@ -2298,6 +2298,11 @@ a[data-readmore-toggle].more:before {
   right: 0;
   margin: 0 auto;
 }
+@media screen and (max-width: 600px) {
+  .hb-equal-col-height .hb-woo-product {
+    border-left: 0;
+  }
+}
 .left-sidebar .widget-item h4 {
   font-size: 14px;
   font-weight: 800;
