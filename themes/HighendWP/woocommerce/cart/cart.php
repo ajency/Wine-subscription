@@ -153,9 +153,21 @@ do_action( 'woocommerce_before_cart' ); ?>
 </div>
 
 <div class="col-3">
-<div class="no-subscription">
+<!-- <div class="no-subscription">
 	<h5 class="title">Change the ordered qty to multiples of 6 and subscribe to this order</h5>
 	<div class="cart-bottle"></div>
+</div> -->
+<div class="subscription">
+	<h2 class="title">Subscribe the orders</h2>
+	<label class="sub-label">Type of subscription</label>
+	<select class="sub-select">
+		<option>Monthly</option>
+		<option>Quarterly</option>
+		<option>Yearly</option>
+	</select>
+	<div class="brand-button">
+		<button class="vc_btn3 vc_btn3-color-grey vc_general modal-open" data-modal-id="subscribe-modal">Subscribe Now!</button>
+	</div>
 </div>
 <div class="cart-collaterals">
 	<?php woocommerce_cart_totals(); ?>
