@@ -2848,6 +2848,41 @@ body .woocommerce form .form-row .button {
     margin-bottom: 0;
   }
 }
+.widget-item.woocommerce > h4 {
+  margin-bottom: 10px;
+}
+.widget_price_filter.widget_price_filter > h4 {
+  margin-bottom: 20px;
+}
+.tagcloud.tagcloud > a {
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 0.5em 1em;
+  font-family: 'gotham_mediumregular';
+  text-transform: capitalize;
+  color: #969696;
+  font-weight: 200;
+  margin-bottom: 0.6em;
+  margin-right: 0.6em;
+  -webkit-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
+.tagcloud.tagcloud > a:hover {
+  background-color: #d8d8d8;
+  color: #022c4c;
+}
+.tagcloud.tagcloud > a:before {
+  content: "\f02b";
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  padding-right: 0.3em;
+  font-size: 0.9em;
+  color: #9c9c9c;
+}
 .woocommerce .col-9 {
   margin-bottom: 20em;
 }
