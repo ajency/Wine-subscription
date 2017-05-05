@@ -107,6 +107,13 @@ jQuery(function(){
 	    jQuery('body').removeClass('blocked');
 	});
 
+
+	var currentURL = (document.URL); 
+	var part = currentURL.split("/")[1];
+	console.log(part);
+
+
+
 	// click outside hide
 
 	jQuery(document).mouseup(function(e) {
