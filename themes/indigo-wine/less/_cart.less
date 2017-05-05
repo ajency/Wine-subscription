@@ -108,6 +108,56 @@
 	    	}
 	    }
 	}
+	.woocommerce{
+		.col-9{
+			width: 100%;
+			margin-bottom: 0;
+		}
+		.col-3{
+			display: none;
+		}
+		.woocommerce-cart-form{
+			background-color: transparent;
+			padding: 0;
+		}
+		.shop_table.shop_table{
+			thead{
+				th{
+					font-family: 'gotham_lightregular';
+    				font-weight: 600;
+    				color: @brand-secondary;
+				}
+			}
+			tr{
+				td{
+					font-family: 'gotham_lightregular';
+    				font-weight: 600;
+    				color: @brand-secondary;
+    				a{
+    					color: @brand-secondary;
+    				}
+				}
+			}
+			.product-remove{
+				display: none;
+			}
+			.product-quantity{
+				input.minus,input.plus{
+					display: none !important;
+				}
+				input.qty{
+					background-color: transparent;
+					pointer-events: none;
+					border: 0;
+					color: @brand-secondary;
+					font-weight: 600;
+				}
+			}
+			.actions{
+				display: none;
+			}
+		}
+	}
 }
 
 
