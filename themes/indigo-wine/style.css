@@ -3084,6 +3084,7 @@ body .woocommerce form .form-row .button {
 #subscribe-modal .woocommerce .col-9 {
   width: 100%;
   margin-bottom: 0;
+  min-height: auto;
 }
 #subscribe-modal .woocommerce .col-3 {
   display: none;
