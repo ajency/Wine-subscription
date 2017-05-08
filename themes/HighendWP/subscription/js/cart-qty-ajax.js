@@ -3,25 +3,44 @@ jQuery(function ($) {
     /**
      * onchange of the qty will update the cart page qty and subtotal
      */
+     var currentRequest = null; 
     $(document).on('change', 'input.qty', function () {
 
         var item_hash = $(this).attr('name').replace(/cart\[([\w]+)\]\[qty\]/g, "$1");
         var item_quantity = $(this).val();
         var currentVal = parseFloat(item_quantity);
 
-        qty_cart(item_hash, item_quantity, currentVal);
-
-    });
-
-    function qty_cart(item_hash, item_quantity, currentVal) {
-        $.ajax({
+   
+       currentRequest=  $.ajax({
             type: 'POST',
             url: cart_qty_ajax.ajax_url,
             data: {
                 action: 'qty_cart',
                 hash: item_hash,
                 quantity: currentVal,
-                //popup: false
+            },
+            beforeSend : function()    { 
+                
+                if(currentRequest != null) {
+                    currentRequest.abort();
+                }
+            },
+            success: function (data) {
+                $('.hb-main-content').html(data);
+            }
+        });
+
+    });
+
+    function qty_cart(item_hash, item_quantity, currentVal) {
+     
+       currentRequest=  $.ajax({
+            type: 'POST',
+            url: cart_qty_ajax.ajax_url,
+            data: {
+                action: 'qty_cart',
+                hash: item_hash,
+                quantity: currentVal,
             },
             success: function (data) {
                 $('.hb-main-content').html(data);
@@ -30,31 +49,28 @@ jQuery(function ($) {
 
     }
 
-
-
 /**
  * Onlick on subscribe btn (Popup) it will update the qty and price
  */
-
-    /*$(document).on('click', '#subscribe_now', function (event) {
-        $('#subscribe-modal').toggle('show'); 
-    });*/
-    
+   
     $(document).on('click', '#subscribe_btn', function (event) {
-      
-        $('.woocommerce-cart-form__cart-item').find('input.qty')
+      var delay=300;
+        $('.subscribe-content .woocommerce-cart-form__cart-item').find('input.qty')
             .each(function () {
-
+                delay=delay+300;
                 var item_hash = $(this).attr('name').replace(/cart\[([\w]+)\]\[qty\]/g, "$1");
                 var item_quantity = $(this).val();
                 var currentVal = parseFloat(item_quantity);
 
                  var newqty=multipleofproducts(currentVal);
-
-                 qty_cart(item_hash, item_quantity, newqty);
+                 setTimeout(function() {
+                     qty_cart(item_hash, item_quantity, newqty);
+                 }, delay);
+                
             });
             
     });
+   
 
     function multipleofproducts(currentVal) {
 
@@ -81,5 +97,14 @@ jQuery(function ($) {
        
     }
 
-    
+      
+    /**
+     * subscribe now popup show
+     */
+    $(document).on('click', '#subscribe_now', function (event) {
+
+      $('.crop-here').addClass('hb-visible-modal');
+      $('.hb-modal-window').addClass('animate-modal');
+        
+    });   
 });

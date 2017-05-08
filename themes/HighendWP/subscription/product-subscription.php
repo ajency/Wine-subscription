@@ -7,7 +7,7 @@ function filter_woocommerce_cart_item_subtotal( $wc, $cart_item, $cart_item_key 
     return $wc; 
   }
 
-   for($i=1;$i<=500;$i++){
+    for($i=1;$i<=500;$i++){
          $rangearr[]=$i;
          if($i%6==0){
           $final[]=$rangearr;
