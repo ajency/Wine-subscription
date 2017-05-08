@@ -2253,6 +2253,10 @@ a[data-readmore-toggle].more:before {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.hb-product-meta-wrapper del .amount,
+.hb-product-meta-wrapper ins .amount {
+  font-weight: 600;
+}
 .hb-product-meta-wrapper .price {
   position: relative !important;
   float: none!important;
