@@ -2218,6 +2218,20 @@ a[data-readmore-toggle].more:before {
   color: #FFF;
   background: #d1b57c;
 }
+.left-sidebar .widget-item.widget-item .product-categories li.cat-parent > a {
+  font-size: 1.05em;
+}
+.left-sidebar .widget-item.widget-item .product-categories li a,
+.left-sidebar .widget-item.widget-item .product-categories li .count {
+  font-family: 'gotham_bookregular';
+  font-weight: 600;
+  font-size: 0.95em;
+  color: #022c4c;
+}
+.left-sidebar .widget-item.widget-item .product-categories li a:hover,
+.left-sidebar .widget-item.widget-item .product-categories li .count:hover {
+  color: #03497e;
+}
 .hb-image-bg-wrap {
   background-image: url('../../uploads/2017/04/yvnEeuC-2.png') !important;
 }
@@ -2252,6 +2266,7 @@ a[data-readmore-toggle].more:before {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-family: 'gotham_bookregular';
 }
 .hb-product-meta-wrapper del .amount,
 .hb-product-meta-wrapper ins .amount {
@@ -2479,12 +2494,16 @@ a[data-readmore-toggle].more:before {
       -ms-flex: 1;
           flex: 1;
   margin: 0 0.8em;
+  display: none !important;
 }
 .woocommerce-product-gallery__wrapper div.thumbnails.thumbnails .woocommerce-product-gallery__image:first-child {
   margin-left: 0;
 }
 .woocommerce-product-gallery__wrapper div.thumbnails.thumbnails .woocommerce-product-gallery__image:last-child {
   margin-right: 0;
+}
+.woocommerce-product-gallery__wrapper div.thumbnails.thumbnails .woocommerce-product-gallery__image:nth-child(-n+3) {
+  display: block !important;
 }
 .rating-reviews h1 {
   text-align: center;
@@ -2932,6 +2951,50 @@ body .woocommerce form .form-row .button {
   color: #022c4c !important;
   font-size: 1.2em;
   margin-top: 0.8em;
+}
+#main-content .left-sidebar .hb-woo-wrapper .hb-main-content.hb-equal-col-height,
+#main-content .left-sidebar .hb-woo-wrapper .hb-sidebar.hb-equal-col-height {
+  margin-top: -40px !important;
+}
+.hb-woo-product .hb-product-meta-wrapper .price {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.add-To-Cart {
+  background-image: url('img/prod-cart.png');
+  background-repeat: no-repeat;
+  width: 42px;
+  height: 42px;
+}
+.woocommerce nav.woocommerce-pagination ul {
+  border: 0;
+}
+.woocommerce nav.woocommerce-pagination ul li {
+  border: 0;
+  border-radius: 50%;
+  margin: 0 0.5em;
+}
+.woocommerce nav.woocommerce-pagination ul li .page-numbers {
+  font-family: 'gotham_bookregular';
+  font-weight: 600;
+  font-size: 1.1em;
+  background-color: #c7c7c7;
+  color: #fff;
+}
+.woocommerce nav.woocommerce-pagination ul li .page-numbers.current,
+.woocommerce nav.woocommerce-pagination ul li .page-numbers:hover {
+  background-color: #022c4c;
+  color: #fff;
 }
 .woocommerce .col-9 {
   min-height: 650px;
