@@ -166,7 +166,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 		<option>Yearly</option>
 	</select>
 	<div class="brand-button">
-		<button class="vc_btn3 vc_btn3-color-grey vc_general modal-open" data-modal-id="subscribe-modal">Subscribe Now!</button>
+		<button class="vc_btn3 vc_btn3-color-grey vc_general modal-open" data-modal-id="subscribe-modal" >Subscribe Now!</button>
 	</div>
 </div>
 <div class="cart-collaterals">
