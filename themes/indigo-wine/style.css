@@ -3170,6 +3170,19 @@ body .woocommerce form .form-row .button {
   left: 0;
   right: 0;
 }
+#subscribe-modal .subscribe-content .success {
+  color: #fff;
+  background-color: #025a02;
+  text-align: center;
+  padding: 0.5em;
+  font-family: 'gotham_bookregular';
+  font-weight: 600;
+  font-size: 1em;
+}
+#subscribe-modal .subscribe-content .woocommerce .extended {
+  height: 400px;
+  overflow: auto;
+}
 #subscribe-modal .product-details {
   display: -webkit-box;
   display: -webkit-flex;
@@ -3239,6 +3252,10 @@ body .woocommerce form .form-row .button {
   background-color: transparent;
   text-decoration: underline;
   color: #022c4c;
+}
+#subscribe-modal .subscribe-action p:not(.sub-link) .disabled {
+  background-color: rgba(2, 44, 76, 0.37);
+  pointer-events: none;
 }
 #subscribe-modal .woocommerce .col-9 {
   width: 100%;
@@ -3349,6 +3366,16 @@ body .woocommerce form .form-row .button {
 .subscription .brand-button .vc_btn3.vc_btn3-color-grey.vc_general {
   padding: 0.7em 1.8em;
   font-size: 1.15em;
+}
+.no-sub {
+  margin: 1em 0;
+  font-family: 'gotham_bookregular';
+  text-align: center;
+  color: #022c4c;
+}
+.no-sub .un-link {
+  color: #d1b57c;
+  text-decoration: underline;
 }
 .not-found-box {
   min-height: calc(100vh - 36.2em);

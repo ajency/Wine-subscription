@@ -132,7 +132,6 @@ jQuery(function(){
 	});
 
 
-
 	function opacShow(){
 		jQuery('.discount').addClass('active');	
 	}

@@ -138,6 +138,22 @@
     			right: 0;
 		    }
 		}
+		.success{
+			color: #fff;
+		    background-color: #025a02;
+		    text-align: center;
+		    padding: 0.5em;
+		    font-family: 'gotham_bookregular';
+		    font-weight: 600;
+		    font-size: 1em;
+		}
+		.woocommerce{
+			// margin-bottom: 2em;
+			.extended{
+				height: 400px;
+    			overflow: auto;
+			}
+		}
 	}
 	.product-details{
 		display: flex;
@@ -184,6 +200,10 @@
 				    	text-decoration: underline;
 				    	color: @brand-secondary;
 				    }
+	    		}
+	    		.disabled{
+	    			background-color: rgba(2, 44, 76, 0.37);
+    				pointer-events: none;
 	    		}
 	    	}
 	    }
@@ -310,7 +330,16 @@
     }
 }
 
-
+.no-sub{
+	margin: 1em 0;
+    font-family: 'gotham_bookregular';
+    text-align: center;
+    color: @brand-secondary;
+    .un-link{
+    	color: @brand-primary;
+    	text-decoration: underline;
+    }
+}
 
 
 
