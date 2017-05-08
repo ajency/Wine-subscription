@@ -2218,6 +2218,20 @@ a[data-readmore-toggle].more:before {
   color: #FFF;
   background: #d1b57c;
 }
+.left-sidebar .widget-item.widget-item .product-categories li.cat-parent > a {
+  font-size: 1.05em;
+}
+.left-sidebar .widget-item.widget-item .product-categories li a,
+.left-sidebar .widget-item.widget-item .product-categories li .count {
+  font-family: 'gotham_bookregular';
+  font-weight: 600;
+  font-size: 0.95em;
+  color: #022c4c;
+}
+.left-sidebar .widget-item.widget-item .product-categories li a:hover,
+.left-sidebar .widget-item.widget-item .product-categories li .count:hover {
+  color: #03497e;
+}
 .hb-image-bg-wrap {
   background-image: url('../../uploads/2017/04/yvnEeuC-2.png') !important;
 }

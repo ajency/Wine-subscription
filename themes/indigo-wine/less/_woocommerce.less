@@ -28,6 +28,26 @@
 	}
 }
 
+.left-sidebar .widget-item.widget-item .product-categories{
+	li{
+		&.cat-parent{
+			& > a{
+				font-size: 1.05em;
+			}
+		}
+		a,.count{
+			font-family: 'gotham_bookregular';
+			font-weight: 600;
+			font-size: 0.95em;
+			color: @brand-secondary;
+			&:hover{
+				color: lighten(@brand-secondary,10%);
+			}
+		}
+	}
+}
+
+
 .hb-image-bg-wrap{
 	background-image: url('../../uploads/2017/04/yvnEeuC-2.png') !important;
 }
