@@ -203,6 +203,14 @@ function add_product_admin_scripts( $hook ) {
 add_action( 'admin_enqueue_scripts', 'add_product_admin_scripts', 10, 1 );
 
 
+function custom_shop_page_redirect() {
+    if( is_shop() ){
+        wp_redirect( home_url( '/product-category/wine-packs/' ) );
+        exit();
+    }
+}
+add_action( 'template_redirect', 'custom_shop_page_redirect' );
+
 
 require get_template_directory()."/subscription/product-subscription.php";
 
