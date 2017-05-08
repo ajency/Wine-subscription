@@ -69,4 +69,34 @@ function filter_woocommerce_cart_item_subtotal( $wc, $cart_item, $cart_item_key 
 
 // add_filter( 'woocommerce_cart_item_subtotal', 'filter_woocommerce_cart_item_subtotal', 10, 3 ); 
 
+
+
+/**
+ * [subscription_process_order - method to create duplicate orders based on the subscription selected]
+ * @param  [type] $order_id [original order id]
+ */
+function subscription_process_order($order_id) {
+
+    $order = new WC_Order( $order_id );
+    $subscription_type=get_post_meta( $order_id,  '_subscription_type', true);
+    $_subscription_noofmonths=get_post_meta( $order_id,  '_subscription_noofmonths', true);
+
+    require get_template_directory().'/subscription/class-wc-admin-duplicate-order.php';
+    $duplication=new WC_Admin_Duplicate_Order();
+    $dupmethod= $duplication->duplicate_order_action($order_id);
+
+}
+// add_action('woocommerce_payment_complete', 'subscription_process_order', 10, 1);
+
+
+/**
+ * [add_custom_meta_data_for_order -method to add subscription details]
+ */
+function add_custom_meta_data_for_order($order_id, $posted ){
+  update_post_meta( $order_id, '_subscription_type', '' );
+  update_post_meta( $order_id, '_subscription_noofmonths', '' );
+}
+
+// add_action('woocommerce_checkout_update_order_meta','add_custom_meta_data_for_order', 10, 2);
+
 ?>
