@@ -3183,6 +3183,9 @@ body .woocommerce form .form-row .button {
   height: 400px;
   overflow: auto;
 }
+#subscribe-modal .subscribe-content .cross-sells {
+  display: none;
+}
 #subscribe-modal .product-details {
   display: -webkit-box;
   display: -webkit-flex;

@@ -168,11 +168,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 	<div class="brand-button">
 		<button class="vc_btn3 vc_btn3-color-grey vc_general modal-open" data-modal-id="subscribe-modal" id="subscribe_now">Subscribe Now!</button>
 	</div>
+	<div class="no-sub unsubscribe hidden">
+		Monthly subscription activated. Click <a href="#" class="un-link">here</a> if you want to unsubscribe
+	</div>
 </div>
 
-<div class="no-sub unsubscribe hidden">
-	Monthly subscription activated. Click <a href="#" class="un-link">here</a> if you want to unsubscribe
-</div>
 
 <div class="cart-collaterals">
 	<?php woocommerce_cart_totals(); ?>
