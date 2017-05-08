@@ -27,7 +27,7 @@ function filter_woocommerce_cart_item_subtotal( $wc, $cart_item, $cart_item_key 
       <script type="text/javascript">
       
       var popup= "<?php echo isset($_REQUEST['popup'])?$_REQUEST['popup']: "true";  ?>";
-
+      var popup='false';
       if(popup=="true"){
         var r = confirm("Do You Want to Create a Subscription! Click Yes to Create one Else click No !");
         if (r == true) {
@@ -67,6 +67,6 @@ function filter_woocommerce_cart_item_subtotal( $wc, $cart_item, $cart_item_key 
     return $wc; 
 }; 
 
-add_filter( 'woocommerce_cart_item_subtotal', 'filter_woocommerce_cart_item_subtotal', 10, 3 ); 
+// add_filter( 'woocommerce_cart_item_subtotal', 'filter_woocommerce_cart_item_subtotal', 10, 3 ); 
 
 ?>

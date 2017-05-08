@@ -32,31 +32,7 @@ jQuery( function( $ ) {
        $('#_sale_discount_price').attr('disabled', 'disabled');
     }
    }
-   editproductdiscount();
-    /*$( document ).on( 'keypress', '.discountvalue', function() {
-       
-       var selval=$( this ).attr( 'id' );
-      if(selval=='_sale_discount_price'){
-        if($('#_sale_discount_percentage').val()!=''){
-          $('#_sale_discount_price').attr('disabled', 'disabled');
-          $('#_sale_discount_price').attr('disabled', 'disabled');
-        }
-        else
-        {
-          $('#_sale_discount_price').removeAttr('disabled');
-          $('#_sale_discount_percentage').removeAttr('disabled');
-        }
-      }
-      else if(selval=='_sale_discount_percentage'){
-        if($('#'+selval).val()!='')
-          $('#_sale_discount_price').attr('disabled', 'disabled');
-        else
-        {
-          $('#_sale_discount_price').removeAttr('disabled');
-          $('#_sale_discount_percentage').removeAttr('disabled');
-        }
-      }
 
-    });*/
+   editproductdiscount();
 
 });
