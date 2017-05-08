@@ -317,11 +317,15 @@
     		width: auto !important;
     		flex: 1;
     		margin: 0 0.8em;
+    		display: none !important;
     		&:first-child{
     			margin-left: 0;
     		}
     		&:last-child{
     			margin-right: 0;
+    		}
+    		&:nth-child(-n+3){
+				display: block !important;
     		}
     	}
 	}
@@ -822,7 +826,11 @@ body
 	}
 }
 
-
+#main-content .left-sidebar .hb-woo-wrapper{
+	.hb-main-content.hb-equal-col-height,.hb-sidebar.hb-equal-col-height{
+		margin-top: -40px !important;
+	}
+}
 
 
 
