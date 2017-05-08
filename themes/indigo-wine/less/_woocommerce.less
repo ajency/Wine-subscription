@@ -103,14 +103,24 @@
 	.products-4{
 		display: flex;
 		flex-wrap: wrap;
+		position: relative;
 		.clear{
 			& + .hb-woo-product{
 				border-left: 0;
+				&:before{
+					content: '';
+					border-bottom: 1px solid #e2e2e2;
+					position: absolute;
+		    		width: 95%;
+		    		bottom: -15px;
+		    		right: -19em;
+		    		margin: 0 auto;
+				}
+
 			}
 		}
 	}
 	.hb-woo-product{
-		border-left: 1px solid #e2e2e2;
 		margin-bottom: 32px !important;
     	padding-bottom: 15px;
     	margin-left: 8px;
@@ -119,6 +129,15 @@
     	animation: none !important;
 		&:first-child{
 			border-left: 0;
+			&:before{
+				content: '';
+				border-bottom: 1px solid #e2e2e2;
+				position: absolute;
+	    		width: 95%;
+	    		bottom: -15px;
+	    		right: -19em;
+	    		margin: 0 auto;
+			}
 		}
 		&:after{
 			content: '';
@@ -126,9 +145,25 @@
 			position: absolute;
     		width: 95%;
     		bottom: -15px;
-    		left: 15px;
+    		left: 3px;
     		right: 0;
     		margin: 0 auto;
+		}
+		&:nth-child(2n){
+			&:before,&:after{
+				// border-left: 1px solid #e2e2e2;
+				content:'';
+			    position: absolute;
+			    height: 100%;
+			    width: 1px;
+			    background-color: #e2e2e2;
+			    top: 0;
+			    left: -8px;
+			}
+			&:after{
+				left: inherit;
+				right: -8px;
+			}
 		}
 	}
 }
@@ -859,8 +894,16 @@ body
 // ADD TO CART BUTTON -----------
 // ---------------------------
 
+.hb-woo-image-wrap:hover .hb-buy-button.hb-buy-button{
+	opacity: 0;
+	pointer-events: none;
+}
+
 .hb-woo-product .hb-product-meta-wrapper{
 	.price{
+		display: block;
+	}
+	.single-price{
 		display: flex;
     	align-items: center;
     	justify-content: space-between;
@@ -872,6 +915,8 @@ body
 	background-repeat: no-repeat;
     width: 42px;
     height: 42px;
+    display: block;
+    cursor: pointer;
 }
 
 
@@ -902,6 +947,13 @@ body
 
 
 
+// Out of stock
+
+.woocommerce div.product p.stock.out-of-stock.out-of-stock{
+	text-align: left;
+	line-height: inherit;
+    margin-bottom: 1.8em;
+}
 
 
 

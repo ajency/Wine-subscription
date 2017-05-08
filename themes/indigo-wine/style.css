@@ -2290,12 +2290,21 @@ a[data-readmore-toggle].more:before {
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
+  position: relative;
 }
 .hb-equal-col-height .products-4 .clear + .hb-woo-product {
   border-left: 0;
 }
+.hb-equal-col-height .products-4 .clear + .hb-woo-product:before {
+  content: '';
+  border-bottom: 1px solid #e2e2e2;
+  position: absolute;
+  width: 95%;
+  bottom: -15px;
+  right: -19em;
+  margin: 0 auto;
+}
 .hb-equal-col-height .hb-woo-product {
-  border-left: 1px solid #e2e2e2;
   margin-bottom: 32px !important;
   padding-bottom: 15px;
   margin-left: 8px;
@@ -2307,15 +2316,38 @@ a[data-readmore-toggle].more:before {
 .hb-equal-col-height .hb-woo-product:first-child {
   border-left: 0;
 }
+.hb-equal-col-height .hb-woo-product:first-child:before {
+  content: '';
+  border-bottom: 1px solid #e2e2e2;
+  position: absolute;
+  width: 95%;
+  bottom: -15px;
+  right: -19em;
+  margin: 0 auto;
+}
 .hb-equal-col-height .hb-woo-product:after {
   content: '';
   border-bottom: 1px solid #e2e2e2;
   position: absolute;
   width: 95%;
   bottom: -15px;
-  left: 15px;
+  left: 3px;
   right: 0;
   margin: 0 auto;
+}
+.hb-equal-col-height .hb-woo-product:nth-child(2n):before,
+.hb-equal-col-height .hb-woo-product:nth-child(2n):after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background-color: #e2e2e2;
+  top: 0;
+  left: -8px;
+}
+.hb-equal-col-height .hb-woo-product:nth-child(2n):after {
+  left: inherit;
+  right: -8px;
 }
 @media screen and (max-width: 600px) {
   .hb-equal-col-height .hb-woo-product {
@@ -2956,7 +2988,14 @@ body .woocommerce form .form-row .button {
 #main-content .left-sidebar .hb-woo-wrapper .hb-sidebar.hb-equal-col-height {
   margin-top: -40px !important;
 }
+.hb-woo-image-wrap:hover .hb-buy-button.hb-buy-button {
+  opacity: 0;
+  pointer-events: none;
+}
 .hb-woo-product .hb-product-meta-wrapper .price {
+  display: block;
+}
+.hb-woo-product .hb-product-meta-wrapper .single-price {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2975,6 +3014,8 @@ body .woocommerce form .form-row .button {
   background-repeat: no-repeat;
   width: 42px;
   height: 42px;
+  display: block;
+  cursor: pointer;
 }
 .woocommerce nav.woocommerce-pagination ul {
   border: 0;
@@ -2995,6 +3036,11 @@ body .woocommerce form .form-row .button {
 .woocommerce nav.woocommerce-pagination ul li .page-numbers:hover {
   background-color: #022c4c;
   color: #fff;
+}
+.woocommerce div.product p.stock.out-of-stock.out-of-stock {
+  text-align: left;
+  line-height: inherit;
+  margin-bottom: 1.8em;
 }
 .woocommerce .col-9 {
   min-height: 650px;

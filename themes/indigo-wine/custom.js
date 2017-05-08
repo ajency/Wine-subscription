@@ -125,6 +125,14 @@ jQuery(function(){
 	  }
 	});
 
+	// Trigered cart icon to actual cart click
+
+	jQuery('.add-To-Cart').click(function(){
+		jQuery(this).parent().parent().parent('.hb-product-meta-wrapper').siblings('.hb-woo-image-wrap').find('.add_to_cart_button').trigger("click");
+	});
+
+
+
 	function opacShow(){
 		jQuery('.discount').addClass('active');	
 	}
