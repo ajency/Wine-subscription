@@ -2606,6 +2606,10 @@ a[data-readmore-toggle].more:before {
   border-bottom: 1px solid #eee;
   padding-bottom: 2.5em;
 }
+.woocommerce-page.woocommerce-page .summary .sku_wrapper,
+.woocommerce-page.woocommerce-page .summary .in-stock {
+  display: none;
+}
 .woocommerce-product-gallery__image a {
   border: 1px solid #eee;
   display: block;
