@@ -2575,7 +2575,7 @@ a[data-readmore-toggle].more:before {
   color: #d1b57c;
 }
 .summary .hb-text-large {
-  font-size: 2em;
+  font-size: 1.85em;
   margin-bottom: 20px;
 }
 .summary .price {
@@ -2845,8 +2845,9 @@ body .woocommerce form .form-row .button {
   font-size: 1.2em;
 }
 .product_desc p {
-  font-size: 1.15em;
-  font-family: 'gotham_thinregular';
+  font-size: 1.05em;
+  font-family: 'gotham_bookregular';
+  font-weight: 300;
 }
 .cartStuff {
   display: -webkit-box;
@@ -2945,9 +2946,10 @@ body .woocommerce form .form-row .button {
 }
 .woocommerce-tabs.woocommerce-tabs .entry-content p {
   font-size: 1.15em;
-  font-family: 'gotham_thinregular';
+  font-family: 'gotham_bookregular';
   color: #022c4c;
   padding: 0;
+  font-weight: 500;
 }
 @media screen and (max-width: 500px) {
   .discount {
