@@ -119,3 +119,4 @@ mark.error{color:#ED2828}
 .hb-space{display:block;height: 20px;}
 .import-message .hb-msg div {display:none}
 @media handheld,only screen and (max-width:1590px) { .checkbox-element {width: 100%;}}
+table.wp-list-table img{max-width: 100%;height: auto;}
