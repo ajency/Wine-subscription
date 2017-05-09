@@ -422,9 +422,12 @@ body{
 	.ind-custom-menu{
 		.col{
 			ul{
-    			top: 15px; 
+    			top: 7px; 
 				li{
 					padding: 0 0.8em;
+					a{
+						font-size: 0.95em;
+					}
 				}
 			}
 		}
@@ -653,6 +656,9 @@ body{
     margin-bottom: 0.6em;
     &:first-letter{
     	border-bottom: 3px solid @brand-primary;
+    }
+    @media screen and (min-width: 992px) and (max-width: 1200px){
+    	font-size: 2em;
     }
     @media screen and (max-width: 768px){
     	text-align: center;

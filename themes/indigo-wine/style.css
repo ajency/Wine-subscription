@@ -440,10 +440,13 @@ body {
 }
 @media screen and (min-width: 993px) and (max-width: 1200px) {
   .ind-custom-menu .col ul {
-    top: 15px;
+    top: 7px;
   }
   .ind-custom-menu .col ul li {
     padding: 0 0.8em;
+  }
+  .ind-custom-menu .col ul li a {
+    font-size: 0.95em;
   }
 }
 .row.banner-entry {
@@ -633,6 +636,11 @@ body {
 }
 .site-title:first-letter {
   border-bottom: 3px solid #d1b57c;
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .site-title {
+    font-size: 2em;
+  }
 }
 @media screen and (max-width: 768px) {
   .site-title {
