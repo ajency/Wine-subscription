@@ -152,6 +152,7 @@ body{
     		top: 5px; 
 			li{
 				padding: 0 1.5em;
+				position: relative;
 				a,.active{
 					color: @brand-primary;
 					font-size: 1.2em;
@@ -183,6 +184,49 @@ body{
 				}
 				&.right{
 					padding: 0;
+				}
+				.sub-menu{
+					position: absolute;
+				    background-color: #fff;
+				    right: 0;
+				    top: 4.2em;
+				    display: none;
+				    min-width: 150px;
+				    padding: 0.5em 0;
+				    box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.11);
+				    flex-direction: column;
+				    li{
+				    	line-height: 2.5;
+				    	a{
+				    		font-size: 1.05em;
+				    		display: block;
+				    		&:after{
+								top: -5px;
+				    		}
+				    	}
+				    }
+				}
+				&:hover{
+					.sub-menu{
+						display: block;
+					}
+				}
+				&.menu-item-has-children{
+					& > a{
+						position: relative;
+						&:before{
+							content: "\f107";
+							padding-left: 0.25em;
+    						font-size: 1.15em;
+    						font: normal normal normal 14px/1 FontAwesome;
+						    text-rendering: auto;
+    						-webkit-font-smoothing: antialiased;
+    						right: -13px;
+    						position: absolute;
+    						top: 2px;
+    						font-size: 1.1em;
+						}
+					}
 				}
 			}
 		}
