@@ -70,7 +70,8 @@ global $woocommerce;
 
 				<li class="clearfix total-order-li">
 					<span class="cart-total-title"><?php _e( 'Order Total', 'woocommerce' ); ?></span>
-					<span class="cart-total-value"><?php wc_cart_totals_order_total_html(); ?></span>
+				<!-- 	<span class="cart-total-value"><?php //wc_cart_totals_order_total_html(); ?></span> -->
+					<span class="cart-total-value"><?php  echo $woocommerce->cart->get_cart_subtotal();  ?></span>
 				</li>
 
 				<?php do_action( 'woocommerce_cart_totals_after_order_total' ); ?>

@@ -48,7 +48,7 @@ jQuery( function( $ ) {
         alert("Please Enter Regular Price");
         return false;
       }
-      if($('#_sale_price').val()<= 0 || $('#_sale_price').val() == ''){
+     if($('#_sale_price').val()<= 0 || $('#_sale_price').val() == ''){
         alert("Please Enter Sales Price");
         return false;
       }

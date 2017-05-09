@@ -54,6 +54,8 @@ jQuery(function ($) {
  */
    
     $(document).on('click', '#subscribe_btn', function (event) {
+        $('#subscribe_btn').addClass('disabled');
+
       var delay=300;
         $('.subscribe-content .woocommerce-cart-form__cart-item').find('input.qty')
             .each(function () {
@@ -68,7 +70,9 @@ jQuery(function ($) {
                  }, delay);
                 
             });
-            
+          setTimeout(function() {  
+            $('.subscribe-content .success').removeClass('hidden');  
+          },delay);
     });
    
 

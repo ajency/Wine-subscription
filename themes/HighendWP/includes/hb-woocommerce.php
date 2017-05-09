@@ -101,9 +101,18 @@
 			}
 		}
 
+		$discount_perc=get_post_meta($post->ID,  '_sale_discount_percentage', true );
+		$discount_price=get_post_meta( $post->ID,  '_sale_discount_price', true );
+		$disvalue_mgs="";
+		if($discount_perc!='' && $discount_perc !=0){
+			$disvalue_mgs=$discount_perc."%";
+		}
+		else if($discount_price!='' && $discount_price !=0){
+			$disvalue_mgs="$".$discount_price;
+		}
 		?>
 		<div id="main-content" class="singleContent">
-			<?php if ( $sidebar_layout == 'fullwidth' ) { ?>
+			<?php if ( $sidebar_layout == 'fullwidth' && $disvalue_mgs!="") { ?>
 				<div class="discount">
 					<div class="container">
 						<div class="row">
@@ -111,7 +120,7 @@
 								<div class="site-offer">
 									<div class="message">
 										<span class="percent"></span>
-										<h2 class="title">Buy <b>6 bottles</b> and avail a flat 30% off</h2>
+										<h2 class="title">Buy <b>6 bottles</b> and avail a flat <?php echo $disvalue_mgs; ?> off</h2>
 									</div>
 									<i class="fa fa-times close" aria-hidden="true"></i>
 								</div>

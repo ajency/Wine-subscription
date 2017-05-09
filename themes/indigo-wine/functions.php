@@ -136,7 +136,7 @@ function woo_add_custom_general_fields() {
  woocommerce_wp_text_input( 
     array( 
         'id'          => '_sale_discount_price', 
-        'label'       => __( 'Discount Price (&pound;)', 'woocommerce' ), 
+        'label'       => __( 'Discount Price ($)', 'woocommerce' ), 
         'placeholder' => '',
         'desc_tip'    => 'true',
         'class'    => 'discountvalue',
@@ -211,6 +211,89 @@ function custom_shop_page_redirect() {
 }
 add_action( 'template_redirect', 'custom_shop_page_redirect' );
 
+
+
+// define the woocommerce_cart_product_subtotal callback 
+function indigo_wine_woocommerce_cart_product_subtotal( $product_subtotal, $product, $quantity, $instance ) { 
+    global $woocommerce;
+    
+    $product_id=$product->get_id();
+
+    $product_subtotal= indigo_discountCalculation($product_id, $quantity,$product_subtotal);
+
+    return wc_price($product_subtotal);
+}; 
+
+add_filter( 'woocommerce_cart_product_subtotal', 'indigo_wine_woocommerce_cart_product_subtotal', 10, 4 ); 
+
+
+// define the woocommerce_cart_subtotal callback 
+function indigo_wine_filter_woocommerce_cart_subtotal( $cart_subtotal, $compound, $instance ) { 
+    // make filter magic happen here... 
+    global $woocommerce;
+    $final_total=0;
+    foreach ($instance->cart_contents as $cart_value) {
+       $product_id=$cart_value['product_id'];
+       $quantity=$cart_value['quantity'];
+       $line_total=$cart_value['line_total'];
+       $final_total=$final_total+indigo_discountCalculation($product_id,$quantity,$line_total);
+    }
+    
+     return wc_price($final_total); 
+}; 
+         
+// add the filter 
+add_filter( 'woocommerce_cart_subtotal', 'indigo_wine_filter_woocommerce_cart_subtotal', 10, 3 ); 
+
+
+function indigo_discountCalculation($product_id, $quantity,$product_subtotal){
+    
+     $price=get_post_meta($product_id,  '_price', true );
+
+    $row_price        = $price * $quantity;
+    if(indigo_rangelogic($quantity)){
+        $discount_perc=get_post_meta($product_id,  '_sale_discount_percentage', true );
+        $discount_price=get_post_meta($product_id,  '_sale_discount_price', true );
+       
+   
+        if($discount_perc!='' && $discount_perc !=0){     
+
+          $discounted_price_perc=(($discount_perc*$row_price)/100);
+          $discounted_price=$row_price-$discounted_price_perc;
+          return $final_product_subtotal= $discounted_price;
+         
+        }
+        else if($discount_price!='' && $discount_price !=0){
+           
+            $discounted_price=$row_price-$discount_price;
+            return $final_product_subtotal= $discounted_price;
+              
+        }  
+    } 
+    return $row_price; 
+}
+
+function indigo_rangelogic($quantity){
+     for($i=1;$i<=500;$i++){
+         $rangearr[]=$i;
+         if($i%6==0){
+          $final[]=$rangearr;
+          $rangearr=array();
+         }
+     } 
+     foreach($final as $value){
+        
+          if(in_array($quantity,$value)){
+            $updateqty= max($value);
+            break;
+          }
+     }
+
+     if($updateqty==$quantity){
+        return true;
+     }
+     return false;
+}
 
 require get_template_directory()."/subscription/product-subscription.php";
 
