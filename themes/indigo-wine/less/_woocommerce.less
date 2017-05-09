@@ -9,6 +9,19 @@
 #hb-page-title {
     // padding-top: 100px;
     margin-top: 0;
+    padding: 1em 0;
+    .hb-image-bg-wrap{
+    	background-image: none !important;
+    }
+	.hb-page-title{
+		h1,h2{
+			padding: 0;
+			font-family: 'gotham_mediumregular';
+			font-weight: 400;
+			color: @brand-secondary !important;
+			font-size: 1.75em !important;
+		}
+	}
 }
 .hb-animate-element {
 		opacity: 1;
@@ -59,10 +72,11 @@
 	}
 	& + .breadcrumbs-wrapper.breadcrumbs-wrapper{
 		span,a{
-			color: rgba(255,255,255,1) !important;
+			color: @brand-secondary !important;
 			opacity: 1;
 			font-family: 'gotham_mediumregular' !important;
     		font-size: 1.05em;
+    		font-weight: 400;
 			&:hover{
 				color: @brand-primary !important;
 			}
@@ -344,7 +358,7 @@
 }
 .summary{
 .hb-text-large{
-		font-size: 33px;
+		font-size: 2em;
 		margin-bottom: 20px;
 	}
 	.price{
@@ -472,7 +486,7 @@
 }
 .woocommerce-cart {
 	#hb-page-title {
-		padding-top: 20px !important;
+		// padding-top: 20px !important;
 	}
 }
 .woocommerce-billing-fields__field-wrapper{
@@ -565,8 +579,8 @@ body
 }
 
 .discount{
-	margin: -3em 0 2.5em 0;
-    padding: 1.8em 0;
+	margin: -3em 0 1.8em 0;
+    padding: .85em 0;
     background-color: #ddc69a;
     opacity: 0;
 	transition: opacity 0.5s cubic-bezier(0.44, -0.25, 0.75, 1);
@@ -596,7 +610,7 @@ body
 	    font-family: 'gotham_lightregular';
 	    text-transform: uppercase;
 	    font-weight: 600;
-	    font-size: 1.45em;
+	    font-size: 1.3em;
     	color: @brand-secondary;
     	b{
     		font-family: 'gotham_mediumregular';
@@ -604,7 +618,7 @@ body
     }
     .close{
     	color: @brand-secondary;
-    	font-size: 1.4em;
+    	font-size: 1.2em;
     	cursor: pointer;
     }
     &.active{
@@ -631,7 +645,7 @@ body
     .title{
     	font-family: 'gotham_mediumregular';
     	color: @brand-primary;
-    	font-size: 2.5em;
+    	font-size: 2em;
     	margin-bottom: 0.2em;
     }
 }
@@ -673,7 +687,7 @@ body
     		color: @brand-secondary;
     		font-family: 'gotham_lightregular';
     		&:hover{
-    			color: lighten(@brand-secondary,10%);
+    			color: @brand-primary;
     		}
     	}
 	}

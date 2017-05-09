@@ -2203,6 +2203,18 @@ a[data-readmore-toggle].more:before {
 }
 #hb-page-title {
   margin-top: 0;
+  padding: 1em 0;
+}
+#hb-page-title .hb-image-bg-wrap {
+  background-image: none !important;
+}
+#hb-page-title .hb-page-title h1,
+#hb-page-title .hb-page-title h2 {
+  padding: 0;
+  font-family: 'gotham_mediumregular';
+  font-weight: 400;
+  color: #022c4c !important;
+  font-size: 1.75em !important;
 }
 .hb-animate-element {
   opacity: 1;
@@ -2244,10 +2256,11 @@ a[data-readmore-toggle].more:before {
 .hb-page-title.light-text + .breadcrumbs-wrapper.breadcrumbs-wrapper span,
 .hb-page-title.simple-title + .breadcrumbs-wrapper.breadcrumbs-wrapper a,
 .hb-page-title.light-text + .breadcrumbs-wrapper.breadcrumbs-wrapper a {
-  color: #ffffff !important;
+  color: #022c4c !important;
   opacity: 1;
   font-family: 'gotham_mediumregular' !important;
   font-size: 1.05em;
+  font-weight: 400;
 }
 .hb-page-title.simple-title + .breadcrumbs-wrapper.breadcrumbs-wrapper span:hover,
 .hb-page-title.light-text + .breadcrumbs-wrapper.breadcrumbs-wrapper span:hover,
@@ -2492,7 +2505,7 @@ a[data-readmore-toggle].more:before {
   color: #d1b57c;
 }
 .summary .hb-text-large {
-  font-size: 33px;
+  font-size: 2em;
   margin-bottom: 20px;
 }
 .summary .price {
@@ -2606,9 +2619,6 @@ a[data-readmore-toggle].more:before {
 .woocommerce h4 {
   font-weight: bold;
 }
-.woocommerce-cart #hb-page-title {
-  padding-top: 20px !important;
-}
 .woocommerce-billing-fields__field-wrapper input {
   background: transparent;
   border-width: 0px 0px 1px 0px;
@@ -2675,8 +2685,8 @@ body .woocommerce form .form-row .button {
   overflow: inherit;
 }
 .discount {
-  margin: -3em 0 2.5em 0;
-  padding: 1.8em 0;
+  margin: -3em 0 1.8em 0;
+  padding: .85em 0;
   background-color: #ddc69a;
   opacity: 0;
   -webkit-transition: opacity 0.5s cubic-bezier(0.44, -0.25, 0.75, 1);
@@ -2723,7 +2733,7 @@ body .woocommerce form .form-row .button {
   font-family: 'gotham_lightregular';
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 1.45em;
+  font-size: 1.3em;
   color: #022c4c;
 }
 .discount .title b {
@@ -2731,7 +2741,7 @@ body .woocommerce form .form-row .button {
 }
 .discount .close {
   color: #022c4c;
-  font-size: 1.4em;
+  font-size: 1.2em;
   cursor: pointer;
 }
 .discount.active {
@@ -2752,7 +2762,7 @@ body .woocommerce form .form-row .button {
 .product_amount .title {
   font-family: 'gotham_mediumregular';
   color: #d1b57c;
-  font-size: 2.5em;
+  font-size: 2em;
   margin-bottom: 0.2em;
 }
 .product_desc {
@@ -2796,7 +2806,7 @@ body .woocommerce form .form-row .button {
   font-family: 'gotham_lightregular';
 }
 .product_attr .meta-div a:hover {
-  color: #03497e;
+  color: #d1b57c;
 }
 .product_attr .tagged_as a:before {
   content: "\f02b";
