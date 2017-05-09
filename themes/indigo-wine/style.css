@@ -2865,6 +2865,12 @@ body .woocommerce form .form-row .button {
   height: 50px;
   line-height: 50px;
 }
+.woocommerce-ordering .orderby {
+  font-family: gotham_lightregular;
+  color: #022c4c;
+  border-color: #022c4c;
+  font-weight: 600;
+}
 .product_attr .meta-div {
   color: #022c4c;
   font-size: 1.1em;
