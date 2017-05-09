@@ -136,7 +136,7 @@ function woo_add_custom_general_fields() {
  woocommerce_wp_text_input( 
     array( 
         'id'          => '_sale_discount_price', 
-        'label'       => __( 'Discount Price (&pound;)', 'woocommerce' ), 
+        'label'       => __( 'Discount Price ($)', 'woocommerce' ), 
         'placeholder' => '',
         'desc_tip'    => 'true',
         'class'    => 'discountvalue',
