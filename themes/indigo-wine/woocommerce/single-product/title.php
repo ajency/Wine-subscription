@@ -13,17 +13,13 @@ global $post,$product;
 
 ?>
 <p itemprop="name" class="hb-text-large productTitle"><?php the_title(); ?></p>
-<div class="hb-accordion single-cart-option" data-initialindex="0">
+<!-- <div class="hb-accordion single-cart-option" data-initialindex="0">
 <div class="hb-accordion-single">
 	
 	<div class="product_amount">
 		<h1 class="title">$20</h1>
 	</div>
 
-	<div itemprop="description" class="product_desc">
-		<label>Description</label>
-		<?php echo apply_filters( 'woocommerce_short_description', $post->post_excerpt ) ?>
-	</div>
 
 	<div class="cartStuff">
 		<div class="cartHolder">
@@ -40,7 +36,7 @@ global $post,$product;
 </div>
 
 </div>
-<br><br>
+<br><br> -->
 <?php if ( wc_product_sku_enabled() && ( $product->get_sku() || $product->is_type( 'variable' ) ) ) : ?>
 
 	<span class="sku_wrapper"><?php _e( 'SKU:', 'woocommerce' ); ?> <span class="sku" itemprop="sku"><?php echo ( $sku = $product->get_sku() ) ? $sku : __( 'n/a', 'woocommerce' ); ?></span>.</span>

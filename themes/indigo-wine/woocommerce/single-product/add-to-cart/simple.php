@@ -19,13 +19,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-global $product;
+global $product,$post;
 
 if ( ! $product->is_purchasable() ) {
 	return;
 } ?>
 
 <div class="hb-separator" style="display:none;"></div>
+
+
+	<div itemprop="description" class="product_desc">
+		<label>Description</label>
+		<?php echo apply_filters( 'woocommerce_short_description', $post->post_excerpt ) ?>
+	</div>
 
 <?php
 
@@ -35,7 +41,7 @@ if ( $product->is_in_stock() ) : ?>
 
 	<?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
-	<form class="cart" method="post" enctype='multipart/form-data' style="display:none;">
+	<form class="cart" method="post" enctype='multipart/form-data'>
 		<?php
 			/**
 			 * @since 2.1.0.
@@ -58,8 +64,9 @@ if ( $product->is_in_stock() ) : ?>
 			 */
 			do_action( 'woocommerce_after_add_to_cart_quantity' );
 		?>
-
-		<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+		<div class="brand-button">
+			<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt vc_general vc_btn3 vc_btn3-color-grey"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+		</div>
 
 		<?php
 			/**
