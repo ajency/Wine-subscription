@@ -2198,6 +2198,13 @@ a[data-readmore-toggle].more:before {
     width: 95% !important;
   }
 }
+.feature-box.feature-box h4.bold,
+.feature-box.feature-box h1 {
+  font-family: 'gotham_lightregular';
+}
+.feature-box.feature-box p {
+  font-family: 'gotham_bookregular';
+}
 .m-0 {
   margin: 0px;
 }
