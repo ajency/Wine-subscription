@@ -141,6 +141,7 @@ jQuery(function(){
 	    jQuery('.discount').hide();
 	});
 
+
 		// Custom menu click and scroll to particular ID
 
 
