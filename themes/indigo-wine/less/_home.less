@@ -653,6 +653,7 @@ a[data-readmore-toggle]{
     color: @brand-secondary;
 	margin-top: 0.5em;
 	position: relative;
+	cursor: pointer !important;
 	&:hover{
 		color: lighten(@brand-secondary,10%);
 	}
@@ -2208,6 +2209,17 @@ a[data-readmore-toggle]{
 }
 
 
+.about-row,.about-second-row,.delight-row{
+	.wpb_wrapper{
+		a[href="#"]{
+			cursor: default;
+			&:hover{
+				color: inherit;
+			}
+		}
+	}
+
+}
 
 
 

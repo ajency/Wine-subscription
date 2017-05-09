@@ -625,6 +625,7 @@ a[data-readmore-toggle] {
   color: #022c4c;
   margin-top: 0.5em;
   position: relative;
+  cursor: pointer !important;
 }
 a[data-readmore-toggle]:hover {
   color: #03497e;
@@ -2071,6 +2072,16 @@ a[data-readmore-toggle].more:before {
 }
 #to-top#to-top:hover {
   background-color: #decaa2;
+}
+.about-row .wpb_wrapper a[href="#"],
+.about-second-row .wpb_wrapper a[href="#"],
+.delight-row .wpb_wrapper a[href="#"] {
+  cursor: default;
+}
+.about-row .wpb_wrapper a[href="#"]:hover,
+.about-second-row .wpb_wrapper a[href="#"]:hover,
+.delight-row .wpb_wrapper a[href="#"]:hover {
+  color: inherit;
 }
 #simplemodal-login-container-osx.simplemodal-container {
   width: 550px !important;
