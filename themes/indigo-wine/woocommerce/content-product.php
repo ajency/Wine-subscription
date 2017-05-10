@@ -188,9 +188,29 @@ if ( $woocommerce_loop['columns'] == 4 ){
 
 		<div class="hb-woo-product-details">
 			<a href="<?php the_permalink(); ?>"><?php do_action( 'woocommerce_shop_loop_item_title' ); ?></a>
+			
 			<?php
-			$size = sizeof( get_the_terms( $post->ID, 'product_cat' ) ); ?>
-			<div class="woo-cats"><?php echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="hb-woo-shop-cats">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span>' ); ?></div>
+			// get all product cats for the current post
+			$categories = get_the_terms( get_the_ID(), 'product_cat' ); 
+
+			// wrapper to hide any errors from top level categories or products without category
+			if ( $categories && ! is_wp_error( $category ) ) : 
+
+			    // loop through each cat
+			    foreach($categories as $category) :
+			      // get the children (if any) of the current cat
+			      $children = get_categories( array ('taxonomy' => 'product_cat', 'parent' => $category->term_id ));
+
+			      if ( count($children) == 0 ) {
+			         
+			          echo "\n".$category->name;
+			      }
+			    endforeach;
+
+			endif;
+
+			$size = sizeof( get_the_terms( $post->ID, 'product_tag' ) ); ?>
+			<div class="woo-cats"><?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<span class="hb-woo-shop-cats">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span>' ); ?></div>
 		</div>
 
 		<?php
