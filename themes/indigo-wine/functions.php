@@ -238,6 +238,7 @@ function indigo_wine_filter_woocommerce_cart_subtotal( $cart_subtotal, $compound
     }
 
     $woocommerce->cart->total=$final_total;
+ 
     
     return wc_price($final_total); 
 }; 
@@ -246,10 +247,11 @@ add_filter( 'woocommerce_cart_subtotal', 'indigo_wine_filter_woocommerce_cart_su
 
 
 function indigo_discountCalculation($product_id, $quantity,$product_subtotal){
-    
+    global $woocommerce;
      $price=get_post_meta($product_id,  '_price', true );
 
     $row_price        = $price * $quantity;
+
     if(indigo_rangelogic($quantity)){
         $discount_perc=get_post_meta($product_id,  '_sale_discount_percentage', true );
         $discount_price=get_post_meta($product_id,  '_sale_discount_price', true );
@@ -258,19 +260,28 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal){
         if($discount_perc!='' && $discount_perc !=0){     
 
           $discounted_price_perc=(($discount_perc*$row_price)/100);
+          
           $discounted_price=$row_price-$discounted_price_perc;
+
+          $woocommerce->cart->discount_cart=$woocommerce->cart->discount_cart+$discounted_price_perc;
+
           return $final_product_subtotal= $discounted_price;
          
         }
         else if($discount_price!='' && $discount_price !=0){
            
             $discounted_price=$row_price-$discount_price;
+            
+            $woocommerce->cart->discount_cart=$woocommerce->cart->discount_cart+$discount_price;
+            
             return $final_product_subtotal= $discounted_price;
               
         }  
     } 
     return $row_price; 
 }
+
+
 
 function indigo_rangelogic($quantity){
      for($i=1;$i<=500;$i++){
