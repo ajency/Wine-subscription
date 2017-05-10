@@ -217,9 +217,8 @@ function indigo_wine_woocommerce_cart_product_subtotal( $product_subtotal, $prod
     global $woocommerce;
     
     $product_id=$product->get_id();
-  
-    $cart_item_key=key($instance->cart_contents);  
-    $product_subtotal= indigo_discountCalculation($product_id, $quantity,$product_subtotal,$cart_item_key);
+   
+    $product_subtotal= indigo_discountCalculation($product_id, $quantity,$product_subtotal);
 
     return wc_price($product_subtotal);
 }; 
@@ -231,11 +230,11 @@ function indigo_wine_filter_woocommerce_cart_subtotal( $cart_subtotal, $compound
   
     global $woocommerce;
     $final_total=0;
-    foreach ($instance->cart_contents as $cart_value) {
+    foreach ($instance->cart_contents as  $cart_item_key => $cart_value) {
        $product_id=$cart_value['product_id'];
        $quantity=$cart_value['quantity'];
        $line_total=$cart_value['line_total'];
-       $final_total=$final_total+indigo_discountCalculation($product_id,$quantity,$line_total);
+       $final_total=$final_total+indigo_discountCalculation($product_id,$quantity,$line_total,$cart_item_key);
     }
 
     $woocommerce->cart->total=$final_total;
