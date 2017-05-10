@@ -55,9 +55,9 @@ body{
 
 // default button
 
-.brand-button{
-	.vc_btn3.vc_btn3-color-grey.vc_general{
-		background-color: @brand-secondary;
+.brand-button,#main-wrapper{
+	.vc_btn3.vc_btn3-color-grey.vc_general,.single_add_to_cart_button{
+		background-color: @brand-secondary !important;
 	    color: #fff;
 	    font-family:'gotham_mediumregular';
 	    font-size: 1.4em;
@@ -71,6 +71,12 @@ body{
 	    	color: #fff;
 	    }
 	}
+}
+
+#main-wrapper#main-wrapper .single_add_to_cart_button{
+	height: auto;
+    text-transform: inherit;
+    padding: 0.2em 1.8em;
 }
 
 
