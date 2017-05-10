@@ -3102,6 +3102,25 @@ body .woocommerce form .form-row .button {
 #main-content .left-sidebar .hb-woo-wrapper .hb-sidebar.hb-equal-col-height {
   margin-top: -40px !important;
 }
+#main-wrapper .hb-woo-product .hb-woo-image-wrap.hb-woo-image-wrap {
+  margin-bottom: 10px;
+}
+.sub-cat {
+  margin-bottom: 0.4em;
+  color: #b0a98e;
+}
+.sub-cat a {
+  color: #d1b57c;
+  text-transform: capitalize;
+  padding: 0 0.2em;
+  font-family: gotham_bookregular;
+}
+.sub-cat a:first-child {
+  padding-left: 0;
+}
+.sub-cat a:hover {
+  color: #decaa2;
+}
 .hb-woo-image-wrap:hover .hb-buy-button.hb-buy-button {
   opacity: 0;
   pointer-events: none;

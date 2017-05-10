@@ -187,27 +187,32 @@ if ( $woocommerce_loop['columns'] == 4 ){
 	<div class="hb-product-meta">
 
 		<div class="hb-woo-product-details">
-			<?php
-			// get all product cats for the current post
-			$categories = get_the_terms( get_the_ID(), 'product_cat' ); 
+			<div class="sub-cat">
+				<?php
+				// get all product cats for the current post
+				$categories = get_the_terms( get_the_ID(), 'product_cat' ); 
 
-			// wrapper to hide any errors from top level categories or products without category
-			if ( $categories && ! is_wp_error( $category ) ) : 
+				// wrapper to hide any errors from top level categories or products without category
+				if ( $categories && ! is_wp_error( $category ) ) : 
 
-			    // loop through each cat
-			    foreach($categories as $category) :
-			      // get the children (if any) of the current cat
-			      $children = get_categories( array ('taxonomy' => 'product_cat', 'parent' => $category->term_id ));
+				    // loop through each cat
+				    foreach($categories as $category) :
+				      // get the children (if any) of the current cat
+				      $children = get_categories( array ('taxonomy' => 'product_cat', 'parent' => $category->term_id ));
 
-			      if ( count($children) == 0 ) {
-			       
-			         $array_cat[]=$category->name;
-			      }
-			    endforeach;
+				      if ( count($children) == 0 ) {
+				       
+				         $array_cat[]=$category->name;
+				      }
+				    endforeach;
 
-				echo  $data=  implode(',', $array_cat);
-				endif;
-			?>
+					echo  $data=  implode(',', $array_cat);
+
+					endif;
+				?>
+
+			</div>
+
 			<a href="<?php the_permalink(); ?>"><?php do_action( 'woocommerce_shop_loop_item_title' ); ?></a>
 			
 			<?php
