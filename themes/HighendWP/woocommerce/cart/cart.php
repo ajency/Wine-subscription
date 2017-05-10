@@ -153,11 +153,14 @@ do_action( 'woocommerce_before_cart' ); ?>
 </div>
 
 <div class="col-3">
-<!-- <div class="no-subscription">
-	<h5 class="title">Change the ordered qty to multiples of 6 and subscribe to this order</h5>
+
+<div class="no-subscription box-wrap">
 	<div class="cart-bottle"></div>
-</div> -->
-<div class="subscription">
+	<h5 class="title">Its that easy! Your subscription will be activated and will arrive by your selected delivery day.</h5>
+	<a href="#" class="sub-started modal-open" data-modal-id="subscribe-modal" id="subscribe_now">Get Started</a>
+</div>
+
+<!-- <div class="subscription box-wrap">
 	<h2 class="title">Subscribe the orders</h2>
 	<label class="sub-label">Type of subscription</label>
 	<select class="sub-select">
@@ -171,7 +174,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 	<div class="no-sub unsubscribe hidden">
 		Monthly subscription activated. Click <a href="#" class="un-link">here</a> if you want to unsubscribe
 	</div>
-</div>
+</div> -->
 
 
 <div class="cart-collaterals">
