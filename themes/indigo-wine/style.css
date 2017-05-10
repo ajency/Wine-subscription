@@ -2874,6 +2874,13 @@ body .woocommerce form .form-row .button {
   font-size: 1.05em;
   font-family: 'gotham_bookregular';
   font-weight: 300;
+  margin-bottom: 0.2em;
+}
+.product_desc + a[data-readmore-toggle] {
+  font-size: 1em;
+}
+.product_desc + a[data-readmore-toggle]:before {
+  top: -2.3em;
 }
 .cartStuff {
   display: -webkit-box;
@@ -2959,6 +2966,9 @@ body .woocommerce form .form-row .button {
   font-size: 1.2em !important;
   padding: 0.3em 0 !important;
 }
+.woocommerce-tabs.woocommerce-tabs .entry-content {
+  margin-bottom: 0 !important;
+}
 .woocommerce-tabs.woocommerce-tabs .entry-content .shop_attributes {
   border: 0 !important;
 }
@@ -2979,6 +2989,13 @@ body .woocommerce form .form-row .button {
   color: #022c4c;
   padding: 0;
   font-weight: 500;
+  margin-bottom: 0.2em;
+}
+.woocommerce-tabs.woocommerce-tabs .entry-content + a[data-readmore-toggle] {
+  font-size: 1em;
+}
+.woocommerce-tabs.woocommerce-tabs .entry-content + a[data-readmore-toggle]:before {
+  top: -2.3em;
 }
 @media screen and (max-width: 500px) {
   .discount {

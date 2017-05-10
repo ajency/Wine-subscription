@@ -85,6 +85,20 @@ jQuery(function(){
 	   lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
 	 });
 
+	jQuery('.product_desc').readmore({
+	   speed: 25,
+	   collapsedHeight: 230,
+	   moreLink: '<a href="#" class="more">Show More <i class="fa fa-angle-down" aria-hidden="true"></i></a>',
+	   lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
+	 });
+
+	jQuery('#tab-description').readmore({
+	   speed: 25,
+	   collapsedHeight: 120,
+	   moreLink: '<a href="#" class="more">Show More <i class="fa fa-angle-down" aria-hidden="true"></i></a>',
+	   lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
+	 });
+
 
 	// featured product scroll
 

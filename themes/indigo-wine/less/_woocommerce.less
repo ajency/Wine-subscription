@@ -677,6 +677,13 @@ body
 		font-size: 1.05em;
     	font-family: 'gotham_bookregular';
     	font-weight: 300;
+    	margin-bottom: 0.2em;
+	}
+	& + a[data-readmore-toggle]{
+		font-size: 1em;
+		&:before{
+			top: -2.3em;
+		}
 	}
 }
 
@@ -773,6 +780,7 @@ body
 		}
 	}
 	.entry-content{
+		margin-bottom: 0 !important;
 		.shop_attributes{
 			border: 0 !important;
 			td{
@@ -793,6 +801,13 @@ body
 	    	color: @brand-secondary;
 	    	padding: 0;
 	    	font-weight: 500;
+	    	margin-bottom: 0.2em;
+		}
+		& + a[data-readmore-toggle]{
+			font-size: 1em;
+			&:before{
+				top: -2.3em;
+			}
 		}
 	}
 }
