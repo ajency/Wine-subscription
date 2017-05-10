@@ -294,8 +294,8 @@
 				if ( !isset($woocommerce) ) {
 					return;
 				}
-				$checkout_url = $woocommerce->cart->get_checkout_url();
-				?><ul id="hb-woo-notif" data-text="<?php _e('added to cart.', 'hbthemes'); ?>" data-cart-text="<?php _e('Checkout', 'hbthemes'); ?>" data-cart-url="<?php echo $checkout_url; ?>"></ul><?php
+				$checkout_url = $woocommerce->cart->get_cart_url();
+				?><ul id="hb-woo-notif" data-text="<?php _e('added to cart.', 'hbthemes'); ?>" data-cart-text="<?php _e('Cart', 'hbthemes'); ?>" data-cart-url="<?php echo $checkout_url; ?>"></ul><?php
 			}
 		}
 	}
