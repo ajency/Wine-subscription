@@ -217,8 +217,9 @@ function indigo_wine_woocommerce_cart_product_subtotal( $product_subtotal, $prod
     global $woocommerce;
     
     $product_id=$product->get_id();
-
-    $product_subtotal= indigo_discountCalculation($product_id, $quantity,$product_subtotal);
+  
+    $cart_item_key=key($instance->cart_contents);  
+    $product_subtotal= indigo_discountCalculation($product_id, $quantity,$product_subtotal,$cart_item_key);
 
     return wc_price($product_subtotal);
 }; 
@@ -246,7 +247,7 @@ function indigo_wine_filter_woocommerce_cart_subtotal( $cart_subtotal, $compound
 add_filter( 'woocommerce_cart_subtotal', 'indigo_wine_filter_woocommerce_cart_subtotal', 10, 3 ); 
 
 
-function indigo_discountCalculation($product_id, $quantity,$product_subtotal){
+function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$cart_item_key=''){
     global $woocommerce;
      $price=get_post_meta($product_id,  '_price', true );
 
@@ -265,6 +266,12 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal){
 
           $woocommerce->cart->discount_cart=$woocommerce->cart->discount_cart+$discounted_price_perc;
 
+          if( $cart_item_key!='')
+          {  
+            $woocommerce->cart->cart_contents[ $cart_item_key ]['line_total']=$discounted_price;
+            $woocommerce->cart->cart_contents[ $cart_item_key ]['line_subtotal']=$discounted_price;
+          }
+     
           return $final_product_subtotal= $discounted_price;
          
         }
@@ -273,11 +280,20 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal){
             $discounted_price=$row_price-$discount_price;
             
             $woocommerce->cart->discount_cart=$woocommerce->cart->discount_cart+$discount_price;
-            
+    
+            if( $cart_item_key!='')
+            {    
+                $woocommerce->cart->cart_contents[ $cart_item_key ]['line_total']=$discounted_price;
+                $woocommerce->cart->cart_contents[ $cart_item_key ]['line_subtotal']=$discounted_price;
+            }
+       
             return $final_product_subtotal= $discounted_price;
               
         }  
     } 
+    
+       
+
     return $row_price; 
 }
 
