@@ -213,7 +213,6 @@ add_action( 'template_redirect', 'custom_shop_page_redirect' );
 
 
 
-// define the woocommerce_cart_product_subtotal callback 
 function indigo_wine_woocommerce_cart_product_subtotal( $product_subtotal, $product, $quantity, $instance ) { 
     global $woocommerce;
     
@@ -227,9 +226,8 @@ function indigo_wine_woocommerce_cart_product_subtotal( $product_subtotal, $prod
 add_filter( 'woocommerce_cart_product_subtotal', 'indigo_wine_woocommerce_cart_product_subtotal', 10, 4 ); 
 
 
-// define the woocommerce_cart_subtotal callback 
 function indigo_wine_filter_woocommerce_cart_subtotal( $cart_subtotal, $compound, $instance ) { 
-    // make filter magic happen here... 
+  
     global $woocommerce;
     $final_total=0;
     foreach ($instance->cart_contents as $cart_value) {
@@ -238,11 +236,12 @@ function indigo_wine_filter_woocommerce_cart_subtotal( $cart_subtotal, $compound
        $line_total=$cart_value['line_total'];
        $final_total=$final_total+indigo_discountCalculation($product_id,$quantity,$line_total);
     }
+
+    $woocommerce->cart->total=$final_total;
     
-     return wc_price($final_total); 
+    return wc_price($final_total); 
 }; 
          
-// add the filter 
 add_filter( 'woocommerce_cart_subtotal', 'indigo_wine_filter_woocommerce_cart_subtotal', 10, 3 ); 
 
 
