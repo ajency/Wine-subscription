@@ -396,14 +396,13 @@ body {
   }
   .ind-custom-menu .col ul {
     position: relative;
-    top: -12px;
+    top: -3px;
   }
   .ind-custom-menu .col ul li {
     padding: 0 1.2em;
   }
   .ind-custom-menu .col ul li a,
   .ind-custom-menu .col ul li .active {
-    font-size: 1em;
     font-family: 'gotham_mediumregular';
   }
   .ind-custom-menu.fixed {
