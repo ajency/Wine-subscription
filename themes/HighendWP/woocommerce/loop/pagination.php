@@ -23,8 +23,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $wp_query;
 
 ?>
-<div>
-<div id="woocommerce-result-count-store">
+<div class="bottom-result res-count">
+<div id="woocommerce-result-count-store" class="count-store">
 	<?php
 	$paged    = max( 1, $wp_query->get( 'paged' ) );
 	$per_page = $wp_query->get( 'posts_per_page' );
