@@ -3213,9 +3213,17 @@ body .woocommerce form .form-row .button {
 .hb-main-content .woocommerce .shop_table td a {
   color: #022c4c;
 }
+.element-row .woocommerce .shop_table th,
+.hb-main-content .woocommerce .shop_table th {
+  font-family: 'gotham_mediumregular';
+}
 .element-row .woocommerce .shop_table .cart_item,
 .hb-main-content .woocommerce .shop_table .cart_item {
   border-bottom: 1px solid #ddd;
+}
+.element-row .woocommerce .shop_table .cart_item .product-subtotal strike,
+.hb-main-content .woocommerce .shop_table .cart_item .product-subtotal strike {
+  color: #868686;
 }
 .element-row .woocommerce .shop_table .actions,
 .hb-main-content .woocommerce .shop_table .actions {
@@ -3256,6 +3264,11 @@ body .woocommerce form .form-row .button {
 .hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li {
   border-color: #000;
   border-top-style: solid;
+}
+.element-row .calculated_shipping .hb-box-cont-body .hb-cart-totals li span.cart-total-value,
+.hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li span.cart-total-value {
+  font-family: gotham_mediumregular;
+  color: #022c4c;
 }
 .element-row .coupon-toggle .hb-accordion-tab,
 .hb-main-content .coupon-toggle .hb-accordion-tab {
@@ -3494,7 +3507,7 @@ body .woocommerce form .form-row .button {
 }
 .no-subscription .title {
   font-family: 'gotham_mediumregular';
-  font-size: 0.95em;
+  font-size: 1em;
   color: #022c4c;
   margin: 1em 0;
   line-height: 1.3;
