@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $wp_query;
 
 ?>
-
+<div>
 <div id="woocommerce-result-count-store">
 	<?php
 	$paged    = max( 1, $wp_query->get( 'paged' ) );
@@ -65,3 +65,4 @@ if ( $wp_query->max_num_pages <= 1 ) {
 		) ) );
 	?>
 </nav>
+</div>

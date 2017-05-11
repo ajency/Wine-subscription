@@ -320,7 +320,7 @@ function indigo_rangelogic($quantity){
      return false;
 }
 
-add_action( 'woocommerce_before_shop_loop', 'woocommerce_pagination', 10 );
+// add_action( 'woocommerce_before_shop_loop', 'woocommerce_pagination', 10 );
 
 
 function filter_woocommerce_product_categories_widget_args( $list_args ) { 
