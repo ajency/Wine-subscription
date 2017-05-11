@@ -5,28 +5,6 @@
  */
 ?>
 
-<?php
-    
-    if (is_product_category()) {
-        
-        global $wp_query;
-        
-        $cat = $wp_query->get_queried_object();
-      
-        if($cat->slug=='wine-packs' || $cat->slug=='wines'){ 
-            ?>
-        <script type="text/javascript">
-        
-        	var name= "<?php echo $cat->name; ?>";
-          jQuery('.widget_product_categories h4').html(name);
-        
-        </script>
-
-        <?}
-    }
-    ?>
-
-
 <?php if ( vp_metabox('misc_settings.hb_onepage') && !vp_metabox('misc_settings.hb_disable_navigation')) { ?>
 	<ul id="hb-one-page-bullets"></ul>
 <?php } ?>

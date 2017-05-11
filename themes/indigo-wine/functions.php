@@ -322,6 +322,44 @@ function indigo_rangelogic($quantity){
 
 add_action( 'woocommerce_before_shop_loop', 'woocommerce_pagination', 10 );
 
+
+function filter_woocommerce_product_categories_widget_args( $list_args ) { 
+     if (is_product_category()) {
+        
+        global $wp_query;
+        
+        $cat = $wp_query->get_queried_object();
+        
+        if($cat->slug=='wine-packs' || $cat->slug=='wine'){ 
+           $list_args['child_of']=$cat->term_id;
+       }
+    }
+    
+    return $list_args; 
+}; 
+         
+add_filter( 'woocommerce_product_categories_widget_args', 'filter_woocommerce_product_categories_widget_args', 10, 1 ); 
+
+
+function retitle_woo_category_widget($title, $widet_instance, $widget_id) {
+
+    if ( $widget_id !== 'woocommerce_product_categories' )
+        return $title;
+
+
+   if ( is_product_category() && has_term( 'wine-packs', 'product_cat' ) ) {
+ 
+        return __('Wine Packs');
+
+    // If 'Category' 2 is being viewed...
+    } else if ( is_product_category() && has_term( 'wine', 'product_cat' ) ) {
+        return __('Wines');
+    }
+    
+    return $title;
+}
+add_filter ( 'widget_title' , 'retitle_woo_category_widget', 10, 3);
+
 require get_template_directory()."/subscription/product-subscription.php";
 
 
