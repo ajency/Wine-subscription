@@ -408,9 +408,6 @@ body {
   .ind-custom-menu.fixed {
     background-position: 13.5% -5px;
   }
-  .ind-custom-menu.fixed .col ul {
-    top: 0;
-  }
   .ind-custom-menu.fixed #logo {
     height: 118px !important;
     background-repeat: no-repeat;
