@@ -13,7 +13,7 @@
         
         $cat = $wp_query->get_queried_object();
       
-        if($cat->slug=='wine-packs'){ 
+        if($cat->slug=='wine-packs' || $cat->slug=='wines'){ 
             ?>
         <script type="text/javascript">
         

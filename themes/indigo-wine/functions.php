@@ -320,6 +320,8 @@ function indigo_rangelogic($quantity){
      return false;
 }
 
+add_action( 'woocommerce_before_shop_loop', 'woocommerce_pagination', 10 );
+
 require get_template_directory()."/subscription/product-subscription.php";
 
 
