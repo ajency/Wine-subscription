@@ -22,13 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $wp_query;
 
-if ( $wp_query->max_num_pages <= 1 ) {
-	return;
-}
 ?>
 
-
-<nav class="woocommerce-pagination">
 <div id="woocommerce-result-count-store">
 	<?php
 	$paged    = max( 1, $wp_query->get( 'paged' ) );
@@ -46,6 +41,15 @@ if ( $wp_query->max_num_pages <= 1 ) {
 	}
 	?>
 </div>
+
+<?php
+if ( $wp_query->max_num_pages <= 1 ) {
+	return;
+}
+?>
+
+<nav class="woocommerce-pagination">
+
 	<?php
 		echo paginate_links( apply_filters( 'woocommerce_pagination_args', array(
 			'base'         => esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( 999999999, false ) ) ) ),
