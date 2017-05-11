@@ -1029,6 +1029,41 @@ body
 }
 
 
+// ---------------------------
+// RESULT NUMBER DISPLAY -----------
+// ---------------------------
+
+.top-result{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.bottom-result{
+	display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+    .count-store{
+    	flex: 0.5;
+    	text-align: right;
+    }
+}
+
+.res-count{
+	.count-store{
+		text-transform: uppercase;
+    	font-family: gotham_bookregular;
+    	color: @brand-secondary;
+    	font-size: 1.05em;
+	}	
+}
+
+
+
+
+
 
 // Out of stock
 

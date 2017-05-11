@@ -24,8 +24,8 @@ global $woocommerce, $wp_query;
 if ( 1 == $wp_query->found_posts || ! woocommerce_products_will_display() )
 	return;
 ?>
-<div >
-<div id="woocommerce-result-count-store">
+<div class="top-result res-count">
+<div id="woocommerce-result-count-store" class="count-store">
 	<?php
 	$paged    = max( 1, $wp_query->get( 'paged' ) );
 	$per_page = $wp_query->get( 'posts_per_page' );
