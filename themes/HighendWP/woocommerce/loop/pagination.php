@@ -44,6 +44,9 @@ global $wp_query;
 
 <?php
 if ( $wp_query->max_num_pages <= 1 ) {
+	?>
+	</div>
+	<?php 
 	return;
 }
 ?>
