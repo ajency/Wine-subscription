@@ -3773,6 +3773,9 @@ body .woocommerce form .form-row .button {
 .woocommerce-page .woocommerce .woocommerce-checkout-payment#payment .place-order #place_order {
   float: none;
 }
+.woocommerce-page .woocommerce .select2-container {
+  margin-top: -12px;
+}
 #main-wrapper .woocommerce .form-row input[type='submit'] {
   margin-bottom: 0 !important;
   background-color: #022c4c;
