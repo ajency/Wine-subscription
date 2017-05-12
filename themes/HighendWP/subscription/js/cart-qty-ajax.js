@@ -32,8 +32,8 @@ jQuery(function ($) {
 
     });
 
-    function qty_cart(item_hash, item_quantity, currentVal) {
-     
+    function qty_cart(item_hash, item_quantity, currentVal,subscription_type) {
+        
        currentRequest=  $.ajax({
             type: 'POST',
             url: cart_qty_ajax.ajax_url,
@@ -41,6 +41,7 @@ jQuery(function ($) {
                 action: 'qty_cart',
                 hash: item_hash,
                 quantity: currentVal,
+                subscription:subscription_type
             },
             success: function (data) {
                 $('.hb-main-content').html(data);
@@ -55,7 +56,8 @@ jQuery(function ($) {
    
     $(document).on('click', '#subscribe_btn', function (event) {
         $('#subscribe_btn').addClass('disabled');
-
+    var subscription_type = $("input[name='sub-type']:checked").val();
+       
       var delay=300;
         $('.subscribe-content .woocommerce-cart-form__cart-item').find('input.qty')
             .each(function () {
@@ -66,7 +68,7 @@ jQuery(function ($) {
 
                  var newqty=multipleofproducts(currentVal);
                  setTimeout(function() {
-                     qty_cart(item_hash, item_quantity, newqty);
+                     qty_cart(item_hash, item_quantity, newqty,subscription_type);
                  }, delay);
                 
             });
