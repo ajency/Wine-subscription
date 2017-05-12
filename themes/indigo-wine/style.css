@@ -2420,8 +2420,32 @@ a[data-readmore-toggle].more:before {
   border-right: 0;
 }
 @media screen and (max-width: 600px) {
-  .hb-equal-col-height .hb-woo-product {
-    border-left: 0;
+  .hb-equal-col-height .hb-woo-product.hb-woo-product {
+    width: 80% !important;
+    margin: 0 auto;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    border: 0;
+    padding: 0;
+  }
+}
+@media handheld, only screen and (max-width: 767px) {
+  .hb-equal-col-height.hb-equal-col-height .products-4 .hb-woo-product.hb-woo-product {
+    width: 80% !important;
+    margin: 0 auto;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    border: 0;
+    padding: 0;
+  }
+  .hb-equal-col-height.hb-equal-col-height .products-4 .hb-woo-product.hb-woo-product .hb-product-meta-wrapper {
+    padding: 0 15px 15px 15px;
+  }
+}
+@media handheld, only screen and (min-width: 768px) and (max-width: 900px) {
+  .hb-equal-col-height.hb-equal-col-height .products-4 .hb-woo-product.hb-woo-product {
+    width: 33.33% !important;
+  }
+  #main-content .left-sidebar .hb-main-content.hb-main-content.col-9 {
+    padding-left: 30px !important;
   }
 }
 .left-sidebar .widget-item h4 {
@@ -2457,7 +2481,7 @@ a[data-readmore-toggle].more:before {
 .left-sidebar .sort-count {
   display: none;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .menu-title {
     display: block;
     position: fixed;
@@ -2524,6 +2548,16 @@ a[data-readmore-toggle].more:before {
     z-index: 9999;
     top: 0;
     overflow-y: scroll;
+  }
+  #main-content .left-sidebar .hb-woo-wrapper .hb-sidebar.hb-sidebar.hb-equal-col-height {
+    margin-top: 4em !important;
+  }
+  #main-content .left-sidebar .hb-woo-wrapper .hb-sidebar.hb-sidebar .widget-item {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .left-sidebar .Callout-action {
+    margin-top: 0;
   }
 }
 .tabs li a {
@@ -3217,6 +3251,22 @@ body .woocommerce form .form-row .button {
   font-family: gotham_bookregular;
   color: #022c4c;
   font-size: 1.05em;
+}
+@media screen and (max-width: 600px) {
+  .res-count {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .res-count .count-store {
+    margin: 1em 0;
+    font-size: 1em;
+  }
+  .hb-page-title {
+    text-align: center;
+  }
 }
 .woocommerce div.product p.stock.out-of-stock.out-of-stock {
   text-align: left;
