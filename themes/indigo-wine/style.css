@@ -3776,6 +3776,9 @@ body .woocommerce form .form-row .button {
 .woocommerce-page .woocommerce .select2-container {
   margin-top: -12px;
 }
+abbr {
+  text-decoration: none;
+}
 #main-wrapper .woocommerce .form-row input[type='submit'] {
   margin-bottom: 0 !important;
   background-color: #022c4c;
