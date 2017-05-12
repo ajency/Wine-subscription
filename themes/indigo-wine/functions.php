@@ -115,7 +115,14 @@ function ajax_qty_cart() {
 
     // Refresh the page
     echo do_shortcode( '[woocommerce_cart]' );
+    if(isset($_POST['subscription']))
+    {    
+    
+        $_SESSION['subscription_type'] = $_POST['subscription'];
+        
+    }
 
+    
     die();
 
 }
@@ -238,8 +245,10 @@ function indigo_wine_filter_woocommerce_cart_subtotal( $cart_subtotal, $compound
     }
 
     $woocommerce->cart->total=$final_total;
- 
-    
+    $woocommerce->cart->cart_contents_total=$final_total;
+    $woocommerce->cart->subtotal=$final_total;
+    $woocommerce->cart->subtotal_ex_tax=$final_total;
+
     return wc_price($final_total); 
 }; 
          
@@ -359,6 +368,15 @@ function retitle_woo_category_widget($title, $widet_instance, $widget_id) {
     return $title;
 }
 add_filter ( 'widget_title' , 'retitle_woo_category_widget', 10, 3);
+
+
+function indigo_start_session()
+{
+    if (!session_id())
+        session_start();
+}
+add_action("init", "indigo_start_session", 1);
+
 
 require get_template_directory()."/subscription/product-subscription.php";
 
