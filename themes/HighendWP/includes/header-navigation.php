@@ -176,8 +176,9 @@
                         if ( is_user_logged_in() ) {
                            echo '<div class="user-detail"><div class="user"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-angle-down arrow-down" aria-hidden="true"></i><div class="drop">
                            <ul>
-                           <li>
-                            <a href="'.wp_logout_url( get_permalink() ).'"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li></ul></div></div></div>';
+                           <li><a href="'.wp_logout_url( get_permalink() ).'"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li>
+                           <li><a href=""><i class="fa fa-user" aria-hidden="true"></i> My Account</a></li>
+                           </ul></div></div></div>';
                         }
                         else{
                             echo '<div class="user-detail"><a class="simplemodal-login" href="/wp-login.php"><i class="fa fa-user" aria-hidden="true" title="Login"></i></a></div>';
