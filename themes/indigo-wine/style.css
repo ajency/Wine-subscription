@@ -2382,62 +2382,29 @@ a[data-readmore-toggle].more:before {
           flex-wrap: wrap;
   position: relative;
 }
-.hb-equal-col-height .products-4 .clear + .hb-woo-product {
-  border-left: 0;
-}
-.hb-equal-col-height .products-4 .clear + .hb-woo-product:before {
-  content: '';
-  border-bottom: 1px solid #e2e2e2;
-  position: absolute;
-  width: 95%;
-  bottom: -15px;
-  right: -19em;
-  margin: 0 auto;
-}
 .hb-equal-col-height .hb-woo-product {
   margin-bottom: 32px !important;
   padding-bottom: 15px;
-  margin-left: 8px;
-  margin-right: 8px;
-  width: calc(33.33% - 16px);
   -webkit-animation: none !important;
           animation: none !important;
-}
-.hb-equal-col-height .hb-woo-product:first-child {
-  border-left: 0;
-}
-.hb-equal-col-height .hb-woo-product:first-child:before {
-  content: '';
-  border-bottom: 1px solid #e2e2e2;
-  position: absolute;
-  width: 95%;
-  bottom: -15px;
-  right: -19em;
-  margin: 0 auto;
 }
 .hb-equal-col-height .hb-woo-product:after {
   content: '';
   border-bottom: 1px solid #e2e2e2;
   position: absolute;
-  width: 95%;
+  width: 90%;
   bottom: -15px;
-  left: 3px;
+  left: 0;
   right: 0;
   margin: 0 auto;
 }
-.hb-equal-col-height .hb-woo-product:nth-child(2n):before,
-.hb-equal-col-height .hb-woo-product:nth-child(2n):after {
-  content: '';
-  position: absolute;
-  height: 100%;
-  width: 1px;
-  background-color: #e2e2e2;
-  top: 0;
-  left: -8px;
+.hb-equal-col-height .hb-woo-product:nth-child(3n + 2) {
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
 }
-.hb-equal-col-height .hb-woo-product:nth-child(2n):after {
-  left: inherit;
-  right: -8px;
+.hb-equal-col-height .hb-woo-product:nth-child(3n) {
+  border-left: 0;
+  border-right: 0;
 }
 @media screen and (max-width: 600px) {
   .hb-equal-col-height .hb-woo-product {
@@ -3223,6 +3190,7 @@ body .woocommerce form .form-row .button {
   -webkit-flex-direction: row-reverse;
       -ms-flex-direction: row-reverse;
           flex-direction: row-reverse;
+  margin-top: 0.8em;
 }
 .bottom-result .count-store {
   -webkit-box-flex: 0.5;

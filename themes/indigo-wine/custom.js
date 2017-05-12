@@ -126,7 +126,9 @@ jQuery(function(){
 	var part = currentURL.split("/")[1];
 	console.log(part);
 
+	// remove extra clear class from product listing
 
+	jQuery('.hb-equal-col-height .products-4 .clear').remove();
 
 	// click outside hide
 
