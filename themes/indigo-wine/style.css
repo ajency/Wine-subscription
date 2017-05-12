@@ -3407,6 +3407,15 @@ body .woocommerce form .form-row .button {
 .hb-main-content .coupon-toggle .hb-accordion-tab .icon-angle-right {
   color: #022c4c;
 }
+.failure {
+  color: #fff;
+  background-color: #ff353b;
+  text-align: center;
+  padding: 0.8em;
+  font-family: 'gotham_bookregular';
+  font-weight: 600;
+  font-size: 1.2em;
+}
 #subscribe-modal {
   width: 650px;
 }
