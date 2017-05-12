@@ -315,7 +315,16 @@ body{
 				line-height: 2;
 				padding: 0.5em 1.5em;
 				font-size: 0.9em;
+				@media screen and (min-width: 1900px){
+					margin: 0.8em 0 0.5em;
+				}
+				&:last-child{
+					@media screen and (min-width: 1900px){
+						margin-bottom: 0;
+					}
+				}
 				a{
+					display: block;
 					.fa{
 						padding-right: 0.2em;
 					}

@@ -361,6 +361,19 @@ body {
   padding: 0.5em 1.5em;
   font-size: 0.9em;
 }
+@media screen and (min-width: 1900px) {
+  .user-detail .drop ul li {
+    margin: 0.8em 0 0.5em;
+  }
+}
+@media screen and (min-width: 1900px) {
+  .user-detail .drop ul li:last-child {
+    margin-bottom: 0;
+  }
+}
+.user-detail .drop ul li a {
+  display: block;
+}
 .user-detail .drop ul li a .fa {
   padding-right: 0.2em;
 }
