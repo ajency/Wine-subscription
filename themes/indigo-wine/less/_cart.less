@@ -67,9 +67,18 @@
     			li{
     				border-color: #000;
     				border-top-style: solid;
+    				color: @brand-secondary;
     				span.cart-total-value{
     					font-family: gotham_mediumregular;
     					color: @brand-secondary;
+    				}
+    				&.subscribe-data{
+    					line-height: 1.8;
+    					.change-type{
+    						text-decoration: underline;
+    						font-family: gotham_mediumregular;
+    						color: @brand-secondary;
+    					}
     				}
     			}
     		}
@@ -285,6 +294,35 @@
 			.actions{
 				display: none;
 			}
+		}
+	}
+}
+
+
+
+@media screen and (max-width: 600px){
+	#subscribe-modal{
+		.hb-box-cont{
+	    	&-body{
+	    		padding: 20px;
+	    	}
+		}
+		.sub-type{
+			margin: 1em -20px 1em -20px;
+			flex-direction: column;
+			.switch{
+				margin-top: 1.5em;
+			}
+		}
+		.subscribe-action{
+			margin: 0em -20px 20px -20px;
+		    color: @brand-secondary;
+		}
+		.woocommerce-cart-form .cart .quantity.quantity input.qty{
+			height: 20px;
+		}
+		.woocommerce .col-9{
+			margin-bottom: 0 !important;
 		}
 	}
 }

@@ -39,6 +39,11 @@ global $woocommerce;
 					<span class="cart-total-value"><?php echo $woocommerce->cart->get_cart_subtotal(); ?></span>
 				</li>
 
+				<li class="clearfix subscribe-data">
+					<span class="cart-total-title">Subscription type <a href="" class="change-type modal-open" data-modal-id="subscribe-modal">Change Type</a></span>
+					<span class="cart-total-value subscribe-val">Monthly</span>
+				</li>
+
 				<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
 					<?php wc_cart_totals_shipping_html(); ?>
 				<?php endif; ?>
