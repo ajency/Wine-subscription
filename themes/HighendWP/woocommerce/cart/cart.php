@@ -30,6 +30,9 @@ do_action( 'woocommerce_before_cart' );
 
 <div class="row clearfix">
 <div class="col-9">
+
+<div class="hb-notif-box error failure hidden"><div class="message-text"><p><i class="hb-moon-blocked"></i>Your current subscription has been cancelled.</p></div></div>
+
 <form class="woocommerce-cart-form <?php echo $cartlimit; ?>" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
@@ -164,6 +167,12 @@ do_action( 'woocommerce_before_cart' );
 	<div class="cart-bottle"></div>
 	<h5 class="title">Its that easy! Your subscription will be activated and will arrive by your selected delivery day.</h5>
 	<a href="#" class="sub-started modal-open" data-modal-id="subscribe-modal" id="subscribe_now">Get Started</a>
+</div>
+
+<div class="cancel-subscription no-subscription box-wrap hidden">
+	<div class="cart-bottle"></div>
+	<h5 class="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste earum.</h5>
+	<a href="#" class="sub-started modal-open">Unsubscribe</a>
 </div>
 
 <!-- <div class="subscription box-wrap">

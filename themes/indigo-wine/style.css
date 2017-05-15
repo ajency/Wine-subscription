@@ -3223,6 +3223,7 @@ body .woocommerce form .form-row .button {
   height: 48px;
   display: block;
   cursor: pointer;
+  background-size: 80%;
 }
 .woocommerce nav.woocommerce-pagination ul {
   border: 0;
@@ -3368,12 +3369,16 @@ body .woocommerce form .form-row .button {
   font-family: 'gotham_mediumregular' !important;
 }
 .element-row .calculated_shipping .hb-cart-totals-wrap,
-.hb-main-content .calculated_shipping .hb-cart-totals-wrap {
+.hb-main-content .calculated_shipping .hb-cart-totals-wrap,
+.element-row .hb-woo-cart_totals .hb-cart-totals-wrap,
+.hb-main-content .hb-woo-cart_totals .hb-cart-totals-wrap {
   font-family: 'gotham_lightregular';
   font-weight: 600;
 }
 .element-row .calculated_shipping .hb-box-cont-header,
-.hb-main-content .calculated_shipping .hb-box-cont-header {
+.hb-main-content .calculated_shipping .hb-box-cont-header,
+.element-row .hb-woo-cart_totals .hb-box-cont-header,
+.hb-main-content .hb-woo-cart_totals .hb-box-cont-header {
   font-family: 'gotham_mediumregular';
   font-weight: 600;
   color: #022c4c;
@@ -3382,27 +3387,53 @@ body .woocommerce form .form-row .button {
   padding: 20px 0px 10px 0;
 }
 .element-row .calculated_shipping .hb-box-cont-body,
-.hb-main-content .calculated_shipping .hb-box-cont-body {
+.hb-main-content .calculated_shipping .hb-box-cont-body,
+.element-row .hb-woo-cart_totals .hb-box-cont-body,
+.hb-main-content .hb-woo-cart_totals .hb-box-cont-body {
   padding-top: 10px;
   line-height: 2.3;
 }
 .element-row .calculated_shipping .hb-box-cont-body .hb-cart-totals li,
-.hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li {
+.hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li,
+.element-row .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li,
+.hb-main-content .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li {
   border-color: #000;
   border-top-style: solid;
   color: #022c4c;
 }
+@media screen and (max-width: 1400px) {
+  .element-row .calculated_shipping .hb-box-cont-body .hb-cart-totals li span.cart-total-title,
+  .hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li span.cart-total-title,
+  .element-row .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li span.cart-total-title,
+  .hb-main-content .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li span.cart-total-title {
+    width: 60%;
+  }
+}
 .element-row .calculated_shipping .hb-box-cont-body .hb-cart-totals li span.cart-total-value,
-.hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li span.cart-total-value {
+.hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li span.cart-total-value,
+.element-row .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li span.cart-total-value,
+.hb-main-content .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li span.cart-total-value {
   font-family: gotham_mediumregular;
   color: #022c4c;
 }
+@media screen and (max-width: 1400px) {
+  .element-row .calculated_shipping .hb-box-cont-body .hb-cart-totals li span.cart-total-value,
+  .hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li span.cart-total-value,
+  .element-row .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li span.cart-total-value,
+  .hb-main-content .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li span.cart-total-value {
+    width: 40%;
+  }
+}
 .element-row .calculated_shipping .hb-box-cont-body .hb-cart-totals li.subscribe-data,
-.hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li.subscribe-data {
+.hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li.subscribe-data,
+.element-row .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li.subscribe-data,
+.hb-main-content .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li.subscribe-data {
   line-height: 1.8;
 }
 .element-row .calculated_shipping .hb-box-cont-body .hb-cart-totals li.subscribe-data .change-type,
-.hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li.subscribe-data .change-type {
+.hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li.subscribe-data .change-type,
+.element-row .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li.subscribe-data .change-type,
+.hb-main-content .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li.subscribe-data .change-type {
   text-decoration: underline;
   font-family: gotham_mediumregular;
   color: #022c4c;
@@ -3419,13 +3450,13 @@ body .woocommerce form .form-row .button {
   color: #022c4c;
 }
 .failure {
-  color: #fff;
-  background-color: #ff353b;
-  text-align: center;
   padding: 0.8em;
   font-family: 'gotham_bookregular';
   font-weight: 600;
   font-size: 1.2em;
+}
+.failure p {
+  margin-left: 1.5em;
 }
 #subscribe-modal {
   width: 650px;

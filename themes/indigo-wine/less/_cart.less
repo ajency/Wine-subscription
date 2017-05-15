@@ -47,7 +47,7 @@
 			font-family: 'gotham_mediumregular' !important;
 		}
 	}
-	.calculated_shipping{
+	.calculated_shipping,.hb-woo-cart_totals{
 		.hb-cart-totals-wrap{
 			font-family: 'gotham_lightregular';
     		font-weight: 600;
@@ -68,9 +68,17 @@
     				border-color: #000;
     				border-top-style: solid;
     				color: @brand-secondary;
+    				span.cart-total-title{
+    					@media screen and (max-width: 1400px){
+    						width: 60%;
+    					}
+    				}
     				span.cart-total-value{
     					font-family: gotham_mediumregular;
     					color: @brand-secondary;
+    					@media screen and (max-width: 1400px){
+    						width: 40%;
+    					}
     				}
     				&.subscribe-data{
     					line-height: 1.8;
@@ -99,13 +107,13 @@
 
 
 .failure{
-	color: #fff;
-    background-color: #ff353b;
-    text-align: center;
     padding: 0.8em;
     font-family: 'gotham_bookregular';
     font-weight: 600;
     font-size: 1.2em;
+    p{
+    	margin-left: 1.5em;
+    }
 }
 
 
