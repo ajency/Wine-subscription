@@ -3219,8 +3219,8 @@ body .woocommerce form .form-row .button {
 .add-To-Cart {
   background-image: url('img/prod-cart.png');
   background-repeat: no-repeat;
-  width: 42px;
-  height: 42px;
+  width: 45px;
+  height: 48px;
   display: block;
   cursor: pointer;
 }
@@ -3406,6 +3406,7 @@ body .woocommerce form .form-row .button {
   text-decoration: underline;
   font-family: gotham_mediumregular;
   color: #022c4c;
+  display: block;
 }
 .element-row .coupon-toggle .hb-accordion-tab,
 .hb-main-content .coupon-toggle .hb-accordion-tab {
