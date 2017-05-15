@@ -28,20 +28,21 @@ jQuery(function ($) {
             success: function (data) {
                 var prevstatus=$('#subscription_status').val();
                 $('.hb-main-content').html(data);
-                var newqty=multipleofproducts(currentVal);
+                //var newqty=multipleofproducts(currentVal);
                 
-                if(prevstatus=='yes' && newqty!=currentVal){
+                // if(prevstatus=='yes' && newqty!=currentVal){
+                if(prevstatus=='yes' ){
                     $('.get-started-sub').removeClass('hidden');
                     $('.cancel-subscription').addClass('hidden');
 
                     $('.error,.failure').removeClass('hidden');
                     $('#subscription_status').val('no');
                     $('.subscribe-content .success').addClass('hidden');  
-                      $('#subscribe_btn').removeClass('disabled');
+                    $('.subscribe-val').text('');
                 }
-                else{
+               /* else if(prevstatus=='yes'){
                     $('#subscription_status').val('yes');
-                }
+                }*/
             }
         });
 
@@ -74,9 +75,6 @@ jQuery(function ($) {
         $('#subscribe_btn').addClass('disabled');
         var subscription_type = $("input[name='sub-type']:checked").val();
         
-       
-     
-
       var delay=300;
         $('.subscribe-content .woocommerce-cart-form__cart-item').find('input.qty')
             .each(function () {
@@ -98,6 +96,8 @@ jQuery(function ($) {
             $('.cancel-subscription').removeClass('hidden');
             $('.error,.failure').addClass('hidden');
             $("#subscribe_btn").text("Subscribe");
+            $('.subscribe-val').text(subscription_type.toUpperCase());
+            $('#subscribe_btn').removeClass('disabled');
           },delay+2000);
     });
    
@@ -147,9 +147,9 @@ jQuery(function ($) {
             $('.get-started-sub').removeClass('hidden');
             $('.cancel-subscription').addClass('hidden');
             $('.error,.failure').addClass('hidden');
-            $('#subscribe_btn').removeClass('disabled');
             $('#subscription_status').val('no');
-            $('.subscribe-content .success').addClass('hidden');       
+            $('.subscribe-content .success').addClass('hidden');
+            $('.subscribe-val').text('');       
         });
    
 

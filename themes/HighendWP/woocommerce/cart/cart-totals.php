@@ -41,7 +41,7 @@ global $woocommerce;
 
 				<li class="clearfix subscribe-data">
 					<span class="cart-total-title">Subscription type <a href="javascript:void(0)" class="change-type modal-open open-subscription-modal">Change Type</a></span>
-					<span class="cart-total-value subscribe-val">Monthly</span>
+					<span class="cart-total-value subscribe-val"></span>
 				</li>
 
 				<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
