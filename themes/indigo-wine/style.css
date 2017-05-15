@@ -3836,7 +3836,7 @@ body .woocommerce form .form-row .button {
 .woocommerce-page .woocommerce .woocommerce-info {
   border: 2px solid #ddd !important;
   font-family: gotham_mediumregular;
-  font-size: 1.1em;
+  font-size: 1em;
   color: #022c4c;
   padding: 1em 3.5em !important;
 }
@@ -3872,7 +3872,7 @@ body .woocommerce form .form-row .button {
 .woocommerce-page .woocommerce .hb-heading {
   font-family: gotham_mediumregular;
   color: #022c4c;
-  font-size: 1.6em;
+  font-size: 1.2em;
   border-bottom: 1px solid;
 }
 .woocommerce-page .woocommerce .hb-heading span:after,
@@ -3889,7 +3889,7 @@ body .woocommerce form .form-row .button {
 .woocommerce-page .woocommerce .woocommerce-account-fields .form-row label {
   font-family: gotham_mediumregular;
   color: #737373;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 .woocommerce-page .woocommerce .woocommerce-billing-fields__field-wrapper .form-row input,
 .woocommerce-page .woocommerce .woocommerce-shipping-fields .form-row input,
@@ -3919,7 +3919,7 @@ body .woocommerce form .form-row .button {
   margin: 0 0 0.5em 0;
   text-align: left;
   border-bottom: 0;
-  font-size: 1.3em;
+  font-size: 1.1em;
 }
 .woocommerce-page .woocommerce .payout-box .hb-heading span {
   padding: 0 10px;
@@ -3973,6 +3973,7 @@ abbr {
 #main-wrapper .woocommerce .form-row input[type='submit'] {
   margin-bottom: 0 !important;
   background-color: #022c4c;
+  padding: 10px 20px 10px!important;
 }
 .not-found-box {
   min-height: calc(100vh - 36.2em);
