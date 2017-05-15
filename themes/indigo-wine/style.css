@@ -3219,11 +3219,11 @@ body .woocommerce form .form-row .button {
 .add-To-Cart {
   background-image: url('img/prod-cart.png');
   background-repeat: no-repeat;
-  width: 45px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   display: block;
   cursor: pointer;
-  background-size: 80%;
+  background-size: 95%;
 }
 .woocommerce nav.woocommerce-pagination ul {
   border: 0;
