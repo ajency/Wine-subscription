@@ -40,7 +40,7 @@ global $woocommerce;
 				</li>
 
 				<li class="clearfix subscribe-data">
-					<span class="cart-total-title">Subscription type <a href="" class="change-type modal-open" data-modal-id="subscribe-modal">Change Type</a></span>
+					<span class="cart-total-title">Subscription type <a href="javascript:void(0)" class="change-type modal-open open-subscription-modal">Change Type</a></span>
 					<span class="cart-total-value subscribe-val">Monthly</span>
 				</li>
 

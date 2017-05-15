@@ -107,7 +107,7 @@ jQuery(function ($) {
     /**
      * subscribe now popup show
      */
-    $(document).on('click', '#subscribe_now', function (event) {
+    $(document).on('click', '.open-subscription-modal', function (event) {
 
       $('.crop-here').addClass('hb-visible-modal');
       $('.hb-modal-window').addClass('animate-modal');
