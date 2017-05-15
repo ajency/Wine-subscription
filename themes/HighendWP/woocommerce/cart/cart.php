@@ -131,7 +131,11 @@ do_action( 'woocommerce_before_cart' );
 							<?php
 								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
 
-								echo ' (<strike>'.wc_price($cart_item['quantity']*$_product->get_price()). '</strike>) ';
+								$updated_price=WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] );
+								$actual_price=wc_price($cart_item['quantity']*$_product->get_price());
+
+								if($updated_price!=	$actual_price)
+								echo ' (<strike>'.$actual_price. '</strike>) ';
 							?>
 						</td>
 					</tr>

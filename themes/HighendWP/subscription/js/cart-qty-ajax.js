@@ -143,11 +143,15 @@ jQuery(function ($) {
      * unsubscribe 
      */
     $(document).on('click', '#unsubscribe-order', function (event) {
-        $('.get-started-sub').removeClass('hidden');
-        $('.cancel-subscription').addClass('hidden');
-        $('.error,.failure').addClass('hidden');
-        $('#subscribe_btn').removeClass('disabled');
-        $('#subscription_status').val('no');
-        $('.subscribe-content .success').addClass('hidden');  
+        $.post(cart_qty_ajax.siteapiurl+'unsubscribe_session', function(data, textStatus, xhr) {
+            $('.get-started-sub').removeClass('hidden');
+            $('.cancel-subscription').addClass('hidden');
+            $('.error,.failure').addClass('hidden');
+            $('#subscribe_btn').removeClass('disabled');
+            $('#subscription_status').val('no');
+            $('.subscribe-content .success').addClass('hidden');       
+        });
+   
+
     });   
 });
