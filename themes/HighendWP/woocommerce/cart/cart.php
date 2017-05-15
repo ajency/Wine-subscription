@@ -163,7 +163,7 @@ do_action( 'woocommerce_before_cart' );
 <div class="no-subscription box-wrap">
 	<div class="cart-bottle"></div>
 	<h5 class="title">Its that easy! Your subscription will be activated and will arrive by your selected delivery day.</h5>
-	<a href="#" class="sub-started modal-open" data-modal-id="subscribe-modal" id="subscribe_now">Get Started</a>
+	<a href="#" class="sub-started modal-open open-subscription-modal" data-modal-id="subscribe-modal" id="subscribe_now">Get Started</a>
 </div>
 
 <!-- <div class="subscription box-wrap">

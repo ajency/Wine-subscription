@@ -1,7 +1,7 @@
 <?php
 if ( ! function_exists('subscription') ) {
 
-// Register Custom Post Type
+// Register subscription Post Type
 function subscription() {
 
   $labels = array(
@@ -61,6 +61,54 @@ function subscription() {
 add_action( 'init', 'subscription', 0 );
 
 }
+
+
+/**
+ * filter to add custom columns in subscription listing in wp-dashboard
+ */
+add_filter( 'manage_edit-subscription_columns', 'my_subscription_columns' ) ;
+
+function my_subscription_columns( $columns ) {
+
+  $columns = array(
+    
+    'title' => __( 'Title' ),
+    'author' => __( 'Subsriber Name' ),
+    '_subscription_type' => __( 'Subscription Type' ),
+    'date' => __( 'Date' )
+  );
+
+  return $columns;
+}
+
+/**
+ * link data to custom columns in subscription listing for wp-dashboard
+ */
+add_action( 'manage_subscription_posts_custom_column', 'my_manage_subscription_columns', 10, 2 );
+
+function my_manage_subscription_columns( $column, $post_id ) {
+  global $post;
+
+  switch( $column ) {
+
+    case '_subscription_type' :
+
+      $_subscription_type = get_post_meta( $post_id, '_subscription_type', true );
+
+      if ( empty( $_subscription_type ) )
+        echo __( 'Unknown' );
+
+      else
+        printf( __( '%s' ), strtoupper($_subscription_type ));
+
+      break;
+
+      default :
+      break;
+  }
+}
+
+
 /**
  * [subscription_process_order - method to create duplicate orders based on the subscription selected]
  * @param  [type] $order_id [original order id]
@@ -80,7 +128,7 @@ function subscription_process_order($order_id) {
 
 
 /**
- * [add_custom_meta_data_for_order -method to add subscription details]
+ * [add_custom_meta_data_for_order -method to add subscription custom post meta]
  */
 function add_custom_meta_data_for_order($order_id, $posted ){
   print_r($posted );
@@ -100,53 +148,5 @@ function add_custom_meta_data_for_order($order_id, $posted ){
 }
 
 add_action('woocommerce_checkout_update_order_meta','add_custom_meta_data_for_order', 10, 2);
-
-
-add_filter( 'manage_edit-subscription_columns', 'my_subscription_columns' ) ;
-
-function my_subscription_columns( $columns ) {
-
-  $columns = array(
-    
-    'title' => __( 'Title' ),
-    'author' => __( 'Subsriber Name' ),
-    '_subscription_type' => __( 'Subscription Type' ),
-    'date' => __( 'Date' )
-  );
-
-  return $columns;
-}
-
-
-add_action( 'manage_subscription_posts_custom_column', 'my_manage_subscription_columns', 10, 2 );
-
-function my_manage_subscription_columns( $column, $post_id ) {
-  global $post;
-
-  switch( $column ) {
-
-    /* If displaying the 'duration' column. */
-    case '_subscription_type' :
-
-      /* Get the post meta. */
-      $_subscription_type = get_post_meta( $post_id, '_subscription_type', true );
-
-      /* If no duration is found, output a default message. */
-      if ( empty( $_subscription_type ) )
-        echo __( 'Unknown' );
-
-      /* If there is a duration, append 'minutes' to the text string. */
-      else
-        printf( __( '%s' ), strtoupper($_subscription_type ));
-
-      break;
-
-  
-    /* Just break out of the switch statement for everything else. */
-    default :
-      break;
-  }
-}
-
 
 ?>
