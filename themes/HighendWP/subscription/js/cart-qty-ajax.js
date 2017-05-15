@@ -26,7 +26,22 @@ jQuery(function ($) {
                 }
             },
             success: function (data) {
+                var prevstatus=$('#subscription_status').val();
                 $('.hb-main-content').html(data);
+                var newqty=multipleofproducts(currentVal);
+                
+                if(prevstatus=='yes' && newqty!=currentVal){
+                    $('.get-started-sub').removeClass('hidden');
+                    $('.cancel-subscription').addClass('hidden');
+
+                    $('.error,.failure').removeClass('hidden');
+                    $('#subscription_status').val('no');
+                    $('.subscribe-content .success').addClass('hidden');  
+                      $('#subscribe_btn').removeClass('disabled');
+                }
+                else{
+                    $('#subscription_status').val('yes');
+                }
             }
         });
 
@@ -55,9 +70,13 @@ jQuery(function ($) {
  */
    
     $(document).on('click', '#subscribe_btn', function (event) {
+        $("#subscribe_btn").text("Saving...");
         $('#subscribe_btn').addClass('disabled');
-    var subscription_type = $("input[name='sub-type']:checked").val();
+        var subscription_type = $("input[name='sub-type']:checked").val();
+        
        
+     
+
       var delay=300;
         $('.subscribe-content .woocommerce-cart-form__cart-item').find('input.qty')
             .each(function () {
@@ -74,10 +93,15 @@ jQuery(function ($) {
             });
           setTimeout(function() {  
             $('.subscribe-content .success').removeClass('hidden');  
-          },delay);
+            $('#subscription_status').val('yes');
+            $('.get-started-sub').addClass('hidden');
+            $('.cancel-subscription').removeClass('hidden');
+            $('.error,.failure').addClass('hidden');
+            $("#subscribe_btn").text("Subscribe");
+          },delay+2000);
     });
    
-
+ 
     function multipleofproducts(currentVal) {
 
         var rangearr = [];
@@ -111,6 +135,19 @@ jQuery(function ($) {
 
       $('.crop-here').addClass('hb-visible-modal');
       $('.hb-modal-window').addClass('animate-modal');
+       $('.error,.failure').addClass('hidden');
         
+    }); 
+
+    /**
+     * unsubscribe 
+     */
+    $(document).on('click', '#unsubscribe-order', function (event) {
+        $('.get-started-sub').removeClass('hidden');
+        $('.cancel-subscription').addClass('hidden');
+        $('.error,.failure').addClass('hidden');
+        $('#subscribe_btn').removeClass('disabled');
+        $('#subscription_status').val('no');
+        $('.subscribe-content .success').addClass('hidden');  
     });   
 });
