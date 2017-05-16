@@ -489,7 +489,7 @@ body {
   left: 0;
   right: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.35);
 }
 .banner-row .owl-carousel .owl-wrapper-outer {
   overflow: visible !important;
@@ -679,11 +679,11 @@ body {
   }
 }
 .about-us .about-data {
-  font-size: 1.5em;
-  font-weight: 400;
-  font-family: 'gotham_lightregular';
+  font-size: 1.4em;
+  font-weight: 600;
+  font-family: 'gotham_thinregular';
   line-height: 1.3;
-  color: #d1b57c;
+  color: #af8632;
 }
 .about-us .about-data b {
   font-family: 'gotham_mediumregular';
