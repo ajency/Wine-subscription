@@ -3368,6 +3368,10 @@ body .woocommerce form .form-row .button {
 .hb-main-content .woocommerce .checkout-button {
   font-family: 'gotham_mediumregular' !important;
 }
+.element-row .woocommerce .product-name,
+.hb-main-content .woocommerce .product-name {
+  width: 200px;
+}
 .element-row .calculated_shipping .hb-cart-totals-wrap,
 .hb-main-content .calculated_shipping .hb-cart-totals-wrap,
 .element-row .hb-woo-cart_totals .hb-cart-totals-wrap,
