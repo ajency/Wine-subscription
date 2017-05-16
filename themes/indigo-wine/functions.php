@@ -108,19 +108,30 @@ function ajax_qty_cart() {
     // Update cart validation
     $passed_validation  = apply_filters( 'woocommerce_update_cart_validation', true, $cart_item_key, $threeball_product_values, $threeball_product_quantity );
 
-    // Update the quantity of the item in the cart
-    if ( $passed_validation ) {
-        WC()->cart->set_quantity( $cart_item_key, $threeball_product_quantity, true );
-    }
 
-    // Refresh the page
     echo do_shortcode( '[woocommerce_cart]' );
+    
     if(isset($_POST['subscription']))
     {    
-    
+         
+        $term_list = wp_get_post_terms($product_id,'product_cat',array('fields'=>'slugs'));
+        if(in_array('wine', $term_list))
+        {    
+            if ( $passed_validation ) {
+                WC()->cart->set_quantity( $cart_item_key, $threeball_product_quantity, true );
+            }
+        }
+
         $_SESSION['subscription_type'] = $_POST['subscription'];
-        
+            
     }
+    else{
+          // Update the quantity of the item in the cart
+        if ( $passed_validation ) {
+            WC()->cart->set_quantity( $cart_item_key, $threeball_product_quantity, true );
+        }
+
+    }   
 
     
     die();

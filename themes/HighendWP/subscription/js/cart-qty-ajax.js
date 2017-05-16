@@ -92,14 +92,14 @@ jQuery(function ($) {
             });
           setTimeout(function() {  
 
-            $(".subscription-type-popup").text(subscription_type.toUpperCase());  
+            $(".subscription-type-popup").text(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}));  
             $('.subscribe-content .success').removeClass('hidden');  
             $('#subscription_status').val('yes');
             $('.get-started-sub').addClass('hidden');
             $('.cancel-subscription').removeClass('hidden');
             $('.error,.failure').addClass('hidden');
             $("#subscribe_btn").text("Subscribe");
-            $('.subscribe-val').text(subscription_type.toUpperCase());
+            $('.subscribe-val').text(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}));
             $('#subscribe_btn').removeClass('disabled');
             $('.subscribe-data').removeClass('hidden');     
           },delay+2000);
