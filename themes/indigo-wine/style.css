@@ -3322,6 +3322,9 @@ body .woocommerce form .form-row .button {
 .woocommerce .col-9 {
   min-height: 700px;
 }
+.hidden {
+  display: none !important;
+}
 .element-row .woocommerce .shop_table,
 .hb-main-content .woocommerce .shop_table {
   border-collapse: collapse;
