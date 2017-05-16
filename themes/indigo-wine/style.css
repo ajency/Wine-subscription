@@ -3666,14 +3666,22 @@ body .woocommerce form .form-row .button {
 #subscribe-modal .woocommerce .shop_table.shop_table .product-thumbnail img {
   margin: 0 auto;
 }
-#subscribe-modal .woocommerce .shop_table.shop_table .product-quantity input.minus,
-#subscribe-modal .woocommerce .shop_table.shop_table .product-quantity input.plus {
-  display: none !important;
+#subscribe-modal .woocommerce .shop_table.shop_table .product-quantity .quantity {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 #subscribe-modal .woocommerce .shop_table.shop_table .product-quantity input.qty {
   background-color: transparent;
-  pointer-events: none;
-  border: 0;
   color: #022c4c;
   font-weight: 600;
 }
