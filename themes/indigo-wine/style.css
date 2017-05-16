@@ -3181,7 +3181,8 @@ body .woocommerce form .form-row .button {
 }
 .sub-cat {
   margin-bottom: 0.4em;
-  color: #b0a98e;
+  color: #d1b57c;
+  font-family: gotham_bookregular;
 }
 .sub-cat a {
   color: #d1b57c;
