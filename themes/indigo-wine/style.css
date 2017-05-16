@@ -3336,6 +3336,14 @@ body .woocommerce form .form-row .button {
 .woocommerce .col-9 {
   min-height: 700px;
 }
+.cart-empty + p {
+  min-height: 200px;
+}
+@media screen and (min-width: 1500px) {
+  .cart-empty + p {
+    min-height: 300px;
+  }
+}
 .hidden {
   display: none !important;
 }
