@@ -39,7 +39,7 @@ global $woocommerce;
 					<span class="cart-total-value"><?php echo $woocommerce->cart->get_cart_subtotal(); ?></span>
 				</li>
 
-				<li class="clearfix subscribe-data">
+				<li class="clearfix subscribe-data hidden">
 					<span class="cart-total-title">Subscription type <a href="javascript:void(0)" class="change-type modal-open open-subscription-modal">Change Type</a></span>
 					<span class="cart-total-value subscribe-val"></span>
 				</li>
