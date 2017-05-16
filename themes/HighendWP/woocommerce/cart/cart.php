@@ -34,6 +34,7 @@ do_action( 'woocommerce_before_cart' );
 <div class="hb-notif-box error failure hidden"><div class="message-text"><p><i class="hb-moon-blocked"></i>Your current subscription has been cancelled.</p></div></div>
 
 <form class="woocommerce-cart-form <?php echo $cartlimit; ?>" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+<input type="hidden" id="subscription_status" name="subscription_status" value="no">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
@@ -130,7 +131,11 @@ do_action( 'woocommerce_before_cart' );
 							<?php
 								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
 
-								echo ' (<strike>'.wc_price($cart_item['quantity']*$_product->get_price()). '</strike>) ';
+								$updated_price=WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] );
+								$actual_price=wc_price($cart_item['quantity']*$_product->get_price());
+
+								if($updated_price!=	$actual_price)
+								echo ' (<strike>'.$actual_price. '</strike>) ';
 							?>
 						</td>
 					</tr>
@@ -163,7 +168,7 @@ do_action( 'woocommerce_before_cart' );
 
 <div class="col-3">
 
-<div class="no-subscription box-wrap">
+<div class="no-subscription get-started-sub box-wrap">
 	<div class="cart-bottle"></div>
 	<h5 class="title">Its that easy! Your subscription will be activated and will arrive by your selected delivery day.</h5>
 	<a href="javascript:void(0)" class="sub-started modal-open open-subscription-modal" id="subscribe_now">Get Started</a>
@@ -172,7 +177,7 @@ do_action( 'woocommerce_before_cart' );
 <div class="cancel-subscription no-subscription box-wrap hidden">
 	<div class="cart-bottle"></div>
 	<h5 class="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste earum.</h5>
-	<a href="#" class="sub-started modal-open">Unsubscribe</a>
+	<a href="#" class="sub-started modal-open" id="unsubscribe-order">Unsubscribe</a>
 </div>
 
 <!-- <div class="subscription box-wrap">

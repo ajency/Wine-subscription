@@ -88,7 +88,7 @@ function sk_wcmenucart($menu, $args) {
 //Enqueue Ajax Scripts
 function enqueue_cart_qty_ajax() {
     wp_register_script( 'cart-qty-ajax-js', get_template_directory_uri() . '/subscription/js/cart-qty-ajax.js', array( 'jquery' ), '', true );
-    wp_localize_script( 'cart-qty-ajax-js', 'cart_qty_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+    wp_localize_script( 'cart-qty-ajax-js', 'cart_qty_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ,'siteapiurl' => get_option('siteurl').'/wp-json/wp/v2/') );
     wp_enqueue_script( 'cart-qty-ajax-js' );
 
 }
@@ -261,7 +261,10 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
 
     $row_price        = $price * $quantity;
 
-    if(indigo_rangelogic($quantity)){
+   
+    $term_list = wp_get_post_terms($product_id,'product_cat',array('fields'=>'slugs'));
+    
+    if((indigo_rangelogic($quantity) && in_array('wine', $term_list)) || !in_array('wine', $term_list)){
         $discount_perc=get_post_meta($product_id,  '_sale_discount_percentage', true );
         $discount_price=get_post_meta($product_id,  '_sale_discount_price', true );
        
@@ -381,6 +384,6 @@ add_action("init", "indigo_start_session", 1);
 require get_template_directory()."/subscription/product-subscription.php";
 
 
-
+require get_stylesheet_directory()."/api/index.php";
 
 
