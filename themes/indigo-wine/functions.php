@@ -109,12 +109,12 @@ function ajax_qty_cart() {
     $passed_validation  = apply_filters( 'woocommerce_update_cart_validation', true, $cart_item_key, $threeball_product_values, $threeball_product_quantity );
 
 
-    echo do_shortcode( '[woocommerce_cart]' );
-    
+   
+
     if(isset($_POST['subscription']))
     {    
          
-        $term_list = wp_get_post_terms($product_id,'product_cat',array('fields'=>'slugs'));
+        $term_list = wp_get_post_terms($threeball_product_values['product_id'],'product_cat',array('fields'=>'slugs'));
         if(in_array('wine', $term_list))
         {    
             if ( $passed_validation ) {
@@ -133,7 +133,7 @@ function ajax_qty_cart() {
 
     }   
 
-    
+    echo do_shortcode( '[woocommerce_cart]' );
     die();
 
 }

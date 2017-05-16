@@ -10,7 +10,10 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
+echo "<pre>";
+print_r($_SESSION['subscription_type']);
+  echo "<pre>";
+            print_r(WC()->session->get('cart'));
 wc_print_notices();
 
 do_action( 'woocommerce_before_checkout_form', $checkout );
@@ -60,4 +63,27 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 
 </form>
 
-<?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>
+<?php do_action( 'woocommerce_after_checkout_form', $checkout ); 
+// echo "<pre>";
+// print_r(WC()->cart->cart_contents);
+//  $cart = WC()->session->get( 'cart', null );
+ 
+//  print_r($cart);
+//  
+//  echo "<pre>";
+
+// WC()->session->set( 'cart', WC()->cart->cart_contents );
+
+// unset(WC()->session->cart );
+
+// WC()->session->set( 'cart', WC()->cart->cart_contents );
+
+ // $cart = WC()->session->get( 'cart', null );
+
+ // print_r($cart);
+//  print_r(WC()->cart_session_data);
+//  
+//   echo "<pre>";
+// print_r(WC()->session->get('cart'));
+
+?>
