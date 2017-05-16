@@ -227,7 +227,7 @@ function custom_shop_page_redirect() {
         exit();
     }
 }
-add_action( 'template_redirect', 'custom_shop_page_redirect' );
+// add_action( 'template_redirect', 'custom_shop_page_redirect' );
 
 
 

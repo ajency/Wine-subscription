@@ -10,10 +10,10 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-echo "<pre>";
+/*echo "<pre>";
 print_r($_SESSION['subscription_type']);
   echo "<pre>";
-            print_r(WC()->session->get('cart'));
+            print_r(WC()->session->get('cart'));*/
 wc_print_notices();
 
 do_action( 'woocommerce_before_checkout_form', $checkout );
