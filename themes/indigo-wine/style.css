@@ -2498,11 +2498,13 @@ a[data-readmore-toggle].more:before {
   margin-top: 60px;
   padding: 35px 20px 50px 20px;
   color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.23) 0 0 0 500px inset;
 }
 .left-sidebar .Callout-action h3 {
   font-weight: 800;
   font-family: gotham_bookregular;
   font-size: 1.25em;
+  color: #212121;
 }
 .left-sidebar .Callout-action .second-text {
   font-size: 1.1em;
