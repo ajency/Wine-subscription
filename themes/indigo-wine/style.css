@@ -681,9 +681,9 @@ body {
 .about-us .about-data {
   font-size: 1.4em;
   font-weight: 600;
-  font-family: 'gotham_thinregular';
-  line-height: 1.3;
-  color: #af8632;
+  font-family: 'gotham_lightregular';
+  line-height: 1.4;
+  color: #d1b57c;
 }
 .about-us .about-data b {
   font-family: 'gotham_mediumregular';
@@ -786,7 +786,7 @@ a[data-readmore-toggle].more:before {
 }
 .delight__title {
   color: #022c4c;
-  font-size: 2.3em;
+  font-size: 2em;
   line-height: 1.2;
   letter-spacing: 1px;
   font-family: 'gotham_lightregular';
