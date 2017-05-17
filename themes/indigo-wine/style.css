@@ -3339,6 +3339,9 @@ body .woocommerce form .form-row .button {
     text-align: center;
   }
 }
+.yikes-custom-woo-tab-title {
+  display: none;
+}
 .woocommerce div.product p.stock.out-of-stock.out-of-stock {
   text-align: left;
   line-height: inherit;
