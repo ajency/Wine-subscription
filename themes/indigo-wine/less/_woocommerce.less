@@ -89,6 +89,25 @@
 	}
 }
 
+
+// Title and breadcrumbs overflowing fixed
+
+.hb-page-title{
+	& > h1,& > h2{
+		width: 50%;
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+	}
+}
+.breadcrumbs-wrapper{
+	width: 45%;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 @media handheld, only screen and (max-width: 767px){
 	.breadcrumbs-wrapper.breadcrumbs-wrapper{
 		display: block !important;

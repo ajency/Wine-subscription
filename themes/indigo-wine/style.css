@@ -2383,6 +2383,20 @@ a[data-readmore-toggle].more:before {
 .hb-page-title.light-text + .breadcrumbs-wrapper.breadcrumbs-wrapper a:hover {
   color: #d1b57c !important;
 }
+.hb-page-title > h1,
+.hb-page-title > h2 {
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.breadcrumbs-wrapper {
+  width: 45%;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 @media handheld, only screen and (max-width: 767px) {
   .breadcrumbs-wrapper.breadcrumbs-wrapper {
     display: block !important;
