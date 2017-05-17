@@ -2355,6 +2355,10 @@ a[data-readmore-toggle].more:before {
 .left-sidebar .widget-item.widget-item .product-categories li .count:hover {
   color: #03497e;
 }
+.left-sidebar .widget-item.widget-item .product-categories li.current-cat a,
+.left-sidebar .widget-item.widget-item .product-categories li.current-cat .count {
+  color: #d1b57c;
+}
 .hb-image-bg-wrap {
   background-image: url('../../uploads/2017/04/yvnEeuC-2.png') !important;
 }
