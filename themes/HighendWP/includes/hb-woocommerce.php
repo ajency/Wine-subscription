@@ -201,7 +201,7 @@
 	/* MISC FUNCTIONS
 	================================================== */
 	function woocommerce_template_loop_product_title() {
-		echo '<h3 class="woocommerce-loop-product__title">' . get_the_title() . '</h3>';
+		echo '<h3 class="woocommerce-loop-product__title" title="'.get_the_title().'">' . get_the_title() . '</h3>';
 	}
 
 	function hb_is_out_of_stock() {
