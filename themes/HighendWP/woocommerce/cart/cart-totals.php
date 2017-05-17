@@ -29,10 +29,10 @@ global $woocommerce;
 					<span class="cart-total-value"><?php echo $woocommerce->cart->cart_contents_count; ?></span>
 				</li>
 
-				<li class="clearfix">
-					<span class="cart-total-title"><?php _e( 'Cart Discount', 'woocommerce' ); ?></span>
-					<span class="cart-total-value"><?php echo $woocommerce->cart->get_total_discount(); ?></span>
-				</li>	
+			<!-- 	<li class="clearfix">
+					<span class="cart-total-title"><?php //_e( 'Cart Discount', 'woocommerce' ); ?></span>
+					<span class="cart-total-value"><?php //echo $woocommerce->cart->get_total_discount(); ?></span>
+				</li>	 -->
 
 				<li class="clearfix">
 					<span class="cart-total-title"><?php _e( 'Cart Subtotal', 'woocommerce' ); ?></span>
