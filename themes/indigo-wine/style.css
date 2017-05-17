@@ -3347,6 +3347,11 @@ body .woocommerce form .form-row .button {
 .woocommerce .col-9 {
   min-height: 700px;
 }
+@media screen and (max-width: 600px) {
+  .woocommerce .col-9 {
+    min-height: auto;
+  }
+}
 .cart-empty + p {
   min-height: 200px;
 }
@@ -3408,6 +3413,12 @@ body .woocommerce form .form-row .button {
 .element-row .woocommerce .product-name,
 .hb-main-content .woocommerce .product-name {
   width: 200px;
+}
+@media screen and (max-width: 600px) {
+  .element-row .woocommerce .product-name,
+  .hb-main-content .woocommerce .product-name {
+    width: auto;
+  }
 }
 .element-row .calculated_shipping .hb-cart-totals-wrap,
 .hb-main-content .calculated_shipping .hb-cart-totals-wrap,
