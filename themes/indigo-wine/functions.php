@@ -391,6 +391,11 @@ function indigo_start_session()
 }
 add_action("init", "indigo_start_session", 1);
 
+//Disabling AJAX for Cart Page..
+function cart_script_disabled(){
+    wp_dequeue_script( 'wc-cart' );
+}
+add_action( 'wp_enqueue_scripts', 'cart_script_disabled' );
 
 require get_template_directory()."/subscription/product-subscription.php";
 
