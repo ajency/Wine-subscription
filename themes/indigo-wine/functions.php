@@ -423,6 +423,18 @@ function cart_script_disabled(){
 add_action( 'wp_enqueue_scripts', 'cart_script_disabled' );
 
 
+add_filter( 'woocommerce_product_tabs', 'woo_rename_tabs', 98 );
+
+function woo_rename_tabs( $tabs ) {
+
+    $tabs['description']['title'] = __( 'More Information' );       // Rename the description tab
+    $tabs['reviews']['title'] = __( 'Ratings' );                // Rename the reviews tab
+    $tabs['additional_information']['title'] = __( 'Product Data' );    // Rename the additional information tab
+
+    return $tabs;
+
+}
+
 require get_template_directory()."/subscription/product-subscription.php";
 
 
