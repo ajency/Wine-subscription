@@ -2298,6 +2298,14 @@ a[data-readmore-toggle].more:before {
 .feature-box.feature-box p {
   font-family: 'gotham_bookregular';
 }
+#more-modal .hb-box-cont-body {
+  padding: 20px 50px 30px 50px;
+}
+.show-details p {
+  font-weight: 600;
+  color: #424242;
+  font-size: 1.05em;
+}
 .m-0 {
   margin: 0px;
 }
@@ -3488,23 +3496,20 @@ body .woocommerce form .form-row .button {
 .failure p {
   margin-left: 1.5em;
 }
-#subscribe-modal {
-  width: 650px;
-}
-#subscribe-modal .hb-box-cont {
+.hb-modal-window .hb-box-cont {
   background-color: #fff;
   border-radius: 0;
   overflow: initial;
 }
-#subscribe-modal .hb-box-cont-body {
+.hb-modal-window .hb-box-cont-body {
   padding: 20px 50px;
 }
-#subscribe-modal .hb-box-cont .hb-box-cont-header {
+.hb-modal-window .hb-box-cont-header {
   padding: 0;
   border: 0;
   position: relative;
 }
-#subscribe-modal .hb-box-cont .hb-box-cont-header .close-modal {
+.hb-modal-window .hb-box-cont-header .close-modal {
   float: none;
   position: absolute;
   top: -19px;
@@ -3520,6 +3525,9 @@ body .woocommerce form .form-row .button {
   color: #333132;
   font-size: 1.05em;
   border: 1px solid;
+}
+#subscribe-modal {
+  width: 650px;
 }
 #subscribe-modal .subscribe-content .title {
   text-align: center;
