@@ -2301,6 +2301,9 @@ a[data-readmore-toggle].more:before {
 #more-modal .hb-box-cont-body {
   padding: 20px 50px 30px 50px;
 }
+.no-scroll .container {
+  padding-left: 0;
+}
 .show-details p {
   font-weight: 600;
   color: #424242;
