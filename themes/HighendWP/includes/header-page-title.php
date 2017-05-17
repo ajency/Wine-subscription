@@ -117,7 +117,7 @@ if ( $page_title_style == 'stroke-title' ){
 				} else if ( class_exists('bbPress') && bbp_is_forum_archive() ) {
 					_e('Forums ','hbthemes');
 				} else if ( is_archive() ) {
-					echo hb_options('hb_archives_title');
+					// echo hb_options('hb_archives_title');
 				} else if ( vp_metabox('general_settings.hb_page_title_h1', null, $post_id) ) {
 					echo vp_metabox('general_settings.hb_page_title_h1', null, $post_id);
 				} else {
