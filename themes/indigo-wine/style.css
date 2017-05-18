@@ -3914,6 +3914,127 @@ body .woocommerce form .form-row .button {
   -webkit-transition: left 0.15s ease-out;
           transition: left 0.15s ease-out;
 }
+.woocommerce-account .woocommerce {
+  margin-top: 1em;
+}
+.woocommerce-account .woocommerce-MyAccount-navigation {
+  min-height: 450px;
+}
+.woocommerce-account .woocommerce-MyAccount-navigation li a {
+  font-family: gotham_bookregular;
+  font-weight: 600;
+  font-size: 1.05em;
+  color: #022c4c;
+}
+.woocommerce-account .woocommerce-MyAccount-navigation li.is-active a {
+  font-family: gotham_mediumregular;
+  position: relative;
+}
+.woocommerce-account .woocommerce-MyAccount-navigation li.is-active a:after {
+  content: "\f105";
+  display: inline-block;
+  font: normal normal normal 1.5em FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  position: absolute;
+  right: 20px;
+  top: 8px;
+}
+.woocommerce-account .woocommerce-MyAccount-content {
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.13);
+  padding: 1.5em;
+  margin-bottom: 5em;
+  width: calc(68% - 2em);
+}
+.woocommerce-account .woocommerce-MyAccount-content > p {
+  color: #022c4c;
+  border-bottom: 1px solid;
+  font-size: 1.15em;
+}
+.woocommerce-account .woocommerce-MyAccount-content > p mark {
+  background-color: transparent;
+  color: #022c4c;
+  font-family: gotham_bookregular;
+}
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-orders-table tr th {
+  border-top: 0;
+}
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-orders-table .woocommerce-orders-table__cell-order-actions .woocommerce-button {
+  background-color: transparent;
+  font-family: gotham_mediumregular;
+  text-decoration: underline;
+}
+.woocommerce .woocommerce-order-details__title {
+  font-family: gotham_mediumregular;
+  color: #022c4c;
+  text-transform: capitalize;
+}
+.woocommerce .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tr th,
+.woocommerce .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tr td {
+  padding: 20px 12px!important;
+  border-color: #ddd;
+  font-size: 1.1em !important;
+}
+.woocommerce .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tfoot tr {
+  border-top: 1px solid #ddd;
+}
+.woocommerce .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tfoot tr th {
+  border: 0;
+}
+.woocommerce .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details .product-name {
+  width: auto;
+}
+.woocommerce .woocommerce-customer-details {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2em 0;
+}
+.woocommerce .woocommerce-customer-details .flex-child {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.woocommerce .woocommerce-customer-details .flex-child h2,
+.woocommerce .woocommerce-customer-details .flex-child h3 {
+  font-family: gotham_mediumregular;
+  color: #022c4c;
+  text-transform: capitalize;
+  font-size: 1.6em;
+  margin-bottom: 0.5em;
+}
+.woocommerce .woocommerce-customer-details .cust-detail {
+  padding-right: 1em;
+}
+.woocommerce .woocommerce-customer-details .cust-detail tr {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.woocommerce .woocommerce-customer-details .cust-detail tr th {
+  border: 0;
+}
+.woocommerce .woocommerce-customer-details .cust-detail tr td {
+  color: #8c8c8c;
+  font-family: gotham_mediumregular;
+}
+.woocommerce .woocommerce-customer-details .cust-addr {
+  border-left: 1px solid #ddd;
+  padding-left: 3em;
+}
+.woocommerce .woocommerce-customer-details .cust-addr address {
+  color: #8c8c8c;
+  font-family: gotham_mediumregular;
+  margin-top: 1.5em;
+}
 .woocommerce-page .woocommerce .woocommerce-info {
   border: 2px solid #ddd !important;
   font-family: gotham_mediumregular;
@@ -4055,6 +4176,23 @@ abbr {
   margin-bottom: 0 !important;
   background-color: #022c4c;
   padding: 10px 20px 10px!important;
+}
+.woocommerce-order {
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.13);
+  padding: 2em;
+  margin: 1em 0 4em 0;
+}
+.woocommerce-order .hb-notif-box {
+  margin-bottom: 2em;
+}
+.woocommerce-order .hb-notif-box p {
+  font-family: gotham_mediumregular;
+  font-weight: 600;
+  margin: 0;
+}
+.woocommerce-order .order_details li {
+  font-family: gotham_mediumregular;
+  font-size: 0.75em;
 }
 .not-found-box {
   min-height: calc(100vh - 36.2em);

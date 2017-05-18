@@ -1,0 +1,148 @@
+
+// ---------------------------
+// MY-ACCOUNT STYLES -----------
+// ---------------------------
+
+
+.woocommerce-account .woocommerce{
+	margin-top: 1em;
+	&-MyAccount-navigation{
+		min-height: 450px;
+		li{
+			a{
+				font-family: gotham_bookregular;
+	    		font-weight: 600;
+	    		font-size: 1.05em;
+	    		color: @brand-secondary;
+			}
+			&.is-active{
+				a{
+					font-family: gotham_mediumregular;
+					position: relative;
+					&:after{
+						content: "\f105";
+						display: inline-block;
+    					font: normal normal normal 1.5em FontAwesome;
+    					text-rendering: auto;
+    					-webkit-font-smoothing: antialiased;
+    					position: absolute;
+    					right: 20px;
+    					top: 8px;
+					}
+				}
+			}
+		}
+	}
+	&-MyAccount-content{
+		box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.13);
+    	padding: 1.5em;
+    	margin-bottom: 5em;
+    	width: calc(~'68% - 2em');
+    	& > p{
+    		color: @brand-secondary;
+    		border-bottom: 1px solid;
+    		font-size: 1.15em;
+    		mark{
+    			background-color: transparent;
+    			color: @brand-secondary;
+    			font-family: gotham_bookregular;
+    		}
+    	}
+    	.woocommerce-orders-table{
+    		tr{
+    			th{
+    				border-top: 0;
+    			}
+    		}
+    		.woocommerce-orders-table__cell-order-actions{
+    			.woocommerce-button{
+    				background-color: transparent;
+    				font-family: gotham_mediumregular;
+    				text-decoration: underline;
+    			}
+    		}
+    	}
+
+	}
+}
+
+
+.woocommerce{
+	.woocommerce-order-details{
+		&__title{
+			font-family: gotham_mediumregular;
+			color: @brand-secondary;
+			text-transform: capitalize;
+		}
+		.woocommerce-table--order-details.woocommerce-table--order-details{
+			tr{
+				th,td{
+					padding: 20px 12px!important;
+					border-color: #ddd;
+					font-size: 1.1em !important;
+				}
+			}
+			tfoot{
+				tr{
+					border-top: 1px solid #ddd;
+					th{
+						border: 0;
+					}
+				}
+			}
+			.product-name{
+				width: auto;
+			}
+		}
+	}
+	.woocommerce-customer-details{
+		display: flex;
+		padding: 2em 0;
+		.flex-child{
+			flex: 1;
+			h2,h3{
+				font-family: gotham_mediumregular;
+			    color: @brand-secondary;
+			    text-transform: capitalize;
+			    font-size: 1.6em;
+				margin-bottom: 0.5em;
+			}
+		}
+		.cust-detail{
+			padding-right: 1em;
+			tr{
+				display: flex;
+				flex-direction: column;
+				th{
+					border: 0;
+				}
+				td{
+					color: #8c8c8c;
+					font-family: gotham_mediumregular;
+				}
+			}
+		}
+		.cust-addr{
+			border-left: 1px solid #ddd;
+			padding-left: 3em;
+			address{
+				color: #8c8c8c;
+				font-family: gotham_mediumregular;
+				margin-top: 1.5em;
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
