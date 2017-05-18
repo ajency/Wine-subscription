@@ -38,7 +38,7 @@
     	padding: 1.5em;
     	margin-bottom: 5em;
     	width: calc(~'68% - 2em');
-    	& > p{
+    	& > p:not(.dashboard-title){
     		color: @brand-secondary;
     		border-bottom: 1px solid;
     		font-size: 1.15em;
@@ -47,6 +47,9 @@
     			color: @brand-secondary;
     			font-family: gotham_bookregular;
     		}
+    	}
+    	.dashboard-title{
+    		color: @brand-secondary;
     	}
     	.woocommerce-orders-table{
     		tr{

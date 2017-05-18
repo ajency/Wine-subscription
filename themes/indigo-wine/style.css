@@ -3946,15 +3946,18 @@ body .woocommerce form .form-row .button {
   margin-bottom: 5em;
   width: calc(68% - 2em);
 }
-.woocommerce-account .woocommerce-MyAccount-content > p {
+.woocommerce-account .woocommerce-MyAccount-content > p:not(.dashboard-title) {
   color: #022c4c;
   border-bottom: 1px solid;
   font-size: 1.15em;
 }
-.woocommerce-account .woocommerce-MyAccount-content > p mark {
+.woocommerce-account .woocommerce-MyAccount-content > p:not(.dashboard-title) mark {
   background-color: transparent;
   color: #022c4c;
   font-family: gotham_bookregular;
+}
+.woocommerce-account .woocommerce-MyAccount-content .dashboard-title {
+  color: #022c4c;
 }
 .woocommerce-account .woocommerce-MyAccount-content .woocommerce-orders-table tr th {
   border-top: 0;
