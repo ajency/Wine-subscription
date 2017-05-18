@@ -441,3 +441,19 @@ require get_template_directory()."/subscription/product-subscription.php";
 require get_stylesheet_directory()."/api/index.php";
 
 
+// Sort popularity and rating removed
+
+function my_woocommerce_catalog_orderby( $orderby ) {
+    unset($orderby["popularity"]);
+    unset($orderby["rating"]);
+    return $orderby;
+}
+add_filter( "woocommerce_catalog_orderby", "my_woocommerce_catalog_orderby", 20 );
+
+
+
+
+
+
+
+
