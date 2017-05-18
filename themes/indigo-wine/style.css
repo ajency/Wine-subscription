@@ -4141,6 +4141,12 @@ body .woocommerce form .form-row .button {
   font-weight: 600 !important;
   font-family: gotham_mediumregular;
 }
+.woocommerce-page .woocommerce table.shop_table.shop_table tfoot .fee th {
+  border-color: #000;
+}
+.woocommerce-page .woocommerce table.shop_table.shop_table tfoot .fee td {
+  border-bottom: 1px solid;
+}
 .woocommerce-page .woocommerce table.shop_table.shop_table .product-total {
   font-family: gotham_mediumregular;
   color: #022c4c;
@@ -4159,6 +4165,9 @@ body .woocommerce form .form-row .button {
   font-size: 1.05em;
   font-weight: 600;
   color: #022c4c;
+}
+.woocommerce-page .woocommerce .woocommerce-checkout-payment#payment ul .payment_box:before {
+  border-bottom-color: #f0f0f0;
 }
 .woocommerce-page .woocommerce .woocommerce-checkout-payment#payment .place-order {
   text-align: center;
