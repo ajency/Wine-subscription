@@ -372,15 +372,18 @@ function indigo_rangelogic($quantity){
 
 
 function filter_woocommerce_product_categories_widget_args( $list_args ) { 
-     if (is_product_category()) {
+
+     if (is_product_category() || isset($_REQUEST['s'])) {
         
         global $wp_query;
         
         $cat = $wp_query->get_queried_object();
-        
         if($cat->slug=='wine-packs' || $cat->slug=='wine'){ 
            $list_args['child_of']=$cat->term_id;
-       }
+        }
+        else if(isset($_REQUEST['product_cat'])){
+            $list_args['child_of']=$_REQUEST['product_cat'];
+        }
     }
     
     return $list_args; 
@@ -395,12 +398,12 @@ function retitle_woo_category_widget($title, $widet_instance, $widget_id) {
         return $title;
 
 
-   if ( is_product_category() && has_term( 'wine-packs', 'product_cat' ) ) {
+   if ( (is_product_category() || isset($_REQUEST['s'])) && has_term( 'wine-packs', 'product_cat' ) ) {
  
         return __('Wine Packs');
 
     // If 'Category' 2 is being viewed...
-    } else if ( is_product_category() && has_term( 'wine', 'product_cat' ) ) {
+    } else if ( (is_product_category() || isset($_REQUEST['s'])) && has_term( 'wine', 'product_cat' ) ) {
         return __('Wines');
     }
     
@@ -480,5 +483,44 @@ function ajax_check_user_logged_in() {
 }
 add_action('wp_ajax_is_user_logged_in', 'ajax_check_user_logged_in');
 add_action('wp_ajax_nopriv_is_user_logged_in', 'ajax_check_user_logged_in');
+
+//custom post changes
+function filter_posts_clauses( $args ) { 
+    global $wpdb;
+  
+    if(isset($_REQUEST['product_cat']))
+    {
+        $categories=get_term_children( $_REQUEST['product_cat'], 'product_cat' );
+        array_push($categories, $_REQUEST['product_cat']);
+
+        $args['join'] .= " LEFT JOIN wp_term_relationships ON (wp_posts.ID = wp_term_relationships.object_id)  ";
+        $args['where'] = "  AND (
+              wp_posts.ID NOT IN (
+                            SELECT object_id
+                            FROM wp_term_relationships
+                            WHERE term_taxonomy_id IN (11)
+                        ) 
+              AND wp_term_relationships.term_taxonomy_id IN (".implode(',', $categories).")  
+    
+            ) AND (((wp_posts.post_title LIKE '%my%') OR (post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_content LIKE '%".$_REQUEST['s']."%')))  AND wp_posts.post_type = 'product' AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'private') ";
+
+       
+    }
+    return $args;
+}
+     
+add_filter( 'posts_clauses', 'filter_posts_clauses', 10, 1 ); 
+
+
+
+
+ // add_filter( 'posts_request', 'dump_request' );
+
+function dump_request( $input ) {
+
+    var_dump($input);
+
+    return $input;
+}
 
 
