@@ -372,15 +372,18 @@ function indigo_rangelogic($quantity){
 
 
 function filter_woocommerce_product_categories_widget_args( $list_args ) { 
-     if (is_product_category()) {
+
+     if (is_product_category() || isset($_REQUEST['s'])) {
         
         global $wp_query;
         
         $cat = $wp_query->get_queried_object();
-        
         if($cat->slug=='wine-packs' || $cat->slug=='wine'){ 
            $list_args['child_of']=$cat->term_id;
-       }
+        }
+        else if(isset($_REQUEST['product_cat'])){
+            $list_args['child_of']=$_REQUEST['product_cat'];
+        }
     }
     
     return $list_args; 
@@ -395,12 +398,12 @@ function retitle_woo_category_widget($title, $widet_instance, $widget_id) {
         return $title;
 
 
-   if ( is_product_category() && has_term( 'wine-packs', 'product_cat' ) ) {
+   if ( (is_product_category() || isset($_REQUEST['s'])) && has_term( 'wine-packs', 'product_cat' ) ) {
  
         return __('Wine Packs');
 
     // If 'Category' 2 is being viewed...
-    } else if ( is_product_category() && has_term( 'wine', 'product_cat' ) ) {
+    } else if ( (is_product_category() || isset($_REQUEST['s'])) && has_term( 'wine', 'product_cat' ) ) {
         return __('Wines');
     }
     
