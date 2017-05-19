@@ -171,6 +171,23 @@ jQuery(function ($) {
       }
      
             
-    }); 
+    });
 
+    $(document).on('click', '.productcategory-menu', function (event) {
+        var data = {
+        action: 'is_user_logged_in'
+        };
+
+        jQuery.post(ajaxurl, data, function(response) {
+            if(response == 'no') {
+               
+                $('.productcategory-menu a').attr({
+                    'href': '/wp-login.php',
+                    'class': 'simplemodal-login'
+                });
+
+            } 
+        });
+    });   
+      
 });

@@ -222,12 +222,12 @@ add_action( 'admin_enqueue_scripts', 'add_product_admin_scripts', 10, 1 );
 
 
 function custom_shop_page_redirect() {
-    if( is_shop() ){
-        wp_redirect( home_url( '/product-category/wine-packs/' ) );
+    if(( is_product_category() || is_product() ) && !is_user_logged_in()){
+        wp_redirect( home_url() );
         exit();
     }
 }
-// add_action( 'template_redirect', 'custom_shop_page_redirect' );
+add_action( 'template_redirect', 'custom_shop_page_redirect' );
 
 
 
@@ -454,24 +454,29 @@ add_filter( "woocommerce_catalog_orderby", "my_woocommerce_catalog_orderby", 20 
 add_action('after_setup_theme','activate_filter') ;
  
 function activate_filter(){
-add_filter('woocommerce_get_price_html', 'bbloomer_show_price_logged');
+    add_filter('woocommerce_get_price_html', 'bbloomer_show_price_logged');
 }
  
 function bbloomer_show_price_logged($price){
-if(is_user_logged_in() ){
-return $price;
-}
-else
-{
-return '<a href="/wp-login.php" class="simplemodal-login">Login to See Prices</a>';
-remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
-remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
-}
+    if(is_user_logged_in() ){
+        return $price;
+    }
+    else
+    {
+        return '<a href="/wp-login.php" class="simplemodal-login">Login to See Prices</a>';
+        remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
+        remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+        remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+        remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+    }
 }
 
 
-
+function ajax_check_user_logged_in() {
+    echo is_user_logged_in()?'yes':'no';
+    die();
+}
+add_action('wp_ajax_is_user_logged_in', 'ajax_check_user_logged_in');
+add_action('wp_ajax_nopriv_is_user_logged_in', 'ajax_check_user_logged_in');
 
 
