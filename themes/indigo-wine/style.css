@@ -2189,7 +2189,6 @@ a[data-readmore-toggle].more:before {
   padding: .8em;
   font-size: 1.35em;
   margin-bottom: 0;
-  text-transform: uppercase;
 }
 #simplemodal-login-container-osx.simplemodal-container form .simplemodal-login-fields {
   padding: 1.5em 1em;
