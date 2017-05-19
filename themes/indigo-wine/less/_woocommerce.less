@@ -6,6 +6,25 @@
 	margin: 0px;
 }
 
+
+// ---------------------------
+// LOGIN TO SEE PRICES LINK -----------
+// ---------------------------
+
+.price{
+	a{
+		font-weight: 600;
+	    font-size: 0.8em;
+	    color: @brand-secondary;
+	    font-family: 'gotham_bookregular';
+	    &:hover{
+	    	color: darken(@brand-secondary,10%);
+	    }
+	}
+}
+
+
+
 #hb-page-title {
     // padding-top: 100px;
     margin-top: 0;
@@ -112,8 +131,9 @@
 	.breadcrumbs-wrapper.breadcrumbs-wrapper{
 		display: block !important;
 		position: static;
-    	margin-top: 0;
     	text-align: center;
+    	margin: 0 auto;
+    	width: auto;
     	a{
     		font-size: 1em !important;
     	}
@@ -204,7 +224,7 @@
 }
 
 @media handheld, only screen and (max-width: 767px){
-	.hb-equal-col-height.hb-equal-col-height .products-4{
+	.hb-equal-col-height.hb-equal-col-height .products-4,.related.products .products-4{
 		.hb-woo-product.hb-woo-product{
 			width: 80% !important;
     		margin: 0 auto;
@@ -214,6 +234,15 @@
     		.hb-product-meta-wrapper{
     			padding: 0 15px 15px 15px;
     		}
+		}
+	}
+	#main-content .related.products .products-4{
+		display: flex;
+		flex-wrap: wrap;
+    	justify-content: center;
+		.hb-woo-product.hb-woo-product{
+    		margin: inherit;
+    		margin-left: inherit !important;
 		}
 	}
 }
@@ -944,7 +973,11 @@ body
 	.woocommerce div.product div.summary{
 		margin-bottom: 0;
 	}
+	.tabs.wc-tabs{
+		display: flex;
+	}
 }
+
 
 
 // ---------------------------

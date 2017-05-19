@@ -2312,6 +2312,15 @@ a[data-readmore-toggle].more:before {
 .m-0 {
   margin: 0px;
 }
+.price a {
+  font-weight: 600;
+  font-size: 0.8em;
+  color: #022c4c;
+  font-family: 'gotham_bookregular';
+}
+.price a:hover {
+  color: #010f1a;
+}
 #hb-page-title {
   margin-top: 0;
   padding: 1em 0;
@@ -2401,8 +2410,9 @@ a[data-readmore-toggle].more:before {
   .breadcrumbs-wrapper.breadcrumbs-wrapper {
     display: block !important;
     position: static;
-    margin-top: 0;
     text-align: center;
+    margin: 0 auto;
+    width: auto;
   }
   .breadcrumbs-wrapper.breadcrumbs-wrapper a {
     font-size: 1em !important;
@@ -2482,15 +2492,34 @@ a[data-readmore-toggle].more:before {
   }
 }
 @media handheld, only screen and (max-width: 767px) {
-  .hb-equal-col-height.hb-equal-col-height .products-4 .hb-woo-product.hb-woo-product {
+  .hb-equal-col-height.hb-equal-col-height .products-4 .hb-woo-product.hb-woo-product,
+  .related.products .products-4 .hb-woo-product.hb-woo-product {
     width: 80% !important;
     margin: 0 auto;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     border: 0;
     padding: 0;
   }
-  .hb-equal-col-height.hb-equal-col-height .products-4 .hb-woo-product.hb-woo-product .hb-product-meta-wrapper {
+  .hb-equal-col-height.hb-equal-col-height .products-4 .hb-woo-product.hb-woo-product .hb-product-meta-wrapper,
+  .related.products .products-4 .hb-woo-product.hb-woo-product .hb-product-meta-wrapper {
     padding: 0 15px 15px 15px;
+  }
+  #main-content .related.products .products-4 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  #main-content .related.products .products-4 .hb-woo-product.hb-woo-product {
+    margin: inherit;
+    margin-left: inherit !important;
   }
 }
 @media handheld, only screen and (min-width: 768px) and (max-width: 900px) {
@@ -3134,6 +3163,12 @@ body .woocommerce form .form-row .button {
   }
   .woocommerce div.product div.summary {
     margin-bottom: 0;
+  }
+  .tabs.wc-tabs {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
   }
 }
 .widget-item.woocommerce > h4 {

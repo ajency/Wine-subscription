@@ -219,17 +219,30 @@ jQuery(function(){
 }).call(this);
 
 jQuery(document).ready(function() {
-jQuery("#toggleButton").click( function(event){
-     event.preventDefault();
-     if (jQuery(this).hasClass("isDown") ) {
-     // jQuery( ".navbar-fixed-top" ).animate({ "margin-top": "-62px" }, "fast" );
-     jQuery( ".hb-sidebar" ).animate({ "left": "0px" }, "fast" );
-     jQuery(this).removeClass("isDown");
-     } else {
-     // jQuery( ".navbar-fixed-top" ).animate({ "margin-top": "0px" }, "fast" );
-     jQuery( ".hb-sidebar" ).animate({ "left": "-780px" }, "fast" );
-     jQuery(this).addClass("isDown");
-     }
-     return false;
+
+	jQuery("#toggleButton").click( function(event){
+	     event.preventDefault();
+
+	     if (jQuery(this).hasClass("isDown") ) {
+	     	jQuery( ".hb-sidebar" ).animate({ "left": "0px" }, "fast" );
+	     	jQuery(this).removeClass("isDown");
+	     	jQuery('body').addClass('blocked');
+	     } else {
+	     	jQuery( ".hb-sidebar" ).animate({ "left": "-780px" }, "fast" );
+	     	jQuery(this).addClass("isDown");
+	     	jQuery('body').removeClass('blocked');
+	     }
+
      });   
 });
+
+
+
+
+
+
+
+
+
+
+
