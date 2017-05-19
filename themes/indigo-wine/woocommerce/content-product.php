@@ -72,13 +72,23 @@ if(isset($_REQUEST['layout']) && !empty($_REQUEST['layout'])) {
 	}
 }
 
-if ( $woocommerce_loop['columns'] == 4 ){
-	$classes[] = 'col-3 hb-animate-element top-to-bottom';
-} else if ( $woocommerce_loop['columns'] == 3 ) {
-	$classes[] = 'col-4 hb-animate-element top-to-bottom';
-} else {
-	$classes[] = 'col-6 hb-animate-element top-to-bottom';	
+if(is_user_logged_in())
+{
+	$logclass = '';
 }
+else
+{
+	$logclass = 'simplemodal-login ';	
+}
+
+if ( $woocommerce_loop['columns'] == 4 ){
+	$logclass .= 'col-3 hb-animate-element top-to-bottom';
+} else if ( $woocommerce_loop['columns'] == 3 ) {
+	$logclass .= 'col-4 hb-animate-element top-to-bottom';
+} else {
+	$logclass .= 'col-6 hb-animate-element top-to-bottom';	
+}
+$classes[] = $logclass;
 ?>
 
 <div <?php post_class( $classes ); ?>>

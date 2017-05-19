@@ -2321,6 +2321,9 @@ a[data-readmore-toggle].more:before {
 .price a:hover {
   color: #010f1a;
 }
+.hb-woo-product.simplemodal-login .price {
+  display: none !important;
+}
 #hb-page-title {
   margin-top: 0;
   padding: 1em 0;
