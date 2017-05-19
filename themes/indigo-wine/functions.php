@@ -479,4 +479,43 @@ function ajax_check_user_logged_in() {
 add_action('wp_ajax_is_user_logged_in', 'ajax_check_user_logged_in');
 add_action('wp_ajax_nopriv_is_user_logged_in', 'ajax_check_user_logged_in');
 
+//custom post changes
+function filter_posts_clauses( $args ) { 
+    global $wpdb;
+  
+    if(isset($_REQUEST['product_cat']))
+    {
+        $categories=get_term_children( $_REQUEST['product_cat'], 'product_cat' );
+        array_push($categories, $_REQUEST['product_cat']);
+
+        $args['join'] .= " LEFT JOIN wp_term_relationships ON (wp_posts.ID = wp_term_relationships.object_id)  ";
+        $args['where'] = "  AND (
+              wp_posts.ID NOT IN (
+                            SELECT object_id
+                            FROM wp_term_relationships
+                            WHERE term_taxonomy_id IN (11)
+                        ) 
+              AND wp_term_relationships.term_taxonomy_id IN (".implode(',', $categories).")  
+    
+            ) AND (((wp_posts.post_title LIKE '%my%') OR (post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_content LIKE '%".$_REQUEST['s']."%')))  AND wp_posts.post_type = 'product' AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'private') ";
+
+       
+    }
+    return $args;
+}
+     
+add_filter( 'posts_clauses', 'filter_posts_clauses', 10, 1 ); 
+
+
+
+
+ // add_filter( 'posts_request', 'dump_request' );
+
+function dump_request( $input ) {
+
+    var_dump($input);
+
+    return $input;
+}
+
 
