@@ -158,5 +158,19 @@ jQuery(function ($) {
         });
    
 
-    });   
+    });  
+
+     $(document).on('click', '.hb-accordion-tab', function (event) {
+      if($('.hb-accordion-tab').hasClass('active-toggle')){
+        $('.hb-accordion-tab').removeClass('active-toggle');
+        $('.hb-accordion-pane').css('display','none');
+      }  
+      else{
+        $('.hb-accordion-tab').addClass('active-toggle');
+        $('.hb-accordion-pane').css('display','block');
+      }
+     
+            
+    }); 
+
 });

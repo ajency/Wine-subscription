@@ -171,7 +171,19 @@ do_action( 'woocommerce_before_cart' );
 <div class="no-subscription get-started-sub box-wrap">
 	<div class="cart-bottle"></div>
 	<h5 class="title">Its that easy! Your subscription will be activated and will arrive by your selected delivery day.</h5>
+	<?php 
+	if(is_user_logged_in()){
+	?>
 	<a href="javascript:void(0)" class="sub-started modal-open open-subscription-modal" id="subscribe_now">Get Started</a>
+	<?php 
+	
+	} 
+	else {
+	?>
+	<a class="simplemodal-login" href="/wp-login.php">Get Started</a>
+	<?php 
+	}
+	?>
 </div>
 
 <div class="cancel-subscription no-subscription box-wrap hidden">
