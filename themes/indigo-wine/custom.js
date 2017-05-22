@@ -10,7 +10,7 @@ jQuery(function(){
 	  var sticky = jQuery('.ind-custom-menu'),
 	      scroll = jQuery(window).scrollTop();
 
-	  if (scroll >= 100){
+	  if (scroll >= 80){
 	  	sticky.addClass('fixed');
 	  } 
 	  else{
