@@ -4084,6 +4084,20 @@ body .woocommerce form .form-row .button {
   font-family: gotham_mediumregular;
   margin-top: 1.5em;
 }
+.woocommerce .woocommerce-Address {
+  margin-bottom: 1em;
+}
+.woocommerce .woocommerce-Address h3 {
+  font-family: gotham_mediumregular;
+  color: #022c4c;
+  text-transform: capitalize;
+  font-size: 1.4em;
+  margin-bottom: 0.5em;
+}
+.woocommerce .woocommerce-Address address {
+  color: #8c8c8c;
+  font-family: gotham_mediumregular;
+}
 .woocommerce-page .woocommerce .woocommerce-info {
   border: 2px solid #ddd !important;
   font-family: gotham_mediumregular;
