@@ -162,7 +162,7 @@
                             </ul></div></div></li></ul>';
                         }
                         else{
-                            echo '<ul><li class="user-detail"><a class="simplemodal-login" href="/wp-login.php"><i class="fa fa-user" aria-hidden="true" title="Login"></i></a></li></ul>';
+                            echo '<ul><li class="user-detail"><a class="simplemodal-login" href="/wp-login.php?redirect_to='.$_SERVER['REQUEST_URI'].'"><i class="fa fa-user" aria-hidden="true" title="Login"></i></a></li></ul>';
                         }
                         ?>
                        
