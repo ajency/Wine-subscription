@@ -3201,7 +3201,8 @@ body .woocommerce form .form-row .button {
   -webkit-transition: all 0.5s ease;
           transition: all 0.5s ease;
 }
-.tagcloud.tagcloud > a:hover {
+.tagcloud.tagcloud > a:hover,
+.tagcloud.tagcloud > a.active-tag {
   background-color: #d8d8d8;
   color: #022c4c;
 }

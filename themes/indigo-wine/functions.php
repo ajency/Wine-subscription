@@ -524,3 +524,23 @@ function dump_request( $input ) {
 }
 
 
+//Tags active class
+
+function indigo_tag_cloud_class_active($tags_data) { 
+    $body_class = get_body_class(); foreach ($tags_data as $key => $tag) {
+     if(in_array('term-'.$tag['id'], $body_class)) { $tags_data[$key]['class'] = $tags_data[$key]['class'] ." active-tag"; } } return $tags_data; 
+ }
+
+add_filter('wp_generate_tag_cloud_data', 'indigo_tag_cloud_class_active');
+
+
+
+
+
+
+
+
+
+
+
+
