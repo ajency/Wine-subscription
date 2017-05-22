@@ -149,6 +149,56 @@
 			font-family: gotham_mediumregular;
 		}
 	}
+	.woocommerce-address-fields,.woocommerce-EditAccountForm{
+		&__field-wrapper,&.edit-account{
+			.form-row{
+				margin-bottom: 1em !important;
+				label{
+					font-family: gotham_mediumregular;
+	    			color: #737373;
+	    			font-size: 1em;
+				}
+				input,textarea{
+					font-family: gotham_bookregular;
+					color: #424141;
+					background-color: transparent;
+    				border-width: 0px 0px 1px 0px;
+				}
+				textarea{
+					background-color: transparent;
+	    			border: 0;
+	    			border-bottom: 2px solid #ddd;
+				}
+				.woocommerce-form__input-checkbox{
+					font-size: 2em;
+				}
+			}
+			.select2-container--default .select2-selection--single{
+				border-width: 0 0 1px 0;
+				border-color: #ddd;
+				border-radius: 0;
+			}
+			.select2-container.select2-container{
+				margin-top: 0;
+				padding-top: 0.7em;
+			}
+		}
+	}
+	input[name="save_address"],input[name="save_account_details"]{
+		&:not(.no-three-d):not(.hb-third-dark):not(.hb-second-dark){
+			width: 50%;
+			background-color: @brand-secondary !important;
+			margin: 1em auto 0 auto;
+			display: flex;
+			align-items: center;
+			box-shadow: none !important;
+			justify-content: center;
+			top: 1em;
+			&:active{
+				top: 1em !important;
+			}
+		}
+	}	
 }
 
 

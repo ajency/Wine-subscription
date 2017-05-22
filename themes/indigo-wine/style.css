@@ -4098,6 +4098,86 @@ body .woocommerce form .form-row .button {
   color: #8c8c8c;
   font-family: gotham_mediumregular;
 }
+.woocommerce .woocommerce-address-fields__field-wrapper .form-row,
+.woocommerce .woocommerce-EditAccountForm__field-wrapper .form-row,
+.woocommerce .woocommerce-address-fields.edit-account .form-row,
+.woocommerce .woocommerce-EditAccountForm.edit-account .form-row {
+  margin-bottom: 1em !important;
+}
+.woocommerce .woocommerce-address-fields__field-wrapper .form-row label,
+.woocommerce .woocommerce-EditAccountForm__field-wrapper .form-row label,
+.woocommerce .woocommerce-address-fields.edit-account .form-row label,
+.woocommerce .woocommerce-EditAccountForm.edit-account .form-row label {
+  font-family: gotham_mediumregular;
+  color: #737373;
+  font-size: 1em;
+}
+.woocommerce .woocommerce-address-fields__field-wrapper .form-row input,
+.woocommerce .woocommerce-EditAccountForm__field-wrapper .form-row input,
+.woocommerce .woocommerce-address-fields.edit-account .form-row input,
+.woocommerce .woocommerce-EditAccountForm.edit-account .form-row input,
+.woocommerce .woocommerce-address-fields__field-wrapper .form-row textarea,
+.woocommerce .woocommerce-EditAccountForm__field-wrapper .form-row textarea,
+.woocommerce .woocommerce-address-fields.edit-account .form-row textarea,
+.woocommerce .woocommerce-EditAccountForm.edit-account .form-row textarea {
+  font-family: gotham_bookregular;
+  color: #424141;
+  background-color: transparent;
+  border-width: 0px 0px 1px 0px;
+}
+.woocommerce .woocommerce-address-fields__field-wrapper .form-row textarea,
+.woocommerce .woocommerce-EditAccountForm__field-wrapper .form-row textarea,
+.woocommerce .woocommerce-address-fields.edit-account .form-row textarea,
+.woocommerce .woocommerce-EditAccountForm.edit-account .form-row textarea {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid #ddd;
+}
+.woocommerce .woocommerce-address-fields__field-wrapper .form-row .woocommerce-form__input-checkbox,
+.woocommerce .woocommerce-EditAccountForm__field-wrapper .form-row .woocommerce-form__input-checkbox,
+.woocommerce .woocommerce-address-fields.edit-account .form-row .woocommerce-form__input-checkbox,
+.woocommerce .woocommerce-EditAccountForm.edit-account .form-row .woocommerce-form__input-checkbox {
+  font-size: 2em;
+}
+.woocommerce .woocommerce-address-fields__field-wrapper .select2-container--default .select2-selection--single,
+.woocommerce .woocommerce-EditAccountForm__field-wrapper .select2-container--default .select2-selection--single,
+.woocommerce .woocommerce-address-fields.edit-account .select2-container--default .select2-selection--single,
+.woocommerce .woocommerce-EditAccountForm.edit-account .select2-container--default .select2-selection--single {
+  border-width: 0 0 1px 0;
+  border-color: #ddd;
+  border-radius: 0;
+}
+.woocommerce .woocommerce-address-fields__field-wrapper .select2-container.select2-container,
+.woocommerce .woocommerce-EditAccountForm__field-wrapper .select2-container.select2-container,
+.woocommerce .woocommerce-address-fields.edit-account .select2-container.select2-container,
+.woocommerce .woocommerce-EditAccountForm.edit-account .select2-container.select2-container {
+  margin-top: 0;
+  padding-top: 0.7em;
+}
+.woocommerce input[name="save_address"]:not(.no-three-d):not(.hb-third-dark):not(.hb-second-dark),
+.woocommerce input[name="save_account_details"]:not(.no-three-d):not(.hb-third-dark):not(.hb-second-dark) {
+  width: 50%;
+  background-color: #022c4c !important;
+  margin: 1em auto 0 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  box-shadow: none !important;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  top: 1em;
+}
+.woocommerce input[name="save_address"]:not(.no-three-d):not(.hb-third-dark):not(.hb-second-dark):active,
+.woocommerce input[name="save_account_details"]:not(.no-three-d):not(.hb-third-dark):not(.hb-second-dark):active {
+  top: 1em !important;
+}
 .woocommerce-page .woocommerce .woocommerce-info {
   border: 2px solid #ddd !important;
   font-family: gotham_mediumregular;
