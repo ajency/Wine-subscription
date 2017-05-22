@@ -3952,6 +3952,14 @@ body .woocommerce form .form-row .button {
   -webkit-transition: left 0.15s ease-out;
           transition: left 0.15s ease-out;
 }
+.woocommerce-page #main-wrapper .woocommerce .hb-heading.cart-empty {
+  margin-top: 0;
+  border-bottom: 0;
+}
+.woocommerce-page #main-wrapper .woocommerce .hb-heading.cart-empty + .aligncenter a {
+  background-color: #022c4c !important;
+  color: #fff !important;
+}
 .woocommerce-account .woocommerce {
   margin-top: 1em;
 }
