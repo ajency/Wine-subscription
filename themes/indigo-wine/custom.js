@@ -6,18 +6,39 @@ jQuery(function(){
 
 	// Menu fixed code
 
-	jQuery(window).scroll(function(){
-	  var sticky = jQuery('.ind-custom-menu'),
-	      scroll = jQuery(window).scrollTop();
+	// jQuery(window).scroll(function(){
+	//   var sticky = jQuery('.ind-custom-menu'),
+	//       scroll = jQuery(window).scrollTop();
 
-	  if (scroll >= 80){
-	  	sticky.addClass('fixed');
-	  } 
-	  else{
-		sticky.removeClass('fixed');
-	  }
+	//   if (scroll >= 120){
+	//   	sticky.addClass('fixed');
+	//   } 
+	//   else{
+	// 	sticky.removeClass('fixed');
+	//   }
 	  
+	// });
+
+	var $navBar = jQuery('.ind-custom-menu');
+
+	// find original navigation bar position
+	var navPos = $navBar.offset().top;
+
+	// on scroll
+	jQuery(window).scroll(function() {
+
+	    // get scroll position from top of the page
+	    var scrollPos = jQuery(this).scrollTop();
+
+	    // check if scroll position is >= the nav position
+	    if (scrollPos >= navPos) {
+	        $navBar.addClass('fixed');
+	    } else {
+	        $navBar.removeClass('fixed');
+	    }
+
 	});
+
 
 	// Destroy default init
 
