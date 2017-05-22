@@ -245,6 +245,7 @@ body {
 .ind-custom-menu .col ul li .sub-menu li a {
   font-size: 1.05em;
   display: block;
+  font-family: gotham_bookregular;
 }
 .ind-custom-menu .col ul li .sub-menu li a:after {
   top: -5px;
@@ -330,19 +331,19 @@ body {
     top: 5px;
   }
 }
-.user-detail {
+.user-detail.user-detail {
   position: relative;
   color: #d1b57c;
   cursor: pointer;
 }
-.user-detail .user .arrow-down {
+.user-detail.user-detail .user .arrow-down {
   padding-left: 0.25em;
   font-size: 1.15em;
 }
-.user-detail .user:hover .drop {
+.user-detail.user-detail .user:hover .drop {
   display: block;
 }
-.user-detail .drop {
+.user-detail.user-detail .drop.sub-menu {
   position: absolute;
   background-color: #fff;
   right: 0;
@@ -352,33 +353,40 @@ body {
   padding: 0.5em 0;
   box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.11);
 }
-.user-detail .drop ul {
+.user-detail.user-detail .drop.sub-menu ul {
   display: block;
   top: 0;
 }
-.user-detail .drop ul li {
-  line-height: 2;
-  padding: 0.5em 1.5em;
+.user-detail.user-detail .drop.sub-menu ul li {
+  padding: 0em 1.2em;
   font-size: 0.9em;
 }
+@media screen and (min-width: 1400px) {
+  .user-detail.user-detail .drop.sub-menu ul li {
+    line-height: 2;
+    padding: 0.5em 1.5em;
+  }
+}
 @media screen and (min-width: 1900px) {
-  .user-detail .drop ul li {
+  .user-detail.user-detail .drop.sub-menu ul li {
     margin: 0.8em 0 0.5em;
   }
 }
 @media screen and (min-width: 1900px) {
-  .user-detail .drop ul li:last-child {
+  .user-detail.user-detail .drop.sub-menu ul li:last-child {
     margin-bottom: 0;
   }
 }
-.user-detail .drop ul li a {
+.user-detail.user-detail .drop.sub-menu ul li a {
   display: block;
 }
-.user-detail .drop ul li a .fa {
+.user-detail.user-detail .drop.sub-menu ul li a .fa {
   padding-right: 0.2em;
 }
-.user-detail .drop ul li a:after {
-  top: 0;
+@media screen and (min-width: 1400px) {
+  .user-detail.user-detail .drop.sub-menu ul li a:after {
+    top: 0;
+  }
 }
 @media only screen and (min-width: 1920px) {
   #main-wrapper.hb-boxed-layout,
@@ -3408,14 +3416,6 @@ body .woocommerce form .form-row .button {
 @media screen and (max-width: 600px) {
   .woocommerce .col-9 {
     min-height: auto;
-  }
-}
-.cart-empty + p {
-  min-height: 200px;
-}
-@media screen and (min-width: 1500px) {
-  .cart-empty + p {
-    min-height: 300px;
   }
 }
 .hidden {
