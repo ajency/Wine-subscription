@@ -50,10 +50,10 @@ add_filter('wp_nav_menu_items','sk_wcmenucart', 10, 2);
 function sk_wcmenucart($menu, $args) {
 
     // Check if WooCommerce is active and add a new item to a menu assigned to Primary Navigation Menu location
-    if ( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) || 'my-custom-menuu' !== $args->theme_location )
+    if ( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) || 'my-custom-menuu' !== $args->theme_location || !is_user_logged_in())
         return $menu;
 
-    ob_start();
+        ob_start();
         global $woocommerce;
         $viewing_cart = __('View your shopping cart', 'your-theme-slug');
         $start_shopping = __('Start shopping', 'your-theme-slug');
