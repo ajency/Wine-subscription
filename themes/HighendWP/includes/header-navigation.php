@@ -184,7 +184,7 @@
                                 $myaccount_page_url = get_permalink( $myaccount_page_id );
                             }
 
-                           echo '<div class="user-detail"><div class="user"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-angle-down arrow-down" aria-hidden="true"></i><div class="drop">
+                           echo '<div class="user-detail"><div class="user"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-angle-down arrow-down" aria-hidden="true"></i><div class="drop sub-menu">
                            <ul>
                            <li><a href="'.$myaccount_page_url.'"><i class="fa fa-user" aria-hidden="true"></i> My Account</a></li>
                            <li><a href="'.wp_logout_url( get_permalink() ).'"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li>

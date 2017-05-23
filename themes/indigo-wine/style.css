@@ -1959,26 +1959,29 @@ a[data-readmore-toggle].more:before {
         -ms-flex-align: center;
             align-items: center;
   }
-  .indigo-m-menu .top .user-detail {
+  .indigo-m-menu .top .user-detail.user-detail {
     padding-right: 0.5em;
   }
-  .indigo-m-menu .top .user-detail .user .fa {
+  .indigo-m-menu .top .user-detail.user-detail .user .fa {
     padding-right: 0;
   }
-  .indigo-m-menu .top .user-detail .drop {
-    min-width: 120px;
+  .indigo-m-menu .top .user-detail.user-detail .drop.drop {
+    min-width: 135px;
     top: 2.2em;
   }
-  .indigo-m-menu .top .user-detail .drop li {
-    padding: 0 0 0 0.5em;
+  .indigo-m-menu .top .user-detail.user-detail .drop.drop li {
+    padding: 0.5em 1.2em;
     font-size: 0.95em;
   }
-  .indigo-m-menu .top .user-detail .drop li a {
+  .indigo-m-menu .top .user-detail.user-detail .drop.drop li a {
     color: #d1b57c;
+    font-size: 1.05em;
   }
-  .indigo-m-menu .top .user-detail .drop li a i {
+  .indigo-m-menu .top .user-detail.user-detail .drop.drop li a i {
+    padding-right: 0.3em;
+    padding-left: 0;
     color: #d1b57c;
-    font-size: 1.1em;
+    font-size: 1em;
   }
   .indigo-m-menu .bottom {
     position: fixed;
