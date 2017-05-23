@@ -125,6 +125,7 @@ body {
 }
 #main-content {
   padding-top: 0;
+  min-height: 58vh;
 }
 .ind-custom-menu {
   display: -webkit-box;
@@ -330,6 +331,9 @@ body {
   .ind-custom-menu.fixed .col ul {
     top: 5px;
   }
+}
+#main-content.fixed-added {
+  margin-top: 13em !important;
 }
 .user-detail.user-detail {
   position: relative;
@@ -3413,9 +3417,6 @@ body .woocommerce form .form-row .button {
   text-align: left;
   line-height: inherit;
   margin-bottom: 1.8em;
-}
-.woocommerce .col-9 {
-  min-height: 700px;
 }
 @media screen and (max-width: 600px) {
   .woocommerce .col-9 {
