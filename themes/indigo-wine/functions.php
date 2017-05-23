@@ -46,6 +46,40 @@ function enqueue_font_awesome() {
  *
  * Source: http://wordpress.org/plugins/woocommerce-menu-bar-cart/
  */
+
+/**
+ * Ensure cart contents update when products are added to the cart via AJAX
+ */
+function my_header_add_to_cart_fragment( $fragments ) {
+
+    ob_start();
+    $count = WC()->cart->cart_contents_count;
+
+    ?>
+    <a class="wcmenucart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>">
+
+    <?php
+   
+       $menu_item="";
+
+    if ( $count > 0 ) {
+   
+        $cart_contents = sprintf(_n('%d item', '%d items', $count, 'indigo-wine'), $count);
+        $menu_item .= '<i class="fa fa-shopping-cart"></i> ';
+
+        $menu_item .= $cart_contents;
+
+        echo $menu_item;        
+    }
+        ?></a><?php
+ 
+    $fragments['a.wcmenucart-contents'] = ob_get_clean();
+     
+    return $fragments;
+}
+
+add_filter( 'woocommerce_add_to_cart_fragments', 'my_header_add_to_cart_fragment' );
+
 add_filter('wp_nav_menu_items','sk_wcmenucart', 10, 2);
 function sk_wcmenucart($menu, $args) {
 
@@ -60,7 +94,7 @@ function sk_wcmenucart($menu, $args) {
         $cart_url = $woocommerce->cart->get_cart_url();
         $shop_page_url = get_permalink( woocommerce_get_page_id( 'shop' ) );
         $cart_contents_count = $woocommerce->cart->cart_contents_count;
-        $cart_contents = sprintf(_n('%d item', '%d items', $cart_contents_count, 'your-theme-slug'), $cart_contents_count);
+        $cart_contents = sprintf(_n('%d item', '%d items', $cart_contents_count, 'indigo-wine'), $cart_contents_count);
         $cart_total = $woocommerce->cart->get_cart_total();
         // Uncomment the line below to hide nav menu cart item when there are no items in the cart
         // if ( $cart_contents_count > 0 ) {
