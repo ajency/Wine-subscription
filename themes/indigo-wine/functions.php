@@ -345,7 +345,11 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
 }
 
 
-
+/**
+ * [indigo_rangelogic - added to get the max value of provided value in a given range]
+ * @param  [type] $quantity [description]
+ * @return [type]           [description]
+ */
 function indigo_rangelogic($quantity){
      for($i=1;$i<=500;$i++){
          $rangearr[]=$i;
@@ -370,7 +374,11 @@ function indigo_rangelogic($quantity){
 
 // add_action( 'woocommerce_before_shop_loop', 'woocommerce_pagination', 10 );
 
-
+/**
+ * [filter_woocommerce_product_categories_widget_args -code to display subcategories of current product categories ]
+ * @param  [type] $list_args [description]
+ * @return [type]            [description]
+ */
 function filter_woocommerce_product_categories_widget_args( $list_args ) { 
 
      if (is_product_category() || isset($_REQUEST['s'])) {
@@ -410,8 +418,15 @@ function retitle_woo_category_widget($title, $widet_instance, $widget_id) {
     return $title;
 }
 add_filter ( 'widget_title' , 'retitle_woo_category_widget', 10, 3);
+/**
+ * end of the code to display subcategories of current product categories 
+ */
 
 
+/**
+ * [indigo_start_session initialize session]
+ * @return [type] [description]
+ */
 function indigo_start_session()
 {
     if (!session_id())
@@ -419,11 +434,18 @@ function indigo_start_session()
 }
 add_action("init", "indigo_start_session", 1);
 
-//Disabling AJAX for Cart Page..
+
+
+
+/**
+ * [cart_script_disabled -disabled ajax call on cart page - removing items duplication issue]
+ * @return [type] [description]
+ */
 function cart_script_disabled(){
     wp_dequeue_script( 'wc-cart' );
 }
 add_action( 'wp_enqueue_scripts', 'cart_script_disabled' );
+
 
 
 add_filter( 'woocommerce_product_tabs', 'woo_rename_tabs', 98 );
@@ -438,14 +460,13 @@ function woo_rename_tabs( $tabs ) {
 
 }
 
-require get_template_directory()."/subscription/product-subscription.php";
+require get_template_directory()."/subscription/product-subscription.php"; // custom order subscription code
 
 
-require get_stylesheet_directory()."/api/index.php";
+require get_stylesheet_directory()."/api/index.php"; //api registration
 
 
 // Sort popularity and rating removed
-
 function my_woocommerce_catalog_orderby( $orderby ) {
     unset($orderby["popularity"]);
     unset($orderby["rating"]);
@@ -455,7 +476,6 @@ add_filter( "woocommerce_catalog_orderby", "my_woocommerce_catalog_orderby", 20 
 
 
 // Logged-in user shortcode
-
 function check_user ($params, $content = null){
 
   if ( !is_user_logged_in() ){
@@ -471,12 +491,12 @@ function check_user ($params, $content = null){
   }
 
 }
-
-//add a shortcode which calls the above function
 add_shortcode('loggedin', 'check_user' );
 
-
-
+/**
+ * [ajax_check_user_logged_in js loggedin check]
+ * @return [type] [description]
+ */
 function ajax_check_user_logged_in() {
     echo is_user_logged_in()?'yes':'no';
     die();
@@ -484,7 +504,11 @@ function ajax_check_user_logged_in() {
 add_action('wp_ajax_is_user_logged_in', 'ajax_check_user_logged_in');
 add_action('wp_ajax_nopriv_is_user_logged_in', 'ajax_check_user_logged_in');
 
-//custom post changes
+/**
+ * [filter_posts_clauses - modify query -product filter in current product-category]
+ * @param  [type] $args [description]
+ * @return [type]       [description]
+ */
 function filter_posts_clauses( $args ) { 
     global $wpdb;
   
@@ -524,17 +548,97 @@ function dump_request( $input ) {
 }
 
 
-//Tags active class
 
+/**
+ * [indigo_tag_cloud_class_active method add active-tag class against selected tag]
+ * @param  [type] $tags_data [description]
+ * @return [type]            [description]
+ */
 function indigo_tag_cloud_class_active($tags_data) { 
-    $body_class = get_body_class(); foreach ($tags_data as $key => $tag) {
-     if(in_array('term-'.$tag['id'], $body_class)) { $tags_data[$key]['class'] = $tags_data[$key]['class'] ." active-tag"; } } return $tags_data; 
+    
+    $body_class = get_body_class(); 
+    foreach ($tags_data as $key => $tag) {
+        if(in_array('term-'.$tag['id'], $body_class)) { 
+            $tags_data[$key]['class'] = $tags_data[$key]['class'] ." active-tag"; 
+        } 
+    }
+
+    return $tags_data; 
  }
 
 add_filter('wp_generate_tag_cloud_data', 'indigo_tag_cloud_class_active');
 
 
 
+/**
+ * [mandatory_excerpt addded to set description when creating products]
+ * @param  [type] $data [description]
+ * @return [type]       [description]
+ */
+function mandatory_excerpt($data) {
+   if ( 'product' == $data['post_type'] ) {
+       
+        $excerpt = $data['post_excerpt'];
+        $post_content = $data['post_content'];
+
+        if (empty($post_content)) {
+        
+            if ($data['post_status'] === 'publish') {
+              add_filter('redirect_post_location', 'content_error_message_redirect', '99');
+            }
+        
+            $data['post_status'] = 'draft';
+        } 
+        else if (empty($excerpt)) {
+        
+            if ($data['post_status'] === 'publish') {
+              add_filter('redirect_post_location', 'excerpt_error_message_redirect', '99');
+            }
+        
+            $data['post_status'] = 'draft';
+        }
+   } 
+
+  return $data;
+}
+
+
+add_filter('wp_insert_post_data', 'mandatory_excerpt');
+
+function excerpt_error_message_redirect($location) {
+  remove_filter('redirect_post_location', __FILTER__, '99');
+  return add_query_arg('excerpt_required', 1, $location);
+}
+
+
+function content_error_message_redirect($location) {
+  remove_filter('redirect_post_location', __FILTER__, '99');
+  return add_query_arg('excerpt_required', 2, $location);
+}
+
+
+function excerpt_admin_notice() {
+  if (!isset($_GET['excerpt_required'])) return;
+    switch (absint($_GET['excerpt_required'])) {
+        case 1:
+          $message = 'Product Short Description is mandatory.';
+          break;
+        case 2:
+          $message = 'Product  Description is mandatory.';
+
+          break;
+        default:
+          $message = 'Unexpected error';
+    }
+  echo '<div id="notice" class="error"><p>' . $message . '</p></div>';
+}
+
+
+add_action('admin_notices', 'excerpt_admin_notice');
+
+/**
+ * End of the mandatory description code
+ */
 
 
 
