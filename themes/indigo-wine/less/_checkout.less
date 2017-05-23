@@ -186,7 +186,28 @@ abbr{
 
 
 
-
+@media screen and (max-width: 600px){
+	.woocommerce-page .woocommerce{
+		.woocommerce-info{
+			padding: 1em 0 1em 3.5em !important;
+    		margin-top: 1.5em;
+    		font-size: 0.9em;
+		}
+		.woocommerce-checkout{
+			.woocommerce-billing-fields__field-wrapper{
+				.form-row-first,.form-row-last{
+					width: 100%;
+					float: none;
+				}
+				.form-row{
+					textarea{
+						height: 2em;
+					}
+				}
+			}
+		}
+	}
+}
 
 
 

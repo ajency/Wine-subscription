@@ -148,6 +148,12 @@
                             echo hb_woo_cart();
                         } ?-->
                         
+                         <?php
+                        if ( is_user_logged_in() ) {
+                             echo '<ul class="custom-cart"><li class="header-cart-count"><a href="/cart_2"><i class="fa fa-shopping-cart"></i> '.  WC()->cart->get_cart_contents_count().' item</a></li></ul>';
+                             }
+                        ?>
+                           
                         <?php
                         if ( is_user_logged_in() ) {
                             $myaccount_page_id = get_option( 'woocommerce_myaccount_page_id' );
