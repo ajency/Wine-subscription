@@ -46,6 +46,7 @@ function enqueue_font_awesome() {
  *
  * Source: http://wordpress.org/plugins/woocommerce-menu-bar-cart/
  */
+
 // add_filter('wp_nav_menu_items','sk_wcmenucart', 10, 2);
 // function sk_wcmenucart($menu, $args) {
 
@@ -82,6 +83,79 @@ function enqueue_font_awesome() {
 //     return $menu . $social;
 
 // }
+
+
+/**
+ * Ensure cart contents update when products are added to the cart via AJAX
+ */
+function my_header_add_to_cart_fragment( $fragments ) {
+
+    ob_start();
+    $count = WC()->cart->cart_contents_count;
+
+    ?>
+    <a class="wcmenucart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>">
+
+    <?php
+   
+       $menu_item="";
+
+    if ( $count > 0 ) {
+   
+        $cart_contents = sprintf(_n('%d item', '%d items', $count, 'indigo-wine'), $count);
+        $menu_item .= '<i class="fa fa-shopping-cart"></i> ';
+
+        $menu_item .= $cart_contents;
+
+        echo $menu_item;        
+    }
+        ?></a><?php
+ 
+    $fragments['a.wcmenucart-contents'] = ob_get_clean();
+     
+    return $fragments;
+}
+
+add_filter( 'woocommerce_add_to_cart_fragments', 'my_header_add_to_cart_fragment' );
+
+
+add_filter('wp_nav_menu_items','sk_wcmenucart', 10, 2);
+function sk_wcmenucart($menu, $args) {
+
+    // Check if WooCommerce is active and add a new item to a menu assigned to Primary Navigation Menu location
+    if ( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) || 'my-custom-menuu' !== $args->theme_location || !is_user_logged_in())
+        return $menu;
+
+        ob_start();
+        global $woocommerce;
+        $viewing_cart = __('View your shopping cart', 'your-theme-slug');
+        $start_shopping = __('Start shopping', 'your-theme-slug');
+        $cart_url = $woocommerce->cart->get_cart_url();
+        $shop_page_url = get_permalink( woocommerce_get_page_id( 'shop' ) );
+        $cart_contents_count = $woocommerce->cart->cart_contents_count;
+        $cart_contents = sprintf(_n('%d item', '%d items', $cart_contents_count, 'indigo-wine'), $cart_contents_count);
+        $cart_total = $woocommerce->cart->get_cart_total();
+        // Uncomment the line below to hide nav menu cart item when there are no items in the cart
+        // if ( $cart_contents_count > 0 ) {
+            if ($cart_contents_count == 0) {
+                $menu_item = '<li class="right"><a class="wcmenucart-contents" href="'. $shop_page_url .'" title="'. $start_shopping .'">';
+            } else {
+                $menu_item = '<li class="right"><a class="wcmenucart-contents" href="'. $cart_url .'" title="'. $viewing_cart .'">';
+            }
+
+            $menu_item .= '<i class="fa fa-shopping-cart"></i> ';
+
+            // $menu_item .= $cart_contents.' - '. $cart_total;
+            $menu_item .= $cart_contents;
+            $menu_item .= '</a></li>';
+        // Uncomment the line below to hide nav menu cart item when there are no items in the cart
+        // }
+        echo $menu_item;
+    $social = ob_get_clean();
+    return $menu . $social;
+
+}
+
 
 
  
@@ -640,16 +714,6 @@ add_action('admin_notices', 'excerpt_admin_notice');
  * End of the mandatory description code
  */
 
-
-add_filter( 'woocommerce_add_to_cart_fragments', 'iconic_cart_count_fragments', 10, 1 );
- 
-function iconic_cart_count_fragments( $fragments ) {
-    
-    $fragments['li.header-cart-count'] = '<li class="header-cart-count"><a href="/cart_2"><i class="fa fa-shopping-cart"></i> ' . WC()->cart->get_cart_contents_count() . ' item</a></li>';
-    
-    return $fragments;
-    
-}
 
 
 

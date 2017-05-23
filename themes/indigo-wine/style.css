@@ -294,12 +294,6 @@ body {
   display: -ms-flexbox;
   display: flex;
 }
-.ind-custom-menu .col-right .custom-cart li {
-  padding: 0;
-}
-.ind-custom-menu .col-right .custom-cart li a {
-  font-family: gotham_bookregular;
-}
 .ind-custom-menu.fixed {
   position: fixed;
   width: calc(100% - 30px);
