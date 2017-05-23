@@ -370,12 +370,26 @@
 			margin: 0em -20px 20px -20px;
 		    color: @brand-secondary;
 		}
-		.woocommerce-cart-form .cart .quantity.quantity input.qty{
-			height: 20px;
+		.woocommerce-cart-form.woocommerce-cart-form .cart .quantity.quantity{
+			justify-content: flex-end;
 		}
 		.woocommerce .col-9{
 			margin-bottom: 0 !important;
 		}
+	}
+	.woocommerce-cart-form .shop_table{
+		.woocommerce-cart-form__cart-item td{
+			padding-right: 0.5em !important;
+			&:last-child{
+				padding-right: 0.5em !important;
+			}
+			&:before{
+				font-family: 'gotham_mediumregular';
+			}
+		}
+	}
+	.woocommerce-page #main-content{
+		margin-top: 0;
 	}
 }
 
