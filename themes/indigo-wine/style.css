@@ -2358,6 +2358,10 @@ a[data-readmore-toggle].more:before {
   font-weight: 400;
   color: #022c4c !important;
   font-size: 1.75em !important;
+  text-transform: capitalize;
+}
+#hb-page-title .hb-page-title h1 {
+  display: inline;
 }
 .hb-animate-element {
   opacity: 1;

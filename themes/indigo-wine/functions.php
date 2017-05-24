@@ -723,9 +723,3 @@ function filter_woocommerce_return_to_shop_redirect( $wc_get_page_permalink ) {
          
 add_filter( 'woocommerce_return_to_shop_redirect', 'filter_woocommerce_return_to_shop_redirect', 10, 1 ); 
 
-
-
-
-
-
-
