@@ -8,7 +8,7 @@ function subscription_content_func(){
 global $wpdb;
 
 $user_id =get_current_user_id();
-$query = new WP_Query( array( 'post_type' => 'subscription','author' => $user_id) ) ;
+$query = new WP_Query( array( 'post_type' => 'subscription','author' => $user_id, 'posts_per_page' => -1) ) ;
 $subscription_data = $query->posts;
 ?>
   <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
@@ -52,6 +52,11 @@ foreach($subscription_data as $subscription_val) {
                 }  
                 elseif ( 'subscription-nextdate' === $column_id ) {  
                   echo  nextduedate( $subscription_val->ID);
+                }  
+                elseif ( 'subscription-actions' === $column_id ) {  
+                 
+                  echo "<a href=".site_url()."/my-account/view-subscription/?subid=".$subscription_val->ID.">View</a>";
+                  
                 } 
 
                 ?> 

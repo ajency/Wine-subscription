@@ -58,7 +58,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
                 <?php
                   $subscriptionid=get_post_meta( $order->ID, '_subscription_id',true );
                   $subscriptiontype=get_post_meta( $subscriptionid, '_subscription_type',true );
-                   echo esc_html(ucfirst($subscriptiontype));
+                  echo $subscriptiontype!=''? esc_html(ucfirst($subscriptiontype)) : "N/A";
                 ?>
                  
               <?php elseif ( 'order-status' === $column_id ) : ?>

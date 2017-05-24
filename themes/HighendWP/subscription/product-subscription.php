@@ -152,6 +152,7 @@ add_action('woocommerce_checkout_update_order_meta','add_custom_meta_data_for_or
  
 function indigo_add_subscription_endpoint() {
     add_rewrite_endpoint( 'subscription', EP_ROOT | EP_PAGES );
+    add_rewrite_endpoint( 'view-subscription', EP_ROOT | EP_PAGES );
 }
  
 add_action( 'init', 'indigo_add_subscription_endpoint' );
@@ -159,6 +160,7 @@ add_action( 'init', 'indigo_add_subscription_endpoint' );
 
 function indigo_subscription_query_vars( $vars ) {
     $vars[] = 'subscription';
+    $vars[] = 'view-subscription';
     return $vars;
 }
  
@@ -181,13 +183,22 @@ add_filter( 'woocommerce_account_menu_items', 'indigo_add_subscription_link_my_a
  
 
 function indigo_subscription_content() {
-  
+
   require get_template_directory().'/woocommerce/myaccount/subscription.php';
   echo do_shortcode( '[subscription_content]' );
   die();
 }
  
 add_action( 'woocommerce_account_subscription_endpoint', 'indigo_subscription_content' );
+
+
+function indigo_view_subscription_content() {
+  require get_template_directory().'/woocommerce/myaccount/view-subscription.php';
+  echo do_shortcode( '[view_subscription_content]' );
+  die();
+}
+ 
+add_action( 'woocommerce_account_view-subscription_endpoint', 'indigo_view_subscription_content' );
 
 
 function filter_woocommerce_account_orders_columns( $array ) { 
@@ -198,7 +209,7 @@ function filter_woocommerce_account_orders_columns( $array ) {
     'order-subtype'    => __( 'Subscription Type', 'woocommerce' ),
     'order-status'  => __( 'Status', 'woocommerce' ),
     'order-total'   => __( 'Total', 'woocommerce' ),
-    'order-actions' => '&nbsp;',
+    'order-actions' => 'Action',
   ); 
 
     return $array; 
@@ -238,4 +249,19 @@ function nextduedate($subscription_id){
 
 
 }
+
+function indigo_subscriptionaccount_orders_columns() { 
+
+  $array=array(
+    'order-number'  => __( 'Order', 'woocommerce' ),
+    'order-date'    => __( 'Date', 'woocommerce' ),
+    'order-status'  => __( 'Status', 'woocommerce' ),
+    'order-total'   => __( 'Total', 'woocommerce' ),
+    'order-actions' => 'Action',
+  ); 
+
+    return $array; 
+}; 
+
+
 ?>
