@@ -3455,6 +3455,7 @@ body .woocommerce form .form-row .button {
   font-family: 'gotham_lightregular';
   font-weight: 600;
   color: #022c4c;
+  text-align: center;
 }
 .element-row .woocommerce .shop_table th a,
 .hb-main-content .woocommerce .shop_table th a,
@@ -4006,6 +4007,7 @@ body .woocommerce form .form-row .button {
 }
 .woocommerce-account .woocommerce-MyAccount-navigation {
   min-height: 450px;
+  width: 25%;
 }
 .woocommerce-account .woocommerce-MyAccount-navigation li a {
   font-family: gotham_bookregular;
@@ -4029,9 +4031,9 @@ body .woocommerce form .form-row .button {
 }
 .woocommerce-account .woocommerce-MyAccount-content {
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.13);
-  padding: 1.5em;
+  padding: 1em;
   margin-bottom: 5em;
-  width: calc(68% - 2em);
+  width: calc(75% - 2em);
 }
 .woocommerce-account .woocommerce-MyAccount-content > p:not(.dashboard-title) {
   color: #022c4c;
@@ -4053,6 +4055,7 @@ body .woocommerce form .form-row .button {
   background-color: transparent;
   font-family: gotham_mediumregular;
   text-decoration: underline;
+  padding-right: 0;
 }
 .woocommerce-account .woocommerce-MyAccount-content .woocommerce-Pagination .woocommerce-button {
   background-color: #022c4c;
