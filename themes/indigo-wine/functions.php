@@ -92,15 +92,21 @@ function my_header_add_to_cart_fragment( $fragments ) {
 
     ob_start();
     $count = WC()->cart->cart_contents_count;
+     if ($count == 0) {
+        $r_page_url = filter_woocommerce_return_to_shop_redirect($parameter);
+     }
+     else{
+          $r_page_url =  WC()->cart->get_cart_url();
+     }
 
     ?>
-    <a class="wcmenucart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>">
+    <a class="wcmenucart-contents" href="<?php echo $r_page_url; ?>" title="<?php _e( 'View your shopping cart' ); ?>">
 
     <?php
    
        $menu_item="";
 
-    if ( $count > 0 ) {
+   // if ( $count > 0 ) {
    
         $cart_contents = sprintf(_n('%d item', '%d items', $count, 'indigo-wine'), $count);
         $menu_item .= '<i class="fa fa-shopping-cart"></i> ';
@@ -108,7 +114,7 @@ function my_header_add_to_cart_fragment( $fragments ) {
         $menu_item .= $cart_contents;
 
         echo $menu_item;        
-    }
+    //}
         ?></a><?php
  
     $fragments['a.wcmenucart-contents'] = ob_get_clean();
@@ -131,9 +137,9 @@ function sk_wcmenucart($menu, $args) {
         $viewing_cart = __('View your shopping cart', 'your-theme-slug');
         $start_shopping = __('Start shopping', 'your-theme-slug');
         $cart_url = $woocommerce->cart->get_cart_url();
-        $shop_page_url = get_permalink( woocommerce_get_page_id( 'shop' ) );
+        $shop_page_url = filter_woocommerce_return_to_shop_redirect($parameter);
         $cart_contents_count = $woocommerce->cart->cart_contents_count;
-        if($cart_contents_count>0){
+        //if($cart_contents_count>0){
             $cart_contents = sprintf(_n('%d item', '%d items', $cart_contents_count, 'indigo-wine'), $cart_contents_count);
             $cart_total = $woocommerce->cart->get_cart_total();
             // Uncomment the line below to hide nav menu cart item when there are no items in the cart
@@ -152,7 +158,7 @@ function sk_wcmenucart($menu, $args) {
             // Uncomment the line below to hide nav menu cart item when there are no items in the cart
             // }
             echo $menu_item;
-        }
+       // }
     $social = ob_get_clean();
     return $menu . $social;
 
@@ -190,8 +196,18 @@ function ajax_qty_cart() {
     if(isset($_POST['subscription']))
     {    
          
-        $term_list = wp_get_post_terms($threeball_product_values['product_id'],'product_cat',array('fields'=>'slugs'));
-        if(in_array('wine', $term_list))
+        $term_list = wp_get_post_terms($threeball_product_values['product_id'],'product_cat',array('fields'=>'ids'));
+        
+        $category_object = get_term_by('slug', 'wine', 'product_cat');
+      
+        $categories=get_term_children( $category_object->term_id, 'product_cat' );
+        array_push($categories, $category_object->term_id);
+
+           
+        $totals = isInArray($categories, $term_list);
+
+        // if(in_array('wine', $term_list) )
+        if(count($totals) > 0 )
         {    
             if ( $passed_validation ) {
                 WC()->cart->set_quantity( $cart_item_key, $threeball_product_quantity, true );
@@ -369,14 +385,22 @@ add_action( 'woocommerce_cart_calculate_fees', 'sale_custom_price');
 
 function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$cart_item_key=''){
     global $woocommerce;
-     $price=get_post_meta($product_id,  '_price', true );
+    $price=get_post_meta($product_id,  '_price', true );
 
     $row_price        = $price * $quantity;
 
    
-    $term_list = wp_get_post_terms($product_id,'product_cat',array('fields'=>'slugs'));
-    
-    if((indigo_rangelogic($quantity) && in_array('wine', $term_list)) || !in_array('wine', $term_list)){
+    $term_list = wp_get_post_terms($product_id,'product_cat',array('fields'=>'ids'));
+     
+    $category_object = get_term_by('slug', 'wine', 'product_cat');
+      
+    $categories=get_term_children( $category_object->term_id, 'product_cat' );
+    array_push($categories, $category_object->term_id);
+
+       
+    $totals = isInArray($categories, $term_list);
+
+    if((indigo_rangelogic($quantity) && count($totals) > 0) || count($totals)==0){
         $discount_perc=get_post_meta($product_id,  '_sale_discount_percentage', true );
         $discount_price=get_post_meta($product_id,  '_sale_discount_price', true );
        
@@ -723,3 +747,17 @@ function filter_woocommerce_return_to_shop_redirect( $wc_get_page_permalink ) {
          
 add_filter( 'woocommerce_return_to_shop_redirect', 'filter_woocommerce_return_to_shop_redirect', 10, 1 ); 
 
+
+function isInArray($array, $searchIn) {
+    static $inc = array();
+    
+    foreach ($array as $v) {
+        if (is_array($v) && sizeof($v) > 0) {
+            isInArray($v, $searchIn);
+        } else if (!is_array($v) && in_array($v, $searchIn)) {
+            isset($inc[$v]) ? $inc[$v]++ : $inc[$v] = 1;
+        }
+    }
+    
+    return $inc;
+}
