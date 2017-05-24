@@ -4,6 +4,7 @@
  * @subpackage Highend
  */
 ?>
+
 <?php if ( vp_metabox('misc_settings.hb_onepage') && !vp_metabox('misc_settings.hb_disable_navigation')) { ?>
 	<ul id="hb-one-page-bullets"></ul>
 <?php } ?>

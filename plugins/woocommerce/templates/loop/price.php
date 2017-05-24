@@ -24,5 +24,11 @@ global $product;
 ?>
 
 <?php if ( $price_html = $product->get_price_html() ) : ?>
-	<span class="price"><?php echo $price_html; ?></span>
+	<span class="price">
+		<div class="single-price">
+			<span><?php echo $price_html; ?></span>
+			<span class="add-To-Cart"></span>
+		</div>
+	</span>
+
 <?php endif; ?>

@@ -39,7 +39,7 @@ body{
 	background-color: #fff;
 }
 
-.blocked{
+.blocked,.of-hidden{
 	overflow: hidden;
 }
 
@@ -55,9 +55,9 @@ body{
 
 // default button
 
-.brand-button{
-	.vc_btn3.vc_btn3-color-grey.vc_general{
-		background-color: @brand-secondary;
+.brand-button,#main-wrapper{
+	.vc_btn3.vc_btn3-color-grey.vc_general,.single_add_to_cart_button{
+		background-color: @brand-secondary !important;
 	    color: #fff;
 	    font-family:'gotham_mediumregular';
 	    font-size: 1.4em;
@@ -71,6 +71,12 @@ body{
 	    	color: #fff;
 	    }
 	}
+}
+
+#main-wrapper#main-wrapper .single_add_to_cart_button{
+	height: auto;
+    text-transform: inherit;
+    padding: 0.2em 1.8em;
 }
 
 
@@ -106,6 +112,7 @@ body{
 #main-content{
 	// margin-top: 4em;
 	padding-top: 0;
+	min-height: 62vh;
 	@media screen and (max-width: 1400px){
 		// margin-top: 2em;
 	}
@@ -152,6 +159,7 @@ body{
     		top: 5px; 
 			li{
 				padding: 0 1.5em;
+				position: relative;
 				a,.active{
 					color: @brand-primary;
 					font-size: 1.2em;
@@ -183,6 +191,50 @@ body{
 				}
 				&.right{
 					padding: 0;
+				}
+				.sub-menu{
+					position: absolute;
+				    background-color: #fff;
+				    right: 0;
+				    top: 4.2em;
+				    display: none;
+				    min-width: 150px;
+				    padding: 0.5em 0;
+				    box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.11);
+				    flex-direction: column;
+				    li{
+				    	line-height: 2.5;
+				    	a{
+				    		font-size: 1.05em;
+				    		display: block;
+				    		font-family: gotham_bookregular;
+				    		&:after{
+								top: -5px;
+				    		}
+				    	}
+				    }
+				}
+				&:hover{
+					.sub-menu{
+						display: block;
+					}
+				}
+				&.menu-item-has-children{
+					& > a{
+						position: relative;
+						&:before{
+							content: "\f107";
+							padding-left: 0.25em;
+    						font-size: 1.15em;
+    						font: normal normal normal 14px/1 FontAwesome;
+						    text-rendering: auto;
+    						-webkit-font-smoothing: antialiased;
+    						right: -13px;
+    						position: absolute;
+    						top: 2px;
+    						font-size: 1.1em;
+						}
+					}
 				}
 			}
 		}
@@ -234,7 +286,16 @@ body{
 	}
 }
 
-.user-detail{
+
+#main-content.fixed-added{
+	margin-top: 15em !important;
+	@media screen and (max-width: 768px){
+		margin-top: 0em !important;
+	}
+}
+
+
+.user-detail.user-detail{
 	position: relative;
 	color: @brand-primary;
 	cursor: pointer;
@@ -249,7 +310,7 @@ body{
 			}
 		}
 	}
-	.drop{
+	.drop.sub-menu{
 		position: absolute;
 		background-color: #fff;
 		right: 0;
@@ -262,15 +323,29 @@ body{
 			display: block;
 			top: 0;
 			li{
-				line-height: 2;
-				padding: 0.5em 1.5em;
+				padding: 0em 1.2em;
 				font-size: 0.9em;
+				@media screen and (min-width: 1400px){
+					line-height: 2;
+					padding: 0.5em 1.5em;
+				}
+				@media screen and (min-width: 1900px){
+					margin: 0.8em 0 0.5em;
+				}
+				&:last-child{
+					@media screen and (min-width: 1900px){
+						margin-bottom: 0;
+					}
+				}
 				a{
+					display: block;
 					.fa{
 						padding-right: 0.2em;
 					}
 					&:after{
-						top: 0;
+						@media screen and (min-width: 1400px){
+							top: 0;	
+						}
 					}
 				}
 			}
@@ -310,11 +385,11 @@ body{
 		.col{
 			ul{
 				position: relative;
-    			top: -12px; 
+    			top: -3px; 
 				li{
 					padding: 0 1.2em;
 					a,.active{
-						font-size: 1em;
+						// font-size: 1em;
 						font-family:'gotham_mediumregular';
 					}
 				}
@@ -322,11 +397,11 @@ body{
 		}
 		&.fixed{
 			background-position: 13.5% -5px;
-			.col{
-				ul{
-					top: 0
-				}
-			}
+			// .col{
+			// 	ul{
+			// 		top: 0
+			// 	}
+			// }
 		}
 	}
 	.ind-custom-menu.fixed #logo {
@@ -378,9 +453,12 @@ body{
 	.ind-custom-menu{
 		.col{
 			ul{
-    			top: 15px; 
+    			top: 7px; 
 				li{
 					padding: 0 0.8em;
+					a{
+						font-size: 0.95em;
+					}
 				}
 			}
 		}
@@ -407,6 +485,18 @@ body{
 	.owl-carousel{
 		.item{
 			position: relative;
+			.owl-carousel-item-text{
+				&:after{
+					content: '';
+					position: absolute;
+    				height: 100%;
+    				width: 100%;
+    				left: 0;
+    				right: 0;
+    				top: 0;
+    				background-color: rgba(0,0,0,0.35);
+				}
+			}
 		}
 		.owl-wrapper-outer{
 			overflow: visible !important;
@@ -610,6 +700,9 @@ body{
     &:first-letter{
     	border-bottom: 3px solid @brand-primary;
     }
+    @media screen and (min-width: 992px) and (max-width: 1200px){
+    	font-size: 2em;
+    }
     @media screen and (max-width: 768px){
     	text-align: center;
     	font-size: 2em;
@@ -619,10 +712,10 @@ body{
 
 .about-us{
 	.about-data{
-		font-size: 1.5em;
-	    font-weight: 400;
+		font-size: 1.4em;
+	    font-weight: 600;
 	    font-family:'gotham_lightregular';
-	    line-height: 1.3;
+	    line-height: 1.4;
 	    color: @brand-primary;
 		b{
 			font-family:'gotham_mediumregular';
@@ -653,6 +746,7 @@ a[data-readmore-toggle]{
     color: @brand-secondary;
 	margin-top: 0.5em;
 	position: relative;
+	cursor: pointer !important;
 	&:hover{
 		color: lighten(@brand-secondary,10%);
 	}
@@ -743,7 +837,7 @@ a[data-readmore-toggle]{
 	}
 	&__title{
 		color: @brand-secondary;
-    	font-size: 2.3em;
+    	font-size: 2em;
     	line-height: 1.2;
     	letter-spacing: 1px;
     	font-family:'gotham_lightregular';
@@ -1063,7 +1157,7 @@ a[data-readmore-toggle]{
 	& + .without-border{
     	top: -12em;
     	.services-section{
-    		margin-bottom: -10em;
+    		margin-bottom: -12em;
     		.why-caption{
     			line-height: 1.3;
     		}
@@ -1948,24 +2042,27 @@ a[data-readmore-toggle]{
     			display: flex;
     			align-items: center;
 			}
-			.user-detail{
+			.user-detail.user-detail{
 				padding-right: 0.5em;
 				.user{
 					.fa{
 						padding-right: 0;
 					}
 				}
-				.drop{
-					min-width: 120px;
+				.drop.drop{
+					min-width: 135px;
 					top: 2.2em;
 					li{
-						padding: 0 0 0 0.5em;
+						padding: 0.5em 1.2em;
     					font-size: 0.95em;
     					a{
     						color: @brand-primary;
+    						font-size: 1.05em;
     						i{
+    							padding-right: 0.3em;
+    							padding-left: 0;
     							color: @brand-primary;
-    							font-size: 1.1em;
+    							font-size: 1em;
     						}
     					}
 					}
@@ -2208,6 +2305,17 @@ a[data-readmore-toggle]{
 }
 
 
+.about-row,.about-second-row,.delight-row{
+	.wpb_wrapper{
+		a[href="#"]{
+			cursor: default;
+			&:hover{
+				color: inherit;
+			}
+		}
+	}
+
+}
 
 
 

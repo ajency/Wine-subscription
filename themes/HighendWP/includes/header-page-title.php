@@ -86,7 +86,7 @@ if ( $page_title_style == 'stroke-title' ){
 ?>
 
 <!-- START #hb-page-title -->
-<div class="<?php echo $page_title_type; echo ' ' . $page_title_height . ' ' . $page_title_color; ?>" id="hb-page-title">
+<div class="" id="hb-page-title">
 
 	<div class="hb-image-bg-wrap" style="<?php echo $page_title_type_style; ?>"></div>
 
@@ -102,7 +102,7 @@ if ( $page_title_style == 'stroke-title' ){
 		?>">
 			<h1 class="<?php echo $page_title_animation; ?>"><?php 
 				if ( function_exists('is_product_category') && is_product_category() ){
-					_e('Product Category', 'hbthemes');
+					// _e('Product Category', 'hbthemes');
 				} else if ( function_exists('is_shop') && is_shop() ) {
 					if ( vp_metabox('general_settings.hb_page_title_h1', null, $post_id ) )
 						echo vp_metabox('general_settings.hb_page_title_h1', null, $post_id );
@@ -117,7 +117,7 @@ if ( $page_title_style == 'stroke-title' ){
 				} else if ( class_exists('bbPress') && bbp_is_forum_archive() ) {
 					_e('Forums ','hbthemes');
 				} else if ( is_archive() ) {
-					echo hb_options('hb_archives_title');
+					// echo hb_options('hb_archives_title');
 				} else if ( vp_metabox('general_settings.hb_page_title_h1', null, $post_id) ) {
 					echo vp_metabox('general_settings.hb_page_title_h1', null, $post_id);
 				} else {
@@ -128,7 +128,7 @@ if ( $page_title_style == 'stroke-title' ){
 
 			<?php if ( ( class_exists('bbPress') && !bbp_is_forum_archive() ) || !class_exists('bbPress') ) { ?>
 			<?php if ( vp_metabox('general_settings.hb_page_subtitle') || is_search() || is_archive() ) { ?>
-			<br/>
+		
 			<?php if ( !$is_shop ) { ?>
 				<h2 class="<?php echo $page_subtitle_animation; ?>">
 					<?php 
@@ -186,7 +186,7 @@ if ( $page_title_style == 'stroke-title' ){
 						} 
 						else if ( is_tax() ) {
 							$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
-							_e( 'Archives for: ', 'hbthemes' ); echo $term->name;
+							_e( '', 'hbthemes' ); echo $term->name;
 						} else if ( is_tax( 'post_format' ) ) {
 							if (has_post_format('link'))
 								_e("Archive for Link posts","hbthemes");

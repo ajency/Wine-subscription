@@ -341,7 +341,7 @@ if (!class_exists('SimpleModalLogin')) {
 		function login_form() {
 			$output = sprintf('
 	<form name="loginform" id="loginform" action="%s" method="post">
-		<div class="title">%s</div>
+		<div class="title">Welcome back!</div>
 		<div class="simplemodal-login-fields">
 		<p>
 			<label>%s<br />
@@ -478,7 +478,7 @@ if (!class_exists('SimpleModalLogin')) {
 		function registration_form() {
 			$output = sprintf('
 <form name="registerform" id="registerform" action="%s" method="post">
-	<div class="title">%s</div>
+	<div class="title">Create new account and experience the Indigo lifestyle</div>
 	<div class="simplemodal-login-fields">
 	<p>
 		<label>%s<br />

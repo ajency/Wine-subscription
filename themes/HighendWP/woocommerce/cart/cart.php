@@ -22,11 +22,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 wc_print_notices();
 
-do_action( 'woocommerce_before_cart' ); ?>
+do_action( 'woocommerce_before_cart' ); 
+	
+	$cartlimit=count(WC()->cart->get_cart())>4 ? 'cart-limit' : '';
+
+?>
 
 <div class="row clearfix">
 <div class="col-9">
-<form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+
+<div class="hb-notif-box error failure hidden"><div class="message-text"><p><i class="hb-moon-blocked"></i>Your current subscription has been cancelled.</p></div></div>
+
+<form class="woocommerce-cart-form <?php echo $cartlimit; ?>" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+<input type="hidden" id="subscription_status" name="subscription_status" value="no">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
@@ -122,6 +130,12 @@ do_action( 'woocommerce_before_cart' ); ?>
 						<td class="product-subtotal" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
 							<?php
 								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
+
+								$updated_price=WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] );
+								$actual_price=wc_price($cart_item['quantity']*$_product->get_price());
+
+								if($updated_price!=	$actual_price)
+								echo ' (<strike>'.$actual_price. '</strike>) ';
 							?>
 						</td>
 					</tr>
@@ -153,6 +167,48 @@ do_action( 'woocommerce_before_cart' ); ?>
 </div>
 
 <div class="col-3">
+
+<div class="no-subscription get-started-sub box-wrap">
+	<div class="cart-bottle"></div>
+	<h5 class="title">Its that easy! Your subscription will be activated and will arrive by your selected delivery day.</h5>
+	<?php 
+	if(is_user_logged_in()){
+	?>
+	<a href="javascript:void(0)" class="sub-started modal-open open-subscription-modal" id="subscribe_now">Get Started</a>
+	<?php 
+	
+	} 
+	else {
+	?>
+	<a class="simplemodal-login" href="/wp-login.php">Get Started</a>
+	<?php 
+	}
+	?>
+</div>
+
+<div class="cancel-subscription no-subscription box-wrap hidden">
+	<div class="cart-bottle"></div>
+	<h5 class="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste earum.</h5>
+	<a href="#" class="sub-started modal-open" id="unsubscribe-order">Unsubscribe</a>
+</div>
+
+<!-- <div class="subscription box-wrap">
+	<h2 class="title">Subscribe the orders</h2>
+	<label class="sub-label">Type of subscription</label>
+	<select class="sub-select">
+		<option>Monthly</option>
+		<option>Quarterly</option>
+		<option>Yearly</option>
+	</select>
+	<div class="brand-button">
+		<button class="vc_btn3 vc_btn3-color-grey vc_general modal-open" data-modal-id="subscribe-modal" id="subscribe_now">Subscribe Now!</button>
+	</div>
+	<div class="no-sub unsubscribe hidden">
+		Monthly subscription activated. Click <a href="#" class="un-link">here</a> if you want to unsubscribe
+	</div>
+</div> -->
+
+
 <div class="cart-collaterals">
 	<?php woocommerce_cart_totals(); ?>
 </div>

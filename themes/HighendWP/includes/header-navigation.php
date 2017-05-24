@@ -147,16 +147,22 @@
                         if ( hb_options('hb_top_header_checkout') && class_exists('Woocommerce') ) {
                             echo hb_woo_cart();
                         } ?-->
-                        
+                           
                         <?php
                         if ( is_user_logged_in() ) {
-                           echo '<ul><li class="user-detail"><div class="user"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-angle-down arrow-down" aria-hidden="true"></i><div class="drop">
+                            $myaccount_page_id = get_option( 'woocommerce_myaccount_page_id' );
+                            if ( $myaccount_page_id ) {
+                                $myaccount_page_url = get_permalink( $myaccount_page_id );
+                            }
+
+                           echo '<ul><li class="user-detail"><div class="user"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-angle-down arrow-down" aria-hidden="true"></i><div class="drop sub-menu">
                            <ul>
-                           <li>
-                            <a href="'.wp_logout_url( get_permalink() ).'"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li></ul></div></div></li></ul>';
+                           <li><a href="'.$myaccount_page_url.'"><i class="fa fa-user" aria-hidden="true"></i> My Account</a></li>
+                           <li><a href="'.wp_logout_url( home_url() ).'"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li>
+                            </ul></div></div></li></ul>';
                         }
                         else{
-                            echo '<ul><li class="user-detail"><a class="simplemodal-login" href="/wp-login.php"><i class="fa fa-user" aria-hidden="true" title="Login"></i></a></li></ul>';
+                            echo '<ul><li class="user-detail"><a class="simplemodal-login" href="/wp-login.php?redirect_to='.$_SERVER['REQUEST_URI'].'"><i class="fa fa-user" aria-hidden="true" title="Login"></i></a></li></ul>';
                         }
                         ?>
                        
@@ -173,10 +179,16 @@
                         </div>
                       <?php
                         if ( is_user_logged_in() ) {
-                           echo '<div class="user-detail"><div class="user"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-angle-down arrow-down" aria-hidden="true"></i><div class="drop">
+                            $myaccount_page_id = get_option( 'woocommerce_myaccount_page_id' );
+                            if ( $myaccount_page_id ) {
+                                $myaccount_page_url = get_permalink( $myaccount_page_id );
+                            }
+
+                           echo '<div class="user-detail"><div class="user"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-angle-down arrow-down" aria-hidden="true"></i><div class="drop sub-menu">
                            <ul>
-                           <li>
-                            <a href="'.wp_logout_url( get_permalink() ).'"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li></ul></div></div></div>';
+                           <li><a href="'.$myaccount_page_url.'"><i class="fa fa-user" aria-hidden="true"></i> My Account</a></li>
+                           <li><a href="'.wp_logout_url( get_permalink() ).'"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li>
+                           </ul></div></div></div>';
                         }
                         else{
                             echo '<div class="user-detail"><a class="simplemodal-login" href="/wp-login.php"><i class="fa fa-user" aria-hidden="true" title="Login"></i></a></div>';

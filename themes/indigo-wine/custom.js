@@ -10,14 +10,37 @@ jQuery(function(){
 	  var sticky = jQuery('.ind-custom-menu'),
 	      scroll = jQuery(window).scrollTop();
 
-	  if (scroll >= 100){
+	  if (scroll >= 150){
 	  	sticky.addClass('fixed');
+	  	jQuery('#main-content').addClass('fixed-added');
 	  } 
 	  else{
 		sticky.removeClass('fixed');
+		jQuery('#main-content').removeClass('fixed-added');
 	  }
 	  
 	});
+
+	// var $navBar = jQuery('.ind-custom-menu');
+
+	// // find original navigation bar position
+	// var navPos = $navBar.offset().top;
+
+	// // on scroll
+	// jQuery(window).scroll(function() {
+
+	//     // get scroll position from top of the page
+	//     var scrollPos = jQuery(this).scrollTop();
+
+	//     // check if scroll position is >= the nav position
+	//     if (scrollPos >= navPos) {
+	//         $navBar.addClass('fixed');
+	//     } else {
+	//         $navBar.removeClass('fixed');
+	//     }
+
+	// });
+
 
 	// Destroy default init
 
@@ -85,6 +108,20 @@ jQuery(function(){
 	   lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
 	 });
 
+	jQuery('.product_desc').readmore({
+	   speed: 25,
+	   collapsedHeight: 230,
+	   moreLink: '<a href="#" class="more">Show More <i class="fa fa-angle-down" aria-hidden="true"></i></a>',
+	   lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
+	 });
+
+	// jQuery('#tab-description').readmore({
+	//    speed: 25,
+	//    collapsedHeight: 120,
+	//    moreLink: '<a href="#" class="more">Show More <i class="fa fa-angle-down" aria-hidden="true"></i></a>',
+	//    lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
+	//  });
+
 
 	// featured product scroll
 
@@ -107,6 +144,21 @@ jQuery(function(){
 	    jQuery('body').removeClass('blocked');
 	});
 
+
+	// My account action mobile
+
+	jQuery('.account-action').click(function(){
+		jQuery('.woocommerce-MyAccount-navigation').toggleClass('active');
+		jQuery('body').toggleClass('of-hidden');
+		jQuery(this).find('.fa').toggleClass('fa-bars fa-times');
+	});
+
+
+
+	// remove extra clear class from product listing
+
+	jQuery('.hb-equal-col-height .products-4 .clear').remove();
+
 	// click outside hide
 
 	jQuery(document).mouseup(function(e) {
@@ -118,6 +170,13 @@ jQuery(function(){
 	  }
 	});
 
+	// Trigered cart icon to actual cart click
+
+	jQuery('.add-To-Cart').click(function(){
+		jQuery(this).parent().parent().parent('.hb-product-meta-wrapper').siblings('.hb-woo-image-wrap').find('.add_to_cart_button').trigger("click");
+	});
+
+
 	function opacShow(){
 		jQuery('.discount').addClass('active');	
 	}
@@ -126,6 +185,7 @@ jQuery(function(){
 	jQuery('.site-offer .close').click(function(){
 	    jQuery('.discount').hide();
 	});
+
 
 		// Custom menu click and scroll to particular ID
 
@@ -192,17 +252,30 @@ jQuery(function(){
 }).call(this);
 
 jQuery(document).ready(function() {
-jQuery("#toggleButton").click( function(event){
-     event.preventDefault();
-     if (jQuery(this).hasClass("isDown") ) {
-     // jQuery( ".navbar-fixed-top" ).animate({ "margin-top": "-62px" }, "fast" );
-     jQuery( ".hb-sidebar" ).animate({ "left": "0px" }, "fast" );
-     jQuery(this).removeClass("isDown");
-     } else {
-     // jQuery( ".navbar-fixed-top" ).animate({ "margin-top": "0px" }, "fast" );
-     jQuery( ".hb-sidebar" ).animate({ "left": "-780px" }, "fast" );
-     jQuery(this).addClass("isDown");
-     }
-     return false;
+
+	jQuery("#toggleButton").click( function(event){
+	     event.preventDefault();
+
+	     if (jQuery(this).hasClass("isDown") ) {
+	     	jQuery( ".hb-sidebar" ).animate({ "left": "0px" }, "fast" );
+	     	jQuery(this).removeClass("isDown");
+	     	jQuery('body').addClass('blocked');
+	     } else {
+	     	jQuery( ".hb-sidebar" ).animate({ "left": "-780px" }, "fast" );
+	     	jQuery(this).addClass("isDown");
+	     	jQuery('body').removeClass('blocked');
+	     }
+
      });   
 });
+
+
+
+
+
+
+
+
+
+
+

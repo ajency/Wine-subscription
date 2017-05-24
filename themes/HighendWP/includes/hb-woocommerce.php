@@ -101,9 +101,18 @@
 			}
 		}
 
+		$discount_perc=get_post_meta($post->ID,  '_sale_discount_percentage', true );
+		$discount_price=get_post_meta( $post->ID,  '_sale_discount_price', true );
+		$disvalue_mgs="";
+		if($discount_perc!='' && $discount_perc !=0){
+			$disvalue_mgs=$discount_perc."%";
+		}
+		else if($discount_price!='' && $discount_price !=0){
+			$disvalue_mgs="$".$discount_price;
+		}
 		?>
 		<div id="main-content" class="singleContent">
-			<?php if ( $sidebar_layout == 'fullwidth' ) { ?>
+			<?php if ( $sidebar_layout == 'fullwidth' && $disvalue_mgs!="") { ?>
 				<div class="discount">
 					<div class="container">
 						<div class="row">
@@ -111,7 +120,7 @@
 								<div class="site-offer">
 									<div class="message">
 										<span class="percent"></span>
-										<h2 class="title">Buy <b>6 bottles</b> and avail a flat 30% off</h2>
+										<h2 class="title">Buy <b>6 bottles</b> and avail a flat <?php echo $disvalue_mgs; ?> off</h2>
 									</div>
 									<i class="fa fa-times close" aria-hidden="true"></i>
 								</div>
@@ -192,7 +201,7 @@
 	/* MISC FUNCTIONS
 	================================================== */
 	function woocommerce_template_loop_product_title() {
-		echo '<h3 class="woocommerce-loop-product__title">' . get_the_title() . '</h3>';
+		echo '<h3 class="woocommerce-loop-product__title" title="'.get_the_title().'">' . get_the_title() . '</h3>';
 	}
 
 	function hb_is_out_of_stock() {
@@ -285,8 +294,8 @@
 				if ( !isset($woocommerce) ) {
 					return;
 				}
-				$checkout_url = $woocommerce->cart->get_checkout_url();
-				?><ul id="hb-woo-notif" data-text="<?php _e('added to cart.', 'hbthemes'); ?>" data-cart-text="<?php _e('Checkout', 'hbthemes'); ?>" data-cart-url="<?php echo $checkout_url; ?>"></ul><?php
+				$checkout_url = $woocommerce->cart->get_cart_url();
+				?><ul id="hb-woo-notif" data-text="<?php _e('added to cart.', 'hbthemes'); ?>" data-cart-text="<?php _e('Cart', 'hbthemes'); ?>" data-cart-url="<?php echo $checkout_url; ?>"></ul><?php
 			}
 		}
 	}
