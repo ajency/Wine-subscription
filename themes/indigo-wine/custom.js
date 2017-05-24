@@ -145,6 +145,16 @@ jQuery(function(){
 	});
 
 
+	// My account action mobile
+
+	jQuery('.account-action').click(function(){
+		jQuery('.woocommerce-MyAccount-navigation').toggleClass('active');
+		jQuery('body').toggleClass('of-hidden');
+		jQuery(this).find('.fa').toggleClass('fa-bars fa-times');
+	});
+
+
+
 	// remove extra clear class from product listing
 
 	jQuery('.hb-equal-col-height .products-4 .clear').remove();
