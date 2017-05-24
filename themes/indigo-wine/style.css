@@ -3866,6 +3866,11 @@ body .woocommerce form .form-row .button {
   margin-bottom: 1em;
   padding: 1.5em 1em;
 }
+@media screen and (max-width: 600px) {
+  .no-subscription {
+    margin-bottom: 2.5em;
+  }
+}
 .no-subscription .title {
   font-family: 'gotham_mediumregular';
   font-size: 1em;
@@ -4287,8 +4292,12 @@ body .woocommerce form .form-row .button {
   .woocommerce .woocommerce-customer-details .flex-child.cust-addr {
     padding-top: 2em;
   }
-  .woocommerce .woocommerce-customer-details .flex-child h3 {
+  .woocommerce .woocommerce-customer-details .flex-child h3,
+  .woocommerce .woocommerce-customer-details .flex-child h2 {
     font-size: 1.4em;
+    margin-bottom: 0.3em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.3em;
   }
   .woocommerce form .form-row-first,
   .woocommerce-page form .form-row-first,
@@ -4301,7 +4310,7 @@ body .woocommerce form .form-row .button {
     min-height: 50vh;
   }
   #hb-header {
-    z-index: 10;
+    z-index: 1;
   }
   .woocommerce-orders-table .woocommerce-orders-table__row:not(:last-child) {
     border-bottom: 1px solid #ddd;
@@ -4518,7 +4527,7 @@ abbr {
   .woocommerce-page .woocommerce .woocommerce-info {
     padding: 1em 0 1em 3.5em !important;
     margin-top: 1.5em;
-    font-size: 0.9em;
+    font-size: 0.95em;
   }
   .woocommerce-page .woocommerce .woocommerce-checkout .woocommerce-billing-fields__field-wrapper .form-row-first,
   .woocommerce-page .woocommerce .woocommerce-checkout .woocommerce-billing-fields__field-wrapper .form-row-last {
@@ -4527,6 +4536,22 @@ abbr {
   }
   .woocommerce-page .woocommerce .woocommerce-checkout .woocommerce-billing-fields__field-wrapper .form-row textarea {
     height: 2em;
+  }
+  .woocommerce-page .woocommerce .checkout_coupon .form-row {
+    float: none;
+  }
+  .woocommerce-page .woocommerce .checkout_coupon .form-row-first {
+    width: 100%;
+    padding-right: 1em;
+  }
+  .woocommerce-page .woocommerce .checkout_coupon .form-row-last {
+    padding-left: 0;
+  }
+  .woocommerce-page .woocommerce .checkout_coupon .form-row-last input[type="submit"] {
+    font-size: 0.85em !important;
+  }
+  #main-content {
+    z-index: 1;
   }
 }
 .not-found-box {
