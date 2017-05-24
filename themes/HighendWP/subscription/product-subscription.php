@@ -149,4 +149,93 @@ function add_custom_meta_data_for_order($order_id, $posted ){
 
 add_action('woocommerce_checkout_update_order_meta','add_custom_meta_data_for_order', 10, 2);
 
+ 
+function indigo_add_subscription_endpoint() {
+    add_rewrite_endpoint( 'subscription', EP_ROOT | EP_PAGES );
+}
+ 
+add_action( 'init', 'indigo_add_subscription_endpoint' );
+ 
+
+function indigo_subscription_query_vars( $vars ) {
+    $vars[] = 'subscription';
+    return $vars;
+}
+ 
+add_filter( 'query_vars', 'indigo_subscription_query_vars', 0 );
+ 
+ 
+function indigo_add_subscription_link_my_account( $items ) {
+    $items = array(
+      'dashboard'       => __( 'Dashboard', 'woocommerce' ),
+      'subscription'          => __( 'Subscription', 'woocommerce' ),
+      'orders'          => __( 'Orders', 'woocommerce' ),     
+      'edit-address'    => __( 'Addresses', 'woocommerce' ),
+      'payment-methods' => __( 'Payment methods', 'woocommerce' ),
+      'edit-account'    => __( 'Account details', 'woocommerce' ),
+    );
+    return $items;
+}
+ 
+add_filter( 'woocommerce_account_menu_items', 'indigo_add_subscription_link_my_account' );
+ 
+
+function indigo_subscription_content() {
+  
+  require get_template_directory().'/woocommerce/myaccount/subscription.php';
+  echo do_shortcode( '[subscription_content]' );
+  die();
+}
+ 
+add_action( 'woocommerce_account_subscription_endpoint', 'indigo_subscription_content' );
+
+
+function filter_woocommerce_account_orders_columns( $array ) { 
+
+  $array=array(
+    'order-number'  => __( 'Order', 'woocommerce' ),
+    'order-date'    => __( 'Date', 'woocommerce' ),
+    'order-subtype'    => __( 'Subscription Type', 'woocommerce' ),
+    'order-status'  => __( 'Status', 'woocommerce' ),
+    'order-total'   => __( 'Total', 'woocommerce' ),
+    'order-actions' => '&nbsp;',
+  ); 
+
+    return $array; 
+}; 
+add_filter( 'woocommerce_account_orders_columns', 'filter_woocommerce_account_orders_columns', 10, 1 ); 
+
+         
+function indigo_subscription_orders_columns() {
+  $columns = array(
+    'subscription-number'  => __( 'Subscription ID', 'woocommerce' ),
+    'subscription-date'    => __( ' Date', 'woocommerce' ),
+    'subscription-type'  => __( 'Type', 'woocommerce' ),
+    'subscription-nextdate'   => __( 'Next due on', 'woocommerce' ),
+    'subscription-actions' => 'Action',
+  ) ;
+
+  return $columns;
+}
+
+function nextduedate($subscription_id){
+  global $wpdb;
+  $sql_subscribedOrder=$wpdb->prepare("select post_id as orderid from ".$wpdb->prefix."postmeta  where meta_key='_subscription_id' and meta_value=%d order by orderid desc",$subscription_id);
+  $orderid=$wpdb->get_var($sql_subscribedOrder);
+  $order_date = get_post($subscription_id)->post_date;
+
+  $_subscription_type=get_post_meta( $subscription_id, '_subscription_type', true );
+  if($_subscription_type=='monthly'){
+    $nextduedate= date('Y-m-d', strtotime('+30 days', strtotime($order_date)));
+  }
+  elseif($_subscription_type=='quarterly'){
+    $nextduedate= date('Y-m-d', strtotime('+90 days', strtotime($order_date)));
+  }
+  else{
+    return $nextduedate="";
+  }
+  return date('M d, Y',strtotime($nextduedate));
+
+
+}
 ?>
