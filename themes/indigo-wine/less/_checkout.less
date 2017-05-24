@@ -191,7 +191,7 @@ abbr{
 		.woocommerce-info{
 			padding: 1em 0 1em 3.5em !important;
     		margin-top: 1.5em;
-    		font-size: 0.9em;
+    		font-size: 0.95em;
 		}
 		.woocommerce-checkout{
 			.woocommerce-billing-fields__field-wrapper{
@@ -206,6 +206,24 @@ abbr{
 				}
 			}
 		}
+		.checkout_coupon{
+	    	.form-row{
+	    		float: none;
+	    		&-first{
+	    			width: 100%;
+	    			padding-right: 1em;
+	    		}
+	    		&-last{
+	    			padding-left: 0;
+	    			input[type="submit"]{
+	    				font-size: 0.85em !important;
+	    			}
+	    		}
+	    	}
+		}
+	}
+	#main-content{
+		z-index: 1;
 	}
 }
 
