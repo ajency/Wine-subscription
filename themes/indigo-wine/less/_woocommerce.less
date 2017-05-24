@@ -1074,9 +1074,14 @@ body
 	}
 }
 
+// To maintain proper gap after title bars
+
 #main-content .left-sidebar .hb-woo-wrapper{
 	.hb-main-content.hb-equal-col-height,.hb-sidebar.hb-equal-col-height{
 		margin-top: -40px !important;
+		@media screen and (max-width: 600px){
+			margin-top: 0 !important;
+		}
 	}
 }
 
