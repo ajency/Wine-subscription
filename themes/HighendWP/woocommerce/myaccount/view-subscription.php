@@ -131,6 +131,7 @@ if(!empty($subscription_orders_data)){
 foreach($subscription_orders_data as $subscription_order_val) {
 
 $order_d = new WC_Order( $subscription_order_val->ID);
+$item_count = $order->get_item_count();
    ?>
 
     <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-pending order">
