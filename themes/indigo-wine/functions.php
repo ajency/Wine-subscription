@@ -133,24 +133,26 @@ function sk_wcmenucart($menu, $args) {
         $cart_url = $woocommerce->cart->get_cart_url();
         $shop_page_url = get_permalink( woocommerce_get_page_id( 'shop' ) );
         $cart_contents_count = $woocommerce->cart->cart_contents_count;
-        $cart_contents = sprintf(_n('%d item', '%d items', $cart_contents_count, 'indigo-wine'), $cart_contents_count);
-        $cart_total = $woocommerce->cart->get_cart_total();
-        // Uncomment the line below to hide nav menu cart item when there are no items in the cart
-        // if ( $cart_contents_count > 0 ) {
-            if ($cart_contents_count == 0) {
-                $menu_item = '<li class="right"><a class="wcmenucart-contents" href="'. $shop_page_url .'" title="'. $start_shopping .'">';
-            } else {
-                $menu_item = '<li class="right"><a class="wcmenucart-contents" href="'. $cart_url .'" title="'. $viewing_cart .'">';
-            }
+        if($cart_contents_count>0){
+            $cart_contents = sprintf(_n('%d item', '%d items', $cart_contents_count, 'indigo-wine'), $cart_contents_count);
+            $cart_total = $woocommerce->cart->get_cart_total();
+            // Uncomment the line below to hide nav menu cart item when there are no items in the cart
+            // if ( $cart_contents_count > 0 ) {
+                if ($cart_contents_count == 0) {
+                    $menu_item = '<li class="right"><a class="wcmenucart-contents" href="'. $shop_page_url .'" title="'. $start_shopping .'">';
+                } else {
+                    $menu_item = '<li class="right"><a class="wcmenucart-contents" href="'. $cart_url .'" title="'. $viewing_cart .'">';
+                }
 
-            $menu_item .= '<i class="fa fa-shopping-cart"></i> ';
+                $menu_item .= '<i class="fa fa-shopping-cart"></i> ';
 
-            // $menu_item .= $cart_contents.' - '. $cart_total;
-            $menu_item .= $cart_contents;
-            $menu_item .= '</a></li>';
-        // Uncomment the line below to hide nav menu cart item when there are no items in the cart
-        // }
-        echo $menu_item;
+                // $menu_item .= $cart_contents.' - '. $cart_total;
+                $menu_item .= $cart_contents;
+                $menu_item .= '</a></li>';
+            // Uncomment the line below to hide nav menu cart item when there are no items in the cart
+            // }
+            echo $menu_item;
+        }
     $social = ob_get_clean();
     return $menu . $social;
 
@@ -713,6 +715,13 @@ add_action('admin_notices', 'excerpt_admin_notice');
 /**
  * End of the mandatory description code
  */
+
+function filter_woocommerce_return_to_shop_redirect( $wc_get_page_permalink ) { 
+    $wc_get_page_permalink= home_url()."/product-category/wine-packs"; ;
+    return $wc_get_page_permalink; 
+}; 
+         
+add_filter( 'woocommerce_return_to_shop_redirect', 'filter_woocommerce_return_to_shop_redirect', 10, 1 ); 
 
 
 
