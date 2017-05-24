@@ -186,7 +186,7 @@ if ( $page_title_style == 'stroke-title' ){
 						} 
 						else if ( is_tax() ) {
 							$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
-							_e( 'Archives for: ', 'hbthemes' ); echo $term->name;
+							_e( '', 'hbthemes' ); echo $term->name;
 						} else if ( is_tax( 'post_format' ) ) {
 							if (has_post_format('link'))
 								_e("Archive for Link posts","hbthemes");
