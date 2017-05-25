@@ -148,7 +148,7 @@ do_action( 'woocommerce_before_cart' );
 		<tr>
 			<td colspan="6" class="actions">
 
-				<a href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>" class="simple-read-more float-left continue-shopping"><?php _e('Continue Shopping', 'woocommerce'); ?></a>
+				<a href="<?php echo apply_filters( 'woocommerce_return_to_shop_redirect', get_permalink( wc_get_page_id( 'shop' ) ) ); ?>" class="simple-read-more float-left continue-shopping"><?php _e('Continue Shopping', 'woocommerce'); ?></a>
 				<input type="submit" class="button hb-update-cart" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" /> <input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="<?php _e( 'Proceed to Checkout', 'woocommerce' ); ?>" />
 
 				<?php do_action( 'woocommerce_cart_actions' ); ?>
