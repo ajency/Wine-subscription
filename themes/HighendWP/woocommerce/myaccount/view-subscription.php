@@ -89,7 +89,10 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
     </div>
     <div class="sub-type">
       <h3 class="title">Subscription Type</h3>
-        <?php echo '<p class="type status-label">'.$subscriptiontype_title.'</p>' ;?>
+        <div class="sub-action">
+          <?php echo '<p class="type status-label">'.$subscriptiontype_title.'</p>' ;?>
+          <a href="#" class="sub-unsubscribe alert-color">Unsubscribe</a>
+        </div>
     </div>
 
   </div>
