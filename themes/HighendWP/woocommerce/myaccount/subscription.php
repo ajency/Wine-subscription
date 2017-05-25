@@ -38,7 +38,7 @@ foreach($subscription_data as $subscription_val) {
             <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr( $column_id ); ?>" data-title="<?php echo esc_attr( $column_name ); ?>">
            
               <?php if ( 'subscription-number' === $column_id ) { ?>
-                <a href="#">
+                <a href="<?php echo site_url()."/my-account/view-subscription/?subid=".$subscription_val->ID; ?>">
                   <?php echo _x( '#', 'hash before order number', 'woocommerce' ) . $subscription_val->ID ?>
                 </a>
                <?php } 

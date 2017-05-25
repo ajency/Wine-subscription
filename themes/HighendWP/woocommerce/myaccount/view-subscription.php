@@ -52,7 +52,7 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 
 <section class="woocommerce-order-details">
 
-  <h2 class="woocommerce-order-details__title sub-title"><span class="primary-color">(#1101)</span> Subscription Details</h2>
+  <h2 class="woocommerce-order-details__title sub-title"><span class="primary-color"><?php echo '('. _x( '#', 'hash before subscription number', 'woocommerce' ) . $pass_subscriptionid.')' ?></span> Subscription Details</h2>
 
   
 
@@ -143,7 +143,7 @@ if(!empty($subscription_orders_data)){
 foreach($subscription_orders_data as $subscription_order_val) {
 
 $order_d = new WC_Order( $subscription_order_val->ID);
-$item_count = $order->get_item_count();
+$item_count = $order_d->get_item_count();
    ?>
 
     <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-pending order">
@@ -152,7 +152,7 @@ $item_count = $order->get_item_count();
               <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr( $column_id ); ?>" data-title="<?php echo esc_attr( $column_name ); ?>">
              
                 <?php if ( 'order-number' === $column_id ) { ?>
-                  <a href="#">
+                    <a href="<?php echo esc_url( $order_d->get_view_order_url() ); ?>">
                     <?php echo _x( '#', 'hash before order number', 'woocommerce' ) . $subscription_order_val->ID ?>
                   </a>
                  <?php } 
