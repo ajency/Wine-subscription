@@ -48,7 +48,7 @@ foreach($subscription_data as $subscription_val) {
                 }  
                 elseif ( 'subscription-type' === $column_id ) {  
                   $subscriptiontype=get_post_meta( $subscription_val->ID, '_subscription_type',true );
-                  echo esc_html(ucfirst($subscriptiontype));
+                  echo '<span class="status-label">'.esc_html(ucfirst($subscriptiontype)).'</span>';
                 }  
                 elseif ( 'subscription-nextdate' === $column_id ) {  
                   echo  nextduedate( $subscription_val->ID);
