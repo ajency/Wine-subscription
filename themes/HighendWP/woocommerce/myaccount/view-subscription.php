@@ -52,39 +52,44 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 
 <section class="woocommerce-order-details">
 
-  <h2 class="woocommerce-order-details__title"><?php _e( 'Order details', 'woocommerce' ); ?></h2>
-  <table>
-    <tr>
-      <td> <table class="woocommerce-table woocommerce-table--order-details shop_table order_details">
-    <thead>
-      <tr>
-        <th class="woocommerce-table__product-name product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
-        <th class="woocommerce-table__product-table product-total"><?php _e( 'Total', 'woocommerce' ); ?></th>
-      </tr>
-    </thead>
+  <!-- <h2 class="woocommerce-order-details__title"><?//php _e( 'Order details', 'woocommerce' ); ?></h2> -->
+  <div class="orderDetail">
+   
+      <div class="product-entry"> 
+        <table class="woocommerce-table woocommerce-table--order-details shop_table order_details">
+          <thead>
+            <tr>
+              <th class="woocommerce-table__product-name product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
+              <th class="woocommerce-table__product-table product-total"><?php _e( 'Total', 'woocommerce' ); ?></th>
+            </tr>
+          </thead>
 
-    <tbody>
-      <?php
-        foreach ( $order->get_items() as $item_id => $item ) {
-          $product = apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
+          <tbody>
+            <?php
+              foreach ( $order->get_items() as $item_id => $item ) {
+                $product = apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
 
-          wc_get_template( 'order/order-details-item.php', array(
-            'order'          => $order,
-            'item_id'        => $item_id,
-            'item'           => $item,
-            'show_purchase_note' => $show_purchase_note,
-            'purchase_note'      => $product ? $product->get_purchase_note() : '',
-            'product'          => $product,
-          ) );
-        }
-      ?>
-    
-    </tbody>
+                wc_get_template( 'order/order-details-item.php', array(
+                  'order'          => $order,
+                  'item_id'        => $item_id,
+                  'item'           => $item,
+                  'show_purchase_note' => $show_purchase_note,
+                  'purchase_note'      => $product ? $product->get_purchase_note() : '',
+                  'product'          => $product,
+                ) );
+              }
+            ?>
+          
+          </tbody>
 
-  </table></td>
-      <td><?php echo $subscriptiontype_title;?></td>
-    </tr>
-  </table>
+        </table>
+    </div>
+    <div class="sub-type">
+      <h3 class="title">Subscription Type</h3>
+        <?php echo '<p class="type status-label">'.$subscriptiontype_title.'</p>' ;?>
+    </div>
+
+  </div>
  
 </section>
 
@@ -109,6 +114,10 @@ $query = new WP_Query( array( 'post_status'=>array('wc-pending','wc-processing',
 $subscription_orders_data = $query->posts;
 
 ?>
+
+<h4 class="order-title">Order Details</h4>
+
+<div class="subscription-orders">
   <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
     <thead>
       <tr>
@@ -171,6 +180,7 @@ $order_d = new WC_Order( $subscription_order_val->ID);
 
   </tbody>
       </table>
+      </div>
 
     <?php  
   }

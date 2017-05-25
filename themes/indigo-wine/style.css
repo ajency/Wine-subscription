@@ -72,6 +72,12 @@ body {
 .of-hidden {
   overflow: hidden;
 }
+.primary-color {
+  color: #d1b57c;
+}
+.secondary-color {
+  color: #022c4c;
+}
 @media handheld, only screen and (max-width: 767px) {
   .container.container {
     padding-left: 15px!important;
@@ -4018,6 +4024,8 @@ body .woocommerce form .form-row .button {
 .woocommerce-account .woocommerce-MyAccount-navigation li.is-active a {
   font-family: gotham_mediumregular;
   position: relative;
+  background-color: #022c4c;
+  color: #fff;
 }
 .woocommerce-account .woocommerce-MyAccount-navigation li.is-active a:after {
   content: "\f105";
@@ -4034,6 +4042,7 @@ body .woocommerce form .form-row .button {
   padding: 1em;
   margin-bottom: 5em;
   width: calc(75% - 2em);
+  min-height: 50vh;
 }
 .woocommerce-account .woocommerce-MyAccount-content > p:not(.dashboard-title) {
   color: #022c4c;
@@ -4087,6 +4096,11 @@ body .woocommerce form .form-row .button {
   content: "\f104";
   padding-right: 0.3em;
 }
+.woocommerce-orders-table__cell-subscription-actions a {
+  background-color: transparent;
+  font-family: gotham_mediumregular;
+  text-decoration: underline;
+}
 .woocommerce .woocommerce-order-details__title {
   font-family: gotham_mediumregular;
   color: #022c4c;
@@ -4097,6 +4111,11 @@ body .woocommerce form .form-row .button {
   padding: 20px 12px!important;
   border-color: #ddd;
   font-size: 1.1em !important;
+  text-align: left;
+}
+.woocommerce .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tr th a,
+.woocommerce .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tr td a {
+  color: #022c4c;
 }
 .woocommerce .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tfoot tr {
   border-top: 1px solid #ddd;
@@ -4127,6 +4146,10 @@ body .woocommerce form .form-row .button {
   text-transform: capitalize;
   font-size: 1.6em;
   margin-bottom: 0.5em;
+}
+.woocommerce .woocommerce-customer-details .flex-child .woocommerce-table--customer-details th,
+.woocommerce .woocommerce-customer-details .flex-child .woocommerce-table--customer-details td {
+  text-align: left;
 }
 .woocommerce .woocommerce-customer-details .cust-detail {
   padding-right: 1em;
@@ -4361,6 +4384,72 @@ body .woocommerce form .form-row .button {
   .indigo-fab {
     display: block;
   }
+}
+.status-label {
+  background-color: #dcc599;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  padding: 0.3em 2em;
+  color: #022c4c;
+  font-family: gotham_mediumregular;
+  border-radius: 15px;
+  border: 1px solid #c3a66f;
+}
+.orderDetail {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 2em;
+  margin-bottom: 1.5em;
+}
+.orderDetail .product-entry {
+  -webkit-box-flex: 0.7;
+  -webkit-flex: 0.7;
+      -ms-flex: 0.7;
+          flex: 0.7;
+  border-right: 1px solid #ddd;
+  padding-right: 3em;
+  margin-right: 3em;
+}
+.orderDetail .sub-type {
+  -webkit-box-flex: 0.5;
+  -webkit-flex: 0.5;
+      -ms-flex: 0.5;
+          flex: 0.5;
+}
+.orderDetail .sub-type .title {
+  font-family: 'gotham_mediumregular';
+  font-size: 1.15em;
+  font-weight: 700;
+  color: #022c4c;
+}
+.woocommerce .woocommerce-order-details .orderDetail .woocommerce-table--order-details.woocommerce-table--order-details tr th,
+.woocommerce .woocommerce-order-details .orderDetail .woocommerce-table--order-details.woocommerce-table--order-details tr td {
+  padding: 10px 12px !important;
+  font-size: 0.95em !important;
+  border: 0;
+}
+.woocommerce .woocommerce-order-details .orderDetail .woocommerce-table--order-details.woocommerce-table--order-details tr th {
+  font-size: 1.15em !important;
+}
+.order-title {
+  margin: 2em 0 0 0;
+  font-family: 'gotham_mediumregular';
+  font-size: 1.15em;
+  color: #022c4c;
+}
+.subscription-orders {
+  margin: 1em 0;
+}
+.subscription-orders thead tr {
+  background-color: #eee;
 }
 .woocommerce-page .woocommerce .woocommerce-info {
   border: 2px solid #ddd !important;

@@ -20,6 +20,8 @@
 				a{
 					font-family: gotham_mediumregular;
 					position: relative;
+					background-color: @brand-secondary;
+    				color: #fff;
 					&:after{
 						content: "\f105";
 						display: inline-block;
@@ -39,6 +41,7 @@
     	padding: 1em;
     	margin-bottom: 5em;
     	width: calc(~'75% - 2em');
+    	min-height: 50vh;
     	& > p:not(.dashboard-title){
     		color: @brand-secondary;
     		border-bottom: 1px solid;
@@ -99,6 +102,13 @@
 	}
 }
 
+.woocommerce-orders-table__cell-subscription-actions{
+	a{
+		background-color: transparent;
+    	font-family: gotham_mediumregular;
+    	text-decoration: underline;
+	}
+}
 
 .woocommerce{
 	.woocommerce-order-details{
@@ -113,6 +123,10 @@
 					padding: 20px 12px!important;
 					border-color: #ddd;
 					font-size: 1.1em !important;
+					text-align: left;
+					a{
+						color: @brand-secondary;
+					}
 				}
 			}
 			tfoot{
@@ -139,6 +153,11 @@
 			    text-transform: capitalize;
 			    font-size: 1.6em;
 				margin-bottom: 0.5em;
+			}
+			.woocommerce-table--customer-details{
+				th,td{
+					text-align: left;
+				}
 			}
 		}
 		.cust-detail{
@@ -352,6 +371,88 @@
 		display: block;
 	}
 }
+
+
+
+// ---------------------------
+// SUBSCRIPTION ORDER -----------
+// ---------------------------
+
+.status-label{
+	background-color: #dcc599;
+    display: inline-flex;
+    padding: 0.3em 2em;
+    color: #022c4c;
+    font-family: gotham_mediumregular;
+    border-radius: 15px;
+    border: 1px solid #c3a66f;
+}
+
+.orderDetail{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 2em;
+	margin-bottom: 1.5em;
+	.product-entry{
+		flex: 0.7;
+    	border-right: 1px solid #ddd;
+    	padding-right: 3em;
+    	margin-right: 3em;
+	}
+	.sub-type{
+		flex: 0.5;
+		.title{
+			font-family: 'gotham_mediumregular';
+    		font-size: 1.15em;
+    		font-weight: 700;
+    		color: @brand-secondary;
+		}
+	}
+}
+
+.woocommerce .woocommerce-order-details{
+	.orderDetail{
+		.woocommerce-table--order-details.woocommerce-table--order-details{
+			tr{
+				th,td{
+					padding: 10px 12px !important;
+					font-size: 0.95em !important;
+    				border: 0;
+				}
+				th{
+					font-size: 1.15em !important;
+				}
+			}
+		}
+	}
+}
+
+.order-title{
+	margin: 2em 0 0 0;
+    font-family: 'gotham_mediumregular';
+    font-size: 1.15em;
+    color: @brand-secondary;
+}
+
+.subscription-orders{
+	margin: 1em 0;
+	thead{
+		tr{
+			background-color: #eee;
+		}
+	}
+} 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
