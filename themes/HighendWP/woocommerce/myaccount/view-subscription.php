@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<p>
+<!--p-->
 
 <?php
 
@@ -35,13 +35,13 @@ function view_subscription_content_func(){
   
   $order = new WC_Order( $order_id );
   /* translators: 1: order number 2: order date 3: order status */
-  printf(
-    __( 'Order #%1$s was placed on %2$s and is currently %3$s.', 'woocommerce' ),
-    '<mark class="order-number">' . $order->get_order_number() . '</mark>',
-    '<mark class="order-date">' . wc_format_datetime( $order->get_date_created() ) . '</mark>',
-    '<mark class="order-status">' . wc_get_order_status_name( $order->get_status() ) . '</mark>'
-  );
-?></p>
+  // printf(
+  //   __( 'Order #%1$s was placed on %2$s and is currently %3$s.', 'woocommerce' ),
+  //   '<mark class="order-number">' . $order->get_order_number() . '</mark>',
+  //   '<mark class="order-date">' . wc_format_datetime( $order->get_date_created() ) . '</mark>',
+  //   '<mark class="order-status">' . wc_get_order_status_name( $order->get_status() ) . '</mark>'
+  // );
+?><!--/p-->
 
 <?php
 // $order = wc_get_order( $order_id );
@@ -52,7 +52,10 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 
 <section class="woocommerce-order-details">
 
-  <!-- <h2 class="woocommerce-order-details__title"><?//php _e( 'Order details', 'woocommerce' ); ?></h2> -->
+  <h2 class="woocommerce-order-details__title sub-title"><span class="primary-color">(#1101)</span> Subscription Details</h2>
+
+  
+
   <div class="orderDetail">
    
       <div class="product-entry"> 

@@ -4406,8 +4406,9 @@ body .woocommerce form .form-row .button {
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-top: 2em;
-  margin-bottom: 1.5em;
+  margin: 2em 0;
+  padding-bottom: 2em;
+  border-bottom: 1px solid #ddd;
 }
 .orderDetail .product-entry {
   -webkit-box-flex: 0.7;
@@ -4438,6 +4439,11 @@ body .woocommerce form .form-row .button {
 }
 .woocommerce .woocommerce-order-details .orderDetail .woocommerce-table--order-details.woocommerce-table--order-details tr th {
   font-size: 1.15em !important;
+}
+.sub-title {
+  margin: 0 0 0.5em 0;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5em;
 }
 .order-title {
   margin: 2em 0 0 0;
