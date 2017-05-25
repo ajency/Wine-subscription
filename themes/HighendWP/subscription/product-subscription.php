@@ -184,7 +184,7 @@ function indigo_subscription_content() {
 
   require get_template_directory().'/woocommerce/myaccount/subscription.php';
   echo do_shortcode( '[subscription_content]' );
-  die();
+  
 }
  
 add_action( 'woocommerce_account_subscription_endpoint', 'indigo_subscription_content' );
@@ -193,7 +193,7 @@ add_action( 'woocommerce_account_subscription_endpoint', 'indigo_subscription_co
 function indigo_view_subscription_content() {
   require get_template_directory().'/woocommerce/myaccount/view-subscription.php';
   echo do_shortcode( '[view_subscription_content]' );
-  die();
+ 
 }
  
 add_action( 'woocommerce_account_view-subscription_endpoint', 'indigo_view_subscription_content' );
@@ -214,7 +214,10 @@ function filter_woocommerce_account_orders_columns( $array ) {
 }; 
 add_filter( 'woocommerce_account_orders_columns', 'filter_woocommerce_account_orders_columns', 10, 1 ); 
 
-         
+/**
+ * [indigo_subscription_orders_columns -subscription listing in my account page]
+ * @return [type] [description]
+ */
 function indigo_subscription_orders_columns() {
   $columns = array(
     'subscription-number'  => __( 'Subscription ID', 'woocommerce' ),
@@ -227,6 +230,11 @@ function indigo_subscription_orders_columns() {
   return $columns;
 }
 
+/**
+ * [nextduedate -calculation]
+ * @param  [type] $subscription_id [description]
+ * @return [type]                  [description]
+ */
 function nextduedate($subscription_id){
   global $wpdb;
   $sql_subscribedOrder=$wpdb->prepare("select post_id as orderid from ".$wpdb->prefix."postmeta  where meta_key='_subscription_id' and meta_value=%d order by orderid desc",$subscription_id);
@@ -248,6 +256,10 @@ function nextduedate($subscription_id){
 
 }
 
+/**
+ * [indigo_subscriptionaccount_orders_columns -listing columns for order details on subscription detail view]
+ * @return [type] [description]
+ */
 function indigo_subscriptionaccount_orders_columns() { 
 
   $array=array(
@@ -261,5 +273,3 @@ function indigo_subscriptionaccount_orders_columns() {
     return $array; 
 }; 
 
-
-?>
