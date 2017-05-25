@@ -494,7 +494,15 @@ function filter_woocommerce_product_categories_widget_args( $list_args ) {
               $list_args['child_of']=$cat->parent;
         }
         else if(isset($_REQUEST['product_cat'])){
-            $list_args['child_of']=$_REQUEST['product_cat'];
+            $cat_1= get_term_by( 'id',$_REQUEST['product_cat'], 'category' );
+            
+             if($cat_1->parent==0)         
+                $searchcat=$cat_1->term_id;
+            else if($cat_1->parent!=0){            
+                  $searchcat=$cat_1->parent;
+            }
+
+            $list_args['child_of']=$searchcat;
         }
     }
     
@@ -508,15 +516,31 @@ function retitle_woo_category_widget($title, $widet_instance, $widget_id) {
 
     if ( $widget_id !== 'woocommerce_product_categories' )
         return $title;
+    
+    if (is_product_category()){
+        global $wp_query;
+        $cat = $wp_query->get_queried_object();
 
+       
+        if($cat->parent==0)         
+                return __($cat->name);
+        else if($cat->parent!=0){            
+                $name=  get_cat_name( $cat->parent );
+                return __($name); 
+        }
 
-   if ( (is_product_category() || isset($_REQUEST['s'])) && has_term( 'wine-packs', 'product_cat' ) ) {
- 
-        return __('Wine Packs');
+    }
+    else if(isset($_REQUEST['s']) && isset($_REQUEST['product_cat'])){
+        $cat_1= get_term_by( 'id',$_REQUEST['product_cat'], 'category' );
+       
+        if($cat_1->parent==0)         
+                return __($cat_1->name);
+        else if($cat_1->parent!=0){  
+            
+            $name1=  get_cat_name( $cat_1->parent );
+            return __($name1); 
+        }
 
-    } 
-    else if ( (is_product_category() || isset($_REQUEST['s'])) && has_term( 'wine', 'product_cat' ) ) {
-        return __('Wines');
     }
     
     return $title;
