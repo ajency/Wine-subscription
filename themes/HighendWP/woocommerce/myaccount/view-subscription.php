@@ -194,4 +194,3 @@ $item_count = $order_d->get_item_count();
 }
 add_shortcode( 'view_subscription_content', 'view_subscription_content_func' );
 
-?>

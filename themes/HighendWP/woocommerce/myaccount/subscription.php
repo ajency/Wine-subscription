@@ -84,4 +84,4 @@ else{
 
 } 
 add_shortcode( 'subscription_content', 'subscription_content_func' );
-?>
+
