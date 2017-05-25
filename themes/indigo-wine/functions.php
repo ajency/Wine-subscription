@@ -204,7 +204,7 @@ function ajax_qty_cart() {
         array_push($categories, $category_object->term_id);
 
            
-        $totals = isInArray($categories, $term_list);
+        $totals = array_intersect($categories, $term_list);
 
         // if(in_array('wine', $term_list) )
         if(count($totals) > 0 )
@@ -389,23 +389,22 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
 
     $row_price        = $price * $quantity;
 
-   
     $term_list = wp_get_post_terms($product_id,'product_cat',array('fields'=>'ids'));
      
     $category_object = get_term_by('slug', 'wine', 'product_cat');
-      
+   
     $categories=get_term_children( $category_object->term_id, 'product_cat' );
     array_push($categories, $category_object->term_id);
+  
 
-       
-    $totals = isInArray($categories, $term_list);
-
+     $totals = array_intersect($categories, $term_list);
+    
     if((indigo_rangelogic($quantity) && count($totals) > 0) || count($totals)==0){
         $discount_perc=get_post_meta($product_id,  '_sale_discount_percentage', true );
         $discount_price=get_post_meta($product_id,  '_sale_discount_price', true );
        
    
-        if($discount_perc!='' && $discount_perc !=0){     
+        if($discount_perc>0 ){     
 
           $discounted_price_perc=(($discount_perc*$row_price)/100);
           
@@ -422,7 +421,7 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
           return $final_product_subtotal= $discounted_price;
          
         }
-        else if($discount_price!='' && $discount_price !=0){
+        else if($discount_price>0){
            
             $discounted_price=$row_price-$discount_price;
             
@@ -776,17 +775,19 @@ function filter_woocommerce_return_to_shop_redirect( $wc_get_page_permalink ) {
 add_filter( 'woocommerce_return_to_shop_redirect', 'filter_woocommerce_return_to_shop_redirect', 10, 1 ); 
 
 
-function isInArray($array, $searchIn) {
-    static $inc = array();
-    
-    foreach ($array as $v) {
-        if (is_array($v) && sizeof($v) > 0) {
-            isInArray($v, $searchIn);
-        } else if (!is_array($v) && in_array($v, $searchIn)) {
-            isset($inc[$v]) ? $inc[$v]++ : $inc[$v] = 1;
-        }
+/**
+ * Show Regular/Sale Price @ WooCommerce Cart Table
+ */
+ 
+add_filter( 'woocommerce_cart_item_price', 'indigo_change_cart_table_price_display', 30, 3 );
+ 
+function indigo_change_cart_table_price_display( $price, $values, $cart_item_key ) {
+    $slashed_price = $values['data']->get_price_html();
+    $is_on_sale = $values['data']->is_on_sale();
+    if ( $is_on_sale ) {
+     $price = $slashed_price;
     }
     
-    return $inc;
+    return $price;
 }
 
