@@ -54,6 +54,17 @@
 			.actions{
 				padding-bottom: 0 !important;
 			}
+			.product-quantity{
+				.quantity{
+					display: flex;
+    				align-items: center;
+    				justify-content: center;
+				}
+				input.qty{
+					color: @brand-secondary;
+					font-weight: 600;
+				}
+			}
 		}
 		.hb-update-cart{
 			display: none !important;
@@ -330,18 +341,6 @@
 			.product-thumbnail{
 				img{
 					margin: 0 auto;
-				}
-			}
-			.product-quantity{
-				.quantity{
-					display: flex;
-    				align-items: center;
-    				justify-content: center;
-				}
-				input.qty{
-					background-color: transparent;
-					color: @brand-secondary;
-					font-weight: 600;
 				}
 			}
 			.actions{
