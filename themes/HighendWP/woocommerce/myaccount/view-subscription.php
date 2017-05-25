@@ -59,7 +59,7 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
   <div class="orderDetail">
    
       <div class="product-entry"> 
-        <table class="woocommerce-table woocommerce-table--order-details shop_table order_details">
+        <table class="woocommerce-table woocommerce-table--order-details shop_table order_details subscription_table">
           <thead>
             <tr>
               <th class="woocommerce-table__product-name product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>

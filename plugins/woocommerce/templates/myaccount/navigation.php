@@ -27,7 +27,7 @@ do_action( 'woocommerce_before_account_navigation' );
 	<i class="fa fa-bars" aria-hidden="true"></i>
 </button>
 
-<nav class="woocommerce-MyAccount-navigation">
+<nav class="woocommerce-MyAccount-navigation myAcc-col">
 	<ul>
 		<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
 			<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); ?>">
