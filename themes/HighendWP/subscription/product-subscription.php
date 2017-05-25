@@ -169,11 +169,9 @@ add_filter( 'query_vars', 'indigo_subscription_query_vars', 0 );
  
 function indigo_add_subscription_link_my_account( $items ) {
     $items = array(
-      'dashboard'       => __( 'Dashboard', 'woocommerce' ),
-      'subscription'          => __( 'Subscription', 'woocommerce' ),
       'orders'          => __( 'Orders', 'woocommerce' ),     
+      'subscription'          => __( 'Subscription', 'woocommerce' ),
       'edit-address'    => __( 'Addresses', 'woocommerce' ),
-      'payment-methods' => __( 'Payment methods', 'woocommerce' ),
       'edit-account'    => __( 'Account details', 'woocommerce' ),
     );
     return $items;
