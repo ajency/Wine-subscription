@@ -2367,7 +2367,7 @@ a[data-readmore-toggle].more:before {
   text-transform: capitalize;
 }
 #hb-page-title .hb-page-title h1 {
-  display: inline;
+  display: inherit;
 }
 .hb-animate-element {
   opacity: 1;
@@ -4108,7 +4108,7 @@ body .woocommerce form .form-row .button {
 }
 .woocommerce .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tr th,
 .woocommerce .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tr td {
-  padding: 20px 12px!important;
+  padding: 15px 12px!important;
   border-color: #ddd;
   font-size: 1.1em !important;
   text-align: left;
