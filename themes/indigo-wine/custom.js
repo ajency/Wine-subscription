@@ -237,13 +237,6 @@ jQuery(function(){
                
             });
 
-            jQuery('.link-register').click(function(){
-				function wait(){
-					jQuery('.simplemodal-container').addClass('register-stuff');	
-				}
-				setTimeout(wait, 500);
-            });
-
 });
 
 
