@@ -586,11 +586,23 @@ function woo_rename_tabs( $tabs ) {
     $tabs['reviews']['title'] = __( 'Customer reviews' );                // Rename the reviews tab
 
     if(isset($tabs['additional_information']))
-        $tabs['additional_information']['title'] = __( 'Wine notes' );    // Rename the additional information tab
+    $tabs['additional_information']['title'] = __( 'Wine notes' );    // Rename the additional information tab
 
     return $tabs;
 
 }
+
+add_filter( 'woocommerce_product_tabs', 'reordered_tabs', 98 );
+
+function reordered_tabs( $tabs ) {
+    $tabs['additional_information']['priority'] = 5; 
+    $tabs['description']['priority'] = 10; 
+    $tabs['reviews']['priority'] = 15;
+ 
+    return $tabs;
+}
+
+
 
 require get_template_directory()."/subscription/product-subscription.php"; // custom order subscription code
 
@@ -830,6 +842,14 @@ function logout_redirect(){
     exit;
 
 }
+
+
+function login_stylesheet() {
+    wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri().'/misc.css' );
+}
+add_action( 'login_enqueue_scripts', 'login_stylesheet' );
+
+
 
 function show_login_popup() {
     
