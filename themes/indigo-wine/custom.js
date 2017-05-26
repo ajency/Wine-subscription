@@ -260,6 +260,22 @@ jQuery(document).ready(function() {
 	     }
 
      });   
+
+
+  jQuery('.sub-unsubscribe').click(function(event) {
+    var txt;
+
+    var r = confirm("Are you sure, Do you Want to Unsubscribe the orders ?");
+    if (r == true) {
+      
+       jQuery.post(cart_qty_ajax.siteapiurl+'unsubscribe_orders', {id: jQuery('#subid').val() }, function(data, textStatus, xhr) {
+        window.location='/my-account/subscription/';
+       });
+
+    } 
+   
+  });
+
 });
 
 

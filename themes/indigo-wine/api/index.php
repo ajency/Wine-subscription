@@ -19,6 +19,17 @@ register_rest_route( $namespace, '/unsubscribe_session',
     'callback' => 'unsubscribe_session',
     )
   );
+
+/**
+ * All Product related api for admin
+ */
+register_rest_route( $namespace, '/unsubscribe_orders', 
+  array(
+    'methods' =>  WP_REST_Server::CREATABLE,
+    'callback' => 'unsubscribe_orders',
+    )
+  );
+
 });
 
 
@@ -29,3 +40,8 @@ function unsubscribe_session(){
      return true;
 }
 
+function unsubscribe_orders(){
+  $subscriptionid=$_POST['id'];
+  
+  return true;
+}
