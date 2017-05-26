@@ -249,6 +249,9 @@ body{
     						position: absolute;
     						top: 2px;
     						font-size: 1.1em;
+    						@media screen and (min-width: 1900px){
+    							right: -18px;
+    						}
 						}
 					}
 				}
@@ -302,14 +305,6 @@ body{
 	}
 }
 
-
-@media screen and (max-width: 1900px){
-	.ind-custom-menu .col ul li.menu-item-has-children{
-		 & > a:before{
-		 	right: -18px;
-		 }
-	}
-}
 
 
 #main-content.fixed-added{
@@ -417,7 +412,7 @@ body{
 				position: relative;
     			top: -3px; 
 				li{
-					padding: 0 1.2em;
+					// padding: 0 1.2em;
 					a,.active{
 						// font-size: 1em;
 						// font-family:'gotham_mediumregular';
