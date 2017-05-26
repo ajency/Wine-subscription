@@ -489,7 +489,7 @@ if (!class_exists('SimpleModalLogin')) {
 		<input type="text" name="user_email" class="user_email input" value="" size="25" tabindex="20" /></label>
 	</p>',
 				site_url('wp-login.php?action=register', 'login_post'),
-				__('Register', 'simplemodal-login'),
+				// __('Register', 'simplemodal-login'),
 				__('Username', 'simplemodal-login'),
 				__('E-mail', 'simplemodal-login')
 			);
