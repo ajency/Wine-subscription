@@ -423,6 +423,8 @@ if (!class_exists('SimpleModalLogin')) {
 				'empty_username' => __('<strong>ERROR</strong>: The username field is empty.', 'simplemodal-login'),
 				'empty_password' => __('<strong>ERROR</strong>: The password field is empty.', 'simplemodal-login'),
 				'empty_email' => __('<strong>ERROR</strong>: The email field is empty.', 'simplemodal-login'),
+				'empty_first_name' => __('<strong>ERROR</strong>: The first name field is empty.', 'simplemodal-login'),
+				'empty_last_name' => __('<strong>ERROR</strong>: The last name field is empty.', 'simplemodal-login'),
 				'empty_all' => __('<strong>ERROR</strong>: All fields are required.', 'simplemodal-login')
 			));
 
@@ -482,6 +484,14 @@ if (!class_exists('SimpleModalLogin')) {
 	<div class="simplemodal-login-fields">
 	<p>
 		<label>%s<br />
+		<input type="text" name="first_name" class="first_name input" value="" size="50" tabindex="10" /></label>
+	</p>
+	<p>
+		<label>%s<br />
+		<input type="text" name="last_name" class="last_name input" value="" size="50" tabindex="10" /></label>
+	</p>
+	<p>
+		<label>%s<br />
 		<input type="text" name="user_login" class="user_login input" value="" size="20" tabindex="10" /></label>
 	</p>
 	<p>
@@ -490,6 +500,8 @@ if (!class_exists('SimpleModalLogin')) {
 	</p>',
 				site_url('wp-login.php?action=register', 'login_post'),
 				__('Create new account and experience the Indigo lifestyle', 'simplemodal-login'),
+				__('First Name', 'simplemodal-login'),
+				__('Last Name', 'simplemodal-login'),
 				__('Username', 'simplemodal-login'),
 				__('E-mail', 'simplemodal-login')
 			);
@@ -595,6 +607,13 @@ if (class_exists('SimpleModalLogin')) {
 	$simplemodal_login->users_can_register = get_option('users_can_register') ? true : false;
 }
 
+function tml_user_register( $user_id ) {
+	if ( !empty( $_POST['first_name'] ) )
+		update_user_meta( $user_id, 'first_name', $_POST['first_name'] );
+	if ( !empty( $_POST['last_name'] ) )
+		update_user_meta( $user_id, 'last_name', $_POST['last_name'] );
+}
+add_action( 'user_register', 'tml_user_register' );
 /*
  * The format of this plugin is based on the following plugin template:
  * http://pressography.com/plugins/wordpress-plugin-template/
