@@ -163,9 +163,12 @@ jQuery(function ($) {
 			$('#login_error, .message', context).remove();
 		},
 		isValid: function (form) {
+
 			var log = $('.user_login', form[0]),
 				pass = $('.user_pass', form[0]),
 				email = $('.user_email', form[0]),
+				first_name = $('.first_name', form[0]),
+				last_name = $('.last_name', form[0]),
 				fields = $(':text, :password', form[0]),
 				valid = true;
 
@@ -181,6 +184,14 @@ jQuery(function ($) {
 			}
 			else if (email.length && !$.trim(email.val())) {
 				SimpleModalLogin.error.push('empty_email');
+				valid = false;
+			}
+			else if (first_name.length && !$.trim(first_name.val())) {
+				SimpleModalLogin.error.push('empty_first_name');
+				valid = false;
+			}
+			else if (last_name.length && !$.trim(last_name.val())) {
+				SimpleModalLogin.error.push('empty_last_name');
 				valid = false;
 			}
 
