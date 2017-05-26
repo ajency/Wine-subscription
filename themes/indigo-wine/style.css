@@ -4313,10 +4313,16 @@ body .woocommerce form .form-row .button {
   top: 1em !important;
 }
 @media screen and (max-width: 600px) {
+  .woocommerce-account .woocommerce .myAcc-col {
+    margin-top: 0;
+  }
+  .woocommerce-account .woocommerce .myAcc-col li a {
+    margin: 10px;
+  }
   .woocommerce-MyAccount-navigation {
     position: fixed;
     background-color: #fff;
-    top: 3em;
+    top: 0;
     left: 0;
     width: 80% !important;
     height: 100%;
@@ -4331,18 +4337,19 @@ body .woocommerce form .form-row .button {
     -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);
   }
-  .woocommerce-account .woocommerce-MyAccount-content {
+  .woocommerce-account .woocommerce-MyAccount-content.woocommerce-MyAccount-content {
     padding: 1em;
     width: calc(100% - 2em);
+    margin-top: 0;
   }
-  .woocommerce-account .woocommerce-MyAccount-content > p:not(.dashboard-title) {
+  .woocommerce-account .woocommerce-MyAccount-content.woocommerce-MyAccount-content > p:not(.dashboard-title) {
     font-size: 1em;
   }
-  .woocommerce-account .woocommerce-MyAccount-content .woocommerce-order-details__title {
+  .woocommerce-account .woocommerce-MyAccount-content.woocommerce-MyAccount-content .woocommerce-order-details__title {
     font-size: 1.3em;
   }
-  .woocommerce-account .woocommerce-MyAccount-content .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tr th,
-  .woocommerce-account .woocommerce-MyAccount-content .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tr td {
+  .woocommerce-account .woocommerce-MyAccount-content.woocommerce-MyAccount-content .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tr th,
+  .woocommerce-account .woocommerce-MyAccount-content.woocommerce-MyAccount-content .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tr td {
     font-size: 1em !important;
   }
   .woocommerce .woocommerce-customer-details {

@@ -286,10 +286,18 @@
 
 
 @media screen and (max-width: 600px){
+	.woocommerce-account .woocommerce .myAcc-col{
+		margin-top: 0;
+    	li{
+    		a{
+    			margin: 10px;
+    		}
+    	}
+	}
 	.woocommerce-MyAccount-navigation{
 		position: fixed;
     	background-color: #fff;
-    	top: 3em;
+    	top: 0;
     	left: 0;
     	width: 80% !important;
     	height: 100%;
@@ -302,9 +310,10 @@
     	}
 	}
 	.woocommerce-account{
-		.woocommerce-MyAccount-content{
+		.woocommerce-MyAccount-content.woocommerce-MyAccount-content{
 			padding: 1em;
 			width: calc(~'100% - 2em');
+			margin-top: 0;
 			& > p:not(.dashboard-title){
 	    		font-size: 1em;
     		}
