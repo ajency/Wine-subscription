@@ -345,6 +345,11 @@ body {
     top: 5px;
   }
 }
+@media screen and (max-width: 1900px) {
+  .ind-custom-menu .col ul li.menu-item-has-children > a:before {
+    right: -18px;
+  }
+}
 #main-content.fixed-added {
   margin-top: 15em !important;
 }
@@ -361,6 +366,13 @@ body {
 .user-detail.user-detail .user .arrow-down {
   padding-left: 0.25em;
   font-size: 1.15em;
+}
+@media screen and (min-width: 1900px) {
+  .user-detail.user-detail .user .arrow-down {
+    font-size: 1.5em;
+    top: 3px;
+    position: relative;
+  }
 }
 .user-detail.user-detail .user:hover .drop {
   display: block;
@@ -387,11 +399,6 @@ body {
   .user-detail.user-detail .drop.sub-menu ul li {
     line-height: 2;
     padding: 0.5em 1.5em;
-  }
-}
-@media screen and (min-width: 1900px) {
-  .user-detail.user-detail .drop.sub-menu ul li {
-    margin: 0.8em 0 0.5em;
   }
 }
 @media screen and (min-width: 1900px) {
@@ -446,7 +453,10 @@ body {
   }
   .ind-custom-menu .col ul li a,
   .ind-custom-menu .col ul li .active {
-    font-family: 'gotham_mediumregular';
+    font-size: 1.4em;
+  }
+  .ind-custom-menu .col ul li .sub-menu li a {
+    font-size: 1.15em;
   }
   .ind-custom-menu.fixed {
     background-position: 13.5% -5px;

@@ -303,6 +303,15 @@ body{
 }
 
 
+@media screen and (max-width: 1900px){
+	.ind-custom-menu .col ul li.menu-item-has-children{
+		 & > a:before{
+		 	right: -18px;
+		 }
+	}
+}
+
+
 #main-content.fixed-added{
 	margin-top: 15em !important;
 	@media screen and (max-width: 768px){
@@ -319,6 +328,11 @@ body{
 		.arrow-down{
 			padding-left: 0.25em;
 			font-size: 1.15em;
+			@media screen and (min-width: 1900px){
+				font-size: 1.5em;
+    			top: 3px;
+    			position: relative;
+			}
 		}
 		&:hover{
 			.drop{
@@ -346,7 +360,7 @@ body{
 					padding: 0.5em 1.5em;
 				}
 				@media screen and (min-width: 1900px){
-					margin: 0.8em 0 0.5em;
+					// margin: 0.8em 0 0.5em;
 				}
 				&:last-child{
 					@media screen and (min-width: 1900px){
@@ -406,7 +420,15 @@ body{
 					padding: 0 1.2em;
 					a,.active{
 						// font-size: 1em;
-						font-family:'gotham_mediumregular';
+						// font-family:'gotham_mediumregular';
+						font-size: 1.4em;
+					}
+					.sub-menu{
+						li{
+							a{
+								font-size: 1.15em;
+							}
+						}
 					}
 				}
 			}
