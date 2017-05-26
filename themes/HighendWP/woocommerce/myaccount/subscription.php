@@ -10,6 +10,8 @@ global $wpdb;
 $user_id =get_current_user_id();
 $query = new WP_Query( array( 'post_type' => 'subscription','author' => $user_id, 'posts_per_page' => -1) ) ;
 $subscription_data = $query->posts;
+
+if(!empty($subscription_data)){
 ?>
   <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
     <thead>
@@ -28,7 +30,7 @@ foreach (indigo_subscription_orders_columns() as $column_id => $column_name) {
     <tbody> 
 
 <?php
-if(!empty($subscription_data)){
+
 foreach($subscription_data as $subscription_val) {
    ?>
 
