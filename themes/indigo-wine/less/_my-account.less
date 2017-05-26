@@ -504,7 +504,42 @@
 
 
 
+// ---------------------------
+// NO ORDER/SUBSCRIPTION -----------
+// ---------------------------
 
+.woocommerce-page .woocommerce .woocommerce-message{
+	&--info{
+		&.noData{
+			display: flex;
+	    	align-items: center;
+	    	flex-direction: column;
+	    	line-height: 4;
+	    	font-family: gotham_bookregular;
+	    	font-size: 1.1em;
+	    	border: 0 !important;
+	    	padding-top: 0 !important;
+	    	&:before{
+	    		display: none;
+	    	}
+	    	.empty-wine{
+				background-image: url('./img/empty-wine.png');
+				width: 190px;
+    			height: 150px;
+    			background-repeat: no-repeat;
+    			background-size: cover;
+    			background-position: center;
+	    	}
+	    	.button.woocommerce-Button{
+	    		float: none;
+	    		color: #fff;
+	    		background-color: @brand-secondary;
+	    		border-radius: 0;
+	    		padding: 0.8em;
+	    	}
+		}
+	}
+}
 
 
 
