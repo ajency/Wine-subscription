@@ -174,7 +174,7 @@ body{
 			position: relative;
     		top: 5px; 
 			li{
-				padding: 0 1.5em;
+				padding: 0 1.3em;
 				position: relative;
 				a,.active{
 					color: @brand-primary;
@@ -206,7 +206,7 @@ body{
 					}
 				}
 				&.right{
-					padding: 0;
+					// padding: 0;
 				}
 				.sub-menu{
 					position: absolute;
@@ -238,20 +238,19 @@ body{
 				&.menu-item-has-children{
 					& > a{
 						position: relative;
+						display: flex;
+    					align-items: center;
+    					flex-direction: row-reverse;
 						&:before{
 							content: "\f107";
 							padding-left: 0.25em;
-    						font-size: 1.15em;
     						font: normal normal normal 14px/1 FontAwesome;
 						    text-rendering: auto;
     						-webkit-font-smoothing: antialiased;
-    						right: -13px;
-    						position: absolute;
-    						top: 2px;
+    						// right: -13px;
+    						// position: absolute;
+    						// top: 2px;
     						font-size: 1.1em;
-    						@media screen and (min-width: 1900px){
-    							right: -18px;
-    						}
 						}
 					}
 				}
@@ -488,7 +487,7 @@ body{
 			ul{
     			top: 7px; 
 				li{
-					padding: 0 0.8em;
+					padding: 0 0.7em;
 					a{
 						font-size: 0.95em;
 					}
