@@ -128,9 +128,9 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 <?php else : ?>
   <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info noData">
     <div class="empty-wine"></div>
-    <?php _e( 'You do not have any orders. Click here to browse our wine packs.', 'woocommerce' ); ?>
+    <?php _e( 'You do not have any orders. Click here to browse our Wine Packs.', 'woocommerce' ); ?>
     <a class="woocommerce-Button button wine-pack-btn" href="<?php echo apply_filters( 'woocommerce_return_to_shop_redirect', get_permalink( wc_get_page_id( 'shop' ) ) ); ?>">
-      <?php _e( 'Browse our Wine packs', 'woocommerce' ) ?>
+      <?php _e( 'Browse our Wine Packs', 'woocommerce' ) ?>
     </a>
   </div>
 <?php endif; ?>
