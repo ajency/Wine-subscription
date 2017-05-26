@@ -341,7 +341,7 @@ if (!class_exists('SimpleModalLogin')) {
 		function login_form() {
 			$output = sprintf('
 	<form name="loginform" id="loginform" action="%s" method="post">
-		<div class="title">Welcome back!</div>
+		<div class="title">%s!</div>
 		<div class="simplemodal-login-fields">
 		<p>
 			<label>%s<br />
@@ -352,7 +352,7 @@ if (!class_exists('SimpleModalLogin')) {
 			<input type="password" name="pwd" class="user_pass input" value="" size="20" tabindex="20" /></label>
 		</p>',
 				site_url('wp-login.php', 'login_post'),
-				__('Login', 'simplemodal-login'),
+				__('Welcome back', 'simplemodal-login'),
 				__('Username', 'simplemodal-login'),
 				__('Password', 'simplemodal-login')
 			);
@@ -478,7 +478,7 @@ if (!class_exists('SimpleModalLogin')) {
 		function registration_form() {
 			$output = sprintf('
 <form name="registerform" id="registerform" action="%s" method="post">
-	<div class="title">Create new account and experience the Indigo lifestyle</div>
+	<div class="title">%s</div>
 	<div class="simplemodal-login-fields">
 	<p>
 		<label>%s<br />
@@ -489,7 +489,7 @@ if (!class_exists('SimpleModalLogin')) {
 		<input type="text" name="user_email" class="user_email input" value="" size="25" tabindex="20" /></label>
 	</p>',
 				site_url('wp-login.php?action=register', 'login_post'),
-				// __('Register', 'simplemodal-login'),
+				__('Create new account and experience the Indigo lifestyle', 'simplemodal-login'),
 				__('Username', 'simplemodal-login'),
 				__('E-mail', 'simplemodal-login')
 			);
