@@ -801,15 +801,13 @@ function wpse_lost_password_redirect() {
     $confirm = ( isset($_GET['action'] ) && $_GET['action'] == resetpass );
 
     if( $confirm ) {
-        wp_redirect( home_url() );
+        wp_redirect( home_url('?login=true') );
         exit;
     }
 }
 add_action('login_headerurl', 'wpse_lost_password_redirect');
 
-
 // redirects for login / logout
-
 add_filter('woocommerce_login_redirect', 'login_redirect');
 
 function login_redirect($redirect_to) {
@@ -827,3 +825,13 @@ function logout_redirect(){
     exit;
 
 }
+
+function show_login_popup() {
+    
+    if( $_GET['login'] && $_SERVER['REQUEST_METHOD'] == 'GET') {
+ 
+        wp_register_script( 'custom-login-popup', get_template_directory_uri() . '/scripts/custom-login-popup.js', array( 'jquery' ), '', true );
+        wp_enqueue_script( 'custom-login-popup' );
+   }
+}
+add_action('init','show_login_popup');
