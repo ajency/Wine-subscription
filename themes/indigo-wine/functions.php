@@ -579,9 +579,14 @@ add_filter( 'woocommerce_product_tabs', 'woo_rename_tabs', 98 );
 
 function woo_rename_tabs( $tabs ) {
 
+    if(isset($tabs['description']))
     $tabs['description']['title'] = __( 'Wine story' );       // Rename the description tab
+
+    if(isset($tabs['reviews']))
     $tabs['reviews']['title'] = __( 'Customer reviews' );                // Rename the reviews tab
-    $tabs['additional_information']['title'] = __( 'Wine notes' );    // Rename the additional information tab
+
+    if(isset($tabs['additional_information']))
+        $tabs['additional_information']['title'] = __( 'Wine notes' );    // Rename the additional information tab
 
     return $tabs;
 
@@ -653,7 +658,7 @@ function filter_posts_clauses( $args ) {
                         ) 
               AND wp_term_relationships.term_taxonomy_id IN (".implode(',', $categories).")  
     
-            ) AND (((wp_posts.post_title LIKE '%my%') OR (post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_content LIKE '%".$_REQUEST['s']."%')))  AND wp_posts.post_type = 'product' AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'private') ";
+            ) AND (((wp_posts.post_title LIKE '%".$_REQUEST['s']."%') OR (post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_content LIKE '%".$_REQUEST['s']."%')))  AND wp_posts.post_type = 'product' AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'private') ";
 
        
     }
