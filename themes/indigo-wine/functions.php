@@ -791,3 +791,20 @@ function indigo_change_cart_table_price_display( $price, $values, $cart_item_key
     return $price;
 }
 
+/**
+ * [wpse_lost_password_redirect -redirection when password is reseted]
+ * @return [type] [description]
+ */
+function wpse_lost_password_redirect() {
+
+    // Check if have submitted
+    $confirm = ( isset($_GET['action'] ) && $_GET['action'] == resetpass );
+
+    if( $confirm ) {
+        wp_redirect( home_url() );
+        exit;
+    }
+}
+add_action('login_headerurl', 'wpse_lost_password_redirect');
+
+
