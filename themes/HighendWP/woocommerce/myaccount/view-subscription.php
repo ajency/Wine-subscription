@@ -54,7 +54,7 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 
   <h2 class="woocommerce-order-details__title sub-title"><span class="primary-color"><?php echo '('. _x( '#', 'hash before subscription number', 'woocommerce' ) . $pass_subscriptionid.')' ?></span> Subscription Details</h2>
 
-  
+  <input type="hidden" name="subid" id="subid" value="<?php echo $pass_subscriptionid; ?>">
 
   <div class="orderDetail">
    
@@ -91,7 +91,7 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
       <h3 class="title">Subscription Type</h3>
         <div class="sub-action">
           <?php echo '<p class="type status-label">'.$subscriptiontype_title.'</p>' ;?>
-          <a href="#" class="sub-unsubscribe alert-color">Unsubscribe</a>
+          <a href="javascript:void(0)" class="sub-unsubscribe alert-color">Unsubscribe</a>
         </div>
     </div>
 
