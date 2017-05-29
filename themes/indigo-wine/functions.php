@@ -170,7 +170,7 @@ function sk_wcmenucart($menu, $args) {
 //Enqueue Ajax Scripts
 function enqueue_cart_qty_ajax() {
     wp_register_script( 'cart-qty-ajax-js', get_template_directory_uri() . '/subscription/js/cart-qty-ajax.js', array( 'jquery' ), '', true );
-    wp_localize_script( 'cart-qty-ajax-js', 'cart_qty_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ,'siteapiurl' => get_option('siteurl').'/wp-json/wp/v2/') );
+    wp_localize_script( 'cart-qty-ajax-js', 'cart_qty_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ,'siteapiurl' => get_option('siteurl').'/wp-json/wp/v2/','homeurl' => home_url() ));
     wp_enqueue_script( 'cart-qty-ajax-js' );
 
 }
