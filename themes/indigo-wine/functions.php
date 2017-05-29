@@ -541,23 +541,18 @@ function retitle_woo_category_widget($title, $widet_instance, $widget_id) {
 
     }
     else if(isset($_REQUEST['s']) && isset($_REQUEST['product_cat'])){
-        $cat_1= get_term_by( 'id',$_REQUEST['product_cat'], 'category' );
+        $cat_1= get_term_by( 'id',$_REQUEST['product_cat'], 'product_cat' );
+        print_r($cat_1);
         if(is_object($cat_1))
         {
             if($cat_1->parent==0)         
                     return __($cat_1->name);
-            else if($cat_1->parent!=0){  
+            else if($cat_1->parent!=0){ 
                 
-                $name1=  get_cat_name( $cat_1->parent );
-                return __($name1); 
+                $name1=  get_term( $cat_1->parent );
+                return __($name1->name); 
             }
         }
-        else{
-
-           $name1=  get_cat_name( $_REQUEST['product_cat'] );
-            return __($name1); 
-        }
-
     }
     
     return $title;
