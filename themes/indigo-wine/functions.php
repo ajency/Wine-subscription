@@ -494,15 +494,26 @@ function filter_woocommerce_product_categories_widget_args( $list_args ) {
         }
         else if(isset($_REQUEST['product_cat'])){
             $cat_1= get_term_by( 'id',$_REQUEST['product_cat'], 'category' );
-            
-             if($cat_1->parent==0)         
-                $searchcat=$cat_1->term_id;
-            else if($cat_1->parent!=0){            
-                  $searchcat=$cat_1->parent;
+          
+            if(is_object($cat_1))
+            {
+                if($cat_1->parent==0){         
+                  
+                    $searchcat=$cat_1->term_id;
+                }
+                else if($cat_1->parent!=0){   
+                          
+                      $searchcat=$cat_1->parent;
+                }
+            }
+            else{
+              
+              $searchcat=$_REQUEST['product_cat'];
             }
 
             $list_args['child_of']=$searchcat;
         }
+
     }
     
     return $list_args; 
@@ -531,12 +542,19 @@ function retitle_woo_category_widget($title, $widet_instance, $widget_id) {
     }
     else if(isset($_REQUEST['s']) && isset($_REQUEST['product_cat'])){
         $cat_1= get_term_by( 'id',$_REQUEST['product_cat'], 'category' );
-       
-        if($cat_1->parent==0)         
-                return __($cat_1->name);
-        else if($cat_1->parent!=0){  
-            
-            $name1=  get_cat_name( $cat_1->parent );
+        if(is_object($cat_1))
+        {
+            if($cat_1->parent==0)         
+                    return __($cat_1->name);
+            else if($cat_1->parent!=0){  
+                
+                $name1=  get_cat_name( $cat_1->parent );
+                return __($name1); 
+            }
+        }
+        else{
+
+           $name1=  get_cat_name( $_REQUEST['product_cat'] );
             return __($name1); 
         }
 
