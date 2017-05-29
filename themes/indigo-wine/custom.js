@@ -170,6 +170,23 @@ jQuery(function(){
 	  }
 	});
 
+
+	// Subscribe overlay
+
+	if (jQuery('.subscribe-overlay').hasClass("active")) {
+		setTimeout(bodyClass, 1200);
+	}
+
+	function bodyClass(){
+		jQuery('body').addClass('subscribe-activated');	
+		jQuery(this).removeClass('hidden');
+	}
+
+	jQuery('.close-Sub_overlay').click(function(){
+		jQuery('body').removeClass('subscribe-activated');
+		jQuery('.subscribe-overlay').addClass('hidden');
+	});
+
 	// Trigered cart icon to actual cart click
 
 	jQuery('.add-To-Cart').click(function(){

@@ -208,6 +208,13 @@ do_action( 'woocommerce_before_cart' );
 	?>
 </div> -->
 
+<div class="subscribe-overlay active">
+	<div class="sub-container">
+		<h5 class="msg">Hi there, looks like your order is eligible for subscription.<br> Just opt to subscribe and be Indigo Wine Co club member</h5>
+		<button type="button" class="close-Sub_overlay">Ok Got it!</button>
+	</div>
+</div>
+
 
 <div class="cancel-subscription no-subscription box-wrap hidden">
 	<div class="cart-bottle"></div>

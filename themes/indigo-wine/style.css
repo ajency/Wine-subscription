@@ -4033,6 +4033,68 @@ body .woocommerce form .form-row .button {
   background-color: #022c4c !important;
   color: #fff !important;
 }
+.subscribe-activated {
+  overflow: hidden;
+}
+.subscribe-activated #main-content {
+  z-index: 998;
+}
+.subscribe-activated .no-subscription {
+  position: relative;
+  z-index: 101;
+}
+.subscribe-activated .subscribe-overlay.active {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.88);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.subscribe-activated .subscribe-overlay .sub-container {
+  text-align: right;
+  margin-top: 2em;
+}
+.subscribe-activated .subscribe-overlay .msg {
+  color: #fff;
+  font-weight: 600;
+  font-family: gotham_bookregular;
+  text-shadow: 1px 1px 1px #000;
+  line-height: 1.6;
+  font-size: 1.18em;
+}
+.subscribe-activated .subscribe-overlay .close-Sub_overlay {
+  background-color: #d1b57c;
+  border: 0;
+  padding: 0.5em 1.5em;
+  font-family: gotham_bookregular;
+  font-weight: 600;
+  color: #fff;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 1px #000;
+}
+.subscribe-overlay {
+  -webkit-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
 .woocommerce-account .woocommerce {
   margin-top: 1em;
 }
