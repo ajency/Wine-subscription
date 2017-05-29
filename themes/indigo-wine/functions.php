@@ -605,6 +605,24 @@ function woo_rename_tabs( $tabs ) {
 
 }
 
+
+
+// add_filter( 'woocommerce_product_tabs', 'woo_rename_tabs', 98 );
+
+// function woo_rename_tabs( $tabs ) {
+
+//     global $product;
+    
+//     if( $product->has_attributes() || $product->has_dimensions() || $product->has_weight() ) { // Check if product has attributes, dimensions or weight
+//         $tabs['additional_information']['title'] = __( 'Wine notes' );
+//     }
+ 
+//     return $tabs;
+ 
+// }
+
+
+
 add_filter( 'woocommerce_product_tabs', 'reordered_tabs', 98 );
 
 function reordered_tabs( $tabs ) {

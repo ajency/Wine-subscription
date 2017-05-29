@@ -204,6 +204,22 @@ jQuery(function(){
 	});
 
 
+	// Checking if product tabs are empty
+
+	jQuery('.woocommerce-tabs li a').each(function(){
+
+		var check = jQuery(this);
+		
+	  	if( check.text() === '' ){
+	    	jQuery(this).parent().addClass('not-active');
+	  	}
+
+	});
+
+
+
+
+
 		// Custom menu click and scroll to particular ID
 
 

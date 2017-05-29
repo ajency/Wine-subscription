@@ -3139,6 +3139,9 @@ body .woocommerce form .form-row .button {
   font-size: 1.2em !important;
   padding: 0.3em 0 !important;
 }
+.woocommerce-tabs.woocommerce-tabs .wc-tabs li.not-active.not-active {
+  display: none;
+}
 .woocommerce-tabs.woocommerce-tabs .entry-content {
   margin-bottom: 0 !important;
 }
@@ -3891,7 +3894,7 @@ body .woocommerce form .form-row .button {
 }
 .no-subscription {
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
   padding: 1.5em 1em;
 }
 @media screen and (max-width: 600px) {
@@ -4094,6 +4097,7 @@ body .woocommerce form .form-row .button {
 .subscribe-overlay {
   -webkit-transition: all 0.5s ease;
           transition: all 0.5s ease;
+  display: none;
 }
 .woocommerce-account .woocommerce {
   margin-top: 1em;
