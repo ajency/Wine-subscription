@@ -493,7 +493,7 @@ function filter_woocommerce_product_categories_widget_args( $list_args ) {
               $list_args['child_of']=$cat->parent;
         }
         else if(isset($_REQUEST['product_cat'])){
-            $cat_1= get_term_by( 'id',$_REQUEST['product_cat'], 'category' );
+            $cat_1= get_term_by( 'id',$_REQUEST['product_cat'], 'product_cat' );
           
             if(is_object($cat_1))
             {
@@ -542,7 +542,7 @@ function retitle_woo_category_widget($title, $widet_instance, $widget_id) {
     }
     else if(isset($_REQUEST['s']) && isset($_REQUEST['product_cat'])){
         $cat_1= get_term_by( 'id',$_REQUEST['product_cat'], 'product_cat' );
-        print_r($cat_1);
+       
         if(is_object($cat_1))
         {
             if($cat_1->parent==0)         
