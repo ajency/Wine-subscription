@@ -170,21 +170,44 @@ do_action( 'woocommerce_before_cart' );
 
 <div class="no-subscription get-started-sub box-wrap">
 	<div class="cart-bottle"></div>
-	<h5 class="title">Its that easy! Your subscription will be activated and will arrive by your selected delivery day.</h5>
+	<h5 class="title">Be a part of our club</h5>
+	<h5 class="subTitle">Set up your personalized subscription and be member of Indigo Wine Co.</h6>
 	<?php 
 	if(is_user_logged_in()){
 	?>
-	<a href="javascript:void(0)" class="sub-started modal-open open-subscription-modal" id="subscribe_now">Get Started</a>
+	<a href="javascript:void(0)" class="sub-started modal-open open-subscription-modal" id="subscribe_now">Subscribe Now</a>
 	<?php 
 	
 	} 
 	else {
 	?>
-	<a class="simplemodal-login" href="/wp-login.php">Get Started</a>
+	<a class="simplemodal-login" href="/wp-login.php">Subscribe Now</a>
 	<?php 
 	}
 	?>
 </div>
+
+<!-- If the order is available for subscription -->
+
+<!-- <div class="no-subscription get-started-sub box-wrap">
+	<div class="cart-bottle"></div>
+	<h5 class="title">Congratulations!</h5>
+	<h5 class="subTitle">You can be a Indigo Wine co member your order is eligible for subscription. Just opt to subscribe and be Indigo Wine Co club member</h6>
+	<?php 
+	if(is_user_logged_in()){
+	?>
+	<a href="javascript:void(0)" class="sub-started modal-open open-subscription-modal" id="subscribe_now">Subscribe Now</a>
+	<?php 
+	
+	} 
+	else {
+	?>
+	<a class="simplemodal-login" href="/wp-login.php">Subscribe Now</a>
+	<?php 
+	}
+	?>
+</div> -->
+
 
 <div class="cancel-subscription no-subscription box-wrap hidden">
 	<div class="cart-bottle"></div>
