@@ -1158,9 +1158,34 @@ body
 // ADD TO CART BUTTON -----------
 // ---------------------------
 
-.hb-woo-image-wrap:hover .hb-buy-button.hb-buy-button{
-	opacity: 0;
-	pointer-events: none;
+// .hb-woo-image-wrap:hover .hb-buy-button.hb-buy-button{
+// 	opacity: 0;
+// 	pointer-events: none;
+// }
+
+.product-hover-overlay{
+	background-color: rgba(0,0,0,0.8);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+    transition: opacity 0.8s ease;
+}
+
+.hb-woo-image-wrap:hover{
+	.hb-more-details.hb-more-details{
+		bottom: 85px !important;
+	}
+	.hb-buy-button.hb-buy-button{
+		bottom: 35px !important;
+	}
+	.product-hover-overlay{
+		opacity: 1;
+	}
+	.product-hover-image{
+		opacity: 0!important;
+	}
 }
 
 .hb-woo-product .hb-product-meta-wrapper{
