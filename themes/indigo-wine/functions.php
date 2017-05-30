@@ -480,7 +480,7 @@ function indigo_rangelogic($quantity){
  */
 function filter_woocommerce_product_categories_widget_args( $list_args ) { 
 
-     if (is_product_category() || isset($_REQUEST['s'])) {
+     if (is_product_category() || isset($_REQUEST['product_cat'])) {
         
         global $wp_query;
         
@@ -540,7 +540,7 @@ function retitle_woo_category_widget($title, $widet_instance, $widget_id) {
         }
 
     }
-    else if(isset($_REQUEST['s']) && isset($_REQUEST['product_cat'])){
+    else if(isset($_REQUEST['product_cat'])){
         $cat_1= get_term_by( 'id',$_REQUEST['product_cat'], 'product_cat' );
        
         if(is_object($cat_1))
@@ -891,3 +891,16 @@ function show_login_popup() {
    }
 }
 add_action('init','show_login_popup');
+
+
+/*add_filter('term_link', 'term_link_filter', 10, 3);
+function term_link_filter( $url, $term, $taxonomy ) {
+
+    if($taxonomy=='product_tag'){
+        global $wp_query;
+        $product_cat= (isset($_GET['product_cat'])) ? $_GET['product_cat'] : $wp_query->get_queried_object_id();
+
+        return $url . "?product_cat=".$product_cat;
+    }
+   
+}*/
