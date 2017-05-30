@@ -156,6 +156,11 @@
 .login-action-lostpassword .message.login-reg-msg {
   color: #000;
 }
+.login-action-register .message.register,
+.login-action-login .message.register,
+.login-action-lostpassword .message.register {
+  display: none;
+}
 .login-action-register.login #login {
   padding: 0.8% 0 0;
 }
