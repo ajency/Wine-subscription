@@ -2363,6 +2363,12 @@ a[data-readmore-toggle].more:before {
 .hb-woo-product.simplemodal-login .price {
   display: none !important;
 }
+.hb-woo-product .hb-woo-image-wrap .star-wrapper {
+  background-color: transparent;
+}
+.hb-woo-product .hb-woo-image-wrap .star-wrapper .star-rating > span {
+  color: inherit;
+}
 #hb-page-title {
   margin-top: 0;
   padding: 1em 0;
@@ -3356,9 +3362,9 @@ body .woocommerce form .form-row .button {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 0.5em;
+  margin-top: 0.2em;
   border-top: 1px solid #eee;
-  padding-top: 0.5em;
+  padding-top: 0.2em;
 }
 .hb-woo-product .hb-product-meta-wrapper .single-price .amount {
   font-size: 0.85em;
