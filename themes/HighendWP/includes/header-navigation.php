@@ -162,7 +162,8 @@
                             </ul></div></div></li></ul>';
                         }
                         else{
-                            echo '<ul><li class="user-detail"><a class="simplemodal-login" href="/wp-login.php?redirect_to='.$_SERVER['REQUEST_URI'].'"><i class="fa fa-user" aria-hidden="true" title="Login"></i></a></li></ul>';
+                              $url =  urlencode( wp_unslash("//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"));
+                            echo '<ul><li class="user-detail"><a class="simplemodal-login" href="/wp-login.php?redirect_to='.$url.'"><i class="fa fa-user" aria-hidden="true" title="Login"></i></a></li></ul>';
                         }
                         ?>
                        
