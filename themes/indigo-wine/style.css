@@ -3322,6 +3322,7 @@ body .woocommerce form .form-row .button {
   color: #d1b57c;
   font-family: gotham_bookregular;
   font-size: 0.95em;
+  min-height: 44px;
 }
 .sub-cat a {
   color: #d1b57c;
