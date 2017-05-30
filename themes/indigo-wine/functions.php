@@ -927,7 +927,7 @@ function indigo_register_form() {
         
         ?>
         <p>
-            <label for="first_name"><?php _e( 'First Name', 'mydomain' ) ?><br />
+            <label for="first_name"><?php _e( 'First Name', 'mydomain' ) ?><span class="required-label">*</span><br />
                 <input type="text" name="first_name" id="first_name" class="input" value="<?php echo esc_attr( wp_unslash( $first_name ) ); ?>" size="25" /></label>
         </p>
         <?php  
@@ -936,7 +936,7 @@ function indigo_register_form() {
         
         ?>
         <p>
-            <label for="last_name"><?php _e( 'Last Name', 'mydomain' ) ?><br />
+            <label for="last_name"><?php _e( 'Last Name', 'mydomain' ) ?><span class="required-label">*</span><br />
                 <input type="text" name="last_name" id="last_name" class="input" value="<?php echo esc_attr( wp_unslash( $last_name ) ); ?>" size="25" /></label>
         </p>
         <?php
@@ -945,7 +945,7 @@ function indigo_register_form() {
         
         ?>
         <p>
-            <label for="user_pass"><?php _e( 'Password', 'mydomain' ) ?><br />
+            <label for="user_pass"><?php _e( 'Password', 'mydomain' ) ?><span class="required-label">*</span><br />
                 <input type="password" name="user_pass" id="user_pass" class="input" size="25" /></label>
         </p>
         <?php
@@ -953,7 +953,7 @@ function indigo_register_form() {
         
         ?>
         <p>
-            <label for="user_cpass"><?php _e( 'Confirm Password', 'mydomain' ) ?><br />
+            <label for="user_cpass"><?php _e( 'Confirm Password', 'mydomain' ) ?><span class="required-label">*</span><br />
                 <input type="password" name="user_cpass" id="user_cpass" class="input" size="25" /></label>
         </p>
         <?php
