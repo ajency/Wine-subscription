@@ -176,7 +176,8 @@ jQuery(function ($) {
 
    // $(document).on('click', '.productcategory-menu', function (event) {
        // event.preventDefault();
-        var data = {
+       // commented as no popup required on menu
+      /*  var data = {
             action: 'is_user_logged_in'
         };
 
@@ -190,7 +191,7 @@ jQuery(function ($) {
                 });
 
             } 
-        });
+        });*/
     //});   
       
 });

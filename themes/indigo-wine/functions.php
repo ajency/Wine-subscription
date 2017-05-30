@@ -315,7 +315,10 @@ add_action( 'admin_enqueue_scripts', 'add_product_admin_scripts', 10, 1 );
 
 function custom_shop_page_redirect() {
     if(( is_product_category() || is_product() || is_cart()) && !is_user_logged_in()){
-        wp_redirect( home_url('?login=true') );
+        $url =  urlencode( wp_unslash("//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"));
+
+          // wp_redirect( home_url('?login=true') ); 
+        wp_redirect( home_url('wp-login.php?redirect_to='. $url.'&reauth=1') );
         exit();
     }
 }
@@ -904,3 +907,10 @@ function term_link_filter( $url, $term, $taxonomy ) {
     }
    
 }*/
+
+/*function login_redirect_peter($p1,$p2,$p3,$p4){
+    wp_redirect(home_url());
+    exit();
+}
+add_filter( 'rul_before_user', 'login_redirect_peter', 10, 4 );
+*/
