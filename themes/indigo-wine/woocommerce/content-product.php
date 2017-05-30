@@ -216,7 +216,7 @@ $classes[] = $logclass;
 				      }
 				    endforeach;
 
-					echo  $data=  implode(',', $array_cat);
+					echo  $data=  implode(', ', $array_cat);
 
 					endif;
 				?>
@@ -228,7 +228,7 @@ $classes[] = $logclass;
 			<?php
 			
 			$size = sizeof( get_the_terms( $post->ID, 'product_tag' ) ); ?>
-			<div class="woo-cats"><?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<span class="hb-woo-shop-cats">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span>' ); ?></div>
+			<?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<div class="woo-cats"><span class="hb-woo-shop-cats">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span></div>' ); ?>
 		</div>
 
 		<?php
