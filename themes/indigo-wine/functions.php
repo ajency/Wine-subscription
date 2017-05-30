@@ -1031,4 +1031,23 @@ add_action('login_form_register', function(){
     }
 });
 
+// Add filter for registration email body
+add_filter('wp_mail','handle_wp_mail');
 
+function handle_wp_mail($atts) {
+    
+    if (isset ($atts ['subject']) && substr_count($atts ['subject'],'Your username and password')>0 ) {
+    if (isset($atts['message'])) {
+        $user = get_user_by( 'email', $atts['to'] );
+
+       $atts['message'] = 'Hi "'.$user->display_name.'",
+
+       Thank you for being a member of Indigo Wine Co. Your login credentials are Email: "'.$atts['to'].'"';
+       $atts ['subject']= 'Welcome to Indigo Wine';
+    }
+    }
+    return ($atts);
+}
+
+
+//end of the registration form changes
