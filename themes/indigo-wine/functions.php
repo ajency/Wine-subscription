@@ -314,7 +314,7 @@ add_action( 'admin_enqueue_scripts', 'add_product_admin_scripts', 10, 1 );
 
 
 function custom_shop_page_redirect() {
-    if(( is_product_category() || is_product() ) && !is_user_logged_in()){
+    if(( is_product_category() || is_product() || is_cart()) && !is_user_logged_in()){
         wp_redirect( home_url('?login=true') );
         exit();
     }

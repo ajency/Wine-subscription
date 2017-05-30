@@ -235,4 +235,49 @@ jQuery(function ($) {
 	};
 
 	SimpleModalLogin.init();
+
+
+	//custom code
+
+	  jQuery(document).on('keyup', '.user_email', function () {			
+			jQuery('.user_login').val(jQuery('.user_email').val());
+		});
+
+	  jQuery(document).on('click', '#register', function(event) {
+	  	
+	  	event.preventDefault();
+
+	  	if($.trim($('.first_name').val())=="" || $.trim($('.last_name').val())==""  || $.trim($('.user_email').val())==""  || $.trim($('.user_pass').val())==""  || $.trim($('.user_cpass').val())=="" ){
+	  			$('.user-alerts').html('<strong>ERROR: </strong> All fields are Mandatory.');
+	  			return false;
+	  	}	
+
+	  	if($('.user_pass').val()!=$('.user_cpass').val())	
+	  	{
+	  		$('.user-alerts').html('<strong>ERROR: </strong> Password Mismatch.');
+	  			return false;
+	  	}
+	  		 jQuery.post(cart_qty_ajax.siteapiurl+'registration', {data: $('#registerform').serialize() }, function(data, textStatus, xhr) {
+	  				// console.log(data);
+	  				// console.log(data.msgcode);
+
+	  				if(data.msgcode==1){
+	  					$('.user-alerts').html('<strong>ERROR: </strong> Email Already Exists');
+	  					$('.user-alerts').addClass('error');
+
+
+	  				}
+	  				else {
+	  						$('.user-alerts').html('Your have been successfully registered');
+	  						$('.user-alerts').addClass('success');
+	  						setTimeout(function() {
+	  						
+	  							window.location=cart_qty_ajax.homeurl+'/product-category/wine-packs/';
+
+	  						}, 100);
+	  				}
+			  	});
+
+	  });
+	 
 });

@@ -185,7 +185,7 @@ jQuery(function ($) {
                 
                
                 $('.productcategory-menu a').attr({
-                    'href': '/wp-login.php?redirect_to='+cart_qty_ajax.homeurl+'/',
+                    'href': '/wp-login.php?redirect_to='+cart_qty_ajax.shopurl+'/',
                     'class': 'simplemodal-login'
                 });
 
