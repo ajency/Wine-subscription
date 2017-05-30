@@ -1008,6 +1008,11 @@ add_action('login_head', function(){
     <script type="text/javascript">
         jQuery(document).ready(function($){
             $('#registerform > p:first-child').css('display', 'none');
+            jQuery('#registerform,#loginform,#lostpasswordform').addClass('login-reg');
+            jQuery('<p class="message login-reg-msg">Please login to access the entire site</p>').insertBefore("#loginform");
+            jQuery('<p class="message login-reg-msg">Looks like you have not registered to Indigo Wines Co yet. Please register to access the entire site.</p>').insertBefore("#registerform");
+            jQuery('<p class="message login-reg-msg">Please enter your username or email address. You will receive a link to create a new password via email.</p>').insertBefore("#lostpasswordform");
+            jQuery('#registerform label[for="user_email"]').prepend('<span class="required-label">*</span>');
         });
     </script>
 <?php

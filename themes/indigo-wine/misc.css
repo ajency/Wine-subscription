@@ -140,6 +140,17 @@
   text-align: center;
   margin-bottom: -1em !important;
 }
+.login-action-register .login-reg label[for="user_email"],
+.login-action-login .login-reg label[for="user_email"],
+.login-action-lostpassword .login-reg label[for="user_email"] {
+  position: relative;
+}
+.login-action-register .login-reg label[for="user_email"] .required-label,
+.login-action-login .login-reg label[for="user_email"] .required-label,
+.login-action-lostpassword .login-reg label[for="user_email"] .required-label {
+  position: absolute;
+  left: 2.7em;
+}
 .login-action-register .message.login-reg-msg,
 .login-action-login .message.login-reg-msg,
 .login-action-lostpassword .message.login-reg-msg {
