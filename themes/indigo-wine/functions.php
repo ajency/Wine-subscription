@@ -914,3 +914,121 @@ function term_link_filter( $url, $term, $taxonomy ) {
 }
 add_filter( 'rul_before_user', 'login_redirect_peter', 10, 4 );
 */
+
+
+
+//registration page changes 
+
+////1. Add a new form element...
+add_action( 'register_form', 'indigo_register_form' );
+function indigo_register_form() {
+
+    $first_name = ( ! empty( $_POST['first_name'] ) ) ? trim( $_POST['first_name'] ) : '';
+        
+        ?>
+        <p>
+            <label for="first_name"><?php _e( 'First Name', 'mydomain' ) ?><br />
+                <input type="text" name="first_name" id="first_name" class="input" value="<?php echo esc_attr( wp_unslash( $first_name ) ); ?>" size="25" /></label>
+        </p>
+        <?php  
+
+        $last_name = ( ! empty( $_POST['last_name'] ) ) ? trim( $_POST['last_name'] ) : '';
+        
+        ?>
+        <p>
+            <label for="last_name"><?php _e( 'Last Name', 'mydomain' ) ?><br />
+                <input type="text" name="last_name" id="last_name" class="input" value="<?php echo esc_attr( wp_unslash( $last_name ) ); ?>" size="25" /></label>
+        </p>
+        <?php
+
+          $user_pass = ( ! empty( $_POST['user_pass'] ) ) ? trim( $_POST['user_pass'] ) : '';
+        
+        ?>
+        <p>
+            <label for="user_pass"><?php _e( 'Password', 'mydomain' ) ?><br />
+                <input type="password" name="user_pass" id="user_pass" class="input" size="25" /></label>
+        </p>
+        <?php
+          $user_cpass = ( ! empty( $_POST['user_cpass'] ) ) ? trim( $_POST['user_cpass'] ) : '';
+        
+        ?>
+        <p>
+            <label for="user_cpass"><?php _e( 'Confirm Password', 'mydomain' ) ?><br />
+                <input type="password" name="user_cpass" id="user_cpass" class="input" size="25" /></label>
+        </p>
+        <?php
+    }
+
+    //2. Add validation. In this case, we make sure first_name is required.
+    add_filter( 'registration_errors', 'indigo_registration_errors', 10, 3 );
+    function indigo_registration_errors( $errors, $sanitized_user_login, $user_email ) {
+        
+        if ( empty( $_POST['first_name'] ) || ! empty( $_POST['first_name'] ) && trim( $_POST['first_name'] ) == '' ) {
+            $errors->add( 'first_name_error', __( '<strong>ERROR</strong>: You must include a first name.', 'mydomain' ) );
+        }  
+        if ( empty( $_POST['last_name'] ) || ! empty( $_POST['last_name'] ) && trim( $_POST['last_name'] ) == '' ) {
+            $errors->add( 'last_name_error', __( '<strong>ERROR</strong>: You must include a last name.', 'mydomain' ) );
+        } 
+        if ( empty( $_POST['user_pass'] ) || ! empty( $_POST['user_pass'] ) && trim( $_POST['user_pass'] ) == '' ) {
+            $errors->add( 'user_pass_error', __( '<strong>ERROR</strong>: Password Cannot be empty.', 'mydomain' ) );
+        }
+        if ( empty( $_POST['user_cpass'] ) || ! empty( $_POST['user_cpass'] ) && trim( $_POST['user_cpass'] ) == '' ) {
+            $errors->add( 'user_cpass_error', __( '<strong>ERROR</strong>: Confirm Password Cannot be empty.', 'mydomain' ) );
+        }
+        else if ($_POST['user_cpass']!=$_POST['user_pass'] ) {
+            $errors->add( 'user_cpass_error', __( '<strong>ERROR</strong>: Password Mismatch.', 'mydomain' ) );
+        }
+        return $errors;
+    }
+
+    //3. Finally, save our extra registration user meta.
+    add_action( 'user_register', 'indigo_user_register' );
+    function indigo_user_register( $user_id ) {
+        if ( ! empty( $_POST['first_name'] ) ) {
+            update_user_meta( $user_id, 'first_name', trim( $_POST['first_name'] ) );
+        } 
+        if ( ! empty( $_POST['last_name'] ) ) {
+            update_user_meta( $user_id, 'last_name', trim( $_POST['last_name'] ) );
+        }
+        if ( ! empty( $_POST['user_pass'] ) ) {
+             wp_set_password($_POST['user_pass'], $user_id);
+        }
+    }
+
+
+add_action('login_head', function(){
+?>
+    <style>
+        #registerform > p:first-child{
+            display:none;
+        }
+    </style>
+
+    <script type="text/javascript" src="<?php echo site_url('/wp-includes/js/jquery/jquery.js'); ?>"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($){
+            $('#registerform > p:first-child').css('display', 'none');
+        });
+    </script>
+<?php
+});
+
+//Remove error for username, only show error for email only.
+add_filter('registration_errors', function($wp_error, $sanitized_user_login, $user_email){
+    if(isset($wp_error->errors['empty_username'])){
+        unset($wp_error->errors['empty_username']);
+    }
+
+    if(isset($wp_error->errors['username_exists'])){
+        unset($wp_error->errors['username_exists']);
+    }
+    return $wp_error;
+}, 10, 3);
+
+add_action('login_form_register', function(){
+    if(isset($_POST['user_login']) && isset($_POST['user_email']) && !empty($_POST['user_email'])){
+        $_POST['user_login'] = $_POST['user_email'];
+    }
+});
+
+
