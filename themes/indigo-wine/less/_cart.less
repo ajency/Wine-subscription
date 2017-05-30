@@ -615,6 +615,35 @@
 
 
 
+// ---------------------------
+// CART ALERTS -----------
+// ---------------------------
+
+
+.woocommerce{
+	& > .woocommerce-message.woocommerce-message{
+		border: 1px solid #eee;
+    	background-color: @success-color !important;
+    	color: #fff;
+    	font-family: gotham_bookregular;
+    	&:before{
+    		color: #fff;
+    	}
+    	a{
+    		color: @brand-primary;
+    		text-decoration: underline;
+    	}
+	}
+	.woocommerce-error{
+		background-color: @danger-color !important;
+    	color: #fff;
+    	font-family: gotham_bookregular;
+    	&:before{
+    		color: #fff;
+    	}
+	}
+}
+
 
 
 

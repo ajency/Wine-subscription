@@ -4137,6 +4137,27 @@ body .woocommerce form .form-row .button {
           transition: all 0.5s ease;
   display: none;
 }
+.woocommerce > .woocommerce-message.woocommerce-message {
+  border: 1px solid #eee;
+  background-color: #025a02 !important;
+  color: #fff;
+  font-family: gotham_bookregular;
+}
+.woocommerce > .woocommerce-message.woocommerce-message:before {
+  color: #fff;
+}
+.woocommerce > .woocommerce-message.woocommerce-message a {
+  color: #d1b57c;
+  text-decoration: underline;
+}
+.woocommerce .woocommerce-error {
+  background-color: #b81c23 !important;
+  color: #fff;
+  font-family: gotham_bookregular;
+}
+.woocommerce .woocommerce-error:before {
+  color: #fff;
+}
 .woocommerce-account .woocommerce {
   margin-top: 1em;
 }
