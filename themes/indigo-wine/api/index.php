@@ -21,7 +21,7 @@ register_rest_route( $namespace, '/unsubscribe_session',
   );
 
 /**
- * All Product related api for admin
+ * registration api
  */
 register_rest_route( $namespace, '/registration', array(
   'methods' =>  WP_REST_Server::CREATABLE,
