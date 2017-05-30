@@ -56,13 +56,18 @@ function registration(){
     return array("msgcode"=>"1");
   }
 
- createUser($data);
+  createUser($data);
   
   $credentials['user_login'] =$data['user_email'];
   $credentials['user_password']  = $data['user_pass'];
+  
+  $to=$data['user_email'];
+  $subject="[Indigo Wine] - Account Registration";
+  $message="Your Account has been Registered Successfully.";
 
+  wp_mail( $to, $subject, $message, $headers = '', $attachments = array() );
+ 
   $user = wp_signon($credentials); 
-
   return array('msgcode' => '0');
 }
 
