@@ -176,8 +176,9 @@ jQuery(function ($) {
 
    // $(document).on('click', '.productcategory-menu', function (event) {
        // event.preventDefault();
-        var data = {
-        action: 'is_user_logged_in'
+       // commented as no popup required on menu
+      /*  var data = {
+            action: 'is_user_logged_in'
         };
 
         jQuery.post(ajaxurl, data, function(response) {
@@ -185,12 +186,12 @@ jQuery(function ($) {
                 
                
                 $('.productcategory-menu a').attr({
-                    'href': '/wp-login.php?redirect_to='+cart_qty_ajax.shopurl+'/',
+                    'href': '/wp-login.php',
                     'class': 'simplemodal-login'
                 });
 
             } 
-        });
+        });*/
     //});   
       
 });
