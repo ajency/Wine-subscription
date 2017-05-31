@@ -629,7 +629,7 @@ $main_html='<!doctype html>
                         
                         <div style="font-size: 17px; background-color: #022c4c;color: #fff;border: 3px inset #e4c27f;padding-top: 5px;padding-bottom: 5px;    margin-top: 20px;margin-bottom: 20px;">
                             <span style="display: inline-block;text-align: left;">
-                                <p>Email : <b style="font-weight: 500;color: #dec08b;">'.$data['email'].'</b></p>
+                                <p>Email : <b style="font-weight: 500;color: #dec08b;"><a href="" style="color: #dec07f;">'.$data['email'].'</a></b></p>
                             </span>
                         </div>
 
