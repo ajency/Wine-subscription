@@ -75,6 +75,7 @@ function my_subscription_columns( $columns ) {
     'title' => __( 'Title' ),
     'author' => __( 'Subsriber Name' ),
     '_subscription_type' => __( 'Subscription Type' ),
+    '_subscription_status' => __( 'Status' ),
     'date' => __( 'Date' )
   );
 
@@ -102,6 +103,19 @@ function my_manage_subscription_columns( $column, $post_id ) {
         printf( __( '%s' ), strtoupper($_subscription_type ));
 
       break;
+
+      case '_subscription_status' :
+
+      $_subscription_status = get_post_meta( $post_id, 'status', true );
+
+      if ( empty( $_subscription_status ) )
+        echo __( 'Unknown' );
+
+      else
+        printf( __( '%s' ), strtoupper($_subscription_status ));
+
+      break;
+
 
       default :
       break;
@@ -131,15 +145,24 @@ function subscription_process_order($order_id) {
  * [add_custom_meta_data_for_order -method to add subscription custom post meta]
  */
 function add_custom_meta_data_for_order($order_id, $posted ){
-  print_r($posted );
+ 
+  global $woocommerce;
   if(is_user_logged_in() && isset($_SESSION['subscription_type'])){
     
+    $items_names = array();
+
+    foreach($woocommerce->cart->get_cart() as $cart_item){
+        $items_names[] = $cart_item['data']->post->post_title;
+    }
+    $string_cart_item_names = implode( ', ', $items_names );
+
     $current_date=date('Y-m-d');
     $userid=get_current_user_id();
-    $post_data=array('post_author' => $userid,'post_title' => 'Subscription-'.$current_date,'post_type' => 'subscription','post_status'=>'publish');
+    $post_data=array('post_author' => $userid,'post_title' => 'Subscription-'.$string_cart_item_names,'post_type' => 'subscription','post_status'=>'publish');
     $subscriptionid=wp_insert_post($post_data);
     update_post_meta( $subscriptionid, 'original_orderid', $order_id );
     update_post_meta( $subscriptionid, '_subscription_type',$_SESSION['subscription_type']);
+    update_post_meta( $subscriptionid, 'status','active');
     unset($_SESSION['subscription_type']);
 
     update_post_meta( $order_id, '_subscription_id', $subscriptionid );
