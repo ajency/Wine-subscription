@@ -631,7 +631,7 @@ add_filter( 'woocommerce_product_tabs', 'reordered_tabs', 98 );
 function reordered_tabs( $tabs ) {
     $tabs['additional_information']['priority'] = 5; 
     $tabs['description']['priority'] = 10; 
-    $tabs['reviews']['priority'] = 15;
+    $tabs['reviews']['priority'] = 50;
  
     return $tabs;
 }
