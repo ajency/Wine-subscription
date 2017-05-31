@@ -988,7 +988,11 @@ function indigo_register_form() {
             update_user_meta( $user_id, 'first_name', trim( $_POST['first_name'] ) );
         } 
         if ( ! empty( $_POST['last_name'] ) ) {
+
+            $display_name=$_POST['first_name'].' '.$_POST['last_name'];
+
             update_user_meta( $user_id, 'last_name', trim( $_POST['last_name'] ) );
+            wp_update_user( array( 'ID' => $user_id, 'display_name' => $display_name ) );
         }
         if ( ! empty( $_POST['user_pass'] ) ) {
              wp_set_password($_POST['user_pass'], $user_id);
@@ -1045,14 +1049,14 @@ add_filter('wp_mail','handle_wp_mail');
 function handle_wp_mail($atts) {
     
     if (isset ($atts ['subject']) && substr_count($atts ['subject'],'Your username and password')>0 ) {
-    if (isset($atts['message'])) {
-        $user = get_user_by( 'email', $atts['to'] );
+        if (isset($atts['message'])) {
+            $user = get_user_by( 'email', $atts['to'] );
 
-       $atts['message'] = 'Hi "'.$user->display_name.'",
+           $atts['message'] = 'Hi '.$user->display_name.',
 
-       Thank you for being a member of Indigo Wine Co. Your login credentials are Email: "'.$atts['to'].'"';
-       $atts ['subject']= 'Welcome to Indigo Wine';
-    }
+           Thank you for being a member of Indigo Wine Co. Your login credentials are Email: "'.$atts['to'].'"';
+           $atts ['subject']= 'Welcome to Indigo Wine';
+        }
     }
     return ($atts);
 }
