@@ -620,8 +620,8 @@
 // ---------------------------
 
 
-.woocommerce{
-	& > .woocommerce-message.woocommerce-message{
+.woocommerce,.woocommerce .hb-woo-wraper{
+	& > .woocommerce-message.woocommerce-message,.woocommerce-message.woocommerce-message{
 		border: 1px solid #eee;
     	background-color: @success-color !important;
     	color: #fff;
@@ -632,6 +632,10 @@
     	a{
     		color: @brand-primary;
     		text-decoration: underline;
+    		font-weight: 600 !important;
+    		&:hover{
+    			color: @brand-primary;
+    		}
     	}
 	}
 	.woocommerce-error{
