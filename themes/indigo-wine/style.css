@@ -1065,6 +1065,19 @@ a[data-readmore-toggle].more:before {
 .hb-product-meta .like-holder {
   display: none;
 }
+.featuredRow .row.products {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.featuredRow .row.products .hb-woo-product {
+  width: auto;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 20%;
+      -ms-flex: 1 0 20%;
+          flex: 1 0 20%;
+}
 @media screen and (max-width: 600px) {
   #main-wrapper .hb-woo-product.hb-woo-product img {
     width: 50%;
