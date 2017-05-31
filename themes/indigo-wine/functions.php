@@ -1051,15 +1051,18 @@ function handle_wp_mail($atts) {
     if (isset ($atts ['subject']) && substr_count($atts ['subject'],'Your username and password')>0 ) {
         if (isset($atts['message'])) {
             $user = get_user_by( 'email', $atts['to'] );
+            $data=array('email'=>$atts['to'],'display_name'=>$user->display_name);
+            
+           $atts['message'] = generate_email_template('registration_mail',$data);
 
-           $atts['message'] = 'Hi '.$user->display_name.',
-
-           Thank you for being a member of Indigo Wine Co. Your login credentials are Email: "'.$atts['to'].'"';
-           $atts ['subject']= 'Welcome to Indigo Wine';
         }
     }
     return ($atts);
 }
 
+add_filter( 'wp_mail_content_type', function( $content_type ) {
+    return 'text/html';
+});
 
+require get_stylesheet_directory()."/email-template/email-template.php";
 //end of the registration form changes
