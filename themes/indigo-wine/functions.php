@@ -1014,8 +1014,8 @@ add_action('login_head', function(){
             jQuery('<p class="message login-reg-msg">Please enter your username or email address. You will receive a link to create a new password via email.</p>').insertBefore("#lostpasswordform");
             jQuery('#registerform label[for="user_email"]').prepend('<span class="required-label">*</span>');
             jQuery('#reg_passmail').addClass('email-notify');
-            var label_name = $('.login label[for="user_login').contents().first()[0].textContent;
-            $('.login label[for="user_login').contents().first()[0].textContent = label_name.replace("Username or Email Address", "Email Address");
+            var label_name = $('.login label[for="user_login"]').contents().first()[0].textContent;
+            $('.login label[for="user_login"]').contents().first()[0].textContent = label_name.replace("Username or Email Address", "Email Address");
         });
     </script>
 <?php
