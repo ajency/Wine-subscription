@@ -548,7 +548,7 @@ $main_html='<!doctype html>
 </head>
     <body>
         <center>
-            <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable" style="background-color: #f2f2f2;">
                 <tr>
                     <td align="center" valign="top" id="bodyCell">
                         <!-- BEGIN TEMPLATE // -->
@@ -557,7 +557,7 @@ $main_html='<!doctype html>
                         <tr>
                         <td align="center" valign="top" width="600" style="width:600px;">
                         <![endif]-->
-                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateContainer">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateContainer" style="width: 600px;max-width:600px;">
                             <tr>
                                 <td valign="top" id="templatePreheader"><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
     <tbody class="mcnTextBlockOuter">
@@ -576,7 +576,7 @@ $main_html='<!doctype html>
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-left:18px; padding-bottom:9px; padding-right:18px;text-align: center;">
                         
-                            <img src="indigo-logo.png">
+                            <img src="http://indigowineco.ajency.in/wp-content/uploads/2017/05/indigo-logo.png">
                         </td>
                     </tr>
                 </tbody></table>
@@ -609,7 +609,7 @@ $main_html='<!doctype html>
         case 'registration_mail':
                                                         
         $table_html.='<tr>
-                  <td valign="top" id="templateHeader" style="padding: 20px;font-family: helvetica;background-image: url(transperent-bg.png);background-size: 84%;background-position: 0 0;background-repeat: repeat-x;">
+                  <td valign="top" id="templateHeader" style="padding: 20px;font-family: helvetica;background-image: url(http://indigowineco.ajency.in/wp-content/themes/indigo-wine/img/transperent-bg.png);background-size: 84%;background-position: 0 0;background-repeat: repeat-x;background-color: #fff;">
 
                     <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnCaptionBlock">
                 <tbody class="mcnCaptionBlockOuter">
@@ -619,7 +619,7 @@ $main_html='<!doctype html>
 
 
 
-                    <div style="text-align: center;color: #022c4c;">
+                    <div style="text-align: center;color: #022c4c;font-family: helvetica;">
                         
                         <h1 style="text-align: center;font-weight: 100;margin-bottom: 15px;color: #022c4c;"><span style="border-bottom: 2px solid #dbc698;">D</span>ear '.$data['display_name'].'</h1>
                         
@@ -679,11 +679,11 @@ $main_html='<!doctype html>
                 <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
                     <tbody><tr>
                         
-                        <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
+                        <td valign="top" class="mcnTextContent" style="padding-top:10px; padding-right:18px; padding-bottom:20px; padding-left:18px;color: #656565;font-family: Helvetica;font-size: 13px;line-height: 150%;text-align: center;">
                         
                             <p style="margin: 0;">You received this email because you\'re a registered indigowineco user. We occasionally send system alerts with account information, planned outages, system improvements, and important customer-service updates. We\'ll keep them brief and useful. Promise.</p>
                             <p style="margin: 0;margin-bottom: 10px;">&copy;2017 indigowineco.com. All Rights Reserved.</p>
-                    <a href="" style="padding: 0 5px;">Terms of use</a><span style="vertical-align: text-bottom;font-size: 15px;">.</span><a href="*|UPDATE_PROFILE|*" style="padding: 0 5px;">View in browser</a><span style="vertical-align: text-bottom;font-size: 15px;">.</span><a href="*|UNSUB|*" style="padding: 0 5px;">Log in to indigowineco</a><!-- <span style="vertical-align: text-bottom;font-size: 15px;">.</span><a href="" style="padding: 0 5px;">Unsubscribe</a> --><br>
+                    <a href="" style="padding: 0 5px;color: #656565;font-weight: normal;text-decoration: underline;">Terms of use</a><span style="vertical-align: text-bottom;font-size: 15px;">.</span><a href="*|UPDATE_PROFILE|*" style="padding: 0 5px;color: #656565;font-weight: normal;text-decoration: underline;">View in browser</a><span style="vertical-align: text-bottom;font-size: 15px;">.</span><a href="*|UNSUB|*" style="padding: 0 5px;color: #656565;font-weight: normal;text-decoration: underline;">Log in to indigowineco</a><!-- <span style="vertical-align: text-bottom;font-size: 15px;">.</span><a href="" style="padding: 0 5px;">Unsubscribe</a> --><br>
                         </td>
                     </tr>
                 </tbody></table>
