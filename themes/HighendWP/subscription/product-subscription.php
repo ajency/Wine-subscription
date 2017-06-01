@@ -51,9 +51,7 @@ function subscription() {
     'exclude_from_search'   => false,
     'publicly_queryable'    => true,
     'capability_type'       => 'post',
-    'capabilities' => array(
-            'create_posts' => false
-        )
+   
   );
   register_post_type( 'subscription', $args );
 
@@ -296,3 +294,13 @@ function indigo_subscriptionaccount_orders_columns() {
     return $array; 
 }; 
 
+function getallorderidbysubscription($subscription_id){
+  global $wpdb;
+  $sql_subscribedOrder=$wpdb->prepare("select post_id as orderid from ".$wpdb->prefix."postmeta  where meta_key='_subscription_id' and meta_value=%d order by orderid desc",$subscription_id);
+  $orderid=$wpdb->get_results($sql_subscribedOrder,ARRAY_A);
+  foreach ( $orderid as $value) {
+    $orderids[]=$value['orderid'];
+  }
+  $orderids=implode(',', $orderids);
+  return $orderids;
+}
