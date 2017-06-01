@@ -207,6 +207,33 @@ do_action( 'woocommerce_before_cart' );
 </div>
 
 
+<!-- How it works -->
+
+<div class="h-i-w">
+	<h1 class="title">How it works</h1>
+	<div class="flex-cols">
+		<div class="cols cal">
+			<span class="c-icon"></span>
+			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+		</div>
+		<div class="cols sub">
+			<span class="c-icon"></span>
+			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+		</div>
+		<div class="cols pay">
+			<span class="c-icon"></span>
+			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+		</div>
+		<div class="cols done">
+			<span class="c-icon"></span>
+			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+		</div>
+	</div>
+
+</div>
+
+
+
 
 </div>
 
