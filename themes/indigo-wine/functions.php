@@ -889,6 +889,7 @@ function logout_redirect(){
 
 function login_stylesheet() {
     wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri().'/misc.css' );
+    wp_enqueue_style( 'Font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
 }
 add_action( 'login_enqueue_scripts', 'login_stylesheet' );
 

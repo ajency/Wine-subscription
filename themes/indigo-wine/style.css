@@ -4289,42 +4289,43 @@ body .woocommerce form .form-row .button {
           transition: all 0.5s ease;
   display: none;
 }
-.woocommerce > .woocommerce-message.woocommerce-message,
+.woocommerce.woocommerce > .woocommerce-message.woocommerce-message,
 .woocommerce .hb-woo-wraper > .woocommerce-message.woocommerce-message,
-.woocommerce .woocommerce-message.woocommerce-message,
+.woocommerce.woocommerce .woocommerce-message.woocommerce-message,
 .woocommerce .hb-woo-wraper .woocommerce-message.woocommerce-message {
   border: 1px solid #eee;
   background-color: #025a02 !important;
   color: #fff;
   font-family: gotham_bookregular;
 }
-.woocommerce > .woocommerce-message.woocommerce-message:before,
+.woocommerce.woocommerce > .woocommerce-message.woocommerce-message:before,
 .woocommerce .hb-woo-wraper > .woocommerce-message.woocommerce-message:before,
-.woocommerce .woocommerce-message.woocommerce-message:before,
+.woocommerce.woocommerce .woocommerce-message.woocommerce-message:before,
 .woocommerce .hb-woo-wraper .woocommerce-message.woocommerce-message:before {
   color: #fff;
 }
-.woocommerce > .woocommerce-message.woocommerce-message a,
+.woocommerce.woocommerce > .woocommerce-message.woocommerce-message a,
 .woocommerce .hb-woo-wraper > .woocommerce-message.woocommerce-message a,
-.woocommerce .woocommerce-message.woocommerce-message a,
+.woocommerce.woocommerce .woocommerce-message.woocommerce-message a,
 .woocommerce .hb-woo-wraper .woocommerce-message.woocommerce-message a {
   color: #d1b57c;
   text-decoration: underline;
   font-weight: 600 !important;
 }
-.woocommerce > .woocommerce-message.woocommerce-message a:hover,
+.woocommerce.woocommerce > .woocommerce-message.woocommerce-message a:hover,
 .woocommerce .hb-woo-wraper > .woocommerce-message.woocommerce-message a:hover,
-.woocommerce .woocommerce-message.woocommerce-message a:hover,
+.woocommerce.woocommerce .woocommerce-message.woocommerce-message a:hover,
 .woocommerce .hb-woo-wraper .woocommerce-message.woocommerce-message a:hover {
   color: #d1b57c;
 }
-.woocommerce .woocommerce-error,
+.woocommerce.woocommerce .woocommerce-error,
 .woocommerce .hb-woo-wraper .woocommerce-error {
   background-color: #b81c23 !important;
   color: #fff;
   font-family: gotham_bookregular;
+  border: 0;
 }
-.woocommerce .woocommerce-error:before,
+.woocommerce.woocommerce .woocommerce-error:before,
 .woocommerce .hb-woo-wraper .woocommerce-error:before {
   color: #fff;
 }

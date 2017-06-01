@@ -176,10 +176,20 @@
   box-shadow: 0px -4px 20px 0px rgba(0, 0, 0, 0.13);
 }
 .login #login_error {
-  color: #ff353b;
+  color: #D8000C;
+  background-color: #FFBABA;
   text-align: left;
   line-height: 1.5;
   font-size: 1.05em;
+}
+.login #login_error > strong:first-child:before {
+  content: "\f06a";
+  padding-right: 0.5em;
+  vertical-align: middle;
+  display: inline-block;
+  font: normal normal normal 1.2em FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
 }
 .login #login {
   padding: 3% 0 0;
@@ -219,6 +229,15 @@
 .login #nav a:focus {
   box-shadow: none;
   color: inherit;
+}
+.login.login-action-register #login_error strong:before {
+  content: "\f06a";
+  padding-right: 0.5em;
+  vertical-align: middle;
+  display: inline-block;
+  font: normal normal normal 1.2em FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
 }
 #resetpassform {
   font-family: gotham_bookregular;
