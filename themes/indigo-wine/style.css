@@ -4461,8 +4461,13 @@ body .woocommerce form .form-row .button {
   font-size: 1.05em;
   color: #022c4c;
 }
-.subscription-action .username {
+.subscription-action .content p {
   font-family: gotham_mediumregular;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.subscription-action .username {
+  font-weight: 600;
 }
 .subscription-action .type-title {
   font-size: 0.95em;
