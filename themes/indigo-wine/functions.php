@@ -708,6 +708,15 @@ function filter_posts_clauses( $args ) {
 
        
     }
+    if(isset($_REQUEST['search_subscriptionid'])){
+       $orderids=getallorderidbysubscription($_REQUEST['s']);
+
+        $args['where']="AND wp_posts.ID IN (".$orderids.") AND wp_posts.post_type = 'shop_order' AND ((wp_posts.post_status = 'wc-pending' OR wp_posts.post_status = 'wc-processing' OR wp_posts.post_status = 'wc-on-hold' OR wp_posts.post_status = 'wc-completed' OR wp_posts.post_status = 'wc-cancelled' OR wp_posts.post_status = 'wc-refunded' OR wp_posts.post_status = 'wc-failed'))";
+        
+
+    }
+    // echo '<pre>';
+    // print_r($args);
     return $args;
 }
      
@@ -719,7 +728,7 @@ add_filter( 'posts_clauses', 'filter_posts_clauses', 10, 1 );
  // add_filter( 'posts_request', 'dump_request' );
 
 function dump_request( $input ) {
-
+    echo "sairaj";
     var_dump($input);
 
     return $input;
@@ -1066,3 +1075,51 @@ add_filter( 'wp_mail_content_type', function( $content_type ) {
 
 require get_stylesheet_directory()."/email-template/email-template.php";
 //end of the registration form changes
+
+/**
+ * Additing column to orders post type
+ */
+add_filter( 'manage_edit-shop_order_columns', 'custom_shop_order_column',11);
+function custom_shop_order_column($columns)
+{
+  
+    $columns                     = array();
+    $columns['cb']               = $existing_columns['cb'];
+    $columns['order_status']     = '<span class="status_head tips" data-tip="' . esc_attr__( 'Status', 'woocommerce' ) . '">' . esc_attr__( 'Status', 'woocommerce' ) . '</span>';
+    
+    $columns['order_title']      = __( 'Order', 'woocommerce' );
+    
+    $columns['subscription'] = __( 'Subscription ID','indigo-wine');
+    
+    $columns['billing_address']  = __( 'Billing', 'woocommerce' );
+    $columns['shipping_address'] = __( 'Ship to', 'woocommerce' );
+    $columns['customer_message'] = '<span class="notes_head tips" data-tip="' . esc_attr__( 'Customer message', 'woocommerce' ) . '">' . esc_attr__( 'Customer message', 'woocommerce' ) . '</span>';
+    $columns['order_notes']      = '<span class="order-notes_head tips" data-tip="' . esc_attr__( 'Order notes', 'woocommerce' ) . '">' . esc_attr__( 'Order notes', 'woocommerce' ) . '</span>';
+    $columns['order_date']       = __( 'Date', 'woocommerce' );
+    $columns['order_total']      = __( 'Total', 'woocommerce' );
+    $columns['order_actions']    = __( 'Actions', 'woocommerce' );
+
+   return $columns;
+}
+
+// adding the data to columns 
+add_action( 'manage_shop_order_posts_custom_column' , 'custom_orders_list_column_content', 10, 2 );
+function custom_orders_list_column_content( $column )
+{
+    global $post, $woocommerce, $the_order;
+    $order_id = $the_order->id;
+
+    switch ( $column )
+    {
+        case 'subscription' :
+            $_subscription_id = get_post_meta(  $order_id, '_subscription_id', true );
+            echo "<a href='edit.php?s=".$_subscription_id."&post_status=all&post_type=shop_order&action=-1&m=0&_customer_user&paged=1&action2=-1&search_subscriptionid=yes'>#".$_subscription_id."</a>";
+            break;
+
+        
+    }
+}
+
+/**
+ * end of the adding columnn code
+ */
