@@ -189,7 +189,8 @@ do_action( 'woocommerce_before_cart' );
 <div class="subscription-table">
 	<div class="box-shadow-wrap subscription-action">
 		<div class="toggle-check">
-			<input type="checkbox" value="" name="" class="custom-check" checked />
+
+			<input type="checkbox" value="" name="subscription-check" id="subscription-check" class="custom-check" checked />
 			<div class="content">
 				<p>Hi <span class="username secondary-color">Mark</span>, Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
 			</div>
