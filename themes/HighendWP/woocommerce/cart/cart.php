@@ -48,14 +48,14 @@ do_action( 'woocommerce_before_cart' );
 	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover">
 	<div class="why-subscribe__content">
 		<h3 class="title">Why to Subscribe</h3>
-		<p class="reason">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus minima modi sequi fugit adipisci harum.</p>
+		<p class="reason">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
 	</div>
 </div>
 
 
 
 
-<form class="woocommerce-cart-form <?php echo $cartlimit; ?>" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+<form class="cart-form woocommerce-cart-form <?php echo $cartlimit; ?>" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 <input type="hidden" id="subscription_status" name="subscription_status" value="no">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
@@ -168,7 +168,7 @@ do_action( 'woocommerce_before_cart' );
 		do_action( 'woocommerce_cart_contents' );
 		?>
 		<tr>
-			<td colspan="6" class="actions">
+			<td colspan="6" class="actions hidden">
 
 				<a href="<?php echo apply_filters( 'woocommerce_return_to_shop_redirect', get_permalink( wc_get_page_id( 'shop' ) ) ); ?>" class="simple-read-more float-left continue-shopping"><?php _e('Continue Shopping', 'woocommerce'); ?></a>
 				<input type="submit" class="button hb-update-cart" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" /> <input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="<?php _e( 'Proceed to Checkout', 'woocommerce' ); ?>" />
@@ -189,7 +189,7 @@ do_action( 'woocommerce_before_cart' );
 <div class="subscription-table">
 	<div class="box-shadow-wrap subscription-action">
 		<div class="toggle-check">
-			<input type="checkbox" value="" name="" class="custom-check" />
+			<input type="checkbox" value="" name="" class="custom-check" checked />
 			<div class="content">
 				<p>Hi <span class="username secondary-color">Mark</span>, Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
 			</div>
@@ -212,20 +212,20 @@ do_action( 'woocommerce_before_cart' );
 <div class="h-i-w">
 	<h1 class="title">How it works</h1>
 	<div class="flex-cols">
-		<div class="cols cal">
-			<span class="c-icon"></span>
+		<div class="cols">
+			<span class="c-icon cal"></span>
 			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
 		</div>
-		<div class="cols sub">
-			<span class="c-icon"></span>
+		<div class="cols">
+			<span class="c-icon sub"></span>
 			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
 		</div>
-		<div class="cols pay">
-			<span class="c-icon"></span>
+		<div class="cols">
+			<span class="c-icon pay"></span>
 			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
 		</div>
-		<div class="cols done">
-			<span class="c-icon"></span>
+		<div class="cols">
+			<span class="c-icon done"></span>
 			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
 		</div>
 	</div>
@@ -312,6 +312,11 @@ do_action( 'woocommerce_before_cart' );
 
 <div class="cart-collaterals">
 	<?php woocommerce_cart_totals(); ?>
+	
+	<div class="checkoutAction">
+		<button type="button" class="checkout-btn">Proceed to checkout</button>
+	</div>
+
 </div>
 </div>
 

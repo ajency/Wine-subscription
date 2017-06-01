@@ -129,15 +129,30 @@
 		}
 	}
 	.coupon-toggle{
+		margin-top: 15px;
 		.hb-accordion-tab{
 			font-family: 'gotham_lightregular';
     		font-weight: 600;
     		color: @brand-secondary;
+    		border-color: #b9b9b9;
     		.icon-angle-right{
 				color: @brand-secondary;
     		}
 		}
+		.hb-accordion-pane{
+			#coupon_code{
+				font-family: gotham_bookregular;
+    			padding: 0.5em 0 !important;
+    			margin-bottom: 0.3em;
+			}
+		}
 	}
+}
+
+#main-wrapper .coupon-code.coupon-code input.button{
+	background-color: @brand-secondary;
+	padding: 0.7em !important;
+
 }
 
 
@@ -793,16 +808,30 @@
     }
 }
 
+.cart-form{
+	padding-bottom: 0.5em;
+	.shop_table{
+		.cart_item{
+			&:nth-last-child(2){
+				border-bottom: 0;
+			}
+		}
+	}
+}
+
 
 //how it works
 
 .h-i-w{
-	margin-top: 4em;
+	margin-top: 5em;
 	.title{
 		font-family: gotham_mediumregular;
     	font-weight: 600;
     	color: #989da9;
-    	font-size: 2.2em;
+    	font-size: 2.5em;
+    	border-bottom: 1px solid #ddd;
+    	padding-bottom: 0.5em;
+    	margin-bottom: 0.5em;
 	}
 	.flex-cols{
 		display: flex;
@@ -834,13 +863,29 @@
     		}
 		}
 		.content{
-			font-size: 1.05em;
+			font-size: 1em;
     		color: #002b4e;
 		}
 	}
 }
 
 
+.checkoutAction{
+	.checkout-btn{
+		background-color: @brand-secondary;
+	    color: #fff;
+	    border: 0;
+	    padding: 1em;
+	    width: 100%;
+	    font-family: gotham_mediumregular;
+	    font-size: 1.3em;
+	    border-radius: 5px;
+	    position:relative;
+	    &:active{
+	    	top: 3px;
+	    }
+	}
+}
 
 
 

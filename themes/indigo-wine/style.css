@@ -3792,15 +3792,30 @@ body .woocommerce form .form-row .button {
   color: #022c4c;
   display: block;
 }
+.element-row .coupon-toggle,
+.hb-main-content .coupon-toggle {
+  margin-top: 15px;
+}
 .element-row .coupon-toggle .hb-accordion-tab,
 .hb-main-content .coupon-toggle .hb-accordion-tab {
   font-family: 'gotham_lightregular';
   font-weight: 600;
   color: #022c4c;
+  border-color: #b9b9b9;
 }
 .element-row .coupon-toggle .hb-accordion-tab .icon-angle-right,
 .hb-main-content .coupon-toggle .hb-accordion-tab .icon-angle-right {
   color: #022c4c;
+}
+.element-row .coupon-toggle .hb-accordion-pane #coupon_code,
+.hb-main-content .coupon-toggle .hb-accordion-pane #coupon_code {
+  font-family: gotham_bookregular;
+  padding: 0.5em 0 !important;
+  margin-bottom: 0.3em;
+}
+#main-wrapper .coupon-code.coupon-code input.button {
+  background-color: #022c4c;
+  padding: 0.7em !important;
 }
 .failure {
   padding: 0.8em;
@@ -4454,14 +4469,23 @@ body .woocommerce form .form-row .button {
   margin-bottom: 0.3em;
   margin-top: -5px;
 }
+.cart-form {
+  padding-bottom: 0.5em;
+}
+.cart-form .shop_table .cart_item:nth-last-child(2) {
+  border-bottom: 0;
+}
 .h-i-w {
-  margin-top: 4em;
+  margin-top: 5em;
 }
 .h-i-w .title {
   font-family: gotham_mediumregular;
   font-weight: 600;
   color: #989da9;
-  font-size: 2.2em;
+  font-size: 2.5em;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 .h-i-w .flex-cols {
   display: -webkit-box;
@@ -4500,8 +4524,22 @@ body .woocommerce form .form-row .button {
   background-position: 0 -27.5em;
 }
 .h-i-w .flex-cols .content {
-  font-size: 1.05em;
+  font-size: 1em;
   color: #002b4e;
+}
+.checkoutAction .checkout-btn {
+  background-color: #022c4c;
+  color: #fff;
+  border: 0;
+  padding: 1em;
+  width: 100%;
+  font-family: gotham_mediumregular;
+  font-size: 1.3em;
+  border-radius: 5px;
+  position: relative;
+}
+.checkoutAction .checkout-btn:active {
+  top: 3px;
 }
 .woocommerce-account .woocommerce {
   margin-top: 1em;
