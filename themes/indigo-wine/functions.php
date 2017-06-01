@@ -1022,8 +1022,8 @@ add_action('login_head', function(){
         jQuery(document).ready(function($){
             $('#registerform > p:first-child').css('display', 'none');
             jQuery('#registerform,#loginform,#lostpasswordform').addClass('login-reg');
-            jQuery('<p class="message login-reg-msg">Please login to access the entire site</p>').insertBefore("#loginform");
-            jQuery('<p class="message login-reg-msg">Looks like you have not registered to Indigo Wines Co yet. Please register to access the entire site.</p>').insertBefore("#registerform");
+            jQuery('<p class="message login-reg-msg">Please verify your identity. Access to this page is restricted. Please login with registered email ID.</p>').insertBefore("#loginform");
+            jQuery('<p class="message login-reg-msg">Welcome to Indigo Wine co. Register to get details of our curated wine collection.</p>').insertBefore("#registerform");
             jQuery('#registerform label[for="user_email"]').prepend('<span class="required-label">*</span>');
             jQuery('#reg_passmail').addClass('email-notify');
             jQuery('#backtoblog a').text('← Back to Home');
