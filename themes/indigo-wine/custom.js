@@ -115,13 +115,6 @@ jQuery(function(){
 	   lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
 	 });
 
-	// jQuery('#tab-description').readmore({
-	//    speed: 25,
-	//    collapsedHeight: 120,
-	//    moreLink: '<a href="#" class="more">Show More <i class="fa fa-angle-down" aria-hidden="true"></i></a>',
-	//    lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
-	//  });
-
 
 	// featured product scroll
 
@@ -154,10 +147,19 @@ jQuery(function(){
 	});
 
 
+	// Cart why subscribe alert
+
+	jQuery('.close-sub-box').click(function(){
+
+		jQuery(this).parent('.why-subscribe').addClass('hidden');
+
+	});
+
 
 	// remove extra clear class from product listing
 
 	jQuery('.hb-equal-col-height .products-4 .clear').remove();
+
 
 	// click outside hide
 
@@ -187,6 +189,7 @@ jQuery(function(){
 		jQuery('.subscribe-overlay').addClass('hidden');
 	});
 
+
 	// Trigered cart icon to actual cart click
 
 	jQuery('.add-To-Cart').click(function(){
@@ -215,8 +218,6 @@ jQuery(function(){
 	  	}
 
 	});
-
-
 
 
 

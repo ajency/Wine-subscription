@@ -649,6 +649,113 @@
 }
 
 
+// ---------------------------
+// CART UPDATES -----------
+// ---------------------------
+
+
+.go-back{
+	margin-bottom: 1em;
+	&__link{
+		color: @brand-secondary;
+    	font-family: gotham_bookregular;
+    	font-size: 1.05em;
+    	padding: 0.5em 0;
+    	position: relative;
+    	i{
+    		font-size: 1.8em;
+    		vertical-align: middle;
+    		padding-bottom: 0.1em;
+    	}
+    	&:after{
+    		content: '';
+    		position: absolute;
+		    bottom: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 2px;
+		    background-color: #002b4e;
+    	}
+    	&:hover{
+    		color: lighten(@brand-secondary,5%);
+    		&:after{
+    			&:hover{
+    				color: lighten(@brand-secondary,5%);
+    			}
+    		}
+    	}
+	}
+}
+
+
+.box-shadow-wrap{
+	box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.17);
+}
+
+
+// Why subscribe box
+
+.why-subscribe{
+	position: relative;
+    padding: 0.5em;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5em;
+	color: @brand-secondary;
+	&__content{
+		padding-left: 0.5em;
+		.title{
+			font-family: gotham_mediumregular;
+    		font-size: 1.6em;
+    		font-weight: 600;
+    		margin-bottom: 0.5em;
+    		color: @brand-secondary;
+    		margin-top: 0;
+		}
+		.reason{
+			font-size: 1.05em;
+    		padding-right: 11em;
+    		line-height: 1.4;
+    		margin-top: 0;
+		}
+	}
+}
+
+.close-sub-box{
+	position: absolute;
+    right: 1em;
+    top: 1em;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+// Overrite exisiting image auto
+
+#main-content img.alert-cover{
+	height: 130px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

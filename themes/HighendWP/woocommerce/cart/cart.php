@@ -33,6 +33,28 @@ do_action( 'woocommerce_before_cart' );
 
 <div class="hb-notif-box error failure hidden"><div class="message-text"><p><i class="hb-moon-blocked"></i>Your current subscription has been cancelled.</p></div></div>
 
+<!-- Go back link -->
+
+<div class="go-back">
+	<a href="<?php echo apply_filters( 'woocommerce_return_to_shop_redirect', get_permalink( wc_get_page_id( 'shop' ) ) ); ?>" class="go-back__link"><i class="fa fa-angle-left" aria-hidden="true"></i>
+ <?php _e('Continue Shopping', 'woocommerce'); ?></a>
+</div>
+
+
+<!-- why subscribe -->
+
+<div class="why-subscribe box-shadow-wrap">
+	<i class="fa fa-times close-sub-box" aria-hidden="true"></i>
+	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover">
+	<div class="why-subscribe__content">
+		<h3 class="title">Why to Subscribe</h3>
+		<p class="reason">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus minima modi sequi fugit adipisci harum.</p>
+	</div>
+</div>
+
+
+
+
 <form class="woocommerce-cart-form <?php echo $cartlimit; ?>" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 <input type="hidden" id="subscription_status" name="subscription_status" value="no">
 
@@ -168,10 +190,10 @@ do_action( 'woocommerce_before_cart' );
 
 <div class="col-3">
 
-<div class="no-subscription get-started-sub box-wrap">
+<!-- <div class="no-subscription get-started-sub box-wrap">
 	<div class="cart-bottle"></div>
 	<h5 class="title">Be a part of our club</h5>
-	<h5 class="subTitle">Set up your personalized subscription and be member of Indigo Wine Co.</h6>
+	<h5 class="subTitle">Set up your personalized subscription and be member of Indigo Wine Co.</h5>
 	<?php 
 	if(is_user_logged_in()){
 	?>
@@ -185,7 +207,7 @@ do_action( 'woocommerce_before_cart' );
 	<?php 
 	}
 	?>
-</div>
+</div> -->
 
 <!-- If the order is available for subscription -->
 

@@ -4313,6 +4313,80 @@ body .woocommerce form .form-row .button {
 .woocommerce .hb-woo-wraper .woocommerce-error:before {
   color: #fff;
 }
+.go-back {
+  margin-bottom: 1em;
+}
+.go-back__link {
+  color: #022c4c;
+  font-family: gotham_bookregular;
+  font-size: 1.05em;
+  padding: 0.5em 0;
+  position: relative;
+}
+.go-back__link i {
+  font-size: 1.8em;
+  vertical-align: middle;
+  padding-bottom: 0.1em;
+}
+.go-back__link:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #002b4e;
+}
+.go-back__link:hover {
+  color: #033a65;
+}
+.go-back__link:hover:after:hover {
+  color: #033a65;
+}
+.box-shadow-wrap {
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.17);
+}
+.why-subscribe {
+  position: relative;
+  padding: 0.5em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1.5em;
+  color: #022c4c;
+}
+.why-subscribe__content {
+  padding-left: 0.5em;
+}
+.why-subscribe__content .title {
+  font-family: gotham_mediumregular;
+  font-size: 1.6em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: #022c4c;
+  margin-top: 0;
+}
+.why-subscribe__content .reason {
+  font-size: 1.05em;
+  padding-right: 11em;
+  line-height: 1.4;
+  margin-top: 0;
+}
+.close-sub-box {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+#main-content img.alert-cover {
+  height: 130px;
+}
 .woocommerce-account .woocommerce {
   margin-top: 1em;
 }
