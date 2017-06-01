@@ -25,6 +25,8 @@ wc_print_notices();
 do_action( 'woocommerce_before_cart' ); 
 	
 	$cartlimit=count(WC()->cart->get_cart())>4 ? 'cart-limit' : '';
+ 
+ $_SESSION['subscription_type']='monthly';
 
 ?>
 
@@ -56,7 +58,7 @@ do_action( 'woocommerce_before_cart' );
 
 
 <form class="cart-form woocommerce-cart-form <?php echo $cartlimit; ?>" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
-<input type="hidden" id="subscription_status" name="subscription_status" value="no">
+<input type="hidden" id="subscription_status" name="subscription_status" value="yes">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
@@ -151,13 +153,15 @@ do_action( 'woocommerce_before_cart' );
 
 						<td class="product-subtotal" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
 							<?php
-								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
-
 								$updated_price=WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] );
 								$actual_price=wc_price($cart_item['quantity']*$_product->get_price());
 
 								if($updated_price!=	$actual_price)
-								echo ' (<strike>'.$actual_price. '</strike>) ';
+								echo ' <strike>'.$actual_price. '</strike> ';
+
+								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
+
+								
 							?>
 						</td>
 					</tr>

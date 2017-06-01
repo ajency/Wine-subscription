@@ -20,6 +20,13 @@ register_rest_route( $namespace, '/unsubscribe_session',
     )
   );
 
+register_rest_route( $namespace, '/subscribe_session', 
+  array(
+    'methods' =>  WP_REST_Server::CREATABLE,
+    'callback' => 'subscribe_session',
+    )
+  );
+
 /**
  * registration api
  */
@@ -37,6 +44,13 @@ register_rest_route( $namespace, '/registration', array(
 function unsubscribe_session(){
   
      unset($_SESSION['subscription_type']);
+     return true;
+}
+
+function subscribe_session(){
+  
+     $_SESSION['subscription_type']=$_REQUEST['subscription'];
+  
      return true;
 }
 
