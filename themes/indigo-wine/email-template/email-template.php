@@ -629,18 +629,18 @@ $main_html='<!doctype html>
                         
                         <div style="font-size: 17px; background-color: #022c4c;color: #fff;border: 3px inset #e4c27f;padding-top: 5px;padding-bottom: 5px;    margin-top: 20px;margin-bottom: 20px;">
                             <span style="display: inline-block;text-align: left;">
-                                <p>Email : <b style="font-weight: 500;color: #dec08b;"><a href="" style="color: #dec07f;">'.$data['email'].'</a></b></p>
+                                <p style="margin-top: 5px;margin-bottom: 5px;font-size: 16px;">Email : <b style="font-weight: 500;color: #dec08b;"><a href="" style="color: #dec07f;">'.$data['email'].'</a></b></p>
                             </span>
                         </div>
 
                         <p><b style="font-weight: 500;">How would you like to start your journey with Indigo Wine Co ?</b></p>
 
-                        <div style="    line-height: 1.8;margin-top: 10px;">
-                            <a href="" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wine Packs</a>
-                            <a href="" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wines</a>
-                            <a href="" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Be a Club member</a>
-                            <a href="" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Know about our subscription plans</a>
-                            <a href="" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Contact us here</a>
+                        <div style="line-height: 1.8;margin-top: 10px; font-size: 15px;">
+                            <a href="http://indigowineco.ajency.in/product-category/wine-packs/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wine Packs</a>
+                            <a href="http://indigowineco.ajency.in/product-category/wine/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wines</a>
+                            <a href="http://indigowineco.ajency.in/wine-club/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Be a Club member</a>
+                            <a href="http://indigowineco.ajency.in/my-account/subscription/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Know about our subscription plans</a>
+                            <a href="http://indigowineco.ajency.in/#contact" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Contact us here</a>
                         </div>
 
                         </div>
