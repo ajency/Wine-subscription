@@ -188,10 +188,7 @@ jQuery(function ($) {
             $('#'+id).val('yes');
             var subscription_type = $("input[name='sub-type']:checked").val();
 
-            $.post(cart_qty_ajax.siteapiurl+'subscribe_session', {subscription: subscription_type}, function(data, textStatus, xhr) {
-               $('.subscribe-val').text(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}));
-                $('.subscribe-data').removeClass('hidden');   
-            });
+            subscribe_session(subscription_type);
         }
         else{
             $('#'+id).val('no');
@@ -211,13 +208,20 @@ jQuery(function ($) {
          if($('#subscription-check').is(":checked")){
              var subscription_type = $("input[name='sub-type']:checked").val();
 
+            subscribe_session(subscription_type);
+         }
+        
+     });
+
+     function subscribe_session(subscription_type){
+
             $.post(cart_qty_ajax.siteapiurl+'subscribe_session', {subscription: subscription_type}, function(data, textStatus, xhr) {
                $('.subscribe-val').text(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}));
                 $('.subscribe-data').removeClass('hidden');   
             });
-         }
-        
-     });
+     }
+
+
    // $(document).on('click', '.productcategory-menu', function (event) {
        // event.preventDefault();
        // commented as no popup required on menu
