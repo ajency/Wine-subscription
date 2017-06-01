@@ -1135,13 +1135,15 @@ add_action('woocommerce_review_order_after_cart_contents','checkout_subscription
 
 
 function checkout_subscription_type(){
-    echo '<tr class="cart_item">
+    if(isset($_SESSION['subscription_type'])){
+            echo '<tr class="cart_item">
                         <td class="product-name">
                             Subscription Type</td>
                         <td class="product-total">
-                            <span class="woocommerce-Price-amount amount">Monthly</span>
+                            <span class="woocommerce-Price-amount amount">'.ucfirst($_SESSION['subscription_type']).'</span>
                         </td>
                     </tr>';
+    }
 }
 
 
