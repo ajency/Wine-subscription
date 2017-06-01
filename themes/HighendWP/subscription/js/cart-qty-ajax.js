@@ -173,7 +173,13 @@ jQuery(function ($) {
             
     });
      
+     /** added the trigger the main proceed to checkout btn on click of dummy checkout btn which is outside the form*/
+     $(document).on('click', '.checkout-btn', function(event) {
+         event.preventDefault();
+         /* Act on the event */
+         $('.checkout-button').trigger('click');
 
+     });
    // $(document).on('click', '.productcategory-menu', function (event) {
        // event.preventDefault();
        // commented as no popup required on menu

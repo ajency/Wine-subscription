@@ -314,7 +314,7 @@ add_action( 'admin_enqueue_scripts', 'add_product_admin_scripts', 10, 1 );
 
 
 function custom_shop_page_redirect() {
-    if(( is_product_category() || is_product() || is_cart()) && !is_user_logged_in()){
+    if(( is_product_category() || is_product() || is_cart() || is_shop()) && !is_user_logged_in()){
         $url =  urlencode( wp_unslash("//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"));
 
           // wp_redirect( home_url('?login=true') ); 
@@ -1114,7 +1114,9 @@ function custom_orders_list_column_content( $column )
     {
         case 'subscription' :
             $_subscription_id = get_post_meta(  $order_id, '_subscription_id', true );
-            echo "<a href='edit.php?s=".$_subscription_id."&post_status=all&post_type=shop_order&action=-1&m=0&_customer_user&paged=1&action2=-1&search_subscriptionid=yes'>#".$_subscription_id."</a>";
+            if($_subscription_id!=''){
+                echo "<a href='edit.php?s=".$_subscription_id."&post_status=all&post_type=shop_order&action=-1&m=0&_customer_user&paged=1&action2=-1&search_subscriptionid=yes'>#".$_subscription_id."</a>";
+            }
             break;
 
         
