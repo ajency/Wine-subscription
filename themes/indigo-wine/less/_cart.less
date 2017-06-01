@@ -635,7 +635,7 @@
 // ---------------------------
 
 
-.woocommerce,.woocommerce .hb-woo-wraper{
+.woocommerce.woocommerce,.woocommerce .hb-woo-wraper{
 	& > .woocommerce-message.woocommerce-message,.woocommerce-message.woocommerce-message{
 		border: 1px solid #eee;
     	background-color: @success-color !important;
@@ -657,6 +657,7 @@
 		background-color: @danger-color !important;
     	color: #fff;
     	font-family: gotham_bookregular;
+    	border: 0;
     	&:before{
     		color: #fff;
     	}
@@ -732,6 +733,7 @@
     		padding-right: 11em;
     		line-height: 1.4;
     		margin-top: 0;
+    		margin-bottom: 0;
 		}
 	}
 }
@@ -796,9 +798,14 @@
     	padding: 0 1.5em;
     	font-size: 1.05em;
     	color: @brand-secondary;
+    	p{
+    		font-family: gotham_mediumregular;
+    		font-weight: 500;
+    		margin-bottom: 0;
+    	}
     }
     .username{
-    	font-family: gotham_mediumregular;
+    	font-weight: 600;
     }
     .type-title{
     	font-size: 0.95em;

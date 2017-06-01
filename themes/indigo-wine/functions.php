@@ -889,6 +889,7 @@ function logout_redirect(){
 
 function login_stylesheet() {
     wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri().'/misc.css' );
+    wp_enqueue_style( 'Font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
 }
 add_action( 'login_enqueue_scripts', 'login_stylesheet' );
 
@@ -1023,7 +1024,7 @@ add_action('login_head', function(){
             $('#registerform > p:first-child').css('display', 'none');
             jQuery('#registerform,#loginform,#lostpasswordform').addClass('login-reg');
             jQuery('<p class="message login-reg-msg">Please verify your identity. Access to this page is restricted. Please login with registered email ID.</p>').insertBefore("#loginform");
-            jQuery('<p class="message login-reg-msg">Welcome to Indigo Wine co. Register to get details of our curated wine collection.</p>').insertBefore("#registerform");
+            jQuery('<p class="message login-reg-msg">Welcome to Indigo Wine Co. Register to get details of our curated wine collection.</p>').insertBefore("#registerform");
             jQuery('#registerform label[for="user_email"]').prepend('<span class="required-label">*</span>');
             jQuery('.login-action-lostpassword .message').text('Please enter your email address. You will receive a link to create a new password via email.');
             jQuery('#reg_passmail').addClass('email-notify');
