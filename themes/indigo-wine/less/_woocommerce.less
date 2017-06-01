@@ -31,6 +31,16 @@
 			display: none !important;
 		}
 	}
+	.hb-woo-image-wrap{
+		.star-wrapper{
+			background-color: transparent;
+			.star-rating{
+				& > span{
+					color: inherit;
+				}
+			}
+		}
+	}
 }
 
 
@@ -48,6 +58,10 @@
 			font-weight: 400;
 			color: @brand-secondary !important;
 			font-size: 1.75em !important;
+			text-transform: capitalize;
+		}
+		h1{
+			display: inherit;
 		}
 	}
 }
@@ -57,6 +71,7 @@
 .woocommerce-page{
 	#main-content{
 		margin-top: 3em;
+		overflow: inherit;
 	}
 }
 .woocommerce{
@@ -163,14 +178,21 @@
 	.hb-woo-product-details {
 		max-width: 100%;
 		float: none;
+		display: block;
+		text-align: center;
 		.woocommerce-loop-product__title{
 			font-weight: 600;
-		    font-size: 1.1em;
+		    font-size: 1em;
 		    color: @brand-secondary;
 		    white-space: nowrap;
 		    overflow: hidden;
 		    text-overflow: ellipsis;
 		    font-family: 'gotham_bookregular';
+		    margin: 0 0 0.5em 0;
+    		transition: all 0.5s ease;
+    		&:hover{
+    			color: @brand-primary;
+    		}
 		}
 	}
 	del,ins{
@@ -195,27 +217,27 @@
 		position: relative;
 	}
 	.hb-woo-product{
-		margin-bottom: 32px !important;
+		margin-bottom: 25px !important;
     	padding-bottom: 15px;
     	animation: none !important;
-		&:after{
-			content: '';
-			border-bottom: 1px solid #e2e2e2;
-			position: absolute;
-    		width: 90%;
-    		bottom: -15px;
-    		left: 0;
-    		right: 0;
-    		margin: 0 auto;
-		}
-		&:nth-child(3n + 2){
-    		border-left: 1px solid #eee;
-    		border-right: 1px solid #eee;
-		}
-		&:nth-child(3n){
-			border-left: 0;
-			border-right: 0;
-		}
+		// &:after{
+		// 	content: '';
+		// 	border-bottom: 1px solid #e2e2e2;
+		// 	position: absolute;
+  //   		width: 90%;
+  //   		bottom: -15px;
+  //   		left: 0;
+  //   		right: 0;
+  //   		margin: 0 auto;
+		// }
+		// &:nth-child(3n + 2){
+  //   		border-left: 1px solid #eee;
+  //   		border-right: 1px solid #eee;
+		// }
+		// &:nth-child(3n){
+		// 	border-left: 0;
+		// 	border-right: 0;
+		// }
 	}
 }
 
@@ -290,6 +312,9 @@
 			    background: transparent;
 			    border: 1px solid @brand-secondary !important;
 			    line-height: 10px;
+			    font-weight: 600;
+    			font-family: gotham_lightregular;
+    			color: #000;
 		}
 			
 	}
@@ -781,7 +806,7 @@ body
 
 .product_desc{
 	color: @brand-secondary;
-	margin-top: 2.5em;
+	margin-top: 0.5em;
 	label{
 		font-family: 'gotham_mediumregular';
     	margin: 0.5em 0 0.8em 0;
@@ -907,6 +932,9 @@ body
 	    	font-family: 'gotham_lightregular';
 	    	font-size: 1.2em !important;
 	    	padding: 0.3em 0 !important;
+		}
+		&.not-active.not-active{
+			display: none;
 		}
 	}
 	.entry-content{
@@ -1079,8 +1107,18 @@ body
 #main-content .left-sidebar .hb-woo-wrapper{
 	.hb-main-content.hb-equal-col-height,.hb-sidebar.hb-equal-col-height{
 		margin-top: -40px !important;
+		padding-top: 1em;
 		@media screen and (max-width: 600px){
 			margin-top: 0 !important;
+		}
+		.shop-separator{
+			margin-bottom: 20px;
+		}
+	}
+	.hb-sidebar{
+		padding-left: 1em;
+		.widget-item{
+			margin-bottom: 25px;
 		}
 	}
 }
@@ -1091,13 +1129,16 @@ body
 // ---------------------------
 
 #main-wrapper .hb-woo-product .hb-woo-image-wrap.hb-woo-image-wrap{
-	margin-bottom: 10px;
+	margin-bottom: 0;
+	padding: 0.5em;
 }
 
 .sub-cat{
-	margin-bottom: 0.4em;
+	margin-bottom: 0.3em;
 	color: @brand-primary;
 	font-family: gotham_bookregular;
+	font-size: 0.95em;
+	min-height: 44px;
 	a{
 		color: @brand-primary;
     	text-transform: capitalize;
@@ -1117,9 +1158,34 @@ body
 // ADD TO CART BUTTON -----------
 // ---------------------------
 
-.hb-woo-image-wrap:hover .hb-buy-button.hb-buy-button{
-	opacity: 0;
-	pointer-events: none;
+// .hb-woo-image-wrap:hover .hb-buy-button.hb-buy-button{
+// 	opacity: 0;
+// 	pointer-events: none;
+// }
+
+.product-hover-overlay{
+	background-color: rgba(0,0,0,0.8);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+    transition: opacity 0.8s ease;
+}
+
+.hb-woo-image-wrap:hover{
+	.hb-more-details.hb-more-details{
+		bottom: 85px !important;
+	}
+	.hb-buy-button.hb-buy-button{
+		bottom: 35px !important;
+	}
+	.product-hover-overlay{
+		opacity: 1;
+	}
+	.product-hover-image{
+		opacity: 0!important;
+	}
 }
 
 .hb-woo-product .hb-product-meta-wrapper{
@@ -1129,7 +1195,15 @@ body
 	.single-price{
 		display: flex;
     	align-items: center;
-    	justify-content: space-between;
+    	justify-content: center;
+    	margin-top: 0.2em;
+    	border-top: 1px solid #eee;
+    	padding-top: 0.2em;
+    	.amount{
+    		font-size: 0.85em;
+    		font-weight: 800;
+    		font-family: gotham_mediumregular;
+    	}
 	}
 }
 
@@ -1137,10 +1211,11 @@ body
 	background-image: url('./img/prod-cart.png');
 	background-repeat: no-repeat;
     width: 36px;
-    height: 36px;
+    height: 30px;
     display: block;
     cursor: pointer;
-    background-size: 95%;
+    background-size: 80%;
+    display: none;
 }
 
 

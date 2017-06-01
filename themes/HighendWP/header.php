@@ -387,12 +387,29 @@
 
 	<?php 
 	if ( hb_options('hb_queryloader') == 'circle-spinner' ) { ?>
-		<div id="hb-preloader">
+		<!-- <div id="hb-preloader"> -->
 
 			<!--<div class="spinner"></div>-->
-			<span class="default-loading-icon"></span>
+			<!-- <span class="default-loading-icon"></span> -->
 			
+		<!-- </div> -->
+
+		<!-- Hex loader -->
+
+		<div class="spin-wrap" id="hb-preloader">
+		  <div class="hex">
+		    <div class="hex-spinner"></div>
+		    <div class="hex-inner"></div>
+		  </div>
+		  <svg width="0" height="0">
+		    <defs>
+		      <clipPath id="clip-shape" clipPathUnits="objectBoundingBox">
+		        <polygon points="0.5 0, 1.0 0.25, 1.0 0.75, 0.5 1.0, 0 0.75, 0 0.25" />
+		      </clipPath>
+		    </defs>
+		  </svg>
 		</div>
+		
 	<?php } ?>
 
 	<?php

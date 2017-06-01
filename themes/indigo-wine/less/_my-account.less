@@ -6,8 +6,12 @@
 
 .woocommerce-account .woocommerce{
 	margin-top: 1em;
+	.myAcc-col{
+		margin-top: -1.5em;
+	}
 	&-MyAccount-navigation{
 		min-height: 450px;
+		width: 23%;
 		li{
 			a{
 				font-family: gotham_bookregular;
@@ -19,6 +23,8 @@
 				a{
 					font-family: gotham_mediumregular;
 					position: relative;
+					background-color: @brand-secondary;
+    				color: #fff;
 					&:after{
 						content: "\f105";
 						display: inline-block;
@@ -35,13 +41,15 @@
 	}
 	&-MyAccount-content{
 		box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.13);
-    	padding: 1.5em;
+    	padding: 1em 1.5em;
     	margin-bottom: 5em;
-    	width: calc(~'68% - 2em');
+    	width: calc(~'77% - 3em');
+    	min-height: 50vh;
     	& > p:not(.dashboard-title){
     		color: @brand-secondary;
     		border-bottom: 1px solid;
     		font-size: 1.15em;
+    		padding-bottom: 0.5em;
     		mark{
     			background-color: transparent;
     			color: @brand-secondary;
@@ -56,12 +64,16 @@
     			th{
     				border-top: 0;
     			}
+    			td{
+    				padding: 12px !important;
+    			}
     		}
     		.woocommerce-orders-table__cell-order-actions{
     			.woocommerce-button{
     				background-color: transparent;
     				font-family: gotham_mediumregular;
     				text-decoration: underline;
+    				padding-right: 0;
     			}
     		}
     	}
@@ -97,6 +109,13 @@
 	}
 }
 
+.woocommerce-orders-table__cell-subscription-actions{
+	a{
+		background-color: transparent;
+    	font-family: gotham_mediumregular;
+    	text-decoration: underline;
+	}
+}
 
 .woocommerce{
 	.woocommerce-order-details{
@@ -106,23 +125,54 @@
 			text-transform: capitalize;
 		}
 		.woocommerce-table--order-details.woocommerce-table--order-details{
+			&.order_details thead{
+				tr{
+					th{
+						border-color: #ddd;
+					}
+				}
+			}
 			tr{
 				th,td{
-					padding: 20px 12px!important;
+					padding: 15px 12px!important;
 					border-color: #ddd;
 					font-size: 1.1em !important;
+					text-align: left;
+					a{
+						color: @brand-secondary;
+					}
+				}
+			}
+			.order_item{
+				td{
+					font-size: 0.95em !important;
+					padding: 12px !important;
+					font-family: gotham_bookregular;
 				}
 			}
 			tfoot{
 				tr{
-					border-top: 1px solid #ddd;
 					th{
 						border: 0;
+					}
+					&:first-child{
+						border-top: 1px solid #ddd;	
+					}
+					&:last-child{
+						border-top: 1px solid #ddd;	
+						border-bottom: 1px solid #ddd;		
 					}
 				}
 			}
 			.product-name{
 				width: auto;
+			}
+			&.subscription_table{
+				.order_item{
+					td{
+						font-size: inherit !important;
+					}
+				}
 			}
 		}
 	}
@@ -137,6 +187,11 @@
 			    text-transform: capitalize;
 			    font-size: 1.6em;
 				margin-bottom: 0.5em;
+			}
+			.woocommerce-table--customer-details{
+				th,td{
+					text-align: left;
+				}
 			}
 		}
 		.cust-detail{
@@ -231,10 +286,18 @@
 
 
 @media screen and (max-width: 600px){
+	.woocommerce-account .woocommerce .myAcc-col{
+		margin-top: 0;
+    	li{
+    		a{
+    			margin: 10px;
+    		}
+    	}
+	}
 	.woocommerce-MyAccount-navigation{
 		position: fixed;
     	background-color: #fff;
-    	top: 3em;
+    	top: 0;
     	left: 0;
     	width: 80% !important;
     	height: 100%;
@@ -247,9 +310,10 @@
     	}
 	}
 	.woocommerce-account{
-		.woocommerce-MyAccount-content{
+		.woocommerce-MyAccount-content.woocommerce-MyAccount-content{
 			padding: 1em;
 			width: calc(~'100% - 2em');
+			margin-top: 0;
 			& > p:not(.dashboard-title){
 	    		font-size: 1em;
     		}
@@ -291,7 +355,7 @@
 		min-height: 50vh;
 	}
 	#hb-header{
-		z-index: 1;
+		// z-index: 1;
 	}
 	.woocommerce-orders-table{
 		.woocommerce-orders-table__row{
@@ -350,6 +414,148 @@
 		display: block;
 	}
 }
+
+
+
+// ---------------------------
+// SUBSCRIPTION ORDER -----------
+// ---------------------------
+
+.status-label{
+	background-color: #dcc599;
+    display: inline-flex;
+    padding: 0.3em 2em;
+    color: #022c4c;
+    font-family: gotham_mediumregular;
+    border-radius: 15px;
+    border: 1px solid #c3a66f;
+    text-transform: capitalize;
+    font-weight: 500;
+    min-width: 68px;
+    justify-content: center;
+}
+
+.orderDetail{
+	display: flex;
+	justify-content: space-between;
+	margin: 2em 0;
+    padding-bottom: 2em;
+    border-bottom: 1px solid #ddd;
+	.product-entry{
+		flex: 0.7;
+    	border-right: 1px solid #ddd;
+    	padding-right: 3em;
+    	margin-right: 3em;
+	}
+	.sub-type{
+		flex: 0.5;
+		.title{
+			font-family: 'gotham_mediumregular';
+    		font-size: 1.15em;
+    		font-weight: 700;
+    		color: @brand-secondary;
+		}
+	}
+}
+
+.woocommerce .woocommerce-order-details{
+	.orderDetail{
+		.woocommerce-table--order-details.woocommerce-table--order-details{
+			tr{
+				th,td{
+					padding: 10px 12px !important;
+					font-size: 0.95em !important;
+    				border: 0;
+				}
+				th{
+					font-size: 1.15em !important;
+				}
+			}
+		}
+	}
+}
+
+.sub-title{
+	margin: 0 0 0.5em 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5em;
+}
+
+.order-title{
+	margin: 2em 0 0 0;
+    font-family: 'gotham_mediumregular';
+    font-size: 1.15em;
+    color: @brand-secondary;
+}
+
+.subscription-orders{
+	margin: 1em 0;
+	thead{
+		tr{
+			background-color: #eee;
+		}
+	}
+} 
+
+.sub-action{
+	display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .type{
+    	margin-bottom: 0;
+    }
+    .sub-unsubscribe{
+    	padding-left: 1em;
+    	font-family: gotham_mediumregular;
+    }
+}
+
+
+
+
+// ---------------------------
+// NO ORDER/SUBSCRIPTION -----------
+// ---------------------------
+
+.woocommerce-page .woocommerce .woocommerce-message{
+	&--info{
+		&.noData{
+			display: flex;
+	    	align-items: center;
+	    	flex-direction: column;
+	    	line-height: 4;
+	    	font-family: gotham_bookregular;
+	    	font-size: 1.1em;
+	    	border: 0 !important;
+	    	padding-top: 0 !important;
+	    	&:before{
+	    		display: none;
+	    	}
+	    	.empty-wine{
+				background-image: url('./img/empty-wine.png');
+				width: 190px;
+    			height: 150px;
+    			background-repeat: no-repeat;
+    			background-size: cover;
+    			background-position: center;
+	    	}
+	    	.button.woocommerce-Button{
+	    		float: none;
+	    		color: #fff;
+	    		background-color: @brand-secondary;
+	    		border-radius: 0;
+	    		padding: 0.8em;
+	    	}
+		}
+	}
+	
+}
+
+
+
+
+
+
 
 
 

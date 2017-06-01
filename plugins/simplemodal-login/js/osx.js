@@ -163,9 +163,12 @@ jQuery(function ($) {
 			$('#login_error, .message', context).remove();
 		},
 		isValid: function (form) {
+
 			var log = $('.user_login', form[0]),
 				pass = $('.user_pass', form[0]),
 				email = $('.user_email', form[0]),
+				first_name = $('.first_name', form[0]),
+				last_name = $('.last_name', form[0]),
 				fields = $(':text, :password', form[0]),
 				valid = true;
 
@@ -181,6 +184,14 @@ jQuery(function ($) {
 			}
 			else if (email.length && !$.trim(email.val())) {
 				SimpleModalLogin.error.push('empty_email');
+				valid = false;
+			}
+			else if (first_name.length && !$.trim(first_name.val())) {
+				SimpleModalLogin.error.push('empty_first_name');
+				valid = false;
+			}
+			else if (last_name.length && !$.trim(last_name.val())) {
+				SimpleModalLogin.error.push('empty_last_name');
 				valid = false;
 			}
 
@@ -224,4 +235,49 @@ jQuery(function ($) {
 	};
 
 	SimpleModalLogin.init();
+
+
+	//custom code
+
+	  jQuery(document).on('keyup', '.user_email', function () {			
+			jQuery('.user_login').val(jQuery('.user_email').val());
+		});
+
+	  jQuery(document).on('click', '#register', function(event) {
+	  	
+	  	event.preventDefault();
+
+	  	if($.trim($('.first_name').val())=="" || $.trim($('.last_name').val())==""  || $.trim($('.user_email').val())==""  || $.trim($('.user_pass').val())==""  || $.trim($('.user_cpass').val())=="" ){
+	  			$('.user-alerts').html('<strong>ERROR: </strong> All fields are Mandatory.');
+	  			return false;
+	  	}	
+
+	  	if($('.user_pass').val()!=$('.user_cpass').val())	
+	  	{
+	  		$('.user-alerts').html('<strong>ERROR: </strong> Password Mismatch.');
+	  			return false;
+	  	}
+	  		 jQuery.post(cart_qty_ajax.siteapiurl+'registration', {data: $('#registerform').serialize() }, function(data, textStatus, xhr) {
+	  				// console.log(data);
+	  				// console.log(data.msgcode);
+
+	  				if(data.msgcode==1){
+	  					$('.user-alerts').html('<strong>ERROR: </strong> Email Already Exists');
+	  					$('.user-alerts').addClass('error');
+
+
+	  				}
+	  				else {
+	  						$('.user-alerts').html('Your have been successfully registered');
+	  						$('.user-alerts').addClass('success');
+	  						setTimeout(function() {
+	  						
+	  							window.location=cart_qty_ajax.homeurl+'/product-category/wine-packs/';
+
+	  						}, 100);
+	  				}
+			  	});
+
+	  });
+	 
 });

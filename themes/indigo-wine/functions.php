@@ -92,15 +92,21 @@ function my_header_add_to_cart_fragment( $fragments ) {
 
     ob_start();
     $count = WC()->cart->cart_contents_count;
+     if ($count == 0) {
+        $r_page_url = filter_woocommerce_return_to_shop_redirect($parameter);
+     }
+     else{
+          $r_page_url =  WC()->cart->get_cart_url();
+     }
 
     ?>
-    <a class="wcmenucart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>">
+    <a class="wcmenucart-contents" href="<?php echo $r_page_url; ?>" title="<?php _e( 'View your shopping cart' ); ?>">
 
     <?php
    
        $menu_item="";
 
-    if ( $count > 0 ) {
+   // if ( $count > 0 ) {
    
         $cart_contents = sprintf(_n('%d item', '%d items', $count, 'indigo-wine'), $count);
         $menu_item .= '<i class="fa fa-shopping-cart"></i> ';
@@ -108,7 +114,7 @@ function my_header_add_to_cart_fragment( $fragments ) {
         $menu_item .= $cart_contents;
 
         echo $menu_item;        
-    }
+    //}
         ?></a><?php
  
     $fragments['a.wcmenucart-contents'] = ob_get_clean();
@@ -131,9 +137,9 @@ function sk_wcmenucart($menu, $args) {
         $viewing_cart = __('View your shopping cart', 'your-theme-slug');
         $start_shopping = __('Start shopping', 'your-theme-slug');
         $cart_url = $woocommerce->cart->get_cart_url();
-        $shop_page_url = get_permalink( woocommerce_get_page_id( 'shop' ) );
+        $shop_page_url = filter_woocommerce_return_to_shop_redirect($parameter);
         $cart_contents_count = $woocommerce->cart->cart_contents_count;
-        if($cart_contents_count>0){
+        //if($cart_contents_count>0){
             $cart_contents = sprintf(_n('%d item', '%d items', $cart_contents_count, 'indigo-wine'), $cart_contents_count);
             $cart_total = $woocommerce->cart->get_cart_total();
             // Uncomment the line below to hide nav menu cart item when there are no items in the cart
@@ -152,7 +158,7 @@ function sk_wcmenucart($menu, $args) {
             // Uncomment the line below to hide nav menu cart item when there are no items in the cart
             // }
             echo $menu_item;
-        }
+       // }
     $social = ob_get_clean();
     return $menu . $social;
 
@@ -164,7 +170,7 @@ function sk_wcmenucart($menu, $args) {
 //Enqueue Ajax Scripts
 function enqueue_cart_qty_ajax() {
     wp_register_script( 'cart-qty-ajax-js', get_template_directory_uri() . '/subscription/js/cart-qty-ajax.js', array( 'jquery' ), '', true );
-    wp_localize_script( 'cart-qty-ajax-js', 'cart_qty_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ,'siteapiurl' => get_option('siteurl').'/wp-json/wp/v2/') );
+    wp_localize_script( 'cart-qty-ajax-js', 'cart_qty_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ,'siteapiurl' => get_option('siteurl').'/wp-json/wp/v2/','homeurl' => home_url() ));
     wp_enqueue_script( 'cart-qty-ajax-js' );
 
 }
@@ -190,8 +196,18 @@ function ajax_qty_cart() {
     if(isset($_POST['subscription']))
     {    
          
-        $term_list = wp_get_post_terms($threeball_product_values['product_id'],'product_cat',array('fields'=>'slugs'));
-        if(in_array('wine', $term_list))
+        $term_list = wp_get_post_terms($threeball_product_values['product_id'],'product_cat',array('fields'=>'ids'));
+        
+        $category_object = get_term_by('slug', 'wine', 'product_cat');
+      
+        $categories=get_term_children( $category_object->term_id, 'product_cat' );
+        array_push($categories, $category_object->term_id);
+
+           
+        $totals = array_intersect($categories, $term_list);
+
+        // if(in_array('wine', $term_list) )
+        if(count($totals) > 0 )
         {    
             if ( $passed_validation ) {
                 WC()->cart->set_quantity( $cart_item_key, $threeball_product_quantity, true );
@@ -298,8 +314,11 @@ add_action( 'admin_enqueue_scripts', 'add_product_admin_scripts', 10, 1 );
 
 
 function custom_shop_page_redirect() {
-    if(( is_product_category() || is_product() ) && !is_user_logged_in()){
-        wp_redirect( home_url() );
+    if(( is_product_category() || is_product() || is_cart() || is_shop()) && !is_user_logged_in()){
+        $url =  urlencode( wp_unslash("//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"));
+
+          // wp_redirect( home_url('?login=true') ); 
+        wp_redirect( home_url('wp-login.php?redirect_to='. $url.'&reauth=1') );
         exit();
     }
 }
@@ -369,19 +388,26 @@ add_action( 'woocommerce_cart_calculate_fees', 'sale_custom_price');
 
 function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$cart_item_key=''){
     global $woocommerce;
-     $price=get_post_meta($product_id,  '_price', true );
+    $price=get_post_meta($product_id,  '_price', true );
 
     $row_price        = $price * $quantity;
 
+    $term_list = wp_get_post_terms($product_id,'product_cat',array('fields'=>'ids'));
+     
+    $category_object = get_term_by('slug', 'wine', 'product_cat');
    
-    $term_list = wp_get_post_terms($product_id,'product_cat',array('fields'=>'slugs'));
+    $categories=get_term_children( $category_object->term_id, 'product_cat' );
+    array_push($categories, $category_object->term_id);
+  
+
+     $totals = array_intersect($categories, $term_list);
     
-    if((indigo_rangelogic($quantity) && in_array('wine', $term_list)) || !in_array('wine', $term_list)){
+    if((indigo_rangelogic($quantity) && count($totals) > 0) || count($totals)==0){
         $discount_perc=get_post_meta($product_id,  '_sale_discount_percentage', true );
         $discount_price=get_post_meta($product_id,  '_sale_discount_price', true );
        
    
-        if($discount_perc!='' && $discount_perc !=0){     
+        if($discount_perc>0 ){     
 
           $discounted_price_perc=(($discount_perc*$row_price)/100);
           
@@ -398,7 +424,7 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
           return $final_product_subtotal= $discounted_price;
          
         }
-        else if($discount_price!='' && $discount_price !=0){
+        else if($discount_price>0){
            
             $discounted_price=$row_price-$discount_price;
             
@@ -457,17 +483,40 @@ function indigo_rangelogic($quantity){
  */
 function filter_woocommerce_product_categories_widget_args( $list_args ) { 
 
-     if (is_product_category() || isset($_REQUEST['s'])) {
+     if (is_product_category() || isset($_REQUEST['product_cat'])) {
         
         global $wp_query;
         
         $cat = $wp_query->get_queried_object();
-        if($cat->slug=='wine-packs' || $cat->slug=='wine'){ 
+       
+        if($cat->slug=='wine-packs' || $cat->slug=='wine' ){ 
            $list_args['child_of']=$cat->term_id;
         }
-        else if(isset($_REQUEST['product_cat'])){
-            $list_args['child_of']=$_REQUEST['product_cat'];
+        else if($cat->parent!=0){
+              $list_args['child_of']=$cat->parent;
         }
+        else if(isset($_REQUEST['product_cat'])){
+            $cat_1= get_term_by( 'id',$_REQUEST['product_cat'], 'product_cat' );
+          
+            if(is_object($cat_1))
+            {
+                if($cat_1->parent==0){         
+                  
+                    $searchcat=$cat_1->term_id;
+                }
+                else if($cat_1->parent!=0){   
+                          
+                      $searchcat=$cat_1->parent;
+                }
+            }
+            else{
+              
+              $searchcat=$_REQUEST['product_cat'];
+            }
+
+            $list_args['child_of']=$searchcat;
+        }
+
     }
     
     return $list_args; 
@@ -480,15 +529,33 @@ function retitle_woo_category_widget($title, $widet_instance, $widget_id) {
 
     if ( $widget_id !== 'woocommerce_product_categories' )
         return $title;
+    
+    if (is_product_category()){
+        global $wp_query;
+        $cat = $wp_query->get_queried_object();
 
+       
+        if($cat->parent==0)         
+                return __($cat->name);
+        else if($cat->parent!=0){            
+                $name=  get_cat_name( $cat->parent );
+                return __($name); 
+        }
 
-   if ( (is_product_category() || isset($_REQUEST['s'])) && has_term( 'wine-packs', 'product_cat' ) ) {
- 
-        return __('Wine Packs');
-
-    // If 'Category' 2 is being viewed...
-    } else if ( (is_product_category() || isset($_REQUEST['s'])) && has_term( 'wine', 'product_cat' ) ) {
-        return __('Wines');
+    }
+    else if(isset($_REQUEST['product_cat'])){
+        $cat_1= get_term_by( 'id',$_REQUEST['product_cat'], 'product_cat' );
+       
+        if(is_object($cat_1))
+        {
+            if($cat_1->parent==0)         
+                    return __($cat_1->name);
+            else if($cat_1->parent!=0){ 
+                
+                $name1=  get_term( $cat_1->parent );
+                return __($name1->name); 
+            }
+        }
     }
     
     return $title;
@@ -528,13 +595,48 @@ add_filter( 'woocommerce_product_tabs', 'woo_rename_tabs', 98 );
 
 function woo_rename_tabs( $tabs ) {
 
+    if(isset($tabs['description']))
     $tabs['description']['title'] = __( 'Wine story' );       // Rename the description tab
+
+    if(isset($tabs['reviews']))
     $tabs['reviews']['title'] = __( 'Customer reviews' );                // Rename the reviews tab
+
+    if(isset($tabs['additional_information']))
     $tabs['additional_information']['title'] = __( 'Wine notes' );    // Rename the additional information tab
 
     return $tabs;
 
 }
+
+
+
+// add_filter( 'woocommerce_product_tabs', 'woo_rename_tabs', 98 );
+
+// function woo_rename_tabs( $tabs ) {
+
+//     global $product;
+    
+//     if( $product->has_attributes() || $product->has_dimensions() || $product->has_weight() ) { // Check if product has attributes, dimensions or weight
+//         $tabs['additional_information']['title'] = __( 'Wine notes' );
+//     }
+ 
+//     return $tabs;
+ 
+// }
+
+
+
+add_filter( 'woocommerce_product_tabs', 'reordered_tabs', 98 );
+
+function reordered_tabs( $tabs ) {
+    $tabs['additional_information']['priority'] = 5; 
+    $tabs['description']['priority'] = 10; 
+    $tabs['reviews']['priority'] = 50;
+ 
+    return $tabs;
+}
+
+
 
 require get_template_directory()."/subscription/product-subscription.php"; // custom order subscription code
 
@@ -602,10 +704,19 @@ function filter_posts_clauses( $args ) {
                         ) 
               AND wp_term_relationships.term_taxonomy_id IN (".implode(',', $categories).")  
     
-            ) AND (((wp_posts.post_title LIKE '%my%') OR (post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_content LIKE '%".$_REQUEST['s']."%')))  AND wp_posts.post_type = 'product' AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'private') ";
+            ) AND (((wp_posts.post_title LIKE '%".$_REQUEST['s']."%') OR (post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_content LIKE '%".$_REQUEST['s']."%')))  AND wp_posts.post_type = 'product' AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'private') ";
 
        
     }
+    if(isset($_REQUEST['search_subscriptionid'])){
+       $orderids=getallorderidbysubscription($_REQUEST['s']);
+
+        $args['where']="AND wp_posts.ID IN (".$orderids.") AND wp_posts.post_type = 'shop_order' AND ((wp_posts.post_status = 'wc-pending' OR wp_posts.post_status = 'wc-processing' OR wp_posts.post_status = 'wc-on-hold' OR wp_posts.post_status = 'wc-completed' OR wp_posts.post_status = 'wc-cancelled' OR wp_posts.post_status = 'wc-refunded' OR wp_posts.post_status = 'wc-failed'))";
+        
+
+    }
+    // echo '<pre>';
+    // print_r($args);
     return $args;
 }
      
@@ -617,7 +728,7 @@ add_filter( 'posts_clauses', 'filter_posts_clauses', 10, 1 );
  // add_filter( 'posts_request', 'dump_request' );
 
 function dump_request( $input ) {
-
+    echo "sairaj";
     var_dump($input);
 
     return $input;
@@ -724,8 +835,294 @@ function filter_woocommerce_return_to_shop_redirect( $wc_get_page_permalink ) {
 add_filter( 'woocommerce_return_to_shop_redirect', 'filter_woocommerce_return_to_shop_redirect', 10, 1 ); 
 
 
+/**
+ * Show Regular/Sale Price @ WooCommerce Cart Table
+ */
+ 
+add_filter( 'woocommerce_cart_item_price', 'indigo_change_cart_table_price_display', 30, 3 );
+ 
+function indigo_change_cart_table_price_display( $price, $values, $cart_item_key ) {
+    $slashed_price = $values['data']->get_price_html();
+    $is_on_sale = $values['data']->is_on_sale();
+    if ( $is_on_sale ) {
+     $price = $slashed_price;
+    }
+    
+    return $price;
+}
+
+/**
+ * [wpse_lost_password_redirect -redirection when password is reseted]
+ * @return [type] [description]
+ */
+function wpse_lost_password_redirect() {
+
+    // Check if have submitted
+    $confirm = ( isset($_GET['action'] ) && $_GET['action'] == resetpass );
+
+    if( $confirm ) {
+        wp_redirect( home_url('?login=true') );
+        exit;
+    }
+}
+add_action('login_headerurl', 'wpse_lost_password_redirect');
+
+// redirects for login / logout
+// add_filter('woocommerce_login_redirect', 'login_redirect');
+
+function login_redirect($redirect_to) {
+
+    return home_url();
+
+}
+
+// add_action('wp_logout','logout_redirect');
+
+function logout_redirect(){
+
+    wp_redirect( home_url() );
+    
+    exit;
+
+}
+
+
+function login_stylesheet() {
+    wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri().'/misc.css' );
+}
+add_action( 'login_enqueue_scripts', 'login_stylesheet' );
 
 
 
+function show_login_popup() {
+    
+    if( $_GET['login'] && $_SERVER['REQUEST_METHOD'] == 'GET') {
+ 
+        wp_register_script( 'custom-login-popup', get_template_directory_uri() . '/scripts/custom-login-popup.js', array( 'jquery' ), '', true );
+        wp_enqueue_script( 'custom-login-popup' );
+   }
+}
+add_action('init','show_login_popup');
 
 
+/*add_filter('term_link', 'term_link_filter', 10, 3);
+function term_link_filter( $url, $term, $taxonomy ) {
+
+    if($taxonomy=='product_tag'){
+        global $wp_query;
+        $product_cat= (isset($_GET['product_cat'])) ? $_GET['product_cat'] : $wp_query->get_queried_object_id();
+
+        return $url . "?product_cat=".$product_cat;
+    }
+   
+}*/
+
+/*function login_redirect_peter($p1,$p2,$p3,$p4){
+    wp_redirect(home_url());
+    exit();
+}
+add_filter( 'rul_before_user', 'login_redirect_peter', 10, 4 );
+*/
+
+
+
+//registration page changes 
+
+////1. Add a new form element...
+add_action( 'register_form', 'indigo_register_form' );
+function indigo_register_form() {
+
+    $first_name = ( ! empty( $_POST['first_name'] ) ) ? trim( $_POST['first_name'] ) : '';
+        
+        ?>
+        <p>
+            <label for="first_name"><?php _e( 'First Name', 'mydomain' ) ?><span class="required-label">*</span><br />
+                <input type="text" name="first_name" id="first_name" class="input" value="<?php echo esc_attr( wp_unslash( $first_name ) ); ?>" size="25" /></label>
+        </p>
+        <?php  
+
+        $last_name = ( ! empty( $_POST['last_name'] ) ) ? trim( $_POST['last_name'] ) : '';
+        
+        ?>
+        <p>
+            <label for="last_name"><?php _e( 'Last Name', 'mydomain' ) ?><span class="required-label">*</span><br />
+                <input type="text" name="last_name" id="last_name" class="input" value="<?php echo esc_attr( wp_unslash( $last_name ) ); ?>" size="25" /></label>
+        </p>
+        <?php
+
+          $user_pass = ( ! empty( $_POST['user_pass'] ) ) ? trim( $_POST['user_pass'] ) : '';
+        
+        ?>
+        <p>
+            <label for="user_pass"><?php _e( 'Password', 'mydomain' ) ?><span class="required-label">*</span><br />
+                <input type="password" name="user_pass" id="user_pass" class="input" size="25" /></label>
+        </p>
+        <?php
+          $user_cpass = ( ! empty( $_POST['user_cpass'] ) ) ? trim( $_POST['user_cpass'] ) : '';
+        
+        ?>
+        <p>
+            <label for="user_cpass"><?php _e( 'Confirm Password', 'mydomain' ) ?><span class="required-label">*</span><br />
+                <input type="password" name="user_cpass" id="user_cpass" class="input" size="25" /></label>
+        </p>
+        <?php
+    }
+
+    //2. Add validation. In this case, we make sure first_name is required.
+    add_filter( 'registration_errors', 'indigo_registration_errors', 10, 3 );
+    function indigo_registration_errors( $errors, $sanitized_user_login, $user_email ) {
+        
+        if ( empty( $_POST['first_name'] ) || ! empty( $_POST['first_name'] ) && trim( $_POST['first_name'] ) == '' ) {
+            $errors->add( 'first_name_error', __( '<strong>ERROR</strong>: You must include a first name.', 'mydomain' ) );
+        }  
+        if ( empty( $_POST['last_name'] ) || ! empty( $_POST['last_name'] ) && trim( $_POST['last_name'] ) == '' ) {
+            $errors->add( 'last_name_error', __( '<strong>ERROR</strong>: You must include a last name.', 'mydomain' ) );
+        } 
+        if ( empty( $_POST['user_pass'] ) || ! empty( $_POST['user_pass'] ) && trim( $_POST['user_pass'] ) == '' ) {
+            $errors->add( 'user_pass_error', __( '<strong>ERROR</strong>: Password Cannot be empty.', 'mydomain' ) );
+        }
+        if ( empty( $_POST['user_cpass'] ) || ! empty( $_POST['user_cpass'] ) && trim( $_POST['user_cpass'] ) == '' ) {
+            $errors->add( 'user_cpass_error', __( '<strong>ERROR</strong>: Confirm Password Cannot be empty.', 'mydomain' ) );
+        }
+        else if ($_POST['user_cpass']!=$_POST['user_pass'] ) {
+            $errors->add( 'user_cpass_error', __( '<strong>ERROR</strong>: Password Mismatch.', 'mydomain' ) );
+        }
+        return $errors;
+    }
+
+    //3. Finally, save our extra registration user meta.
+    add_action( 'user_register', 'indigo_user_register' );
+    function indigo_user_register( $user_id ) {
+        if ( ! empty( $_POST['first_name'] ) ) {
+            update_user_meta( $user_id, 'first_name', trim( $_POST['first_name'] ) );
+        } 
+        if ( ! empty( $_POST['last_name'] ) ) {
+
+            $display_name=$_POST['first_name'].' '.$_POST['last_name'];
+
+            update_user_meta( $user_id, 'last_name', trim( $_POST['last_name'] ) );
+            wp_update_user( array( 'ID' => $user_id, 'display_name' => $display_name ) );
+        }
+        if ( ! empty( $_POST['user_pass'] ) ) {
+             wp_set_password($_POST['user_pass'], $user_id);
+        }
+    }
+
+
+add_action('login_head', function(){
+?>
+    <style>
+        #registerform > p:first-child{
+            display:none;
+        }
+    </style>
+
+    <script type="text/javascript" src="<?php echo site_url('/wp-includes/js/jquery/jquery.js'); ?>"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($){
+            $('#registerform > p:first-child').css('display', 'none');
+            jQuery('#registerform,#loginform,#lostpasswordform').addClass('login-reg');
+            jQuery('<p class="message login-reg-msg">Please verify your identity. Access to this page is restricted. Please login with registered email ID.</p>').insertBefore("#loginform");
+            jQuery('<p class="message login-reg-msg">Welcome to Indigo Wine co. Register to get details of our curated wine collection.</p>').insertBefore("#registerform");
+            jQuery('#registerform label[for="user_email"]').prepend('<span class="required-label">*</span>');
+            jQuery('.login-action-lostpassword .message').text('Please enter your email address. You will receive a link to create a new password via email.');
+            jQuery('#reg_passmail').addClass('email-notify');
+            jQuery('#backtoblog a').text('← Back to Home');
+            var label_name = $('.login label[for="user_login"]').contents().first()[0].textContent;
+            $('.login label[for="user_login"]').contents().first()[0].textContent = label_name.replace("Username or Email Address", "Email Address");
+        });
+    </script>
+<?php
+});
+
+//Remove error for username, only show error for email only.
+add_filter('registration_errors', function($wp_error, $sanitized_user_login, $user_email){
+    if(isset($wp_error->errors['empty_username'])){
+        unset($wp_error->errors['empty_username']);
+    }
+
+    if(isset($wp_error->errors['username_exists'])){
+        unset($wp_error->errors['username_exists']);
+    }
+    return $wp_error;
+}, 10, 3);
+
+add_action('login_form_register', function(){
+    if(isset($_POST['user_login']) && isset($_POST['user_email']) && !empty($_POST['user_email'])){
+        $_POST['user_login'] = $_POST['user_email'];
+    }
+});
+
+// Add filter for registration email body
+add_filter('wp_mail','handle_wp_mail');
+
+function handle_wp_mail($atts) {
+    
+    if (isset ($atts ['subject']) && substr_count($atts ['subject'],'Your username and password')>0 ) {
+        if (isset($atts['message'])) {
+            $user = get_user_by( 'email', $atts['to'] );
+            $data=array('email'=>$atts['to'],'display_name'=>$user->display_name);
+            
+           $atts['message'] = generate_email_template('registration_mail',$data);
+
+        }
+    }
+    return ($atts);
+}
+
+add_filter( 'wp_mail_content_type', function( $content_type ) {
+    return 'text/html';
+});
+
+require get_stylesheet_directory()."/email-template/email-template.php";
+//end of the registration form changes
+
+/**
+ * Additing column to orders post type
+ */
+add_filter( 'manage_edit-shop_order_columns', 'custom_shop_order_column',11);
+function custom_shop_order_column($columns)
+{
+  
+    $columns                     = array();
+    $columns['cb']               = $existing_columns['cb'];
+    $columns['order_status']     = '<span class="status_head tips" data-tip="' . esc_attr__( 'Status', 'woocommerce' ) . '">' . esc_attr__( 'Status', 'woocommerce' ) . '</span>';
+    
+    $columns['order_title']      = __( 'Order', 'woocommerce' );
+    
+    $columns['subscription'] = __( 'Subscription ID','indigo-wine');
+    
+    $columns['billing_address']  = __( 'Billing', 'woocommerce' );
+    $columns['shipping_address'] = __( 'Ship to', 'woocommerce' );
+    $columns['customer_message'] = '<span class="notes_head tips" data-tip="' . esc_attr__( 'Customer message', 'woocommerce' ) . '">' . esc_attr__( 'Customer message', 'woocommerce' ) . '</span>';
+    $columns['order_notes']      = '<span class="order-notes_head tips" data-tip="' . esc_attr__( 'Order notes', 'woocommerce' ) . '">' . esc_attr__( 'Order notes', 'woocommerce' ) . '</span>';
+    $columns['order_date']       = __( 'Date', 'woocommerce' );
+    $columns['order_total']      = __( 'Total', 'woocommerce' );
+    $columns['order_actions']    = __( 'Actions', 'woocommerce' );
+
+   return $columns;
+}
+
+// adding the data to columns 
+add_action( 'manage_shop_order_posts_custom_column' , 'custom_orders_list_column_content', 10, 2 );
+function custom_orders_list_column_content( $column )
+{
+    global $post, $woocommerce, $the_order;
+    $order_id = $the_order->id;
+
+    switch ( $column )
+    {
+        case 'subscription' :
+            $_subscription_id = get_post_meta(  $order_id, '_subscription_id', true );
+            if($_subscription_id!=''){
+                echo "<a href='edit.php?s=".$_subscription_id."&post_status=all&post_type=shop_order&action=-1&m=0&_customer_user&paged=1&action2=-1&search_subscriptionid=yes'>#".$_subscription_id."</a>";
+            }
+            break;
+
+        
+    }
+}
+
+/**
+ * end of the adding columnn code
+ */

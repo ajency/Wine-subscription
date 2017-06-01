@@ -51,9 +51,7 @@ function subscription() {
     'exclude_from_search'   => false,
     'publicly_queryable'    => true,
     'capability_type'       => 'post',
-    'capabilities' => array(
-            'create_posts' => false
-        )
+   
   );
   register_post_type( 'subscription', $args );
 
@@ -75,6 +73,7 @@ function my_subscription_columns( $columns ) {
     'title' => __( 'Title' ),
     'author' => __( 'Subsriber Name' ),
     '_subscription_type' => __( 'Subscription Type' ),
+    '_subscription_status' => __( 'Status' ),
     'date' => __( 'Date' )
   );
 
@@ -102,6 +101,19 @@ function my_manage_subscription_columns( $column, $post_id ) {
         printf( __( '%s' ), strtoupper($_subscription_type ));
 
       break;
+
+      case '_subscription_status' :
+
+      $_subscription_status = get_post_meta( $post_id, 'status', true );
+
+      if ( empty( $_subscription_status ) )
+        echo __( 'Unknown' );
+
+      else
+        printf( __( '%s' ), strtoupper($_subscription_status ));
+
+      break;
+
 
       default :
       break;
@@ -131,15 +143,24 @@ function subscription_process_order($order_id) {
  * [add_custom_meta_data_for_order -method to add subscription custom post meta]
  */
 function add_custom_meta_data_for_order($order_id, $posted ){
-  print_r($posted );
+ 
+  global $woocommerce;
   if(is_user_logged_in() && isset($_SESSION['subscription_type'])){
     
+    $items_names = array();
+
+    foreach($woocommerce->cart->get_cart() as $cart_item){
+        $items_names[] = $cart_item['data']->post->post_title;
+    }
+    $string_cart_item_names = implode( ', ', $items_names );
+
     $current_date=date('Y-m-d');
     $userid=get_current_user_id();
-    $post_data=array('post_author' => $userid,'post_title' => 'Subscription-'.$current_date,'post_type' => 'subscription','post_status'=>'publish');
+    $post_data=array('post_author' => $userid,'post_title' => 'Subscription-'.$string_cart_item_names,'post_type' => 'subscription','post_status'=>'publish');
     $subscriptionid=wp_insert_post($post_data);
     update_post_meta( $subscriptionid, 'original_orderid', $order_id );
     update_post_meta( $subscriptionid, '_subscription_type',$_SESSION['subscription_type']);
+    update_post_meta( $subscriptionid, 'status','active');
     unset($_SESSION['subscription_type']);
 
     update_post_meta( $order_id, '_subscription_id', $subscriptionid );
@@ -152,6 +173,7 @@ add_action('woocommerce_checkout_update_order_meta','add_custom_meta_data_for_or
  
 function indigo_add_subscription_endpoint() {
     add_rewrite_endpoint( 'subscription', EP_ROOT | EP_PAGES );
+    add_rewrite_endpoint( 'view-subscription', EP_ROOT | EP_PAGES );
 }
  
 add_action( 'init', 'indigo_add_subscription_endpoint' );
@@ -159,6 +181,7 @@ add_action( 'init', 'indigo_add_subscription_endpoint' );
 
 function indigo_subscription_query_vars( $vars ) {
     $vars[] = 'subscription';
+    $vars[] = 'view-subscription';
     return $vars;
 }
  
@@ -167,11 +190,9 @@ add_filter( 'query_vars', 'indigo_subscription_query_vars', 0 );
  
 function indigo_add_subscription_link_my_account( $items ) {
     $items = array(
-      'dashboard'       => __( 'Dashboard', 'woocommerce' ),
-      'subscription'          => __( 'Subscription', 'woocommerce' ),
       'orders'          => __( 'Orders', 'woocommerce' ),     
+      'subscription'          => __( 'Subscription', 'woocommerce' ),
       'edit-address'    => __( 'Addresses', 'woocommerce' ),
-      'payment-methods' => __( 'Payment methods', 'woocommerce' ),
       'edit-account'    => __( 'Account details', 'woocommerce' ),
     );
     return $items;
@@ -181,13 +202,22 @@ add_filter( 'woocommerce_account_menu_items', 'indigo_add_subscription_link_my_a
  
 
 function indigo_subscription_content() {
-  
+
   require get_template_directory().'/woocommerce/myaccount/subscription.php';
   echo do_shortcode( '[subscription_content]' );
-  die();
+  
 }
  
 add_action( 'woocommerce_account_subscription_endpoint', 'indigo_subscription_content' );
+
+
+function indigo_view_subscription_content() {
+  require get_template_directory().'/woocommerce/myaccount/view-subscription.php';
+  echo do_shortcode( '[view_subscription_content]' );
+ 
+}
+ 
+add_action( 'woocommerce_account_view-subscription_endpoint', 'indigo_view_subscription_content' );
 
 
 function filter_woocommerce_account_orders_columns( $array ) { 
@@ -198,14 +228,17 @@ function filter_woocommerce_account_orders_columns( $array ) {
     'order-subtype'    => __( 'Subscription Type', 'woocommerce' ),
     'order-status'  => __( 'Status', 'woocommerce' ),
     'order-total'   => __( 'Total', 'woocommerce' ),
-    'order-actions' => '&nbsp;',
+    'order-actions' => 'Action',
   ); 
 
     return $array; 
 }; 
 add_filter( 'woocommerce_account_orders_columns', 'filter_woocommerce_account_orders_columns', 10, 1 ); 
 
-         
+/**
+ * [indigo_subscription_orders_columns -subscription listing in my account page]
+ * @return [type] [description]
+ */
 function indigo_subscription_orders_columns() {
   $columns = array(
     'subscription-number'  => __( 'Subscription ID', 'woocommerce' ),
@@ -218,6 +251,11 @@ function indigo_subscription_orders_columns() {
   return $columns;
 }
 
+/**
+ * [nextduedate -calculation]
+ * @param  [type] $subscription_id [description]
+ * @return [type]                  [description]
+ */
 function nextduedate($subscription_id){
   global $wpdb;
   $sql_subscribedOrder=$wpdb->prepare("select post_id as orderid from ".$wpdb->prefix."postmeta  where meta_key='_subscription_id' and meta_value=%d order by orderid desc",$subscription_id);
@@ -238,4 +276,31 @@ function nextduedate($subscription_id){
 
 
 }
-?>
+
+/**
+ * [indigo_subscriptionaccount_orders_columns -listing columns for order details on subscription detail view]
+ * @return [type] [description]
+ */
+function indigo_subscriptionaccount_orders_columns() { 
+
+  $array=array(
+    'order-number'  => __( 'Order', 'woocommerce' ),
+    'order-date'    => __( 'Date', 'woocommerce' ),
+    'order-status'  => __( 'Status', 'woocommerce' ),
+    'order-total'   => __( 'Total', 'woocommerce' ),
+    'order-actions' => 'Action',
+  ); 
+
+    return $array; 
+}; 
+
+function getallorderidbysubscription($subscription_id){
+  global $wpdb;
+  $sql_subscribedOrder=$wpdb->prepare("select post_id as orderid from ".$wpdb->prefix."postmeta  where meta_key='_subscription_id' and meta_value=%d order by orderid desc",$subscription_id);
+  $orderid=$wpdb->get_results($sql_subscribedOrder,ARRAY_A);
+  foreach ( $orderid as $value) {
+    $orderids[]=$value['orderid'];
+  }
+  $orderids=implode(',', $orderids);
+  return $orderids;
+}

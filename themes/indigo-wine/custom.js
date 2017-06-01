@@ -115,13 +115,6 @@ jQuery(function(){
 	   lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
 	 });
 
-	// jQuery('#tab-description').readmore({
-	//    speed: 25,
-	//    collapsedHeight: 120,
-	//    moreLink: '<a href="#" class="more">Show More <i class="fa fa-angle-down" aria-hidden="true"></i></a>',
-	//    lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
-	//  });
-
 
 	// featured product scroll
 
@@ -154,10 +147,19 @@ jQuery(function(){
 	});
 
 
+	// Cart why subscribe alert
+
+	jQuery('.close-sub-box').click(function(){
+
+		jQuery(this).parent('.why-subscribe').addClass('hidden');
+
+	});
+
 
 	// remove extra clear class from product listing
 
 	jQuery('.hb-equal-col-height .products-4 .clear').remove();
+
 
 	// click outside hide
 
@@ -169,6 +171,24 @@ jQuery(function(){
 	    jQuery('body').removeClass('blocked');
 	  }
 	});
+
+
+	// Subscribe overlay
+
+	if (jQuery('.subscribe-overlay').hasClass("active")) {
+		setTimeout(bodyClass, 1200);
+	}
+
+	function bodyClass(){
+		jQuery('body').addClass('subscribe-activated');	
+		jQuery(this).removeClass('hidden');
+	}
+
+	jQuery('.close-Sub_overlay').click(function(){
+		jQuery('body').removeClass('subscribe-activated');
+		jQuery('.subscribe-overlay').addClass('hidden');
+	});
+
 
 	// Trigered cart icon to actual cart click
 
@@ -185,6 +205,20 @@ jQuery(function(){
 	jQuery('.site-offer .close').click(function(){
 	    jQuery('.discount').hide();
 	});
+
+
+	// Checking if product tabs are empty
+
+	jQuery('.woocommerce-tabs li a').each(function(){
+
+		var check = jQuery(this);
+		
+	  	if( check.text() === '' ){
+	    	jQuery(this).parent().addClass('not-active');
+	  	}
+
+	});
+
 
 
 		// Custom menu click and scroll to particular ID
@@ -237,13 +271,6 @@ jQuery(function(){
                
             });
 
-            jQuery('.link-register').click(function(){
-				function wait(){
-					jQuery('.simplemodal-container').addClass('register-stuff');	
-				}
-				setTimeout(wait, 500);
-            });
-
 });
 
 
@@ -267,6 +294,22 @@ jQuery(document).ready(function() {
 	     }
 
      });   
+
+
+  jQuery('.sub-unsubscribe').click(function(event) {
+    var txt;
+
+    var r = confirm("Are you sure, Do you Want to Unsubscribe the orders ?");
+    if (r == true) {
+      
+       jQuery.post(cart_qty_ajax.siteapiurl+'unsubscribe_orders', {id: jQuery('#subid').val() }, function(data, textStatus, xhr) {
+        window.location='/my-account/subscription/';
+       });
+
+    } 
+   
+  });
+
 });
 
 

@@ -150,6 +150,7 @@ $classes[] = $logclass;
 
 		<?php echo '<span class="product-loading-icon"></span>'; ?>
 
+		<div class="product-hover-overlay">
 		<?php
 		$out_of_stock_class = ' add_to_cart_button';
 		if ( hb_is_out_of_stock() ) {
@@ -190,6 +191,7 @@ $classes[] = $logclass;
 
 		<?php echo $hb_add_to_cart; ?>
 		<?php echo $read_more; ?>
+		</div>
 	</div>
 	</a>
 
@@ -216,7 +218,7 @@ $classes[] = $logclass;
 				      }
 				    endforeach;
 
-					echo  $data=  implode(',', $array_cat);
+					echo  $data=  implode(', ', $array_cat);
 
 					endif;
 				?>
@@ -228,7 +230,7 @@ $classes[] = $logclass;
 			<?php
 			
 			$size = sizeof( get_the_terms( $post->ID, 'product_tag' ) ); ?>
-			<div class="woo-cats"><?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<span class="hb-woo-shop-cats">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span>' ); ?></div>
+			<?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<div class="woo-cats"><span class="hb-woo-shop-cats">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span></div>' ); ?>
 		</div>
 
 		<?php

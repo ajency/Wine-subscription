@@ -33,7 +33,29 @@ do_action( 'woocommerce_before_cart' );
 
 <div class="hb-notif-box error failure hidden"><div class="message-text"><p><i class="hb-moon-blocked"></i>Your current subscription has been cancelled.</p></div></div>
 
-<form class="woocommerce-cart-form <?php echo $cartlimit; ?>" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+<!-- Go back link -->
+
+<div class="go-back">
+	<a href="<?php echo apply_filters( 'woocommerce_return_to_shop_redirect', get_permalink( wc_get_page_id( 'shop' ) ) ); ?>" class="go-back__link"><i class="fa fa-angle-left" aria-hidden="true"></i>
+ <?php _e('Continue Shopping', 'woocommerce'); ?></a>
+</div>
+
+
+<!-- why subscribe -->
+
+<div class="why-subscribe box-shadow-wrap">
+	<i class="fa fa-times close-sub-box" aria-hidden="true"></i>
+	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover">
+	<div class="why-subscribe__content">
+		<h3 class="title">Why to Subscribe</h3>
+		<p class="reason">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+	</div>
+</div>
+
+
+
+
+<form class="cart-form woocommerce-cart-form <?php echo $cartlimit; ?>" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 <input type="hidden" id="subscription_status" name="subscription_status" value="no">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
@@ -146,9 +168,9 @@ do_action( 'woocommerce_before_cart' );
 		do_action( 'woocommerce_cart_contents' );
 		?>
 		<tr>
-			<td colspan="6" class="actions">
+			<td colspan="6" class="actions hidden">
 
-				<a href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>" class="simple-read-more float-left continue-shopping"><?php _e('Continue Shopping', 'woocommerce'); ?></a>
+				<a href="<?php echo apply_filters( 'woocommerce_return_to_shop_redirect', get_permalink( wc_get_page_id( 'shop' ) ) ); ?>" class="simple-read-more float-left continue-shopping"><?php _e('Continue Shopping', 'woocommerce'); ?></a>
 				<input type="submit" class="button hb-update-cart" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" /> <input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="<?php _e( 'Proceed to Checkout', 'woocommerce' ); ?>" />
 
 				<?php do_action( 'woocommerce_cart_actions' ); ?>
@@ -164,27 +186,107 @@ do_action( 'woocommerce_before_cart' );
 
 </form>
 
+<div class="subscription-table">
+	<div class="box-shadow-wrap subscription-action">
+		<div class="toggle-check">
+
+			<input type="checkbox" value="" name="subscription-check" id="subscription-check" class="custom-check" checked />
+			<div class="content">
+				<p>Hi <span class="username secondary-color">Mark</span>, Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+			</div>
+		</div>
+		<div>
+			<p class="type-title">Type of Subscription</p>
+			<div class="switch">
+				<input id="monthly" class="switch-input" checked="checked" name="sub-type" type="radio" value="monthly" />
+				<label class="switch-label switch-label-off" for="monthly">Monthly</label>
+				<input id="quarterly" class="switch-input" name="sub-type" type="radio" value="quarterly" /><label class="switch-label switch-label-on" for="quarterly">Quarterly</label>
+				<div class="switch-selection"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- How it works -->
+
+<div class="h-i-w">
+	<h1 class="title">How it works</h1>
+	<div class="flex-cols">
+		<div class="cols">
+			<span class="c-icon cal"></span>
+			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+		</div>
+		<div class="cols">
+			<span class="c-icon sub"></span>
+			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+		</div>
+		<div class="cols">
+			<span class="c-icon pay"></span>
+			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+		</div>
+		<div class="cols">
+			<span class="c-icon done"></span>
+			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+		</div>
+	</div>
+
+</div>
+
+
+
+
 </div>
 
 <div class="col-3">
 
-<div class="no-subscription get-started-sub box-wrap">
+<!-- <div class="no-subscription get-started-sub box-wrap">
 	<div class="cart-bottle"></div>
-	<h5 class="title">Its that easy! Your subscription will be activated and will arrive by your selected delivery day.</h5>
+	<h5 class="title">Be a part of our club</h5>
+	<h5 class="subTitle">Set up your personalized subscription and be member of Indigo Wine Co.</h5>
 	<?php 
 	if(is_user_logged_in()){
 	?>
-	<a href="javascript:void(0)" class="sub-started modal-open open-subscription-modal" id="subscribe_now">Get Started</a>
+	<a href="javascript:void(0)" class="sub-started modal-open open-subscription-modal" id="subscribe_now">Subscribe Now</a>
 	<?php 
 	
 	} 
 	else {
 	?>
-	<a class="simplemodal-login" href="/wp-login.php">Get Started</a>
+	<a class="simplemodal-login" href="/wp-login.php">Subscribe Now</a>
 	<?php 
 	}
 	?>
+</div> -->
+
+<!-- If the order is available for subscription -->
+
+<!-- <div class="no-subscription get-started-sub box-wrap">
+	<div class="cart-bottle"></div>
+	<h5 class="title">Congratulations!</h5>
+	<h5 class="subTitle">You can be a Indigo Wine co member your order is eligible for subscription. Just opt to subscribe and be Indigo Wine Co club member</h6>
+	<?php 
+	if(is_user_logged_in()){
+	?>
+	<a href="javascript:void(0)" class="sub-started modal-open open-subscription-modal" id="subscribe_now">Subscribe Now</a>
+	<?php 
+	
+	} 
+	else {
+	?>
+	<a class="simplemodal-login" href="/wp-login.php">Subscribe Now</a>
+	<?php 
+	}
+	?>
+</div> -->
+
+<div class="subscribe-overlay hidden">
+	<div class="sub-container">
+		<h5 class="msg">Hi there, looks like your order is eligible for subscription.<br> Just opt to subscribe and be Indigo Wine Co club member</h5>
+		<button type="button" class="close-Sub_overlay">Ok Got it!</button>
+	</div>
 </div>
+
 
 <div class="cancel-subscription no-subscription box-wrap hidden">
 	<div class="cart-bottle"></div>
@@ -211,6 +313,11 @@ do_action( 'woocommerce_before_cart' );
 
 <div class="cart-collaterals">
 	<?php woocommerce_cart_totals(); ?>
+	
+	<div class="checkoutAction">
+		<button type="button" class="checkout-btn">Proceed to checkout</button>
+	</div>
+
 </div>
 </div>
 

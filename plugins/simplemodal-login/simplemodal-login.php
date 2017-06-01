@@ -341,7 +341,7 @@ if (!class_exists('SimpleModalLogin')) {
 		function login_form() {
 			$output = sprintf('
 	<form name="loginform" id="loginform" action="%s" method="post">
-		<div class="title">Welcome back!</div>
+		<div class="title">%s!</div>
 		<div class="simplemodal-login-fields">
 		<p>
 			<label>%s<br />
@@ -352,8 +352,8 @@ if (!class_exists('SimpleModalLogin')) {
 			<input type="password" name="pwd" class="user_pass input" value="" size="20" tabindex="20" /></label>
 		</p>',
 				site_url('wp-login.php', 'login_post'),
-				__('Login', 'simplemodal-login'),
-				__('Username', 'simplemodal-login'),
+				__('Welcome back', 'simplemodal-login'),
+				__('E-mail', 'simplemodal-login'),
 				__('Password', 'simplemodal-login')
 			);
 
@@ -420,9 +420,11 @@ if (!class_exists('SimpleModalLogin')) {
 				'shortcut' => $this->options['shortcut'] ? 'true' : 'false',
 				'logged_in' => is_user_logged_in() ? 'true' : 'false',
 				'admin_url' => get_admin_url(),
-				'empty_username' => __('<strong>ERROR</strong>: The username field is empty.', 'simplemodal-login'),
+				'empty_username' => __('<strong>ERROR</strong>: The e-mail field is empty.', 'simplemodal-login'),
 				'empty_password' => __('<strong>ERROR</strong>: The password field is empty.', 'simplemodal-login'),
 				'empty_email' => __('<strong>ERROR</strong>: The email field is empty.', 'simplemodal-login'),
+				'empty_first_name' => __('<strong>ERROR</strong>: The first name field is empty.', 'simplemodal-login'),
+				'empty_last_name' => __('<strong>ERROR</strong>: The last name field is empty.', 'simplemodal-login'),
 				'empty_all' => __('<strong>ERROR</strong>: All fields are required.', 'simplemodal-login')
 			));
 
@@ -477,21 +479,42 @@ if (!class_exists('SimpleModalLogin')) {
 		 */
 		function registration_form() {
 			$output = sprintf('
-<form name="registerform" id="registerform" action="%s" method="post">
-	<div class="title">Create new account and experience the Indigo lifestyle</div>
+<form name="registerform" id="registerform"  method="post">
+	<div class="title">%s</div>
 	<div class="simplemodal-login-fields">
+	<div class="user-alerts"></div>
 	<p>
 		<label>%s<br />
-		<input type="text" name="user_login" class="user_login input" value="" size="20" tabindex="10" /></label>
+		<input type="text" name="first_name" class="first_name input" value="" size="50" tabindex="10" /></label>
 	</p>
 	<p>
 		<label>%s<br />
+		<input type="text" name="last_name" class="last_name input" value="" size="50" tabindex="10" /></label>
+	</p>
+	<!--p>
+		<label>%s<br />
+		<input type="text" name="user_login" class="user_login input" value="" size="20" tabindex="10" /></label>
+	</p-->
+	<p>
+		<label>%s<br />
 		<input type="text" name="user_email" class="user_email input" value="" size="25" tabindex="20" /></label>
+	</p>
+	<p>
+		<label>%s<br />
+		<input type="password" name="user_pass" class="user_pass input" value="" size="25" tabindex="20" /></label>
+	</p>
+	<p>
+		<label>%s<br />
+		<input type="password" name="user_cpass" class="user_cpass input" value="" size="25" tabindex="20" /></label>
 	</p>',
-				site_url('wp-login.php?action=register', 'login_post'),
-				__('Register', 'simplemodal-login'),
+			//	site_url('wp-login.php?action=register', 'li'),
+				__('Create new account and experience the Indigo lifestyle', 'simplemodal-login'),
+				__('First Name', 'simplemodal-login'),
+				__('Last Name', 'simplemodal-login'),
 				__('Username', 'simplemodal-login'),
-				__('E-mail', 'simplemodal-login')
+				__('E-mail', 'simplemodal-login'),
+				__('Password', 'simplemodal-login'),
+				__('Confirm Password', 'simplemodal-login')
 			);
 
 			ob_start();
@@ -499,14 +522,15 @@ if (!class_exists('SimpleModalLogin')) {
 			$output .= ob_get_clean();
 
 			$output .= sprintf('
-	<p class="reg_passmail">%s</p>
+	<!--p class="reg_passmail">%s</p-->
 	<p class="submit">
-		<input type="submit" name="wp-submit" value="%s" tabindex="100" />
+		<input type="button" name="wp-submit" id="%s" value="%s" tabindex="100" />
 		<input type="button" class="simplemodal-close" value="%s" tabindex="101" />
 	</p>
 	<p class="nav">
 		<a class="simplemodal-login" href="%s">%s</a>',
 				__('A password will be e-mailed to you.', 'simplemodal-login'),
+				__('register', 'simplemodal-login'),
 				__('Register', 'simplemodal-login'),
 				__('Cancel', 'simplemodal-login'),
 				site_url('wp-login.php', 'login'),
@@ -595,6 +619,13 @@ if (class_exists('SimpleModalLogin')) {
 	$simplemodal_login->users_can_register = get_option('users_can_register') ? true : false;
 }
 
+/*function tml_user_register( $user_id ) {
+	if ( !empty( $_POST['first_name'] ) )
+		update_user_meta( $user_id, 'first_name', $_POST['first_name'] );
+	if ( !empty( $_POST['last_name'] ) )
+		update_user_meta( $user_id, 'last_name', $_POST['last_name'] );
+}
+add_action( 'user_register', 'tml_user_register' );*/
 /*
  * The format of this plugin is based on the following plugin template:
  * http://pressography.com/plugins/wordpress-plugin-template/
