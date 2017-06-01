@@ -4153,8 +4153,8 @@ body .woocommerce form .form-row .button {
   position: relative;
   height: 30px;
   width: 225px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
+  border-radius: 15px;
+  border: 2px solid #d1d2d4;
 }
 .switch-label {
   position: relative;
@@ -4197,9 +4197,9 @@ body .woocommerce form .form-row .button {
   display: block;
   width: 108px;
   height: 30px;
-  border-radius: 12px;
-  background-color: #dcc599;
-  border: 2px solid #c3a66f;
+  border-radius: 15px;
+  background-color: #c8cfd7;
+  border: 2px solid transparent;
   -webkit-transition: left 0.15s ease-out;
           transition: left 0.15s ease-out;
 }
@@ -4386,6 +4386,73 @@ body .woocommerce form .form-row .button {
 }
 #main-content img.alert-cover {
   height: 130px;
+}
+.custom-check {
+  margin-right: 8px;
+  position: relative;
+}
+.custom-check:before {
+  content: "\f096";
+  font-family: 'FontAwesome';
+  background-color: #fff;
+  padding: 0;
+  position: absolute;
+  top: -4px;
+  left: -1px;
+  color: #d1b57c;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+.custom-check:checked:before {
+  content: "\f14a";
+}
+.subscription-action {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1.5em 1em;
+}
+.subscription-action .toggle-check {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.subscription-action .custom-check:before {
+  top: -8px;
+  left: -3px;
+  font-size: 2em;
+}
+.subscription-action .content {
+  padding: 0 1.5em;
+  font-size: 1.05em;
+  color: #022c4c;
+}
+.subscription-action .username {
+  font-family: gotham_mediumregular;
+}
+.subscription-action .type-title {
+  font-size: 0.95em;
+  color: #022c4c;
+  margin-bottom: 0.3em;
+  margin-top: -5px;
 }
 .woocommerce-account .woocommerce {
   margin-top: 1em;

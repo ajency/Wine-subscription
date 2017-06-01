@@ -186,6 +186,28 @@ do_action( 'woocommerce_before_cart' );
 
 </form>
 
+<div class="subscription-table">
+	<div class="box-shadow-wrap subscription-action">
+		<div class="toggle-check">
+			<input type="checkbox" value="" name="" class="custom-check" />
+			<div class="content">
+				<p>Hi <span class="username secondary-color">Mark</span>, Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+			</div>
+		</div>
+		<div>
+			<p class="type-title">Type of Subscription</p>
+			<div class="switch">
+				<input id="monthly" class="switch-input" checked="checked" name="sub-type" type="radio" value="monthly" />
+				<label class="switch-label switch-label-off" for="monthly">Monthly</label>
+				<input id="quarterly" class="switch-input" name="sub-type" type="radio" value="quarterly" /><label class="switch-label switch-label-on" for="quarterly">Quarterly</label>
+				<div class="switch-selection"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
 </div>
 
 <div class="col-3">
