@@ -31,7 +31,7 @@ jQuery(function ($) {
                 //var newqty=multipleofproducts(currentVal);
                 
                 // if(prevstatus=='yes' && newqty!=currentVal){
-                if(prevstatus=='yes' ){
+                /*  if(prevstatus=='yes' ){
                     $('.get-started-sub').removeClass('hidden');
                     $('.cancel-subscription').addClass('hidden');
 
@@ -40,7 +40,7 @@ jQuery(function ($) {
                     $('.subscribe-content .success').addClass('hidden');  
                     $('.subscribe-val').text('');
                     $('.subscribe-data').addClass('hidden');     
-                }
+                } */
                /* else if(prevstatus=='yes'){
                     $('#subscription_status').val('yes');
                 }*/
@@ -180,6 +180,48 @@ jQuery(function ($) {
          $('.checkout-button').trigger('click');
 
      });
+
+     $(document).on('click', '#subscription-check', function(event) {
+        var id='subscription_status';
+    
+        if($('#subscription-check').is(":checked")){
+            $('#'+id).val('yes');
+            var subscription_type = $("input[name='sub-type']:checked").val();
+
+            subscribe_session(subscription_type);
+        }
+        else{
+            $('#'+id).val('no');
+            $.post(cart_qty_ajax.siteapiurl+'unsubscribe_session', function(data, textStatus, xhr) {
+                $('.subscribe-data').addClass('hidden');     
+            });
+
+        }
+    
+    });
+
+     $(document).on('click', '.switch-input', function(event) {
+         //event.preventDefault();
+         /* Act on the event */
+         var id='subscription_status';
+
+         if($('#subscription-check').is(":checked")){
+             var subscription_type = $("input[name='sub-type']:checked").val();
+
+            subscribe_session(subscription_type);
+         }
+        
+     });
+
+     function subscribe_session(subscription_type){
+
+            $.post(cart_qty_ajax.siteapiurl+'subscribe_session', {subscription: subscription_type}, function(data, textStatus, xhr) {
+               $('.subscribe-val').text(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}));
+                $('.subscribe-data').removeClass('hidden');   
+            });
+     }
+
+
    // $(document).on('click', '.productcategory-menu', function (event) {
        // event.preventDefault();
        // commented as no popup required on menu
