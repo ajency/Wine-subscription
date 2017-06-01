@@ -149,10 +149,8 @@ jQuery(function(){
 
 	// Cart why subscribe alert
 
-	jQuery('.close-sub-box').click(function(){
-
+	jQuery('.close-sub-box').on("click", function(){
 		jQuery(this).parent('.why-subscribe').addClass('hidden');
-
 	});
 
 

@@ -4392,6 +4392,7 @@ body .woocommerce form .form-row .button {
   padding-right: 11em;
   line-height: 1.4;
   margin-top: 0;
+  margin-bottom: 0;
 }
 .close-sub-box {
   position: absolute;
