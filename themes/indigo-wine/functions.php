@@ -1127,3 +1127,38 @@ function custom_orders_list_column_content( $column )
 /**
  * end of the adding columnn code
  */
+
+
+
+
+add_action('woocommerce_review_order_after_cart_contents','checkout_subscription_type');
+
+
+function checkout_subscription_type(){
+    echo '<tr class="cart_item">
+                        <td class="product-name">
+                            Subscription Type</td>
+                        <td class="product-total">
+                            <span class="woocommerce-Price-amount amount">Monthly</span>
+                        </td>
+                    </tr>';
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
