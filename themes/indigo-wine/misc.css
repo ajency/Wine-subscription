@@ -151,11 +151,6 @@
   position: absolute;
   left: 2.7em;
 }
-.login-action-register .message.login-reg-msg,
-.login-action-login .message.login-reg-msg,
-.login-action-lostpassword .message.login-reg-msg {
-  color: #000;
-}
 .login-action-register .message.register,
 .login-action-login .message.register,
 .login-action-lostpassword .message.register {
