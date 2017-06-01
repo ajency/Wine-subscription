@@ -1071,13 +1071,15 @@ a[data-readmore-toggle].more:before {
 .hb-product-meta .like-holder {
   display: none;
 }
-.featuredRow .row.products {
+.featuredRow .row.products,
+.fw-content-wrap .row.products {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
-.featuredRow .row.products .hb-woo-product {
+.featuredRow .row.products .hb-woo-product,
+.fw-content-wrap .row.products .hb-woo-product {
   width: auto;
   -webkit-box-flex: 1;
   -webkit-flex: 1 0 20%;
