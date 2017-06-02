@@ -193,7 +193,8 @@ jQuery(function ($) {
         else{
             $('#'+id).val('no');
             $.post(cart_qty_ajax.siteapiurl+'unsubscribe_session', function(data, textStatus, xhr) {
-                $('.subscribe-data').addClass('hidden');     
+                $('.subscribe-data').addClass('hidden');  
+                $('.error,.failure').removeClass('hidden');   
             });
 
         }
@@ -218,6 +219,7 @@ jQuery(function ($) {
             $.post(cart_qty_ajax.siteapiurl+'subscribe_session', {subscription: subscription_type}, function(data, textStatus, xhr) {
                $('.subscribe-val').text(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}));
                 $('.subscribe-data').removeClass('hidden');   
+                 $('.error,.failure').addClass('hidden');   
             });
      }
 
