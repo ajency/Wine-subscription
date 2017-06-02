@@ -678,7 +678,17 @@ $main_html='<!doctype html>
                             break;
 
                             case 'passwordreset_mail':
-                             $table_html.='<p>'.$data['message'].'</p>';
+                             $table_html.=' 
+                                
+                                <h1 style="text-align: center;font-weight: 100;margin-bottom: 15px;color: #022c4c;"><span style="border-bottom: 2px solid #dbc698;">H</span>ello Sam Markshell</h1>
+
+                                    <p style="font-size: 17px;font-weight: 100;margin: 15px 0;">We heard you need a passoword reset.</p>
+
+                                    <p style="font-size: 17px;font-weight: 100;margin: 15px 0;line-height: 1.5;">Click the link below and you\'ll be redirected to Indigo Wine Co. site from which you can set a new password.</p>
+
+                                    <a href="" style="background-color: #022c4c;color: #fff;text-decoration: none;font-weight: 100;padding: 10px 20px;margin: 10px 0;display: inline-block;">Reset Password</a>
+
+                              ';
 
                             break;
                           
