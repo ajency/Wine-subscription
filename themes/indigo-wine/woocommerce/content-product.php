@@ -218,7 +218,8 @@ $classes[] = $logclass;
 				      }
 				    endforeach;
 
-					echo  $data=  implode(', ', $array_cat);
+				    if(!empty($array_cat))
+							echo  $data=  implode(', ', $array_cat);
 
 					endif;
 				?>
