@@ -52,7 +52,15 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 
 <section class="woocommerce-order-details">
 
-  <h2 class="woocommerce-order-details__title sub-title"><span class="primary-color"><?php echo '('. _x( '#', 'hash before subscription number', 'woocommerce' ) . $pass_subscriptionid.')' ?></span> Subscription Details</h2>
+  <h2 class="woocommerce-order-details__title sub-title"><div><span class="primary-color"><?php echo '('. _x( '#', 'hash before subscription number', 'woocommerce' ) . $pass_subscriptionid.')' ?></span> Subscription Details </div>
+    <?php
+    $subscription_status=get_post_meta( $pass_subscriptionid,  'status', true );
+    if($subscription_status=='active'){
+    ?>
+    <span class="entry-date"><?php echo get_the_date('l F j, Y',$pass_subscriptionid); ?></span>
+    <?php } ?>
+
+  </h2>
 
   <input type="hidden" name="subid" id="subid" value="<?php echo $pass_subscriptionid; ?>">
 
@@ -96,7 +104,7 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 
           if($subscription_status=='active'){
           ?>
-          <span class="entry-date"><?php echo get_the_date('l F j, Y',$pass_subscriptionid); ?></span>
+
           <a href="javascript:void(0)" class="sub-unsubscribe alert-color">Unsubscribe</a>
           <?php } ?>
         </div>
