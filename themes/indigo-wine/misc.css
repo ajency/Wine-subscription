@@ -31,21 +31,30 @@
   outline: 0;
   box-shadow: none;
 }
+#pass-strength-result {
+  display: none;
+}
 .login-action-register,
 .login-action-login,
-.login-action-lostpassword {
+.login-action-lostpassword,
+.login-action-rp,
+.login-action-resetpass {
   background-color: rgba(0, 0, 0, 0.75);
 }
 .login-action-register .login-reg,
 .login-action-login .login-reg,
-.login-action-lostpassword .login-reg {
+.login-action-lostpassword .login-reg,
+.login-action-rp .login-reg,
+.login-action-resetpass .login-reg {
   background-color: #022c4c;
   margin-top: 0;
   padding: 26px;
 }
 .login-action-register .login-reg label,
 .login-action-login .login-reg label,
-.login-action-lostpassword .login-reg label {
+.login-action-lostpassword .login-reg label,
+.login-action-rp .login-reg label,
+.login-action-resetpass .login-reg label {
   font-size: 1.1em;
   margin: 0.5em 0 1em 0;
   text-indent: 0;
@@ -55,7 +64,9 @@
 }
 .login-action-register .login-reg .input,
 .login-action-login .login-reg .input,
-.login-action-lostpassword .login-reg .input {
+.login-action-lostpassword .login-reg .input,
+.login-action-rp .login-reg .input,
+.login-action-resetpass .login-reg .input {
   background-color: transparent;
   border: 0;
   border-bottom: 1px solid #d1b57c;
@@ -70,24 +81,32 @@
 }
 .login-action-register .login-reg .input:-webkit-autofill,
 .login-action-login .login-reg .input:-webkit-autofill,
-.login-action-lostpassword .login-reg .input:-webkit-autofill {
+.login-action-lostpassword .login-reg .input:-webkit-autofill,
+.login-action-rp .login-reg .input:-webkit-autofill,
+.login-action-resetpass .login-reg .input:-webkit-autofill {
   -webkit-transition: background-color 5000s ease-in-out 0s;
           transition: background-color 5000s ease-in-out 0s;
   -webkit-text-fill-color: #fff !important;
 }
 .login-action-register .login-reg .forgetmenot,
 .login-action-login .login-reg .forgetmenot,
-.login-action-lostpassword .login-reg .forgetmenot {
+.login-action-lostpassword .login-reg .forgetmenot,
+.login-action-rp .login-reg .forgetmenot,
+.login-action-resetpass .login-reg .forgetmenot {
   float: none;
 }
 .login-action-register .login-reg .forgetmenot label,
 .login-action-login .login-reg .forgetmenot label,
-.login-action-lostpassword .login-reg .forgetmenot label {
+.login-action-lostpassword .login-reg .forgetmenot label,
+.login-action-rp .login-reg .forgetmenot label,
+.login-action-resetpass .login-reg .forgetmenot label {
   font-size: 1.1em;
 }
 .login-action-register .login-reg .forgetmenot input[type="checkbox"],
 .login-action-login .login-reg .forgetmenot input[type="checkbox"],
-.login-action-lostpassword .login-reg .forgetmenot input[type="checkbox"] {
+.login-action-lostpassword .login-reg .forgetmenot input[type="checkbox"],
+.login-action-rp .login-reg .forgetmenot input[type="checkbox"],
+.login-action-resetpass .login-reg .forgetmenot input[type="checkbox"] {
   height: 13px;
   min-height: 13px;
   width: 13px;
@@ -95,19 +114,25 @@
 }
 .login-action-register .login-reg .forgetmenot input[type="checkbox"]:before,
 .login-action-login .login-reg .forgetmenot input[type="checkbox"]:before,
-.login-action-lostpassword .login-reg .forgetmenot input[type="checkbox"]:before {
+.login-action-lostpassword .login-reg .forgetmenot input[type="checkbox"]:before,
+.login-action-rp .login-reg .forgetmenot input[type="checkbox"]:before,
+.login-action-resetpass .login-reg .forgetmenot input[type="checkbox"]:before {
   margin: -3px 0 0 -4px;
   font-size: 1.3em;
 }
 .login-action-register .login-reg .submit,
 .login-action-login .login-reg .submit,
-.login-action-lostpassword .login-reg .submit {
+.login-action-lostpassword .login-reg .submit,
+.login-action-rp .login-reg .submit,
+.login-action-resetpass .login-reg .submit {
   margin-top: 2.5em !important;
   text-align: center;
 }
 .login-action-register .login-reg .submit .button-primary,
 .login-action-login .login-reg .submit .button-primary,
-.login-action-lostpassword .login-reg .submit .button-primary {
+.login-action-lostpassword .login-reg .submit .button-primary,
+.login-action-rp .login-reg .submit .button-primary,
+.login-action-resetpass .login-reg .submit .button-primary {
   float: none;
   border-radius: 0;
   box-shadow: none;
@@ -125,13 +150,17 @@
 @media screen and (max-width: 480px) {
   .login-action-register .login-reg .submit .button-primary,
   .login-action-login .login-reg .submit .button-primary,
-  .login-action-lostpassword .login-reg .submit .button-primary {
+  .login-action-lostpassword .login-reg .submit .button-primary,
+  .login-action-rp .login-reg .submit .button-primary,
+  .login-action-resetpass .login-reg .submit .button-primary {
     padding: 0.6em 1.8em !important;
   }
 }
 .login-action-register .login-reg .email-notify,
 .login-action-login .login-reg .email-notify,
-.login-action-lostpassword .login-reg .email-notify {
+.login-action-lostpassword .login-reg .email-notify,
+.login-action-rp .login-reg .email-notify,
+.login-action-resetpass .login-reg .email-notify {
   font-size: 1.05em;
   text-indent: 0;
   font-family: gotham_lightregular;
@@ -142,18 +171,24 @@
 }
 .login-action-register .login-reg label[for="user_email"],
 .login-action-login .login-reg label[for="user_email"],
-.login-action-lostpassword .login-reg label[for="user_email"] {
+.login-action-lostpassword .login-reg label[for="user_email"],
+.login-action-rp .login-reg label[for="user_email"],
+.login-action-resetpass .login-reg label[for="user_email"] {
   position: relative;
 }
 .login-action-register .login-reg label[for="user_email"] .required-label,
 .login-action-login .login-reg label[for="user_email"] .required-label,
-.login-action-lostpassword .login-reg label[for="user_email"] .required-label {
+.login-action-lostpassword .login-reg label[for="user_email"] .required-label,
+.login-action-rp .login-reg label[for="user_email"] .required-label,
+.login-action-resetpass .login-reg label[for="user_email"] .required-label {
   position: absolute;
   left: 2.7em;
 }
 .login-action-register .message.register,
 .login-action-login .message.register,
-.login-action-lostpassword .message.register {
+.login-action-lostpassword .message.register,
+.login-action-rp .message.register,
+.login-action-resetpass .message.register {
   display: none;
 }
 .login-action-register.login #login {
@@ -239,49 +274,22 @@
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
 }
-#resetpassform {
-  font-family: gotham_bookregular;
-  font-weight: 600;
-  background-color: #022c4c;
-  color: #fff;
-  margin-top: 0;
-  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.36);
+.login-action-rp .login-reg label,
+.login-action-resetpass .login-reg label {
+  margin-bottom: 0.5em;
 }
-#resetpassform label {
-  color: #fff;
+.user-pass2-wrap {
+  margin-top: 1em;
 }
-#resetpassform .wp-pwd {
-  margin: 1em 0;
-}
-#resetpassform .wp-pwd #pass1-text {
-  font-family: gotham_bookregular;
-  font-size: 1.4em;
-}
-#resetpassform .wp-pwd #pass-strength-result {
-  font-family: gotham_mediumregular;
-}
-#resetpassform .submit {
-  text-align: center;
-}
-#resetpassform .submit .button.button-large {
-  float: none;
-  background-color: #d1b57c;
-  color: #fff;
-  text-shadow: none;
-  border-radius: 0;
-  padding: 0.5em 1em;
-  border: 0;
-  height: auto;
-  font-size: 1.1em;
-  font-weight: 500;
-  box-shadow: none;
-  -webkit-transition: all 0.5s ease;
-          transition: all 0.5s ease;
-}
-#resetpassform .submit .button.button-large:hover {
-  background-color: #c4a056;
-}
-#resetpassform + #nav {
+.user-pass2-wrap br {
   display: none;
+}
+.indicator-hint {
+  font-size: 1.05em;
+  text-indent: 0;
+  font-family: gotham_lightregular;
+  display: block;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.5em;
 }
 /*# sourceMappingURL=misc.css.map */

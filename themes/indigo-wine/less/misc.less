@@ -69,7 +69,12 @@
 	}
 }
 
-.login-action-register,.login-action-login,.login-action-lostpassword{
+#pass-strength-result{
+	display: none;
+}
+
+
+.login-action-register,.login-action-login,.login-action-lostpassword,.login-action-rp,.login-action-resetpass{
 	background-color: rgba(0,0,0,0.75);
 	.login-reg{
 		background-color: @brand-secondary;
@@ -268,50 +273,75 @@
 	}
 }
 
-#resetpassform{
-	font-family: gotham_bookregular;
-    font-weight: 600;
-    background-color: #022c4c;
-    color: #fff;
-    margin-top: 0;
-    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.36);
-    label{
-    	color: #fff;
-    }
-    .wp-pwd{
-    	margin: 1em 0;
-    	#pass1-text{
-    		font-family: gotham_bookregular;
-    		font-size: 1.4em;
-    	}
-    	#pass-strength-result{
-    		font-family: gotham_mediumregular;
-    	}
-    }
-    .submit{
-    	text-align: center;
-    	.button.button-large{
-			float: none;
-    		background-color: #d1b57c;
-    		color: #fff;
-    		text-shadow: none;
-    		border-radius: 0;
-    		padding: 0.5em 1em;
-    		border: 0;
-    		height: auto;
-    		font-size: 1.1em;
-    		font-weight: 500;
-    		box-shadow: none;
-    		transition: all 0.5s ease;
-    		&:hover{
-    			background-color: darken(#d1b57c,10%);
-    		}
-    	}
-    }
-	& + #nav{
+.login-action-rp,.login-action-resetpass{
+	.login-reg{
+		label{
+			margin-bottom: 0.5em;
+		}
+	}
+}
+
+.user-pass2-wrap{
+	margin-top: 1em;
+	br{
 		display: none;
 	}
 }
+
+
+.indicator-hint{
+	font-size: 1.05em;
+    text-indent: 0;
+    font-family: gotham_lightregular;
+    display: block;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.5em;
+}
+
+// #resetpassform{
+// 	font-family: gotham_bookregular;
+//     font-weight: 600;
+//     background-color: #022c4c;
+//     color: #fff;
+//     margin-top: 0;
+//     box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.36);
+//     label{
+//     	color: #fff;
+//     }
+//     .wp-pwd{
+//     	margin: 1em 0;
+//     	#pass1-text{
+//     		font-family: gotham_bookregular;
+//     		font-size: 1.4em;
+//     	}
+//     	#pass-strength-result{
+//     		font-family: gotham_mediumregular;
+//     	}
+//     }
+//     .submit{
+//     	text-align: center;
+//     	.button.button-large{
+// 			float: none;
+//     		background-color: #d1b57c;
+//     		color: #fff;
+//     		text-shadow: none;
+//     		border-radius: 0;
+//     		padding: 0.5em 1em;
+//     		border: 0;
+//     		height: auto;
+//     		font-size: 1.1em;
+//     		font-weight: 500;
+//     		box-shadow: none;
+//     		transition: all 0.5s ease;
+//     		&:hover{
+//     			background-color: darken(#d1b57c,10%);
+//     		}
+//     	}
+//     }
+// 	& + #nav{
+// 		display: none;
+// 	}
+// }
 
 
 
