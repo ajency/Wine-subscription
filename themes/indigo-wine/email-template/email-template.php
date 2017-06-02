@@ -625,13 +625,41 @@ $main_html='<!doctype html>
                         
                         <div style="font-weight: 100;line-height: 1.5;font-size: 17px;">
 
-                        <p>Welcome to <a href="http://www.indigowineco.ajency.in" style="color: #dec07f;text-decoration: none;font-weight: 500;">Indigo Wine Co.</a> We\'re so excited to share this world of Wines with you! <br><br> <b style="font-weight: 500;display: block;padding: 5px 0;">Here are your login details</b></p>
+                        <p>Welcome to <a href="http://www.indigowineco.ajency.in" style="color: #dec07f;text-decoration: none;font-weight: 500;">Indigo Wine Co.</a> We\'re so excited to share this world of Wines with you! <br><br></p>
                         
-                        <div style="font-size: 17px; background-color: #022c4c;color: #fff;border: 3px inset #e4c27f;padding-top: 5px;padding-bottom: 5px;    margin-top: 20px;margin-bottom: 20px;">
-                            <span style="display: inline-block;text-align: left;">
-                                <p style="margin-top: 5px;margin-bottom: 5px;font-size: 16px;">Email : <b style="font-weight: 500;color: #dec08b;"><a href="" style="color: #dec07f;">'.$data['email'].'</a></b></p>
-                            </span>
+                    <div>
+                
+                    <b style="text-align: center;font-weight: 100;margin-bottom: 15px;color: #022c4c;font-size: 26px;"><span style="border-bottom: 2px solid #dbc698;">W</span>ine Club</b>
+
+                    <p>Receive the best small batch Australian Wines automatically delivered to your door</p>
+
+                    <b style="margin: 30px 0 18px 0;display: block;font-weight: 100;font-size: 23px;border-bottom: 1px solid #eee;padding-bottom: 10px;color: #a0a0a0;">How it works</b>
+
+                    <div style="margin-bottom: 15px;">
+                        
+                        <div style="border-bottom: 1px solid #dcc699;padding-bottom: 10px;margin-bottom: 10px;">
+                            <img src="http://indigowineco.ajency.in/wp-content/uploads/2017/04/cutar-1-150x150.png" style="width: 20%;display: block;margin: 0 auto;">
+                            <p style="font-weight: 600;border-bottom: 1px solid #002b4e;padding-bottom: 5px;margin-bottom: 5px;display: inline-block;">We curate your wines</p>
+                            <p style="font-size: 15px;">Our hand-selected packs showcase the diversity of our small batch Australian wines providing something for everyone.</p>
                         </div>
+
+                        <div style="border-bottom: 1px solid #dcc699;padding-bottom: 10px;margin-bottom: 10px;">
+                            <img src="http://indigowineco.ajency.in/wp-content/uploads/2017/04/calendar-1-150x150.png" style="width: 20%;display: block;margin: 0 auto;">
+                            <p style="font-weight: 600;border-bottom: 1px solid #002b4e;padding-bottom: 5px;margin-bottom: 5px;display: inline-block;">Select your plan</p>
+                            <p style="font-size: 15px;">Whites, reds or mix; 6pack, dozen or more; monthly or other, the choice is yours! And remember if you want to skip a delivery period or pause the subscription just let us know</p>
+                        </div>
+
+                        <div style="border-bottom: 1px solid #dcc699;padding-bottom: 10px;margin-bottom: 10px;">
+                            <img src="http://indigowineco.ajency.in/wp-content/uploads/2017/04/toast-1-150x150.png" style="width: 20%;display: block;margin: 0 auto;">
+                            <p style="font-weight: 600;border-bottom: 1px solid #002b4e;padding-bottom: 5px;margin-bottom: 5px;display: inline-block;">Start the experience</p>
+                            <p style="font-size: 15px;">Direct to you and ready to go. Just whip open the bottle and you are on your way.</p>
+                        </div>
+
+                    </div>
+                
+
+                    
+                </div>
 
                         <p><b style="font-weight: 500;">How would you like to start your journey with Indigo Wine Co ?</b></p>
 
