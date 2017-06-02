@@ -214,6 +214,16 @@ jQuery(function(){
 	    	jQuery(this).parent().addClass('not-active');
 	  	}
 
+	  	if(jQuery('.woocommerce-tabs li:first-child()').hasClass('not-active')){
+	  		jQuery('.woocommerce-tabs li:nth-child(2)').addClass('active').siblings().removeClass('active');
+	  	}
+	  	else{
+	  		jQuery('.woocommerce-tabs li:first-child()').addClass('active').siblings().removeClass('active');	
+	  	}
+	  	var active_id = jQuery('.woocommerce-tabs li.active a').attr("href");
+	  	jQuery('.woocommerce-tabs .wc-tab').hide()
+	  	jQuery(active_id).show();
+
 	});
 
 
