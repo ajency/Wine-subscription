@@ -1068,6 +1068,16 @@ function handle_wp_mail($atts) {
 
         }
     }
+
+    else if (isset ($atts ['subject']) && substr_count($atts ['subject'],'Password Reset')>0 ) {
+        if (isset($atts['message'])) {
+            $user = get_user_by( 'email', $atts['to'] );
+            $data=array('email'=>$atts['to'],'display_name'=>$user->display_name,'message'=>$atts['message']);
+            
+           $atts['message'] = generate_email_template('passwordreset_mail',$data);
+
+        }
+    }
     return ($atts);
 }
 

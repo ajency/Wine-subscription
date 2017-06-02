@@ -599,16 +599,8 @@ $main_html='<!doctype html>
         </tr>
     </tbody>
 </table></td>
-                            </tr>';
-
-     
-
-
-     switch ($mail_type) {
-        
-        case 'registration_mail':
-                                                        
-        $table_html.='<tr>
+                            </tr>
+                            <tr>
                   <td valign="top" id="templateHeader" style="padding: 20px;font-family: helvetica;background-image: url(http://indigowineco.ajency.in/wp-content/themes/indigo-wine/img/transperent-bg.png);background-size: 84%;background-position: 0 0;background-repeat: repeat-x;background-color: #fff;">
 
                     <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnCaptionBlock">
@@ -620,6 +612,16 @@ $main_html='<!doctype html>
 
 
                     <div style="text-align: center;color: #022c4c;font-family: helvetica;">
+                    ';
+
+     
+
+
+     switch ($mail_type) {
+        
+        case 'registration_mail':
+                                                        
+        $table_html.='
                         
                         <h1 style="text-align: center;font-weight: 100;margin-bottom: 15px;color: #022c4c;"><span style="border-bottom: 2px solid #dbc698;">D</span>ear '.$data['display_name'].'</h1>
                         
@@ -672,7 +674,20 @@ $main_html='<!doctype html>
                         </div>
 
                         </div>
-                    </div>
+                   ';
+                            break;
+
+                            case 'passwordreset_mail':
+                             $table_html.='<p>'.$data['message'].'</p>';
+
+                            break;
+                          
+                          default:
+                            $table_html.='No email template';
+                            break;
+     }
+
+                            $table_html.=' </div>
 
 
 
@@ -682,15 +697,7 @@ $main_html='<!doctype html>
             </tbody>
         </table>
         </td>
-        </tr>';
-                            break;
-
-                          default:
-                            $table_html.='No email template';
-                            break;
-     }
-
-                            $table_html.='<tr>
+        </tr><tr>
                                 <td valign="top" id="templateFooter">
 <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
     <tbody class="mcnTextBlockOuter">
