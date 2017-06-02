@@ -57,7 +57,7 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
     $subscription_status=get_post_meta( $pass_subscriptionid,  'status', true );
     if($subscription_status=='active'){
     ?>
-    <span class="entry-date"><?php echo get_the_date('l F j, Y',$pass_subscriptionid); ?></span>
+    <span class="entry-date"><?php echo get_the_date('F j, Y',$pass_subscriptionid); ?></span>
     <?php } ?>
 
   </h2>
