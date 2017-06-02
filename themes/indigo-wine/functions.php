@@ -1007,6 +1007,18 @@ function indigo_register_form() {
         if ( ! empty( $_POST['user_pass'] ) ) {
              wp_set_password($_POST['user_pass'], $user_id);
         }
+         $credentials['user_login'] =$_POST['user_email'];
+          $credentials['user_password']  = $_POST['user_pass'];
+          
+          $to=$_POST['user_email'];
+          $subject="Your username and password";
+          $message="";
+
+          wp_mail( $to, $subject, $message, $headers = '', $attachments = array() );
+         
+          $user = wp_signon($credentials); 
+          header('location:'.filter_woocommerce_return_to_shop_redirect($parameter));
+          exit();
     }
 
 
