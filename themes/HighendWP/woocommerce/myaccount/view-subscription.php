@@ -96,6 +96,7 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 
           if($subscription_status=='active'){
           ?>
+          <span class="entry-date"><?php echo get_the_date('l F j, Y',$pass_subscriptionid); ?></span>
           <a href="javascript:void(0)" class="sub-unsubscribe alert-color">Unsubscribe</a>
           <?php } ?>
         </div>
