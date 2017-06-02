@@ -10,13 +10,17 @@ add_action( 'rest_api_init', function () {
 $version = '2';
 $namespace = 'wp/v' . $version;
 
-/**
- * All Product related api for admin
- */
 register_rest_route( $namespace, '/unsubscribe_session', 
   array(
     'methods' =>  WP_REST_Server::CREATABLE,
     'callback' => 'unsubscribe_session',
+    )
+  );
+
+register_rest_route( $namespace, '/unsubscribe_orders', 
+  array(
+    'methods' =>  WP_REST_Server::CREATABLE,
+    'callback' => 'unsubscribe_orders',
     )
   );
 
@@ -56,7 +60,7 @@ function subscribe_session(){
 
 function unsubscribe_orders(){
   $subscriptionid=$_POST['id'];
-  
+  update_post_meta( $subscriptionid, 'status','cancelled');
   return true;
 }
 

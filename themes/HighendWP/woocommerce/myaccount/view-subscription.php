@@ -91,7 +91,13 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
       <h3 class="title">Subscription Type</h3>
         <div class="sub-action">
           <?php echo '<p class="type status-label">'.$subscriptiontype_title.'</p>' ;?>
+          <?php 
+          $subscription_status=get_post_meta( $pass_subscriptionid,  'status', true );
+
+          if($subscription_status=='active'){
+          ?>
           <a href="javascript:void(0)" class="sub-unsubscribe alert-color">Unsubscribe</a>
+          <?php } ?>
         </div>
     </div>
 
