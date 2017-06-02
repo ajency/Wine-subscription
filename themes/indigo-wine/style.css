@@ -4223,6 +4223,10 @@ body .woocommerce form .form-row .button {
 .woocommerce-page #main-wrapper .woocommerce .hb-heading.cart-empty {
   margin-top: 0;
   border-bottom: 0;
+  padding-top: 0;
+}
+.woocommerce-page #main-wrapper .woocommerce .hb-heading.cart-empty .cart-image {
+  width: 15%;
 }
 .woocommerce-page #main-wrapper .woocommerce .hb-heading.cart-empty + .aligncenter a {
   background-color: #022c4c !important;
@@ -4535,6 +4539,9 @@ body .woocommerce form .form-row .button {
 .h-i-w .flex-cols .content {
   font-size: 1em;
   color: #002b4e;
+}
+.h-i-w.empty {
+  margin-top: 1.5em;
 }
 .checkoutAction .checkout-btn {
   background-color: #022c4c;
