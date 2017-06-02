@@ -1167,10 +1167,6 @@ function checkout_subscription_type(){
 
 
 
-
-
-
-
 remove_filter( 'lostpassword_url', 'wc_lostpassword_url' );
 
 

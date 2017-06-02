@@ -150,7 +150,7 @@ $classes[] = $logclass;
 
 		<?php echo '<span class="product-loading-icon"></span>'; ?>
 
-		<div class="product-hover-overlay">
+		<!-- <div class="product-hover-overlay"> -->
 		<?php
 		$out_of_stock_class = ' add_to_cart_button';
 		if ( hb_is_out_of_stock() ) {
@@ -191,7 +191,7 @@ $classes[] = $logclass;
 
 		<?php echo $hb_add_to_cart; ?>
 		<?php echo $read_more; ?>
-		</div>
+		<!-- </div> -->
 	</div>
 	</a>
 

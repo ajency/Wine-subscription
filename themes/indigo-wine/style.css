@@ -3497,6 +3497,10 @@ body .woocommerce form .form-row .button {
 .hb-woo-image-wrap:hover .hb-buy-button.hb-buy-button {
   bottom: 35px !important;
 }
+.hb-woo-image-wrap:hover .hb-buy-button.hb-buy-button.loading:after {
+  right: 0.5em;
+  color: #d1b57c;
+}
 .hb-woo-image-wrap:hover .product-hover-overlay {
   opacity: 1;
 }
