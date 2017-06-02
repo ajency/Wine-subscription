@@ -1024,11 +1024,15 @@ add_action('login_head', function(){
             $('#registerform > p:first-child').css('display', 'none');
             jQuery('#registerform,#loginform,#lostpasswordform,#resetpassform').addClass('login-reg');
             jQuery('<p class="message login-reg-msg">Please verify your identity. Access to this page is restricted. Please login with registered email ID.</p>').insertBefore("#loginform");
+            jQuery('<p class="message login-reg-msg">Enter your new password below.</p>').insertBefore("#resetpassform");
             jQuery('<p class="message login-reg-msg">Welcome to Indigo Wine Co. Register to get details of our curated wine collection.</p>').insertBefore("#registerform");
             jQuery('#registerform label[for="user_email"]').prepend('<span class="required-label">*</span>');
             jQuery('.login-action-lostpassword .message').text('Please enter your email address. You will receive a link to create a new password via email.');
             jQuery('#reg_passmail').addClass('email-notify');
             jQuery('#backtoblog a').text('← Back to Home');
+            if(jQuery('#resetpassform').hasClass('login-reg')){
+                jQuery('.message.reset-pass').addClass('hidden');
+            }
             var label_name = $('.login label[for="user_login"]').contents().first()[0].textContent;
             $('.login label[for="user_login"]').contents().first()[0].textContent = label_name.replace("Username or Email Address", "Email Address");
         });
