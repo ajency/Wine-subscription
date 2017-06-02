@@ -865,7 +865,7 @@ function wpse_lost_password_redirect() {
         exit;
     }
 }
-add_action('login_headerurl', 'wpse_lost_password_redirect');
+// add_action('login_headerurl', 'wpse_lost_password_redirect');
 
 // redirects for login / logout
 // add_filter('woocommerce_login_redirect', 'login_redirect');
@@ -1072,7 +1072,12 @@ function handle_wp_mail($atts) {
     else if (isset ($atts ['subject']) && substr_count($atts ['subject'],'Password Reset')>0 ) {
         if (isset($atts['message'])) {
             $user = get_user_by( 'email', $atts['to'] );
-            $data=array('email'=>$atts['to'],'display_name'=>$user->display_name,'message'=>$atts['message']);
+
+            $key = get_password_reset_key( $user );
+
+            $url= network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login');
+
+            $data=array('email'=>$atts['to'],'display_name'=>$user->display_name,'message'=>$atts['message'],'url'=>$url);
             
            $atts['message'] = generate_email_template('passwordreset_mail',$data);
 
