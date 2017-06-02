@@ -92,13 +92,13 @@ function my_header_add_to_cart_fragment( $fragments ) {
 
     ob_start();
     $count = WC()->cart->cart_contents_count;
-     if ($count == 0) {
-        $r_page_url = filter_woocommerce_return_to_shop_redirect($parameter);
-     }
-     else{
-          $r_page_url =  WC()->cart->get_cart_url();
-     }
-
+     // if ($count == 0) {
+     //    $r_page_url = filter_woocommerce_return_to_shop_redirect($parameter);
+     // }
+     // else{
+     //      $r_page_url =  WC()->cart->get_cart_url();
+     // }
+    $r_page_url =  WC()->cart->get_cart_url();
     ?>
     <a class="wcmenucart-contents" href="<?php echo $r_page_url; ?>" title="<?php _e( 'View your shopping cart' ); ?>">
 
@@ -145,7 +145,7 @@ function sk_wcmenucart($menu, $args) {
             // Uncomment the line below to hide nav menu cart item when there are no items in the cart
             // if ( $cart_contents_count > 0 ) {
                 if ($cart_contents_count == 0) {
-                    $menu_item = '<li class="right"><a class="wcmenucart-contents" href="'. $shop_page_url .'" title="'. $start_shopping .'">';
+                    $menu_item = '<li class="right"><a class="wcmenucart-contents" href="'. $cart_url .'" title="'. $start_shopping .'">';
                 } else {
                     $menu_item = '<li class="right"><a class="wcmenucart-contents" href="'. $cart_url .'" title="'. $viewing_cart .'">';
                 }
