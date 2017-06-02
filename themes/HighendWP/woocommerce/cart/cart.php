@@ -50,7 +50,11 @@ do_action( 'woocommerce_before_cart' );
 	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover">
 	<div class="why-subscribe__content">
 		<h3 class="title">Why to Subscribe</h3>
-		<p class="reason">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+		<ul class="reason">
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Subscribe and be a part of our esteemed club.</li>
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Club members have access to our limited releases.</li>
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Get exclusive offers and unique tastings and events.</li>
+		</ul>
 	</div>
 </div>
 
@@ -196,7 +200,7 @@ do_action( 'woocommerce_before_cart' );
 
 			<input type="checkbox" value="" name="subscription-check" id="subscription-check" class="custom-check" checked />
 			<div class="content">
-				<p>Hi <span class="username secondary-color">Mark</span>, Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+				<p>Convert my order into a subscription</p>
 			</div>
 		</div>
 		<div>
@@ -210,34 +214,6 @@ do_action( 'woocommerce_before_cart' );
 		</div>
 	</div>
 </div>
-
-
-<!-- How it works -->
-
-<div class="h-i-w">
-	<h1 class="title">How it works</h1>
-	<div class="flex-cols">
-		<div class="cols">
-			<span class="c-icon cal"></span>
-			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
-		</div>
-		<div class="cols">
-			<span class="c-icon sub"></span>
-			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
-		</div>
-		<div class="cols">
-			<span class="c-icon pay"></span>
-			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
-		</div>
-		<div class="cols">
-			<span class="c-icon done"></span>
-			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
-		</div>
-	</div>
-
-</div>
-
-
 
 
 </div>
@@ -326,5 +302,32 @@ do_action( 'woocommerce_before_cart' );
 </div>
 
 </div>
+
+
+<!-- How it works -->
+
+<div class="h-i-w">
+	<h1 class="title">How does subscription work?</h1>
+	<div class="flex-cols">
+		<div class="cols">
+			<span class="c-icon cal"></span>
+			<p class="content">Add products to the cart. Order qty for wine bottles has to be in multiples of 6. There is no qty constraint for wine packs.</p>
+		</div>
+		<div class="cols">
+			<span class="c-icon sub"></span>
+			<p class="content">Subscription for the order will be on when your order meets the requirement. You can opt for either a monthly or quarterly subscription and complete the payment.</p>
+		</div>
+		<div class="cols">
+			<span class="c-icon pay"></span>
+			<p class="content">For the next month/quarter, you will be notified by a mail when your order is ready. The mail will have the payment link.</p>
+		</div>
+		<div class="cols">
+			<span class="c-icon done"></span>
+			<p class="content">Your order will be shipped at your doorstep once you have made a successful payment.</p>
+		</div>
+	</div>
+
+</div>
+
 
 <?php do_action( 'woocommerce_after_cart' ); ?>

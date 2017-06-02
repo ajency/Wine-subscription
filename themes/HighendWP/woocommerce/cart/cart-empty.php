@@ -22,24 +22,24 @@ wc_print_notices();
 
 <!-- How it works -->
 
-<div class="h-i-w empty">
-	<h1 class="title">How it works</h1>
+<div class="h-i-w">
+	<h1 class="title">How does subscription work?</h1>
 	<div class="flex-cols">
 		<div class="cols">
 			<span class="c-icon cal"></span>
-			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+			<p class="content">Add products to the cart. Order qty for wine bottles has to be in multiples of 6. There is no qty constraint for wine packs.</p>
 		</div>
 		<div class="cols">
 			<span class="c-icon sub"></span>
-			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+			<p class="content">Subscription for the order will be on when your order meets the requirement. You can opt for either a monthly or quarterly subscription and complete the payment.</p>
 		</div>
 		<div class="cols">
 			<span class="c-icon pay"></span>
-			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+			<p class="content">For the next month/quarter, you will be notified by a mail when your order is ready. The mail will have the payment link.</p>
 		</div>
 		<div class="cols">
 			<span class="c-icon done"></span>
-			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+			<p class="content">Your order will be shipped at your doorstep once you have made a successful payment.</p>
 		</div>
 	</div>
 

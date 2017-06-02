@@ -717,7 +717,7 @@
 
 .why-subscribe{
 	position: relative;
-    padding: 0.5em;
+    padding: 1em;
     display: flex;
     align-items: center;
     margin-bottom: 1.5em;
@@ -735,9 +735,16 @@
 		.reason{
 			font-size: 1.05em;
     		padding-right: 11em;
-    		line-height: 1.4;
+    		line-height: 1.6;
     		margin-top: 0;
+    		font-family: gotham_bookregular;
     		margin-bottom: 0;
+    		li{
+    			margin: 0.3em 0;
+    		}
+    		i{
+    			padding-right: 0.3em;
+    		}
 		}
 	}
 }
@@ -785,7 +792,7 @@
 	display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.5em 1em;
+    padding: 1em;
     .toggle-check{
     	flex: 1;
     	display: flex;
@@ -799,8 +806,8 @@
     	}
     }
     .content{
-    	padding: 0 1.5em;
-    	font-size: 1.05em;
+    	padding: 0 1em;
+    	font-size: 1.15em;
     	color: @brand-secondary;
     	p{
     		font-family: gotham_mediumregular;
@@ -834,12 +841,12 @@
 //how it works
 
 .h-i-w{
-	margin-top: 5em;
+	margin-top: 3em;
 	.title{
 		font-family: gotham_mediumregular;
     	font-weight: 600;
     	color: #989da9;
-    	font-size: 2.5em;
+    	font-size: 2.1em;
     	border-bottom: 1px solid #ddd;
     	padding-bottom: 0.5em;
     	margin-bottom: 0.5em;
@@ -849,11 +856,25 @@
 		.cols{
 			padding: 0 1.5em;
 			flex: 1 0 20%;
+			position: relative;
 			&:first-child{
 				padding-left: 0;
 			}
 			&:last-child{
 				padding-right: 0;
+				&:after{
+					display: none;
+				}
+			}
+			&:after{
+				content: "\f061";
+				position: absolute;
+				font: normal normal normal 1.6em FontAwesome;
+			    text-rendering: auto;
+			    -webkit-font-smoothing: antialiased;
+			    top: 2.5em;
+			    right: 0em;
+			    color: @brand-primary;
 			}
 		}
 		.c-icon{

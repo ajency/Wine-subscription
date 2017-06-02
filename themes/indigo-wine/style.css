@@ -4370,7 +4370,7 @@ body .woocommerce form .form-row .button {
 }
 .why-subscribe {
   position: relative;
-  padding: 0.5em;
+  padding: 1em;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4396,9 +4396,16 @@ body .woocommerce form .form-row .button {
 .why-subscribe__content .reason {
   font-size: 1.05em;
   padding-right: 11em;
-  line-height: 1.4;
+  line-height: 1.6;
   margin-top: 0;
+  font-family: gotham_bookregular;
   margin-bottom: 0;
+}
+.why-subscribe__content .reason li {
+  margin: 0.3em 0;
+}
+.why-subscribe__content .reason i {
+  padding-right: 0.3em;
 }
 .close-sub-box {
   position: absolute;
@@ -4442,7 +4449,7 @@ body .woocommerce form .form-row .button {
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 1.5em 1em;
+  padding: 1em;
 }
 .subscription-action .toggle-check {
   -webkit-box-flex: 1;
@@ -4464,8 +4471,8 @@ body .woocommerce form .form-row .button {
   font-size: 2em;
 }
 .subscription-action .content {
-  padding: 0 1.5em;
-  font-size: 1.05em;
+  padding: 0 1em;
+  font-size: 1.15em;
   color: #022c4c;
 }
 .subscription-action .content p {
@@ -4489,13 +4496,13 @@ body .woocommerce form .form-row .button {
   border-bottom: 0;
 }
 .h-i-w {
-  margin-top: 5em;
+  margin-top: 3em;
 }
 .h-i-w .title {
   font-family: gotham_mediumregular;
   font-weight: 600;
   color: #989da9;
-  font-size: 2.5em;
+  font-size: 2.1em;
   border-bottom: 1px solid #ddd;
   padding-bottom: 0.5em;
   margin-bottom: 0.5em;
@@ -4512,12 +4519,26 @@ body .woocommerce form .form-row .button {
   -webkit-flex: 1 0 20%;
       -ms-flex: 1 0 20%;
           flex: 1 0 20%;
+  position: relative;
 }
 .h-i-w .flex-cols .cols:first-child {
   padding-left: 0;
 }
 .h-i-w .flex-cols .cols:last-child {
   padding-right: 0;
+}
+.h-i-w .flex-cols .cols:last-child:after {
+  display: none;
+}
+.h-i-w .flex-cols .cols:after {
+  content: "\f061";
+  position: absolute;
+  font: normal normal normal 1.6em FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  top: 2.5em;
+  right: 0em;
+  color: #d1b57c;
 }
 .h-i-w .flex-cols .c-icon {
   display: block;
