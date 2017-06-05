@@ -1171,7 +1171,7 @@ add_action('woocommerce_review_order_after_cart_contents','checkout_subscription
 
 function checkout_subscription_type(){
     if(isset($_SESSION['subscription_type'])){
-        $date=get_the_date('M j, Y',$pass_subscriptionid); 
+        $date=date('M j, Y'); 
             echo '<tr class="cart_item">
                         <td class="product-name sub-height">
                             Subscription Type <br> Date</td>
