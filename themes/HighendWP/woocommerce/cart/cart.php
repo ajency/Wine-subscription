@@ -315,11 +315,11 @@ do_action( 'woocommerce_before_cart' );
 		</div>
 		<div class="cols">
 			<span class="c-icon sub"></span>
-			<p class="content">Subscription for the order will be on when your order meets the requirement. You can opt for either a monthly or quarterly subscription and complete the payment.</p>
+			<p class="content">By default subscription for the order will be turned on when your order meets the requirement. You can opt for either a monthly or quarterly subscription.</p>
 		</div>
 		<div class="cols">
 			<span class="c-icon pay"></span>
-			<p class="content">For the next month/quarter, you will be notified by a mail when your order is ready. The mail will have the payment link.</p>
+			<p class="content">You will be notified by a mail when your order is ready in the next month/quarter. The mail will have the payment link.</p>
 		</div>
 		<div class="cols">
 			<span class="c-icon done"></span>
