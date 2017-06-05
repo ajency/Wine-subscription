@@ -69,8 +69,8 @@ add_filter( 'manage_edit-subscription_columns', 'my_subscription_columns' ) ;
 function my_subscription_columns( $columns ) {
 
   $columns = array(
-    
     'title' => __( 'Title' ),
+    'id' => __( 'Subscription ID' ),
     'author' => __( 'Subsriber Name' ),
     '_subscription_type' => __( 'Subscription Type' ),
     '_subscription_status' => __( 'Status' ),
@@ -112,6 +112,10 @@ function my_manage_subscription_columns( $column, $post_id ) {
       else
         printf( __( '%s' ), strtoupper($_subscription_status ));
 
+      break;
+
+      case 'id':
+          echo "<a href='/post.php?post=".$post_id."&action=edit'>#".$post_id."</a>";
       break;
 
 
