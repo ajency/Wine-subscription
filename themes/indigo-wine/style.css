@@ -3848,6 +3848,18 @@ body .woocommerce form .form-row .button {
   color: #022c4c;
   display: block;
 }
+.element-row .calculated_shipping .hb-box-cont-body .hb-cart-totals li.hb-shipping-wrapper .cart-total-title,
+.hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li.hb-shipping-wrapper .cart-total-title,
+.element-row .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li.hb-shipping-wrapper .cart-total-title,
+.hb-main-content .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li.hb-shipping-wrapper .cart-total-title {
+  width: 45%;
+}
+.element-row .calculated_shipping .hb-box-cont-body .hb-cart-totals li.hb-shipping-wrapper .cart-total-value,
+.hb-main-content .calculated_shipping .hb-box-cont-body .hb-cart-totals li.hb-shipping-wrapper .cart-total-value,
+.element-row .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li.hb-shipping-wrapper .cart-total-value,
+.hb-main-content .hb-woo-cart_totals .hb-box-cont-body .hb-cart-totals li.hb-shipping-wrapper .cart-total-value {
+  width: 55%;
+}
 .element-row .coupon-toggle,
 .hb-main-content .coupon-toggle {
   margin-top: 15px;
