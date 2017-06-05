@@ -1747,3 +1747,8 @@
 
         return $string;
     }
+
+
+
+
+remove_filter( 'woocommerce_output_related_products_args', 'hbthemes_related_products_args' );

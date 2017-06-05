@@ -1186,11 +1186,12 @@ function checkout_subscription_type(){
 remove_filter( 'lostpassword_url', 'wc_lostpassword_url' );
 
 
-
-
-
-
-
+add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args' );
+  function jk_related_products_args( $args ) {
+    $args['posts_per_page'] = 5; // 4 related products
+    $args['columns'] = 4; // arranged in 2 columns
+    return $args;
+}
 
 
 
