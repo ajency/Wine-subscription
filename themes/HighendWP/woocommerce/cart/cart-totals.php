@@ -41,7 +41,7 @@ global $woocommerce;
 
 				<li class="clearfix subscribe-data">
 					<span class="cart-total-title">Subscription type <br> Date</span>
-					<span class="cart-total-value subscribe-val">Monthly <br>June 5, 2017</span>
+					<span class="cart-total-value subscribe-val">Monthly <br><?php echo date('M j, Y'); ?></span>
 				</li>
 
 				<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
