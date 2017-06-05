@@ -228,7 +228,7 @@ jQuery(function(){
 
 
 
-	jQuery("#subscription-check").click(function () {
+	/*jQuery("#subscription-check").click(function () {
 
 	    if (jQuery(this).is(":checked")) {
 
@@ -240,7 +240,7 @@ jQuery(function(){
   			
 	    }
 
-	})
+	})*/
 
 
 		// Custom menu click and scroll to particular ID

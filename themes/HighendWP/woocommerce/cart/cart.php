@@ -35,6 +35,8 @@ do_action( 'woocommerce_before_cart' );
 
 <div class="hb-notif-box error failure hidden"><div class="message-text"><p><i class="hb-moon-blocked"></i>Your current subscription has been cancelled.</p></div></div>
 
+<div class="hb-notif-box success hidden"><div class="message-text"><p><i class="fa fa-check-circle"></i> Your Subscription has been saved</p></div></div>
+
 <!-- Go back link -->
 
 <div class="go-back">
