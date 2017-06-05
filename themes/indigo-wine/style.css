@@ -3885,14 +3885,22 @@ body .woocommerce form .form-row .button {
   background-color: #022c4c;
   padding: 0.7em !important;
 }
-.failure {
+.custom-alerts {
   padding: 0.8em;
   font-family: 'gotham_bookregular';
   font-weight: 600;
   font-size: 1.2em;
+  margin-bottom: 1em;
 }
-.failure p {
+.custom-alerts p {
   margin-left: 1.5em;
+}
+.custom-alerts p i {
+  color: #fff;
+}
+.sub-success {
+  background-color: #022c4c;
+  color: #fff;
 }
 .hb-modal-window .hb-box-cont {
   background-color: #fff;

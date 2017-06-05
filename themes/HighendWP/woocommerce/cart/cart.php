@@ -33,9 +33,6 @@ do_action( 'woocommerce_before_cart' );
 <div class="row clearfix">
 <div class="col-9">
 
-<div class="hb-notif-box error failure hidden"><div class="message-text"><p><i class="hb-moon-blocked"></i>Your current subscription has been cancelled.</p></div></div>
-
-<div class="hb-notif-box success hidden"><div class="message-text"><p><i class="fa fa-check-circle"></i> Your Subscription has been saved</p></div></div>
 
 <!-- Go back link -->
 
@@ -43,6 +40,11 @@ do_action( 'woocommerce_before_cart' );
 	<a href="<?php echo apply_filters( 'woocommerce_return_to_shop_redirect', get_permalink( wc_get_page_id( 'shop' ) ) ); ?>" class="go-back__link"><i class="fa fa-angle-left" aria-hidden="true"></i>
  <?php _e('Continue Shopping', 'woocommerce'); ?></a>
 </div>
+
+
+<div class="hb-notif-box custom-alerts error failure hidden"><div class="message-text"><p><i class="hb-moon-blocked"></i>Your current subscription has been cancelled.</p></div></div>
+
+<div class="hb-notif-box custom-alerts sub-success hidden"><div class="message-text"><p><i class="fa fa-check-circle"></i> Success!!! Your Subscription has been saved</p></div></div>
 
 
 <!-- why subscribe -->
