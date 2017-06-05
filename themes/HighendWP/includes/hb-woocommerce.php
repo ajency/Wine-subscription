@@ -73,7 +73,7 @@
 	================================================== */	
 	add_filter( 'woocommerce_output_related_products_args', 'hbthemes_related_products_args' );
 	function hbthemes_related_products_args( $args ) {
-		$args['posts_per_page'] = 4; // 4 related products
+		$args['posts_per_page'] = 5; // 4 related products
 		$args['columns'] = 4; // arranged in 4 columns
 		return $args;
 	}
