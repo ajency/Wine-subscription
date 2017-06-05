@@ -1129,8 +1129,8 @@ function custom_shop_order_column($columns)
     
     $columns['billing_address']  = __( 'Billing', 'woocommerce' );
     $columns['shipping_address'] = __( 'Ship to', 'woocommerce' );
-    $columns['customer_message'] = '<span class="notes_head tips" data-tip="' . esc_attr__( 'Customer message', 'woocommerce' ) . '">' . esc_attr__( 'Customer message', 'woocommerce' ) . '</span>';
-    $columns['order_notes']      = '<span class="order-notes_head tips" data-tip="' . esc_attr__( 'Order notes', 'woocommerce' ) . '">' . esc_attr__( 'Order notes', 'woocommerce' ) . '</span>';
+    //$columns['customer_message'] = '<span class="notes_head tips" data-tip="' . esc_attr__( 'Customer message', 'woocommerce' ) . '">' . esc_attr__( 'Customer message', 'woocommerce' ) . '</span>';
+    //$columns['order_notes']      = '<span class="order-notes_head tips" data-tip="' . esc_attr__( 'Order notes', 'woocommerce' ) . '">' . esc_attr__( 'Order notes', 'woocommerce' ) . '</span>';
     $columns['order_date']       = __( 'Date', 'woocommerce' );
     $columns['order_total']      = __( 'Total', 'woocommerce' );
     $columns['order_actions']    = __( 'Actions', 'woocommerce' );
@@ -1150,7 +1150,7 @@ function custom_orders_list_column_content( $column )
         case 'subscription' :
             $_subscription_id = get_post_meta(  $order_id, '_subscription_id', true );
             if($_subscription_id!=''){
-                echo "<a href='edit.php?s=".$_subscription_id."&post_status=all&post_type=shop_order&action=-1&m=0&_customer_user&paged=1&action2=-1&search_subscriptionid=yes'>#".$_subscription_id."</a>";
+                echo "<a href='edit.php?s=".$_subscription_id."&post_status=all&post_type=shop_order&action=-1&m=0&_customer_user&paged=1&action2=-1&search_subscriptionid=yes'>#".$_subscription_id."</a><br><a href='/post.php?post=".$_subscription_id."&action=edit'>View</a>";
             }
             break;
 
@@ -1166,7 +1166,6 @@ function custom_orders_list_column_content( $column )
 
 
 add_action('woocommerce_review_order_after_cart_contents','checkout_subscription_type');
-
 
 function checkout_subscription_type(){
     if(isset($_SESSION['subscription_type'])){
