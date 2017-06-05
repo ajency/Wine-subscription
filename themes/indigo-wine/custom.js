@@ -228,6 +228,21 @@ jQuery(function(){
 
 
 
+	jQuery("#subscription-check").click(function () {
+
+	    if (jQuery(this).is(":checked")) {
+
+	        jQuery("html, body").animate({ scrollTop: 0 }, "slow");
+
+
+	    } else {
+	        jQuery("html, body").animate({ scrollTop: 0 }, "slow");
+  			
+	    }
+
+	})
+
+
 		// Custom menu click and scroll to particular ID
 
 
