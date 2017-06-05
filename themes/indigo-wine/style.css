@@ -3679,6 +3679,9 @@ body .woocommerce form .form-row .button {
 .comment-form-comment textarea {
   font-family: gotham_bookregular;
 }
+.sub-height {
+  line-height: 1.7;
+}
 @media screen and (max-width: 600px) {
   .woocommerce .col-9 {
     min-height: auto;
