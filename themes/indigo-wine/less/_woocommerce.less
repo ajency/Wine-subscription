@@ -145,6 +145,11 @@
 				color: @brand-primary !important;
 			}
 		}
+		span{
+			&:hover{
+				color: @brand-secondary !important;
+			}
+		}
 	}
 }
 
@@ -1370,3 +1375,13 @@ body
 .sub-height{
 	line-height: 1.7;
 }
+
+
+// Removed Product label badges
+
+.wc-new-badge,.onsale,.out-of-stock-badge{
+	display: none;
+}
+
+
+

@@ -1196,4 +1196,3 @@ add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_arg
 
 
 
-
