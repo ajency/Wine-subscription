@@ -47,7 +47,7 @@ do_action( 'woocommerce_before_cart' );
 
 <div class="why-subscribe box-shadow-wrap">
 	<i class="fa fa-times close-sub-box" aria-hidden="true"></i>
-	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover">
+<!-- 	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover"> -->
 	<div class="why-subscribe__content">
 		<h3 class="title">Why to Subscribe</h3>
 		<ul class="reason">
