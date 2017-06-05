@@ -2598,6 +2598,10 @@ a[data-readmore-toggle].more:before {
 .hb-page-title.light-text + .breadcrumbs-wrapper.breadcrumbs-wrapper a:hover {
   color: #d1b57c !important;
 }
+.hb-page-title.simple-title + .breadcrumbs-wrapper.breadcrumbs-wrapper span:hover,
+.hb-page-title.light-text + .breadcrumbs-wrapper.breadcrumbs-wrapper span:hover {
+  color: #022c4c !important;
+}
 .hb-page-title > h1,
 .hb-page-title > h2 {
   width: 50%;
@@ -3681,6 +3685,11 @@ body .woocommerce form .form-row .button {
 }
 .sub-height {
   line-height: 1.7;
+}
+.wc-new-badge,
+.onsale,
+.out-of-stock-badge {
+  display: none;
 }
 @media screen and (max-width: 600px) {
   .woocommerce .col-9 {
