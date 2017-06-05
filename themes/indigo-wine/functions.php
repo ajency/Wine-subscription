@@ -379,7 +379,9 @@ function sale_custom_price($cart_object) {
     }
 
     $discount=$final_total;
-    $cart_object->add_fee('Discount', -$discount, true, '');
+
+    if($discount!=0)
+        $cart_object->add_fee('Discount', -$discount, true, '');
     
 }
 add_action( 'woocommerce_cart_calculate_fees', 'sale_custom_price');
