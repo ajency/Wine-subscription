@@ -1173,9 +1173,9 @@ function checkout_subscription_type(){
     if(isset($_SESSION['subscription_type'])){
             echo '<tr class="cart_item">
                         <td class="product-name">
-                            Subscription Type</td>
+                            Subscription Type <br> Date</td>
                         <td class="product-total">
-                            <span class="woocommerce-Price-amount amount">'.ucfirst($_SESSION['subscription_type']).'</span>
+                            <span class="woocommerce-Price-amount amount">'.ucfirst($_SESSION['subscription_type']).' <br>June 5, 2017</span>
                         </td>
                     </tr>';
     }
