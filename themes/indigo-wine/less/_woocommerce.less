@@ -44,7 +44,7 @@
 }
 
 
-.woocommerce-page .woocommerce-product-rating{
+.woocommerce-page .woocommerce-product-rating,.woocommerce-page .comment-text{
 	.star-rating{
 		& > span{
 			color: @brand-primary;
@@ -1190,7 +1190,7 @@ body
 }
 
 .hb-woo-image-wrap:hover{
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0,0,0,0.65);
 	.hb-more-details.hb-more-details{
 		bottom: 85px !important;
 	}
@@ -1344,6 +1344,20 @@ body
 }
 
 
+// Woocommerce single product comment 
 
-
+#commentform{
+	margin-top: 0;
+	.stars{
+		margin-top: 0.5em !important;
+		& > span{
+			a{
+				height: auto;
+				&:before{
+					color: @brand-primary;
+				}
+			}
+		}
+	}
+}
 

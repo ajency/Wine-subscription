@@ -2510,13 +2510,16 @@ a[data-readmore-toggle].more:before {
 .hb-woo-product .hb-woo-image-wrap .star-wrapper .star-rating > span {
   color: inherit;
 }
-.woocommerce-page .woocommerce-product-rating .star-rating > span {
+.woocommerce-page .woocommerce-product-rating .star-rating > span,
+.woocommerce-page .comment-text .star-rating > span {
   color: #d1b57c;
 }
-.woocommerce-page .woocommerce-product-rating .woocommerce-review-link {
+.woocommerce-page .woocommerce-product-rating .woocommerce-review-link,
+.woocommerce-page .comment-text .woocommerce-review-link {
   font-family: gotham_bookregular;
 }
-.woocommerce-page .woocommerce-product-rating .woocommerce-review-link:hover {
+.woocommerce-page .woocommerce-product-rating .woocommerce-review-link:hover,
+.woocommerce-page .comment-text .woocommerce-review-link:hover {
   color: #d1b57c;
 }
 #hb-page-title {
@@ -3503,7 +3506,7 @@ body .woocommerce form .form-row .button {
           transition: opacity 0.8s ease;
 }
 .hb-woo-image-wrap:hover {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.65);
 }
 .hb-woo-image-wrap:hover .hb-more-details.hb-more-details {
   bottom: 85px !important;
@@ -3660,6 +3663,18 @@ body .woocommerce form .form-row .button {
 }
 #hb-woo-notif li div {
   font-family: gotham_bookregular;
+}
+#commentform {
+  margin-top: 0;
+}
+#commentform .stars {
+  margin-top: 0.5em !important;
+}
+#commentform .stars > span a {
+  height: auto;
+}
+#commentform .stars > span a:before {
+  color: #d1b57c;
 }
 @media screen and (max-width: 600px) {
   .woocommerce .col-9 {
@@ -4546,7 +4561,7 @@ body .woocommerce form .form-row .button {
   border-bottom: 0;
 }
 .h-i-w {
-  margin-top: 3em;
+  margin-top: 4em;
 }
 .h-i-w .title {
   font-family: gotham_mediumregular;
