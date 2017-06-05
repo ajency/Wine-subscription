@@ -3502,6 +3502,9 @@ body .woocommerce form .form-row .button {
   -webkit-transition: opacity 0.8s ease;
           transition: opacity 0.8s ease;
 }
+.hb-woo-image-wrap:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
 .hb-woo-image-wrap:hover .hb-more-details.hb-more-details {
   bottom: 85px !important;
 }
@@ -3517,6 +3520,9 @@ body .woocommerce form .form-row .button {
 }
 .hb-woo-image-wrap:hover .product-hover-image {
   opacity: 0!important;
+}
+.hb-woo-image-wrap:hover .woo-category-wrap {
+  z-index: -1;
 }
 .hb-woo-product .hb-product-meta-wrapper .price {
   display: block;
@@ -3651,6 +3657,9 @@ body .woocommerce form .form-row .button {
   text-align: left;
   line-height: inherit;
   margin-bottom: 1.8em;
+}
+#hb-woo-notif li div {
+  font-family: gotham_bookregular;
 }
 @media screen and (max-width: 600px) {
   .woocommerce .col-9 {
