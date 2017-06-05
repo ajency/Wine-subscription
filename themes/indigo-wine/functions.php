@@ -868,11 +868,14 @@ function wpse_lost_password_redirect() {
 // add_action('login_headerurl', 'wpse_lost_password_redirect');
 
 // redirects for login / logout
-// add_filter('woocommerce_login_redirect', 'login_redirect');
+add_filter('login_redirect', 'login_redirect');
 
 function login_redirect($redirect_to) {
-
-    return home_url();
+  
+    if(stripos($redirect_to,'/wp-admin/') !== false)
+        return home_url( '/shop' );
+    else
+        return $redirect_to;
 
 }
 
