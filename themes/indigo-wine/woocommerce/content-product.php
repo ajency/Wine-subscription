@@ -231,7 +231,7 @@ $classes[] = $logclass;
 			<?php
 			
 			$size = sizeof( get_the_terms( $post->ID, 'product_tag' ) ); ?>
-			<?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<div class="woo-cats"><span class="hb-woo-shop-cats">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span></div>' ); ?>
+			<?php echo wc_get_product_tag_list( $product->get_id(), '', '<div class="woo-cats"><span class="hb-woo-shop-cats">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span></div>' ); ?>
 		</div>
 
 		<?php

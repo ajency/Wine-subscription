@@ -1054,6 +1054,7 @@ a[data-readmore-toggle].more:before {
 }
 .hb-product-meta .woo-cats .hb-woo-shop-cats a {
   font-size: 0.95em;
+  padding-right: 0.5em;
 }
 .hb-product-meta .woo-cats .hb-woo-shop-cats a:before {
   content: "\f02b";
@@ -3244,6 +3245,9 @@ body .woocommerce form .form-row .button {
 }
 .product_attr .meta-div a:hover {
   color: #d1b57c;
+}
+.product_attr .meta-div.tagged_as a {
+  padding-right: 0.5em;
 }
 .product_attr .tagged_as a:before {
   content: "\f02b";

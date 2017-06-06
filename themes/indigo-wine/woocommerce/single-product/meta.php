@@ -21,7 +21,7 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 	<?php do_action( 'woocommerce_product_meta_start' ); ?>
 
 	<?php echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="posted_in meta-div">' . _n( 'Category:', 'Categories:', $cat_count, 'woocommerce' ) . ' ', '</span>' ); ?>
-	<?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<span class="tagged_as meta-div">' . _n( 'Tag:', 'Tags:', $tag_count, 'woocommerce' ) . ' ', '</span>' ); ?>
+	<?php echo wc_get_product_tag_list( $product->get_id(), '', '<span class="tagged_as meta-div">' . _n( 'Tag:', 'Tags:', $tag_count, 'woocommerce' ) . ' ', '</span>' ); ?>
 
 	<div class="bottom-meta-section hb-woo-meta">
 	<?php if ( hb_options('hb_woo_enable_likes') ){ ?>
