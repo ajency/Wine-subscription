@@ -40,7 +40,7 @@ global $woocommerce;
 				</li>
 
 				<li class="clearfix subscribe-data">
-					<span class="cart-total-title">Subscription type <br> Date</span>
+					<span class="cart-total-title">Subscription type <br> Start Date</span>
 					<span class="cart-total-value subscribe-val">Monthly <br><?php echo date('M j, Y'); ?></span>
 				</li>
 

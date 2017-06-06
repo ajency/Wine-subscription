@@ -1174,7 +1174,7 @@ function checkout_subscription_type(){
         $date=date('M j, Y'); 
             echo '<tr class="cart_item">
                         <td class="product-name sub-height">
-                            Subscription Type <br> Date</td>
+                            Subscription Type <br> Start Date</td>
                         <td class="product-total sub-height">
                             <span class="woocommerce-Price-amount amount">'.ucfirst($_SESSION['subscription_type']).' <br>'.$date.'</span>
                         </td>
