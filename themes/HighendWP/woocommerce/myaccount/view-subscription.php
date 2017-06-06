@@ -122,12 +122,17 @@ global $wpdb;
 $user_id =get_current_user_id();
 $query = new WP_Query( array( 'post_status'=>array('wc-pending','wc-processing','wc-on-hold','wc-completed','wc-cancelled','wc-refunded' ,'wc-failed'),
   'post_type' => 'shop_order',
-  'author' => $user_id,
+  //'author' => $user_id,
   'posts_per_page' => -1,
     'meta_query' => array(
         array(
            'key' => '_subscription_id',
            'value' => $pass_subscriptionid,
+           'compare' => '='
+        ),
+        array(
+           'key' => '_customer_user',
+           'value' => $user_id,
            'compare' => '='
         )
      )
