@@ -717,6 +717,9 @@ function filter_posts_clauses( $args ) {
         
 
     }
+    if(isset($_REQUEST['unsubscribe'])){ //backend -unsubscribe the subscription
+        update_post_meta( $_REQUEST['subscription_id'], 'status', 'cancelled');
+    }
     // echo '<pre>';
     // print_r($args);
     return $args;
