@@ -1240,26 +1240,35 @@ add_filter( 'woocommerce_cart_ready_to_calc_shipping', 'disable_shipping_calc_on
 
 // Subscription Details on orders email
 
-add_action('woocommerce_email_after_order_table','subscription_order_details');
+add_action('woocommerce_email_after_order_table','subscription_order_details',10,4);
 
-function subscription_order_details(){
-    echo '<h2>Subscription Details</h2>
-        <table style="width: 100%;font-family:Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;color: #636363;border-collapse: collapse;text-align: center;">
-            <thead>
-                <tr>
-                    <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">ID</th>
-                    <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Type</th>
-                    <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">#510</td>
-                    <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">Monthly</td>
-                    <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">June 5, 2017</td>
-                </tr>
-            </tbody>        
-        </table>
-    ';
+function subscription_order_details( $order, $sent_to_admin, $plain_text, $email ){
+
+    $orderid=$order->get_order_number();
+    $subscription_id=get_post_meta( $orderid, '_subscription_id', true );
+
+    if($subscription_id!=""){
+        $subscription_type=get_post_meta( $subscription_id, '_subscription_type', true );
+        $date=get_the_date( $d = 'M d, Y', $subscription_id );
+
+        echo '<h2>Subscription Details</h2>
+            <table style="width: 100%;font-family:Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;color: #636363;border-collapse: collapse;text-align: center;">
+                <thead>
+                    <tr>
+                        <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">ID</th>
+                        <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Type</th>
+                        <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">#'.$subscription_id.'</td>
+                        <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">'.ucfirst($subscription_type).'</td>
+                        <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">'.$date.'</td>
+                    </tr>
+                </tbody>        
+            </table>
+        ';
+    }
 }
 
