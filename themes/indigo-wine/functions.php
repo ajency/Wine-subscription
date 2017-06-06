@@ -1225,3 +1225,31 @@ function disable_shipping_calc_on_cart( $show_shipping ) {
     return $show_shipping;
 }
 add_filter( 'woocommerce_cart_ready_to_calc_shipping', 'disable_shipping_calc_on_cart', 99 );
+
+
+
+// Subscription Details on orders email
+
+add_action('woocommerce_email_after_order_table','subscription_order_details');
+
+function subscription_order_details(){
+    echo '<h2>Subscription Details</h2>
+        <table style="width: 100%;font-family:Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;color: #636363;border-collapse: collapse;text-align: center;">
+            <thead>
+                <tr>
+                    <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">ID</th>
+                    <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Type</th>
+                    <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">#510</td>
+                    <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">Monthly</td>
+                    <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">June 5, 2017</td>
+                </tr>
+            </tbody>        
+        </table>
+    ';
+}
+
