@@ -1152,7 +1152,8 @@ function custom_orders_list_column_content( $column )
         case 'subscription' :
             $_subscription_id = get_post_meta(  $order_id, '_subscription_id', true );
             if($_subscription_id!=''){
-                echo "<a href='edit.php?s=".$_subscription_id."&post_status=all&post_type=shop_order&action=-1&m=0&_customer_user&paged=1&action2=-1&search_subscriptionid=yes'>#".$_subscription_id."</a><br><a href='/post.php?post=".$_subscription_id."&action=edit'>View</a>";
+                //echo "<a href='edit.php?s=".$_subscription_id."&post_status=all&post_type=shop_order&action=-1&m=0&_customer_user&paged=1&action2=-1&search_subscriptionid=yes'>#".$_subscription_id."</a><br><a href='/post.php?post=".$_subscription_id."&action=edit'>View</a>"; 
+                echo "<a href='edit.php?s=".$_subscription_id."&post_status=all&post_type=shop_order&action=-1&m=0&_customer_user&paged=1&action2=-1&search_subscriptionid=yes'>#".$_subscription_id."</a>";
             }
             break;
 
@@ -1206,7 +1207,13 @@ function subscription_details_on_orderpage($order){
 
     if($field_value!='')
     { 
-        echo "<h2 style='margin-top: 30px;'> Subscription #".$field_value."</h2>";
+        $_subscription_type=get_post_meta($field_value,  '_subscription_type', true );
+        $post_date=get_the_date('M, d Y',$field_value);
+        $next_duedate=nextduedate($field_value);
+        echo "<h2 style='margin-top: 30px;'> Subscription #".$field_value."</h2>
+                <p>Subscription Type : ".ucfirst($_subscription_type)."</p>
+                <p>Start Date : ".$post_date."</p>
+                <p>Next Due : ".$next_duedate."</p>";
     }
 
 }
