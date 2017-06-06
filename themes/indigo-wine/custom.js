@@ -12,11 +12,15 @@ jQuery(function(){
 
 	  if (scroll >= 150){
 	  	sticky.addClass('fixed');
-	  	jQuery('#main-content').addClass('fixed-added');
+	  	jQuery('.header-sep').addClass('fixedAdd');
+	  	jQuery('#hb-page-title').addClass('fixedAdd');
+	  	// jQuery('#main-content').addClass('fixed-added');
 	  } 
 	  else{
 		sticky.removeClass('fixed');
-		jQuery('#main-content').removeClass('fixed-added');
+		jQuery('.header-sep').removeClass('fixedAdd');
+		jQuery('#hb-page-title').removeClass('fixedAdd');
+		// jQuery('#main-content').removeClass('fixed-added');
 	  }
 	  
 	});
@@ -115,6 +119,13 @@ jQuery(function(){
 	   lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
 	 });
 
+
+	// Menu height checking
+
+	if (jQuery(window).width() > 992) {
+	  	var menu_height = jQuery('.ind-custom-menu').outerHeight();
+		jQuery('.header-sep').css('margin-top',menu_height);
+	}
 
 	// featured product scroll
 
