@@ -1195,4 +1195,33 @@ add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_arg
 }
 
 
+/**
+ * [subscription_details_on_orderpage - subscription details on order page]
+ * @param  [type] $order [description]
+ * @return [type]        [description]
+ */
+function subscription_details_on_orderpage($order){
 
+    $field_value = $order->get_meta( '_subscription_id' );
+
+    if($field_value!='')
+    { 
+        echo "<h2 style='margin-top: 30px;'> Subscription #".$field_value."</h2>";
+    }
+
+}
+add_action( 'woocommerce_admin_order_data_after_shipping_address', 'subscription_details_on_orderpage', 10, 1 );
+
+
+/**
+ * [disable_shipping_calc_on_cart method to hide the shiping method on cart totals n checkout]
+ * @param  [type] $show_shipping [description]
+ * @return [type]                [description]
+ */
+function disable_shipping_calc_on_cart( $show_shipping ) {
+    if( is_cart() || is_checkout()) {
+        return false;
+    }
+    return $show_shipping;
+}
+add_filter( 'woocommerce_cart_ready_to_calc_shipping', 'disable_shipping_calc_on_cart', 99 );

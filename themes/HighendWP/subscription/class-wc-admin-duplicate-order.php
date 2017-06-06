@@ -87,7 +87,7 @@ class WC_Admin_Duplicate_Order {
 	 * Duplicate a order action.
 	 */
 	public function duplicate_order_action($original_order_id='') {
- 		echo "string".$original_order_id;
+
  		if($original_order_id!=''){
  			$_REQUEST['post']=$original_order_id;
  		}
@@ -167,10 +167,10 @@ class WC_Admin_Duplicate_Order {
 			'post_type'     => 'shop_order',
 			'post_title'    => __( 'Duplicate Order', 'woocommerce' ),
 			/* 'post_status'   => 'draft', */
-			'post_status'   => 'pending',
+			'post_status'   => 'wc-pending',
 			'ping_status'   => 'closed',
 			/* 'post_excerpt'  => 'Duplicate Order based on original order ' . $original_order_id, */
-			'post_password' => uniqid( 'order_' ),   // Protects the post just in case
+			//'post_password' => uniqid( 'order_' ),   // Protects the post just in case
 			'post_modified'             => $new_post_date,
 			'post_modified_gmt'         => $new_post_date_gmt
 		);
