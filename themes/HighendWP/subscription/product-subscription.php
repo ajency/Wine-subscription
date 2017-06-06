@@ -72,7 +72,7 @@ add_filter( 'manage_edit-subscription_columns', 'my_subscription_columns' ) ;
 function my_subscription_columns( $columns ) {
 
   $columns = array(
-    'title' => __( 'Title' ),
+    'mtitle' => __( 'Title' ),
     'id' => __( 'Subscription ID' ),
     'author' => __( 'Subsriber Name' ),
     '_subscription_type' => __( 'Subscription Type' ),
@@ -90,7 +90,7 @@ add_action( 'manage_subscription_posts_custom_column', 'my_manage_subscription_c
 
 function my_manage_subscription_columns( $column, $post_id ) {
   global $post;
-
+  
   switch( $column ) {
 
     case '_subscription_type' :
@@ -119,6 +119,10 @@ function my_manage_subscription_columns( $column, $post_id ) {
 
       case 'id':
           echo "<a href='/post.php?post=".$post_id."&action=edit'>#".$post_id."</a>";
+      break; 
+
+      case 'mtitle':
+          echo '<b>'. $post->post_title .'<b>';
       break;
 
 
