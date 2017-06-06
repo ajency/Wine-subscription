@@ -59,7 +59,7 @@ jQuery(function(){
 		    paginationSpeed : 800,
 		 
 		    //Autoplay
-		    autoPlay : false,
+		    autoPlay : true,
 		    goToFirst : true,
 		    goToFirstSpeed : 1000,
 		    items : 1,
