@@ -1211,3 +1211,17 @@ function subscription_details_on_orderpage($order){
 
 }
 add_action( 'woocommerce_admin_order_data_after_shipping_address', 'subscription_details_on_orderpage', 10, 1 );
+
+
+/**
+ * [disable_shipping_calc_on_cart method to hide the shiping method on cart totals n checkout]
+ * @param  [type] $show_shipping [description]
+ * @return [type]                [description]
+ */
+function disable_shipping_calc_on_cart( $show_shipping ) {
+    if( is_cart() || is_checkout()) {
+        return false;
+    }
+    return $show_shipping;
+}
+add_filter( 'woocommerce_cart_ready_to_calc_shipping', 'disable_shipping_calc_on_cart', 99 );

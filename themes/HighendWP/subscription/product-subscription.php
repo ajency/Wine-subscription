@@ -118,7 +118,8 @@ function my_manage_subscription_columns( $column, $post_id ) {
       break;
 
       case 'id':
-          echo "<a href='/post.php?post=".$post_id."&action=edit'>#".$post_id."</a>";
+          // echo "<a href='/post.php?post=".$post_id."&action=edit'>#".$post_id."</a>";
+          echo "#".$post_id;
       break; 
 
       case 'mtitle':
@@ -365,7 +366,7 @@ function cron_process_subscription_order(){
     }
 
   }
-  return 'Subscription Created Succesfully';
+  return 'Subscription Orders Created Succesfully';
 }
 
 // add_action( 'init', 'cron_process_subscription_order');
