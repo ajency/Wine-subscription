@@ -1211,12 +1211,19 @@ function subscription_details_on_orderpage($order){
     if($field_value!='')
     { 
         $_subscription_type=get_post_meta($field_value,  '_subscription_type', true );
+        $status=get_post_meta($field_value,  'status', true );
         $post_date=get_the_date('M, d Y',$field_value);
         $next_duedate=nextduedate($field_value);
         echo "<h2 style='margin-top: 30px;'> Subscription #".$field_value."</h2>
                 <p>Subscription Type : ".ucfirst($_subscription_type)."</p>
-                <p>Start Date : ".$post_date."</p>
-                <p>Next Due : ".$next_duedate."</p>";
+                <p>Start Date : ".$post_date."</p>";
+
+        if( $status== 'active' ){      
+           echo "<p>Status : ".ucfirst($status)."</p>";  
+         echo "<p>Next Due : ".$next_duedate."</p>";
+        }
+        else
+            echo "<p>Status: ".ucfirst($status)."</p>";
     }
 
 }
