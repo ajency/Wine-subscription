@@ -411,6 +411,19 @@ function woocommerce_duplicate_order_additional_fields($new_id,$post){
   $_subscription_id=get_post_meta( $original_orderid, '_subscription_id', true );
 
   update_post_meta( $new_id, '_subscription_id', $_subscription_id );
+  update_post_meta( $new_id, '_scheduler_generated_order', 'yes' );
+
+
+  $mailer = WC()->mailer();
+  $mails = $mailer->get_emails();
+  if ( ! empty( $mails ) ) {
+      foreach ( $mails as $mail ) {            
+          if ( $mail->id == 'customer_processing_order' ) {
+             $mail->trigger( $new_id );
+          }
+       }
+  }
+
   /*
   $dpost = array();
   $post_date=get_the_date('',$pass_subscriptionid);
