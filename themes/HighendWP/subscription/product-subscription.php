@@ -74,7 +74,7 @@ function my_subscription_columns( $columns ) {
   $columns = array(
     'mtitle' => __( 'Title' ),
     'id' => __( 'Subscription ID' ),
-    'author' => __( 'Subsriber Name' ),
+    'mauthor' => __( 'Subsriber Name' ),
     '_subscription_type' => __( 'Subscription Type' ),
     '_subscription_status' => __( 'Status' ),
     'next_due_date' => __( 'Next Due Date' ),
@@ -150,6 +150,11 @@ function my_manage_subscription_columns( $column, $post_id ) {
         <input type="submit" name="unsubscribe" id="unsubscribe" value="Unsubscribe" onclick="submitForm()"/>
         ';
       }
+      break;
+
+      case 'mauthor':
+      
+      echo $author = get_the_author($post_id);
       break;
 
       default :
