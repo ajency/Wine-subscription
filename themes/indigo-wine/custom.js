@@ -12,11 +12,15 @@ jQuery(function(){
 
 	  if (scroll >= 150){
 	  	sticky.addClass('fixed');
-	  	jQuery('#main-content').addClass('fixed-added');
+	  	jQuery('.header-sep').addClass('fixedAdd');
+	  	jQuery('#hb-page-title').addClass('fixedAdd');
+	  	// jQuery('#main-content').addClass('fixed-added');
 	  } 
 	  else{
 		sticky.removeClass('fixed');
-		jQuery('#main-content').removeClass('fixed-added');
+		jQuery('.header-sep').removeClass('fixedAdd');
+		jQuery('#hb-page-title').removeClass('fixedAdd');
+		// jQuery('#main-content').removeClass('fixed-added');
 	  }
 	  
 	});
@@ -59,7 +63,7 @@ jQuery(function(){
 		    paginationSpeed : 800,
 		 
 		    //Autoplay
-		    autoPlay : false,
+		    autoPlay : true,
 		    goToFirst : true,
 		    goToFirstSpeed : 1000,
 		    items : 1,
@@ -116,6 +120,13 @@ jQuery(function(){
 	 });
 
 
+	// Menu height checking
+
+	if (jQuery(window).width() > 992) {
+	  	var menu_height = jQuery('.ind-custom-menu').outerHeight();
+		jQuery('.header-sep').css('margin-top',menu_height);
+	}
+
 	// featured product scroll
 
 	jQuery(".featured-product .down").click(function() {
@@ -148,13 +159,10 @@ jQuery(function(){
 
 
 	// Cart why subscribe alert
-
-	jQuery('.close-sub-box').click(function(){
-
-		jQuery(this).parent('.why-subscribe').addClass('hidden');
-
-	});
-
+   
+    jQuery(document).on('click', '.close-sub-box', function(event) {
+      jQuery(this).parent('.why-subscribe').addClass('hidden');
+     });
 
 	// remove extra clear class from product listing
 
@@ -192,9 +200,9 @@ jQuery(function(){
 
 	// Trigered cart icon to actual cart click
 
-	jQuery('.add-To-Cart').click(function(){
-		jQuery(this).parent().parent().parent('.hb-product-meta-wrapper').siblings('.hb-woo-image-wrap').find('.add_to_cart_button').trigger("click");
-	});
+	// jQuery('.add-To-Cart').click(function(){
+	// 	jQuery(this).parent().parent().parent('.hb-product-meta-wrapper').siblings('.hb-woo-image-wrap').find('.add_to_cart_button').trigger("click");
+	// });
 
 
 	function opacShow(){
@@ -217,8 +225,33 @@ jQuery(function(){
 	    	jQuery(this).parent().addClass('not-active');
 	  	}
 
+	  	if(jQuery('.woocommerce-tabs li:first-child()').hasClass('not-active')){
+	  		jQuery('.woocommerce-tabs li:nth-child(2)').addClass('active').siblings().removeClass('active');
+	  	}
+	  	else{
+	  		jQuery('.woocommerce-tabs li:first-child()').addClass('active').siblings().removeClass('active');	
+	  	}
+	  	var active_id = jQuery('.woocommerce-tabs li.active a').attr("href");
+	  	jQuery('.woocommerce-tabs .wc-tab').hide()
+	  	jQuery(active_id).show();
+
 	});
 
+
+
+	/*jQuery("#subscription-check").click(function () {
+
+	    if (jQuery(this).is(":checked")) {
+
+	        jQuery("html, body").animate({ scrollTop: 0 }, "slow");
+
+
+	    } else {
+	        jQuery("html, body").animate({ scrollTop: 0 }, "slow");
+  			
+	    }
+
+	})*/
 
 
 		// Custom menu click and scroll to particular ID

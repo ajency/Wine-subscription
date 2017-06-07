@@ -27,7 +27,7 @@ global $product;
 	<span class="price">
 		<div class="single-price">
 			<span><?php echo $price_html; ?></span>
-			<span class="add-To-Cart"></span>
+			<!-- <span class="add-To-Cart"></span> -->
 		</div>
 	</span>
 

@@ -52,7 +52,15 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 
 <section class="woocommerce-order-details">
 
-  <h2 class="woocommerce-order-details__title sub-title"><span class="primary-color"><?php echo '('. _x( '#', 'hash before subscription number', 'woocommerce' ) . $pass_subscriptionid.')' ?></span> Subscription Details</h2>
+  <h2 class="woocommerce-order-details__title sub-title"><div><span class="primary-color"><?php echo '('. _x( '#', 'hash before subscription number', 'woocommerce' ) . $pass_subscriptionid.')' ?></span> Subscription Details </div>
+    <?php
+    $subscription_status=get_post_meta( $pass_subscriptionid,  'status', true );
+    if($subscription_status=='active'){
+    ?>
+    <span class="entry-date"><?php echo get_the_date('F j, Y',$pass_subscriptionid); ?></span>
+    <?php } ?>
+
+  </h2>
 
   <input type="hidden" name="subid" id="subid" value="<?php echo $pass_subscriptionid; ?>">
 
@@ -91,7 +99,14 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
       <h3 class="title">Subscription Type</h3>
         <div class="sub-action">
           <?php echo '<p class="type status-label">'.$subscriptiontype_title.'</p>' ;?>
+          <?php 
+          $subscription_status=get_post_meta( $pass_subscriptionid,  'status', true );
+
+          if($subscription_status=='active'){
+          ?>
+
           <a href="javascript:void(0)" class="sub-unsubscribe alert-color">Unsubscribe</a>
+          <?php } ?>
         </div>
     </div>
 
@@ -107,12 +122,17 @@ global $wpdb;
 $user_id =get_current_user_id();
 $query = new WP_Query( array( 'post_status'=>array('wc-pending','wc-processing','wc-on-hold','wc-completed','wc-cancelled','wc-refunded' ,'wc-failed'),
   'post_type' => 'shop_order',
-  'author' => $user_id,
+  //'author' => $user_id,
   'posts_per_page' => -1,
     'meta_query' => array(
         array(
            'key' => '_subscription_id',
            'value' => $pass_subscriptionid,
+           'compare' => '='
+        ),
+        array(
+           'key' => '_customer_user',
+           'value' => $user_id,
            'compare' => '='
         )
      )

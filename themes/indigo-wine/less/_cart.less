@@ -124,6 +124,14 @@
     						display: block;
     					}
     				}
+    				&.hb-shipping-wrapper{
+    					.cart-total-title{
+    						width: 45%;
+    					}
+    					.cart-total-value{
+    						width: 55%;
+    					}
+    				}
     			}
     		}
 		}
@@ -156,14 +164,23 @@
 }
 
 
-.failure{
+.custom-alerts{
     padding: 0.8em;
     font-family: 'gotham_bookregular';
     font-weight: 600;
     font-size: 1.2em;
+    margin-bottom: 1em;
     p{
     	margin-left: 1.5em;
+    	i{
+    		color: #fff;
+    	}
     }
+}
+
+.sub-success{
+	background-color: @brand-secondary;
+	color: #fff;
 }
 
 
@@ -563,6 +580,10 @@
 .woocommerce-page #main-wrapper .woocommerce .hb-heading.cart-empty{
 	margin-top: 0;
 	border-bottom: 0;
+	padding-top: 0;
+	.cart-image{
+		width: 15%;
+	}
 	& + .aligncenter{
 		a{
 			background-color: @brand-secondary !important;
@@ -635,10 +656,10 @@
 // ---------------------------
 
 
-.woocommerce,.woocommerce .hb-woo-wraper{
+.woocommerce.woocommerce,.woocommerce .hb-woo-wraper{
 	& > .woocommerce-message.woocommerce-message,.woocommerce-message.woocommerce-message{
 		border: 1px solid #eee;
-    	background-color: @success-color !important;
+    	background-color: @brand-secondary !important;
     	color: #fff;
     	font-family: gotham_bookregular;
     	&:before{
@@ -657,6 +678,7 @@
 		background-color: @danger-color !important;
     	color: #fff;
     	font-family: gotham_bookregular;
+    	border: 0;
     	&:before{
     		color: #fff;
     	}
@@ -712,26 +734,49 @@
 
 .why-subscribe{
 	position: relative;
-    padding: 0.5em;
+    padding: 1em;
     display: flex;
     align-items: center;
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
 	color: @brand-secondary;
 	&__content{
-		padding-left: 0.5em;
+		// padding-left: 0.5em;
 		.title{
 			font-family: gotham_mediumregular;
-    		font-size: 1.6em;
+    		font-size: 1.45em;
     		font-weight: 600;
-    		margin-bottom: 0.5em;
+    		margin-bottom: 0.3em;
+    		border-bottom: 1px solid #ddd;
+    		padding-bottom: 0.3em;
     		color: @brand-secondary;
     		margin-top: 0;
+    		text-align: center;
 		}
 		.reason{
 			font-size: 1.05em;
-    		padding-right: 11em;
-    		line-height: 1.4;
+    		// padding-right: 11em;
+    		line-height: 1.6;
     		margin-top: 0;
+    		font-family: gotham_bookregular;
+    		margin-bottom: 0;
+    		display: flex;
+    		align-items: center;
+    		li{
+    			margin: 0.3em 0;
+    			border-right: 1px solid #ddd;
+    			padding: 0 0.8em;
+    			display: flex;
+    			align-items: baseline;
+    			text-align: left;
+    			flex: 1 0 calc(~'33.33% - 1.6em');
+    			&:last-child{
+    				border-right: 0;
+    			}
+    		}
+    		i{
+    			padding-right: 0.5em;
+    			color: @brand-primary;
+    		}
 		}
 	}
 }
@@ -779,7 +824,7 @@
 	display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.5em 1em;
+    padding: 1em;
     .toggle-check{
     	flex: 1;
     	display: flex;
@@ -793,12 +838,17 @@
     	}
     }
     .content{
-    	padding: 0 1.5em;
-    	font-size: 1.05em;
+    	padding: 0 1em;
+    	font-size: 1.15em;
     	color: @brand-secondary;
+    	p{
+    		font-family: gotham_mediumregular;
+    		font-weight: 500;
+    		margin-bottom: 0;
+    	}
     }
     .username{
-    	font-family: gotham_mediumregular;
+    	font-weight: 600;
     }
     .type-title{
     	font-size: 0.95em;
@@ -823,12 +873,12 @@
 //how it works
 
 .h-i-w{
-	margin-top: 5em;
+	margin-top: 4em;
 	.title{
 		font-family: gotham_mediumregular;
     	font-weight: 600;
     	color: #989da9;
-    	font-size: 2.5em;
+    	font-size: 2.1em;
     	border-bottom: 1px solid #ddd;
     	padding-bottom: 0.5em;
     	margin-bottom: 0.5em;
@@ -838,11 +888,25 @@
 		.cols{
 			padding: 0 1.5em;
 			flex: 1 0 20%;
+			position: relative;
 			&:first-child{
 				padding-left: 0;
 			}
 			&:last-child{
 				padding-right: 0;
+				&:after{
+					display: none;
+				}
+			}
+			&:after{
+				content: "\f061";
+				position: absolute;
+				font: normal normal normal 1.6em FontAwesome;
+			    text-rendering: auto;
+			    -webkit-font-smoothing: antialiased;
+			    top: 2.5em;
+			    right: 0em;
+			    color: @brand-primary;
 			}
 		}
 		.c-icon{
@@ -866,6 +930,9 @@
 			font-size: 1em;
     		color: #002b4e;
 		}
+	}
+	&.empty{
+		margin-top: 1.5em;
 	}
 }
 

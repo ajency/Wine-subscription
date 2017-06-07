@@ -92,13 +92,13 @@ function my_header_add_to_cart_fragment( $fragments ) {
 
     ob_start();
     $count = WC()->cart->cart_contents_count;
-     if ($count == 0) {
-        $r_page_url = filter_woocommerce_return_to_shop_redirect($parameter);
-     }
-     else{
-          $r_page_url =  WC()->cart->get_cart_url();
-     }
-
+     // if ($count == 0) {
+     //    $r_page_url = filter_woocommerce_return_to_shop_redirect($parameter);
+     // }
+     // else{
+     //      $r_page_url =  WC()->cart->get_cart_url();
+     // }
+    $r_page_url =  WC()->cart->get_cart_url();
     ?>
     <a class="wcmenucart-contents" href="<?php echo $r_page_url; ?>" title="<?php _e( 'View your shopping cart' ); ?>">
 
@@ -145,7 +145,7 @@ function sk_wcmenucart($menu, $args) {
             // Uncomment the line below to hide nav menu cart item when there are no items in the cart
             // if ( $cart_contents_count > 0 ) {
                 if ($cart_contents_count == 0) {
-                    $menu_item = '<li class="right"><a class="wcmenucart-contents" href="'. $shop_page_url .'" title="'. $start_shopping .'">';
+                    $menu_item = '<li class="right"><a class="wcmenucart-contents" href="'. $cart_url .'" title="'. $start_shopping .'">';
                 } else {
                     $menu_item = '<li class="right"><a class="wcmenucart-contents" href="'. $cart_url .'" title="'. $viewing_cart .'">';
                 }
@@ -379,7 +379,9 @@ function sale_custom_price($cart_object) {
     }
 
     $discount=$final_total;
-    $cart_object->add_fee('Discount', -$discount, true, '');
+
+    if($discount!=0)
+        $cart_object->add_fee('Discount', -$discount, true, '');
     
 }
 add_action( 'woocommerce_cart_calculate_fees', 'sale_custom_price');
@@ -715,6 +717,9 @@ function filter_posts_clauses( $args ) {
         
 
     }
+    if(isset($_REQUEST['unsubscribe'])){ //backend -unsubscribe the subscription
+        update_post_meta( $_REQUEST['subscription_id'], 'status', 'cancelled');
+    }
     // echo '<pre>';
     // print_r($args);
     return $args;
@@ -865,14 +870,17 @@ function wpse_lost_password_redirect() {
         exit;
     }
 }
-add_action('login_headerurl', 'wpse_lost_password_redirect');
+// add_action('login_headerurl', 'wpse_lost_password_redirect');
 
 // redirects for login / logout
-// add_filter('woocommerce_login_redirect', 'login_redirect');
+add_filter('login_redirect', 'login_redirect');
 
 function login_redirect($redirect_to) {
-
-    return home_url();
+  
+    if(stripos($redirect_to,'/wp-admin/') !== false)
+        return home_url( '/shop' );
+    else
+        return $redirect_to;
 
 }
 
@@ -889,6 +897,7 @@ function logout_redirect(){
 
 function login_stylesheet() {
     wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri().'/misc.css' );
+    wp_enqueue_style( 'Font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
 }
 add_action( 'login_enqueue_scripts', 'login_stylesheet' );
 
@@ -1006,6 +1015,18 @@ function indigo_register_form() {
         if ( ! empty( $_POST['user_pass'] ) ) {
              wp_set_password($_POST['user_pass'], $user_id);
         }
+         $credentials['user_login'] =$_POST['user_email'];
+          $credentials['user_password']  = $_POST['user_pass'];
+          
+          $to=$_POST['user_email'];
+          $subject="Your username and password";
+          $message="";
+
+          wp_mail( $to, $subject, $message, $headers = '', $attachments = array() );
+         
+          $user = wp_signon($credentials); 
+          header('location:'.filter_woocommerce_return_to_shop_redirect($parameter));
+          exit();
     }
 
 
@@ -1021,13 +1042,17 @@ add_action('login_head', function(){
     <script type="text/javascript">
         jQuery(document).ready(function($){
             $('#registerform > p:first-child').css('display', 'none');
-            jQuery('#registerform,#loginform,#lostpasswordform').addClass('login-reg');
-            jQuery('<p class="message login-reg-msg">Please verify your identity. Access to this page is restricted. Please login with registered email ID.</p>').insertBefore("#loginform");
-            jQuery('<p class="message login-reg-msg">Welcome to Indigo Wine co. Register to get details of our curated wine collection.</p>').insertBefore("#registerform");
+            jQuery('#registerform,#loginform,#lostpasswordform,#resetpassform').addClass('login-reg');
+            jQuery('<p class="message login-reg-msg">Please login to see product details.</p>').insertBefore("#loginform");
+            jQuery('<p class="message login-reg-msg">Enter your new password below.</p>').insertBefore("#resetpassform");
+            jQuery('<p class="message login-reg-msg">Welcome to Indigo Wine Co. Register to get details of our curated wine collection.</p>').insertBefore("#registerform");
             jQuery('#registerform label[for="user_email"]').prepend('<span class="required-label">*</span>');
             jQuery('.login-action-lostpassword .message').text('Please enter your email address. You will receive a link to create a new password via email.');
             jQuery('#reg_passmail').addClass('email-notify');
             jQuery('#backtoblog a').text('← Back to Home');
+            if(jQuery('#resetpassform').hasClass('login-reg')){
+                jQuery('.message.reset-pass').addClass('hidden');
+            }
             var label_name = $('.login label[for="user_login"]').contents().first()[0].textContent;
             $('.login label[for="user_login"]').contents().first()[0].textContent = label_name.replace("Username or Email Address", "Email Address");
         });
@@ -1067,6 +1092,21 @@ function handle_wp_mail($atts) {
 
         }
     }
+
+    else if (isset ($atts ['subject']) && substr_count($atts ['subject'],'Password Reset')>0 ) {
+        if (isset($atts['message'])) {
+            $user = get_user_by( 'email', $atts['to'] );
+
+            $key = get_password_reset_key( $user );
+
+            $url= network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login');
+
+            $data=array('email'=>$atts['to'],'display_name'=>$user->display_name,'message'=>$atts['message'],'url'=>$url);
+            
+           $atts['message'] = generate_email_template('passwordreset_mail',$data);
+
+        }
+    }
     return ($atts);
 }
 
@@ -1094,8 +1134,8 @@ function custom_shop_order_column($columns)
     
     $columns['billing_address']  = __( 'Billing', 'woocommerce' );
     $columns['shipping_address'] = __( 'Ship to', 'woocommerce' );
-    $columns['customer_message'] = '<span class="notes_head tips" data-tip="' . esc_attr__( 'Customer message', 'woocommerce' ) . '">' . esc_attr__( 'Customer message', 'woocommerce' ) . '</span>';
-    $columns['order_notes']      = '<span class="order-notes_head tips" data-tip="' . esc_attr__( 'Order notes', 'woocommerce' ) . '">' . esc_attr__( 'Order notes', 'woocommerce' ) . '</span>';
+    //$columns['customer_message'] = '<span class="notes_head tips" data-tip="' . esc_attr__( 'Customer message', 'woocommerce' ) . '">' . esc_attr__( 'Customer message', 'woocommerce' ) . '</span>';
+    //$columns['order_notes']      = '<span class="order-notes_head tips" data-tip="' . esc_attr__( 'Order notes', 'woocommerce' ) . '">' . esc_attr__( 'Order notes', 'woocommerce' ) . '</span>';
     $columns['order_date']       = __( 'Date', 'woocommerce' );
     $columns['order_total']      = __( 'Total', 'woocommerce' );
     $columns['order_actions']    = __( 'Actions', 'woocommerce' );
@@ -1115,6 +1155,7 @@ function custom_orders_list_column_content( $column )
         case 'subscription' :
             $_subscription_id = get_post_meta(  $order_id, '_subscription_id', true );
             if($_subscription_id!=''){
+                //echo "<a href='edit.php?s=".$_subscription_id."&post_status=all&post_type=shop_order&action=-1&m=0&_customer_user&paged=1&action2=-1&search_subscriptionid=yes'>#".$_subscription_id."</a><br><a href='/post.php?post=".$_subscription_id."&action=edit'>View</a>"; 
                 echo "<a href='edit.php?s=".$_subscription_id."&post_status=all&post_type=shop_order&action=-1&m=0&_customer_user&paged=1&action2=-1&search_subscriptionid=yes'>#".$_subscription_id."</a>";
             }
             break;
@@ -1126,3 +1167,115 @@ function custom_orders_list_column_content( $column )
 /**
  * end of the adding columnn code
  */
+
+
+
+
+add_action('woocommerce_review_order_after_cart_contents','checkout_subscription_type');
+
+function checkout_subscription_type(){
+    if(isset($_SESSION['subscription_type'])){
+        $date=date('M j, Y'); 
+            echo '<tr class="cart_item">
+                        <td class="product-name sub-height">
+                            Subscription Type <br> Start Date</td>
+                        <td class="product-total sub-height">
+                            <span class="woocommerce-Price-amount amount">'.ucfirst($_SESSION['subscription_type']).' <br>'.$date.'</span>
+                        </td>
+                    </tr>';
+    }
+}
+
+
+
+remove_filter( 'lostpassword_url', 'wc_lostpassword_url' );
+
+
+add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args' );
+  function jk_related_products_args( $args ) {
+    $args['posts_per_page'] = 5; // 4 related products
+    $args['columns'] = 4; // arranged in 2 columns
+    return $args;
+}
+
+
+/**
+ * [subscription_details_on_orderpage - subscription details on order page]
+ * @param  [type] $order [description]
+ * @return [type]        [description]
+ */
+function subscription_details_on_orderpage($order){
+
+    $field_value = $order->get_meta( '_subscription_id' );
+
+    if($field_value!='')
+    { 
+        $_subscription_type=get_post_meta($field_value,  '_subscription_type', true );
+        $status=get_post_meta($field_value,  'status', true );
+        $post_date=get_the_date('M, d Y',$field_value);
+        $next_duedate=nextduedate($field_value);
+        echo "<h2 style='margin-top: 30px;'> Subscription #".$field_value."</h2>
+                <p>Subscription Type : ".ucfirst($_subscription_type)."</p>
+                <p>Start Date : ".$post_date."</p>";
+
+        if( $status== 'active' ){      
+           echo "<p>Status : ".ucfirst($status)."</p>";  
+         echo "<p>Next Due : ".$next_duedate."</p>";
+        }
+        else
+            echo "<p>Status: ".ucfirst($status)."</p>";
+    }
+
+}
+add_action( 'woocommerce_admin_order_data_after_shipping_address', 'subscription_details_on_orderpage', 10, 1 );
+
+
+/**
+ * [disable_shipping_calc_on_cart method to hide the shiping method on cart totals n checkout]
+ * @param  [type] $show_shipping [description]
+ * @return [type]                [description]
+ */
+function disable_shipping_calc_on_cart( $show_shipping ) {
+    if( is_cart() || is_checkout()) {
+        return false;
+    }
+    return $show_shipping;
+}
+add_filter( 'woocommerce_cart_ready_to_calc_shipping', 'disable_shipping_calc_on_cart', 99 );
+
+
+
+// Subscription Details on orders email
+
+add_action('woocommerce_email_after_order_table','subscription_order_details',10,4);
+
+function subscription_order_details( $order, $sent_to_admin, $plain_text, $email ){
+
+    $orderid=$order->get_order_number();
+    $subscription_id=get_post_meta( $orderid, '_subscription_id', true );
+
+    if($subscription_id!=""){
+        $subscription_type=get_post_meta( $subscription_id, '_subscription_type', true );
+        $date=get_the_date( $d = 'M d, Y', $subscription_id );
+
+        echo '<h2>Subscription Details</h2>
+            <table style="width: 100%;font-family:Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;color: #636363;border-collapse: collapse;text-align: center;">
+                <thead>
+                    <tr>
+                        <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">ID</th>
+                        <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Type</th>
+                        <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">#'.$subscription_id.'</td>
+                        <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">'.ucfirst($subscription_type).'</td>
+                        <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">'.$date.'</td>
+                    </tr>
+                </tbody>        
+            </table>
+        ';
+    }
+}
+

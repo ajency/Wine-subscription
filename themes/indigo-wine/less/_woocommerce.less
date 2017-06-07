@@ -44,12 +44,29 @@
 }
 
 
+.woocommerce-page .woocommerce-product-rating,.woocommerce-page .comment-text{
+	.star-rating{
+		& > span{
+			color: @brand-primary;
+		}
+	}
+	.woocommerce-review-link{
+		font-family: gotham_bookregular;
+		&:hover{
+			color: @brand-primary;
+		}
+	}
+}
+
+
+
 #hb-page-title {
     // padding-top: 100px;
-    margin-top: 0;
     padding: 1em 0;
+    margin-top: 0;
     .hb-image-bg-wrap{
     	background-image: none !important;
+    	background-color: #c8cfd7;
     }
 	.hb-page-title{
 		h1,h2{
@@ -127,6 +144,11 @@
     		font-weight: 400;
 			&:hover{
 				color: @brand-primary !important;
+			}
+		}
+		span{
+			&:hover{
+				color: @brand-secondary !important;
 			}
 		}
 	}
@@ -877,6 +899,11 @@ body
     			color: @brand-primary;
     		}
     	}
+    	&.tagged_as{
+    		a{
+    			padding-right: 0.5em;	
+    		}
+    	}
 	}
 	.tagged_as{
 		a{
@@ -1174,17 +1201,27 @@ body
 }
 
 .hb-woo-image-wrap:hover{
+	background-color: rgba(0,0,0,0.65);
 	.hb-more-details.hb-more-details{
 		bottom: 85px !important;
 	}
 	.hb-buy-button.hb-buy-button{
 		bottom: 35px !important;
+		&.loading{
+			&:after{
+				right: 0.5em;
+				color: @brand-primary;
+			}
+		}
 	}
 	.product-hover-overlay{
 		opacity: 1;
 	}
 	.product-hover-image{
 		opacity: 0!important;
+	}
+	.woo-category-wrap{
+		z-index: -1;
 	}
 }
 
@@ -1311,9 +1348,46 @@ body
 }
 
 
+// Cart message font changed
+
+#hb-woo-notif li div{
+	font-family: gotham_bookregular;
+}
 
 
+// Woocommerce single product comment 
 
+#commentform{
+	margin-top: 0;
+	.stars{
+		margin-top: 0.5em !important;
+		& > span{
+			a{
+				height: auto;
+				&:before{
+					color: @brand-primary;
+				}
+			}
+		}
+	}
+}
+
+.comment-form-comment{
+	textarea{
+		font-family: gotham_bookregular;
+	}
+}
+
+.sub-height{
+	line-height: 1.7;
+}
+
+
+// Removed Product label badges
+
+.wc-new-badge,.onsale,.out-of-stock-badge{
+	display: none;
+}
 
 
 

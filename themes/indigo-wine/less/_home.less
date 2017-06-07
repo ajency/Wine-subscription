@@ -139,13 +139,16 @@ body{
 
 .ind-custom-menu{
 	display: flex;
-	transition: all 0.5s ease;
+	transition: all .5s ease-in-out;
 	align-items: flex-end;
 	justify-content: center;
 	padding: 1.5em 15px 0.3em 15px;
 	background-image: url('./img/bg-repeat.jpg');
 	background-size: 5%;
     background-position: 13.3% 1px;
+    position: fixed;
+    left: 0;
+    right: 0;
     .col-center {
 	    -webkit-box-flex: 1;
 	    -webkit-flex: 1 0 23% !important;
@@ -278,8 +281,8 @@ body{
 		}
 	}
 	&.fixed{
-		position: fixed;
-    	width: calc(~'100% - 30px');
+		// position: fixed;
+    	// width: calc(~'100% - 30px');
     	padding-top: 0.5em;
     	padding-bottom: 0em;
     	align-items: center;
@@ -312,13 +315,28 @@ body{
 }
 
 
+// Fixed section after header to get proper height for content
 
-#main-content.fixed-added{
-	margin-top: 15em !important;
-	@media screen and (max-width: 768px){
-		margin-top: 0em !important;
+.header-sep{
+	&.fixedAdd{
+		margin-top: 15.5em !important;
 	}
 }
+
+
+#hb-page-title{
+	&.fixedAdd{
+		margin-top: 18.5em;
+	}
+}
+
+
+// #main-content.fixed-added{
+// 	margin-top: 15em !important;
+// 	@media screen and (max-width: 768px){
+// 		margin-top: 0em !important;
+// 	}
+// }
 
 
 .user-detail.user-detail{
@@ -1129,6 +1147,7 @@ a[data-readmore-toggle]{
 	    	padding-bottom: 0.15em;
 	    	a{
 	    		font-size: 0.95em;
+	    		padding-right: 0.5em;
 	    		&:before{
 	    			content: "\f02b";
 	    			display: inline-block;
@@ -1153,7 +1172,7 @@ a[data-readmore-toggle]{
 
 // Fetured product grid
 
-.featuredRow{
+.featuredRow,.fw-content-wrap,.related{
 	.row.products{
 		display: flex;
 		.hb-woo-product{

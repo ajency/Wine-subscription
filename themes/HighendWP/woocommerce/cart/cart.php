@@ -25,13 +25,14 @@ wc_print_notices();
 do_action( 'woocommerce_before_cart' ); 
 	
 	$cartlimit=count(WC()->cart->get_cart())>4 ? 'cart-limit' : '';
+ 
+ $_SESSION['subscription_type']='monthly';
 
 ?>
 
 <div class="row clearfix">
 <div class="col-9">
 
-<div class="hb-notif-box error failure hidden"><div class="message-text"><p><i class="hb-moon-blocked"></i>Your current subscription has been cancelled.</p></div></div>
 
 <!-- Go back link -->
 
@@ -41,14 +42,23 @@ do_action( 'woocommerce_before_cart' );
 </div>
 
 
+<div class="hb-notif-box custom-alerts error failure hidden"><div class="message-text"><p><i class="hb-moon-blocked"></i>Your current subscription has been cancelled.</p></div></div>
+
+<div class="hb-notif-box custom-alerts sub-success hidden"><div class="message-text"><p><i class="fa fa-check-circle"></i> Success!!! Your Subscription has been saved</p></div></div>
+
+
 <!-- why subscribe -->
 
 <div class="why-subscribe box-shadow-wrap">
 	<i class="fa fa-times close-sub-box" aria-hidden="true"></i>
-	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover">
+<!-- 	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover"> -->
 	<div class="why-subscribe__content">
 		<h3 class="title">Why to Subscribe</h3>
-		<p class="reason">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+		<ul class="reason">
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Subscribe and be a part of our esteemed club.</li>
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Club members have access to our limited releases.</li>
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Get exclusive offers and unique tastings and events.</li>
+		</ul>
 	</div>
 </div>
 
@@ -56,7 +66,7 @@ do_action( 'woocommerce_before_cart' );
 
 
 <form class="cart-form woocommerce-cart-form <?php echo $cartlimit; ?>" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
-<input type="hidden" id="subscription_status" name="subscription_status" value="no">
+<input type="hidden" id="subscription_status" name="subscription_status" value="yes">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
@@ -151,13 +161,15 @@ do_action( 'woocommerce_before_cart' );
 
 						<td class="product-subtotal" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
 							<?php
-								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
-
 								$updated_price=WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] );
 								$actual_price=wc_price($cart_item['quantity']*$_product->get_price());
 
 								if($updated_price!=	$actual_price)
-								echo ' (<strike>'.$actual_price. '</strike>) ';
+								echo ' <strike>'.$actual_price. '</strike> ';
+
+								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
+
+								
 							?>
 						</td>
 					</tr>
@@ -192,48 +204,20 @@ do_action( 'woocommerce_before_cart' );
 
 			<input type="checkbox" value="" name="subscription-check" id="subscription-check" class="custom-check" checked />
 			<div class="content">
-				<p>Hi <span class="username secondary-color">Mark</span>, Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
+				<p>Convert my order into a subscription</p>
 			</div>
 		</div>
 		<div>
 			<p class="type-title">Type of Subscription</p>
 			<div class="switch">
-				<input id="monthly" class="switch-input" checked="checked" name="sub-type" type="radio" value="monthly" />
+				<input id="monthly" class="switch-input" checked="checked" name="sub-type" type="radio" value="monthly" autocomplete="off" />
 				<label class="switch-label switch-label-off" for="monthly">Monthly</label>
-				<input id="quarterly" class="switch-input" name="sub-type" type="radio" value="quarterly" /><label class="switch-label switch-label-on" for="quarterly">Quarterly</label>
+				<input id="quarterly" class="switch-input" name="sub-type" type="radio" value="quarterly" autocomplete="off" /><label class="switch-label switch-label-on" for="quarterly">Quarterly</label>
 				<div class="switch-selection"></div>
 			</div>
 		</div>
 	</div>
 </div>
-
-
-<!-- How it works -->
-
-<div class="h-i-w">
-	<h1 class="title">How it works</h1>
-	<div class="flex-cols">
-		<div class="cols">
-			<span class="c-icon cal"></span>
-			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
-		</div>
-		<div class="cols">
-			<span class="c-icon sub"></span>
-			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
-		</div>
-		<div class="cols">
-			<span class="c-icon pay"></span>
-			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
-		</div>
-		<div class="cols">
-			<span class="c-icon done"></span>
-			<p class="content">Hi Your order meets our requirements to opt for a subscription. Would you like to covert this order into a subscription plan?</p>
-		</div>
-	</div>
-
-</div>
-
-
 
 
 </div>
@@ -322,5 +306,32 @@ do_action( 'woocommerce_before_cart' );
 </div>
 
 </div>
+
+
+<!-- How it works -->
+
+<div class="h-i-w">
+	<h1 class="title">How does subscription work?</h1>
+	<div class="flex-cols">
+		<div class="cols">
+			<span class="c-icon cal"></span>
+			<p class="content">Add products to the cart. Order qty for wine bottles has to be in multiples of 6. There is no qty constraint for wine packs.</p>
+		</div>
+		<div class="cols">
+			<span class="c-icon sub"></span>
+			<p class="content">By default subscription for the order will be turned on when your order meets the requirement. You can opt for either a monthly or quarterly subscription.</p>
+		</div>
+		<div class="cols">
+			<span class="c-icon pay"></span>
+			<p class="content">You will be notified by a mail when your order is ready in the next month/quarter. The mail will have the payment link.</p>
+		</div>
+		<div class="cols">
+			<span class="c-icon done"></span>
+			<p class="content">Your order will be shipped at your doorstep once you have made a successful payment.</p>
+		</div>
+	</div>
+
+</div>
+
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
