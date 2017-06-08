@@ -5339,9 +5339,6 @@ body .woocommerce form .form-row .button {
 .woocommerce-page .woocommerce table.shop_table.shop_table.woocommerce-checkout-review-order-table .product-name {
   width: auto;
 }
-.woocommerce-page .woocommerce table.shop_table.shop_table.woocommerce-checkout-review-order-table .product-quantity.cart-qty {
-  font-family: gotham_mediumregular;
-}
 .woocommerce-page .woocommerce table.shop_table.shop_table.woocommerce-checkout-review-order-table .cart_item {
   border-color: #000;
 }
@@ -5453,6 +5450,9 @@ abbr {
 .woocommerce-thankyou-order-received.woocommerce-notice--success a {
   color: #022c4c;
   border-bottom-color: #022c4c;
+}
+.product-quantity.cart-qty {
+  font-family: gotham_mediumregular;
 }
 .not-found-box {
   min-height: calc(100vh - 36.2em);
