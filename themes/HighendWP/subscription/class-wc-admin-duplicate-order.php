@@ -312,7 +312,7 @@ class WC_Admin_Duplicate_Order {
 	}
 
 	private function add_order_note($original_order_id, $order) {
-		$updateNote = 'This order was duplicated from order ' . $original_order_id . '.';
+		$updateNote = 'This is generated from subscription order ' . $original_order_id . '.';
 		 $order->update_status('pending'); 
 		$order->add_order_note($updateNote);
 	}

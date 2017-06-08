@@ -37,7 +37,7 @@ function subscription() {
     'label'                 => 'Subscription',
     'description'           => 'Subscription Description',
     'labels'                => $labels,
-    'supports'              => array( 'title' ,'author','custom-fields' ),
+    'supports'              => array( 'title'  ),
     'taxonomies'            => array( ''),
     'hierarchical'          => false,
     'public'                => false,
@@ -74,10 +74,12 @@ function my_subscription_columns( $columns ) {
   $columns = array(
     'mtitle' => __( 'Title' ),
     'id' => __( 'Subscription ID' ),
-    'author' => __( 'Subsriber Name' ),
+    'mauthor' => __( 'Subsriber Name' ),
     '_subscription_type' => __( 'Subscription Type' ),
     '_subscription_status' => __( 'Status' ),
-    'date' => __( 'Date' )
+    'next_due_date' => __( 'Next Due Date' ),
+    'date' => __( 'Date' ),
+    'action' => __( 'Action' )
   );
 
   return $columns;
@@ -91,6 +93,8 @@ add_action( 'manage_subscription_posts_custom_column', 'my_manage_subscription_c
 function my_manage_subscription_columns( $column, $post_id ) {
   global $post;
   
+  $_subscription_status = get_post_meta( $post_id, 'status', true );
+
   switch( $column ) {
 
     case '_subscription_type' :
@@ -101,19 +105,17 @@ function my_manage_subscription_columns( $column, $post_id ) {
         echo __( 'Unknown' );
 
       else
-        printf( __( '%s' ), strtoupper($_subscription_type ));
+        printf( __( '%s' ), ucfirst($_subscription_type ));
 
       break;
 
-      case '_subscription_status' :
-
-      $_subscription_status = get_post_meta( $post_id, 'status', true );
+      case '_subscription_status' :      
 
       if ( empty( $_subscription_status ) )
         echo __( 'Unknown' );
 
       else
-        printf( __( '%s' ), strtoupper($_subscription_status ));
+        printf( __( '%s' ), ucfirst($_subscription_status ));
 
       break;
 
@@ -124,8 +126,36 @@ function my_manage_subscription_columns( $column, $post_id ) {
 
       case 'mtitle':
           echo '<b>'. $post->post_title .'<b>';
+      break; 
+
+      case 'next_due_date':
+      
+      if ( !empty( $_subscription_status ) && $_subscription_status !='cancelled')
+      { 
+          $_subscription_status = nextduedate( $post_id );
+          echo $_subscription_status;
+      }
       break;
 
+      case 'action':
+    
+      if ( !empty( $_subscription_status ) && $_subscription_status !='cancelled')
+      { 
+
+        /**
+         * //backend -unsubscribe the subscription -added in filter posts_clauses -function.php
+         */
+        echo '
+        <input type="hidden" id="subscription_id" name="subscription_id" value="'.$post_id.'">
+        <input type="submit" name="unsubscribe" id="unsubscribe" value="Unsubscribe" onclick="submitForm()"/>
+        ';
+      }
+      break;
+
+      case 'mauthor':
+      
+      echo $author = get_the_author($post_id);
+      break;
 
       default :
       break;
@@ -381,6 +411,19 @@ function woocommerce_duplicate_order_additional_fields($new_id,$post){
   $_subscription_id=get_post_meta( $original_orderid, '_subscription_id', true );
 
   update_post_meta( $new_id, '_subscription_id', $_subscription_id );
+  update_post_meta( $new_id, '_scheduler_generated_order', 'yes' );
+
+
+  $mailer = WC()->mailer();
+  $mails = $mailer->get_emails();
+  if ( ! empty( $mails ) ) {
+      foreach ( $mails as $mail ) {            
+          if ( $mail->id == 'customer_processing_order' ) {
+             $mail->trigger( $new_id );
+          }
+       }
+  }
+
   /*
   $dpost = array();
   $post_date=get_the_date('',$pass_subscriptionid);
