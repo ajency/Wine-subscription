@@ -1253,8 +1253,12 @@ function subscription_order_details( $order, $sent_to_admin, $plain_text, $email
 
     $orderid=$order->get_order_number();
     $subscription_id=get_post_meta( $orderid, '_subscription_id', true );
+    $_scheduler_generated_order=get_post_meta( $orderid, '_scheduler_generated_order', true );
 
-    if($subscription_id!=""){
+    if($_scheduler_generated_order=='yes'){
+        
+    }
+    else if($subscription_id!=""){
         $subscription_type=get_post_meta( $subscription_id, '_subscription_type', true );
         $date=get_the_date( $d = 'M d, Y', $subscription_id );
 
