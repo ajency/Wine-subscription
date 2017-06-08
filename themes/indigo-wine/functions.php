@@ -1256,7 +1256,7 @@ function subscription_order_details( $order, $sent_to_admin, $plain_text, $email
     $_scheduler_generated_order=get_post_meta( $orderid, '_scheduler_generated_order', true );
 
     if($_scheduler_generated_order=='yes'){
-        
+
     }
     else if($subscription_id!=""){
         $subscription_type=get_post_meta( $subscription_id, '_subscription_type', true );
@@ -1289,3 +1289,22 @@ add_filter( 'woocommerce_thankyou_order_received_text', 'thankyou_msg_checkout',
 function thankyou_msg_checkout(){
     return 'Thank you. Your order has been received. <a href="/my-account/orders" > Click here to go to your  orders list </a>';
 }
+
+function sp_api_request_url($api_request_url, $request, $ssl) {
+    if ($request !== 'WC_Gateway_Paypal') {
+        return $api_request_url;
+    }
+    //Due to permalink configuration gateway url is http://xxxxxxxx/wc-api/WC_Gateway_Paypal/ when actually it WORKS as http://xxxxxxxx/?wc-api=WC_Gateway_Paypal
+    //So we use the part of the code from woocommerce which we know works
+    if (is_null($ssl)) {
+        $scheme = parse_url(home_url(), PHP_URL_SCHEME);
+    } elseif ($ssl) {
+        $scheme = 'https';
+    } else {
+        $scheme = 'http';
+    }
+    $fix_api_request_url = add_query_arg('wc-api', $request, trailingslashit(home_url('', $scheme)));
+    return $fix_api_request_url;
+}
+
+// add_filter('woocommerce_api_request_url', 'sp_api_request_url', 10, 3);
