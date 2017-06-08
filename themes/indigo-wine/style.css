@@ -3031,11 +3031,13 @@ a[data-readmore-toggle].more:before {
 .woocommerce h4 {
   font-weight: bold;
 }
-.woocommerce-billing-fields__field-wrapper input {
+.woocommerce-billing-fields__field-wrapper input,
+.woocommerce-shipping-fields input {
   background: transparent;
   border-width: 0px 0px 1px 0px;
 }
-.woocommerce-billing-fields__field-wrapper .select2-selection--single {
+.woocommerce-billing-fields__field-wrapper .select2-selection--single,
+.woocommerce-shipping-fields .select2-selection--single {
   border-bottom: 1px solid #ccc !important;
   border: 0px;
   border-radius: 0px;
