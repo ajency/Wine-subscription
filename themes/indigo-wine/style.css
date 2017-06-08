@@ -177,6 +177,8 @@ body {
   display: inline-block;
   position: relative;
   top: -10px;
+  -webkit-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;
 }
 .ind-custom-menu #logo img {
   max-width: 100%;

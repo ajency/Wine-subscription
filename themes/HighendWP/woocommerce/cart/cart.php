@@ -53,11 +53,11 @@ do_action( 'woocommerce_before_cart' );
 	<i class="fa fa-times close-sub-box" aria-hidden="true"></i>
 <!-- 	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover"> -->
 	<div class="why-subscribe__content">
-		<h3 class="title">Why to Subscribe</h3>
+		<h3 class="title">Why Subscribe</h3>
 		<ul class="reason">
-			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Subscribe and be a part of our esteemed club.</li>
-			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Club members have access to our limited releases.</li>
-			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Get exclusive offers and unique tastings and events.</li>
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Wines delivered free to your door as required.</li>
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Access to limited releases and exclusive offers.</li>
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Receive invitations to unique tastings and events.</li>
 		</ul>
 	</div>
 </div>
