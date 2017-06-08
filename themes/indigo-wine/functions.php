@@ -1279,3 +1279,9 @@ function subscription_order_details( $order, $sent_to_admin, $plain_text, $email
     }
 }
 
+
+add_filter( 'woocommerce_thankyou_order_received_text', 'thankyou_msg_checkout', 10);
+
+function thankyou_msg_checkout(){
+    return 'Thank you. Your order has been received. <a href="/my-account/orders" > Click here to go to your  orders list </a>';
+}
