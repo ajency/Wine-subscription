@@ -27,19 +27,19 @@ wc_print_notices();
 	<div class="flex-cols">
 		<div class="cols">
 			<span class="c-icon cal"></span>
-			<p class="content">Add products to the cart. Order qty for wine bottles has to be in multiples of 6. There is no qty constraint for wine packs.</p>
+			<p class="content">Add wine pack or bottles (in multiples of 6) to your cart. Multiple wine packs can be ordered.</p>
 		</div>
 		<div class="cols">
 			<span class="c-icon sub"></span>
-			<p class="content">By default subscription for the order will be turned on when your order meets the requirement. You can opt for either a monthly or quarterly subscription.</p>
+			<p class="content">Once required order quantities reached, set your subscription period for monthly, bimonthly or  quarterly and check the subscription box.</p>
 		</div>
 		<div class="cols">
 			<span class="c-icon pay"></span>
-			<p class="content">You will be notified by a mail when your order is ready in the next month/quarter. The mail will have the payment link.</p>
+			<p class="content">Email notification will be sent to you prior to your next subscription delivery. Click on payment link to initiate payment process.</p>
 		</div>
 		<div class="cols">
 			<span class="c-icon done"></span>
-			<p class="content">Your order will be shipped at your doorstep once you have made a successful payment.</p>
+			<p class="content">Your personalised order will be dispatched for delivery to your door, once payment processed.</p>
 		</div>
 	</div>
 
