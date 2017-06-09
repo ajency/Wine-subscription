@@ -189,9 +189,13 @@
                             if ( $myaccount_page_id ) {
                                 $myaccount_page_url = get_permalink( $myaccount_page_id );
                             }
+                            
+                            $user=wp_get_current_user();
+                            $display_name=$user->user_firstname;
 
                            echo '<div class="user-detail"><div class="user"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-angle-down arrow-down" aria-hidden="true"></i><div class="drop sub-menu">
                            <ul>
+                           <li class="ind-username">Welcome '.$display_name.'</li>
                            <li><a href="'.$myaccount_page_url.'"><i class="fa fa-user" aria-hidden="true"></i> My Account</a></li>
                            <li><a href="'.wp_logout_url( get_permalink() ).'"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li>
                            </ul></div></div></div>';

@@ -155,6 +155,7 @@ jQuery(function(){
 		jQuery('.woocommerce-MyAccount-navigation').toggleClass('active');
 		jQuery('body').toggleClass('of-hidden');
 		jQuery(this).find('.fa').toggleClass('fa-bars fa-times');
+		jQuery('#hb-header').toggleClass('active-index');
 	});
 
 
@@ -325,6 +326,7 @@ jQuery(document).ready(function() {
 	     	jQuery(this).addClass("isDown");
 	     	jQuery('body').removeClass('blocked');
 	     }
+	     jQuery('#hb-header').toggleClass('active-index');
 
      });   
 
