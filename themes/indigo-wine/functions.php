@@ -1256,7 +1256,8 @@ function subscription_order_details( $order, $sent_to_admin, $plain_text, $email
    
     if($subscription_id!=""){
         $subscription_type=get_post_meta( $subscription_id, '_subscription_type', true );
-        $date=get_the_date( $d = 'M d, Y', $subscription_id );
+        // $date=get_the_date( $d = 'M d, Y', $subscription_id );
+        $date=get_post_meta( $subscription_id, 'last_order_date', true );
 
         echo '<h2>Subscription Details</h2>
             <table style="width: 100%;font-family:Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;color: #636363;border-collapse: collapse;text-align: center;">
