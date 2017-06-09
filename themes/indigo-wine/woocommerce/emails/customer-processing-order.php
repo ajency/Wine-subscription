@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @hooked WC_Emails::email_header() Output the email header
  */
 do_action( 'woocommerce_email_header', $email_heading, $email ); 
-
+$orderid=$order->get_order_number();
 $_scheduler_generated_order=get_post_meta( $orderid, '_scheduler_generated_order', true );
 
 if($_scheduler_generated_order!='yes'){
