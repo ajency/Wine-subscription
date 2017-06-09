@@ -1256,27 +1256,41 @@ function subscription_order_details( $order, $sent_to_admin, $plain_text, $email
    
     if($subscription_id!=""){
         $subscription_type=get_post_meta( $subscription_id, '_subscription_type', true );
-        // $date=get_the_date( $d = 'M d, Y', $subscription_id );
-        $date=get_post_meta( $subscription_id, 'last_order_date', true );
+        $startdate=get_the_date( $d = 'M d, Y', $subscription_id );
+        $orderdate=get_post_meta( $subscription_id, 'last_order_date', true );
+          $_scheduler_generated_order=get_post_meta( $orderid, '_scheduler_generated_order', true );
 
-        echo '<h2>Subscription Details</h2>
+   
+        $html= '<h2>Subscription Details</h2>
             <table style="width: 100%;font-family:Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;color: #636363;border-collapse: collapse;text-align: center;">
                 <thead>
                     <tr>
                         <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">ID</th>
                         <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Type</th>
-                        <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Start Date</th>
-                    </tr>
+                        <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Start Date</th>';
+                    
+                    if($_scheduler_generated_order=='yes'){
+                        $html.=    '<th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Subscription for</th>';
+                    }
+                   
+                   $html.=  '</tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">#'.$subscription_id.'</td>
                         <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">'.ucfirst($subscription_type).'</td>
-                        <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">'.$date.'</td>
-                    </tr>
+                        <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">'.$startdate.'</td>';
+                        
+                        if($_scheduler_generated_order=='yes'){
+                           $html.=  '<td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">'.$orderdate.'</td>';
+                        }
+
+                     $html.='</tr>
                 </tbody>        
             </table>
         ';
+
+        echo $html;
     }
 }
 
