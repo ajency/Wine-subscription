@@ -956,7 +956,72 @@
 
 
 
-
+@media screen and (max-width: 768px){
+	.go-back{
+		text-align: center;
+    	margin: 1.5em 0;
+	}
+	.why-subscribe{
+		margin-bottom: 0;
+		&__content{
+			.reason{
+				flex-direction: column;
+				li{
+					border-right: 0;
+					margin: 0.4em 0;
+				}
+			}
+		}
+	}
+	.hb-main-content .woocommerce .shop_table .product-quantity .quantity{
+		justify-content: flex-end;
+	}
+	.subscription-action{
+		flex-direction: column;
+		.toggle-check{
+			justify-content: center;
+    		margin-bottom: 1em;
+		}
+		.content{
+			flex: 0.65;
+    		padding-right: 0;
+    		font-size: 1.05em;
+		}
+		.type-title{
+			text-align: center;
+    		margin-top: 0;
+		}
+	}
+	.h-i-w{
+		margin-top: 1em;
+		.title{
+			text-align: center;
+    		font-size: 1.45em;
+		}
+		.flex-cols{
+			flex-direction: column;
+			.cols{
+				&:first-child,&:last-child{
+					padding: 0 1.5em;
+				}
+				&:after{
+					display: none;
+				}
+			}
+			.content{
+				text-align: center;
+			}
+		}
+	}
+	.coupon-toggle,.checkoutAction{
+		width: 75%;
+		margin: 0 auto;
+		.checkout-btn{
+			padding: 0.75em;
+    		font-size: 1.25em;
+		}
+	}
+}	
 
 
 
