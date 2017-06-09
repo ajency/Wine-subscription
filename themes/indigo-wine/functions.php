@@ -1291,9 +1291,11 @@ function subscription_order_details_before($order, $sent_to_admin, $plain_text, 
         $_customer_user=get_post_meta( $orderid, '_customer_user', true );  
         $user = get_user_by( 'ID', $_customer_user );
         $user_name= $user->display_name;  
+        $subscription_id=get_post_meta( $orderid, '_subscription_id', true );
+        $subscription_type=get_post_meta( $subscription_id, '_subscription_type', true );
 
         echo '<div style="font-size: 15px;line-height: 1.5;margin-top: 15px;margin-bottom: 10px;"><span style="display: block;margin-bottom: 5px;">Hi '.$user_name.',</span>
-                Your subscription order is ready and is awaiting payment. Please visit the link below to make your payment. Your order will be shipped after your payment is successful.</div>
+                Your '.ucfirst($subscription_type).' subscription order is ready and is awaiting payment. Please visit the link below to make your payment. Your order will be shipped after your payment is successful.</div>
                 <a href='.site_url().'/checkout/order-pay/'.$orderid.'?pay_for_order=true&key='.$_order_key.'>Payment link</a>
             ';
     } 
