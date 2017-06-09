@@ -224,7 +224,7 @@ jQuery(function ($) {
               month[0] = "Jan";month[1] = "Feb";month[2] = "Mar";month[3] = "Apr";month[4] = "May";month[5] = "Jun";
               month[6] = "Jul";month[7] = "Aug";month[8] = "Sep";month[9] = "Oct";month[10] = "Nov";month[11] = "Dec";
               var n = month[date.getMonth()];
-               $('.subscribe-val').text(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}) +"\n"+ n+" "+date.getDate()+", "+date.getFullYear());
+               $('.subscribe-val').html(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}) +"<br>"+ n+" "+date.getDate()+", "+date.getFullYear());
                 $('.subscribe-data').removeClass('hidden');   
                  $('.error,.failure').addClass('hidden');   
                  $('.sub-success').removeClass('hidden');   
