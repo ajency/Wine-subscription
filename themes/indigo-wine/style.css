@@ -1087,6 +1087,17 @@ a[data-readmore-toggle].more:before {
   display: -ms-flexbox;
   display: flex;
 }
+@media screen and (max-width: 600px) {
+  .featuredRow .row.products,
+  .fw-content-wrap .row.products,
+  .related .row.products {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
 .featuredRow .row.products .hb-woo-product,
 .fw-content-wrap .row.products .hb-woo-product,
 .related .row.products .hb-woo-product {
@@ -2727,8 +2738,8 @@ a[data-readmore-toggle].more:before {
             justify-content: center;
   }
   #main-content .related.products .products-4 .hb-woo-product.hb-woo-product {
-    margin: inherit;
-    margin-left: inherit !important;
+    width: 80% !important;
+    margin: 0 auto 2em auto !important;
   }
 }
 @media handheld, only screen and (min-width: 768px) and (max-width: 900px) {
