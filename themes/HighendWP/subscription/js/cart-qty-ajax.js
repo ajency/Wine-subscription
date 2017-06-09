@@ -216,6 +216,22 @@ jQuery(function ($) {
         
      });
 
+      $(document).on('change', '.sub-select', function(event) {
+         //event.preventDefault();
+         /* Act on the event */
+         var id='subscription_status';
+
+         if($('#subscription-check').is(":checked")){
+          
+             var subscription_type = $("#sub-type-combo").val();
+
+            subscribe_session(subscription_type);
+         }
+        
+     });
+
+
+
      function subscribe_session(subscription_type){
 
             $.post(cart_qty_ajax.siteapiurl+'subscribe_session', {subscription: subscription_type}, function(data, textStatus, xhr) {
