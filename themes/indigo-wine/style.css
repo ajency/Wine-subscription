@@ -424,6 +424,13 @@ body {
     top: 0;
   }
 }
+.user-detail.user-detail .drop.sub-menu ul li.ind-username {
+  border-bottom: 1px solid;
+  color: #022c4c;
+  margin-top: -0.5em;
+  font-family: gotham_bookregular;
+  padding-left: 1.8em;
+}
 @media only screen and (min-width: 1920px) {
   #main-wrapper.hb-boxed-layout,
   .container {
