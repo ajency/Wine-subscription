@@ -4257,20 +4257,21 @@ body .woocommerce form .form-row .button {
   font-family: 'gotham_lightregular';
   font-size: 0.9em;
 }
-.subscription .sub-select {
-  margin: 0.5em 0 1.5em 0;
-  border-radius: 4px;
-  background-color: transparent;
-  color: #022c4c;
-  font-family: 'gotham_lightregular';
-  font-weight: 600;
-}
 .subscription .brand-button {
   text-align: center;
 }
 .subscription .brand-button .vc_btn3.vc_btn3-color-grey.vc_general {
   padding: 0.7em 1.8em;
   font-size: 1.15em;
+}
+.sub-select {
+  width: 250px;
+  margin: 0.5em 0 1.5em 0;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #022c4c;
+  font-family: 'gotham_lightregular';
+  font-weight: 600;
 }
 .no-sub {
   margin: 1em 0;
