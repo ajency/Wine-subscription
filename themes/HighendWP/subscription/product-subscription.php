@@ -309,6 +309,9 @@ function nextduedate($subscription_id){
   if($_subscription_type=='monthly'){
     $nextduedate= date('Y-m-d', strtotime('+30 days', strtotime($order_date)));
   }
+  elseif($_subscription_type=='bimonthly'){
+    $nextduedate= date('Y-m-d', strtotime('+60 days', strtotime($order_date)));
+  }
   elseif($_subscription_type=='quarterly'){
     $nextduedate= date('Y-m-d', strtotime('+90 days', strtotime($order_date)));
   }
@@ -378,6 +381,9 @@ function cron_process_subscription_order(){
       if($_subscription_type=='monthly' && $last_order_date!=''){
         $next_preorderdate= date('Y-m-d', strtotime('+23 days', strtotime($last_order_date))); // create a order prior to 7 days of actual order date
       }
+      else if($_subscription_type=='bimonthly' && $last_order_date!=''){
+        $next_preorderdate= date('Y-m-d', strtotime('+53 days', strtotime($last_order_date))); // create a order prior to 7 days of actual order date
+      }
       else if($_subscription_type=='quarterly' && $last_order_date!=''){
         $next_preorderdate= date('Y-m-d', strtotime('+83 days', strtotime($last_order_date))); // create a order prior to 7 days of actual order date
       }
@@ -417,6 +423,9 @@ function woocommerce_duplicate_order_additional_fields($new_id,$post){
 
   if($_subscription_type=='monthly' ){
         $order_date= date('Y-m-d', strtotime('+30 days', strtotime($last_order_date))); 
+  }
+  else if($_subscription_type=='bimonthly' ){
+        $order_date= date('Y-m-d', strtotime('+60 days', strtotime($last_order_date))); 
   }
   else if($_subscription_type=='quarterly'){
     $order_date= date('Y-m-d', strtotime('+90 days', strtotime($last_order_date))); 

@@ -26,8 +26,11 @@ do_action( 'woocommerce_before_cart' );
 	
 	$cartlimit=count(WC()->cart->get_cart())>4 ? 'cart-limit' : '';
  
- $_SESSION['subscription_type']='monthly';
-
+ // $_SESSION['subscription_type']='monthly';
+ $checked="";
+	if(isset($_SESSION['subscription_type'])){
+		$checked="checked";
+	}
 ?>
 
 <div class="row clearfix">
@@ -202,7 +205,7 @@ do_action( 'woocommerce_before_cart' );
 	<div class="box-shadow-wrap subscription-action">
 		<div class="toggle-check">
 
-			<input type="checkbox" value="" name="subscription-check" id="subscription-check" class="custom-check" checked />
+			<input type="checkbox" value="" name="subscription-check" id="subscription-check" class="custom-check" <?php echo $checked; ?>/>
 			<div class="content">
 				<p>Convert my order into a subscription</p>
 			</div>
