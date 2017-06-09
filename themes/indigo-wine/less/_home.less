@@ -1184,6 +1184,9 @@ a[data-readmore-toggle]{
 .featuredRow,.fw-content-wrap,.related{
 	.row.products{
 		display: flex;
+		@media screen and (max-width: 600px){
+			flex-direction: column;
+		}
 		.hb-woo-product{
 			width: auto;
 			flex: 1 0 20%;
