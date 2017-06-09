@@ -5119,6 +5119,14 @@ body .woocommerce form .form-row .button {
   }
   .woocommerce-account .woocommerce-MyAccount-content.woocommerce-MyAccount-content .woocommerce-order-details__title {
     font-size: 1.3em;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .woocommerce-account .woocommerce-MyAccount-content.woocommerce-MyAccount-content .woocommerce-order-details__title .entry-date {
+    font-size: 0.8em;
   }
   .woocommerce-account .woocommerce-MyAccount-content.woocommerce-MyAccount-content .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tr th,
   .woocommerce-account .woocommerce-MyAccount-content.woocommerce-MyAccount-content .woocommerce-order-details .woocommerce-table--order-details.woocommerce-table--order-details tr td {
@@ -5297,6 +5305,52 @@ body .woocommerce form .form-row .button {
 .sub-action .sub-unsubscribe {
   padding-left: 1em;
   font-family: gotham_mediumregular;
+}
+@media screen and (max-width: 600px) {
+  #hb-page-title.fixedAdd {
+    margin-top: 0;
+  }
+  .header-sep.fixedAdd {
+    margin-top: 0 !important;
+  }
+  .orderDetail {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .orderDetail .product-entry {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    padding: 0;
+    margin: 0;
+    border-right: 0;
+  }
+  .orderDetail .subscription_table thead tr {
+    border-bottom: 1px solid #ddd;
+  }
+  .orderDetail .sub-type {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    margin-top: 2em;
+    text-align: center;
+  }
+  .sub-action {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .order-title {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5em;
+  }
 }
 .woocommerce-page .woocommerce .woocommerce-message--info.noData {
   display: -webkit-box;
