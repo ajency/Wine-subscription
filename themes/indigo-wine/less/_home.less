@@ -1185,11 +1185,20 @@ a[data-readmore-toggle]{
 	.row.products{
 		display: flex;
 		@media screen and (max-width: 600px){
-			flex-direction: column;
+			white-space: nowrap;
+    		overflow-x: auto;
+    		overflow-y: hidden;
+    		justify-content: flex-start !important;
+    		flex-wrap: nowrap !important;
 		}
 		.hb-woo-product{
 			width: auto;
 			flex: 1 0 20%;
+			@media screen and (max-width: 600px){
+				flex: 1 0 68%;
+    			max-width: 80%;
+    			display: inline-block;
+			}
 		}
 	}
 }

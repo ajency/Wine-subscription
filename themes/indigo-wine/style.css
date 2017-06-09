@@ -1091,11 +1091,16 @@ a[data-readmore-toggle].more:before {
   .featuredRow .row.products,
   .fw-content-wrap .row.products,
   .related .row.products {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-box-pack: start !important;
+    -webkit-justify-content: flex-start !important;
+        -ms-flex-pack: start !important;
+            justify-content: flex-start !important;
+    -webkit-flex-wrap: nowrap !important;
+        -ms-flex-wrap: nowrap !important;
+            flex-wrap: nowrap !important;
   }
 }
 .featuredRow .row.products .hb-woo-product,
@@ -1106,6 +1111,18 @@ a[data-readmore-toggle].more:before {
   -webkit-flex: 1 0 20%;
       -ms-flex: 1 0 20%;
           flex: 1 0 20%;
+}
+@media screen and (max-width: 600px) {
+  .featuredRow .row.products .hb-woo-product,
+  .fw-content-wrap .row.products .hb-woo-product,
+  .related .row.products .hb-woo-product {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 68%;
+        -ms-flex: 1 0 68%;
+            flex: 1 0 68%;
+    max-width: 80%;
+    display: inline-block;
+  }
 }
 @media screen and (max-width: 600px) {
   #main-wrapper .hb-woo-product.hb-woo-product img {
@@ -2704,8 +2721,6 @@ a[data-readmore-toggle].more:before {
 }
 @media screen and (max-width: 600px) {
   .hb-equal-col-height .hb-woo-product.hb-woo-product {
-    width: 80% !important;
-    margin: 0 auto;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     border: 0;
     padding: 0;
@@ -2714,8 +2729,6 @@ a[data-readmore-toggle].more:before {
 @media handheld, only screen and (max-width: 767px) {
   .hb-equal-col-height.hb-equal-col-height .products-4 .hb-woo-product.hb-woo-product,
   .related.products .products-4 .hb-woo-product.hb-woo-product {
-    width: 80% !important;
-    margin: 0 auto;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     border: 0;
     padding: 0;
@@ -2738,8 +2751,7 @@ a[data-readmore-toggle].more:before {
             justify-content: center;
   }
   #main-content .related.products .products-4 .hb-woo-product.hb-woo-product {
-    width: 80% !important;
-    margin: 0 auto 2em auto !important;
+    margin-right: 1em;
   }
 }
 @media handheld, only screen and (min-width: 768px) and (max-width: 900px) {
