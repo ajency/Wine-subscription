@@ -1296,7 +1296,7 @@ function subscription_order_details_before($order, $sent_to_admin, $plain_text, 
 
         echo '<div style="font-size: 15px;line-height: 1.5;margin-top: 15px;margin-bottom: 10px;"><span style="display: block;margin-bottom: 5px;">Hi '.$user_name.',</span>
                 Your '.ucfirst($subscription_type).' subscription order is ready and is awaiting payment. Please visit the link below to make your payment. Your order will be shipped after your payment is successful.</div>
-                <div style="text-align: center;margin: 30px 0;"><a href='.site_url().'/checkout/order-pay/'.$orderid.'?pay_for_order=true&key='.$_order_key.' style="background-color: #022c4c;color: #fff;padding: 0.8em 1.5em;text-decoration: none;">Payment link</a></div>
+                <div style="text-align: center;margin: 30px 0;"><a href='.site_url().'/checkout/order-pay/'.$orderid.'?pay_for_order=true&key='.$_order_key.' style="background-color: #022c4c;color: #fff;padding-top: 0.8em;padding-bottom:0.8em;padding-left: 1.5em;padding-right: 1.5em;text-decoration: none;">Payment link</a></div>
             ';
     } 
 }
