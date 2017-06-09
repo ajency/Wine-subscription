@@ -1264,7 +1264,7 @@ function subscription_order_details( $order, $sent_to_admin, $plain_text, $email
                     <tr>
                         <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">ID</th>
                         <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Type</th>
-                        <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Date</th>
+                        <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Start Date</th>
                     </tr>
                 </thead>
                 <tbody>
