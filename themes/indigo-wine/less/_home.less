@@ -513,6 +513,13 @@ body{
 		&.fixed{
 			background-position: 13.5% 0px;
 		}
+		.col{
+			ul{
+				li{
+					padding: 0 1.15em;
+				}
+			}
+		}
 	}
 }
 
@@ -1184,12 +1191,24 @@ a[data-readmore-toggle]{
 .featuredRow,.fw-content-wrap,.related{
 	.row.products{
 		display: flex;
-		@media screen and (max-width: 600px){
-			flex-direction: column;
+		@media screen and (max-width: 992px){
+			white-space: nowrap;
+    		overflow-x: auto;
+    		overflow-y: hidden;
+    		justify-content: flex-start !important;
+    		flex-wrap: nowrap !important;
 		}
 		.hb-woo-product{
 			width: auto;
 			flex: 1 0 20%;
+			@media screen and (min-width: 601px) and (max-width:992px){
+				flex: 1 0 37%;
+			}
+			@media screen and (max-width: 600px){
+				flex: 1 0 68%;
+    			max-width: 80%;
+    			display: inline-block;
+			}
 		}
 	}
 }
