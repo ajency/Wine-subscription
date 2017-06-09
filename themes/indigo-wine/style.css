@@ -1090,7 +1090,7 @@ a[data-readmore-toggle].more:before {
   display: -ms-flexbox;
   display: flex;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 992px) {
   .featuredRow .row.products,
   .fw-content-wrap .row.products,
   .related .row.products {
@@ -1114,6 +1114,16 @@ a[data-readmore-toggle].more:before {
   -webkit-flex: 1 0 20%;
       -ms-flex: 1 0 20%;
           flex: 1 0 20%;
+}
+@media screen and (min-width: 601px) and (max-width: 992px) {
+  .featuredRow .row.products .hb-woo-product,
+  .fw-content-wrap .row.products .hb-woo-product,
+  .related .row.products .hb-woo-product {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 37%;
+        -ms-flex: 1 0 37%;
+            flex: 1 0 37%;
+  }
 }
 @media screen and (max-width: 600px) {
   .featuredRow .row.products .hb-woo-product,
