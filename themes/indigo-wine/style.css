@@ -509,6 +509,9 @@ body {
   .ind-custom-menu.fixed {
     background-position: 13.5% 0px;
   }
+  .ind-custom-menu .col ul li {
+    padding: 0 1.15em;
+  }
 }
 @media screen and (min-width: 993px) and (max-width: 1200px) {
   .ind-custom-menu .col ul {
