@@ -1287,11 +1287,15 @@ function subscription_order_details_before($order, $sent_to_admin, $plain_text, 
     $_scheduler_generated_order=get_post_meta( $orderid, '_scheduler_generated_order', true );
 
     if($_scheduler_generated_order=='yes'){
-        
-       echo '<div style="font-size: 15px;line-height: 1.5;margin-top: 15px;margin-bottom: 10px;"><span style="display: block;margin-bottom: 5px;">Hi Sairaj,</span>
-            Your subscription order is ready and is awaiting payment. Please visit the link below to make your payment. Your order will be shipped after your payment is successful.</div>
-            <a href="">Payment link</a>
-        ';
+        $_order_key=get_post_meta( $orderid, '_order_key', true );  
+        $_customer_user=get_post_meta( $orderid, '_customer_user', true );  
+        $user = get_user_by( 'ID', $_customer_user );
+        $user_name= $user->display_name;  
+
+        echo '<div style="font-size: 15px;line-height: 1.5;margin-top: 15px;margin-bottom: 10px;"><span style="display: block;margin-bottom: 5px;">Hi '.$user_name.',</span>
+                Your subscription order is ready and is awaiting payment. Please visit the link below to make your payment. Your order will be shipped after your payment is successful.</div>
+                <a href='.site_url().'/checkout/order-pay/'.$orderid.'?pay_for_order=true&key='.$_order_key.'>Payment link</a>
+            ';
     } 
 }
 
