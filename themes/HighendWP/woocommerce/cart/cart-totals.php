@@ -38,12 +38,14 @@ global $woocommerce;
 					<span class="cart-total-title"><?php _e( 'Cart Subtotal', 'woocommerce' ); ?></span>
 					<span class="cart-total-value"><?php echo $woocommerce->cart->get_cart_subtotal(); ?></span>
 				</li>
-
-				<li class="clearfix subscribe-data hidden">
+				<?php 	//if(isset($_SESSION['subscription_type'])){
+					
+				 ?>
+				<li class="clearfix subscribe-data <?php echo isset($_SESSION['subscription_type'])? "": "hidden" ?>">
 					<span class="cart-total-title">Subscription type <br> Start Date</span>
-					<span class="cart-total-value subscribe-val">Monthly <br><?php echo date('M j, Y'); ?></span>
+					<span class="cart-total-value subscribe-val"><?php echo isset($_SESSION['subscription_type'])? ucfirst($_SESSION['subscription_type']): "" ?> <br><?php echo date('M j, Y'); ?></span>
 				</li>
-
+				<?php //} ?>
 				<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
 					<?php wc_cart_totals_shipping_html(); ?>
 				<?php endif; ?>

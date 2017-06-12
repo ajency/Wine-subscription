@@ -186,7 +186,8 @@ jQuery(function ($) {
     
         if($('#subscription-check').is(":checked")){
             $('#'+id).val('yes');
-            var subscription_type = $("input[name='sub-type']:checked").val();
+            // var subscription_type = $("input[name='sub-type']:checked").val();
+            var subscription_type =  $("#sub-type-combo").val();
 
             subscribe_session(subscription_type);
         }
