@@ -346,6 +346,9 @@ jQuery(document).ready(function() {
   });
 
   jQuery('.pricelist .link').click(function(event) {
+        jQuery('.pricelist .link').css({
+          'pointer-events': 'none'         
+        });
         var data = {
             action: 'is_user_logged_in'
         };
@@ -357,7 +360,8 @@ jQuery(document).ready(function() {
                 });
             }
             else{
-              window.location='/wp-login.php?';
+               window.location='/wp-login.php?';
+
             }
         });
   });
