@@ -4785,6 +4785,7 @@ body .woocommerce form .form-row .button {
 .h-i-w .flex-cols .content {
   font-size: 1em;
   color: #002b4e;
+  text-align: center;
 }
 .h-i-w.empty {
   margin-top: 1.5em;
