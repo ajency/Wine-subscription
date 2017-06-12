@@ -345,6 +345,23 @@ jQuery(document).ready(function() {
    
   });
 
+  jQuery('.pricelist .link').click(function(event) {
+        var data = {
+            action: 'is_user_logged_in'
+        };
+
+        jQuery.post(ajaxurl, data, function(response) {
+            if (response == 'yes') {
+                jQuery.post(cart_qty_ajax.siteapiurl + 'tradelist_email',{email:users.email}, function(data, textStatus, xhr) {
+                  console.log(data);
+                });
+            }
+            else{
+              window.location='/wp-login.php?';
+            }
+        });
+  });
+
 });
 
 
