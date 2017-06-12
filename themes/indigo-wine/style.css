@@ -2277,6 +2277,32 @@ a[data-readmore-toggle].more:before {
 .delight-row .wpb_wrapper a[href="#"]:hover {
   color: inherit;
 }
+.element-row.row.pricelist-sent {
+  position: fixed;
+  top: 22em;
+  z-index: 1;
+  right: 5em;
+}
+.element-row.row.pricelist-sent .pl-sent {
+  padding: 1em 1.5em;
+  background-color: #022c4c;
+  font-size: 1.15em;
+  font-weight: 600;
+}
+.element-row.row.pricelist-sent i {
+  padding-right: 0.5em;
+}
+.element-row.row.pricelist-sent .message-text {
+  font-family: gotham_bookregular;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
 #hb-preloader {
   display: -webkit-box;
   display: -webkit-flex;
