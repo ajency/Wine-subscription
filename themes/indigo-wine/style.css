@@ -5742,6 +5742,12 @@ abbr {
 .product-quantity.cart-qty {
   font-family: gotham_mediumregular;
 }
+@media screen and (max-width: 768px) {
+  .woocommerce-checkout .col-8,
+  .woocommerce-checkout .col-4 {
+    width: 100%;
+  }
+}
 .not-found-box {
   min-height: calc(100vh - 36.2em);
 }
