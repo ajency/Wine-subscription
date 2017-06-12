@@ -969,12 +969,18 @@
 
 
 @media screen and (max-width: 768px){
+	.woocommerce{
+		.col-9,.col-3{
+			width: 100%;
+		}
+	}
 	.go-back{
 		text-align: center;
     	margin: 1.5em 0;
 	}
 	.why-subscribe{
 		margin-bottom: 0;
+		flex-direction: column;
 		&__content{
 			.reason{
 				flex-direction: column;
@@ -988,22 +994,6 @@
 	.hb-main-content .woocommerce .shop_table .product-quantity .quantity{
 		justify-content: flex-end;
 	}
-	.subscription-action{
-		flex-direction: column;
-		.toggle-check{
-			justify-content: center;
-    		margin-bottom: 1em;
-		}
-		.content{
-			flex: 0.65;
-    		padding-right: 0;
-    		font-size: 1.05em;
-		}
-		.type-title{
-			text-align: center;
-    		margin-top: 0;
-		}
-	}
 	.h-i-w{
 		margin-top: 1em;
 		.title{
@@ -1011,8 +1001,9 @@
     		font-size: 1.45em;
 		}
 		.flex-cols{
-			flex-direction: column;
+			flex-wrap: wrap;
 			.cols{
+				flex: 1 0 calc(~'50% - 3em');
 				&:first-child,&:last-child{
 					padding: 0 1.5em;
 				}
@@ -1036,7 +1027,34 @@
 }	
 
 
-
+@media screen and (max-width: 600px){
+	.subscription-action{
+		flex-direction: column;
+		.toggle-check{
+			justify-content: center;
+    		margin-bottom: 1em;
+		}
+		.content{
+			flex: 0.65;
+    		padding-right: 0;
+    		font-size: 1.05em;
+		}
+		.type-title{
+			text-align: center;
+    		margin-top: 0;
+    		font-size: 1em;
+    		margin-bottom: 0.5em;
+		}
+		.sub-selection{
+			flex-direction: column;
+		}
+	}
+	.h-i-w{
+		.flex-cols{
+			flex-direction: column;
+		}
+	}
+}
 
 
 

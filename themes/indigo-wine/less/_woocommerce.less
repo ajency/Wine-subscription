@@ -375,6 +375,53 @@
 	}
 }
 
+@media screen and (max-width: 768px){
+	#main-content .left-sidebar .hb-woo-wrapper .hb-sidebar{
+		padding-left: 0;
+	}
+	.left-sidebar{
+		.widget-item {
+			input{
+				 font-size: 0.75em;
+			}
+			input[type='submit']{
+				background-size: 36%;
+    			padding-top: 10px !important;
+			}
+		}
+		.widget_product_search input[type=submit],.ui-slider-range {
+					background-color: @brand-secondary!important;
+		}		
+
+		.Callout-action{
+		    background: url(img/joinnow-img.png) no-repeat;
+		    background-size: cover;
+		    margin-top: 60px;
+		    padding: 35px 20px 50px 20px;
+		    color: #fff;
+		    box-shadow: rgba(0, 0, 0, 0.23) 0 0 0 500px inset;
+		    h3{
+		    	font-weight: 800;
+		    	font-family: gotham_bookregular;
+	    		font-size: 1.25em;
+	    		color: #212121;
+		    }
+		    .second-text{
+		    	font-size: 1.1em;
+		    	margin-bottom: 2em;
+		    }
+		    .brand-button{
+		    	.vc_btn3.vc_btn3-color-grey.vc_general{
+		    		font-size: 1.25em !important;
+		    	}
+		    }
+		}
+		.sort-count {
+			display: none;
+		}
+	}	
+}
+
 @media (max-width: 767px) {
 	.menu-title {
     display: block;
@@ -1320,6 +1367,20 @@ body
 	}	
 }
 
+@media screen and (max-width: 768px){
+	.bottom-result{
+		flex-direction: column;
+		.woocommerce-pagination{
+			margin-top: 0.5em;
+		}
+	}
+	#hb-page-title.fixedAdd{
+		margin-top: 0;
+	}
+	.header-sep.fixedAdd{
+		margin-top: 0 !important;
+	}
+}
 
 @media screen and (max-width: 600px){
 	.res-count{

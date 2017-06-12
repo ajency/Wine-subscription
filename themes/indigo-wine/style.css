@@ -2822,6 +2822,46 @@ a[data-readmore-toggle].more:before {
 .left-sidebar .sort-count {
   display: none;
 }
+@media screen and (max-width: 768px) {
+  #main-content .left-sidebar .hb-woo-wrapper .hb-sidebar {
+    padding-left: 0;
+  }
+  .left-sidebar .widget-item input {
+    font-size: 0.75em;
+  }
+  .left-sidebar .widget-item input[type='submit'] {
+    background-size: 36%;
+    padding-top: 10px !important;
+  }
+  .left-sidebar .widget_product_search input[type=submit],
+  .left-sidebar .ui-slider-range {
+    background-color: #022c4c !important;
+  }
+  .left-sidebar .Callout-action {
+    background: url(img/joinnow-img.png) no-repeat;
+    background-size: cover;
+    margin-top: 60px;
+    padding: 35px 20px 50px 20px;
+    color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.23) 0 0 0 500px inset;
+  }
+  .left-sidebar .Callout-action h3 {
+    font-weight: 800;
+    font-family: gotham_bookregular;
+    font-size: 1.25em;
+    color: #212121;
+  }
+  .left-sidebar .Callout-action .second-text {
+    font-size: 1.1em;
+    margin-bottom: 2em;
+  }
+  .left-sidebar .Callout-action .brand-button .vc_btn3.vc_btn3-color-grey.vc_general {
+    font-size: 1.25em !important;
+  }
+  .left-sidebar .sort-count {
+    display: none;
+  }
+}
 @media (max-width: 767px) {
   .menu-title {
     display: block;
@@ -3687,6 +3727,24 @@ body .woocommerce form .form-row .button {
   font-family: gotham_bookregular;
   color: #022c4c;
   font-size: 1.05em;
+}
+@media screen and (max-width: 768px) {
+  .bottom-result {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .bottom-result .woocommerce-pagination {
+    margin-top: 0.5em;
+  }
+  #hb-page-title.fixedAdd {
+    margin-top: 0;
+  }
+  .header-sep.fixedAdd {
+    margin-top: 0 !important;
+  }
 }
 @media screen and (max-width: 600px) {
   .res-count {
@@ -4746,12 +4804,21 @@ body .woocommerce form .form-row .button {
   top: 3px;
 }
 @media screen and (max-width: 768px) {
+  .woocommerce .col-9,
+  .woocommerce .col-3 {
+    width: 100%;
+  }
   .go-back {
     text-align: center;
     margin: 1.5em 0;
   }
   .why-subscribe {
     margin-bottom: 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
   .why-subscribe__content .reason {
     -webkit-box-orient: vertical;
@@ -4770,6 +4837,46 @@ body .woocommerce form .form-row .button {
         -ms-flex-pack: end;
             justify-content: flex-end;
   }
+  .h-i-w {
+    margin-top: 1em;
+  }
+  .h-i-w .title {
+    text-align: center;
+    font-size: 1.45em;
+  }
+  .h-i-w .flex-cols {
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+  }
+  .h-i-w .flex-cols .cols {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 calc(50% - 3em);
+        -ms-flex: 1 0 calc(50% - 3em);
+            flex: 1 0 calc(50% - 3em);
+  }
+  .h-i-w .flex-cols .cols:first-child,
+  .h-i-w .flex-cols .cols:last-child {
+    padding: 0 1.5em;
+  }
+  .h-i-w .flex-cols .cols:after {
+    display: none;
+  }
+  .h-i-w .flex-cols .content {
+    text-align: center;
+  }
+  .coupon-toggle,
+  .checkoutAction {
+    width: 75%;
+    margin: 0 auto;
+  }
+  .coupon-toggle .checkout-btn,
+  .checkoutAction .checkout-btn {
+    padding: 0.75em;
+    font-size: 1.25em;
+  }
+}
+@media screen and (max-width: 600px) {
   .subscription-action {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -4795,13 +4902,15 @@ body .woocommerce form .form-row .button {
   .subscription-action .type-title {
     text-align: center;
     margin-top: 0;
+    font-size: 1em;
+    margin-bottom: 0.5em;
   }
-  .h-i-w {
-    margin-top: 1em;
-  }
-  .h-i-w .title {
-    text-align: center;
-    font-size: 1.45em;
+  .subscription-action .sub-selection {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
   .h-i-w .flex-cols {
     -webkit-box-orient: vertical;
@@ -4809,26 +4918,6 @@ body .woocommerce form .form-row .button {
     -webkit-flex-direction: column;
         -ms-flex-direction: column;
             flex-direction: column;
-  }
-  .h-i-w .flex-cols .cols:first-child,
-  .h-i-w .flex-cols .cols:last-child {
-    padding: 0 1.5em;
-  }
-  .h-i-w .flex-cols .cols:after {
-    display: none;
-  }
-  .h-i-w .flex-cols .content {
-    text-align: center;
-  }
-  .coupon-toggle,
-  .checkoutAction {
-    width: 75%;
-    margin: 0 auto;
-  }
-  .coupon-toggle .checkout-btn,
-  .checkoutAction .checkout-btn {
-    padding: 0.75em;
-    font-size: 1.25em;
   }
 }
 .woocommerce-account .woocommerce {
@@ -5360,12 +5449,6 @@ body .woocommerce form .form-row .button {
   font-family: gotham_mediumregular;
 }
 @media screen and (max-width: 600px) {
-  #hb-page-title.fixedAdd {
-    margin-top: 0;
-  }
-  .header-sep.fixedAdd {
-    margin-top: 0 !important;
-  }
   .orderDetail {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
