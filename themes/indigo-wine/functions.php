@@ -16,8 +16,15 @@ function highend_parent_theme_enqueue_styles() {
     wp_enqueue_style('font-awesome', get_stylesheet_directory_uri() . '/css/font-awesome.css');
 }
 function theme_js() {
+    $current_user=wp_get_current_user();
+  
 	wp_enqueue_script( 'readmore', get_stylesheet_directory_uri() . '/readmore.min.js', array( 'jquery' ), '1.0', true );
-    wp_enqueue_script( 'theme_js', get_stylesheet_directory_uri() . '/custom.js', array( 'jquery' ), '1.0', true );
+    // wp_enqueue_script( 'theme_js', get_stylesheet_directory_uri() . '/custom.js', array( 'jquery' ), '1.0', true );
+
+    wp_register_script( 'theme_js', get_stylesheet_directory_uri() . '/custom.js', array( 'jquery' ), '1.0', true );
+    wp_localize_script( 'theme_js', 'users', array( 'email' =>  $current_user->user_email));
+    wp_enqueue_script( 'theme_js' );
+
 }
 
 function wpb_custom_new_menu() {
@@ -1107,6 +1114,15 @@ function handle_wp_mail($atts) {
 
         }
     }
+    else  if (isset ($atts ['subject']) && substr_count($atts ['subject'],'Trade Price List Enquiry')>0 ) {
+        if (isset($atts['message'])) {
+            $user = get_user_by( 'email', $atts['to'] );
+            $data=array('email'=>$atts['to'],'display_name'=>$user->display_name);
+            
+           $atts['message'] = generate_email_template('trade_pricelist',$data);
+
+        }
+    }
     return ($atts);
 }
 
@@ -1253,29 +1269,91 @@ function subscription_order_details( $order, $sent_to_admin, $plain_text, $email
 
     $orderid=$order->get_order_number();
     $subscription_id=get_post_meta( $orderid, '_subscription_id', true );
-
+   
     if($subscription_id!=""){
         $subscription_type=get_post_meta( $subscription_id, '_subscription_type', true );
-        $date=get_the_date( $d = 'M d, Y', $subscription_id );
+        $startdate=get_the_date( $d = 'M d, Y', $subscription_id );
+        $orderdate=get_post_meta( $subscription_id, 'last_order_date', true );
+          $_scheduler_generated_order=get_post_meta( $orderid, '_scheduler_generated_order', true );
 
-        echo '<h2>Subscription Details</h2>
+   
+        $html= '<h2>Subscription Details</h2>
             <table style="width: 100%;font-family:Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;color: #636363;border-collapse: collapse;text-align: center;">
                 <thead>
                     <tr>
                         <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">ID</th>
                         <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Type</th>
-                        <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Date</th>
-                    </tr>
+                        <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Start Date</th>';
+                    
+                    if($_scheduler_generated_order=='yes'){
+                        $html.=    '<th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Subscription for</th>';
+                    }
+                   
+                   $html.=  '</tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">#'.$subscription_id.'</td>
                         <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">'.ucfirst($subscription_type).'</td>
-                        <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">'.$date.'</td>
-                    </tr>
+                        <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">'.$startdate.'</td>';
+                        
+                        if($_scheduler_generated_order=='yes'){
+                           $html.=  '<td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">'.$orderdate.'</td>';
+                        }
+
+                     $html.='</tr>
                 </tbody>        
             </table>
         ';
+
+        echo $html;
     }
 }
 
+
+add_action('woocommerce_email_before_order_table','subscription_order_details_before',10,4);
+
+function subscription_order_details_before($order, $sent_to_admin, $plain_text, $email ){
+    $orderid=$order->get_order_number();
+    $_scheduler_generated_order=get_post_meta( $orderid, '_scheduler_generated_order', true );
+
+    if($_scheduler_generated_order=='yes'){
+        $_order_key=get_post_meta( $orderid, '_order_key', true );  
+        $_customer_user=get_post_meta( $orderid, '_customer_user', true );  
+        $user = get_user_by( 'ID', $_customer_user );
+        $user_name= $user->display_name;  
+        $subscription_id=get_post_meta( $orderid, '_subscription_id', true );
+        $subscription_type=get_post_meta( $subscription_id, '_subscription_type', true );
+
+        echo '<div style="font-size: 15px;line-height: 1.5;margin-top: 15px;margin-bottom: 10px;"><span style="display: block;margin-bottom: 5px;">Hi '.$user_name.',</span>
+                Your '.ucfirst($subscription_type).' subscription order is ready and is awaiting payment. Please visit the link below to make your payment. Your order will be shipped after your payment is successful.</div>
+                <div style="text-align: center;margin: 30px 0;"><a href='.site_url().'/checkout/order-pay/'.$orderid.'?pay_for_order=true&key='.$_order_key.' style="background-color: #022c4c;color: #fff;padding-top: 0.8em;padding-bottom:0.8em;padding-left: 1.5em;padding-right: 1.5em;text-decoration: none;">Payment link</a></div>
+            ';
+    } 
+}
+
+
+add_filter( 'woocommerce_thankyou_order_received_text', 'thankyou_msg_checkout', 10);
+
+function thankyou_msg_checkout(){
+    return 'Thank you. Your order has been received. <a href="/my-account/orders" > Click here to go to your  orders list </a>';
+}
+
+function sp_api_request_url($api_request_url, $request, $ssl) {
+    if ($request !== 'WC_Gateway_Paypal') {
+        return $api_request_url;
+    }
+    //Due to permalink configuration gateway url is http://xxxxxxxx/wc-api/WC_Gateway_Paypal/ when actually it WORKS as http://xxxxxxxx/?wc-api=WC_Gateway_Paypal
+    //So we use the part of the code from woocommerce which we know works
+    if (is_null($ssl)) {
+        $scheme = parse_url(home_url(), PHP_URL_SCHEME);
+    } elseif ($ssl) {
+        $scheme = 'https';
+    } else {
+        $scheme = 'http';
+    }
+    $fix_api_request_url = add_query_arg('wc-api', $request, trailingslashit(home_url('', $scheme)));
+    return $fix_api_request_url;
+}
+
+// add_filter('woocommerce_api_request_url', 'sp_api_request_url', 10, 3);

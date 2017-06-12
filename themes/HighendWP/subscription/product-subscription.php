@@ -309,6 +309,9 @@ function nextduedate($subscription_id){
   if($_subscription_type=='monthly'){
     $nextduedate= date('Y-m-d', strtotime('+30 days', strtotime($order_date)));
   }
+  elseif($_subscription_type=='bimonthly'){
+    $nextduedate= date('Y-m-d', strtotime('+60 days', strtotime($order_date)));
+  }
   elseif($_subscription_type=='quarterly'){
     $nextduedate= date('Y-m-d', strtotime('+90 days', strtotime($order_date)));
   }
@@ -378,6 +381,9 @@ function cron_process_subscription_order(){
       if($_subscription_type=='monthly' && $last_order_date!=''){
         $next_preorderdate= date('Y-m-d', strtotime('+23 days', strtotime($last_order_date))); // create a order prior to 7 days of actual order date
       }
+      else if($_subscription_type=='bimonthly' && $last_order_date!=''){
+        $next_preorderdate= date('Y-m-d', strtotime('+53 days', strtotime($last_order_date))); // create a order prior to 7 days of actual order date
+      }
       else if($_subscription_type=='quarterly' && $last_order_date!=''){
         $next_preorderdate= date('Y-m-d', strtotime('+83 days', strtotime($last_order_date))); // create a order prior to 7 days of actual order date
       }
@@ -409,8 +415,35 @@ function woocommerce_duplicate_order_additional_fields($new_id,$post){
    
   $original_orderid= $post->id;
   $_subscription_id=get_post_meta( $original_orderid, '_subscription_id', true );
+  $_subscription_type=get_post_meta( $_subscription_id, '_subscription_type', true );
+  $last_order_date=get_post_meta( $_subscription_id, 'last_order_date', true );
 
   update_post_meta( $new_id, '_subscription_id', $_subscription_id );
+  update_post_meta( $new_id, '_scheduler_generated_order', 'yes' );
+
+  if($_subscription_type=='monthly' ){
+        $order_date= date('Y-m-d', strtotime('+30 days', strtotime($last_order_date))); 
+  }
+  else if($_subscription_type=='bimonthly' ){
+        $order_date= date('Y-m-d', strtotime('+60 days', strtotime($last_order_date))); 
+  }
+  else if($_subscription_type=='quarterly'){
+    $order_date= date('Y-m-d', strtotime('+90 days', strtotime($last_order_date))); 
+  }
+
+  update_post_meta(  $_subscription_id , 'last_order_date', $order_date);
+
+  $mailer = WC()->mailer();
+  $mails = $mailer->get_emails();
+  if ( ! empty( $mails ) ) {
+      foreach ( $mails as $mail ) {            
+          if ( $mail->id == 'customer_processing_order' ) {
+             $mail->heading='Your '.ucfirst($_subscription_type).' subscription order is ready';
+             $mail->trigger( $new_id );
+          }
+       }
+  }
+
   /*
   $dpost = array();
   $post_date=get_the_date('',$pass_subscriptionid);

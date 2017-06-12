@@ -236,11 +236,33 @@ abbr{
 }
 
 
+// Thankyou order received page
+
+.woocommerce-thankyou-order-received{
+	&.woocommerce-notice--success{
+		a{
+			color: @brand-secondary;
+    		border-bottom-color: @brand-secondary;
+		}
+	}
+}
 
 
 
+.product-quantity{
+	&.cart-qty{
+		font-family: gotham_mediumregular;
+	}
+}
 
 
+@media screen and (max-width: 768px){
+	.woocommerce-checkout{
+		.col-8,.col-4{
+			width: 100%;
+		}
+	}
+}
 
 
 

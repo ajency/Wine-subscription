@@ -163,6 +163,7 @@ body{
     	display: inline-block;
     	position: relative;
     	top: -10px;
+    	transition: all .5s ease-in-out;
     	img{
     		max-width: 100%;
     		height: auto;
@@ -284,7 +285,7 @@ body{
 		// position: fixed;
     	// width: calc(~'100% - 30px');
     	padding-top: 0.5em;
-    	padding-bottom: 0em;
+    	// padding-bottom: 0em;
     	align-items: center;
     	background-position: 13.3% -13px;
     	#logo{
@@ -313,6 +314,7 @@ body{
     	}
 	}
 }
+
 
 
 // Fixed section after header to get proper height for content
@@ -396,6 +398,13 @@ body{
 							top: 0;	
 						}
 					}
+				}
+				&.ind-username{
+					border-bottom: 1px solid;
+    				color: @brand-secondary;
+    				margin-top: -0.5em;
+    				font-family: gotham_bookregular;
+    				padding-left: 1.8em;
 				}
 			}
 		}
@@ -503,6 +512,13 @@ body{
 	.ind-custom-menu{
 		&.fixed{
 			background-position: 13.5% 0px;
+		}
+		.col{
+			ul{
+				li{
+					padding: 0 1.15em;
+				}
+			}
 		}
 	}
 }
@@ -1175,9 +1191,24 @@ a[data-readmore-toggle]{
 .featuredRow,.fw-content-wrap,.related{
 	.row.products{
 		display: flex;
+		@media screen and (max-width: 992px){
+			white-space: nowrap;
+    		overflow-x: auto;
+    		overflow-y: hidden;
+    		justify-content: flex-start !important;
+    		flex-wrap: nowrap !important;
+		}
 		.hb-woo-product{
 			width: auto;
 			flex: 1 0 20%;
+			@media screen and (min-width: 601px) and (max-width:992px){
+				flex: 1 0 37%;
+			}
+			@media screen and (max-width: 600px){
+				flex: 1 0 68%;
+    			max-width: 80%;
+    			display: inline-block;
+			}
 		}
 	}
 }

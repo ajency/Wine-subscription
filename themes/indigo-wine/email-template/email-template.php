@@ -692,6 +692,34 @@ $main_html='<!doctype html>
 
                             break;
                           
+                          case 'trade_pricelist':
+                              $table_html.=' 
+                                
+                                <h1 style="text-align: center;font-weight: 100;margin-bottom: 15px;color: #022c4c;"><span style="border-bottom: 2px solid #dbc698;">D</span>ear '.$data['display_name'].'</h1>
+
+                                <div style="font-weight:100;line-height:1.5;font-size:17px">
+
+                                <p style="font-size: 18px;">Thanks for reaching out!!</p>
+
+                                <p>We will look over your message and get back to you as soon as possible.</p>
+
+                                <p><b style="font-weight:500;">In the meantime, you can be our club member, browse through our latest products or check our subscription plans - See more at:</b></p>
+
+                                <div style="line-height: 1.8;margin-top: 10px; font-size: 15px;">
+                                    <a href="http://indigowineco.ajency.in/product-category/wine-packs/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wine Packs</a>
+                                    <a href="http://indigowineco.ajency.in/product-category/wine/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wines</a>
+                                    <a href="http://indigowineco.ajency.in/wine-club/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Be a Club member</a>
+                                    <a href="http://indigowineco.ajency.in/my-account/subscription/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Know about our subscription plans</a>
+                                    <a href="http://indigowineco.ajency.in/#contact" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Contact us here</a>
+                                </div>
+
+                                </div>
+
+                              ';
+                              break;
+
+
+
                           default:
                             $table_html.='No email template';
                             break;

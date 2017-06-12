@@ -26,8 +26,11 @@ do_action( 'woocommerce_before_cart' );
 	
 	$cartlimit=count(WC()->cart->get_cart())>4 ? 'cart-limit' : '';
  
- $_SESSION['subscription_type']='monthly';
-
+ // $_SESSION['subscription_type']='monthly';
+ $checked="";
+	if(isset($_SESSION['subscription_type'])){
+		$checked="checked";
+	}
 ?>
 
 <div class="row clearfix">
@@ -53,11 +56,11 @@ do_action( 'woocommerce_before_cart' );
 	<i class="fa fa-times close-sub-box" aria-hidden="true"></i>
 <!-- 	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover"> -->
 	<div class="why-subscribe__content">
-		<h3 class="title">Why to Subscribe</h3>
+		<h3 class="title">Why Subscribe</h3>
 		<ul class="reason">
-			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Subscribe and be a part of our esteemed club.</li>
-			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Club members have access to our limited releases.</li>
-			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Get exclusive offers and unique tastings and events.</li>
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Wines delivered free to your door as required.</li>
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Access to limited releases and exclusive offers.</li>
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Receive invitations to unique tastings and events.</li>
 		</ul>
 	</div>
 </div>
@@ -202,19 +205,24 @@ do_action( 'woocommerce_before_cart' );
 	<div class="box-shadow-wrap subscription-action">
 		<div class="toggle-check">
 
-			<input type="checkbox" value="" name="subscription-check" id="subscription-check" class="custom-check" checked />
+			<input type="checkbox" value="" name="subscription-check" id="subscription-check" class="custom-check" <?php echo $checked; ?>/>
 			<div class="content">
 				<p>Convert my order into a subscription</p>
 			</div>
 		</div>
-		<div>
-			<p class="type-title">Type of Subscription</p>
-			<div class="switch">
+		<div class="sub-selection">
+			<p class="type-title">Type of Subscription :</p>
+			<!-- <div class="switch">
 				<input id="monthly" class="switch-input" checked="checked" name="sub-type" type="radio" value="monthly" autocomplete="off" />
 				<label class="switch-label switch-label-off" for="monthly">Monthly</label>
 				<input id="quarterly" class="switch-input" name="sub-type" type="radio" value="quarterly" autocomplete="off" /><label class="switch-label switch-label-on" for="quarterly">Quarterly</label>
 				<div class="switch-selection"></div>
-			</div>
+			</div> -->
+			<select class="sub-select" id="sub-type-combo" name="sub-type-combo">
+				<option value="monthly" <?php echo $_SESSION['subscription_type']=="monthly"? "Selected" : ""; ?> >Monthly</option>
+				<option value="bimonthly" <?php echo $_SESSION['subscription_type']=="bimonthly"? "Selected" : ""; ?>>Bimonthly</option>
+				<option value="quarterly" <?php echo $_SESSION['subscription_type']=="quarterly"? "Selected" : ""; ?>>Quarterly</option>
+			</select>
 		</div>
 	</div>
 </div>
@@ -315,19 +323,19 @@ do_action( 'woocommerce_before_cart' );
 	<div class="flex-cols">
 		<div class="cols">
 			<span class="c-icon cal"></span>
-			<p class="content">Add products to the cart. Order qty for wine bottles has to be in multiples of 6. There is no qty constraint for wine packs.</p>
+			<p class="content">Add wine pack or bottles (in multiples of 6) to your cart. Multiple wine packs can be ordered.</p>
 		</div>
 		<div class="cols">
 			<span class="c-icon sub"></span>
-			<p class="content">By default subscription for the order will be turned on when your order meets the requirement. You can opt for either a monthly or quarterly subscription.</p>
+			<p class="content">Once required order quantities reached, set your subscription period for monthly, bimonthly or  quarterly and check the subscription box.</p>
 		</div>
 		<div class="cols">
 			<span class="c-icon pay"></span>
-			<p class="content">You will be notified by a mail when your order is ready in the next month/quarter. The mail will have the payment link.</p>
+			<p class="content">Email notification will be sent to you prior to your next subscription delivery. Click on payment link to initiate payment process.</p>
 		</div>
 		<div class="cols">
 			<span class="c-icon done"></span>
-			<p class="content">Your order will be shipped at your doorstep once you have made a successful payment.</p>
+			<p class="content">Your personalised order will be dispatched for delivery to your door, once payment processed.</p>
 		</div>
 	</div>
 

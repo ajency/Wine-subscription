@@ -186,7 +186,8 @@ jQuery(function ($) {
     
         if($('#subscription-check').is(":checked")){
             $('#'+id).val('yes');
-            var subscription_type = $("input[name='sub-type']:checked").val();
+            // var subscription_type = $("input[name='sub-type']:checked").val();
+            var subscription_type =  $("#sub-type-combo").val();
 
             subscribe_session(subscription_type);
         }
@@ -216,6 +217,22 @@ jQuery(function ($) {
         
      });
 
+      $(document).on('change', '.sub-select', function(event) {
+         //event.preventDefault();
+         /* Act on the event */
+         var id='subscription_status';
+
+         if($('#subscription-check').is(":checked")){
+          
+             var subscription_type = $("#sub-type-combo").val();
+
+            subscribe_session(subscription_type);
+         }
+        
+     });
+
+
+
      function subscribe_session(subscription_type){
 
             $.post(cart_qty_ajax.siteapiurl+'subscribe_session', {subscription: subscription_type}, function(data, textStatus, xhr) {
@@ -224,7 +241,7 @@ jQuery(function ($) {
               month[0] = "Jan";month[1] = "Feb";month[2] = "Mar";month[3] = "Apr";month[4] = "May";month[5] = "Jun";
               month[6] = "Jul";month[7] = "Aug";month[8] = "Sep";month[9] = "Oct";month[10] = "Nov";month[11] = "Dec";
               var n = month[date.getMonth()];
-               $('.subscribe-val').text(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}) +"\n"+ n+" "+date.getDate()+", "+date.getFullYear());
+               $('.subscribe-val').html(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}) +"<br>"+ n+" "+date.getDate()+", "+date.getFullYear());
                 $('.subscribe-data').removeClass('hidden');   
                  $('.error,.failure').addClass('hidden');   
                  $('.sub-success').removeClass('hidden');   

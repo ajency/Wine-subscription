@@ -155,6 +155,7 @@ jQuery(function(){
 		jQuery('.woocommerce-MyAccount-navigation').toggleClass('active');
 		jQuery('body').toggleClass('of-hidden');
 		jQuery(this).find('.fa').toggleClass('fa-bars fa-times');
+		jQuery('#hb-header').toggleClass('active-index');
 	});
 
 
@@ -325,6 +326,7 @@ jQuery(document).ready(function() {
 	     	jQuery(this).addClass("isDown");
 	     	jQuery('body').removeClass('blocked');
 	     }
+	     jQuery('#hb-header').toggleClass('active-index');
 
      });   
 
@@ -341,6 +343,27 @@ jQuery(document).ready(function() {
 
     } 
    
+  });
+
+  jQuery('.pricelist .link').click(function(event) {
+        jQuery('.pricelist .link').css({
+          'pointer-events': 'none'         
+        });
+        var data = {
+            action: 'is_user_logged_in'
+        };
+
+        jQuery.post(ajaxurl, data, function(response) {
+            if (response == 'yes') {
+                jQuery.post(cart_qty_ajax.siteapiurl + 'tradelist_email',{email:users.email}, function(data, textStatus, xhr) {
+                  console.log(data);
+                });
+            }
+            else{
+               window.location='/wp-login.php?';
+
+            }
+        });
   });
 
 });

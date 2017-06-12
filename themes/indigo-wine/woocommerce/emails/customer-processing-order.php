@@ -23,12 +23,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * @hooked WC_Emails::email_header() Output the email header
  */
-do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+do_action( 'woocommerce_email_header', $email_heading, $email ); 
+$orderid=$order->get_order_number();
+$_scheduler_generated_order=get_post_meta( $orderid, '_scheduler_generated_order', true );
+
+if($_scheduler_generated_order!='yes'){
+?>
 
 <p><?php _e( "Your order has been received and is now being processed. Your order details are shown below for your reference:", 'woocommerce' ); ?></p>
 
 <?php
 
+}
 /**
  * @hooked WC_Emails::order_details() Shows the order details table.
  * @hooked WC_Structured_Data::generate_order_data() Generates structured data.
