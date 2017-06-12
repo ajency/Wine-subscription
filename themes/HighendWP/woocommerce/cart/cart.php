@@ -210,8 +210,8 @@ do_action( 'woocommerce_before_cart' );
 				<p>Convert my order into a subscription</p>
 			</div>
 		</div>
-		<div>
-			<p class="type-title">Type of Subscription</p>
+		<div class="sub-selection">
+			<p class="type-title">Type of Subscription :</p>
 			<!-- <div class="switch">
 				<input id="monthly" class="switch-input" checked="checked" name="sub-type" type="radio" value="monthly" autocomplete="off" />
 				<label class="switch-label switch-label-off" for="monthly">Monthly</label>
