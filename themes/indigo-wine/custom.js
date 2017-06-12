@@ -356,7 +356,11 @@ jQuery(document).ready(function() {
         jQuery.post(ajaxurl, data, function(response) {
             if (response == 'yes') {
                 jQuery.post(cart_qty_ajax.siteapiurl + 'tradelist_email',{email:users.email}, function(data, textStatus, xhr) {
-                  console.log(data);
+                  jQuery('.hb-notif-box').removeClass('hidden');
+
+                  setTimeout(function() {
+                    jQuery('.hb-notif-box').addClass('hidden');
+                  }, 3000);
                 });
             }
             else{
