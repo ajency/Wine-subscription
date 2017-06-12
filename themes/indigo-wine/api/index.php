@@ -39,6 +39,14 @@ register_rest_route( $namespace, '/registration', array(
   'callback' => 'registration'
   ) );
 
+/**
+ * registration api
+ */
+register_rest_route( $namespace, '/tradelist_email', array(
+  'methods' =>  WP_REST_Server::CREATABLE,
+  'callback' => 'tradelist_email'
+  ) );
+
 
 
 });
@@ -111,4 +119,18 @@ function createUser($data){
 }
 
 
+/**
+ * [tradelist_email description]
+ * @return [type] [description]
+ */
+function tradelist_email(){
+  
+  $user_email=$_POST['email'];
+  $to=$user_email;
+  $subject="[Indigo Wine] - Trade Price List Enquiry";
+  $message="Trade Price List Enquiry.";
+
+  wp_mail( $to, $subject, $message, $headers = '', $attachments = array() );
+  return true;
+}
 
