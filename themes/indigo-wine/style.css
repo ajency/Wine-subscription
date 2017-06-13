@@ -3920,7 +3920,7 @@ body .woocommerce form .form-row .button {
 .hb-main-content .woocommerce .product-name {
   width: 200px;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .element-row .woocommerce .product-name,
   .hb-main-content .woocommerce .product-name {
     width: auto;
@@ -4866,13 +4866,6 @@ body .woocommerce form .form-row .button {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .why-subscribe__content .reason {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
   .why-subscribe__content .reason li {
     border-right: 0;
     margin: 0.4em 0;
@@ -4913,7 +4906,7 @@ body .woocommerce form .form-row .button {
   }
   .coupon-toggle,
   .checkoutAction {
-    width: 75%;
+    width: 50%;
     margin: 0 auto;
   }
   .coupon-toggle .checkout-btn,
@@ -4921,8 +4914,23 @@ body .woocommerce form .form-row .button {
     padding: 0.75em;
     font-size: 1.25em;
   }
+  .subscripton-action .content,
+  .subscripton-action .type-title {
+    font-size: 1em;
+  }
 }
 @media screen and (max-width: 600px) {
+  .why-subscribe .reason {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .coupon-toggle,
+  .checkoutAction {
+    width: 75%;
+  }
   .subscription-action {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;

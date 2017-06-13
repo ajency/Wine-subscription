@@ -77,7 +77,7 @@
 		}
 		.product-name{
 			width: 200px;
-			@media screen and (max-width: 600px){
+			@media screen and (max-width: 768px){
 				width: auto;
 			}
 		}
@@ -988,7 +988,6 @@
 		flex-direction: column;
 		&__content{
 			.reason{
-				flex-direction: column;
 				li{
 					border-right: 0;
 					margin: 0.4em 0;
@@ -1022,17 +1021,30 @@
 		}
 	}
 	.coupon-toggle,.checkoutAction{
-		width: 75%;
+		width: 50%;
 		margin: 0 auto;
 		.checkout-btn{
 			padding: 0.75em;
     		font-size: 1.25em;
 		}
 	}
+	.subscripton-action{
+		.content,.type-title{
+			font-size: 1em;
+		}
+	}
 }	
 
 
 @media screen and (max-width: 600px){
+	.why-subscribe{
+		.reason{
+			flex-direction: column;
+		}
+	}
+	.coupon-toggle,.checkoutAction{
+		width: 75%;
+	}
 	.subscription-action{
 		flex-direction: column;
 		.toggle-check{
