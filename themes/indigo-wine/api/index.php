@@ -135,7 +135,8 @@ function tradelist_email(){
 
   $to='';
   $subject="[Indigo Wine] - Trade Price List Enquiry";
-  $message="Trade Price List Enquiry.";
+  $message="Hi admin, 
+  You have received a request for trade pricelist from ajaj@ajency.in";
 
   //wp_mail( $to, $subject, $message, $headers = '', $attachments = array() );
 
