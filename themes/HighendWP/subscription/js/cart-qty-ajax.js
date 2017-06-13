@@ -187,12 +187,14 @@ jQuery(function ($) {
         if($('#subscription-check').is(":checked")){
             $('#'+id).val('yes');
             // var subscription_type = $("input[name='sub-type']:checked").val();
+            jQuery('.sub-select').removeClass('fade-select');
             var subscription_type =  $("#sub-type-combo").val();
 
             subscribe_session(subscription_type);
         }
         else{
             $('#'+id).val('no');
+            jQuery('.sub-select').addClass('fade-select');
             $.post(cart_qty_ajax.siteapiurl+'unsubscribe_session', function(data, textStatus, xhr) {
                 $('.subscribe-data').addClass('hidden');  
                 $('.sub-success').addClass('hidden');   

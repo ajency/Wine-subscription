@@ -4376,6 +4376,10 @@ body .woocommerce form .form-row .button {
   background-size: 5px 5px, 5px 5px, 1px 1.5em;
   background-repeat: no-repeat;
 }
+.fade-select {
+  pointer-events: none;
+  opacity: 0.5;
+}
 .no-sub {
   margin: 1em 0;
   font-family: 'gotham_bookregular';
