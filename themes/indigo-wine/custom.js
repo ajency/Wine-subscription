@@ -345,22 +345,24 @@ jQuery(document).ready(function() {
    
   });
 
+  // Price-list email
+
   jQuery('.pricelist .link').click(function(event) {
-        jQuery('.pricelist .link').css({
-          'pointer-events': 'none'         
-        });
+        event.preventDefault();
+
         var data = {
             action: 'is_user_logged_in'
         };
 
         jQuery.post(ajaxurl, data, function(response) {
             if (response == 'yes') {
+            	jQuery('.price-loader').removeClass('hidden');
                 jQuery.post(cart_qty_ajax.siteapiurl + 'tradelist_email',{email:users.email}, function(data, textStatus, xhr) {
                   jQuery('.hb-notif-box').removeClass('hidden');
-
                   setTimeout(function() {
                     jQuery('.hb-notif-box').addClass('hidden');
-                  }, 3000);
+                    jQuery('.pricelist .price-loader').addClass('hidden');
+                  }, 3500);
                 });
             }
             else{

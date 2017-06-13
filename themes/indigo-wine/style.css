@@ -1636,6 +1636,21 @@ a[data-readmore-toggle].more:before {
   font-weight: 600;
   text-decoration: underline;
 }
+.pricelist .price-loader {
+  position: absolute;
+  right: -1em;
+  width: 27%;
+  top: -1em;
+  text-align: center;
+  padding: 1.5em;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: transparent;
+  -webkit-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
+.pricelist .price-loader i {
+  color: #022c4c;
+}
 @media screen and (max-width: 600px) {
   .trade-banner {
     padding: 1em;
