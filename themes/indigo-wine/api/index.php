@@ -131,6 +131,15 @@ function tradelist_email(){
   $message="Trade Price List Enquiry.";
 
   wp_mail( $to, $subject, $message, $headers = '', $attachments = array() );
+
+
+  $to='';
+  $subject="[Indigo Wine] - Trade Price List Enquiry";
+  $message="Trade Price List Enquiry.";
+
+  //wp_mail( $to, $subject, $message, $headers = '', $attachments = array() );
+
+
   return true;
 }
 
