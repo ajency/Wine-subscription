@@ -28,8 +28,10 @@ do_action( 'woocommerce_before_cart' );
  
  // $_SESSION['subscription_type']='monthly';
  $checked="";
+ $fade="fade-select";
 	if(isset($_SESSION['subscription_type'])){
 		$checked="checked";
+		$fade="";
 	}
 ?>
 
@@ -218,7 +220,7 @@ do_action( 'woocommerce_before_cart' );
 				<input id="quarterly" class="switch-input" name="sub-type" type="radio" value="quarterly" autocomplete="off" /><label class="switch-label switch-label-on" for="quarterly">Quarterly</label>
 				<div class="switch-selection"></div>
 			</div> -->
-			<select class="sub-select" id="sub-type-combo" name="sub-type-combo">
+			<select class="sub-select <?php echo $fade; ?>" id="sub-type-combo" name="sub-type-combo">
 				<option value="monthly" <?php echo $_SESSION['subscription_type']=="monthly"? "Selected" : ""; ?> >Monthly</option>
 				<option value="bimonthly" <?php echo $_SESSION['subscription_type']=="bimonthly"? "Selected" : ""; ?>>Bimonthly</option>
 				<option value="quarterly" <?php echo $_SESSION['subscription_type']=="quarterly"? "Selected" : ""; ?>>Quarterly</option>

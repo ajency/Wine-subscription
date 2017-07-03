@@ -29,7 +29,7 @@ if ( ! $product->is_purchasable() ) {
 
 
 	<div itemprop="description" class="product_desc">
-		<label>Description</label>
+		<label>Wine details</label>
 		<?php echo apply_filters( 'woocommerce_short_description', $post->post_excerpt ) ?>
 	</div>
 
