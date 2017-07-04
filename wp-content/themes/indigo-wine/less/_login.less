@@ -1,0 +1,142 @@
+
+// ---------------------------
+// LOGIN STYLES -----------
+// ---------------------------
+
+
+// Plugin code modification 
+
+
+#simplemodal-login-container-osx.simplemodal-container{
+	width: 550px !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto;
+    top: 3em !important;
+    background-color: @brand-secondary;
+    .close{
+    	top: 0.5em;
+    	right: 0.5em;
+    	a{
+    		font-family: roboto;
+    		font-size: 1.5em;
+    	}
+    }
+    form{
+    	font-family: roboto;
+    	.title{
+    		background-color: #fff;
+    		padding: .8em;
+    		font-size: 1.35em;
+    		margin-bottom: 0;
+    		// text-transform: uppercase;
+    	}
+    	.simplemodal-login-fields{
+    		padding: 1.5em 1em;
+    		color: #fff;
+    		#login_error{
+    			color: #c00;
+    		}
+    		label{
+    			font-size: 1.4em;
+    			margin: 0.5em 0 1em 0;
+    			text-indent: 0;
+    			opacity: 0.8;
+    			input{
+    				background-color: transparent;
+				    border: 0;
+				    border-bottom: 1px solid @brand-primary;
+				    line-height: 0;
+				    padding: 0.2em !important;
+				    font-size: 0.8em;
+				    color: #fff;
+				    font-weight: 600;
+				    font-family: roboto;
+				    margin: 0.5em 0;
+    			}
+    		}
+            .message{
+                color: #000;
+            }
+    	}
+    	.forgetmenot{
+    		float: none;
+    		label{
+    			font-size: 1.3em;
+    			color: #fff;
+    			input{
+    				    margin-right: 0.2em;
+    			}
+    		}
+    	}
+    	.reg_passmail{
+    		padding-bottom: 0;
+    		color: @brand-primary;
+    		font-size: 1.25em;
+    		opacity: 0.8;
+    	}
+    	.submit{
+    		float: none;
+    		display: flex;
+    		justify-content: center;
+    		margin: 2em 0 0.5em 0;
+    		input{
+    			border-radius: 0;
+			    box-shadow: none;
+			    background-color: @brand-primary;
+			    border: 0;
+			    padding: 0.8em 1.5em !important;
+			    font-size: 1.2em;
+			    font-family: roboto;
+			    font-weight: 600;
+			    text-transform: capitalize;
+			    letter-spacing: 1px;
+    		}
+    		input[type='submit']{
+    			&:hover{
+					background-color: darken(@brand-primary,10%)
+    			} 
+    		}
+    		.simplemodal-close{
+    			background-color: #fff;
+    			color: #000;
+    			&:hover{
+					background-color: lighten(#fff,10%);
+    			}
+    		}
+    	}
+    	.nav{
+    		color: #fff;
+    		font-size: 1.2em;
+    		opacity: 0.8;
+    		a{
+    			color: #fff;
+    			&:hover{
+    				color: @brand-primary;
+    			}
+    		}
+    	}
+    }
+    &.register-stuff{
+    	#loginform{
+    		display: none !important;
+    	}
+    	#registerform{
+    		display: block !important;
+            // .nav{
+            //     display: none;
+            // }
+    	}
+    }
+}
+
+
+@media screen and (max-width: 550px){
+	#simplemodal-login-container-osx.simplemodal-container{
+		width: 95% !important;
+	}
+}
+
+
+
+

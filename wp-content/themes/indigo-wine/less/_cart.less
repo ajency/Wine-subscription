@@ -1,0 +1,1081 @@
+
+// ---------------------------
+// CART STYLES -----------
+// ---------------------------
+
+
+.woocommerce .col-9{
+	// min-height: 700px;
+	@media screen and (max-width: 600px){
+		min-height: auto;
+	}
+}
+
+
+// .cart-empty + p{
+// 	min-height: 200px;
+// 	@media screen and (min-width: 1500px){
+// 		min-height: 300px;
+// 	}
+// }
+
+// Forcing hidden utility class
+
+.hidden{
+	display: none !important;
+}
+
+
+.element-row,.hb-main-content{
+	.woocommerce{
+		.shop_table{
+			border-collapse: collapse;
+			margin-bottom: 0 !important;
+			th,td{
+				font-family: 'gotham_lightregular';
+    			font-weight: 600;
+    			color: @brand-secondary;
+    			text-align: center;
+    			a{
+    				color: @brand-secondary;	
+    			}
+			}
+			th{
+				font-family: 'gotham_mediumregular';
+			}
+			.cart_item{
+				border-bottom: 1px solid #ddd;
+				.product-subtotal{
+					strike{
+						color: #868686;
+					}
+				}
+			}
+			.actions{
+				padding-bottom: 0 !important;
+			}
+			.product-quantity{
+				.quantity{
+					display: flex;
+    				align-items: center;
+    				justify-content: center;
+				}
+				input.qty{
+					color: @brand-secondary;
+					font-weight: 600;
+				}
+			}
+		}
+		.hb-update-cart{
+			display: none !important;
+		}
+		.simple-read-more{
+			margin-top: 2em;
+		}
+		.checkout-button{
+			font-family: 'gotham_mediumregular' !important;
+		}
+		.product-name{
+			width: 200px;
+			@media screen and (max-width: 768px){
+				width: auto;
+			}
+		}
+	}
+	.calculated_shipping,.hb-woo-cart_totals{
+		.hb-cart-totals-wrap{
+			font-family: 'gotham_lightregular';
+    		font-weight: 600;
+		}
+		.hb-box-cont-header{
+			font-family: 'gotham_mediumregular';
+    		font-weight: 600;
+    		color: @brand-secondary;
+    		border-color: #000;
+    		margin: 0 20px;
+    		padding: 20px 0px 10px 0;
+		}
+		.hb-box-cont-body{
+			padding-top: 10px;
+    		line-height: 2.3;
+    		.hb-cart-totals{
+    			li{
+    				border-color: #000;
+    				border-top-style: solid;
+    				color: @brand-secondary;
+    				span.cart-total-title{
+    					@media screen and (max-width: 1600px){
+    						width: 60%;
+    					}
+    				}
+    				span.cart-total-value{
+    					font-family: gotham_mediumregular;
+    					color: @brand-secondary;
+    					@media screen and (max-width: 1600px){
+    						width: 40%;
+    					}
+    				}
+    				&.subscribe-data{
+    					line-height: 1.8;
+    					.change-type{
+    						text-decoration: underline;
+    						font-family: gotham_mediumregular;
+    						color: @brand-secondary;
+    						display: block;
+    					}
+    				}
+    				&.hb-shipping-wrapper{
+    					.cart-total-title{
+    						width: 45%;
+    					}
+    					.cart-total-value{
+    						width: 55%;
+    					}
+    				}
+    			}
+    		}
+		}
+	}
+	.coupon-toggle{
+		margin-top: 15px;
+		.hb-accordion-tab{
+			font-family: 'gotham_lightregular';
+    		font-weight: 600;
+    		color: @brand-secondary;
+    		border-color: #b9b9b9;
+    		.icon-angle-right{
+				color: @brand-secondary;
+    		}
+		}
+		.hb-accordion-pane{
+			#coupon_code{
+				font-family: gotham_bookregular;
+    			padding: 0.5em 0 !important;
+    			margin-bottom: 0.3em;
+			}
+		}
+	}
+}
+
+#main-wrapper .coupon-code.coupon-code input.button{
+	background-color: @brand-secondary;
+	padding: 0.7em !important;
+
+}
+
+
+.custom-alerts{
+    padding: 0.8em;
+    font-family: 'gotham_bookregular';
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    p{
+    	margin-left: 1.5em;
+    	i{
+    		color: #fff;
+    	}
+    }
+}
+
+.sub-success{
+	background-color: @brand-secondary;
+	color: #fff;
+}
+
+
+
+// Cart modal styles
+.hb-modal-window{
+	.hb-box-cont{
+		background-color: #fff;
+    	border-radius: 0;
+    	overflow: initial;
+    	&-body{
+    		padding: 20px 50px;
+    	}
+	}
+    .hb-box-cont-header{
+		padding: 0;
+		border: 0;
+		position: relative;
+		.close-modal{
+			float: none;
+		    position: absolute;
+		    top: -19px;
+		    left: 0;
+		    right: 0;
+		    margin: 0 auto;
+		    text-align: center;
+		    width: 30px;
+		    height: 30px;
+		    line-height: 28px;
+		    border-radius: 50%;
+		    background-color: @brand-primary;
+		    color: #333132;
+		    font-size: 1.05em;
+		    border: 1px solid;
+		}
+	}
+}
+
+
+
+#subscribe-modal{
+	width: 650px;
+	.subscribe-content{
+		.title{
+			text-align: center;
+		    font-family: 'gotham_mediumregular';
+		    color: @brand-secondary;
+		    font-size: 1.4em;
+		    position: relative;
+		    padding-bottom: 1em;
+		    &:after{
+		    	content: '';
+		    	position: absolute;
+		    	width: 20%;
+		    	margin: 0 auto;
+		    	background-color: @brand-primary;
+		    	bottom: 0;
+    			height: 2px;
+    			left: 0;
+    			right: 0;
+		    }
+		}
+		.success{
+			color: #fff;
+		    background-color: #025a02;
+		    text-align: center;
+		    padding: 0.5em;
+		    font-family: 'gotham_bookregular';
+		    font-weight: 600;
+		    font-size: 1em;
+		}
+		.woocommerce{
+			// margin-bottom: 2em;
+			.extended{
+				height: 400px;
+    			overflow: auto;
+			}
+			.shop_table{
+				border-collapse: collapse;
+			}
+			.cart_item{
+				border-top: 1px solid #ddd;
+			}
+		}
+		.cross-sells{
+			display: none;
+		}
+	}
+	.product-details{
+		display: flex;
+	    align-items: center;
+	    justify-content: space-between;
+	    border: 1px solid #eee;
+	    padding: 1em;
+	    font-weight: 600;
+	    color: @brand-secondary;
+	    margin-bottom: 2em;
+	}
+	.product-name{
+		margin-bottom: 0;
+	}
+	.sub-type{
+		margin: 1em -50px 1em -50px;
+	    padding: 2em 70px 1em 70px;
+	    display: flex;
+	    align-items: center;
+	    justify-content: space-between;
+	    border-top: 1px solid #e4e4e4;
+	    .ty-title{
+	    	margin-bottom: 0;
+    		font-family: gotham_lightregular;
+    		font-weight: 600;
+    		color: @brand-secondary;
+    		font-size: 1.1em;
+	    }
+	}
+	.subscribe-action{
+		display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    padding: 1.5em 50px;
+	    margin: 0px -50px -20px -50px;
+	    background-color: #f2f2f2;
+	    font-weight: 600;
+	    color: @brand-secondary;
+    	a{
+    		color: @brand-secondary;
+    	}
+    	&:not(.sub-link){
+    		display: flex;
+    		a{
+    			background-color: @brand-secondary;
+			    color: #fff;
+			    font-family: 'gotham_mediumregular';
+			    font-size: 1.1em;
+			    border: 0;
+			    background-image: none;
+			    border-radius: 4px;
+			    padding: 0.6em 1.8em;
+			    letter-spacing: 0.5px;
+			    font-weight: 500;
+			    &.ignore{
+			    	background-color: transparent;
+			    	text-decoration: underline;
+			    	color: @brand-secondary;
+			    }
+    		}
+    		.disabled{
+    			background-color: rgba(2, 44, 76, 0.37);
+				pointer-events: none;
+    		}
+    	}
+	}
+	.woocommerce{
+		.col-9{
+			width: 100%;
+			margin-bottom: 0;
+			min-height: auto;
+		}
+		.col-3{
+			display: none;
+		}
+		.woocommerce-cart-form{
+			background-color: transparent;
+			padding: 0;
+		}
+		.shop_table.shop_table{
+			thead{
+				th{
+					font-family: 'gotham_lightregular';
+    				font-weight: 600;
+    				color: @brand-secondary;
+    				text-align: center;
+				}
+			}
+			tr{
+				td{
+					font-family: 'gotham_lightregular';
+    				font-weight: 600;
+    				color: @brand-secondary;
+    				text-align: center;
+    				a{
+    					color: @brand-secondary;
+    				}
+				}
+			}
+			.product-remove,.product-subtotal,.product-price{
+				display: none;
+			}
+			.product-thumbnail{
+				img{
+					margin: 0 auto;
+				}
+			}
+			.actions{
+				display: none;
+			}
+		}
+	}
+}
+
+
+
+@media screen and (max-width: 600px){
+	#subscribe-modal{
+		.hb-box-cont{
+	    	&-body{
+	    		padding: 20px;
+	    	}
+		}
+		.sub-type{
+			margin: 1em -20px 1em -20px;
+			flex-direction: column;
+			.switch{
+				margin-top: 1.5em;
+			}
+		}
+		.subscribe-action{
+			margin: 0em -20px 20px -20px;
+		    color: @brand-secondary;
+		}
+		.woocommerce-cart-form.woocommerce-cart-form .cart .quantity.quantity{
+			justify-content: flex-end;
+		}
+		.woocommerce .col-9{
+			margin-bottom: 0 !important;
+		}
+	}
+	.woocommerce-cart-form .shop_table{
+		.woocommerce-cart-form__cart-item td{
+			padding-right: 0.5em !important;
+			&:last-child{
+				padding-right: 0.5em !important;
+			}
+			&:before{
+				font-family: 'gotham_mediumregular';
+			}
+		}
+	}
+	.woocommerce-page #main-content{
+		margin-top: 0;
+	}
+}
+
+
+
+// ---------------------------
+// SUBSCRIPTION/NOSUBSCRIPTION -----------
+// ---------------------------
+
+.box-wrap{
+	padding: 1em;
+    background-color: #fff;
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.17);
+    margin: 0.2em 0 1em 0;
+    border: 1px solid rgba(220, 198, 153, 0.64);
+    color: @brand-secondary;
+}
+
+
+.no-subscription{
+	text-align: center;
+    margin-bottom: 1.5em;
+    padding: 1.5em 1em;
+    @media screen and (max-width: 600px){
+    	margin-bottom: 2.5em;
+    }
+	.title,.subTitle{
+		font-family: 'gotham_mediumregular';
+	    font-size: 1.2em;
+	    color: @brand-secondary;
+	    margin: 0.5em 0 0 0;
+	    line-height: 1.3;
+	}
+	.subTitle{
+		font-family: gotham_bookregular;
+    	margin: 0.5em 0;
+    	font-weight: 600;
+    	font-size: 1em;
+    	color: rgba(2, 44, 76, 0.77);
+	}
+	.cart-bottle{
+		background-image: url('./img/cart-bottles.png');
+		height: 82px;
+    	width: 88px;
+    	background-repeat: no-repeat;
+    	background-size: contain;
+    	margin: 0 auto;
+	}
+	.sub-started{
+		color: @brand-primary;
+    	font-size: 1.35em;
+    	text-decoration: underline;
+    	font-family: 'gotham_mediumregular';
+    	font-weight: 500;
+	}
+}
+
+.subscription{
+    .title{
+    	font-family: 'gotham_mediumregular';
+    	font-size: 1.15em;
+    	color: #002b4e;
+    }
+    .sub-label{
+    	font-family: 'gotham_lightregular';
+    	font-size: 0.9em;
+    }
+    .brand-button{
+    	text-align: center;
+    	.vc_btn3.vc_btn3-color-grey.vc_general{
+    		padding: 0.7em 1.8em;
+    		font-size: 1.15em;
+    	}
+    }
+}
+
+.sub-select{
+	width: 220px;
+	margin: 0;
+	background-color: @brand-secondary;
+	color: #fff;
+	font-family: 'gotham_bookregular';
+	font-weight: 600;
+    background-image: linear-gradient(45deg, transparent 50%, #fff 50%), linear-gradient(135deg, #fff 50%, transparent 50%), linear-gradient(to right, @brand-secondary, @brand-secondary);
+    background-position: calc(~'100% - 20px') calc(~'1em + 2px'), calc(~'100% - 15px') calc(~'1em + 2px'), calc(~'100% - 2.5em') 0.5em;
+    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+    background-repeat: no-repeat;
+}
+
+.fade-select{
+	pointer-events: none;
+    opacity: 0.5;
+}
+
+.no-sub{
+	margin: 1em 0;
+    font-family: 'gotham_bookregular';
+    text-align: center;
+    color: @brand-secondary;
+    .un-link{
+    	color: @brand-primary;
+    	text-decoration: underline;
+    }
+}
+
+
+//Switcher code
+
+.switch {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 30px;
+  width: 225px;
+  border-radius: 15px;
+  border: 2px solid #d1d2d4;
+}
+
+.switch-label {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  padding: 0;
+  font-weight: 500;
+  line-height: 30px;
+  font-size: 0.85em;
+  color: @brand-secondary;
+  text-align: center;
+  cursor: pointer;
+  text-indent: inherit;
+  font-family: gotham_mediumregular;
+}
+.switch-label:active {
+  font-weight: bold;
+}
+
+.switch-input {
+  display: none;
+}
+
+.switch-input:checked + .switch-label {
+  font-weight: bold;
+  transition: 0.15s ease-out;
+  transition-property: color, text-shadow;
+}
+.switch-input:checked + .switch-label-on ~ .switch-selection {
+  left: 113px;
+}
+
+.switch-selection {
+  position: absolute;
+  z-index: 1;
+  top: -2px;
+  left: 0;
+  display: block;
+  width: 108px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #c8cfd7;
+  border: 2px solid transparent;
+  transition: left 0.15s ease-out;
+}
+
+// Empty cart
+
+.woocommerce-page #main-wrapper .woocommerce .hb-heading.cart-empty{
+	margin-top: 0;
+	border-bottom: 0;
+	padding-top: 0;
+	.cart-image{
+		width: 15%;
+	}
+	& + .aligncenter{
+		a{
+			background-color: @brand-secondary !important;
+    		color: #fff !important;
+		}
+	}
+}
+
+
+// Subscribe overlay
+
+.subscribe-activated{
+	overflow: hidden;
+	#main-content{
+		z-index: 998;
+	}
+	.no-subscription{
+		position: relative;
+    	z-index: 101;
+	}
+	.subscribe-overlay{
+		&.active{
+		    height: 100%;
+		    width: 100%;
+		    position: fixed;
+		    left: 0px;
+		    top: 0px;
+		    z-index: 100;
+		    background-color: rgba(0, 0, 0, 0.88);
+		    display: flex;
+	    	align-items: center;
+	    	justify-content: center;
+	    	flex-direction: column;
+		}
+		.sub-container{
+			text-align: right;
+			margin-top: 2em;
+		}
+		.msg{
+			color: #fff;
+    		font-weight: 600;
+    		font-family: gotham_bookregular;
+    		text-shadow: 1px 1px 1px #000;
+    		line-height: 1.6;
+    		font-size: 1.18em;
+		}
+		.close-Sub_overlay{
+			background-color: @brand-primary;
+    		border: 0;
+    		padding: 0.5em 1.5em;
+    		font-family: gotham_bookregular;
+    		font-weight: 600;
+    		color: #fff;
+    		font-size: 1.1em;
+    		text-shadow: 1px 1px 1px #000;
+		}
+	}
+}
+
+.subscribe-overlay{
+	transition: all 0.5s ease;
+	display: none;
+}
+
+
+
+
+// ---------------------------
+// CART ALERTS -----------
+// ---------------------------
+
+
+.woocommerce.woocommerce,.woocommerce .hb-woo-wraper{
+	& > .woocommerce-message.woocommerce-message,.woocommerce-message.woocommerce-message{
+		border: 1px solid #eee;
+    	background-color: @brand-secondary !important;
+    	color: #fff;
+    	font-family: gotham_bookregular;
+    	&:before{
+    		color: #fff;
+    	}
+    	a{
+    		color: @brand-primary;
+    		text-decoration: underline;
+    		font-weight: 600 !important;
+    		&:hover{
+    			color: @brand-primary;
+    		}
+    	}
+	}
+	.woocommerce-error{
+		background-color: @danger-color !important;
+    	color: #fff;
+    	font-family: gotham_bookregular;
+    	border: 0;
+    	&:before{
+    		color: #fff;
+    	}
+	}
+}
+
+
+// ---------------------------
+// CART UPDATES -----------
+// ---------------------------
+
+
+.go-back{
+	margin-bottom: 1.5em;
+	&__link{
+		color: @brand-secondary;
+    	font-family: gotham_bookregular;
+    	font-size: 1.05em;
+    	padding: 0.5em 0;
+    	position: relative;
+    	i{
+    		font-size: 1.8em;
+    		vertical-align: middle;
+    		padding-bottom: 0.1em;
+    	}
+    	&:after{
+    		content: '';
+    		position: absolute;
+		    bottom: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 2px;
+		    background-color: #002b4e;
+    	}
+    	&:hover{
+    		color: lighten(@brand-secondary,5%);
+    		&:after{
+    			&:hover{
+    				color: lighten(@brand-secondary,5%);
+    			}
+    		}
+    	}
+	}
+}
+
+
+.box-shadow-wrap{
+	box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.17);
+}
+
+
+// Why subscribe box
+
+.why-subscribe{
+	position: relative;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+	color: @brand-secondary;
+	&__content{
+		// padding-left: 0.5em;
+		.title{
+			font-family: gotham_mediumregular;
+    		font-size: 1.45em;
+    		font-weight: 600;
+    		margin-bottom: 0.3em;
+    		border-bottom: 1px solid #ddd;
+    		padding-bottom: 0.3em;
+    		color: @brand-secondary;
+    		margin-top: 0;
+    		text-align: center;
+		}
+		.reason{
+			font-size: 1.05em;
+    		// padding-right: 11em;
+    		line-height: 1.6;
+    		margin-top: 0;
+    		font-family: gotham_bookregular;
+    		margin-bottom: 0;
+    		display: flex;
+    		align-items: center;
+    		li{
+    			margin: 0.3em 0;
+    			border-right: 1px solid #ddd;
+    			padding: 0 0.8em;
+    			display: flex;
+    			align-items: baseline;
+    			text-align: left;
+    			flex: 1 0 calc(~'33.33% - 1.6em');
+    			&:last-child{
+    				border-right: 0;
+    			}
+    		}
+    		i{
+    			padding-right: 0.5em;
+    			color: @brand-primary;
+    		}
+		}
+	}
+}
+
+.close-sub-box{
+	position: absolute;
+    right: 1em;
+    top: 1em;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+// Overrite exisiting image auto
+
+#main-content img.alert-cover{
+	height: 130px;
+}
+
+
+
+.custom-check{
+	margin-right: 8px;
+	position: relative;
+	&:before {
+		content: "\f096";
+		font-family: 'FontAwesome';
+		background-color: #fff;
+		padding: 0;
+		position: absolute;
+		top: -4px;
+		left: -1px;
+		color: @brand-primary;
+		font-size: 1.5em;
+		cursor: pointer;
+	}
+	&:checked {
+		&:before {
+			content: "\f14a";
+		}
+	}
+}
+
+
+.subscription-action{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em;
+    .toggle-check{
+    	flex: 1;
+    	display: flex;
+    	align-items: center;
+    }
+    .custom-check{
+    	&:before{
+    		top: -8px;
+    		left: -3px;
+    		font-size: 2em;
+    	}
+    }
+    .content{
+    	padding: 0 1em;
+    	font-size: 1.15em;
+    	color: @brand-secondary;
+    	p{
+    		font-family: gotham_bookregular;
+    		font-weight: 600;
+    		margin-bottom: 0;
+    	}
+    }
+    .username{
+    	font-weight: 600;
+    }
+    .sub-selection{
+    	display: flex;
+    	align-items: center;
+    }
+    .type-title{
+    	font-size: 1.15em;
+	   	color: @brand-secondary;
+	    margin: 0;
+	    font-family: gotham_bookregular;
+	    padding-right: 0.5em;
+	    font-weight: 600;
+    }
+}
+
+.cart-form{
+	padding-bottom: 0.5em;
+	.shop_table{
+		.cart_item{
+			&:nth-last-child(2){
+				border-bottom: 0;
+			}
+		}
+	}
+}
+
+
+//how it works
+
+.h-i-w{
+	margin-top: 4em;
+	.title{
+		font-family: gotham_mediumregular;
+    	font-weight: 600;
+    	color: #989da9;
+    	font-size: 2.1em;
+    	border-bottom: 1px solid #ddd;
+    	padding-bottom: 0.5em;
+    	margin-bottom: 0.5em;
+	}
+	.flex-cols{
+		display: flex;
+		.cols{
+			padding: 0 1.5em;
+			flex: 1 0 20%;
+			position: relative;
+			&:first-child{
+				padding-left: 0;
+			}
+			&:last-child{
+				padding-right: 0;
+				&:after{
+					display: none;
+				}
+			}
+			&:after{
+				content: "\f061";
+				position: absolute;
+				font: normal normal normal 1.6em FontAwesome;
+			    text-rendering: auto;
+			    -webkit-font-smoothing: antialiased;
+			    top: 2.5em;
+			    right: 0em;
+			    color: @brand-primary;
+			}
+		}
+		.c-icon{
+			display: block;
+			background-image: url('./img/how-sprite.png');
+			background-repeat: no-repeat;
+    		height: 112px;
+    		width: 122px;
+    		margin: 1em auto;
+    		&.sub{
+    			background-position: 0 -9em;
+    		}
+    		&.pay{
+    			background-position: 0 -18.5em;
+    		}
+    		&.done{
+    			background-position: 0 -27.5em;
+    		}
+		}
+		.content{
+			font-size: 1em;
+    		color: #002b4e;
+    		text-align: center;
+		}
+	}
+	&.empty{
+		margin-top: 1.5em;
+	}
+}
+
+
+.checkoutAction{
+	.checkout-btn{
+		background-color: @brand-secondary;
+	    color: #fff;
+	    border: 0;
+	    padding: 1em;
+	    width: 100%;
+	    font-family: gotham_mediumregular;
+	    font-size: 1.3em;
+	    border-radius: 5px;
+	    position:relative;
+	    &:active{
+	    	top: 3px;
+	    }
+	}
+}
+
+
+
+@media screen and (max-width: 768px){
+	.woocommerce{
+		.col-9,.col-3{
+			width: 100%;
+		}
+	}
+	.go-back{
+		text-align: center;
+    	margin: 1.5em 0;
+	}
+	.why-subscribe{
+		margin-bottom: 0;
+		flex-direction: column;
+		&__content{
+			.reason{
+				li{
+					border-right: 0;
+					margin: 0.4em 0;
+				}
+			}
+		}
+	}
+	.hb-main-content .woocommerce .shop_table .product-quantity .quantity{
+		justify-content: flex-end;
+	}
+	.h-i-w{
+		margin-top: 1em;
+		.title{
+			text-align: center;
+    		font-size: 1.45em;
+		}
+		.flex-cols{
+			flex-wrap: wrap;
+			.cols{
+				flex: 1 0 calc(~'50% - 3em');
+				&:first-child,&:last-child{
+					padding: 0 1.5em;
+				}
+				&:after{
+					display: none;
+				}
+			}
+			.content{
+				text-align: center;
+			}
+		}
+	}
+	.coupon-toggle,.checkoutAction{
+		width: 50%;
+		margin: 0 auto;
+		.checkout-btn{
+			padding: 0.75em;
+    		font-size: 1.25em;
+		}
+	}
+	.subscripton-action{
+		.content,.type-title{
+			font-size: 1em;
+		}
+	}
+}	
+
+
+@media screen and (max-width: 600px){
+	.why-subscribe{
+		.reason{
+			flex-direction: column;
+		}
+	}
+	.coupon-toggle,.checkoutAction{
+		width: 75%;
+	}
+	.subscription-action{
+		flex-direction: column;
+		.toggle-check{
+			justify-content: center;
+    		margin-bottom: 1em;
+		}
+		.content{
+			flex: 0.65;
+    		padding-right: 0;
+    		font-size: 1.05em;
+		}
+		.type-title{
+			text-align: center;
+    		margin-top: 0;
+    		font-size: 1em;
+    		margin-bottom: 0.5em;
+		}
+		.sub-selection{
+			flex-direction: column;
+		}
+	}
+	.h-i-w{
+		.flex-cols{
+			flex-direction: column;
+		}
+	}
+}
+
+
+
+
+
+
+

@@ -1,0 +1,361 @@
+// ---------------------------
+// MISC STYLES -----------
+// ---------------------------
+
+// ---------------------------
+// USED THIS FILE ONLY FOR WP LOGIN-REGISTER -----------
+// ---------------------------
+
+@brand-primary: #d1b57c;
+@brand-secondary: #022c4c;
+
+
+// ---------------------------
+// RESET PASSWORD DEFAULT WP MODIFICATION -----------
+// ---------------------------
+
+// Overrite default wp reset form
+
+
+@font-face {
+    font-family: 'gotham_bookregular';
+    src: url('fonts/gotham-book-webfont.eot');
+    src: url('fonts/gotham-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/gotham-book-webfont.woff') format('woff'),
+         url('fonts/gotham-book-webfont.ttf') format('truetype'),
+         url('fonts/gotham-book-webfont.svg#gotham_bookregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'gotham_lightregular';
+    src: url('fonts/gotham-light-webfont.eot');
+    src: url('fonts/gotham-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/gotham-light-webfont.woff') format('woff'),
+         url('fonts/gotham-light-webfont.ttf') format('truetype'),
+         url('fonts/gotham-light-webfont.svg#gotham_lightregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'gotham_mediumregular';
+    src: url('fonts/gotham-medium-webfont.eot');
+    src: url('fonts/gotham-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/gotham-medium-webfont.woff') format('woff'),
+         url('fonts/gotham-medium-webfont.ttf') format('truetype'),
+        url('fonts/gotham-medium-webfont.svg#gotham_mediumregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+#login{
+	width: 450px;
+	@media screen and (max-width: 480px){
+		width: 320px;
+	}
+}
+
+.logo-link{
+	a:focus{
+		outline: 0;
+		box-shadow: none;
+	}
+}
+
+#pass-strength-result{
+	display: none;
+}
+
+.hidden{
+	display: none;
+}
+
+.login-action-register,.login-action-login,.login-action-lostpassword,.login-action-rp,.login-action-resetpass{
+	background-color: rgba(0,0,0,0.75);
+	.login-reg{
+		background-color: @brand-secondary;
+		margin-top: 0;
+		padding: 26px;
+		label{
+			font-size: 1.1em;
+    		margin: 0.5em 0 1em 0;
+    		text-indent: 0;
+    		font-family: gotham_lightregular;
+    		display: block;
+    		color: rgba(255, 255, 255, 0.5);
+		}
+		.input{
+			background-color: transparent;
+		    border: 0;
+		    border-bottom: 1px solid @brand-primary;
+		    line-height: 0;
+		    padding: 0.2em !important;
+		    font-size: 1em;
+		    color: #fff;
+		    font-weight: 500;
+		    font-family: gotham_lightregular;
+		    margin: 0.5em 0;
+		    box-shadow: none;
+		    &:-webkit-autofill{
+		    	transition: background-color 5000s ease-in-out 0s;
+		    	-webkit-text-fill-color: #fff !important;
+		    }
+		}
+		.forgetmenot{
+			float: none;
+			label{
+				font-size: 1.1em;
+			}
+			input[type="checkbox"]{
+				height: 13px;
+				min-height: 13px;
+				width: 13px;
+				min-width: 13px;
+				&:before{
+					margin: -3px 0 0 -4px;
+    				font-size: 1.3em;
+				}
+			}
+		}
+		.submit{
+			margin-top: 2.5em !important;
+    		text-align: center;
+    		.button-primary{
+    			float: none;
+			    border-radius: 0;
+			    box-shadow: none;
+			    background-color: @brand-primary;
+			    border: 0;
+			    padding: 0.35em 1.8em !important;
+			    font-size: 1.15em;
+			    font-weight: 700;
+			    text-transform: capitalize;
+			    letter-spacing: 1px;
+			    text-shadow: none;
+			    font-family: gotham_lightregular;
+			    height: auto;
+			    @media screen and (max-width: 480px){
+			    	padding: 0.6em 1.8em !important;
+			    }
+    		}
+		}
+		.email-notify{
+			font-size: 1.05em;
+		    text-indent: 0;
+		    font-family: gotham_lightregular;
+		    display: block;
+		    color: rgba(255, 255, 255, 0.5);
+		    text-align: center;
+		    margin-bottom: -1em !important;
+		}
+		label[for="user_email"]{
+			position: relative;
+			.required-label{
+				position: absolute;
+    			left: 2.7em;
+			}
+		}
+	}
+	.message{
+		&.login-reg-msg{
+    		// color: #000;
+		}
+		&.register{
+			display: none;
+		}
+	}
+}
+
+
+.login-action-register{
+	&.login{
+		#login{
+			padding: 0.8% 0 0;
+		}	
+	}
+}
+
+
+.required-label{
+	color: #ff353b;
+	padding-left: 0.25em;
+}
+
+
+
+.login{
+	.message,#login_error{
+		font-family: gotham_bookregular;
+    	font-weight: 600;
+    	margin-top: 1em;
+    	background-color: #fff;
+    	color: #022c4c;
+    	border: 0;
+    	text-align: center;
+    	font-size: 1.1em;
+    	box-shadow: 0px -4px 20px 0px rgba(0, 0, 0, 0.13);
+	}
+	#login_error{
+		color: #D8000C;
+    	background-color: #FFBABA;
+		text-align: left;
+    	line-height: 1.5;
+    	font-size: 1.05em;
+    	& > strong{
+    		&:first-child{
+    			&:before{
+	    			content: "\f06a";
+	    			padding-right: 0.5em;
+	    			vertical-align: middle;
+		    		display: inline-block;
+				    font: normal normal normal 1.2em FontAwesome;
+				    text-rendering: auto;
+				    -webkit-font-smoothing: antialiased;
+    			}
+    		}
+    	}
+	}
+	#login{
+		padding: 3% 0 0;
+		h1{
+			a{
+				width: 270px !important;
+    			height: auto;
+    			height: 130px !important;
+    			background-size: 100%;
+    			margin-bottom: 0;
+			}
+		}
+	}
+	#backtoblog{
+	    font-size: 1.15em;
+	    margin: 1em 0;
+	}
+	#nav{
+		margin-top: 1.5em;
+    	color: #fff;
+    	a{
+    		font-size: 1.05em;
+    	}
+	}
+	#backtoblog,#nav{
+    	text-align: center;
+    	a{
+    		color: #fff;
+    		font-family: gotham_lightregular;
+    		&:hover{
+	    		color: @brand-primary;
+	    	}
+	    	&:focus{
+	    		box-shadow: none;
+	    		color: inherit;
+	    	}
+    	}
+	}
+	&.login-action-register{
+		#login_error{
+			strong{
+    			&:before{
+	    			content: "\f06a";
+	    			padding-right: 0.5em;
+	    			vertical-align: middle;
+		    		display: inline-block;
+				    font: normal normal normal 1.2em FontAwesome;
+				    text-rendering: auto;
+				    -webkit-font-smoothing: antialiased;
+    			}
+    		}
+		}
+	}
+}
+
+.login-action-rp,.login-action-resetpass{
+	.login-reg{
+		label{
+			margin-bottom: 0.5em;
+		}
+	}
+}
+
+.user-pass2-wrap{
+	margin-top: 1em;
+	br{
+		display: none;
+	}
+}
+
+
+.indicator-hint{
+	font-size: 1.05em;
+    text-indent: 0;
+    font-family: gotham_lightregular;
+    display: block;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.5em;
+}
+
+// #resetpassform{
+// 	font-family: gotham_bookregular;
+//     font-weight: 600;
+//     background-color: #022c4c;
+//     color: #fff;
+//     margin-top: 0;
+//     box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.36);
+//     label{
+//     	color: #fff;
+//     }
+//     .wp-pwd{
+//     	margin: 1em 0;
+//     	#pass1-text{
+//     		font-family: gotham_bookregular;
+//     		font-size: 1.4em;
+//     	}
+//     	#pass-strength-result{
+//     		font-family: gotham_mediumregular;
+//     	}
+//     }
+//     .submit{
+//     	text-align: center;
+//     	.button.button-large{
+// 			float: none;
+//     		background-color: #d1b57c;
+//     		color: #fff;
+//     		text-shadow: none;
+//     		border-radius: 0;
+//     		padding: 0.5em 1em;
+//     		border: 0;
+//     		height: auto;
+//     		font-size: 1.1em;
+//     		font-weight: 500;
+//     		box-shadow: none;
+//     		transition: all 0.5s ease;
+//     		&:hover{
+//     			background-color: darken(#d1b57c,10%);
+//     		}
+//     	}
+//     }
+// 	& + #nav{
+// 		display: none;
+// 	}
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
