@@ -405,6 +405,53 @@ function cron_process_subscription_order(){
   return 'Subscription Orders Created Succesfully';
 }
 
+
+function subscription_order_reminder_mail(){
+  $query = new WP_Query( array( 'post_status'=>array('wc-pending'),
+  'post_type' => 'shop_order',
+  //'author' => $user_id,
+  'posts_per_page' => -1,
+    'meta_query' => array(
+        array(
+           'key' => '_scheduler_generated_order',
+           'value' => 'yes',
+           'compare' => '='
+        )
+     )
+  ) ) ;
+  $subscription_orders_data = $query->posts;
+  // print_r($subscription_orders_data);
+
+  if(!empty($subscription_orders_data)){
+
+    foreach($subscription_orders_data as $subscription_order_val) {
+
+      $order_id=$subscription_order_val->ID ;
+
+      $_subscription_id=get_post_meta( $subscription_order_val->ID, '_subscription_id', true );
+
+      $created_date=get_the_date( 'Y-m-d', $order_id );
+      $first_reminder= date('Y-m-d', strtotime('+3 days', strtotime($created_date))); 
+      $second_reminder= date('Y-m-d', strtotime('+7 days', strtotime($created_date))); 
+
+      $_subscription_type=get_post_meta( $_subscription_id, '_subscription_type', true );
+
+      if($first_reminder==date('Y-m-d') || $second_reminder==date('Y-m-d')){
+
+        $mailer = WC()->mailer();
+        $mails = $mailer->get_emails();
+        if ( ! empty( $mails ) ) {
+            foreach ( $mails as $mail ) {            
+                if ( $mail->id == 'customer_processing_order' ) {
+                   $mail->heading='Your '.ucfirst($_subscription_type).' subscription order is ready';
+                   $mail->trigger( $order_id );
+                }
+             }
+        }
+      }
+    }
+  }
+}
 // add_action( 'init', 'cron_process_subscription_order');
 
 
