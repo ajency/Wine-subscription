@@ -20,7 +20,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 global $product,$post;
-?>
+
+if ( ! $product->is_purchasable() ) {
+	return;
+} ?>
 
 <div class="hb-separator" style="display:none;"></div>
 
@@ -32,9 +35,6 @@ global $product,$post;
 
 <?php
 
-if ( ! $product->is_purchasable() ) {
-	return;
-} 
 echo wc_get_stock_html( $product );
 
 if ( $product->is_in_stock() ) : ?>

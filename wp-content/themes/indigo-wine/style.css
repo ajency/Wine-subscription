@@ -6,7 +6,7 @@
  Author URI:   http://www.hb-themes.com
  Template:     HighendWP
  Version:      1.0.1
- Tags:		   Responsive, Page-Builder, Drag&Drop, Clean, Modern, Corporate, Multi-Purpose, Multi-Color
+ Tags:       Responsive, Page-Builder, Drag&Drop, Clean, Modern, Corporate, Multi-Purpose, Multi-Color
  Text Domain:  hbthemes
  */
 /* =Theme customization starts here
@@ -3838,6 +3838,9 @@ body .woocommerce form .form-row .button {
 .wc-new-badge,
 .onsale,
 .out-of-stock-badge {
+  display: none;
+}
+.woocommerce-tabs #tab-additional_information .shop_attributes tbody tr th {
   display: none;
 }
 @media screen and (max-width: 600px) {

@@ -287,7 +287,23 @@ function woo_add_custom_general_fields() {
 
   
   echo '</div>';
-    
+
+   echo '<div class="options_group">';
+     woocommerce_wp_text_input( 
+        array( 
+            'id'          => '_header_desc', 
+            'label'       => __( 'Header Description', 'woocommerce' ), 
+            'placeholder' => '',
+            'desc_tip'    => 'true',
+            'class'    => '_header_desc',
+            'description' => __( 'Header Description.', 'woocommerce' ),
+            'type'              => 'text', 
+            'custom_attributes' => array(
+                    'step'  => 'any'                   
+                )  
+        )
+    );
+    echo '</div>';
 }
 
 // Save Fields
@@ -295,13 +311,17 @@ add_action( 'woocommerce_process_product_meta', 'woo_add_custom_general_fields_s
 
 function woo_add_custom_general_fields_save( $post_id ){
     
-    // Text Field
+  
     $woocommerce_text_field = isset($_POST['_sale_discount_price']) ? $_POST['_sale_discount_price'] : 0 ;
     update_post_meta( $post_id, '_sale_discount_price', esc_attr( $woocommerce_text_field ) );
         
-    // Number Field
+
     $woocommerce_number_field = isset($_POST['_sale_discount_percentage']) ? $_POST['_sale_discount_percentage'] : 0 ;
     update_post_meta( $post_id, '_sale_discount_percentage', esc_attr( $woocommerce_number_field ) );
+
+   
+    $woocommerce_text_field = isset($_POST['_header_desc']) ? $_POST['_header_desc'] : 0 ;
+    update_post_meta( $post_id, '_header_desc', esc_attr( $woocommerce_text_field ) );
     
 }
 

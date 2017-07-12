@@ -121,7 +121,19 @@ if ( $page_title_style == 'stroke-title' ){
 				} else if ( vp_metabox('general_settings.hb_page_title_h1', null, $post_id) ) {
 					echo vp_metabox('general_settings.hb_page_title_h1', null, $post_id);
 				} else {
-					the_title();
+
+					if(is_product()){
+						$_product_other_name =get_post_meta($post_id,'_header_desc',true);
+						if($_product_other_name!=''){
+							echo $_product_other_name;
+						}
+						else{
+							the_title();
+						}
+					}
+					else{
+						the_title();
+					}
 				}
 			?>
 			</h1>
