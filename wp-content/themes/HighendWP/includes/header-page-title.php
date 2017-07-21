@@ -100,7 +100,23 @@ if ( $page_title_style == 'stroke-title' ){
 			if ( $page_title_alignment )
 				echo ' ' . $page_title_alignment;
 		?>">
-			<h1 class="<?php echo $page_title_animation; ?>"><?php 
+
+		<?php
+
+			if(is_product()){
+						$_product_other_name =get_post_meta($post_id,'_header_desc',true);
+						if($_product_other_name!=''){
+							$title_hover= $_product_other_name;
+						}
+						else{
+							$title_hover= the_title("","",false);
+						}
+			}
+
+		?>
+			<h1 class="<?php echo $page_title_animation; ?>" title="<?php echo $title_hover; ?>">
+
+			<?php 
 				if ( function_exists('is_product_category') && is_product_category() ){
 					// _e('Product Category', 'hbthemes');
 				} else if ( function_exists('is_shop') && is_shop() ) {
