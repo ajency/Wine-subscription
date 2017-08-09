@@ -342,7 +342,15 @@ add_action( 'admin_enqueue_scripts', 'add_product_admin_scripts', 10, 1 );
 
 function custom_shop_page_redirect() {
     if(( is_product_category() || is_product() || is_cart() || is_shop()) && !is_user_logged_in()){
-        $url =  urlencode( wp_unslash("//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"));
+        
+
+        if ( 0 === strpos($_SERVER['REQUEST_URI'], 'http') ) {
+            $url =  urlencode( wp_unslash("//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"));
+           
+        } else {
+            
+            $url =  urlencode( wp_unslash("https://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"));
+        }
 
           // wp_redirect( home_url('?login=true') ); 
         wp_redirect( home_url('wp-login.php?redirect_to='. $url.'&reauth=1') );
