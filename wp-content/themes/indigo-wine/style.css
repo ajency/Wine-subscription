@@ -3863,6 +3863,16 @@ body .woocommerce form .form-row .button {
 .woocommerce-tabs #tab-additional_information .shop_attributes tbody tr th {
   display: none;
 }
+.coupon-code .input-text {
+  text-align: left !important;
+  text-indent: 10px;
+}
+.coupon-code input[type="submit"] {
+  background-color: #d1b57c !important;
+}
+.coupon-code input[type="submit"]:hover {
+  background-color: #NaNNaNNaN !important;
+}
 @media screen and (max-width: 600px) {
   .woocommerce .col-9 {
     min-height: auto;
