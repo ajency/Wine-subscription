@@ -1120,9 +1120,9 @@ function handle_wp_mail($atts) {
     
     if (isset ($atts ['subject']) && substr_count($atts ['subject'],'Your username and password')>0 ) {
         if (isset($atts['message'])) {
-            $user = get_user_by( 'email', $atts['to'] );
-            $data=array('email'=>$atts['to'],'display_name'=>$user->display_name);
-            
+           $user = get_user_by( 'email', $atts['to'] );
+           $data=array('email'=>$atts['to'],'display_name'=>$user->display_name);
+           $atts['subject']='Welcome to Indigo Wine Co';
            $atts['message'] = generate_email_template('registration_mail',$data);
 
         }
