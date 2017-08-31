@@ -2583,6 +2583,7 @@ a[data-readmore-toggle].more:before {
   font-weight: 800;
   color: #022c4c;
   text-align: center;
+  font-family: 'gotham_bookregular';
 }
 .contact-action {
   text-align: center;
@@ -2594,6 +2595,7 @@ a[data-readmore-toggle].more:before {
   color: #fff;
   font-weight: 600;
   border-radius: 4px;
+  font-family: 'gotham_bookregular';
 }
 .contact-action a:hover {
   color: #fff;
