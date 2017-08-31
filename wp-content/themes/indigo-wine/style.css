@@ -1114,6 +1114,7 @@ a[data-readmore-toggle].more:before {
   -webkit-flex: 1 0 20%;
       -ms-flex: 1 0 20%;
           flex: 1 0 20%;
+  max-width: 20%;
 }
 @media screen and (min-width: 601px) and (max-width: 992px) {
   .featuredRow .row.products .hb-woo-product,
@@ -1123,6 +1124,7 @@ a[data-readmore-toggle].more:before {
     -webkit-flex: 1 0 37%;
         -ms-flex: 1 0 37%;
             flex: 1 0 37%;
+    max-width: 37%;
   }
 }
 @media screen and (max-width: 600px) {
@@ -2768,10 +2770,12 @@ a[data-readmore-toggle].more:before {
 .hb-product-meta-wrapper del .amount,
 .hb-product-meta-wrapper ins .amount {
   font-weight: 600;
+  font-size: 0.9em;
 }
 .hb-product-meta-wrapper .price {
   position: relative !important;
   float: none!important;
+  text-align: center;
   color: #022c4c !important;
 }
 @media screen and (max-width: 500px) {
