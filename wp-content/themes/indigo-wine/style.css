@@ -1055,6 +1055,7 @@ a[data-readmore-toggle].more:before {
 }
 .hb-product-meta .woo-cats {
   min-height: initial;
+  white-space: normal;
 }
 .hb-product-meta .woo-cats .hb-woo-shop-cats {
   margin: 0.4em 0;
