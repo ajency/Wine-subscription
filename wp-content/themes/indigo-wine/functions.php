@@ -18,9 +18,9 @@ function highend_parent_theme_enqueue_styles() {
 function theme_js() {
     $current_user=wp_get_current_user();
   
+    wp_enqueue_script( 'scroll', get_stylesheet_directory_uri() . '/jquery.easeScroll.min.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'readmore', get_stylesheet_directory_uri() . '/readmore.min.js', array( 'jquery' ), '1.0', true );
     // wp_enqueue_script( 'theme_js', get_stylesheet_directory_uri() . '/custom.js', array( 'jquery' ), '1.0', true );
-
     wp_register_script( 'theme_js', get_stylesheet_directory_uri() . '/custom.js', array( 'jquery' ), '1.0', true );
     wp_localize_script( 'theme_js', 'users', array( 'email' =>  $current_user->user_email));
     wp_enqueue_script( 'theme_js' );

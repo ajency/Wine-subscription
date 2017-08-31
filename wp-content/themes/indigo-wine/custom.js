@@ -1,8 +1,11 @@
 (function() {
 
 
-
 jQuery(function(){
+
+
+	jQuery("html").easeScroll();  
+
 
 	// Menu fixed code
 
