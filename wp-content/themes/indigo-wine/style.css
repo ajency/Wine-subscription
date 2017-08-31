@@ -3379,6 +3379,11 @@ body .woocommerce form .form-row .button {
   border-color: #022c4c;
   font-weight: 600;
 }
+@media screen and (min-width: 768px) {
+  .woocommerce-ordering .orderby {
+    margin-right: 1.2em;
+  }
+}
 .product_attr .meta-div {
   color: #022c4c;
   font-size: 1.1em;
