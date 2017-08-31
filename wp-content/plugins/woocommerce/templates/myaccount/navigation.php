@@ -23,11 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'woocommerce_before_account_navigation' );
 ?>
 
-<button class="account-action indigo-fab">
-	<i class="fa fa-bars" aria-hidden="true"></i>
-</button>
-
-<nav class="woocommerce-MyAccount-navigation myAcc-col">
+<nav class="woocommerce-MyAccount-navigation">
 	<ul>
 		<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
 			<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); ?>">

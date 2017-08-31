@@ -5,7 +5,7 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES, Inc
  * Author URI: http://www.yikesinc.com
- * Version: 1.5.14
+ * Version: 1.5.17
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
@@ -53,6 +53,29 @@
 			</div>
 		<?php
 	}
+
+	// When the plugin is uninstalled, brush away all footprints; there shall be no trace.
+	register_uninstall_hook( __FILE__, 'uninstall_custom_product_tabs_for_woocommerce' );
+
+	function uninstall_custom_product_tabs_for_woocommerce() {
+		global $wpdb;
+
+		// Remove all of our 'yikes_woo_products_tabs' post meta
+		$wpdb->delete(
+
+			// Table
+			"{$wpdb->prefix}postmeta",
+
+			// Where
+			array( 'meta_key' => 'yikes_woo_products_tabs' )
+		);
+
+		// Remove our 'yikes_woo_reusable_products_tabs' option
+		delete_option( 'yikes_woo_reusable_products_tabs' );
+
+		// Remove our 'yikes_woo_reusable_products_tabs_applied' option
+		delete_option( 'yikes_woo_reusable_products_tabs_applied' );
+	}
 	
 	/**
 	* Initialize the Custom Product Tab Class
@@ -62,7 +85,7 @@
 		private $tab_data = false;
 
 		/** plugin version number */
-		const VERSION = '1.5.14';
+		const VERSION = '1.5.16';
 
 		/** plugin text domain */
 		const TEXT_DOMAIN = 'yikes-inc-easy-custom-woocommerce-product-tabs';
@@ -194,8 +217,14 @@
 		*/
 		public function enqueue_tab_scripts( $hook ) {
 			global $post;
+			global $wp_version;
 			if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
 				if ( $post->post_type == 'product' ) {
+
+					// Enqueue WordPress' built-in editor functions - added in WPv4.8
+					if ( function_exists( 'wp_enqueue_editor' ) ) {
+						wp_enqueue_editor();
+					}
 
 					// script
 					wp_enqueue_script ( 'repeatable-custom-tabs', plugin_dir_url(__FILE__) . 'js/repeatable-custom-tabs.min.js' , array( 'jquery' ) , 'all' );
@@ -209,7 +238,8 @@
 						'delete_reusable_tab_nonce' 	=> wp_create_nonce( 'yikes_woo_delete_reusable_tab_nonce' ), 
 						'save_product_tabs_nonce' 		=> wp_create_nonce( 'yikes_woo_save_product_tabs_nonce' ),
 						'global_post_id'				=> $post->ID,
-						'get_wp_editor_failure_message' => __('Sorry! An error has occurred while trying to retrieve the editor. Please refresh the page and try again.', 'yikes-inc-easy-custom-woocommerce-product-tabs')
+						'get_wp_editor_failure_message' => __('Sorry! An error has occurred while trying to retrieve the editor. Please refresh the page and try again.', 'yikes-inc-easy-custom-woocommerce-product-tabs'),
+						'wp_version_four_eight'			=> $wp_version >= '4.8' ? true : false
 					) );
 
 					wp_enqueue_script ( 'repeatable-custom-tabs-shared', plugin_dir_url(__FILE__) . 'js/repeatable-custom-tabs-shared.min.js' );
@@ -438,8 +468,8 @@
 
 				// Deal with saving the tab content
 			
-				$tab_title = stripslashes( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_title_' . $i] );
-				$tab_content = stripslashes( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_content_' . $i] );
+				$tab_title   = isset( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_title_' . $i] ) ? stripslashes( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_title_' . $i] ) : '';
+				$tab_content = isset( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_content_' . $i] ) ? stripslashes( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_content_' . $i] ) : '';
 			
 				if ( empty( $tab_title ) && empty( $tab_content ) ) {
 					
@@ -862,7 +892,7 @@
 			$fetch_tab_content = isset( $_POST['fetch_tab_content'] ) ? filter_var( $_POST['fetch_tab_content'], FILTER_VALIDATE_BOOLEAN ) : false;
 
 			// We don't need to pass the content back, and it could be a LOT, so let's just remove it
-			if ( $fetch_tab_content === false ) {
+			if ( $fetch_tab_content === false && ! empty( $saved_tabs ) ) {
 				foreach( $saved_tabs as $key => $tab ) {
 					unset( $saved_tabs[$key]['tab_content'] );
 				}

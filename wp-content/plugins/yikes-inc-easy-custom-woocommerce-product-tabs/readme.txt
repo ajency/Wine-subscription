@@ -3,10 +3,10 @@ Contributors: yikesinc, eherman24, liljimmi, yikesitskevin
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
-Tested up to: 4.7.4
+Tested up to: 4.8.1
 Requires WooCommerce at least: 3.0.0
-Tested WooCommerce up to: 3.0.5
-Stable tag: 1.5.14
+Tested WooCommerce up to: 3.1.2
+Stable tag: 1.5.17
 License: GPLv2 or later
 
 Add custom tabs with content to products in WooCommerce. 
@@ -20,6 +20,8 @@ Individual product tabs are managed on the WooCommerce Edit Product screen and c
 Tab content areas use the standard WordPress text editor and may contain text, images, html or shortcodes. 
 
 If you experience any problems, please submit a New Issue on our [Github Issue Tracker](https://github.com/yikesinc/yikes-inc-easy-custom-woocommerce-product-tabs/issues) and we'll look in to it as soon as possible.
+
+This plugin is compatible with WPML.
 
 <i>This plugin is a fork of <a href="https://wordpress.org/plugins/woocommerce-custom-product-tabs-lite/" target="_blank">SkyVerge WooCommerce Custom Product Tabs Lite</a></i>
 
@@ -73,6 +75,16 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 
 == Changelog ==
+
+= 1.5.17 - Auguest 23rd, 2017 = 
+* Cleaning up some PHP Notices being thrown - thanks to @ZombiEquinox on GitHub for reporting this
+* Updating readme compatibility values
+
+= 1.5.16 - Auguest 1st, 2017 = 
+* Adding a proper deactivation hook. The plugin will leave no trace.
+
+= 1.5.15 - June 8th, 2017 =
+* WordPress 4.8 support - using the new JavaScript Editor API functions to instantiate the editor and removed requiring WordPress' wpembed plugin
 
 = 1.5.14 - May 8th, 2017 =
 * Updating some CSS for the admin tabs table - the table should now render correctly regardless of "Visual" or "Text" tab and the saved tabs list should include a scrollbar if necessary
