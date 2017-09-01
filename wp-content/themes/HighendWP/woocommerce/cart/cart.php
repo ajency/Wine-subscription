@@ -47,7 +47,7 @@ do_action( 'woocommerce_before_cart' );
 </div>
 
 
-<div class="hb-notif-box custom-alerts error failure hidden"><div class="message-text"><p><i class="fa-check-circle"></i>Your current subscription has been cancelled.</p></div></div>
+<div class="hb-notif-box custom-alerts error failure hidden"><div class="message-text"><p><i class="fa fa-check-circle" style="color: #fff;"></i>Your current subscription has been cancelled.</p></div></div>
 
 <div class="hb-notif-box custom-alerts sub-success hidden"><div class="message-text"><p><i class="fa fa-check-circle"></i> Success!!! Your Subscription has been saved</p></div></div>
 
