@@ -215,6 +215,10 @@
 					font-family: gotham_mediumregular;
 				}
 			}
+			@media screen and (min-width: 992px){
+				width: 20%;
+    			text-align: center;
+			}
 		}
 		.cust-addr{
 			border-left: 1px solid #ddd;
@@ -294,6 +298,13 @@
 
 
 @media screen and (max-width: 600px){
+	.woocommerce .woocommerce-customer-details{
+		.cust-addr,.cust-detail{
+			padding-left: 0;
+    		border: 0;
+    		text-align: center;
+		}
+	} 
 	.woocommerce-account .woocommerce .myAcc-col{
 		margin-top: 0;
     	li{

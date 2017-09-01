@@ -5230,6 +5230,12 @@ body .woocommerce form .form-row .button {
   color: #8c8c8c;
   font-family: gotham_mediumregular;
 }
+@media screen and (min-width: 992px) {
+  .woocommerce .woocommerce-customer-details .cust-detail {
+    width: 20%;
+    text-align: center;
+  }
+}
 .woocommerce .woocommerce-customer-details .cust-addr {
   border-left: 1px solid #ddd;
   padding-left: 3em;
@@ -5334,6 +5340,12 @@ body .woocommerce form .form-row .button {
   top: 1em !important;
 }
 @media screen and (max-width: 600px) {
+  .woocommerce .woocommerce-customer-details .cust-addr,
+  .woocommerce .woocommerce-customer-details .cust-detail {
+    padding-left: 0;
+    border: 0;
+    text-align: center;
+  }
   .woocommerce-account .woocommerce .myAcc-col {
     margin-top: 0;
   }
