@@ -369,7 +369,9 @@ jQuery(document).ready(function() {
                 });
             }
             else{
-               window.location='/wp-login.php?';
+               // window.location='/wp-login.php?';
+               jQuery('#PriceList-modal').parent().addClass('hb-visible-modal');
+               jQuery('#PriceList-modal').addClass('animate-modal');
 
             }
         });

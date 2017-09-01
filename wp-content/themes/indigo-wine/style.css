@@ -2447,6 +2447,56 @@ a[data-readmore-toggle].more:before {
             transform-origin: 0 0;
   }
 }
+#PriceList-modal .pricelist-title {
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.05em;
+}
+#PriceList-modal br {
+  display: none;
+}
+#PriceList-modal input {
+  border: 0;
+  border-bottom: 2px solid #cdbb93;
+  background-color: transparent;
+  font-size: 1.15em;
+  font-weight: 600;
+  font-family: roboto;
+  width: 100%;
+  padding-left: 0 !important;
+}
+#PriceList-modal input.wpcf7-not-valid {
+  border: 0 !important;
+  border-bottom: solid 1px #F00!important;
+  box-shadow: none;
+}
+#PriceList-modal .wpcf7-not-valid-tip {
+  text-align: center;
+}
+#PriceList-modal .wpcf7-response-output {
+  border: 0;
+  padding: 0.6em;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-top: 0;
+}
+#PriceList-modal input[type='submit'] {
+  width: 100px;
+  margin: 1.5em auto 0 auto;
+  display: inherit;
+  background-color: #002b4e;
+  box-shadow: none;
+  font-size: 0.95em;
+  padding: 0.8em 1em !important;
+  height: auto;
+}
+#PriceList-modal .ajax-loader {
+  display: inherit;
+  margin: 0 auto;
+}
+.vc_row.no-margin {
+  margin-bottom: -1px;
+}
 #simplemodal-login-container-osx.simplemodal-container {
   width: 550px !important;
   left: 0 !important;
