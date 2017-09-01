@@ -4150,6 +4150,9 @@ body .woocommerce form .form-row .button {
 .custom-alerts p i {
   color: #fff;
 }
+.custom-alerts.failure {
+  background-color: #022c4c;
+}
 .sub-success {
   background-color: #022c4c;
   color: #fff;
