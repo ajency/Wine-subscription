@@ -341,7 +341,10 @@ add_action( 'admin_enqueue_scripts', 'add_product_admin_scripts', 10, 1 );
 
 
 function custom_shop_page_redirect() {
-    if(( is_product_category() || is_product() || is_cart() || is_shop()) && !is_user_logged_in()){
+    if($_SERVER['X-Cache-Group']=='bot'){
+      //no action
+    }
+    else if(( is_product_category() || is_product() || is_cart() || is_shop()) && !is_user_logged_in()){
         
 
         if ( 0 === strpos($_SERVER['REQUEST_URI'], 'http') ) {
