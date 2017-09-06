@@ -5079,15 +5079,13 @@ body .woocommerce form .form-row .button {
   .subscription-action .type-title {
     text-align: center;
     margin-top: 0;
-    font-size: 1em;
-    margin-bottom: 0.5em;
+    font-size: 0.95em;
+    margin-bottom: 0em;
   }
-  .subscription-action .sub-selection {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
+  .subscription-action .sub-select {
+    font-size: 0.9em;
+    width: 160px;
+    padding: 0.8em 1em !important;
   }
   .h-i-w .flex-cols {
     -webkit-box-orient: vertical;
