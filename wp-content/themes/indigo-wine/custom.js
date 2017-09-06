@@ -208,6 +208,8 @@ jQuery(function(){
 	// 	jQuery(this).parent().parent().parent('.hb-product-meta-wrapper').siblings('.hb-woo-image-wrap').find('.add_to_cart_button').trigger("click");
 	// });
 
+jQuery(".orderby option[value='date']").text('Sort by newest first');
+
 
 	function opacShow(){
 		jQuery('.discount').addClass('active');	
