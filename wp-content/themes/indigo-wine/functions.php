@@ -341,7 +341,10 @@ add_action( 'admin_enqueue_scripts', 'add_product_admin_scripts', 10, 1 );
 
 
 function custom_shop_page_redirect() {
-    if(( is_product_category() || is_product() || is_cart() || is_shop()) && !is_user_logged_in()){
+    if($_SERVER['X-Cache-Group']=='bot'){
+      //no action
+    }
+    else if(( is_product_category() || is_product() || is_cart() || is_shop()) && !is_user_logged_in()){
         
 
         if ( 0 === strpos($_SERVER['REQUEST_URI'], 'http') ) {
@@ -1385,3 +1388,11 @@ function sp_api_request_url($api_request_url, $request, $ssl) {
 }
 
 // add_filter('woocommerce_api_request_url', 'sp_api_request_url', 10, 3);
+
+/*
+* Add customer email to Cancelled Order recipient list
+*/
+function wc_cancelled_order_add_customer_email( $recipient, $order ){
+return $recipient . ',' . $order->billing_email;
+}
+add_filter( 'woocommerce_email_recipient_cancelled_order', 'wc_cancelled_order_add_customer_email', 10, 2 );
