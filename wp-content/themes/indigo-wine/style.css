@@ -2156,6 +2156,12 @@ a[data-readmore-toggle].more:before {
   .indigo-m-menu .bottom .end li:last-child {
     border-bottom: 0;
   }
+  .indigo-m-menu .bottom .sub-menu li {
+    border-bottom: 0;
+  }
+  .indigo-m-menu .bottom .sub-menu li:last-child {
+    border-bottom: 0;
+  }
   .indigo-m-menu .m-close {
     position: fixed;
     top: 0.5em;
@@ -2509,6 +2515,18 @@ a[data-readmore-toggle].more:before {
 }
 .vc_row.no-margin {
   margin-bottom: -1px;
+}
+.logoCenter {
+  background-image: url('img/logo-full.png');
+  background-repeat: no-repeat;
+  height: 47px;
+  width: 185px;
+  background-position: 50% 130%;
+  display: block;
+  background-size: cover;
+  position: relative;
+  top: 5px;
+  left: -10px;
 }
 #simplemodal-login-container-osx.simplemodal-container {
   width: 550px !important;
