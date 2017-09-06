@@ -119,6 +119,13 @@ body {
   text-transform: inherit;
   padding: 0.2em 1.8em;
 }
+@media screen and (max-width: 650px) {
+  #main-wrapper#main-wrapper .single_add_to_cart_button {
+    padding: 0em 1em;
+    font-size: 1em;
+    margin-top: -4px;
+  }
+}
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .brand-button .vc_btn3.vc_btn3-color-grey.vc_general {
     font-size: 1.2em;
