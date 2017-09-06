@@ -4141,10 +4141,11 @@ body .woocommerce form .form-row .button {
   padding: 0.8em;
   font-family: 'gotham_bookregular';
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1em;
   margin-bottom: 1em;
 }
 .custom-alerts p {
+  font-family: 'gotham_bookregular';
   margin-left: 1.5em;
 }
 .custom-alerts p i {
