@@ -145,10 +145,11 @@ function my_manage_subscription_columns( $column, $post_id ) {
         /**
          * //backend -unsubscribe the subscription -added in filter posts_clauses -function.php
          */
-        echo '
-        <input type="hidden" id="subscription_id" name="subscription_id" value="'.$post_id.'">
-        <input type="submit" name="unsubscribe" id="unsubscribe" value="Unsubscribe" onclick="submitForm()"/>
-        ';
+        echo "
+        <form name='frm_unsubscribe' action='edit.php?post_type=subscription'>
+        <input type='hidden' id='subscription_id' name='subscription_id' value='".$post_id."'>";
+        echo '<input type="submit" name="unsubscribe" id="unsubscribe" value="Unsubscribe" onclick="submitForm()"/>
+        </form>';
       }
       break;
 
