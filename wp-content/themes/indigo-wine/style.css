@@ -2866,15 +2866,14 @@ a[data-readmore-toggle].more:before {
 }
 @media screen and (max-width: 600px) {
   .hb-equal-col-height .hb-woo-product.hb-woo-product {
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     border: 0;
     padding: 0;
+    border-bottom: 1px solid #eee !important;
   }
 }
 @media handheld, only screen and (max-width: 767px) {
   .hb-equal-col-height.hb-equal-col-height .products-4 .hb-woo-product.hb-woo-product,
   .related.products .products-4 .hb-woo-product.hb-woo-product {
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     border: 0;
     padding: 0;
   }
@@ -3772,7 +3771,6 @@ body .woocommerce form .form-row .button {
       -ms-flex-pack: center;
           justify-content: center;
   margin-top: 0.2em;
-  border-top: 1px solid #eee;
   padding-top: 0.2em;
 }
 .hb-woo-product .hb-product-meta-wrapper .single-price .amount {
