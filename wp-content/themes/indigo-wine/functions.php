@@ -755,6 +755,10 @@ function filter_posts_clauses( $args ) {
         
 
     }
+    if(isset($_REQUEST['post_type']) && $_REQUEST['post_type']=='subscription' && $_REQUEST['s']!=''){
+         $args['where']="AND wp_posts.ID IN (".$_REQUEST['s'].") AND wp_posts.post_type = '".$_REQUEST['post_type']."'";
+    }
+
     if(isset($_REQUEST['unsubscribe'])){ //backend -unsubscribe the subscription
         update_post_meta( $_REQUEST['subscription_id'], 'status', 'cancelled');
     }
@@ -1261,7 +1265,7 @@ function subscription_details_on_orderpage($order){
         $status=get_post_meta($field_value,  'status', true );
         $post_date=get_the_date('M, d Y',$field_value);
         $next_duedate=nextduedate($field_value);
-        echo "<h2 style='margin-top: 30px;'> Subscription #".$field_value."</h2>
+        echo "<h2 style='margin-top: 30px;'> Subscription <a href='edit.php?s=".$field_value."&post_status=all&post_type=subscription&action=-1&m=0&paged=1&subscription_id=''&action2=-1'>#".$field_value."</a></h2>
                 <p>Subscription Type : ".ucfirst($_subscription_type)."</p>
                 <p>Start Date : ".$post_date."</p>";
 
@@ -1396,3 +1400,12 @@ function wc_cancelled_order_add_customer_email( $recipient, $order ){
 return $recipient . ',' . $order->billing_email;
 }
 add_filter( 'woocommerce_email_recipient_cancelled_order', 'wc_cancelled_order_add_customer_email', 10, 2 );
+
+
+
+/**
+ * HIde admin Bar
+ */
+
+add_filter('show_admin_bar', '__return_false');
+
