@@ -181,7 +181,7 @@
                     <div class="cols top">
                         <div class="left-data">
                             <i class="fa fa-bars o-menu" aria-hidden="true"></i>
-                            <span class="site-logo"></span>
+                            <a href="<?php echo get_bloginfo ('url') ?>"><span class="site-logo"></span></a>
                         </div>
                       <?php
                         if ( is_user_logged_in() ) {
