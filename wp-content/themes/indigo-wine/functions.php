@@ -1409,3 +1409,15 @@ add_filter( 'woocommerce_email_recipient_cancelled_order', 'wc_cancelled_order_a
 
 add_filter('show_admin_bar', '__return_false');
 
+
+add_filter('wp_mail_from', 'indigo_mail_from');
+add_filter('wp_mail_from_name', 'indigo_mail_from_name');
+
+function indigo_mail_from($old) {
+ return 'support@indigowinco.com';
+}
+function indigo_mail_from_name($old) {
+ return 'Support';
+}
+
+
