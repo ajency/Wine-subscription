@@ -5062,14 +5062,18 @@ body .woocommerce form .form-row .button {
         -ms-flex-pack: center;
             justify-content: center;
     margin-bottom: 1em;
+    width: 100%;
+  }
+  .subscription-action .custom-check {
+    top: 2px;
   }
   .subscription-action .content {
-    -webkit-box-flex: 0.65;
-    -webkit-flex: 0.65;
-        -ms-flex: 0.65;
-            flex: 0.65;
+    -webkit-box-flex: 0.9;
+    -webkit-flex: 0.9;
+        -ms-flex: 0.9;
+            flex: 0.9;
     padding-right: 0;
-    font-size: 1.05em;
+    font-size: 1em;
   }
   .subscription-action .type-title {
     text-align: center;
