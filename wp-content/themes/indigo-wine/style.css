@@ -4406,6 +4406,7 @@ body .woocommerce form .form-row .button {
   }
   .woocommerce-cart-form .shop_table .woocommerce-cart-form__cart-item td {
     padding-right: 0.5em !important;
+    background-color: transparent !important;
   }
   .woocommerce-cart-form .shop_table .woocommerce-cart-form__cart-item td:last-child {
     padding-right: 0.5em !important;
