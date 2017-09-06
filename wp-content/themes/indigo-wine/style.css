@@ -1736,6 +1736,12 @@ a[data-readmore-toggle].more:before {
 .logoCarousel .owl-theme .owl-controls .owl-buttons > div i {
   margin: 0;
 }
+@media screen and (max-width: 650px) {
+  .logoCarousel .owl-carousel-item-text img {
+    max-width: 85% !important;
+    margin-bottom: -5px !important;
+  }
+}
 .logocar-row {
   margin: 0;
 }
