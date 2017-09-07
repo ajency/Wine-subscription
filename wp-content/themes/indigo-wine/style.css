@@ -2533,6 +2533,18 @@ a[data-readmore-toggle].more:before {
     left: 0;
   }
 }
+@media screen and (max-width: 320px) {
+  .indigo-m-menu .top .site-logo {
+    width: 46px;
+    background-size: 35px;
+    top: 8px;
+  }
+  .logoCenter {
+    top: 8px;
+    width: 165px;
+    background-position: 50% 141%;
+  }
+}
 #simplemodal-login-container-osx.simplemodal-container {
   width: 550px !important;
   left: 0 !important;
