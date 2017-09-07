@@ -132,14 +132,14 @@ function tradelist_email(){
 
   wp_mail( $to, $subject, $message, $headers = '', $attachments = array() );
 
-
+/* will be triggered in user trade list price hence commented over here
   $admin_email = get_option('admin_email');
   $subject1="[Indigo Wine] - Price List Enquiry";
   $message1="Hi admin, 
   You have received a request for trade pricelist from ".$to;
 
   wp_mail( $admin_email, $subject1, $message1, $headers = '', $attachments = array() );
-
+*/
 
   return true;
 }
