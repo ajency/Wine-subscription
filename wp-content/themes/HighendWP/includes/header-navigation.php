@@ -183,9 +183,11 @@
                             <i class="fa fa-bars o-menu" aria-hidden="true"></i>
                             <a href="<?php echo get_bloginfo ('url') ?>"><span class="site-logo"></span></a>
                         </div>
-                        <div class="logoCenter">
-                           <!--  <img src="<?php //echo get_bloginfo ('url') ?>/wp-content/themes/indigo-wine/img/logo-full.png" class="img-responsive"> -->
-                        </div>
+                        <a href="<?php echo get_bloginfo ('url') ?>">
+                            <div class="logoCenter">
+                               <!--  <img src="<?php //echo get_bloginfo ('url') ?>/wp-content/themes/indigo-wine/img/logo-full.png" class="img-responsive"> -->
+                            </div>
+                        </a>
                       <?php
                         if ( is_user_logged_in() ) {
                             $myaccount_page_id = get_option( 'woocommerce_myaccount_page_id' );
