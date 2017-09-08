@@ -405,7 +405,7 @@ function cron_process_subscription_order(){
   }
   return 'Subscription Orders Created Succesfully';
 }
-
+add_action( 'schedule_process_subscription_order', 'cron_process_subscription_order');
 
 function subscription_order_reminder_mail(){
   $query = new WP_Query( array( 'post_status'=>array('wc-pending'),
@@ -453,7 +453,7 @@ function subscription_order_reminder_mail(){
     }
   }
 }
-// add_action( 'init', 'cron_process_subscription_order');
+add_action( 'schedule_subscription_order_reminder_mail', 'subscription_order_reminder_mail');
 
 
 
@@ -506,3 +506,16 @@ function woocommerce_duplicate_order_additional_fields($new_id,$post){
   wp_update_post($dpost);*/
 
 }
+
+
+function dummymailer_test_subscription(){
+
+
+            $admin_email = 'sairaj@ajency.in';
+            $subject="[Indigo Wine] - crontesting";
+            $message="Hi Sairaj, 
+            You have received a Testing mail";
+
+            wp_mail( $admin_email, $subject, $message, $headers = '', $attachments = array() );
+}
+add_action('schedule_dummymailer_test_subscription','dummymailer_test_subscription');

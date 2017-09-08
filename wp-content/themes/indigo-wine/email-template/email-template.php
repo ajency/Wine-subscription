@@ -692,10 +692,12 @@ $main_html='<!doctype html>
                             break;
                           
                           case 'trade_pricelist':
-                              $table_html.=' 
-                                
-                                <h1 style="text-align: center;font-weight: 100;margin-bottom: 15px;color: #022c4c;"><span style="border-bottom: 2px solid #dbc698;">D</span>ear '.$data['display_name'].'</h1>
+                            
+                            if(isset($data['display_name'])){
+                              $table_html.='<h1 style="text-align: center;font-weight: 100;margin-bottom: 15px;color: #022c4c;"><span style="border-bottom: 2px solid #dbc698;">D</span>ear '.$data['display_name'].'</h1>';
+                            }
 
+                            $table_html.=' 
                                 <div style="font-weight:100;line-height:1.5;font-size:17px">
 
                                 <p style="font-size: 18px;">Thanks for reaching out!!</p>

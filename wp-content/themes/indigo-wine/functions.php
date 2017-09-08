@@ -1156,6 +1156,15 @@ function handle_wp_mail($atts) {
             
            $atts['message'] = generate_email_template('trade_pricelist',$data);
 
+
+            $admin_email = get_option('admin_email');
+            $subject1="[Indigo Wine] - Price List Enquiry";
+            $message1="Hi admin, 
+            You have received a request for trade pricelist from ".$atts['to'];
+
+            wp_mail( $admin_email, $subject1, $message1, $headers = '', $attachments = array() );
+
+
         }
     }
     return ($atts);
