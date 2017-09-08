@@ -403,7 +403,7 @@ function cron_process_subscription_order(){
     }
 
   }
-  return 'Subscription Orders Created Succesfully';
+  send_cron_execution_notification('Subscription Orders Creation');
 }
 add_action( 'schedule_process_subscription_order', 'cron_process_subscription_order');
 
@@ -452,6 +452,9 @@ function subscription_order_reminder_mail(){
       }
     }
   }
+
+  send_cron_execution_notification('Subscription order Reminder');
+
 }
 add_action( 'schedule_subscription_order_reminder_mail', 'subscription_order_reminder_mail');
 
@@ -508,14 +511,10 @@ function woocommerce_duplicate_order_additional_fields($new_id,$post){
 }
 
 
-function dummymailer_test_subscription(){
+function send_cron_execution_notification($cron_name){
+    $admin_email = 'sairaj@ajency.in';
+    $subject="[Indigo Wine] - ".$cron_name;
+    $message=$cron_name." Cron has been executed successfully";
 
-
-            $admin_email = 'sairaj@ajency.in';
-            $subject="[Indigo Wine] - crontesting";
-            $message="Hi Sairaj, 
-            You have received a Testing mail";
-
-            wp_mail( $admin_email, $subject, $message, $headers = '', $attachments = array() );
+    wp_mail( $admin_email, $subject, $message, $headers = '', $attachments = array() );
 }
-add_action('schedule_dummymailer_test_subscription','dummymailer_test_subscription');
