@@ -363,7 +363,7 @@ function cron_process_subscription_order(){
 
   global $wpdb;
 
-  $query = new WP_Query( array( 'post_type' => 'subscription','posts_per_page' => -1,  'meta_query' => array(
+  $query = new WP_Query( array( 'post_type' => 'subscription','post_status' => 'publish','posts_per_page' => -1,  'meta_query' => array(
         array(
            'key' => 'status',
            'value' => 'active',
