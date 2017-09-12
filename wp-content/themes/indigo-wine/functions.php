@@ -408,12 +408,14 @@ function sale_custom_price($cart_object) {
        $product_id=$cart_value['product_id'];
        $quantity=$cart_value['quantity'];
        $line_total=$cart_value['line_total'];
-       $final_total=$final_total+indigo_discountCalculation($product_id,$quantity,$line_total,$cart_item_key);
+        // echo '<br>'. indigo_discountCalculation($product_id,$quantity,$line_total,'getonlydiscount');
+       
+       $final_total=$final_total+indigo_discountCalculation($product_id,$quantity,$line_total,'getonlydiscount');
 
 
-        $price=get_post_meta($product_id,  '_price', true );
+    /*    $price=get_post_meta($product_id,  '_price', true );
         $row_price        = $price * $quantity;
-        $final_total=$row_price-$final_total;
+        $final_total=$row_price-$final_total;*/
     }
 
     $discount=$final_total;
@@ -447,11 +449,15 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
     if((indigo_rangelogic($quantity) && count($totals) > 0) || count($totals)==0){
         $discount_perc=get_post_meta($product_id,  '_sale_discount_percentage', true );
         $discount_price=get_post_meta($product_id,  '_sale_discount_price', true );
-       
+        
    
         if($discount_perc>0 ){     
-
+        
           $discounted_price_perc=(($discount_perc*$row_price)/100);
+           if($cart_item_key=='getonlydiscount') {
+            return $discounted_price_perc;
+          } 
+         
           
           $discounted_price=$row_price-$discounted_price_perc;
 
@@ -467,10 +473,12 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
          
         }
         else if($discount_price>0){
-           
+            if($cart_item_key=='getonlydiscount') {
+                return $discount_price;
+            }  
             // $discounted_price=$row_price-($discount_price*$quantity);
             $discounted_price=$row_price-$discount_price;
-            
+           
             /*$woocommerce->cart->discount_cart=$woocommerce->cart->discount_cart+$discount_price;
     
             if( $cart_item_key!='')
