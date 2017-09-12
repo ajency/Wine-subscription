@@ -56,8 +56,8 @@ do_action( 'woocommerce_before_cart' );
 
 <!-- why subscribe -->
 
-<div class="why-subscribe box-shadow-wrap">
-	<i class="fa fa-times close-sub-box" aria-hidden="true"></i>
+<div class="why-subscribe">
+	<!-- <i class="fa fa-times close-sub-box" aria-hidden="true"></i> -->
 <!-- 	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover"> -->
 	<div class="why-subscribe__content">
 		<h3 class="title">Why Subscribe</h3>
@@ -206,15 +206,15 @@ do_action( 'woocommerce_before_cart' );
 </form>
 
 <div class="subscription-table">
-	<div class="box-shadow-wrap subscription-action">
+	<div class="subscription-action">
 		<div class="toggle-check">
 
 			<input type="checkbox" value="" name="subscription-check" id="subscription-check" class="custom-check" <?php echo $checked; ?>/>
-			<div class="content">
+			<div class="content <?php echo $fade; ?>">
 				<p>Convert my order into a subscription</p>
 			</div>
 		</div>
-		<div class="sub-selection">
+		<div class="sub-selection <?php echo $fade; ?>">
 			<p class="type-title">Type of Subscription :</p>
 			<!-- <div class="switch">
 				<input id="monthly" class="switch-input" checked="checked" name="sub-type" type="radio" value="monthly" autocomplete="off" />

@@ -506,11 +506,11 @@
 .sub-select{
 	width: 220px;
 	margin: 0;
-	background-color: @brand-secondary;
+	background-color: #a7a6a6;
 	color: #fff;
 	font-family: 'gotham_bookregular';
 	font-weight: 600;
-    background-image: linear-gradient(45deg, transparent 50%, #fff 50%), linear-gradient(135deg, #fff 50%, transparent 50%), linear-gradient(to right, @brand-secondary, @brand-secondary);
+    background-image: linear-gradient(45deg, transparent 50%, #fff 50%), linear-gradient(135deg, #fff 50%, transparent 50%), linear-gradient(to right, #fff, #fff);
     background-position: calc(~'100% - 20px') calc(~'1em + 2px'), calc(~'100% - 15px') calc(~'1em + 2px'), calc(~'100% - 2.5em') 0.5em;
     background-size: 5px 5px, 5px 5px, 1px 1.5em;
     background-repeat: no-repeat;
@@ -754,6 +754,7 @@
     align-items: center;
     margin-bottom: 1em;
 	color: @brand-secondary;
+	border: 1px solid #ddd;
 	&__content{
 		// padding-left: 0.5em;
 		.title{
@@ -766,6 +767,7 @@
     		color: @brand-secondary;
     		margin-top: 0;
     		text-align: center;
+    		font-weight: 500;
 		}
 		.reason{
 			font-size: 1.05em;
@@ -784,6 +786,7 @@
     			align-items: baseline;
     			text-align: left;
     			flex: 1 0 calc(~'33.33% - 1.6em');
+    			font-weight: 500;
     			&:last-child{
     				border-right: 0;
     			}
@@ -840,6 +843,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 1em;
+    background-color: #f2f2f2;
     .toggle-check{
     	flex: 1;
     	display: flex;
@@ -850,11 +854,12 @@
     		top: -8px;
     		left: -3px;
     		font-size: 2em;
+    		background-color: #f2f2f2;
     	}
     }
     .content{
     	padding: 0 1em;
-    	font-size: 1.15em;
+    	font-size: 1.05em;
     	color: @brand-secondary;
     	p{
     		font-family: gotham_bookregular;
@@ -870,7 +875,7 @@
     	align-items: center;
     }
     .type-title{
-    	font-size: 1.15em;
+    	font-size: 1.05em;
 	   	color: @brand-secondary;
 	    margin: 0;
 	    font-family: gotham_bookregular;
