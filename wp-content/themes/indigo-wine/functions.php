@@ -440,8 +440,10 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
     array_push($categories, $category_object->term_id);
   
 
-     $totals = array_intersect($categories, $term_list);
+    $totals = array_intersect($categories, $term_list);
     
+    unset($_SESSION['subscription_type']);
+
     if((indigo_rangelogic($quantity) && count($totals) > 0) || count($totals)==0){
         $discount_perc=get_post_meta($product_id,  '_sale_discount_percentage', true );
         $discount_price=get_post_meta($product_id,  '_sale_discount_price', true );
@@ -466,7 +468,7 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
         }
         else if($discount_price>0){
            
-            $discounted_price=$row_price-$discount_price;
+            $discounted_price=$row_price-($discount_price*$quantity);
             
             /*$woocommerce->cart->discount_cart=$woocommerce->cart->discount_cart+$discount_price;
     

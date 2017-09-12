@@ -199,6 +199,7 @@ jQuery(function ($) {
                 $('.subscribe-data').addClass('hidden');  
                 $('.sub-success').addClass('hidden');   
                 $('.error,.failure').removeClass('hidden'); 
+                 $('.non-eligible').addClass('hidden'); 
                 $("html, body").animate({ scrollTop: 0 }, "slow"); 
             });
 
@@ -238,17 +239,30 @@ jQuery(function ($) {
      function subscribe_session(subscription_type){
 
             $.post(cart_qty_ajax.siteapiurl+'subscribe_session', {subscription: subscription_type}, function(data, textStatus, xhr) {
-              var date = new Date();
-              var month = new Array();
-              month[0] = "Jan";month[1] = "Feb";month[2] = "Mar";month[3] = "Apr";month[4] = "May";month[5] = "Jun";
-              month[6] = "Jul";month[7] = "Aug";month[8] = "Sep";month[9] = "Oct";month[10] = "Nov";month[11] = "Dec";
-              var n = month[date.getMonth()];
-               $('.subscribe-val').html(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}) +"<br>"+ n+" "+date.getDate()+", "+date.getFullYear());
-                $('.subscribe-data').removeClass('hidden');   
-                 $('.error,.failure').addClass('hidden');   
-                 $('.sub-success').removeClass('hidden');   
-                  $("html, body").animate({ scrollTop: 0 }, "slow"); 
-            });
+              if(data==true){
+                  var date = new Date();
+                  var month = new Array();
+                  month[0] = "Jan";month[1] = "Feb";month[2] = "Mar";month[3] = "Apr";month[4] = "May";month[5] = "Jun";
+                  month[6] = "Jul";month[7] = "Aug";month[8] = "Sep";month[9] = "Oct";month[10] = "Nov";month[11] = "Dec";
+                  var n = month[date.getMonth()];
+                   $('.subscribe-val').html(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}) +"<br>"+ n+" "+date.getDate()+", "+date.getFullYear());
+                    $('.subscribe-data').removeClass('hidden');   
+                     $('.error,.failure').addClass('hidden');   
+                     $('.sub-success').removeClass('hidden'); 
+                       $('.non-eligible').addClass('hidden');     
+                      $("html, body").animate({ scrollTop: 0 }, "slow"); 
+              }
+            else {
+                $('#subscription-check').prop('checked',false);
+                jQuery('.sub-select').addClass('fade-select');
+                $('.non-eligible').removeClass('hidden');   
+                $('.error,.failure').addClass('hidden');   
+                $('.sub-success').addClass('hidden');   
+                $("html, body").animate({ scrollTop: 0 }, "slow"); 
+            }      
+
+          });
+
      }
 
 

@@ -4204,6 +4204,10 @@ body .woocommerce form .form-row .button {
   background-color: #022c4c;
   color: #fff;
 }
+.non-eligible {
+  background-color: #022c4c;
+  color: #fff;
+}
 .hb-modal-window .hb-box-cont {
   background-color: #fff;
   border-radius: 0;

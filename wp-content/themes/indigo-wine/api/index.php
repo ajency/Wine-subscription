@@ -60,10 +60,37 @@ function unsubscribe_session(){
 }
 
 function subscribe_session(){
-  
-     $_SESSION['subscription_type']=$_REQUEST['subscription'];
-  
-     return true;
+    global $woocommerce;
+
+    $items = $woocommerce->cart->get_cart();
+    $total_qty=0;
+      foreach($items as $item => $values) { 
+
+        $_product = $values['data']->post; 
+        $product_id= $values['product_id'];
+        $product_qty= $values['quantity'];
+
+        $product_cats_ids = wc_get_product_term_ids( $product_id, 'product_cat' );
+
+        foreach( $product_cats_ids as $cat_id ) {
+          $term = get_term_by( 'id', $cat_id, 'product_cat' );
+          if($term->slug=='wine'){
+            $total_qty=$total_qty+$product_qty;
+          }
+        }
+
+    }
+
+    if($total_qty>0){
+      if(indigo_rangelogic($total_qty)){
+        $_SESSION['subscription_type']=$_REQUEST['subscription'];
+        return true ;
+      }
+      unset($_SESSION['subscription_type']);
+      return false;
+    }
+    $_SESSION['subscription_type']=$_REQUEST['subscription'];
+    return true;
 }
 
 function unsubscribe_orders(){
