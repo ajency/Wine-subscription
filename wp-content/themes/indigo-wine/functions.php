@@ -468,7 +468,8 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
         }
         else if($discount_price>0){
            
-            $discounted_price=$row_price-($discount_price*$quantity);
+            // $discounted_price=$row_price-($discount_price*$quantity);
+            $discounted_price=$row_price-$discount_price;
             
             /*$woocommerce->cart->discount_cart=$woocommerce->cart->discount_cart+$discount_price;
     
@@ -1418,7 +1419,7 @@ add_filter( 'woocommerce_email_recipient_cancelled_order', 'wc_cancelled_order_a
  * HIde admin Bar
  */
 
-add_filter('show_admin_bar', '__return_false');
+// add_filter('show_admin_bar', '__return_false');
 
 
 add_filter('wp_mail_from', 'indigo_mail_from');
