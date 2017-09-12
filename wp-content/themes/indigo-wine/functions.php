@@ -468,7 +468,8 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
         }
         else if($discount_price>0){
            
-            $discounted_price=$row_price-($discount_price*$quantity);
+            // $discounted_price=$row_price-($discount_price*$quantity);
+            $discounted_price=$row_price-$discount_price;
             
             /*$woocommerce->cart->discount_cart=$woocommerce->cart->discount_cart+$discount_price;
     
