@@ -408,10 +408,18 @@ function sale_custom_price($cart_object) {
        $product_id=$cart_value['product_id'];
        $quantity=$cart_value['quantity'];
        $line_total=$cart_value['line_total'];
-        // echo '<br>'. indigo_discountCalculation($product_id,$quantity,$line_total,'getonlydiscount');
-       
-       $final_total=$final_total+indigo_discountCalculation($product_id,$quantity,$line_total,'getonlydiscount');
 
+        $term_list = wp_get_post_terms($product_id,'product_cat',array('fields'=>'ids'));
+        $category_object = get_term_by('slug', 'wine', 'product_cat');
+       
+        $categories=get_term_children( $category_object->term_id, 'product_cat' );
+        array_push($categories, $category_object->term_id);
+     
+        $totals = array_intersect($categories, $term_list);
+
+        if((indigo_rangelogic($quantity) && count($totals) > 0) || count($totals)==0){
+            $final_total=$final_total+indigo_discountCalculation($product_id,$quantity,$line_total,'getonlydiscount');
+        }
 
     /*    $price=get_post_meta($product_id,  '_price', true );
         $row_price        = $price * $quantity;
