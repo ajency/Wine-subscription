@@ -188,6 +188,7 @@ jQuery(function ($) {
             $('#'+id).val('yes');
             // var subscription_type = $("input[name='sub-type']:checked").val();
             jQuery('.subscription-action').find('.common-fade').removeClass('fade-select');
+            jQuery('.cart-loader').removeClass('hidden');
             var subscription_type =  $("#sub-type-combo").val();
 
             subscribe_session(subscription_type);
@@ -195,6 +196,7 @@ jQuery(function ($) {
         else{
             $('#'+id).val('no');
             $('.subscription-action').find('.common-fade').addClass('fade-select');
+            jQuery('.cart-loader').addClass('hidden');
             $.post(cart_qty_ajax.siteapiurl+'unsubscribe_session', function(data, textStatus, xhr) {
                 $('.subscribe-data').addClass('hidden');  
                 $('.sub-success').addClass('hidden');   
@@ -255,6 +257,7 @@ jQuery(function ($) {
             else {
                 $('#subscription-check').prop('checked',false);
                 $('.subscription-action').find('.common-fade').addClass('fade-select');
+                jQuery('.cart-loader').addClass('hidden');
                 $('.non-eligible').removeClass('hidden');   
                 $('.error,.failure').addClass('hidden');   
                 $('.sub-success').addClass('hidden');   

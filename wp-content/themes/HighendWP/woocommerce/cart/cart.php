@@ -197,7 +197,7 @@ do_action( 'woocommerce_before_cart' );
 <div class="subscription-table">
 	<div class="subscription-action">
 		<div class="toggle-check">
-
+			<i class="fa fa-circle-o-notch fa-spin hidden cart-loader"></i>
 			<input type="checkbox" value="" name="subscription-check" id="subscription-check" class="custom-check" <?php echo $checked; ?>/>
 			<div class="content common-fade <?php echo $fade; ?>">
 				<p>Convert my order into a subscription</p>

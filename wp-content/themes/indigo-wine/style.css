@@ -5162,6 +5162,11 @@ body .woocommerce form .form-row .button {
             flex-direction: column;
   }
 }
+.cart-loader {
+  margin-right: 10px;
+  font-size: 1.2em;
+  color: #022c4c;
+}
 .woocommerce-account .woocommerce {
   margin-top: 1em;
 }
