@@ -731,7 +731,7 @@ function filter_posts_clauses( $args ) {
   
     if(isset($_REQUEST['product_cat']))
     {
-        if(is_numeric($_REQUEST['product_cat'])){
+        if(is_numeric($_REQUEST['product_cat']) && $_REQUEST['product_cat']!=0){
 
             $categories=get_term_children( $_REQUEST['product_cat'], 'product_cat' );
             array_push($categories, $_REQUEST['product_cat']);
