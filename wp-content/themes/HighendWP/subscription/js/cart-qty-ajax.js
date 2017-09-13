@@ -187,14 +187,14 @@ jQuery(function ($) {
         if($('#subscription-check').is(":checked")){
             $('#'+id).val('yes');
             // var subscription_type = $("input[name='sub-type']:checked").val();
-            jQuery('.sub-select').removeClass('fade-select');
+            jQuery('.subscription-action').find('.common-fade').removeClass('fade-select');
             var subscription_type =  $("#sub-type-combo").val();
 
             subscribe_session(subscription_type);
         }
         else{
             $('#'+id).val('no');
-            jQuery('.sub-select').addClass('fade-select');
+            $('.subscription-action').find('.common-fade').addClass('fade-select');
             $.post(cart_qty_ajax.siteapiurl+'unsubscribe_session', function(data, textStatus, xhr) {
                 $('.subscribe-data').addClass('hidden');  
                 $('.sub-success').addClass('hidden');   
@@ -254,7 +254,7 @@ jQuery(function ($) {
               }
             else {
                 $('#subscription-check').prop('checked',false);
-                jQuery('.sub-select').addClass('fade-select');
+                $('.subscription-action').find('.common-fade').addClass('fade-select');
                 $('.non-eligible').removeClass('hidden');   
                 $('.error,.failure').addClass('hidden');   
                 $('.sub-success').addClass('hidden');   

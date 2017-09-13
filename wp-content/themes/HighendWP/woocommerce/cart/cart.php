@@ -47,9 +47,9 @@ do_action( 'woocommerce_before_cart' );
 </div>
 
 
-<div class="hb-notif-box custom-alerts error failure hidden"><div class="message-text"><p><i class="fa fa-check-circle" style="color: #fff;"></i>Your current subscription has been cancelled.</p></div></div>
+<div class="hb-notif-box custom-alerts sub-success hidden"><div class="message-text"><p><i class="fa fa-check-circle" style="color: #fff;"></i>Your current subscription has been cancelled.</p></div></div>
 
-<div class="hb-notif-box custom-alerts non-eligible hidden"><div class="message-text"><p><i class="fa fa-check-circle" style="color: #fff;"></i>Wine Bottles in cart are not in multiples of 6<br>Inorder to opt for subscription, Wine bottles in cart have to be multiples of 6.</p></div></div>
+<div class="hb-notif-box custom-alerts sub-success non-eligible hidden"><div class="message-text"><p><i class="fa fa-check-circle" style="color: #fff;"></i>Wine Bottles in cart are not in multiples of 6<br>Inorder to opt for subscription, Wine bottles in cart have to be multiples of 6.</p></div></div>
 
 <div class="hb-notif-box custom-alerts sub-success hidden"><div class="message-text"><p><i class="fa fa-check-circle"></i> Success!!! Your Subscription has been saved</p></div></div>
 
@@ -210,11 +210,11 @@ do_action( 'woocommerce_before_cart' );
 		<div class="toggle-check">
 
 			<input type="checkbox" value="" name="subscription-check" id="subscription-check" class="custom-check" <?php echo $checked; ?>/>
-			<div class="content <?php echo $fade; ?>">
+			<div class="content common-fade <?php echo $fade; ?>">
 				<p>Convert my order into a subscription</p>
 			</div>
 		</div>
-		<div class="sub-selection <?php echo $fade; ?>">
+		<div class="sub-selection common-fade <?php echo $fade; ?>">
 			<p class="type-title">Type of Subscription :</p>
 			<!-- <div class="switch">
 				<input id="monthly" class="switch-input" checked="checked" name="sub-type" type="radio" value="monthly" autocomplete="off" />
@@ -222,7 +222,7 @@ do_action( 'woocommerce_before_cart' );
 				<input id="quarterly" class="switch-input" name="sub-type" type="radio" value="quarterly" autocomplete="off" /><label class="switch-label switch-label-on" for="quarterly">Quarterly</label>
 				<div class="switch-selection"></div>
 			</div> -->
-			<select class="sub-select <?php echo $fade; ?>" id="sub-type-combo" name="sub-type-combo">
+			<select class="sub-select" id="sub-type-combo" name="sub-type-combo">
 				<option value="monthly" <?php echo $_SESSION['subscription_type']=="monthly"? "Selected" : ""; ?> >Monthly</option>
 				<option value="bimonthly" <?php echo $_SESSION['subscription_type']=="bimonthly"? "Selected" : ""; ?>>Bimonthly</option>
 				<option value="quarterly" <?php echo $_SESSION['subscription_type']=="quarterly"? "Selected" : ""; ?>>Quarterly</option>
