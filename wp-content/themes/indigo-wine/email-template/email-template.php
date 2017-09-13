@@ -667,6 +667,7 @@ $main_html='<!doctype html>
 
                         <div style="line-height: 1.8;margin-top: 10px; font-size: 15px;">
                             <a href="https://indigowineco.com/product-category/wine-packs/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wine Packs</a>
+                            <a href="https://indigowineco.com/product-category/wine/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wines</a>
                             <a href="https://indigowineco.com/wine-club/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Be a Club member</a>
                             <a href="https://indigowineco.com/my-account/subscription/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Know about our subscription plans</a>
                             <a href="https://indigowineco.com/#contact" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Contact us here</a>
@@ -708,6 +709,7 @@ $main_html='<!doctype html>
 
                                 <div style="line-height: 1.8;margin-top: 10px; font-size: 15px;">
                                     <a href="https://indigowineco.com/product-category/wine-packs/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wine Packs</a>
+                                    <a href="https://indigowineco.com/product-category/wine/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wines</a>
                                     <a href="https://indigowineco.com/wine-club/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Be a Club member</a>
                                     <a href="https://indigowineco.com/my-account/subscription/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Know about our subscription plans</a>
                                     <a href="https://indigowineco.com/#contact" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Contact us here</a>
