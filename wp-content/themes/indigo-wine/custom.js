@@ -211,10 +211,7 @@ jQuery(function(){
 jQuery(".orderby option[value='date']").text('Sort by newest first');
 
 
-	function opacShow(){
-		jQuery('.discount').addClass('active');	
-	}
-	setTimeout(opacShow, 2000);
+	jQuery('.discount').addClass('active');	
 
 	jQuery('.site-offer .close').click(function(){
 	    jQuery('.discount').hide();
