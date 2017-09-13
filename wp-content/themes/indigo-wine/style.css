@@ -4,7 +4,6 @@
  Description:  A Flexible, Powerful & Beautiful WordPress Theme by HB-Themes. Mobile ready and optimized for best performance. With the powerful engine and user friendly interface it will allow you to build outstanding websites quick and easy... It comes with Premium Plugins integrated into the theme.
  Author:       HB-Themes
  Author URI:   http://www.hb-themes.com
- Author Email: workwithus@ajency.in
  Template:     HighendWP
  Version:      1.0.1
  Tags:		   Responsive, Page-Builder, Drag&Drop, Clean, Modern, Corporate, Multi-Purpose, Multi-Color
@@ -4220,7 +4219,8 @@ body .woocommerce form .form-row .button {
 .custom-alerts.failure {
   background-color: #022c4c;
 }
-.sub-success {
+.sub-success,
+.non-eligible {
   background-color: #022c4c;
   color: #fff;
 }
