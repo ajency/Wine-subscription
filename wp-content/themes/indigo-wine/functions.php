@@ -196,7 +196,7 @@ function ajax_qty_cart() {
     // Update cart validation
     $passed_validation  = apply_filters( 'woocommerce_update_cart_validation', true, $cart_item_key, $threeball_product_values, $threeball_product_quantity );
 
-
+    unset($_SESSION['subscription_type']);
    
 
     if(isset($_POST['subscription']))
@@ -451,8 +451,6 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
 
     $totals = array_intersect($categories, $term_list);
     
-    unset($_SESSION['subscription_type']);
-
     if((indigo_rangelogic($quantity) && count($totals) > 0) || count($totals)==0){
         $discount_perc=get_post_meta($product_id,  '_sale_discount_percentage', true );
         $discount_price=get_post_meta($product_id,  '_sale_discount_price', true );
