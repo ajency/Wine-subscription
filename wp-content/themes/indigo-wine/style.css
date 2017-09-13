@@ -4787,7 +4787,12 @@ body .woocommerce form .form-row .button {
           align-items: center;
   margin-bottom: 1em;
   color: #022c4c;
-  border: 1px solid #ddd;
+  margin-top: 2em;
+}
+@media screen and (min-width: 500px) {
+  .why-subscribe {
+    border: 1px solid #ddd;
+  }
 }
 .why-subscribe__content .title {
   font-family: gotham_mediumregular;

@@ -56,18 +56,7 @@ do_action( 'woocommerce_before_cart' );
 
 <!-- why subscribe -->
 
-<div class="why-subscribe">
-	<!-- <i class="fa fa-times close-sub-box" aria-hidden="true"></i> -->
-<!-- 	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover"> -->
-	<div class="why-subscribe__content">
-		<h3 class="title">Why Subscribe</h3>
-		<ul class="reason">
-			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Wines delivered free to your door as required.</li>
-			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Access to limited releases and exclusive offers.</li>
-			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Receive invitations to unique tastings and events.</li>
-		</ul>
-	</div>
-</div>
+
 
 
 
@@ -228,6 +217,20 @@ do_action( 'woocommerce_before_cart' );
 				<option value="quarterly" <?php echo $_SESSION['subscription_type']=="quarterly"? "Selected" : ""; ?>>Quarterly</option>
 			</select>
 		</div>
+	</div>
+</div>
+
+
+<div class="why-subscribe">
+	<!-- <i class="fa fa-times close-sub-box" aria-hidden="true"></i> -->
+<!-- 	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover"> -->
+	<div class="why-subscribe__content">
+		<h3 class="title">Why Subscribe</h3>
+		<ul class="reason">
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Wines delivered free to your door as required.</li>
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Access to limited releases and exclusive offers.</li>
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Receive invitations to unique tastings and events.</li>
+		</ul>
 	</div>
 </div>
 
