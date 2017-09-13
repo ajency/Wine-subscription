@@ -497,6 +497,10 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
             return $final_product_subtotal= $discounted_price;
               
         }  
+
+         if($cart_item_key=='getonlydiscount') {
+            return 0;
+         }
     } 
     
        
