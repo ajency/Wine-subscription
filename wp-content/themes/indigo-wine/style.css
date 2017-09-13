@@ -4906,6 +4906,7 @@ body .woocommerce form .form-row .button {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 .subscription-action .custom-check:before {
   top: -8px;
@@ -5164,8 +5165,13 @@ body .woocommerce form .form-row .button {
 }
 .cart-loader {
   margin-right: 10px;
-  font-size: 1.2em;
+  font-size: 1.45em;
+  position: absolute;
+  z-index: 1;
   color: #022c4c;
+}
+.opac {
+  opacity: 0;
 }
 .woocommerce-account .woocommerce {
   margin-top: 1em;

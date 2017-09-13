@@ -853,6 +853,7 @@
     	flex: 1;
     	display: flex;
     	align-items: center;
+    	position: relative;
     }
     .custom-check{
     	&:before{
@@ -1101,10 +1102,13 @@
 
 .cart-loader{
 	margin-right: 10px;
-    font-size: 1.2em;
+    font-size: 1.45em;
+    position: absolute;
+    z-index: 1;
     color: @brand-secondary;
 }
 
-
-
+.opac{
+	opacity: 0;
+}
 
