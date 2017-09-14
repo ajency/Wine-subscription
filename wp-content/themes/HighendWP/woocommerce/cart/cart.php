@@ -49,7 +49,8 @@ do_action( 'woocommerce_before_cart' );
 
 <div class="hb-notif-box custom-alerts error failure hidden"><div class="message-text"><p><i class="fa fa-check-circle" style="color: #fff;"></i>Your current subscription has been cancelled.</p></div></div>
 
-<div class="hb-notif-box custom-alerts non-eligible hidden"><div class="message-text"><p><i class="fa fa-check-circle" style="color: #fff;"></i> Wine Bottles in cart are not in multiples of 6!<br> In order to opt for subscription, Wine bottles in cart have to be multiples of 6.</p></div></div>
+<div class="hb-notif-box custom-alerts non-eligible hidden"><div class="message-text"><p><i class="fa fa-check-circle" style="color: #fff;"></i> Wine Bottles are not in multiples of 6!<br> In order to opt for subscription, quantity of wine bottles in the cart have to be in multiples of 6.</p></div></div>
+
 
 <div class="hb-notif-box custom-alerts sub-success hidden"><div class="message-text"><p><i class="fa fa-check-circle"></i> Success!!! Your Subscription has been saved</p></div></div>
 
