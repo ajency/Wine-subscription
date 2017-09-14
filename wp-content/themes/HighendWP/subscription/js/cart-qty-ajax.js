@@ -146,7 +146,7 @@ jQuery(function ($) {
     /**
      * unsubscribe 
      */
-    $(document).on('click', '#unsubscribe-order', function (event) {
+/*    $(document).on('click', '#unsubscribe-order', function (event) {
         $.post(cart_qty_ajax.siteapiurl+'unsubscribe_session', function(data, textStatus, xhr) {
             $('.get-started-sub').removeClass('hidden');
             $('.cancel-subscription').addClass('hidden');
@@ -154,11 +154,12 @@ jQuery(function ($) {
             $('#subscription_status').val('no');
             $('.subscribe-content .success').addClass('hidden');
             $('.subscribe-val').text('');  
-            $('.subscribe-data').addClass('hidden');     
+            $('.subscribe-data').addClass('hidden');    
+            
         });
    
 
-    });  
+    });  */
 
      $(document).on('click', '.hb-accordion-tab', function (event) {
       if($('.hb-accordion-tab').hasClass('active-toggle')){
@@ -197,13 +198,15 @@ jQuery(function ($) {
         else{
             $('#'+id).val('no');
             $('.subscription-action').find('.common-fade').addClass('fade-select');
-            jQuery('#subscription-check').removeClass('opac');
-            jQuery('.cart-loader').addClass('hidden');
+            jQuery('#subscription-check').addClass('opac');
+            jQuery('.cart-loader').removeClass('hidden');
             $.post(cart_qty_ajax.siteapiurl+'unsubscribe_session', function(data, textStatus, xhr) {
                 $('.subscribe-data').addClass('hidden');  
                 $('.sub-success').addClass('hidden');   
                 $('.error,.failure').removeClass('hidden'); 
-                 $('.non-eligible').addClass('hidden'); 
+                $('.non-eligible').addClass('hidden'); 
+                $('.cart-loader').addClass('hidden');       
+                $('#subscription-check').removeClass('opac'); 
                 $("html, body").animate({ scrollTop: 0 }, "slow"); 
             });
 
@@ -251,7 +254,8 @@ jQuery(function ($) {
                   var n = month[date.getMonth()];
                    $('.subscribe-val').html(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}) +"<br>"+ n+" "+date.getDate()+", "+date.getFullYear());
                     $('.subscribe-data').removeClass('hidden');   
-                     $('.error,.failure').addClass('hidden');   
+                     $('.error,.failure').addClass('hidden'); 
+
                      $('.sub-success').removeClass('hidden'); 
                        $('.non-eligible').addClass('hidden');     
                       $("html, body").animate({ scrollTop: 0 }, "slow"); 
@@ -259,14 +263,15 @@ jQuery(function ($) {
             else {
                 $('#subscription-check').prop('checked',false);
                 $('.subscription-action').find('.common-fade').addClass('fade-select');
-                jQuery('.cart-loader').addClass('hidden');
-                jQuery('#subscription-check').removeClass('opac');
+               
                 $('.non-eligible').removeClass('hidden');   
                 $('.error,.failure').addClass('hidden');   
                 $('.sub-success').addClass('hidden');   
                 $("html, body").animate({ scrollTop: 0 }, "slow"); 
-            }      
-
+            }
+            $('.cart-loader').addClass('hidden');       
+            $('#subscription-check').removeClass('opac');
+                
           });
 
      }
