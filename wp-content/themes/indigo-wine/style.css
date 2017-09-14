@@ -5173,10 +5173,10 @@ body .woocommerce form .form-row .button {
 .opac {
   opacity: 0;
 }
-.cart-total-value .woocommerce-remove-coupon {
+.cart-total-value.cart-total-value .woocommerce-remove-coupon {
   text-transform: capitalize;
 }
-.cart-total-value .woocommerce-remove-coupon:hover {
+.cart-total-value.cart-total-value .woocommerce-remove-coupon:hover {
   color: #022c4c;
 }
 .woocommerce-account .woocommerce {
