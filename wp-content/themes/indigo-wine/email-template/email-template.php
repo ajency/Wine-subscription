@@ -3,6 +3,8 @@
 
 function generate_email_template($mail_type,$data){
 
+$site_url=get_option('siteurl');
+
 $main_html='<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     <head>
@@ -576,7 +578,7 @@ $main_html='<!doctype html>
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-left:18px; padding-bottom:9px; padding-right:18px;text-align: center;">
                         
-                            <img src="https://indigowineco.com/wp-content/uploads/2017/05/indigo-logo.png">
+                            <img src="'.$site_url.'/wp-content/uploads/2017/05/indigo-logo.png">
                         </td>
                     </tr>
                 </tbody></table>
@@ -601,7 +603,7 @@ $main_html='<!doctype html>
 </table></td>
                             </tr>
                             <tr>
-                  <td valign="top" id="templateHeader" style="padding: 20px;font-family: helvetica;background-image: url(https://indigowineco.com/wp-content/themes/indigo-wine/img/transperent-bg.png);background-size: 84%;background-position: 0 0;background-repeat: repeat-x;background-color: #fff;">
+                  <td valign="top" id="templateHeader" style="padding: 20px;font-family: helvetica;background-image: url('.$site_url.'/wp-content/themes/indigo-wine/img/transperent-bg.png);background-size: 84%;background-position: 0 0;background-repeat: repeat-x;background-color: #fff;">
 
                     <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnCaptionBlock">
                 <tbody class="mcnCaptionBlockOuter">
@@ -627,7 +629,7 @@ $main_html='<!doctype html>
                         
                         <div style="font-weight: 100;line-height: 1.5;font-size: 17px;">
 
-                        <p>Welcome to <a href="http://www.indigowineco.ajency.in" style="color: #dec07f;text-decoration: none;font-weight: 500;">Indigo Wine Co.</a> We\'re so excited to share this world of Wines with you! <br><br></p>
+                        <p>Welcome to <a href="'.$site_url.'" style="color: #dec07f;text-decoration: none;font-weight: 500;">Indigo Wine Co.</a> We\'re so excited to share this world of Wines with you! <br><br></p>
                         
                     <div>
                 
@@ -640,19 +642,19 @@ $main_html='<!doctype html>
                     <div style="margin-bottom: 15px;">
                         
                         <div style="border-bottom: 1px solid #dcc699;padding-bottom: 10px;margin-bottom: 10px;">
-                            <img src="https://indigowineco.com/wp-content/uploads/2017/04/cutar-1-150x150.png" style="width: 20%;display: block;margin: 0 auto;">
+                            <img src="'.$site_url.'/wp-content/uploads/2017/04/cutar-1-150x150.png" style="width: 20%;display: block;margin: 0 auto;">
                             <p style="font-weight: 600;border-bottom: 1px solid #002b4e;padding-bottom: 5px;margin-bottom: 5px;display: inline-block;">We curate your wines</p>
                             <p style="font-size: 15px;">Our hand-selected packs showcase the diversity of our small batch Australian wines providing something for everyone.</p>
                         </div>
 
                         <div style="border-bottom: 1px solid #dcc699;padding-bottom: 10px;margin-bottom: 10px;">
-                            <img src="https://indigowineco.com/wp-content/uploads/2017/04/calendar-1-150x150.png" style="width: 20%;display: block;margin: 0 auto;">
+                            <img src="'.$site_url.'/wp-content/uploads/2017/04/calendar-1-150x150.png" style="width: 20%;display: block;margin: 0 auto;">
                             <p style="font-weight: 600;border-bottom: 1px solid #002b4e;padding-bottom: 5px;margin-bottom: 5px;display: inline-block;">Select your plan</p>
                             <p style="font-size: 15px;">Whites, reds or mix; 6pack, dozen or more; monthly or other, the choice is yours! And remember if you want to skip a delivery period or pause the subscription just let us know</p>
                         </div>
 
                         <div style="border-bottom: 1px solid #dcc699;padding-bottom: 10px;margin-bottom: 10px;">
-                            <img src="https://indigowineco.com/wp-content/uploads/2017/04/toast-1-150x150.png" style="width: 20%;display: block;margin: 0 auto;">
+                            <img src="'.$site_url.'/wp-content/uploads/2017/04/toast-1-150x150.png" style="width: 20%;display: block;margin: 0 auto;">
                             <p style="font-weight: 600;border-bottom: 1px solid #002b4e;padding-bottom: 5px;margin-bottom: 5px;display: inline-block;">Start the experience</p>
                             <p style="font-size: 15px;">Direct to you and ready to go. Just whip open the bottle and you are on your way.</p>
                         </div>
@@ -666,11 +668,11 @@ $main_html='<!doctype html>
                         <p><b style="font-weight: 500;">How would you like to start your journey with Indigo Wine Co ?</b></p>
 
                         <div style="line-height: 1.8;margin-top: 10px; font-size: 15px;">
-                            <a href="https://indigowineco.com/product-category/wine-packs/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wine Packs</a>
-                            <a href="https://indigowineco.com/product-category/wine/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wines</a>
-                            <a href="https://indigowineco.com/wine-club/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Be a Club member</a>
-                            <a href="https://indigowineco.com/my-account/subscription/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Know about our subscription plans</a>
-                            <a href="https://indigowineco.com/#contact" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Contact us here</a>
+                            <a href="'.$site_url.'/product-category/wine-packs/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wine Packs</a>
+                            <a href="'.$site_url.'/product-category/wine/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wines</a>
+                            <a href="'.$site_url.'/wine-club/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Be a Club member</a>
+                            <a href="'.$site_url.'/my-account/subscription/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Know about our subscription plans</a>
+                            <a href="'.$site_url.'/#contact" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Contact us here</a>
                         </div>
 
                         </div>
@@ -708,11 +710,11 @@ $main_html='<!doctype html>
                                 <p><b style="font-weight:500;">In the meantime, you can browse through our latest products or check our subscription plans - See more at:</b></p>
 
                                 <div style="line-height: 1.8;margin-top: 10px; font-size: 15px;">
-                                    <a href="https://indigowineco.com/product-category/wine-packs/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wine Packs</a>
-                                    <a href="https://indigowineco.com/product-category/wine/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wines</a>
-                                    <a href="https://indigowineco.com/wine-club/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Be a Club member</a>
-                                    <a href="https://indigowineco.com/my-account/subscription/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Know about our subscription plans</a>
-                                    <a href="https://indigowineco.com/#contact" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Contact us here</a>
+                                    <a href="'.$site_url.'/product-category/wine-packs/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wine Packs</a>
+                                    <a href="'.$site_url.'/product-category/wine/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Explore Wines</a>
+                                    <a href="'.$site_url.'/wine-club/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Be a Club member</a>
+                                    <a href="'.$site_url.'/my-account/subscription/" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Know about our subscription plans</a>
+                                    <a href="'.$site_url.'/#contact" style="color: #dec07f;text-decoration: none;font-weight: 500;display: block;">Contact us here</a>
                                 </div>
 
                                 </div>

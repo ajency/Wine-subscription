@@ -1464,3 +1464,21 @@ add_filter( 'stylesheet_uri', 'child_stylesheet_uri', 10, 2 );
  */
 
 
+function set_http_headers_cache() {
+   /*header( 'X-UA-Compatible: IE=edge,chrome=1' );
+    session_cache_limiter('');
+    header("Cache-Control: public, s-maxage=120");
+  if( !session_id() )
+  {
+    session_start();
+  }*/
+
+    $seconds_to_cache =   60 * 60 * 24 *  14; //60s x 60m x 24h x 3d  //13600;
+    $ts = gmdate("D, d M Y H:i:s", time() + $seconds_to_cache) . " GMT";
+    $ex_date = date(DATE_RFC822,strtotime("14 days"));
+
+    header("Expires: ".$ex_date);
+    header("Pragma: cache");
+    header("Cache-Control: max-age=$seconds_to_cache");
+}
+add_action( 'send_headers', 'set_http_headers_cache' );
