@@ -103,7 +103,12 @@ jQuery(function(){
 
 	}
 
-	setTimeout(slideCarousel, 1000);
+  jQuery(document).ready(function($) {
+    slideCarousel();
+  });
+    
+
+	// setTimeout(slideCarousel, 1000);
 
 
 	// Readmore
