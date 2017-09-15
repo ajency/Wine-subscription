@@ -1482,3 +1482,11 @@ function set_http_headers_cache() {
     header("Cache-Control: max-age=$seconds_to_cache");
 }
 add_action( 'send_headers', 'set_http_headers_cache' );
+
+
+
+function action_woocommerce_after_add_to_cart_form(  ) { 
+   unset($_SESSION['subscription_type']);
+}; 
+          
+add_action( 'woocommerce_after_add_to_cart_form', 'action_woocommerce_after_add_to_cart_form', 10, 0 ); 
