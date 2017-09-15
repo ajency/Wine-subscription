@@ -2545,34 +2545,24 @@ a[data-readmore-toggle].more:before {
     background-position: 50% 141%;
   }
 }
-.footer-content {
+.copyright-footer {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.footer-content__links {
+.copyright-footer .copy-text {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  text-align: right;
 }
-@media screen and (max-width: 650px) {
-  .footer-content .footer-content__links {
-    text-align: center;
-  }
-  .footer-content p {
-    padding: 0.5em 0;
-  }
+.visible {
+  visibility: hidden;
 }
 #simplemodal-login-container-osx.simplemodal-container {
   width: 550px !important;
@@ -4229,7 +4219,8 @@ body .woocommerce form .form-row .button {
 .custom-alerts.failure {
   background-color: #022c4c;
 }
-.sub-success {
+.sub-success,
+.non-eligible {
   background-color: #022c4c;
   color: #fff;
 }
@@ -4549,14 +4540,14 @@ body .woocommerce form .form-row .button {
 .sub-select {
   width: 220px;
   margin: 0;
-  background-color: #022c4c;
-  color: #fff;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.8);
   font-family: 'gotham_bookregular';
   font-weight: 600;
-  background-image: -webkit-linear-gradient(45deg, transparent 50%, #ffffff 50%), -webkit-linear-gradient(315deg, #ffffff 50%, transparent 50%), -webkit-linear-gradient(left, #022c4c, #022c4c);
-  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%), linear-gradient(135deg, #ffffff 50%, transparent 50%), linear-gradient(to right, #022c4c, #022c4c);
+  background-image: -webkit-linear-gradient(45deg, transparent 50%, rgba(0, 0, 0, 0.8) 50%), -webkit-linear-gradient(315deg, rgba(0, 0, 0, 0.8) 50%, transparent 50%), -webkit-linear-gradient(left, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+  background-image: linear-gradient(45deg, transparent 50%, rgba(0, 0, 0, 0.8) 50%), linear-gradient(135deg, rgba(0, 0, 0, 0.8) 50%, transparent 50%), linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
   background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
-  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-size: 5px 5px, 5px 6px, 1px 1.8em;
   background-repeat: no-repeat;
 }
 .fade-select {
@@ -4796,6 +4787,12 @@ body .woocommerce form .form-row .button {
           align-items: center;
   margin-bottom: 1em;
   color: #022c4c;
+  margin-top: 2em;
+}
+@media screen and (min-width: 500px) {
+  .why-subscribe {
+    border: 1px solid #ddd;
+  }
 }
 .why-subscribe__content .title {
   font-family: gotham_mediumregular;
@@ -4807,6 +4804,7 @@ body .woocommerce form .form-row .button {
   color: #022c4c;
   margin-top: 0;
   text-align: center;
+  font-weight: 500;
 }
 .why-subscribe__content .reason {
   font-size: 1.05em;
@@ -4840,6 +4838,7 @@ body .woocommerce form .form-row .button {
   -webkit-flex: 1 0 calc(33.33% - 1.6em);
       -ms-flex: 1 0 calc(33.33% - 1.6em);
           flex: 1 0 calc(33.33% - 1.6em);
+  font-weight: 500;
 }
 .why-subscribe__content .reason li:last-child {
   border-right: 0;
@@ -4891,6 +4890,8 @@ body .woocommerce form .form-row .button {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 1em;
+  background-color: #fff;
+  border: 3px solid #f2f2f2;
 }
 .subscription-action .toggle-check {
   -webkit-box-flex: 1;
@@ -4905,15 +4906,18 @@ body .woocommerce form .form-row .button {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 .subscription-action .custom-check:before {
   top: -8px;
   left: -3px;
   font-size: 2em;
+  color: #ca9b3e;
+  background-color: #fff;
 }
 .subscription-action .content {
   padding: 0 1em;
-  font-size: 1.15em;
+  font-size: 1.05em;
   color: #022c4c;
 }
 .subscription-action .content p {
@@ -4935,7 +4939,7 @@ body .woocommerce form .form-row .button {
           align-items: center;
 }
 .subscription-action .type-title {
-  font-size: 1.15em;
+  font-size: 1.05em;
   color: #022c4c;
   margin: 0;
   font-family: gotham_bookregular;
@@ -5158,6 +5162,22 @@ body .woocommerce form .form-row .button {
         -ms-flex-direction: column;
             flex-direction: column;
   }
+}
+.cart-loader {
+  margin-right: 10px;
+  font-size: 1.45em;
+  position: absolute;
+  z-index: 1;
+  color: #022c4c;
+}
+.opac {
+  opacity: 0;
+}
+.cart-total-value.cart-total-value .woocommerce-remove-coupon {
+  text-transform: capitalize;
+}
+.cart-total-value.cart-total-value .woocommerce-remove-coupon:hover {
+  color: #022c4c;
 }
 .woocommerce-account .woocommerce {
   margin-top: 1em;

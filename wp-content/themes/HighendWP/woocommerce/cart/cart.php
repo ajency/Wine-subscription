@@ -49,23 +49,15 @@ do_action( 'woocommerce_before_cart' );
 
 <div class="hb-notif-box custom-alerts error failure hidden"><div class="message-text"><p><i class="fa fa-check-circle" style="color: #fff;"></i>Your current subscription has been cancelled.</p></div></div>
 
+<div class="hb-notif-box custom-alerts non-eligible hidden"><div class="message-text"><p><i class="fa fa-check-circle" style="color: #fff;"></i> Wine Bottles are not in multiples of 6!<br> In order to opt for subscription, quantity of wine bottles in the cart have to be in multiples of 6.</p></div></div>
+
+
 <div class="hb-notif-box custom-alerts sub-success hidden"><div class="message-text"><p><i class="fa fa-check-circle"></i> Success!!! Your Subscription has been saved</p></div></div>
 
 
 <!-- why subscribe -->
 
-<div class="why-subscribe box-shadow-wrap">
-	<i class="fa fa-times close-sub-box" aria-hidden="true"></i>
-<!-- 	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover"> -->
-	<div class="why-subscribe__content">
-		<h3 class="title">Why Subscribe</h3>
-		<ul class="reason">
-			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Wines delivered free to your door as required.</li>
-			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Access to limited releases and exclusive offers.</li>
-			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Receive invitations to unique tastings and events.</li>
-		</ul>
-	</div>
-</div>
+
 
 
 
@@ -204,15 +196,15 @@ do_action( 'woocommerce_before_cart' );
 </form>
 
 <div class="subscription-table">
-	<div class="box-shadow-wrap subscription-action">
+	<div class="subscription-action">
 		<div class="toggle-check">
-
+			<i class="fa fa-circle-o-notch fa-spin hidden cart-loader"></i>
 			<input type="checkbox" value="" name="subscription-check" id="subscription-check" class="custom-check" <?php echo $checked; ?>/>
-			<div class="content">
+			<div class="content common-fade <?php echo $fade; ?>">
 				<p>Convert my order into a subscription</p>
 			</div>
 		</div>
-		<div class="sub-selection">
+		<div class="sub-selection common-fade <?php echo $fade; ?>">
 			<p class="type-title">Type of Subscription :</p>
 			<!-- <div class="switch">
 				<input id="monthly" class="switch-input" checked="checked" name="sub-type" type="radio" value="monthly" autocomplete="off" />
@@ -220,12 +212,26 @@ do_action( 'woocommerce_before_cart' );
 				<input id="quarterly" class="switch-input" name="sub-type" type="radio" value="quarterly" autocomplete="off" /><label class="switch-label switch-label-on" for="quarterly">Quarterly</label>
 				<div class="switch-selection"></div>
 			</div> -->
-			<select class="sub-select <?php echo $fade; ?>" id="sub-type-combo" name="sub-type-combo">
+			<select class="sub-select" id="sub-type-combo" name="sub-type-combo">
 				<option value="monthly" <?php echo $_SESSION['subscription_type']=="monthly"? "Selected" : ""; ?> >Monthly</option>
 				<option value="bimonthly" <?php echo $_SESSION['subscription_type']=="bimonthly"? "Selected" : ""; ?>>Bimonthly</option>
 				<option value="quarterly" <?php echo $_SESSION['subscription_type']=="quarterly"? "Selected" : ""; ?>>Quarterly</option>
 			</select>
 		</div>
+	</div>
+</div>
+
+
+<div class="why-subscribe">
+	<!-- <i class="fa fa-times close-sub-box" aria-hidden="true"></i> -->
+<!-- 	<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cart-bottle.png" class="alert-cover"> -->
+	<div class="why-subscribe__content">
+		<h3 class="title">Why Subscribe</h3>
+		<ul class="reason">
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Wines delivered free to your door as required.</li>
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Access to limited releases and exclusive offers.</li>
+			<li><i class="fa fa-hand-o-right" aria-hidden="true"></i> Receive invitations to unique tastings and events.</li>
+		</ul>
 	</div>
 </div>
 

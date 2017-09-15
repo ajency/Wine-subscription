@@ -146,7 +146,7 @@ jQuery(function ($) {
     /**
      * unsubscribe 
      */
-    $(document).on('click', '#unsubscribe-order', function (event) {
+/*    $(document).on('click', '#unsubscribe-order', function (event) {
         $.post(cart_qty_ajax.siteapiurl+'unsubscribe_session', function(data, textStatus, xhr) {
             $('.get-started-sub').removeClass('hidden');
             $('.cancel-subscription').addClass('hidden');
@@ -154,11 +154,12 @@ jQuery(function ($) {
             $('#subscription_status').val('no');
             $('.subscribe-content .success').addClass('hidden');
             $('.subscribe-val').text('');  
-            $('.subscribe-data').addClass('hidden');     
+            $('.subscribe-data').addClass('hidden');    
+            
         });
    
 
-    });  
+    });  */
 
      $(document).on('click', '.hb-accordion-tab', function (event) {
       if($('.hb-accordion-tab').hasClass('active-toggle')){
@@ -187,18 +188,25 @@ jQuery(function ($) {
         if($('#subscription-check').is(":checked")){
             $('#'+id).val('yes');
             // var subscription_type = $("input[name='sub-type']:checked").val();
-            jQuery('.sub-select').removeClass('fade-select');
+            jQuery('.subscription-action').find('.common-fade').removeClass('fade-select');
+            jQuery('.cart-loader').removeClass('hidden');
+            jQuery('#subscription-check').addClass('opac');
             var subscription_type =  $("#sub-type-combo").val();
 
             subscribe_session(subscription_type);
         }
         else{
             $('#'+id).val('no');
-            jQuery('.sub-select').addClass('fade-select');
+            $('.subscription-action').find('.common-fade').addClass('fade-select');
+            jQuery('#subscription-check').addClass('opac');
+            jQuery('.cart-loader').removeClass('hidden');
             $.post(cart_qty_ajax.siteapiurl+'unsubscribe_session', function(data, textStatus, xhr) {
                 $('.subscribe-data').addClass('hidden');  
                 $('.sub-success').addClass('hidden');   
                 $('.error,.failure').removeClass('hidden'); 
+                $('.non-eligible').addClass('hidden'); 
+                $('.cart-loader').addClass('hidden');       
+                $('#subscription-check').removeClass('opac'); 
                 $("html, body").animate({ scrollTop: 0 }, "slow"); 
             });
 
@@ -238,17 +246,34 @@ jQuery(function ($) {
      function subscribe_session(subscription_type){
 
             $.post(cart_qty_ajax.siteapiurl+'subscribe_session', {subscription: subscription_type}, function(data, textStatus, xhr) {
-              var date = new Date();
-              var month = new Array();
-              month[0] = "Jan";month[1] = "Feb";month[2] = "Mar";month[3] = "Apr";month[4] = "May";month[5] = "Jun";
-              month[6] = "Jul";month[7] = "Aug";month[8] = "Sep";month[9] = "Oct";month[10] = "Nov";month[11] = "Dec";
-              var n = month[date.getMonth()];
-               $('.subscribe-val').html(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}) +"<br>"+ n+" "+date.getDate()+", "+date.getFullYear());
-                $('.subscribe-data').removeClass('hidden');   
-                 $('.error,.failure').addClass('hidden');   
-                 $('.sub-success').removeClass('hidden');   
-                  $("html, body").animate({ scrollTop: 0 }, "slow"); 
-            });
+              if(data==true){
+                  var date = new Date();
+                  var month = new Array();
+                  month[0] = "Jan";month[1] = "Feb";month[2] = "Mar";month[3] = "Apr";month[4] = "May";month[5] = "Jun";
+                  month[6] = "Jul";month[7] = "Aug";month[8] = "Sep";month[9] = "Oct";month[10] = "Nov";month[11] = "Dec";
+                  var n = month[date.getMonth()];
+                   $('.subscribe-val').html(subscription_type.replace(/\b[a-z]/g,function(f){return f.toUpperCase();}) +"<br>"+ n+" "+date.getDate()+", "+date.getFullYear());
+                    $('.subscribe-data').removeClass('hidden');   
+                     $('.error,.failure').addClass('hidden'); 
+
+                     $('.sub-success').removeClass('hidden'); 
+                       $('.non-eligible').addClass('hidden');     
+                      $("html, body").animate({ scrollTop: 0 }, "slow"); 
+              }
+            else {
+                $('#subscription-check').prop('checked',false);
+                $('.subscription-action').find('.common-fade').addClass('fade-select');
+               
+                $('.non-eligible').removeClass('hidden');   
+                $('.error,.failure').addClass('hidden');   
+                $('.sub-success').addClass('hidden');   
+                $("html, body").animate({ scrollTop: 0 }, "slow"); 
+            }
+            $('.cart-loader').addClass('hidden');       
+            $('#subscription-check').removeClass('opac');
+                
+          });
+
      }
 
 

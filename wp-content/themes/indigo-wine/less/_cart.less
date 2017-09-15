@@ -182,10 +182,11 @@
     }
 }
 
-.sub-success{
+.sub-success,.non-eligible{
 	background-color: @brand-secondary;
 	color: #fff;
 }
+
 
 
 
@@ -506,13 +507,13 @@
 .sub-select{
 	width: 220px;
 	margin: 0;
-	background-color: @brand-secondary;
-	color: #fff;
+	background-color: #fff;
+	color: rgba(0, 0, 0, 0.8);
 	font-family: 'gotham_bookregular';
 	font-weight: 600;
-    background-image: linear-gradient(45deg, transparent 50%, #fff 50%), linear-gradient(135deg, #fff 50%, transparent 50%), linear-gradient(to right, @brand-secondary, @brand-secondary);
+    background-image: linear-gradient(45deg, transparent 50%, rgba(0, 0, 0, 0.8) 50%), linear-gradient(135deg, rgba(0, 0, 0, 0.8) 50%, transparent 50%), linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
     background-position: calc(~'100% - 20px') calc(~'1em + 2px'), calc(~'100% - 15px') calc(~'1em + 2px'), calc(~'100% - 2.5em') 0.5em;
-    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+    background-size: 5px 5px, 5px 6px, 1px 1.8em;
     background-repeat: no-repeat;
 }
 
@@ -754,6 +755,10 @@
     align-items: center;
     margin-bottom: 1em;
 	color: @brand-secondary;
+	margin-top: 2em;
+	@media screen and (min-width: 500px){
+		border: 1px solid #ddd;
+	}
 	&__content{
 		// padding-left: 0.5em;
 		.title{
@@ -766,6 +771,7 @@
     		color: @brand-secondary;
     		margin-top: 0;
     		text-align: center;
+    		font-weight: 500;
 		}
 		.reason{
 			font-size: 1.05em;
@@ -784,6 +790,7 @@
     			align-items: baseline;
     			text-align: left;
     			flex: 1 0 calc(~'33.33% - 1.6em');
+    			font-weight: 500;
     			&:last-child{
     				border-right: 0;
     			}
@@ -840,21 +847,26 @@
     align-items: center;
     justify-content: space-between;
     padding: 1em;
+    background-color: #fff;
+    border: 3px solid #f2f2f2;
     .toggle-check{
     	flex: 1;
     	display: flex;
     	align-items: center;
+    	position: relative;
     }
     .custom-check{
     	&:before{
     		top: -8px;
     		left: -3px;
     		font-size: 2em;
+    		color: #ca9b3e;
+    		background-color: #fff;
     	}
     }
     .content{
     	padding: 0 1em;
-    	font-size: 1.15em;
+    	font-size: 1.05em;
     	color: @brand-secondary;
     	p{
     		font-family: gotham_bookregular;
@@ -870,7 +882,7 @@
     	align-items: center;
     }
     .type-title{
-    	font-size: 1.15em;
+    	font-size: 1.05em;
 	   	color: @brand-secondary;
 	    margin: 0;
 	    font-family: gotham_bookregular;
@@ -1088,8 +1100,22 @@
 }
 
 
+.cart-loader{
+	margin-right: 10px;
+    font-size: 1.45em;
+    position: absolute;
+    z-index: 1;
+    color: @brand-secondary;
+}
 
+.opac{
+	opacity: 0;
+}
 
-
-
+.cart-total-value.cart-total-value .woocommerce-remove-coupon{
+	text-transform: capitalize;
+	&:hover{
+		color: @brand-secondary;
+	}
+}
 

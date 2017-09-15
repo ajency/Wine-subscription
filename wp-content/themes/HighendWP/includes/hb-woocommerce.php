@@ -120,7 +120,7 @@
 								<div class="site-offer">
 									<div class="message">
 										<span class="percent"></span>
-										<h2 class="title">Buy <b>6 bottles</b> and avail a flat <?php echo $disvalue_mgs; ?> off</h2>
+										<h2 class="title">Buy <b>6 bottles</b> and receive a further <?php echo $disvalue_mgs; ?> off</h2>
 									</div>
 									<i class="fa fa-times close" aria-hidden="true"></i>
 								</div>

@@ -20,8 +20,7 @@ function theme_js() {
   
     wp_enqueue_script( 'scroll', get_stylesheet_directory_uri() . '/jquery.easeScroll.min.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'readmore', get_stylesheet_directory_uri() . '/readmore.min.js', array( 'jquery' ), '1.0', true );
-    // wp_enqueue_script( 'theme_js', get_stylesheet_directory_uri() . '/custom.js', array( 'jquery' ), '1.0', true );
-    wp_register_script( 'theme_js', get_stylesheet_directory_uri() . '/custom.js', array( 'jquery' ), '1.0', true );
+    wp_enqueue_script( 'theme_js', get_stylesheet_directory_uri() . '/custom.js', array( 'jquery' ), '1.0', true );
     wp_localize_script( 'theme_js', 'users', array( 'email' =>  $current_user->user_email));
     wp_enqueue_script( 'theme_js' );
 
@@ -197,7 +196,7 @@ function ajax_qty_cart() {
     // Update cart validation
     $passed_validation  = apply_filters( 'woocommerce_update_cart_validation', true, $cart_item_key, $threeball_product_values, $threeball_product_quantity );
 
-
+    unset($_SESSION['subscription_type']);
    
 
     if(isset($_POST['subscription']))
@@ -408,12 +407,22 @@ function sale_custom_price($cart_object) {
        $product_id=$cart_value['product_id'];
        $quantity=$cart_value['quantity'];
        $line_total=$cart_value['line_total'];
-       $final_total=$final_total+indigo_discountCalculation($product_id,$quantity,$line_total,$cart_item_key);
 
+        $term_list = wp_get_post_terms($product_id,'product_cat',array('fields'=>'ids'));
+        $category_object = get_term_by('slug', 'wine', 'product_cat');
+       
+        $categories=get_term_children( $category_object->term_id, 'product_cat' );
+        array_push($categories, $category_object->term_id);
+     
+        $totals = array_intersect($categories, $term_list);
 
-        $price=get_post_meta($product_id,  '_price', true );
+        if((indigo_rangelogic($quantity) && count($totals) > 0) || count($totals)==0){
+            $final_total=$final_total+indigo_discountCalculation($product_id,$quantity,$line_total,'getonlydiscount');
+        }
+
+    /*    $price=get_post_meta($product_id,  '_price', true );
         $row_price        = $price * $quantity;
-        $final_total=$row_price-$final_total;
+        $final_total=$row_price-$final_total;*/
     }
 
     $discount=$final_total;
@@ -440,16 +449,20 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
     array_push($categories, $category_object->term_id);
   
 
-     $totals = array_intersect($categories, $term_list);
+    $totals = array_intersect($categories, $term_list);
     
     if((indigo_rangelogic($quantity) && count($totals) > 0) || count($totals)==0){
         $discount_perc=get_post_meta($product_id,  '_sale_discount_percentage', true );
         $discount_price=get_post_meta($product_id,  '_sale_discount_price', true );
-       
+        
    
         if($discount_perc>0 ){     
-
+        
           $discounted_price_perc=(($discount_perc*$row_price)/100);
+           if($cart_item_key=='getonlydiscount') {
+            return $discounted_price_perc;
+          } 
+         
           
           $discounted_price=$row_price-$discounted_price_perc;
 
@@ -465,9 +478,12 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
          
         }
         else if($discount_price>0){
-           
+            if($cart_item_key=='getonlydiscount') {
+                return $discount_price;
+            }  
+            // $discounted_price=$row_price-($discount_price*$quantity);
             $discounted_price=$row_price-$discount_price;
-            
+           
             /*$woocommerce->cart->discount_cart=$woocommerce->cart->discount_cart+$discount_price;
     
             if( $cart_item_key!='')
@@ -479,6 +495,10 @@ function indigo_discountCalculation($product_id, $quantity,$product_subtotal,$ca
             return $final_product_subtotal= $discounted_price;
               
         }  
+
+         if($cart_item_key=='getonlydiscount') {
+            return 0;
+         }
     } 
     
        
@@ -732,19 +752,22 @@ function filter_posts_clauses( $args ) {
   
     if(isset($_REQUEST['product_cat']))
     {
-        $categories=get_term_children( $_REQUEST['product_cat'], 'product_cat' );
-        array_push($categories, $_REQUEST['product_cat']);
+        if(is_numeric($_REQUEST['product_cat']) && $_REQUEST['product_cat']!=0){
 
-        $args['join'] .= " LEFT JOIN wp_term_relationships ON (wp_posts.ID = wp_term_relationships.object_id)  ";
-        $args['where'] = "  AND (
-              wp_posts.ID NOT IN (
-                            SELECT object_id
-                            FROM wp_term_relationships
-                            WHERE term_taxonomy_id IN (11)
-                        ) 
-              AND wp_term_relationships.term_taxonomy_id IN (".implode(',', $categories).")  
-    
-            ) AND (((wp_posts.post_title LIKE '%".$_REQUEST['s']."%') OR (post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_content LIKE '%".$_REQUEST['s']."%')))  AND wp_posts.post_type = 'product' AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'private') ";
+            $categories=get_term_children( $_REQUEST['product_cat'], 'product_cat' );
+            array_push($categories, $_REQUEST['product_cat']);
+
+            $args['join'] .= " LEFT JOIN wp_term_relationships ON (wp_posts.ID = wp_term_relationships.object_id)  ";
+            $args['where'] = "  AND (
+                  wp_posts.ID NOT IN (
+                                SELECT object_id
+                                FROM wp_term_relationships
+                                WHERE term_taxonomy_id IN (11)
+                            ) 
+                  AND wp_term_relationships.term_taxonomy_id IN (".implode(',', $categories).")  
+        
+                ) AND (((wp_posts.post_title LIKE '%".$_REQUEST['s']."%') OR (post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_excerpt LIKE '%".$_REQUEST['s']."%') OR (wp_posts.post_content LIKE '%".$_REQUEST['s']."%')))  AND wp_posts.post_type = 'product' AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'private') ";
+        }
 
        
     }
@@ -1416,7 +1439,7 @@ add_filter( 'woocommerce_email_recipient_cancelled_order', 'wc_cancelled_order_a
  * HIde admin Bar
  */
 
-add_filter('show_admin_bar', '__return_false');
+// add_filter('show_admin_bar', '__return_false');
 
 
 add_filter('wp_mail_from', 'indigo_mail_from');
@@ -1429,4 +1452,41 @@ function indigo_mail_from_name($old) {
  return 'Support';
 }
 
+/* 
+function child_stylesheet_uri( $stylesheet_uri, $stylesheet_dir_uri ) { 
+    
+    $stylesheet_dir_uri = get_stylesheet_directory_uri();
+    $stylesheet_uri = $stylesheet_dir_uri . '/style.min.css';
+    return $stylesheet_uri; 
+}; 
+         
+add_filter( 'stylesheet_uri', 'child_stylesheet_uri', 10, 2 ); 
+ */
 
+
+function set_http_headers_cache() {
+   /*header( 'X-UA-Compatible: IE=edge,chrome=1' );
+    session_cache_limiter('');
+    header("Cache-Control: public, s-maxage=120");
+  if( !session_id() )
+  {
+    session_start();
+  }*/
+
+    $seconds_to_cache =   60 * 60 * 24 *  14; //60s x 60m x 24h x 3d  //13600;
+    $ts = gmdate("D, d M Y H:i:s", time() + $seconds_to_cache) . " GMT";
+    $ex_date = date(DATE_RFC822,strtotime("14 days"));
+
+    header("Expires: ".$ex_date);
+    header("Pragma: cache");
+    header("Cache-Control: max-age=$seconds_to_cache");
+}
+add_action( 'send_headers', 'set_http_headers_cache' );
+
+
+
+function indigo_woocommerce_add_to_cart(  ) { 
+   unset($_SESSION['subscription_type']);
+}; 
+          
+add_action( 'woocommerce_add_to_cart', 'indigo_woocommerce_add_to_cart', 10, 0 ); 

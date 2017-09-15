@@ -2680,20 +2680,33 @@ a[data-readmore-toggle]{
 }
 
 
-.footer-content{
+// .footer-content{
+// 	display: flex;
+// 	align-items: center;
+// 	justify-content: space-between;
+// 	&__links{
+// 		flex: 1;
+// 		text-align: right;
+// 	}
+// 	@media screen and (max-width: 650px){
+// 		.footer-content__links{
+// 			text-align: center;
+// 		}
+// 		p{
+// 			padding: 0.5em 0;
+// 		}
+// 	}
+// }
+
+.copyright-footer{
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
-	&__links{
+	.copy-text{
 		flex: 1;
-		text-align: right;
-	}
-	@media screen and (max-width: 650px){
-		.footer-content__links{
-			text-align: center;
-		}
-		p{
-			padding: 0.5em 0;
-		}
 	}
 }
+
+.visible{
+	visibility: hidden;
+}
+
