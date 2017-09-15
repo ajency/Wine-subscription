@@ -1438,8 +1438,7 @@ add_filter( 'woocommerce_email_recipient_cancelled_order', 'wc_cancelled_order_a
 /**
  * HIde admin Bar
  */
-
-// add_filter('show_admin_bar', '__return_false');
+add_filter('show_admin_bar', '__return_false');
 
 
 add_filter('wp_mail_from', 'indigo_mail_from');
