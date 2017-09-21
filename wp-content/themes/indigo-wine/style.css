@@ -3175,7 +3175,6 @@ a[data-readmore-toggle].more:before {
   display: block;
 }
 .woocommerce-product-gallery__image a img {
-  max-width: 70% !important;
   margin: auto;
 }
 .woocommerce-product-gallery__wrapper div.thumbnails.thumbnails {
