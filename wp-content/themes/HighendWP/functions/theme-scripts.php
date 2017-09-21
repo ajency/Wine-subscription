@@ -14,7 +14,7 @@ if ( !function_exists('hb_scripts_setup') ) {
 			wp_enqueue_script( 'hb_scripts', $theme_path . '/scripts/scripts.js', array( 'jquery' ), HB_THEME_VERSION, true );
 
 			if (!hb_is_maintenance()){			
-				wp_enqueue_script( 'hb_gmap', '//www.google.com/jsapi', null, HB_THEME_VERSION, true );
+				// wp_enqueue_script( 'hb_gmap', '//www.google.com/jsapi', null, HB_THEME_VERSION, true );
 				wp_enqueue_script( 'hb_map', $theme_path . '/scripts/map.js', array('jquery', 'hb_gmap'), HB_THEME_VERSION, true );
 				wp_enqueue_script( 'hb_mediaelement', $theme_path . '/scripts/mediaelement/mediaelement.js', array('jquery'), HB_THEME_VERSION, true );
 				wp_enqueue_script( 'hb_flexslider', $theme_path . '/scripts/jquery.flexslider.js', array('jquery'), HB_THEME_VERSION, true );

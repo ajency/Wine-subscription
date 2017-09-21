@@ -1489,3 +1489,22 @@ function indigo_woocommerce_add_to_cart(  ) {
 }; 
           
 add_action( 'woocommerce_add_to_cart', 'indigo_woocommerce_add_to_cart', 10, 0 ); 
+
+
+
+// add_action('wp_enqueue_scripts', 'rudr_move_jquery_to_footer');  
+ 
+// function rudr_move_jquery_to_footer() {  
+//     // unregister the jQuery at first
+//         wp_deregister_script('jquery');  
+ 
+//         // register to footer (the last function argument should be true)
+//         wp_register_script('jquery', includes_url('/js/jquery/jquery.js'), false, null, true);  
+ 
+//         wp_enqueue_script('jquery');  
+// }
+
+
+
+
+
