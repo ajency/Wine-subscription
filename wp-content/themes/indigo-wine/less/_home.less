@@ -582,7 +582,7 @@ body{
     				left: 0;
     				right: 0;
     				top: 0;
-    				background-color: rgba(0,0,0,0.35);
+    				// background-color: rgba(0,0,0,0.35);
 				}
 			}
 		}
@@ -2709,4 +2709,87 @@ a[data-readmore-toggle]{
 .visible{
 	visibility: hidden;
 }
+
+
+
+
+// Terms & Condition
+
+.privacy{
+	&__title{
+		margin-top: 1.5em;
+		font-size: 1.1em;
+    	line-height: 1.6;
+    	color: #565454;
+	}
+	.policy-title{
+		font-weight: 600;
+    	font-family: 'gotham_mediumregular';
+	}
+	li{
+		font-family: 'gotham_lightregular';
+		h5{
+			font-weight: 600;
+    		font-family: 'gotham_mediumregular';
+    		text-transform: uppercase;
+    		font-size: 1.05em;
+		}
+		ul{
+			padding-left: 1em;
+    		margin: 1.5em !important;
+			li{
+				list-style-type: decimal !important;
+				padding-bottom: 0.5em;
+    			color: #565454;
+    			ul{
+    				margin-top: 1em !important;
+    				margin-bottom: 1em !important;
+    			}
+			}
+		}
+		p{
+			color: #565454;
+		}
+	}
+}
+
+.email-link{
+	color: @brand-primary;
+	font-weight: 600;
+    font-family: 'gotham_mediumregular';
+}
+
+
+
+@media screen and (max-width: 650px){
+	.privacy{
+		padding: 0 1em;
+	}
+	.footer-content__links{
+		position: relative;
+		.visible{
+			position: absolute;
+			z-index: -1;
+		}
+	}
+	#copyright-wrapper .copy-text{
+		margin-bottom: 0.5em !important;
+	}
+}
+
+
+
+// single product image reset width
+
+#main-content{
+	.woocommerce-product-gallery__wrapper{
+		img{
+			width: auto;
+		}
+	}
+}
+
+
+
+
 
