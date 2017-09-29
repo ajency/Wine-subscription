@@ -16,9 +16,9 @@
             <p class="copy-text"><?php echo do_shortcode(hb_options('hb_copyright_line_text')); ?>
             <p class="footer-content__links">
                 <a href="https://ajency.in/" class="visible">Ajency.in</a>
-                <a href="/terms-condition" class="">Terms &amp; Services</a>
+                <a href="/terms-condition">Terms &amp; Services</a>
                 <span class="">|</span>
-                <a href="" class="/privacy-policy/">Privacy Policy</a>
+                <a href="/privacy-policy/">Privacy Policy</a>
             </p>
             <!--?php
                 if (hb_options('hb_enable_backlink')){
