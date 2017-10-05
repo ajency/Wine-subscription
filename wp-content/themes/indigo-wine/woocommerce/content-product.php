@@ -229,9 +229,9 @@ $classes[] = $logclass;
 			<a href="<?php the_permalink(); ?>"><?php do_action( 'woocommerce_shop_loop_item_title' ); ?></a>
 			
 			<?php
-			
-			$size = sizeof( get_the_terms( $post->ID, 'product_tag' ) ); ?>
-			<?php echo wc_get_product_tag_list( $product->get_id(), '', '<div class="woo-cats"><span class="hb-woo-shop-cats">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span></div>' ); ?>
+			// commented the products tags on client request
+			//$size = sizeof( get_the_terms( $post->ID, 'product_tag' ) ); ?>
+			<?php //echo wc_get_product_tag_list( $product->get_id(), '', '<div class="woo-cats"><span class="hb-woo-shop-cats">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span></div>' ); ?>
 		</div>
 
 		<?php
