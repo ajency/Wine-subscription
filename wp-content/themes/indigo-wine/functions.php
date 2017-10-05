@@ -1480,7 +1480,7 @@ function set_http_headers_cache() {
     header("Pragma: cache");
     header("Cache-Control: max-age=$seconds_to_cache");
 }
-add_action( 'send_headers', 'set_http_headers_cache' );
+// add_action( 'send_headers', 'set_http_headers_cache' );
 
 
 
