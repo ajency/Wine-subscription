@@ -111,14 +111,7 @@ jQuery(function(){
 	// setTimeout(slideCarousel, 1000);
 
 
-	// Readmore
 
-	jQuery('.about-details').readmore({
-	   speed: 25,
-	   collapsedHeight: 235,
-	   moreLink: '<a href="#" class="more">Show More <i class="fa fa-angle-down" aria-hidden="true"></i></a>',
-	   lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
-	 });
 
 	jQuery('.product_desc').readmore({
 	   speed: 25,
@@ -320,6 +313,16 @@ jQuery(".orderby option[value='date']").text('Sort by newest first');
 }).call(this);
 
 jQuery(document).ready(function() {
+
+
+		// Readmore
+
+	jQuery('.about-details').readmore({
+	   speed: 25,
+	   collapsedHeight: 235,
+	   moreLink: '<a href="#" class="more">Show More <i class="fa fa-angle-down" aria-hidden="true"></i></a>',
+	   lessLink: '<a href="#">Less <i class="fa fa-angle-up" aria-hidden="true"></i></a>'
+	 });
 
 	jQuery("#toggleButton").click( function(event){
 	     event.preventDefault();
