@@ -66,23 +66,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	<h4 class="hb-heading"><span>Preferred Delivery Slot</span></h4>
 	<p class="form-row form-row-first">
 		<label>Preferred Day</label>
-		<select>
-			<option>Monday</option>
-			<option>Tuesday</option>
-			<option>Wednesday</option>
-			<option>Thursday</option>	
-			<option>Friday</option>
-			<option>Saturday</option>
-			<option>Sunday</option>	
-		</select>
+		 <input type='text' id='preferred_date' name="preferred_date" />
+		
 	</p>
 	<p class="form-row form-row-last">
 		<label>Preferred Time</label>
-		<select>
-			<option>10am - 12pm</option>
-			<option>12pm - 3pm</option>
-			<option>3pm - 6pm</option>
-			<option>6pm - 8pm</option>
+		<select id="preferred_time" name="preferred_time">
+			<option value ="9:00 AM - 1.00 PM">9:00 AM - 1.00 PM</option>
+			<option value ="1:00 PM - 6.00 PM">1:00 PM - 6.00 PM</option>
+			<option value ="6:00 PM - 9.00 PM">6:00 PM - 9.00 PM</option>
 		</select>
 	</p>
 </div>

@@ -385,7 +385,17 @@ jQuery(document).ready(function() {
 
 
 
+jQuery(document).ready(function() {
+              
+  jQuery('#preferred_date').datetimepicker({ 
+    timepicker:false,
+    minDate:'0',
+    format:'d/m/Y',
+    disabledWeekDays:[0, 6]
+  }
+  );
 
+});
 
 
 
