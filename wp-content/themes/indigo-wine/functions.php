@@ -1518,3 +1518,56 @@ function indigo_save_extra_checkout_fields( $order_id ){
     update_post_meta( $order_id, '_preferred_date', $_POST['preferred_date']  ); 
 }
 add_action( 'woocommerce_checkout_update_order_meta', 'indigo_save_extra_checkout_fields', 10, 1 );
+
+
+
+// action to add the flat discount coupon based on the quantity
+add_action('woocommerce_before_cart_table', 'discount_when_quantity_greater_than_5');
+function discount_when_quantity_greater_than_5() {
+    $coupon_code = FLAT_DISCOUNT_COUPON;
+    
+    global $woocommerce;
+    $items = $woocommerce->cart->get_cart();
+    $total_qty=0;
+      foreach($items as $item => $values) { 
+
+        $_product = $values['data']->post; 
+        $product_id= $values['product_id'];
+        $product_qty= $values['quantity'];
+
+        $product_cats_ids = wc_get_product_term_ids( $product_id, 'product_cat' );
+
+        foreach( $product_cats_ids as $cat_id ) {
+          $term = get_term_by( 'id', $cat_id, 'product_cat' );
+          if($term->slug=='wine'){
+            $total_qty=$total_qty+$product_qty;
+          }
+        }
+
+    }
+    
+    if($total_qty>=6)
+    {   
+
+        if (!$woocommerce->cart->add_discount( sanitize_text_field( $coupon_code ))) {
+           echo '<div class="woocommerce_message"><strong>The number of Product in your order is greater than 10 so a 10% Discount has been Applied!</strong></div>';
+        }
+    }
+    else{
+         $woocommerce->cart->remove_coupon( $coupon_code );
+    }  
+ 
+}
+
+// filter to disable the remove coupon code used for specific coupon
+function indigo_filter_woocommerce_cart_totals_coupon_html( $coupon_html, $coupon, $discount_amount_html ) { 
+  
+    if($coupon->code== FLAT_DISCOUNT_COUPON){
+        return $discount_amount_html; 
+    }
+    return $coupon_html;
+}; 
+         
+add_filter( 'woocommerce_cart_totals_coupon_html', 'indigo_filter_woocommerce_cart_totals_coupon_html', 10, 3 ); 
+
+
