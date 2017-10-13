@@ -12,6 +12,7 @@ function highend_child_theme_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'highend_parent_theme_enqueue_styles' );
 add_action('wp_enqueue_scripts', 'theme_js');
 function highend_parent_theme_enqueue_styles() {
+    wp_enqueue_style( 'jquery.datetimepicker.min', get_stylesheet_directory_uri() . '/jquery.datetimepicker.min.css' );
     wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );
     wp_enqueue_style('font-awesome', get_stylesheet_directory_uri() . '/css/font-awesome.css');
 }
@@ -20,6 +21,7 @@ function theme_js() {
   
     wp_enqueue_script( 'scroll', get_stylesheet_directory_uri() . '/jquery.easeScroll.min.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'readmore', get_stylesheet_directory_uri() . '/readmore.min.js', array( 'jquery' ), '1.0', true );
+    wp_enqueue_script( 'datetimepicker', get_stylesheet_directory_uri() . '/jquery.datetimepicker.full.min.js', array( 'jquery' ), '1.0', true );
     wp_enqueue_script( 'theme_js', get_stylesheet_directory_uri() . '/custom.js', array( 'jquery' ), '1.0', true );
     wp_localize_script( 'theme_js', 'users', array( 'email' =>  $current_user->user_email));
     wp_enqueue_script( 'theme_js' );
@@ -1289,6 +1291,12 @@ add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_arg
  */
 function subscription_details_on_orderpage($order){
 
+     $_preferred_date = $order->get_meta( '_preferred_date' );
+      $_preferred_time = $order->get_meta( '_preferred_time' );
+    echo "<h3 style='margin-top: 30px;'> Preferred Delivery Slot</h2>
+                <p>Preferred Day : ".$_preferred_date."</p>
+                <p>Preferred Time: ".$_preferred_time."</p>";
+
     $field_value = $order->get_meta( '_subscription_id' );
 
     if($field_value!='')
@@ -1297,7 +1305,7 @@ function subscription_details_on_orderpage($order){
         $status=get_post_meta($field_value,  'status', true );
         $post_date=get_the_date('M, d Y',$field_value);
         $next_duedate=nextduedate($field_value);
-        echo "<h2 style='margin-top: 30px;'> Subscription <a href='edit.php?s=".$field_value."&post_status=all&post_type=subscription&action=-1&m=0&paged=1&subscription_id=''&action2=-1'>#".$field_value."</a></h2>
+        echo "<h3 style='margin-top: 30px;'> Subscription <a href='edit.php?s=".$field_value."&post_status=all&post_type=subscription&action=-1&m=0&paged=1&subscription_id=''&action2=-1'>#".$field_value."</a></h2>
                 <p>Subscription Type : ".ucfirst($_subscription_type)."</p>
                 <p>Start Date : ".$post_date."</p>";
 
@@ -1505,6 +1513,60 @@ add_action( 'woocommerce_add_to_cart', 'indigo_woocommerce_add_to_cart', 10, 0 )
 // }
 
 
+function indigo_save_extra_checkout_fields( $order_id ){
+    update_post_meta( $order_id, '_preferred_time', $_POST['preferred_time']  );
+    update_post_meta( $order_id, '_preferred_date', $_POST['preferred_date']  ); 
+}
+add_action( 'woocommerce_checkout_update_order_meta', 'indigo_save_extra_checkout_fields', 10, 1 );
 
+
+
+// action to add the flat discount coupon based on the quantity
+add_action('woocommerce_before_cart_table', 'discount_when_quantity_greater_than_5');
+function discount_when_quantity_greater_than_5() {
+    $coupon_code = FLAT_DISCOUNT_COUPON;
+    
+    global $woocommerce;
+    $items = $woocommerce->cart->get_cart();
+    $total_qty=0;
+      foreach($items as $item => $values) { 
+
+        $_product = $values['data']->post; 
+        $product_id= $values['product_id'];
+        $product_qty= $values['quantity'];
+
+        $product_cats_ids = wc_get_product_term_ids( $product_id, 'product_cat' );
+
+        foreach( $product_cats_ids as $cat_id ) {
+          $term = get_term_by( 'id', $cat_id, 'product_cat' );
+          if($term->slug=='wine'){
+            $total_qty=$total_qty+$product_qty;
+          }
+        }
+
+    }
+    
+    if($total_qty>=6)
+    {  
+        if (!$woocommerce->cart->add_discount( sanitize_text_field( $coupon_code ))) {
+           // echo '<div class="woocommerce_message"><strong>The number of Product in your order is greater than 10 so a 10% Discount has been Applied!</strong></div>';
+        }
+    }
+    else{
+         $woocommerce->cart->remove_coupon( $coupon_code );
+    }  
+ 
+}
+
+// filter to disable the remove coupon code used for specific coupon
+function indigo_filter_woocommerce_cart_totals_coupon_html( $coupon_html, $coupon, $discount_amount_html ) { 
+  
+    if($coupon->code== FLAT_DISCOUNT_COUPON){
+        return $discount_amount_html; 
+    }
+    return $coupon_html;
+}; 
+         
+add_filter( 'woocommerce_cart_totals_coupon_html', 'indigo_filter_woocommerce_cart_totals_coupon_html', 10, 3 ); 
 
 
