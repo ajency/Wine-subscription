@@ -72,6 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	<p class="form-row form-row-last">
 		<label>Preferred Time</label>
 		<select id="preferred_time" name="preferred_time">
+			<option value ="">Select</option>
 			<option value ="9:00 AM - 1.00 PM">9:00 AM - 1.00 PM</option>
 			<option value ="1:00 PM - 6.00 PM">1:00 PM - 6.00 PM</option>
 			<option value ="6:00 PM - 9.00 PM">6:00 PM - 9.00 PM</option>
