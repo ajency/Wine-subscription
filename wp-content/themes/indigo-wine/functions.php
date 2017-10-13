@@ -1547,10 +1547,9 @@ function discount_when_quantity_greater_than_5() {
     }
     
     if($total_qty>=6)
-    {   
-
+    {  
         if (!$woocommerce->cart->add_discount( sanitize_text_field( $coupon_code ))) {
-           echo '<div class="woocommerce_message"><strong>The number of Product in your order is greater than 10 so a 10% Discount has been Applied!</strong></div>';
+           // echo '<div class="woocommerce_message"><strong>The number of Product in your order is greater than 10 so a 10% Discount has been Applied!</strong></div>';
         }
     }
     else{
