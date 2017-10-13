@@ -388,8 +388,8 @@ jQuery(document).ready(function() {
 jQuery(document).ready(function() {
               
   jQuery('#preferred_date').datetimepicker({ 
-    timepicker:false,
-    minDate:'0',
+    timepicker:false, 
+    minDate:'+1970/01/02', // to disabled today 
     format:'d/m/Y',
     disabledWeekDays:[0, 6]
   }
