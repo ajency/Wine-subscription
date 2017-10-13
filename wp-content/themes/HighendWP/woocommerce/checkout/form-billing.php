@@ -60,3 +60,29 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	<?php endif; ?>
 	
 </div>
+<br><br>
+
+<div class="delivery-slot woocommerce-shipping-fields">
+	<h4 class="hb-heading"><span>Preferred Delivery Slot</span></h4>
+	<p class="form-row form-row-first">
+		<label>Preferred Day</label>
+		<select>
+			<option>Monday</option>
+			<option>Tuesday</option>
+			<option>Wednesday</option>
+			<option>Thursday</option>	
+			<option>Friday</option>
+			<option>Saturday</option>
+			<option>Sunday</option>	
+		</select>
+	</p>
+	<p class="form-row form-row-last">
+		<label>Preferred Time</label>
+		<select>
+			<option>10am - 12pm</option>
+			<option>12pm - 3pm</option>
+			<option>3pm - 6pm</option>
+			<option>6pm - 8pm</option>
+		</select>
+	</p>
+</div>

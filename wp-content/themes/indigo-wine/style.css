@@ -6083,6 +6083,12 @@ abbr {
     margin-bottom: 2em;
   }
 }
+.delivery-slot select {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid #e3e3e3;
+  font-weight: 600;
+}
 .not-found-box {
   min-height: calc(100vh - 36.2em);
 }
