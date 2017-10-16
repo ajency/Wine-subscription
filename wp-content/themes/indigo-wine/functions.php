@@ -1570,3 +1570,13 @@ function indigo_filter_woocommerce_cart_totals_coupon_html( $coupon_html, $coupo
 add_filter( 'woocommerce_cart_totals_coupon_html', 'indigo_filter_woocommerce_cart_totals_coupon_html', 10, 3 ); 
 
 
+
+function indigo_woocommerce_cart_totals_coupon_label( $sprintf, $coupon ) { 
+   
+   if($coupon->code==FLAT_DISCOUNT_COUPON){
+        $sprintf= get_the_title($coupon->id) ;
+   }
+   return $sprintf; 
+}; 
+add_filter( 'woocommerce_cart_totals_coupon_label', 'indigo_woocommerce_cart_totals_coupon_label', 10, 2 ); 
+
