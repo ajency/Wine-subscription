@@ -101,7 +101,7 @@
 			}
 		}
 
-		$discount_perc=get_post_meta($post->ID,  '_sale_discount_percentage', true );
+/*	$discount_perc=get_post_meta($post->ID,  '_sale_discount_percentage', true );
 		$discount_price=get_post_meta( $post->ID,  '_sale_discount_price', true );
 		$disvalue_mgs="";
 		if($discount_perc!='' && $discount_perc !=0){
@@ -110,9 +110,19 @@
 		else if($discount_price!='' && $discount_price !=0){
 			$disvalue_mgs="$".$discount_price;
 		}
+*/
+		$product_cats_ids = wc_get_product_term_ids( $post->ID, 'product_cat' );
+		$is_wine=false;
+	  foreach( $product_cats_ids as $cat_id ) {
+	    $term = get_term_by( 'id', $cat_id, 'product_cat' );
+	    if($term->slug=='wine'){
+	    	$is_wine=true;
+	    }
+	  }
+    
 		?>
 		<div id="main-content" class="singleContent">
-			<?php if ( $sidebar_layout == 'fullwidth' && $disvalue_mgs!="") { ?>
+			<?php if ( $sidebar_layout == 'fullwidth' && $is_wine) { ?>
 				<div class="discount">
 					<div class="container">
 						<div class="row">
@@ -120,7 +130,7 @@
 								<div class="site-offer">
 									<div class="message">
 										<span class="percent"></span>
-										<h2 class="title">Buy <b>6 bottles</b> and receive a further <?php echo $disvalue_mgs; ?> off</h2>
+										<h2 class="title">Buy <b>6 bottles</b> and receive a further 10% off</h2>
 									</div>
 									<i class="fa fa-times close" aria-hidden="true"></i>
 								</div>
