@@ -207,7 +207,7 @@ jQuery(function ($) {
                 $('.non-eligible').addClass('hidden'); 
                 $('.cart-loader').addClass('hidden');       
                 $('#subscription-check').removeClass('opac'); 
-                $("html, body").animate({ scrollTop: 0 }, "slow"); 
+              //  $("html, body").animate({ scrollTop: 0 }, "slow"); 
             });
 
         }
@@ -258,7 +258,7 @@ jQuery(function ($) {
 
                      $('.sub-success').removeClass('hidden'); 
                        $('.non-eligible').addClass('hidden');     
-                      $("html, body").animate({ scrollTop: 0 }, "slow"); 
+                    //  $("html, body").animate({ scrollTop: 0 }, "slow"); 
               }
             else {
                 $('#subscription-check').prop('checked',false);
@@ -267,7 +267,7 @@ jQuery(function ($) {
                 $('.non-eligible').removeClass('hidden');   
                 $('.error,.failure').addClass('hidden');   
                 $('.sub-success').addClass('hidden');   
-                $("html, body").animate({ scrollTop: 0 }, "slow"); 
+               // $("html, body").animate({ scrollTop: 0 }, "slow"); 
             }
             $('.cart-loader').addClass('hidden');       
             $('#subscription-check').removeClass('opac');
