@@ -295,7 +295,25 @@ abbr{
 	}
 }
 
+.flex-row{
+	display: flex;
+	align-items: center;
+	@media screen and (max-width: 768px){
+    	flex-direction: column;
+	}
+}
 
+.delivery-condition{
+	margin-bottom: 0;
+    font-size: 0.8em;
+    padding-left: 10px;
+    color: #4c4c4c;
+    @media screen and (max-width: 768px){
+    	margin-top: 0.5em;
+    	line-height: 1.3;
+    	text-align: center;
+    }
+}
 
 
 

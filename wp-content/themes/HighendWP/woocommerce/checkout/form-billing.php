@@ -63,10 +63,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 <br><br>
 
 <div class="delivery-slot woocommerce-shipping-fields">
-	<h4 class="hb-heading"><span>Preferred Delivery Slot</span></h4>
+	<h4 class="hb-heading flex-row"><span>Preferred Delivery Slot</span><p class="delivery-condition">(Order must be placed by 5pm, for next day delivery.)</p></h4>
 	<p class="form-row form-row-first">
 		<label>Preferred Day</label>
-		 <input type='text' id='preferred_date' name="preferred_date" />
+		 <input type='text' id='preferred_date' name="preferred_date" style="padding-bottom: 5px !important;" />
 		
 	</p>
 	<p class="form-row form-row-last">
