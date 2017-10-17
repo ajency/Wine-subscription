@@ -1574,7 +1574,7 @@ add_filter( 'woocommerce_cart_totals_coupon_html', 'indigo_filter_woocommerce_ca
 function indigo_woocommerce_cart_totals_coupon_label( $sprintf, $coupon ) { 
    
    if($coupon->code==FLAT_DISCOUNT_COUPON){
-        $sprintf= 'Disc-10%';
+        $sprintf= 'Bottle Disc';
    }
    return $sprintf; 
 }; 

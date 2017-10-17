@@ -52,7 +52,7 @@ global $woocommerce;
 
 				<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
 					<li class="clearfix relative">
-						<span class="cart-total-title"><?php wc_cart_totals_coupon_label( $coupon ); ?><span class="copon-desc"><i class="fa fa-info-circle" aria-hidden="true"></i><div class="ToolTip">I am a tooltip!</div></span><br/></span>
+						<span class="cart-total-title"><?php wc_cart_totals_coupon_label( $coupon ); ?><span class="copon-desc"><i class="fa fa-info-circle" aria-hidden="true"></i><div class="ToolTip"><?php echo $coupon->get_description() ;?></div></span><br/></span>
 						<span class="cart-total-value"><?php wc_cart_totals_coupon_html( $coupon ); ?></span>
 					</li>
 				<?php endforeach; ?>
