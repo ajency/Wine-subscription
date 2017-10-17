@@ -66,7 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	<h4 class="hb-heading flex-row"><span>Preferred Delivery Slot</span><p class="delivery-condition">(Order must be placed by 5pm, for next day delivery.)</p></h4>
 	<p class="form-row form-row-first">
 		<label>Preferred Day</label>
-		 <input type='text' id='preferred_date' name="preferred_date" style="padding-bottom: 5px !important;" />
+		 <input type='text' id='preferred_date' name="preferred_date" style="padding-bottom: 5px !important;" readonly="readonly" />
 		
 	</p>
 	<p class="form-row form-row-last">
