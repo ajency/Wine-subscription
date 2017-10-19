@@ -64,18 +64,35 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 <div class="delivery-slot woocommerce-shipping-fields">
 	<h4 class="hb-heading flex-row"><span>Preferred Delivery Slot</span><p class="delivery-condition">(Order must be placed by 5pm, for next day delivery.)</p></h4>
-	<p class="form-row form-row-first">
-		<label>Preferred Day</label>
-		 <input type='text' id='preferred_date' name="preferred_date" style="padding-bottom: 5px !important;" readonly="readonly" />
-		
-	</p>
-	<p class="form-row form-row-last">
-		<label>Preferred Time</label>
+	<!-- <p class="form-row form-row-first"> -->
+	<!-- 	<label>Preferred Day</label>
+		 <input type='text' id='preferred_date' name="preferred_date" style="padding-bottom: 5px !important;" readonly="readonly" /> -->
+			<?php $field_arr=array('required'=>true,'label'=>'Preferred Day','custom_attributes'=>array('readonly'=>'readonly'),'class'=>array('form-row-first'),'priority'=>110);
+
+			woocommerce_form_field( 'preferred_date', $field_arr, '' ); ?>
+	<!-- </p> -->
+	<!-- <p class="form-row form-row-last"> -->
+		<!-- 		<label>Preferred Time</label>
 		<select id="preferred_time" name="preferred_time">
 			<option value ="">Select</option>
 			<option value ="9:00 AM - 1.00 PM">9:00 AM - 1.00 PM</option>
 			<option value ="1:00 PM - 6.00 PM">1:00 PM - 6.00 PM</option>
 			<option value ="6:00 PM - 9.00 PM">6:00 PM - 9.00 PM</option>
-		</select>
-	</p>
+		</select> -->
+
+			<?php 
+			$preferred_time_arr=array(
+				'' => 'Select',
+				'9:00 AM - 1.00 PM' => '9:00 AM - 1.00 PM',
+				'1:00 PM - 6.00 PM' => '1:00 PM - 6.00 PM',
+				'6:00 PM - 9.00 PM' => '6:00 PM - 9.00 PM',
+			);
+
+
+			$field_arr1=array('type'=>'select','required'=>true,'label'=>'Preferred Time','options'=>$preferred_time_arr,'class'=>array('form-row-last'),'priority'=>120);
+
+			woocommerce_form_field( 'preferred_time', $field_arr1, '' ); ?>
+
+
+	<!-- </p> -->
 </div>

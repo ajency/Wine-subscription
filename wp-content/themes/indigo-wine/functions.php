@@ -1341,10 +1341,30 @@ add_filter( 'woocommerce_cart_ready_to_calc_shipping', 'disable_shipping_calc_on
 add_action('woocommerce_email_after_order_table','subscription_order_details',10,4);
 
 function subscription_order_details( $order, $sent_to_admin, $plain_text, $email ){
+ $orderid=$order->get_order_number();
+ $preferred_date=get_post_meta( $orderid, '_preferred_date', true );
+ $preferred_time=get_post_meta( $orderid, '_preferred_time', true );
 
-    $orderid=$order->get_order_number();
+ $html= '<h2>Preferred Delivery Slot</h2>
+        <table style="width: 100%;font-family:Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;color: #636363;border-collapse: collapse;text-align: center;">
+            <thead>
+                <tr>
+                    <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Preferred Day</th>
+                    <th style="border: 2px solid #e5e5e5;padding: 12px;color: #636363;">Preferred Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">'.$preferred_date.'</td>
+                    <td style="border: 2px solid #eee;word-wrap: break-word;color: #636363;padding: 12px;vertical-align: middle;">'.$preferred_time.'</td>
+                  </tr>
+            </tbody>        
+        </table>';
+                        
+    
     $subscription_id=get_post_meta( $orderid, '_subscription_id', true );
-   
+    
+
     if($subscription_id!=""){
         $subscription_type=get_post_meta( $subscription_id, '_subscription_type', true );
         $startdate=get_the_date( $d = 'M d, Y', $subscription_id );
@@ -1352,7 +1372,7 @@ function subscription_order_details( $order, $sent_to_admin, $plain_text, $email
           $_scheduler_generated_order=get_post_meta( $orderid, '_scheduler_generated_order', true );
 
    
-        $html= '<h2>Subscription Details</h2>
+        $html.= '<h2>Subscription Details</h2>
             <table style="width: 100%;font-family:Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;color: #636363;border-collapse: collapse;text-align: center;">
                 <thead>
                     <tr>
@@ -1381,8 +1401,9 @@ function subscription_order_details( $order, $sent_to_admin, $plain_text, $email
             </table>
         ';
 
-        echo $html;
+        
     }
+    echo $html;
 }
 
 
@@ -1518,6 +1539,19 @@ function indigo_save_extra_checkout_fields( $order_id ){
     update_post_meta( $order_id, '_preferred_date', $_POST['preferred_date']  ); 
 }
 add_action( 'woocommerce_checkout_update_order_meta', 'indigo_save_extra_checkout_fields', 10, 1 );
+
+/**
+ * Process the checkout
+ */
+add_action('woocommerce_checkout_process', 'indigo_checkout_field_process');
+
+function indigo_checkout_field_process() {
+    // Check if set, if its not set add an error.
+    if ( ! $_POST['preferred_date'] )
+        wc_add_notice( __( 'Preferred Day is a required field.' ), 'error' ); 
+    if ( ! $_POST['preferred_time'] )
+        wc_add_notice( __( 'Preferred Time is a required field.' ), 'error' );
+}
 
 
 
