@@ -1614,3 +1614,23 @@ function indigo_woocommerce_cart_totals_coupon_label( $sprintf, $coupon ) {
 }; 
 add_filter( 'woocommerce_cart_totals_coupon_label', 'indigo_woocommerce_cart_totals_coupon_label', 10, 2 ); 
 
+
+function indigo_view_order($orderid){
+ $preferred_date=get_post_meta( $orderid, '_preferred_date', true );
+ $preferred_time=get_post_meta( $orderid, '_preferred_time', true );
+
+  echo '<div class="preferred-delivery">
+    <h3>Preferred Delivery Slot</h3>
+    <table ><tr>
+                <td>Preferred Day:</td>
+                <td>'.$preferred_date.'</td>
+            </tr>
+            <tr>
+                <td>Preferred Time:</td>
+                <td>'.$preferred_time.'</td>
+            </tr>      
+   </table>
+
+    </div>';
+}
+add_action('woocommerce_view_order','indigo_view_order',10,1);
