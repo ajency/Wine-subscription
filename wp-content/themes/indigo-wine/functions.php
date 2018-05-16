@@ -326,6 +326,17 @@ function woo_add_custom_general_fields_save( $post_id ){
     
 }
 
+//Login - Remember me checked by default
+function login_checked_remember_me() {
+    add_filter( 'login_footer', 'rememberme_checked' );
+}
+add_action( 'init', 'login_checked_remember_me' );
+
+function rememberme_checked() {
+    echo "<script>document.getElementById('rememberme').checked = true;</script>";
+}
+
+//Login expiry changed to 1 year
 add_filter ( 'auth_cookie_expiration', 'wpdev_login_session' );
  
 function wpdev_login_session( $expire ) { // Set login session limit in seconds
