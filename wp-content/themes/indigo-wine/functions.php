@@ -326,7 +326,14 @@ function woo_add_custom_general_fields_save( $post_id ){
     
 }
 
-
+add_filter ( 'auth_cookie_expiration', 'wpdev_login_session' );
+ 
+function wpdev_login_session( $expire ) { // Set login session limit in seconds
+    return YEAR_IN_SECONDS;
+    // return MONTH_IN_SECONDS;
+    // return DAY_IN_SECONDS;
+    // return HOUR_IN_SECONDS;
+}
 
 function add_product_admin_scripts( $hook ) {
 
