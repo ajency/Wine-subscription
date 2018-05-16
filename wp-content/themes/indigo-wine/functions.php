@@ -137,7 +137,7 @@ add_filter('wp_nav_menu_items','sk_wcmenucart', 10, 2);
 function sk_wcmenucart($menu, $args) {
 
     // Check if WooCommerce is active and add a new item to a menu assigned to Primary Navigation Menu location
-    if ( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) || 'my-custom-menuu' !== $args->theme_location || !is_user_logged_in())
+    if ( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) || 'my-custom-menuu' !== $args->theme_location)
         return $menu;
 
         ob_start();
@@ -345,7 +345,8 @@ function custom_shop_page_redirect() {
     if($_SERVER['X-Cache-Group']=='bot'){
       //no action
     }
-    else if(( is_product_category() || is_product() || is_cart() || is_shop()) && !is_user_logged_in()){
+    /* else if(( is_product_category() || is_product() || is_cart() || is_shop()) && !is_user_logged_in()){  // REMOVE LOGIN ON Caegory and product page */
+	else if((is_shop()) && !is_user_logged_in()){
         
 
         if ( 0 === strpos($_SERVER['REQUEST_URI'], 'http') ) {
