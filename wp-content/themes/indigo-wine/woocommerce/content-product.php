@@ -72,14 +72,15 @@ if(isset($_REQUEST['layout']) && !empty($_REQUEST['layout'])) {
 	}
 }
 
-if(is_user_logged_in())
+/*if(is_user_logged_in())
 {
 	$logclass = '';
 }
 else
 {
 	$logclass = 'simplemodal-login ';	
-}
+}*/
+$logclass = '';
 
 if ( $woocommerce_loop['columns'] == 4 ){
 	$logclass .= 'col-3 hb-animate-element top-to-bottom';
