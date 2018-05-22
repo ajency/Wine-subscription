@@ -137,8 +137,8 @@ add_filter('wp_nav_menu_items','sk_wcmenucart', 10, 2);
 function sk_wcmenucart($menu, $args) {
 
     // Check if WooCommerce is active and add a new item to a menu assigned to Primary Navigation Menu location
-    if ( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) || 'my-custom-menuu' !== $args->theme_location || !is_user_logged_in())
-    //if ( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) || 'my-custom-menuu' !== $args->theme_location)
+    //if ( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) || 'my-custom-menuu' !== $args->theme_location || !is_user_logged_in())
+    if ( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) || 'my-custom-menuu' !== $args->theme_location)
         return $menu;
 
         ob_start();
@@ -338,14 +338,14 @@ function rememberme_checked() {
 }
 
 //Login expiry changed to 1 year
-/*add_filter ( 'auth_cookie_expiration', 'wpdev_login_session' );
+add_filter ( 'auth_cookie_expiration', 'wpdev_login_session' );
  
 function wpdev_login_session( $expire ) { // Set login session limit in seconds
     return YEAR_IN_SECONDS;
     // return MONTH_IN_SECONDS;
     // return DAY_IN_SECONDS;
     // return HOUR_IN_SECONDS;
-}*/
+}
 
 function add_product_admin_scripts( $hook ) {
 
@@ -365,8 +365,8 @@ function custom_shop_page_redirect() {
       //no action
     }
     /* else if(( is_product_category() || is_product() || is_cart() || is_shop()) && !is_user_logged_in()){  // REMOVE LOGIN ON Caegory and product page */
-	else if(( is_cart() || is_shop()) && !is_user_logged_in()){
-    //else if((is_shop()) && !is_user_logged_in()){
+	//else if(( is_cart() || is_shop()) && !is_user_logged_in()){
+    else if((is_shop()) && !is_user_logged_in()){
         
 
         if ( 0 === strpos($_SERVER['REQUEST_URI'], 'http') ) {
@@ -1113,8 +1113,11 @@ function indigo_register_form() {
           wp_mail( $to, $subject, $message, $headers = '', $attachments = array() );
          
           $user = wp_signon($credentials); 
-          header('location:'.filter_woocommerce_return_to_shop_redirect($parameter));
-          exit();
+
+          if($_POST['wp-submit'] == 'Register'){
+              header('location:'.filter_woocommerce_return_to_shop_redirect($parameter));
+              exit();
+          }
     }
 
 
