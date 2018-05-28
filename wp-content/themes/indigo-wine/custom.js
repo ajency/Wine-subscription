@@ -407,6 +407,17 @@ jQuery(document).ready(function() {
 
 
 
-
-
+function switch_checkbox(){
+	if(jQuery("#createaccount_radio_yes").attr("checked") == "checked"){
+		// Check
+		jQuery("#createaccount").attr("checked", true);
+		jQuery( '#account_password' ).val( '' ).change();
+		jQuery( 'div.create-account' ).slideDown();
+	}
+	else{
+		// Uncheck
+		jQuery("#createaccount").attr("checked", false);
+		jQuery( 'div.create-account' ).hide();
+	}
+}
 
