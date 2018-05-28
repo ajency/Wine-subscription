@@ -305,7 +305,7 @@
 					return;
 				}
 				$checkout_url = $woocommerce->cart->get_cart_url();
-				?><ul id="hb-woo-notif" data-text="<?php _e('added to cart.', 'hbthemes'); ?>" data-cart-text="<?php _e('Cart', 'hbthemes'); ?>" data-cart-url="<?php echo $checkout_url; ?>"></ul><?php
+				?><ul id="hb-woo-notif" class="hb-cart-notify" data-text="<?php _e('added to cart.', 'hbthemes'); ?>" data-cart-text="<?php _e('Cart', 'hbthemes'); ?>" data-cart-url="<?php echo $checkout_url; ?>"></ul><?php
 			}
 		}
 	}
