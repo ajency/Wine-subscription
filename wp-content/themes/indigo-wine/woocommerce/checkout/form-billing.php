@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 					<label><input class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" type="radio" id="createaccount_radio_no" name="createaccount_radio" <?php checked( ( true !== $checkout->get_value( 'createaccount' ) && ( true !== apply_filters( 'woocommerce_create_account_default_checked', false ) ) ), true ) ?> value="no"/>
 					<span><?php _e( 'Checkout As Guest', 'woocommerce' ); ?></span></label><br>
 					<label><input class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" type="radio" id="createaccount_radio_yes" name="createaccount_radio" <?php checked( ( true === $checkout->get_value( 'createaccount' ) || ( true === apply_filters( 'woocommerce_create_account_default_checked', false ) ) ), true ) ?> value="yes"/>
-					<span><?php _e( 'Register And Checkout', 'woocommerce' ); ?></span></label><br>
+					<span><?php _e( 'Register with us for future convenience and offers', 'woocommerce' ); ?></span></label><br>
 				</div>
 			</p>
 
