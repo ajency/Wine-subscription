@@ -366,7 +366,7 @@ function custom_shop_page_redirect() {
     }
     /* else if(( is_product_category() || is_product() || is_cart() || is_shop()) && !is_user_logged_in()){  // REMOVE LOGIN ON Caegory and product page */
 	//else if(( is_cart() || is_shop()) && !is_user_logged_in()){
-    else if((is_shop()) && !is_user_logged_in()){
+    /*else if((is_shop()) && !is_user_logged_in()){
         
 
         if ( 0 === strpos($_SERVER['REQUEST_URI'], 'http') ) {
@@ -380,7 +380,7 @@ function custom_shop_page_redirect() {
           // wp_redirect( home_url('?login=true') ); 
         wp_redirect( home_url('wp-login.php?redirect_to='. $url.'&reauth=1') );
         exit();
-    }
+    }*/
 }
 add_action( 'template_redirect', 'custom_shop_page_redirect' );
 
