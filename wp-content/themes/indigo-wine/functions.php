@@ -927,6 +927,30 @@ function filter_woocommerce_return_to_shop_redirect( $wc_get_page_permalink ) {
          
 add_filter( 'woocommerce_return_to_shop_redirect', 'filter_woocommerce_return_to_shop_redirect', 10, 1 ); 
 
+function filter_custom_return_to_shop_redirect( $post_id ) {
+    $product_cat = wp_get_post_terms($post_id, 'product_cat');
+    foreach ($product_cat as $key => $value) {
+        $product_category[] = $value->slug;
+    }
+
+    if (in_array("wine-packs", $product_category))
+    {
+        $wc_set_page_permalink= home_url()."/product-category/wine-packs";
+    }
+    else if (in_array("wine", $product_category))
+    {
+        $wc_set_page_permalink= home_url()."/product-category/wine";
+    }
+    else
+    {
+        $wc_set_page_permalink= get_permalink( wc_get_page_id( 'shop' ) );
+    }
+
+    return $wc_set_page_permalink; 
+}; 
+         
+add_filter( 'custom_return_to_shop_redirect', 'filter_custom_return_to_shop_redirect', 10, 1 );
+
 
 /**
  * Show Regular/Sale Price @ WooCommerce Cart Table

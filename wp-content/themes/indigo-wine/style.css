@@ -5517,3 +5517,17 @@ abbr {
   margin-bottom: 2em;
 }
 /*# sourceMappingURL=style.css.map */
+
+
+#hb-woo-notif {
+  bottom: auto !important;
+  top: 65%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#hb-woo-notif li {
+  position: absolute !important;
+}
