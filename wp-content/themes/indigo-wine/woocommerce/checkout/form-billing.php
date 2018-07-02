@@ -101,8 +101,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			<?php 
 			$preferred_time_arr=array(
 				'' => 'Select',
-				'9:00 AM - 1.00 PM' => '9:00 AM - 1.00 PM',
-				'1:00 PM - 6.00 PM' => '1:00 PM - 6.00 PM',
+				//'9:00 AM - 1.00 PM' => '9:00 AM - 1.00 PM',
+				//'1:00 PM - 6.00 PM' => '1:00 PM - 6.00 PM',
+				'12:00 PM - 3.00 PM' => '12:00 PM - 3.00 PM',
+				'3:00 PM - 6.00 PM' => '3:00 PM - 6.00 PM',
 				'6:00 PM - 9.00 PM' => '6:00 PM - 9.00 PM',
 			);
 
