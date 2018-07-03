@@ -51,6 +51,9 @@
   <?php wp_head(); ?>
 
   <!-- Theme Options Font Settings -->
+  <?php if( is_front_page() ) { ?>
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/bannerstyle.css">
+  <?php } ?>
   <style type="text/css">
   <?php
     
