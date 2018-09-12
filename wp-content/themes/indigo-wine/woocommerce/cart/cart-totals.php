@@ -92,7 +92,7 @@ global $woocommerce;
 
 	</div>
 
-	<!--div class="display-info"><div class="display-info-message"><i class="icon-info-sign"></i>Free Shipping above $180</div></div-->
+	<div class="display-info"><div class="display-info-message"><i class="icon-info-sign"></i>Free Shipping above $180</div></div>
 
 	<?php if ( WC()->cart->coupons_enabled() ) { ?>
 	<div data-initialindex="-1" id="hb-toggle-coupon" class="hb-toggle coupon-toggle">
