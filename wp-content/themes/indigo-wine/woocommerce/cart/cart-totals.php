@@ -110,7 +110,7 @@ global $woocommerce;
 			</div>
 		</div>
 
-		<?php /*woocommerce_shipping_calculator();*/ ?>
+		<?php woocommerce_shipping_calculator(); ?>
 
 	</div>
 	<?php } ?>
