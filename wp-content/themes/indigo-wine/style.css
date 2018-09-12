@@ -4329,9 +4329,16 @@ body .woocommerce form .form-row .button {
 }
 #hb-woo-notif {
   min-width: 300px;
+  bottom: auto !important;
+  top: 65%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 #hb-woo-notif li {
   margin-bottom: 0;
+  position: absolute !important;
 }
 #hb-woo-notif .content {
   display: flex;
@@ -4722,6 +4729,42 @@ body .woocommerce form .form-row .button {
 }
 .cart-total-value.cart-total-value .woocommerce-remove-coupon:hover {
   color: #022c4c;
+}
+.display-info {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.display-info-message {
+  font-family: 'gotham_lightregular';
+  font-weight: 600;
+  color: #022c4c;
+  border-color: #b9b9b9;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  background: #fff;
+  cursor: pointer;
+  display: block;
+  margin: 0;
+  padding: 9px 35px;
+  position: relative;
+  top: 1px;
+  border-style: solid;
+  border-width: 1px;
+  transition: all .1s linear;
+  user-select: none;
+}
+.display-info-message i {
+  position: absolute;
+  left: 12px;
+  font-size: 14px;
+  line-height: 1;
+  vertical-align: -1px;
+  top: 50%;
+  margin-top: -8px;
+  color: #999;
 }
 .woocommerce-account .woocommerce {
   margin-top: 1em;
@@ -5508,6 +5551,9 @@ abbr {
 .woocommerce-account-fields {
   clear: both;
 }
+#ship-to-different-address label {
+  text-indent: initial;
+}
 .not-found-box {
   min-height: calc(100vh - 36.2em);
 }
@@ -5517,62 +5563,3 @@ abbr {
   margin-bottom: 2em;
 }
 /*# sourceMappingURL=style.css.map */
-
-
-#hb-woo-notif {
-  bottom: auto !important;
-  top: 65%;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-#hb-woo-notif li {
-  position: absolute !important;
-}
-
-
-.element-row .display-info, .hb-main-content .display-info {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.element-row .display-info .display-info-message, .hb-main-content .display-info .display-info-message {
-    font-family: 'gotham_lightregular';
-    font-weight: 600;
-    color: #022c4c;
-    border-color: #b9b9b9;
-}
-
-.display-info-message {
-    font-family: "Lato", sans-serif;
-    font-size: 14px;
-    line-height: 22px;
-    font-weight: 300;
-    letter-spacing: 0;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    background: #fff;
-    cursor: pointer;
-    display: block;
-    margin: 0;
-    padding: 9px 35px;
-    position: relative;
-    top: 1px;
-    border-style: solid;
-    border-width: 1px;
-    transition: all .1s linear;
-    user-select: none;
-}
-
-.display-info-message i {
-    position: absolute;
-    left: 12px;
-    font-size: 14px;
-    line-height: 1;
-    vertical-align: -1px;
-    top: 50%;
-    margin-top: -8px;
-    color: #999;
-}
