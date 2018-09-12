@@ -1374,13 +1374,13 @@ add_action( 'woocommerce_admin_order_data_after_shipping_address', 'subscription
  * @param  [type] $show_shipping [description]
  * @return [type]                [description]
  */
-/*function disable_shipping_calc_on_cart( $show_shipping ) {
+function disable_shipping_calc_on_cart( $show_shipping ) {
     if( is_cart() || is_checkout()) {
         return false;
     }
     return $show_shipping;
 }
-add_filter( 'woocommerce_cart_ready_to_calc_shipping', 'disable_shipping_calc_on_cart', 99 );*/
+add_filter( 'woocommerce_cart_ready_to_calc_shipping', 'disable_shipping_calc_on_cart', 99 );
 
 /**
  * Hide shipping rates when free shipping is available.
