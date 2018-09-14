@@ -2840,7 +2840,7 @@ a[data-readmore-toggle].more:before {
     background: url(img/sprite.png) no-repeat;
     width: 24px;
     height: 24px;
-    background-position: -72px -1152px;
+    background-position: -42px -786px;
     display: block;
     margin: auto;
     padding: 15px;
@@ -2849,7 +2849,7 @@ a[data-readmore-toggle].more:before {
     background: url(img/sprite.png) no-repeat;
     width: 24px;
     height: 24px;
-    background-position: -14px -1152px;
+    background-position: -1px -785px;
     display: block;
     margin: auto;
     padding: 15px;
@@ -4618,6 +4618,9 @@ body .woocommerce form .form-row .button {
   top: 3px;
 }
 @media screen and (max-width: 768px) {
+  .woocommerce > .row {
+    margin: 0;
+  }
   .woocommerce .col-9,
   .woocommerce .col-3 {
     width: 100%;
