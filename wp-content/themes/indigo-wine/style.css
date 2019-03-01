@@ -5566,3 +5566,67 @@ abbr {
   margin-bottom: 2em;
 }
 /*# sourceMappingURL=style.css.map */
+
+.berocket_single_filter_widget .widget-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #d1b57c;
+  width: 100%;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.berocket_single_filter_widget .berocket_aapf_widget li{
+  display: inline-block;
+}
+
+.berocket_single_filter_widget .berocket_aapf_widget li label {
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 0.5em 1em 0.5em 1.8125em;
+  font-family: 'gotham_mediumregular';
+  text-transform: capitalize;
+  color: #969696;
+  font-weight: 200;
+  margin-bottom: 0.6em;
+  margin-right: 0.6em;
+  transition: all 0.5s ease;
+  display: inline-block; 
+  cursor: pointer; 
+  text-indent: unset;
+  font-size: 13px;
+  line-height: 22px;
+  position: relative;
+}
+.berocket_single_filter_widget .berocket_aapf_widget li label:hover {
+  background-color: #d8d8d8;
+  color: #022c4c;
+}
+
+.berocket_single_filter_widget .berocket_aapf_widget li label:after {
+  content: "\f02b" !important;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  padding-right: 0.3em;
+  font-size: 0.9em;
+  color: #9c9c9c;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.berocket_single_filter_widget .berocket_aapf_widget li input[type=checkbox] {
+  position: absolute;
+  opacity: 1;
+  visibility: hidden;
+}
+.berocket_single_filter_widget .berocket_aapf_widget li input[type=checkbox]:checked + label {
+  background-color: #d8d8d8;
+  color: #022c4c;
+}

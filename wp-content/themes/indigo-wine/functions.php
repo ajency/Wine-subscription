@@ -608,8 +608,7 @@ function filter_woocommerce_product_categories_widget_args( $list_args ) {
 add_filter( 'woocommerce_product_categories_widget_args', 'filter_woocommerce_product_categories_widget_args', 10, 1 ); 
 
 
-function retitle_woo_category_widget($title, $widet_instance, $widget_id) {
-
+function retitle_woo_category_widget($title, $widet_instance, $widget_id = null) {
     if ( $widget_id !== 'woocommerce_product_categories' )
         return $title;
     
