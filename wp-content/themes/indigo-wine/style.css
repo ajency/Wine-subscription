@@ -5630,3 +5630,7 @@ abbr {
   background-color: #d8d8d8;
   color: #022c4c;
 }
+
+.product-row-fw-col div.products .col-6 {
+  width: 100%;
+}
