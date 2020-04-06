@@ -90,6 +90,13 @@ if ( $woocommerce_loop['columns'] == 4 ){
 	$logclass .= 'col-6 hb-animate-element top-to-bottom';	
 }
 $classes[] = $logclass;
+
+global $wp;
+
+$category_slug = add_query_arg( array(), $wp->request );
+if(explode("/", $category_slug)[0] == 'product-category'){
+	$_SESSION['category_slug'] = $category_slug;
+}
 ?>
 
 <div <?php post_class( $classes ); ?>>

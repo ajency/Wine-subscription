@@ -920,8 +920,8 @@ add_action('admin_notices', 'excerpt_admin_notice');
  */
 
 function filter_woocommerce_return_to_shop_redirect( $wc_get_page_permalink ) { 
-    $wc_get_page_permalink= home_url()."/product-category/wine-packs"; ;
-    return $wc_get_page_permalink; 
+    $wc_get_page_slug = isset($_SESSION['category_slug']) ? $_SESSION['category_slug'] : "/product-category/wine-packs"; 
+    return home_url($wc_get_page_slug); 
 }; 
          
 add_filter( 'woocommerce_return_to_shop_redirect', 'filter_woocommerce_return_to_shop_redirect', 10, 1 ); 
