@@ -5634,3 +5634,12 @@ abbr {
 .product-row-fw-col div.products .col-6 {
   width: 100%;
 }
+
+#main-content .hb-main-content .wine-banner-subtitle{
+  font-family: 'gotham_mediumregular'; 
+  font-weight: 400; 
+  color: #022c4c !important; 
+  vertical-align: middle;
+  position: absolute;
+  top: -40px;
+}
