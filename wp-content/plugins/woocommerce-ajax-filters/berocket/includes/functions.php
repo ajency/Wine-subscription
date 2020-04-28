@@ -132,10 +132,10 @@ if( ! function_exists( 'br_color_picker' ) ) {
      */
     function br_color_picker($name, $value, $default, $additional = array()) {
         $default_button = ( isset($additional['default_button']) ? $additional['default_button'] : true );
-        $class = ( ( isset($additional['class']) && trim( $additional['class'] ) ) ? ' ' . trim( $additional['class'] ) : '' );
-        $extra = ( ( isset($additional['extra']) && trim( $additional['extra'] ) ) ? ' ' . trim( $additional['extra'] ) : '' );
-        $value = ( empty($value) ? '#000000' : ( $value[0] == '#' ? $value : '#' . $value ) );
-        $default = ( isset($default) && strlen($default) > 1 ? ( $default == -1 ? '' : ( $default[0] == '#' ? $default : '#' . $default ) ) : '#000000' );
+        $class = htmlentities( ( isset($additional['class']) && trim( $additional['class'] ) ) ? ' ' . trim( $additional['class'] ) : '' );
+        $extra = htmlentities( ( isset($additional['extra']) && trim( $additional['extra'] ) ) ? ' ' . trim( $additional['extra'] ) : '' );
+        $default = htmlentities( isset($default) && strlen($default) > 1 ? ( $default == -1 ? '' : ( $default[0] == '#' ? $default : '#' . $default ) ) : '#000000' );
+        $value = htmlentities( empty($value) ? $default : ( $value[0] == '#' ? $value : '#' . $value ) );
         $return = '';
         $return .= '<div class="berocket_color"><div class="br_colorpicker" data-default="' . $default . '" data-color="' . $value . '" style="background-color:' . $value . ';"></div>
             <input class="br_colorpicker_value' . $class . '" type="hidden" value="' . $value . '" name="' . $name . '"' . $extra . '/>';
@@ -162,8 +162,9 @@ if ( ! function_exists( 'br_upload_image' ) ) {
      */
     function br_upload_image( $name, $value, $additional = array() ) {
         $remove_button = ( isset($additional['remove_button']) ? $additional['remove_button'] : true );
-        $class = ( ( isset($additional['class']) && trim( $additional['class'] ) ) ? ' ' . trim( $additional['class'] ) : '' );
-        $extra = ( ( isset($additional['extra']) && trim( $additional['extra'] ) ) ? ' ' . trim( $additional['extra'] ) : '' );
+        $class = htmlentities( ( isset($additional['class']) && trim( $additional['class'] ) ) ? ' ' . trim( $additional['class'] ) : '' );
+        $extra = htmlentities( ( isset($additional['extra']) && trim( $additional['extra'] ) ) ? ' ' . trim( $additional['extra'] ) : '' );
+        $value = htmlentities($value);
         $result = '<div>';
         $result .= '<input type="hidden" name="' . $name . '" value="' . $value . '" readonly class="berocket_image_value ' . $class . '"' . $extra . '/>
         <span class="berocket_selected_image">' . ( empty($value) ? '' : '<image src="' . $value . '">' ) . '</span>
@@ -173,6 +174,7 @@ if ( ! function_exists( 'br_upload_image' ) ) {
         }
         $result .= '</div>';
 
+        do_action('berocket_enqueue_media');
         return $result;
     }
 }
@@ -211,8 +213,9 @@ if ( ! function_exists( 'br_fontawesome_image' ) ) {
      */
     function br_fontawesome_image( $name, $value, $additional = array() ) {
         $remove_button = ( isset($additional['remove_button']) ? $additional['remove_button'] : true );
-        $class = ( ( isset($additional['class']) && trim( $additional['class'] ) ) ? ' ' . trim( $additional['class'] ) : '' );
-        $extra = ( ( isset($additional['extra']) && trim( $additional['extra'] ) ) ? ' ' . trim( $additional['extra'] ) : '' );
+        $class = htmlentities( ( isset($additional['class']) && trim( $additional['class'] ) ) ? ' ' . trim( $additional['class'] ) : '' );
+        $extra = htmlentities( ( isset($additional['extra']) && trim( $additional['extra'] ) ) ? ' ' . trim( $additional['extra'] ) : '' );
+        $value = htmlentities($value);
         $result = '<div class="berocket_select_fontawesome berocket_select_image">';
         $result .= berocket_fa_dark();
         $result .= '<input type="hidden" name="' . $name . '" value="' . $value . '" readonly class="berocket_image_value berocket_fa_value ' . $class . '"' . $extra . '/>
@@ -224,6 +227,7 @@ if ( ! function_exists( 'br_fontawesome_image' ) ) {
         }
         $result .= '</div>';
 
+        do_action('berocket_enqueue_media');
         return $result;
     }
 }
@@ -243,8 +247,9 @@ if ( ! function_exists( 'br_select_fontawesome' ) ) {
      */
     function br_select_fontawesome( $name, $value, $additional = array() ) {
         $remove_button = ( isset($additional['remove_button']) ? $additional['remove_button'] : true );
-        $class = ( ( isset($additional['class']) && trim( $additional['class'] ) ) ? ' ' . trim( $additional['class'] ) : '' );
-        $extra = ( ( isset($additional['extra']) && trim( $additional['extra'] ) ) ? ' ' . trim( $additional['extra'] ) : '' );
+        $class = htmlentities( ( isset($additional['class']) && trim( $additional['class'] ) ) ? ' ' . trim( $additional['class'] ) : '' );
+        $extra = htmlentities( ( isset($additional['extra']) && trim( $additional['extra'] ) ) ? ' ' . trim( $additional['extra'] ) : '' );
+        $value = htmlentities($value);
         $result = '<div class="berocket_select_fontawesome">';
         $result .= berocket_fa_dark();
         $result .= '<input type="hidden" name="' . $name . '" value="' . $value . '" readonly class="berocket_fa_value ' . $class . '"' . $extra . '/>
@@ -262,9 +267,9 @@ if ( ! function_exists( 'br_select_fontawesome' ) ) {
 if( ! function_exists( 'br_products_selector' ) ) {
     function br_products_selector($name, $value, $additional = array()) {
         $multiple = ( isset($additional['multiple']) ? $additional['multiple'] : true );
-        $class = ( ( isset($additional['class']) && trim( $additional['class'] ) ) ? ' ' . trim( $additional['class'] ) : '' );
-        $extra = ( ( isset($additional['extra']) && trim( $additional['extra'] ) ) ? ' ' . trim( $additional['extra'] ) : '' );
-        $action = ( isset($additional['action']) ? $additional['action'] : 'woocommerce_json_search_products_and_variations' );
+        $class = htmlentities( ( isset($additional['class']) && trim( $additional['class'] ) ) ? ' ' . trim( $additional['class'] ) : '' );
+        $extra = htmlentities( ( isset($additional['extra']) && trim( $additional['extra'] ) ) ? ' ' . trim( $additional['extra'] ) : '' );
+        $action = htmlentities( isset($additional['action']) ? $additional['action'] : 'woocommerce_json_search_products_and_variations' );
         if ( $class ) {
             $class = " class='" . $class . "'";
         }
@@ -319,14 +324,14 @@ if( ! function_exists( 'br_condition_builder' ) ) {
             $equal = $options['equal'];
         }
         $equal_list = array(
-            'equal' => __('Equal', 'BeRocket_products_label_domain'),
-            'not_equal' => __('Not equal', 'BeRocket_products_label_domain'),
+            'equal' => __('Equal', 'BeRocket_domain'),
+            'not_equal' => __('Not equal', 'BeRocket_domain'),
         );
         if( ! empty($extension['equal_less']) ) {
-            $equal_list['equal_less'] = __('Equal or less', 'BeRocket_products_label_domain');
+            $equal_list['equal_less'] = __('Equal or less', 'BeRocket_domain');
         }
         if( ! empty($extension['equal_more']) ) {
-            $equal_list['equal_more'] = __('Equal or more', 'BeRocket_products_label_domain');
+            $equal_list['equal_more'] = __('Equal or more', 'BeRocket_domain');
         }
         $html = '<select name="' . $name . '[equal]">';
         foreach($equal_list as $equal_slug => $equal_name) {
@@ -381,6 +386,7 @@ if ( ! function_exists( 'berocket_font_select_upload' ) ) {
      * @return string html code with all needed blocks and buttons
      */
     function berocket_font_select_upload( $text, $id, $name, $value, $show_fa = true, $show_upload = true, $show_remove = true, $data_sc = '' ) {
+        $value = htmlentities($value);
         if ( $show_fa ) {
             $font_awesome_list = fa_icons_list();
             $font_awesome      = "";
@@ -410,6 +416,7 @@ if ( ! function_exists( 'berocket_font_select_upload' ) ) {
         }
         $result .= '</div>';
 
+        do_action('berocket_enqueue_media');
         return $result;
     }
 }
@@ -437,7 +444,7 @@ if( ! function_exists( 'berocket_isset' ) ){
         if( $property_name === false ) {
             return ( isset($var) ? $var : $default );
         } else {
-            return ( isset($var) ? ( property_exists($var, $property_name) ? $var->$property_name : $default ) : $default );
+            return ( isset($var) && is_object($var) && property_exists($var, $property_name) ? $var->$property_name : $default );
         }
     }
 }
@@ -466,11 +473,13 @@ if( ! function_exists( 'berocket_sanitize_array' ) ){
 
             do
             {
-                    // Remove really unwanted tags
-                    $old_data = $filtered;
-                    $filtered = preg_replace('#</*(?:applet|b(?:ase|gsound|link)|embed|frame(?:set)?|i(?:frame|layer)|l(?:ayer|ink)|meta|object|s(?:cript|tyle)|title|xml)[^>]*+>#i', '', $filtered);
+                // Remove really unwanted tags
+                $old_data = $filtered;
+                $filtered = preg_replace('#</*(?:applet|b(?:ase|gsound|link)|embed|frame(?:set)?|i(?:frame|layer)|l(?:ayer|ink)|meta|object|s(?:cript|tyle)|title|xml)[^>]*+>#i', '', $filtered);
             }
             while ($old_data !== $filtered);
+
+            $filtered = str_replace('fromCharCode', 'fr0mCharC0de', $filtered);
 
             $found = false;
             while ( preg_match('/%[a-f0-9]{2}/i', $filtered, $match) ) {

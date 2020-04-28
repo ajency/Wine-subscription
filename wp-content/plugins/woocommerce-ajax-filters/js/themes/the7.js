@@ -52,3 +52,7 @@ function fixWooOrdering() {
 		jQuery(this).customSelect();
 	});
 }
+jQuery(document).on('berocket_ajax_products_loaded berocket_lmp_end', function() {
+    fixWooIsotope();
+    fixWooOrdering();
+});

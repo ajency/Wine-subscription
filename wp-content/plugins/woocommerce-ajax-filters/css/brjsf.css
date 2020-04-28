@@ -184,7 +184,7 @@ background-color: white;
 .berocket_aapf_admin_search_box .brjsf_accord > .brjsf_accord_block label.br_admin_center {
     top: 0;
 }
-.berocket_aapf_admin_search_box .br_accordion .colorpicker_field {
+.berocket_aapf_admin_search_box .br_accordion .br_colorpicker_field {
     margin: 3px 0;
     display: inline-block;
 }

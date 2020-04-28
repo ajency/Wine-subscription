@@ -4,7 +4,7 @@ if( ! class_exists('BeRocket_selector_wizard_woocommerce') ) {
     class BeRocket_selector_wizard_woocommerce{
         function __construct() {
             add_action('BeRocket_wizard_start', array($this, 'import_products'));
-            add_action('BeRocket_wizard_javascript', array($this, 'javascript'));
+            add_action('BeRocket_wizard_javascript', array($this, 'javascript'), 10, 1);
             add_action('BeRocket_wizard_end', array($this, 'remove_products'));
             add_action('BeRocket_wizard_ended_check', array($this, 'remove_products_ended'));
             add_filter('BeRocket_wizard_category_link', array($this, 'category_link'));
@@ -27,19 +27,20 @@ if( ! class_exists('BeRocket_selector_wizard_woocommerce') ) {
         function loop_shop_per_page($cols) {
             return 3;
         }
-        public function javascript() {
+        public function javascript($translating_text = array()) {
             wp_enqueue_script( 'jquery' );
             wp_enqueue_script( 'berocket_wizard_autoselect', plugins_url( 'wizard.js', __FILE__ ), array( 'jquery' ) );
+            $translating_text = array_merge(array(
+                'creating_products' => __('Creating products', 'BeRocket_domain'),
+                'getting_selectors' => __('Gettings selectors', 'BeRocket_domain'),
+                'removing_products' => __('Removing products', 'BeRocket_domain'),
+                'error' => __('Error:', 'BeRocket_domain'),
+                'ajaxurl' => admin_url('admin-ajax.php')
+            ), $translating_text);
             wp_localize_script(
                 'berocket_wizard_autoselect',
                 'berocket_wizard_autoselect',
-                array(
-                    'creating_products' => __('Creating products', 'BeRocket_domain'),
-                    'getting_selectors' => __('Gettings selectors', 'BeRocket_domain'),
-                    'removing_products' => __('Removing products', 'BeRocket_domain'),
-                    'error' => __('Error:', 'BeRocket_domain'),
-                    'ajaxurl' => admin_url('admin-ajax.php')
-                )
+                $translating_text
             );
             wp_register_style( 'berocket_wizard_autoselect', plugins_url( 'wizard.css', __FILE__ ) );
             wp_enqueue_style( 'berocket_wizard_autoselect' );
@@ -164,7 +165,7 @@ if( ! class_exists('BeRocket_selector_wizard_woocommerce') ) {
         }
     }
     new BeRocket_selector_wizard_woocommerce();
-    function BeRocket_wizard_generate_autoselectors($input_classes = array(), $js_functions = array()) {
+    function BeRocket_wizard_generate_autoselectors($input_classes = array(), $js_functions = array(), $output_text = array()) {
         $status = get_option('BeRocket_selector_wizard_status');
         $status = $status == 'started';
         $js_functions = array_merge(
@@ -183,6 +184,17 @@ if( ! class_exists('BeRocket_selector_wizard_woocommerce') ) {
                 'prev_page' => '',
                 'result_count' => '',
             ), $input_classes);
+        $output_text = array_merge(
+            array(
+                'important'             => __('IMPORTANT: It will generate some products on your site. Please disable all SEO plugins and plugins, that doing anything on product creating.', 'BeRocket_domain'),
+                'was_runned'            => __('Script was runned, but page closed until end. Please stop it to prevent any problems on your site', 'BeRocket_domain'),
+                'run_button'            => __('Auto-Selectors', 'BeRocket_domain'),
+                'was_runned_stop'       => __('Stop', 'BeRocket_domain'),
+                'steps'                 => __('Steps:', 'BeRocket_domain'),
+                'step_create_products'  => __('Creating products', 'BeRocket_domain'),
+                'step_get_selectors'    => __('Gettings selectors', 'BeRocket_domain'),
+                'step_remove_product'   => __('Removing products', 'BeRocket_domain')
+            ), $output_text);
         $active_plugins = get_option('active_plugins');
         $apl=get_option('active_plugins');
         $plugins=get_plugins();
@@ -196,18 +208,18 @@ if( ! class_exists('BeRocket_selector_wizard_woocommerce') ) {
             }           
         }
         $html = '<div class="berocket_wizard_autoselectors" data-functions=\'' . json_encode($js_functions) . '\' data-inputs=\'' . json_encode($input_classes) . '\'>
-            <p><strong>'.__('IMPORTANT: It will generate some products on your site. Please disable all SEO plugins and plugins, that doing anything on product creating.', 'BeRocket_domain').'</strong></p>
-            '.($status ? '<div class="berocket_selectors_was_runned"><strong style="color: red;">'.__('Script was runned, but page closed until end. Please stop it to prevent any problems on your site', 'BeRocket_domain').'</strong></div>' : '').'
-            <button data-seoplugins="'.implode(', ', $activated_plugins).'" class="'.(count($activated_plugins) ? 'berocket_autoselector_seo' : 'berocket_autoselector').' button" type="button"'.($status ? ' disabled' : '').'>Auto-Selectors</button>
-            <span class="berocket_autoselect_spin"'.($status ? '' : 'style="display:none;').'"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><button class="berocket_autoselector_stop button" type="button">Stop</button></span>
+            <p><strong>'.$output_text['important'].'</strong></p>
+            '.($status ? '<div class="berocket_selectors_was_runned"><strong style="color: red;">'.$output_text['was_runned'].'</strong></div>' : '').'
+            <button data-seoplugins="'.implode(', ', $activated_plugins).'" class="'.(count($activated_plugins) ? 'berocket_autoselector_seo' : 'berocket_autoselector').' button" type="button"'.($status ? ' disabled' : '').'>'.$output_text['run_button'].'</button>
+            <span class="berocket_autoselect_spin"'.($status ? '' : 'style="display:none;').'"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><button class="berocket_autoselector_stop button" type="button">'.$output_text['was_runned_stop'].'</button></span>
             <span class="berocket_autoselect_ready" style="display:none;"><i class="fa fa-check fa-3x fa-fw"></i></span>
             <span class="berocket_autoselect_error" style="display:none;"><i class="fa fa-times fa-3x fa-fw"></i></span>
             <div class="berocket_autoselector_load" style="display:none;"><div class="berocket_line"></div><div class="berocket_autoselector_action"></div></div>
-            <h4>' . __('Steps:', 'BeRocket_domain') . '</h4>
+            <h4>' . $output_text['steps'] . '</h4>
             <ol>
-                <li><span>' . __('Creating products', 'BeRocket_domain') . '</span> <i class="fa"></i></li>
-                <li><span>' . __('Gettings selectors', 'BeRocket_domain') . '</span> <i class="fa"></i></li>
-                <li><span>' . __('Removing products', 'BeRocket_domain') . '</span> <i class="fa"></i></li>
+                <li><span>' . $output_text['step_create_products'] . '</span> <i class="fa"></i></li>
+                <li><span>' . $output_text['step_get_selectors'] . '</span> <i class="fa"></i></li>
+                <li><span>' . $output_text['step_remove_product'] . '</span> <i class="fa"></i></li>
             </ol>
         </div>
         <script>jQuery(document).ready(function(){

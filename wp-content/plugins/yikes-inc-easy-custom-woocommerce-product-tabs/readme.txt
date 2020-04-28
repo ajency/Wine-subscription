@@ -1,13 +1,12 @@
 === Custom Product Tabs for WooCommerce  ===
-Contributors: yikesinc, eherman24, liljimmi, yikesitskevin
+Contributors: yikesinc, eherman24, liljimmi, yikesitskevin, metalandcoffee, mialevesque
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
-Tested up to: 4.8.1
-Requires WooCommerce at least: 3.0.0
-Tested WooCommerce up to: 3.1.2
-Stable tag: 1.5.17
+Tested up to: 5.4
+Stable tag: 1.7.1
 License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Add custom tabs with content to products in WooCommerce. 
 
@@ -17,13 +16,13 @@ This plugin extends [WooCommerce](www.woothemes.com/woocommerce/) to allow shop 
 
 Individual product tabs are managed on the WooCommerce Edit Product screen and can be added on a per product basis. You can also create saved tabs and add them to multiple products as needed. Tabs can be easily added, deleted and rearranged.
 
-Tab content areas use the standard WordPress text editor and may contain text, images, html or shortcodes. 
+Tab content areas use the standard WordPress text editor and may contain text, images, HTML or shortcodes. 
 
-If you experience any problems, please submit a New Issue on our [Github Issue Tracker](https://github.com/yikesinc/yikes-inc-easy-custom-woocommerce-product-tabs/issues) and we'll look in to it as soon as possible.
+If you experience any problems, please submit a ticket on our [Free WordPress Support Forums](https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs) and we'll look in to it as soon as possible.
 
 This plugin is compatible with WPML.
 
-<i>This plugin is a fork of <a href="https://wordpress.org/plugins/woocommerce-custom-product-tabs-lite/" target="_blank">SkyVerge WooCommerce Custom Product Tabs Lite</a></i>
+Upgrade to [Custom Product Tabs Pro](https://yikesplugins.com/plugin/custom-product-tabs-pro/) for great enhanced features!
 
 == Installation ==
 
@@ -56,16 +55,16 @@ When the product is viewed on your website you will see the tabs you created to 
 To change the order of custom tabs use the up and down "Move tab order" arrows.
 
 = How do saved tabs work? =
-Saved tabs are tabs you can create under the Custom Product Tabs for WooCommerce settings page and then add to as many products you would like. If you update the tab from the settings page, the changes will take effect for all products using that tab.
+Saved tabs are tabs you can create and then add to as many products you would like. If you update a saved tab, the changes will be updated for all products using that tab.
 
 = How do I create saved tabs? =
-To create a saved tab, go to the 'Custom Product Tabs for WooCommerce' page found under the Settings menu and click the "Add Tab" button.
+To create a saved tab, click on the 'Custom Product Tabs' item on the WordPress dashboard menu and click the "Add Tab" button.
 
 = How do I add a saved tab to a product? =
 To add a saved tab to a product, go to the custom tabs section on the edit product screen, click the 'Add a Saved Tab' button above the tab, and choose which tab you would like to add.
 
 = What does overriding a saved tab do? =
-When using a saved tab on the product page, a checkbox appears with the message 'Override Saved Tab' If you click that checkbox, edit the tab and save, the tab will be changed for that product only. Any edits to that saved tab under the 'Custom Product Tabs for WooCommerce' settings page, will not be applied to that product.
+When using a saved tab on a product, a checkbox appears with the message 'Override Saved Tab' If you click that checkbox, edit the tab and save, the tab will be changed for that product only. Any edits to that saved tab under 'Custom Product Tabs' will not be applied to that product.
 
 = Why does the WYSIWYG editor default to the 'Visual' tab? =
 This was added in version 1.5 to support the dynamic adding and removing of the wp_editor/WYSIWYG editor. Without this setting, the WYSIWYG editor does not load the correct toolbar and the editor can potentially break.
@@ -76,11 +75,83 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 == Changelog ==
 
-= 1.5.17 - Auguest 23rd, 2017 = 
+= 1.7.1 – March 13th, 2020 =
+* Fixes a bug with product display in certain conditions.
+
+= 1.7.0 – March 10th, 2020 =
+* Toggle the content filter on or off setting added. Use this to help with compatibility.
+* Support WooCommerce 4.0.
+* Support WordPress 5.4.
+
+= 1.6.13 - January 22nd, 2020 =
+* Support WooCommerce 3.9.
+
+= 1.6.12 - November 20th, 2019 =
+* Support WooCommerce 3.8.
+
+= 1.6.11 - September 25th, 2019 =
+* Adding additional checks to post global before enqueueing assets.
+
+= 1.6.10 - April 19th, 2019 =
+* Updating WC compatibility.
+* Fixing JS issue with WP backwards compatibility for versions < 4.7.
+
+= 1.6.9 - January 18th, 2019 =
+* Fixing an issue where the visual editor shows a small portion of the content on product edit pages.
+
+= 1.6.8 - January 2nd, 2019 =
+* Fixing some HTML markup.
+* Applying PHPCS fixes.
+
+= 1.6.7 - December 18th, 2018 =
+* Adding filter to help allow importing of custom tabs.
+* Changing our export filters so custom tabs work with WooCommerce's native meta export/import features.
+* The default capability for all admin pages is now `publish_products`.
+
+= 1.6.6 - October 26th, 2018 =
+* Bumping WooCo Compatibility.
+* Changed `wp_send_json_failure()` to `wp_send_json_error()`.
+
+= 1.6.5 - October 3rd, 2018 =
+* Bumping WooCo Compatibility.
+
+= 1.6.4 - January 9th, 2018 =
+* Happy new year! 
+* The editor is now vertically resizeable.
+* The default capability for interacting with saved tabs is now Publish Products (publish_products)
+
+= 1.6.3 - November 1st, 2017 =
+* Declaring compatibility with WooCommerce and WordPress
+
+= 1.6.2 - October 13th, 2017 =
+* Fixed a PHP Fatal Error that was occurring for users with PHP versions < 5.5.
+* Updated some of our documentation and language
+
+= 1.6.1 - October 12th, 2017 =
+* Fixed an issue with handling foreign characters. Foreign character tab titles should be working properly now. Sorry about that everyone!
+* Added support for native WooCommerce exporting. You can now export and import your tabs with just WooCommerce!
+* Fixed some styling issues
+* Added a new "Support" page
+* Added a new "Go Pro" page - check out [Custom Product Tabs Pro](https://yikesplugins.com/plugin/custom-product-tabs-pro/)
+
+= 1.6.0 - October 9th, 2017 = 
+* Complete re-organization of all plugin files and removal of legacy code
+* Added a "name" field for saved tabs. This field is used only on the admin as a way of identifying tabs.
+* Tab "slugs" are now created via the WP Core `sanitize_title()` function. This should allow meaningful tab slugs when foreign characters are used in a title.
+* Re-added the "Add Media" button to the editor when it's first initialized. This had disappeared when WP4.8 was released.
+* Fixed some issues with loading saved tab content into the editor. This should fix the issue that some users were experiencing where adding a saved tab would only work the second time.
+* Setting the width of the editor to 100%. 
+* Custom Product Tabs is now a top-level menu item instead of a sub-menu item.
+* Cleaning up the saved tab's array so we don't leave orphaned data (e.g. added a hook so we delete a product's tabs when the product is deleted)
+* Added a data update script to update all existing tab slugs to use `sanitize_title()` function.
+* Generated new POT file.
+* Added support and hooks for our new Custom Product Tabs Pro plugin! 
+
+= 1.5.17 - August 23rd, 2017 = 
 * Cleaning up some PHP Notices being thrown - thanks to @ZombiEquinox on GitHub for reporting this
 * Updating readme compatibility values
 
-= 1.5.16 - Auguest 1st, 2017 = 
+= 1.5.16 - August 1st, 2017 = 
 * Adding a proper deactivation hook. The plugin will leave no trace.
 
 = 1.5.15 - June 8th, 2017 =
@@ -131,7 +202,7 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 = 1.5.1 - December 22nd, 2016 =
 * Fixed bug that caused content to be copied incorrectly when moving tabs up / down
-* Only on the product page will the editor defaul to 'Visual' (instead of every page)
+* Only on the product page will the editor default to 'Visual' (instead of every page)
 
 = 1.5 - December 20th, 2016 =
 * Version 1.5 includes a brand new feature - saved tabs - as well as a number of bug fixes, style tweaks, code clean-up, and comments

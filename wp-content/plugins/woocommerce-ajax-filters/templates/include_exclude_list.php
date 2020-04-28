@@ -1,3 +1,4 @@
+<?php extract($berocket_var_exclude_list); ?>
 <div class="br_accordion">
     <h3><?php _e('Include / Exclude List', 'BeRocket_AJAX_domain'); ?></h3>
     <div>

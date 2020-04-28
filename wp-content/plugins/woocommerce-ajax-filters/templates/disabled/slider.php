@@ -1,4 +1,8 @@
-<?php $unique = rand( 0, time() ); 
+<?php 
+extract($berocket_query_var_title);
+global $berocket_unique_value;
+$berocket_unique_value++;
+$unique = strval($berocket_unique_value);
 $is_child_parent = ( isset($child_parent) && $child_parent == 'child' );
 $is_child_parent_or = ( isset($child_parent) && ( $child_parent == 'child' || $child_parent == 'parent' ) );
 if ( $is_child_parent ) {

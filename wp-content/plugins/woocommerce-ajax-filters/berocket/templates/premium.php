@@ -1,11 +1,16 @@
 <?php
 $feature_list = ( empty($this->cc->feature_list) ? null : $this->cc->feature_list );
-$dplugin_link = 'https://berocket.com/product/' . $this->cc->values['premium_slug'];
+if( ! empty($this->plugin_version_capability) && $this->plugin_version_capability > 10 ) {
+    $meta_data = '?utm_source=paid_plugin&utm_medium=plugins&utm_campaign='.$this->info['plugin_name'];
+} else {
+    $meta_data = '?utm_source=free_plugin&utm_medium=plugins&utm_campaign='.$this->info['plugin_name'];
+}
+$dplugin_link = 'https://berocket.com/product/' . $this->cc->values['premium_slug'] . '/SAVE15' . $meta_data;
 $dplugin_lic = br_get_value_from_array($this->cc->info, 'lic_id');
 if( ! empty($dplugin_lic) ) {
-    $dplugin_lic_link = 'https://berocket.com/checkout/'.$dplugin_lic.'/promo/SAVE15';
+    $dplugin_lic_link = 'https://berocket.com/checkout/'.$dplugin_lic.'/promo/SAVE15' . $meta_data;
 } else {
-    $dplugin_lic_link = $dplugin_link.'/SAVE15';
+    $dplugin_lic_link = $dplugin_link;
 }
 if ( isset($this->plugin_version_capability) && $this->plugin_version_capability <= 5 ) {
     echo apply_filters('berocket_rate_plugin_window', '', br_get_value_from_array($this->cc->info, 'id'));
@@ -16,7 +21,7 @@ if ( isset($this->plugin_version_capability) && $this->plugin_version_capability
             foreach ( $feature_list as $feature ) {
                 $feature_text .= '<li>' . $feature . '</li>';
             }
-            $text = '<h3>Unlock all the features with Premium version!</h3>
+            $text = '<h3>Unlock Premium features!</h3>
             <div>
             <ul>
                 %feature_list%
@@ -40,7 +45,7 @@ if ( isset($this->plugin_version_capability) && $this->plugin_version_capability
             $text = str_replace( '%feature_list%', $feature_text,               $text );
             $text = str_replace( '%link%',         $dplugin_link,               $text );
             $text = str_replace( '%licence%',      $dplugin_lic,                $text );
-            $text = str_replace( '%licence_link%', $dplugin_lic_link,           $text );
+            $text = str_replace( '%licence_link%', $dplugin_link,               $text );
             $text = str_replace( '%discount%',     $dpdiscount,                 $text );
             $text = str_replace( '%plugin_name%',  (empty($plugin_info['Name']) ? '' : $plugin_info['Name']),      $text );
             $text = str_replace( '%plugin_link%',  (empty($plugin_info['PluginURI']) ? '' : $plugin_info['PluginURI']), $text );
@@ -49,7 +54,8 @@ if ( isset($this->plugin_version_capability) && $this->plugin_version_capability
         </div>
         <?php
     }
-    echo apply_filters('berocket_feature_request_window', '', br_get_value_from_array($this->cc->info, 'id'));
+    echo apply_filters('berocket_related_plugins_window', '', br_get_value_from_array($this->cc->info, 'id'), $this);
+    echo apply_filters('berocket_feature_request_window', '', br_get_value_from_array($this->cc->info, 'id'), $this);
     $subscribed = get_option('berocket_email_subscribed');
     if( ! $subscribed ) {
         $user_email = wp_get_current_user();

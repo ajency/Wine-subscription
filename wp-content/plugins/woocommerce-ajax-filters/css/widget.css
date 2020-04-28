@@ -184,7 +184,7 @@ ul.berocket_aapf_widget.berocket_aapf_widget-tag_cloud.ui-widget .berocket_tag_c
     display: inline-block !important;
 }
 .berocket_aapf_widget .berocket_checkbox_color span label *{
-    display: initial !important;
+    display: inline-block !important;
 }
 .berocket_aapf_widget .berocket_checkbox_color.berocket_color_without_value.brchecked_default input[type="checkbox"]:checked + label .berocket_color_span_block,
 .berocket_aapf_widget .berocket_checkbox_color.berocket_color_without_value.brchecked_default .berocket_checked .berocket_color_span_block{
@@ -443,9 +443,10 @@ ul.berocket_aapf_widget .berocket_widget_show_values{
     top: 10px;
     font-size: 0.9em;
 }
-
-ul.berocket_aapf_widget .berocket_widget_show_values span{
+ul.berocket_aapf_widget .berocket_widget_show_values span:not(.show_button,.hide_button){
     font-family: FontAwesome;
+}
+ul.berocket_aapf_widget .berocket_widget_show_values span{
     margin-right: 20px;
     display: inline-block;
     width: 1.8em;
@@ -528,6 +529,7 @@ ul.berocket_aapf_widget li > span label:hover{
     position: relative;
     top: 40%;
     width: 430px;
+    max-width: 100%;
     height: 200px;
     margin: auto;
     z-index: 10000;
@@ -786,7 +788,7 @@ ul.berocket_aapf_widget li.berocket_tag_cloud_element > span label
     padding: 0;
     cursor: pointer;
 }
-@media only screen and (max-device-width: 768px) {
+@media only screen and (max-device-width: 767px) {
     .berocket_aapf_hide_mobile {
         display: none !important;
     }
@@ -832,6 +834,7 @@ ul.berocket_aapf_widget li.berocket_tag_cloud_element > span label
     color: #787878;
     padding: 0px;
 }
+
 .berocket_aapf_widget li > span > input[type="radio"] + .berocket_label_widgets:before {
     border: 2px solid #787878;
     border-radius: 50%;
@@ -853,11 +856,12 @@ ul.berocket_aapf_widget li.berocket_tag_cloud_element > span label
 .berocket_child_parent_sample{
     display: none;
 }
-.berocket_widget_color_pick .colorpicker_field{
+.berocket_widget_color_pick .br_colorpicker_field{
     width: 2em;
     height: 2em;
     border: 1px solid #333;
 }
+ul.berocket_aapf_widget li.berocket_checkbox_color > span > input[type="radio"]:checked + .berocket_label_widgets:before,
 .berocket_checkbox_color .berocket_color_span_block.berocket_aapf_count:before, 
 .berocket_checkbox_color .berocket_color_span_block.berocket_aapf_count:after{
     content: "";
@@ -1138,6 +1142,7 @@ html .widget_berocket_aapf .ui-button.ui-state-disabled:active{
 .berocket_single_filter_widget.berocket_inline_filters {
     width: 12.5%!important;
 }
+#berocket-ajax-filters-sidebar .berocket_single_filter_widget.berocket_hidden_clickable .berocket_aapf_widget-title_div,
 .berocket_single_filter_widget.berocket_hidden_clickable .berocket_aapf_widget-title_div {
     border:2px solid #333333!important;
     background-color: #333333!important;
@@ -1188,7 +1193,7 @@ html .widget_berocket_aapf .ui-button.ui-state-disabled:active{
 .berocket_single_filter_widget.berocket_hidden_clickable.berocket_hidden_clickable_right .berocket_aapf_widget {
     right: 0!important;
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
     .berocket_single_filter_widget.berocket_hidden_clickable.berocket_single_filter_visible {
         position: fixed!important;
         top: 0!important;
@@ -1230,12 +1235,12 @@ html .widget_berocket_aapf .ui-button.ui-state-disabled:active{
 div.berocket_single_filter_widget div.berocket_aapf_widget-wrapper * {
     opacity:1;
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
     .berocket_hide_single_widget_on_mobile {
         display: none!important;
     }
 }
-@media screen and (min-width: 769px) and (max-width: 1024px){
+@media screen and (min-width: 768px) and (max-width: 1024px){
     .berocket_hide_single_widget_on_tablet {
         display: none!important;
     }
@@ -1247,4 +1252,158 @@ div.berocket_single_filter_widget div.berocket_aapf_widget-wrapper * {
 }
 .berocket_aapf_widget select {
     overflow: auto!important;
+}
+.berocket_element_above_products_after {
+    clear:both;
+}
+
+ul.berocket_aapf_widget li > span > input + .berocket_label_widgets::before {
+    margin-right: 6px;
+}
+
+/* HIDDEN FILTERS UNDER ICON */
+
+.berocket_element_above_products_is_hide {
+    overflow: hidden !important;
+}
+.berocket_element_above_products_is_hide.br_is_hidden {
+    opacity: 0;
+    max-height: 1px;
+    position: relative;
+}
+.berocket_element_above_products_is_hide_toggle {
+    height: 20px;
+    width: 200px !important;
+    margin: 40px 0;
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    outline: 0 none !important;
+    color: #2a2a2a;
+    font-weight: 600;
+    font-size: 16px;
+}
+.berocket_element_above_products_is_hide_toggle span,
+.berocket_element_above_products_is_hide_toggle span:before,
+.berocket_element_above_products_is_hide_toggle span:after {
+    position: absolute;
+    left: 0;
+    width: 17px;
+    height: 2px;
+    display: block;
+}
+
+/* CUSTOM SIDEBAR */
+body {
+    transition: margin-left 0.2s;
+}
+body.berocket_ajax_filters_sidebar_active {
+    margin-left: 200px;
+}
+.berocket_ajax_filters_toggle {
+    height: 26px;
+    width: 200px !important;
+    margin: 40px 0;
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    outline: 0 none !important;
+    text-decoration: none!important;
+    box-sizing: border-box!important;
+    color: #2a2a2a;
+    font-weight: 600;
+    font-size: 16px;
+    border-color: #ababab;
+}
+
+#berocket-ajax-filters-sidebar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -350px;
+    bottom: 0;
+    width: 350px;
+    max-width: 100%;
+    background: white;
+    transition: all 0.2s;
+    z-index: 100000;
+    box-sizing: border-box;
+    overflow: auto !important;
+}
+#berocket-ajax-filters-sidebar-shadow {
+    content: "";
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 99999;
+    background: black;
+    opacity: 0.7;
+}
+.admin-bar #berocket-ajax-filters-sidebar {
+    top: 32px;
+}
+#berocket-ajax-filters-sidebar.active,
+#berocket-ajax-filters-sidebar.active + #berocket-ajax-filters-sidebar-shadow{
+    left: 0;
+    display: block;
+}
+#berocket-ajax-filters-sidebar .berocket_ajax_group_filter_title {
+    padding: 15px 88px 15px 15px !important;
+    font-weight: 500 !important;
+    font-size: 24px !important;
+    color: #333333 !important;
+    border-bottom: 1px solid #ccc !important;
+}
+#berocket-ajax-filters-sidebar > div {
+    padding: 15px!important;
+}
+#berocket-ajax-filters-sidebar .berocket_aapf_widget-title_div {
+    color: #333333 !important;
+    font-size: 19px !important;
+    font-weight: 600 !important;
+}
+#berocket-ajax-filters-sidebar .berocket_aapf_widget,
+#berocket-ajax-filters-sidebar .berocket_aapf_widget li {
+    margin: 0 !important;
+}
+#berocket-ajax-filters-sidebar .berocket_aapf_widget .berocket_checkbox_color .berocket_label_widgets {
+    margin: 0 0.6em 0.6em 0 !important;
+}
+#berocket-ajax-filters-sidebar-close{
+    position: absolute !important;
+    right: 0 !important;
+    line-height: 39px;
+    padding: 17px 15px 13px !important;
+    font-family: Arial, serif !important;
+    color: #a2a2a2;
+}
+#berocket-ajax-filters-sidebar-close + * {
+    margin-top: 70px!important;
+}
+#berocket-ajax-filters-sidebar-close + .berocket_ajax_group_filter_title {
+    margin-top: 0!important;
+}
+@media screen and (max-width:782px) {
+    .admin-bar #berocket-ajax-filters-sidebar {
+        top: 46px;
+    }
+}
+@media screen and (max-width:600px) {
+    .admin-bar #berocket-ajax-filters-sidebar {
+        top: 0;
+    }
+}
+
+
+/* COMPATIBILITY WITH THEMES */
+/* FLATSOME */
+.berocket_aapf_widget-wrapper .slider:not(.flickity-enabled) {
+    overflow: initial;
+    white-space: initial;
+}
+.select2-container {
+    z-index: 999999;
 }

@@ -1,3 +1,4 @@
+<?php extract($berocket_query_var_color); ?>
 <div class="br_accordion">
     <h3><?php if( $type == 'color' ) { _e('Color pick', 'BeRocket_AJAX_domain'); } elseif( $type == 'image' ) { _e('Image pick', 'BeRocket_AJAX_domain'); } ?></h3>
     <div>
@@ -13,9 +14,9 @@
         $color_term_selector = '<tr>';
         $color_term_selector .= '<td>'.berocket_isset($term, 'name').'</td>';
         $color_meta = get_metadata('berocket_term', $term->term_id, 'color'); 
-        $color_term_selector .= '<td class="colorpicker_field" data-color="' . br_get_value_from_array($color_meta, 0, 'ffffff') . '">
+        $color_term_selector .= '<td class="br_colorpicker_field" data-color="' . br_get_value_from_array($color_meta, 0, 'ffffff') . '">
         </td>
-        <input class="colorpicker_field_input" type="hidden" value="' . br_get_value_from_array($color_meta, 0) . '"
+        <input class="br_colorpicker_field_input" type="hidden" value="' . br_get_value_from_array($color_meta, 0) . '"
                name="br_widget_color[color][' . $term->term_id . ']" />';
         $color_term_selector .= '</tr>';
         echo $color_term_selector;
@@ -27,9 +28,9 @@
         <script>
             (function ($) {
                 var colPick_timer = setInterval(function() {
-                    if (typeof $('.colorpicker_field').colpick == 'function') {
+                    if (typeof $('.br_colorpicker_field').colpick == 'function') {
                         clearInterval(colPick_timer);
-                        $('.colorpicker_field').each(function (i,o) {
+                        $('.br_colorpicker_field').each(function (i,o) {
                             var color = $(o).data('color');
                             color = color+'';
                             color = color.replace('#', '');
@@ -48,7 +49,7 @@
                                 }
                             });
                         });
-                        jQuery('.colorpicker_field .fa-times').on('click', function(event) {
+                        jQuery('.br_colorpicker_field .fa-times').on('click', function(event) {
                             event.preventDefault();
                             event.stopPropagation();
                             jQuery(this).parent().css('backgroundColor', '#000000').colpickSetColor('#000000').addClass('colorpicker_removed');

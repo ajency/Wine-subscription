@@ -47,7 +47,7 @@
 <script>
     jQuery('.berocket_add_filter_to_group').on('click', function(event) {
         event.preventDefault();
-        var $parent = $(this).parents('form').first();
+        var $parent = jQuery(this).parents('form').first();
         if( ! jQuery('.berocket_filter_added_'+jQuery('.berocket_filter_list', $parent).val(), $parent).length ) {
             var html = '<li class="berocket_filter_added_'+jQuery('.berocket_filter_list', $parent).val()+'"><i class="fa fa-bars"></i> ';
             html += '<input type="hidden" name="'+jQuery('.berocket_filter_added_list', $parent).data('name')+'" value="'+jQuery('.berocket_filter_list', $parent).val()+'">';

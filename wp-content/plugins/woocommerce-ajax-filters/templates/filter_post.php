@@ -1,9 +1,10 @@
 <?php
 $attributes        = br_aapf_get_attributes();
-$categories        = BeRocket_AAPF_Widget::get_product_categories( '' );
-$categories        = BeRocket_AAPF_Widget::set_terms_on_same_level( $categories );
+$categories        = BeRocket_AAPF_Widget_functions::get_product_categories( '' );
+$categories        = BeRocket_AAPF_Widget_functions::set_terms_on_same_level( $categories );
 $tags              = get_terms( 'product_tag' );
-$custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => true ) );
+$custom_taxonomies = get_object_taxonomies( 'product' );
+$custom_taxonomies = array_combine($custom_taxonomies, $custom_taxonomies);
 ?>
 <div class="berocket_aapf_widget_content">
     <div class="widget-liquid-right tab-item  current">
@@ -11,12 +12,9 @@ $custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => tru
         <label class="br_admin_center"><?php _e('Widget Type', 'BeRocket_AJAX_domain') ?></label>
         <select id="<?php echo 'widget_type'; ?>" name="<?php echo $post_name.'[widget_type]'; ?>" class="berocket_aapf_widget_admin_widget_type_select br_select_menu_left">
             <?php
-            $widget_type_array = apply_filters( 'berocket_widget_widget_type_array', array(
+            $widget_type_array = apply_filters( 'berocket_widget_widget_type_array', apply_filters( 'berocket_aapf_display_filter_type_list', array(
                 'filter' => __('Filter', 'BeRocket_AJAX_domain'),
-                'update_button' => __('Update Products button', 'BeRocket_AJAX_domain'),
-                'reset_button' => __('Reset Products button', 'BeRocket_AJAX_domain'),
-                'selected_area' => __('Selected Filters area', 'BeRocket_AJAX_domain'),
-            ) );
+            ) ) );
             $set_widget_type = false;
             if( ! array_key_exists($instance['widget_type'], $widget_type_array) ) {
                 $set_widget_type = true;
@@ -116,25 +114,7 @@ $custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => tru
         <div class="br_admin_three_size_left br_type_select_block"<?php if( $instance['filter_type'] == 'date' ) echo 'style="display: none;"'; ?>>
             <label class="br_admin_center"><?php _e('Type', 'BeRocket_AJAX_domain') ?></label>
             <?php
-            $berocket_admin_filter_types = array(
-                'tag' => array('checkbox','radio','select','color','image','tag_cloud'),
-                'product_cat' => array('checkbox','radio','select','color','image'),
-                'sale' => array('checkbox','radio','select'),
-                'custom_taxonomy' => array('checkbox','radio','select','color','image'),
-                'attribute' => array('checkbox','radio','select','color','image'),
-                'price' => array('slider'),
-                'filter_by' => array('checkbox','radio','select','color','image'),
-            );
-            $berocket_admin_filter_types_by_attr = array(
-                'checkbox' => array('value' => 'checkbox', 'text' => 'Checkbox'),
-                'radio' => array('value' => 'radio', 'text' => 'Radio'),
-                'select' => array('value' => 'select', 'text' => 'Select'),
-                'color' => array('value' => 'color', 'text' => 'Color'),
-                'image' => array('value' => 'image', 'text' => 'Image'),
-                'slider' => array('value' => 'slider', 'text' => 'Slider'),
-                'tag_cloud' => array('value' => 'tag_cloud', 'text' => 'Tag cloud'),
-            );
-            list($berocket_admin_filter_types, $berocket_admin_filter_types_by_attr) = apply_filters( 'berocket_admin_filter_types_by_attr', array($berocket_admin_filter_types, $berocket_admin_filter_types_by_attr) );
+            list($berocket_admin_filter_types, $berocket_admin_filter_types_by_attr) = berocket_aapf_get_filter_types();
 
             $select_options_variants = array();
             if ( $instance['filter_type'] == 'tag' ) {
@@ -185,7 +165,7 @@ $custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => tru
                 <option <?php if ( $instance['operator'] == 'OR' ) echo 'selected'; ?> value="OR">OR</option>
             </select>
         </div>
-        <div class="berocket_aapf_order_values_by br_admin_three_size_left" <?php if ( ! $instance['filter_type'] or $instance['filter_type'] == 'date' or $instance['filter_type'] == '_sale' or $instance['filter_type'] == '_rating' or $instance['filter_type'] == '_stock_status' or ( $instance['filter_type'] == 'attribute' and $instance['type'] == 'slider' )) echo 'style="display: none;"'; ?>>
+        <div class="berocket_aapf_order_values_by br_admin_three_size_left" <?php if ( ! $instance['filter_type'] or $instance['filter_type'] == 'date' or $instance['filter_type'] == '_sale' or $instance['filter_type'] == '_rating' or $instance['filter_type'] == '_stock_status' or ( $instance['filter_type'] == 'attribute' and $instance['attribute'] == 'price' )) echo 'style="display: none;"'; ?>>
             <label class="br_admin_center"><?php _e('Values Order', 'BeRocket_AJAX_domain') ?></label>
             <select id="<?php echo 'order_values_by'; ?>" name="<?php echo $post_name.'[order_values_by]'; ?>" class="berocket_aapf_order_values_by_select br_select_menu_left">
                 <option value=""><?php _e('Default', 'BeRocket_AJAX_domain') ?></option>
@@ -194,7 +174,7 @@ $custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => tru
                 <?php } ?>
             </select>
         </div>
-        <div class="berocket_aapf_order_values_type br_admin_three_size_left" <?php if ( (( $instance['filter_type'] != 'attribute' && $instance['filter_type'] != 'custom_taxonomy') || $instance['type'] == 'slider') && $instance['filter_type'] != '_rating' && $instance['filter_type'] != 'tag' ) echo 'style="display: none;"'; ?>>
+        <div class="berocket_aapf_order_values_type br_admin_three_size_left" <?php if ( (( $instance['filter_type'] != 'attribute' && $instance['filter_type'] != 'custom_taxonomy') || ($instance['filter_type'] == 'attribute' && $instance['attribute'] == 'price') || $instance['type'] == 'ranges') && $instance['filter_type'] != '_rating' && $instance['filter_type'] != 'tag' ) echo 'style="display: none;"'; ?>>
             <label class="br_admin_center"><?php _e('Order Type', 'BeRocket_AJAX_domain') ?></label>
             <select id="<?php echo 'order_values_type'; ?>" name="<?php echo $post_name.'[order_values_type]'; ?>" class="berocket_aapf_order_values_type_select br_select_menu_left">
                 <?php foreach ( array( 'asc' => __( 'Ascending', 'BeRocket_AJAX_domain' ), 'desc' => __( 'Descending', 'BeRocket_AJAX_domain' ) ) as $v_i => $v ) { ?>
@@ -214,7 +194,7 @@ $custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => tru
                 } elseif ( $instance['filter_type'] == 'custom_taxonomy' ) {
                     $attribute_color_view = $instance['custom_taxonomy'];
                 }
-                BeRocket_AAPF_Widget::color_list_view( $instance['type'], $attribute_color_view, true );
+                BeRocket_AAPF_Widget_functions::color_list_view( $instance['type'], $attribute_color_view, true );
             } ?>
         </div>
         <div class="berocket_ranges_block"<?php if ( ! $instance['filter_type'] or $instance['filter_type'] != 'attribute' or $instance['attribute'] != 'price' or $instance['type'] != 'ranges' ) echo ' style="display: none;"'; ?>>
@@ -238,18 +218,67 @@ $custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => tru
             }
             ?><div><a href="#add" class="berocket_add_ranges" data-html='<div class="berocket_ranges"><input type="number" min="1" id="<?php echo 'ranges'; ?>" name="<?php echo $post_name.'[ranges]'; ?>[]" value="1"><a href="#remove" class="berocket_remove_ranges"><i class="fa fa-times"></i></a></div>'><i class="fa fa-plus"></i></a></div>
             <label>
-                <input type="checkbox" name="<?php echo $post_name.'[hide_first_last_ranges]'; ?>" <?php if ( $instance['hide_first_last_ranges'] ) echo 'checked'; ?> value="1" />
+                <select name="<?php echo $post_name.'[range_display_type]'; ?>">
+                    <optgroup label="<?php _e('Ranges: 1,100,200,1000', 'BeRocket_AJAX_domain'); ?>">
+                    <?php
+                    $range_types = array(
+                        array('value' => '',        'name' => __('1.00-100.00, 101.00-200.00, 201.00-1000.00', 'BeRocket_AJAX_domain')),
+                        array('value' => 'same',    'name' => __('1.00-100.00, 100.00-200.00, 200.00-1000.00', 'BeRocket_AJAX_domain')),
+                        array('value' => 'decimal', 'name' => __('1.00-99.99, 100.00-199.99, 200.00-999.99', 'BeRocket_AJAX_domain')),
+                    );
+                    foreach($range_types as $range_type) {
+                        echo '<option value="'.$range_type['value'].'"'.(br_get_value_from_array($instance, 'range_display_type') == $range_type['value'] ? ' selected' : '').'>'.$range_type['name'].'</option>';
+                    }
+                    ?>
+                    </optgroup>
+                </select>
+            </label>
+            <br />
+            <label>
+                <input type="checkbox" name="<?php echo $post_name.'[hide_first_last_ranges]'; ?>" <?php if ( ! empty($instance['hide_first_last_ranges']) ) echo 'checked'; ?> value="1" />
                 <?php _e('Hide first and last ranges without products', 'BeRocket_AJAX_domain') ?>
+            </label>
+            <br />
+            <label>
+                <input class="braapf_show_last_to_infinity" type="checkbox" name="<?php echo $post_name.'[show_last_to_infinity]'; ?>" <?php if ( ! empty($instance['show_last_to_infinity']) ) echo 'checked'; ?> value="1" />
+                <?php _e('Show last range to the infinity', 'BeRocket_AJAX_domain') ?>
+            </label>
+            <br />
+            <label class="braapf_to_infinity_text"<?php if ( empty($instance['show_last_to_infinity']) ) echo 'style="display:none;"'; ?>>
+                <?php _e('Infinity text', 'BeRocket_AJAX_domain') ?>
+                <input type="text" name="<?php echo $post_name.'[to_infinity_text]'; ?>" placeholder="&#8734;"value="<?php echo berocket_isset($instance['to_infinity_text']); ?>">
+            </label>
+            <script>
+            jQuery('.braapf_show_last_to_infinity').change(function() {
+                if( jQuery(this).prop('checked') ) {
+                    jQuery('.braapf_to_infinity_text').show();
+                } else {
+                    jQuery('.braapf_to_infinity_text').hide();
+                }
+            });
+            </script>
+            <br />
+            <label>
+                <input type="checkbox" name="<?php echo $post_name.'[disable_multiple_ranges]'; ?>" <?php if ( ! empty($instance['disable_multiple_ranges']) ) echo 'checked'; ?> value="1" />
+                <?php _e('Disable multiple selection?', 'BeRocket_AJAX_domain') ?>
             </label>
         </div>
         <div <?php if ( $instance['filter_type'] != 'attribute' || $instance['attribute'] != 'price' ) echo " style='display: none;'"; ?> class="berocket_aapf_widget_admin_price_attribute" >
-            <label class="br_admin_center" for="<?php echo 'text_before_price'; ?>"><?php _e('Text before price:', 'BeRocket_AJAX_domain') ?> </label>
-            <input class="br_admin_full_size"  id="<?php echo 'text_before_price'; ?>" type="text" name="<?php echo $post_name.'[text_before_price]'; ?>" value="<?php echo $instance['text_before_price']; ?>"/>
-            <label class="br_admin_center" for="<?php echo 'text_after_price'; ?>"><?php _e('after:', 'BeRocket_AJAX_domain') ?> </label>
-            <input class="br_admin_full_size"  id="<?php echo 'text_after_price'; ?>" type="text" name="<?php echo $post_name.'[text_after_price]'; ?>" value="<?php echo $instance['text_after_price']; ?>" /><br>
-            <span>%cur_symbol% will be replaced with currency symbol($), %cur_slug% will be replaced with currency code(USD)</span><br>
-            <input  id="<?php echo 'enable_slider_inputs'; ?>" type="checkbox" name="<?php echo $post_name.'[enable_slider_inputs]'; ?>" value="1"<?php if( ! empty($instance['enable_slider_inputs']) ) echo ' checked'; ?>/>
-            <label for="<?php echo 'enable_slider_inputs'; ?>"><?php _e('Enable Slider Inputs', 'BeRocket_AJAX_domain') ?> </label>
+            <div class="br-row">
+                <div class="br-column-6">
+                    <label class="br_admin_center" for="<?php echo 'text_before_price'; ?>"><?php _e('Text before price:', 'BeRocket_AJAX_domain') ?> </label>
+                    <input class="br_admin_full_size"  id="<?php echo 'text_before_price'; ?>" type="text" name="<?php echo $post_name.'[text_before_price]'; ?>" value="<?php echo $instance['text_before_price']; ?>"/>
+                </div>
+                <div class="br-column-6">
+                    <label class="br_admin_center" for="<?php echo 'text_after_price'; ?>"><?php _e('after:', 'BeRocket_AJAX_domain') ?> </label>
+                    <input class="br_admin_full_size"  id="<?php echo 'text_after_price'; ?>" type="text" name="<?php echo $post_name.'[text_after_price]'; ?>" value="<?php echo $instance['text_after_price']; ?>" /><br>
+                </div>
+            </div>
+            <span>%cur_symbol% will be replaced with currency symbol($)<br/>%cur_slug% will be replaced with currency code(USD)</span><br>
+            <div class="berocket_aapf_widget_admin_ranges_hide" style="<?php echo ($instance['type'] == 'ranges' ? 'display: none;' : '' ) ?>">
+                <input  id="<?php echo 'enable_slider_inputs'; ?>" type="checkbox" name="<?php echo $post_name.'[enable_slider_inputs]'; ?>" value="1"<?php if( ! empty($instance['enable_slider_inputs']) ) echo ' checked'; ?>/>
+                <label for="<?php echo 'enable_slider_inputs'; ?>"><?php _e('Enable Slider Inputs', 'BeRocket_AJAX_domain') ?> </label>
+            </div>
         </div>
         <div <?php if ( $instance['filter_type'] != 'attribute' || $instance['attribute'] != 'price' ) echo " style='display: none;'"; ?> class="berocket_aapf_widget_admin_price_attribute" >
             <label for="<?php echo 'price_values'; ?>"><?php _e('Use custom values(comma separated):', 'BeRocket_AJAX_domain') ?> </label>
@@ -304,7 +333,7 @@ $custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => tru
                 ?>
                 </ul>
         </div>
-        <div class="berocket_options_for_select"<?php if( ( $instance['filter_type'] != 'tag' and $instance['filter_type'] != 'custom_taxonomy' and $instance['filter_type'] != 'attribute' ) or $instance['type'] != 'select' ) echo ' style="display:none;"'; ?>>
+        <div class="berocket_options_for_select"<?php if( ( $instance['filter_type'] != 'tag' and $instance['filter_type'] != 'custom_taxonomy' and $instance['filter_type'] != 'attribute' and $instance['filter_type'] != 'product_cat' ) or $instance['type'] != 'select' ) echo ' style="display:none;"'; ?>>
             <div>
                 <label for="<?php echo 'select_first_element_text'; ?>"><?php _e('First Element Text', 'BeRocket_AJAX_domain') ?> </label>
                 <input placeholder="<?php _e('Any', 'BeRocket_AJAX_domain'); ?>" id="<?php echo 'select_first_element_text'; ?>" type="text" name="<?php echo $post_name.'[select_first_element_text]'; ?>" value="<?php echo $instance['select_first_element_text']; ?>" />
@@ -381,7 +410,7 @@ $custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => tru
                     ',
                     'hide_child_attributes' => '
                         <div class="berocket_aapf_widget_admin_non_price_tag_cloud_select"'
-                        .( ( $instance['type'] == 'tag_cloud' || $instance['type'] == 'slider' || $instance['type'] == 'select' ) ? ' style="display:none;"' : '' ).'>
+                        .( ( $instance['filter_type'] == 'date' || ( $instance['filter_type'] != 'date' && ( $instance['type'] == 'tag_cloud' || $instance['type'] == 'slider' || $instance['type'] == 'select' ) ) ) ? ' style="display:none;"' : '' ).'>
                             <input id="hide_child_attributes" type="checkbox" name="'.$post_name.'[hide_child_attributes]"'.( empty($instance['hide_child_attributes']) ? '' : ' checked' ).' value="1" />
                             <label for="hide_child_attributes">'.__('Show hierarchical values as a tree with hidden child values on load?', 'BeRocket_AJAX_domain').'</label>
                         </div>
@@ -394,6 +423,10 @@ $custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => tru
                     <div>
                         <input id="<?php echo 'use_value_with_color'; ?>" type="checkbox" name="<?php echo $post_name.'[use_value_with_color]'; ?>" <?php if ( $instance['use_value_with_color'] ) echo 'checked'; ?> value="1" />
                         <label for="<?php echo 'use_value_with_color'; ?>"><?php _e('Display value with color/image box?', 'BeRocket_AJAX_domain') ?></label>
+                    </div>
+                    <div>
+                        <input id="<?php echo 'disable_multiple'; ?>" type="checkbox" name="<?php echo $post_name.'[disable_multiple]'; ?>" <?php if ( ! empty( $instance['disable_multiple'] ) ) echo 'checked'; ?> value="1" />
+                        <label for="<?php echo 'disable_multiple'; ?>"><?php _e('Disable multiple selection?', 'BeRocket_AJAX_domain') ?></label>
                     </div>
                     <div>
                         <label for="color_image_block_size"><?php _e('Size of blocks(Height x Width)', 'BeRocket_AJAX_domain') ?></label>
@@ -509,7 +542,7 @@ $custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => tru
                             <label class="br_admin_full_size" for="<?php echo 'use_max_price'; ?>"><?php _e('Use max price', 'BeRocket_AJAX_domain') ?></label>
                         </div>
                         <div <?php if ( !$instance['use_max_price'] ) echo 'style="display:none"'; ?>>
-                            <input type=number min=1 id="<?php echo 'max_price'; ?>" name="<?php echo $post_name.'[max_price]'; ?>" value="<?php echo ( ( $instance['max_price'] ) ? $instance['max_price'] : '0' ); ?>" class="br_admin_full_size berocket_aapf_widget_admin_input_price">
+                            <input type=number min=0 id="<?php echo 'max_price'; ?>" name="<?php echo $post_name.'[max_price]'; ?>" value="<?php echo ( ( $instance['max_price'] ) ? $instance['max_price'] : '0' ); ?>" class="br_admin_full_size berocket_aapf_widget_admin_input_price">
                         </div>
                     </div>
                     <div class="br_clearfix"></div>
@@ -565,7 +598,7 @@ $custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => tru
         jQuery('.color_image_checked_'+jQuery(this).val()).show();
     });
     jQuery(document).ready(function() {
-        jQuery('.colorpicker_field').each(function (i,o){
+        jQuery('.br_colorpicker_field').each(function (i,o){
             jQuery(o).css('backgroundColor', '#'+jQuery(o).data('color'));
             jQuery(o).colpick({
                 layout: 'hex',
@@ -618,6 +651,14 @@ $custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => tru
             </div>
             <?php do_action( 'berocket_widget_filter_output_limitation_end', $post_name, $instance); ?>
         </div>
+    <div class="berocket_widget_reset_button_block"<?php if( empty($instance['widget_type']) || $instance['widget_type'] != 'reset_button' ) echo ' style="display: none";'?>>
+        <label class="br_admin_center"><?php _e('Hide button', 'BeRocket_AJAX_domain') ?></label>
+        <select id="<?php echo 'operator'; ?>" name="<?php echo $post_name.'[reset_hide]'; ?>" class="br_select_menu_left">
+            <option <?php if ( empty($instance['reset_hide']) ) echo 'selected'; ?> value=""><?php _e('Do not hide', 'BeRocket_AJAX_domain'); ?></option>
+            <option <?php if ( $instance['reset_hide'] == 'berocket_no_filters' ) echo 'selected'; ?> value="berocket_no_filters"><?php _e('Hide only when no filters on page', 'BeRocket_AJAX_domain'); ?></option>
+            <option <?php if ( $instance['reset_hide'] == 'berocket_no_filters berocket_not_selected' ) echo 'selected'; ?> value="berocket_no_filters berocket_not_selected"><?php _e('Hide when no filters on page or page not filtered', 'BeRocket_AJAX_domain'); ?></option>
+        </select>
+    </div>
     <script>
         if( typeof(br_widget_set) == 'function' )
             br_widget_set();

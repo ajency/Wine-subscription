@@ -1,31 +1,44 @@
 <?php
-
-/*$BeRocket_framework_this_version = 1;
-$BeRocket_framework_latest_version_exist = get_option('BeRocket_framework_latest_version_exist');
-if( empty($BeRocket_framework_latest_version_exist) || empty($BeRocket_framework_latest_version_exist['version']) || $BeRocket_framework_latest_version_exist['version'] < $BeRocket_framework_this_version ) {
-    $BeRocket_framework_latest_version_exist = array('version' => $BeRocket_framework_this_version, 'file' => __FILE__);
-    update_option('BeRocket_framework_latest_version_exist', $BeRocket_framework_latest_version_exist);
-} elseif( file_exists($BeRocket_framework_latest_version_exist['file']) && $BeRocket_framework_latest_version_exist['file'] != __FILE__ ) {
-    require_once($BeRocket_framework_latest_version_exist['file']);
-}*/
-require_once( plugin_dir_path( __FILE__ ) . 'includes/functions.php');
-require_once( plugin_dir_path( __FILE__ ) . 'includes/updater.php');
-require_once( plugin_dir_path( __FILE__ ) . 'includes/widget.php');
-require_once( plugin_dir_path( __FILE__ ) . 'includes/admin_notices.php');
-require_once( plugin_dir_path( __FILE__ ) . 'includes/custom_post.php');
-require_once( plugin_dir_path( __FILE__ ) . 'includes/conditions.php');
-require_once( plugin_dir_path( __FILE__ ) . 'includes/plugin-variation.php');
-include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-load_plugin_textdomain('BeRocket_domain', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/');
-foreach (glob(plugin_dir_path( __FILE__ ) . "../includes/*.php") as $filename)
-{
-    include_once($filename);
+if( ! class_exists( 'BeRocket_Framework' ) && ! function_exists('BeRocket_Framework_load_newest') ) {
+    function BeRocket_Framework_load_newest() {
+        $active_plugins = get_option('active_plugins');
+        $framework_version = '0';
+        $framework_dir = false;
+        foreach($active_plugins as $active_plugin) {
+            $version_file = plugin_dir_path(WP_PLUGIN_DIR . '/' . $active_plugin) . 'berocket/framework_version.php';
+            if( file_exists($version_file) ) {
+                include_once($version_file);
+            }
+        }
+        if( ! empty($framework_version) && ! empty($framework_dir) ) {
+            include_once($framework_dir . '/framework.php');
+        }
+    }
+    BeRocket_Framework_load_newest();
 }
-
 if( ! class_exists( 'BeRocket_Framework' ) ) {
-
+    if( ! defined('BeRocket_framework_file') ) {
+        define( "BeRocket_framework_file", __FILE__ );
+    }
+    if( ! defined('BeRocket_framework_dir') ) {
+        define( "BeRocket_framework_dir", __DIR__ );
+    }
+    require_once( plugin_dir_path( __FILE__ ) . 'includes/functions.php');
+    require_once( plugin_dir_path( __FILE__ ) . 'includes/updater.php');
+    require_once( plugin_dir_path( __FILE__ ) . 'includes/widget.php');
+    require_once( plugin_dir_path( __FILE__ ) . 'includes/admin_notices.php');
+    require_once( plugin_dir_path( __FILE__ ) . 'includes/information_notices.php');
+    require_once( plugin_dir_path( __FILE__ ) . 'includes/custom_post.php');
+    require_once( plugin_dir_path( __FILE__ ) . 'includes/conditions.php');
+    require_once( plugin_dir_path( __FILE__ ) . 'includes/plugin-variation.php');
+    require_once( plugin_dir_path( __FILE__ ) . 'includes/libraries.php');
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+    load_plugin_textdomain('BeRocket_domain', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/');
     class BeRocket_Framework {
+        public static $framework_version = '2.5.5.5';
         public static $settings_name = '';
+        public $addons;
+        public $libraries;
         private $post;
         private $cc;
         protected static $instance;
@@ -33,10 +46,13 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
         protected $framework_data = array(
             'fontawesome_frontend' => false,
         );
+        protected $active_libraries = array();
         protected $global_settings = array(
             'fontawesome_frontend_disable',
             'fontawesome_frontend_version',
         );
+        public $check_lib = null;
+        protected $check_init_array = array();
         public static function getInstance()
         {
             if (null === static::$instance)
@@ -51,9 +67,26 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
             {
                 static::$instance = $child;
             }
+            $this->include_once_files();
             $this->cc = $child; // Child Class object
             do_action('BeRocket_framework_init_plugin', $this->cc->info);
             $this->plugin_version_capability = apply_filters('brfr_plugin_version_capability_'.$this->cc->info['plugin_name'], $this->plugin_version_capability, $this);
+            if( $this->plugin_version_capability == 15 && is_admin() ) {
+                $is_active_plugin = get_transient( 'berocket_framework_plugin_is_active_'.$this->info['id'] );
+                if( $is_active_plugin === false || is_admin() ) {
+                    $active_plugin      = get_option( 'berocket_key_activated_plugins' );
+                    $active_site_plugin = get_site_option( 'berocket_key_activated_plugins' );
+                    if ( ! is_array( $active_plugin ) ) {
+                        $active_plugin = array();
+                    }
+                    if ( ! is_array( $active_site_plugin ) ) {
+                        $active_site_plugin = array();
+                    }
+                    $is_active_plugin = ( empty( $active_plugin[ $this->info['id'] ] ) && empty( $active_site_plugin[ $this->info['id'] ] ) ) ? 3 : 17;
+                    set_transient( 'berocket_framework_plugin_is_active_'.$this->info['id'], $is_active_plugin, 7200 );
+                }
+                $this->plugin_version_capability = $is_active_plugin;
+            }
             $this->defaults = apply_filters('brfr_plugin_defaults_value_'.$this->cc->info['plugin_name'], $this->defaults, $this);
             
             register_activation_hook( $this->cc->info[ 'plugin_file' ], array( $this->cc, 'activation' ) );
@@ -64,9 +97,11 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
             if ( $this->cc->init_validation() ) {
                 add_action( 'init', array( $this->cc, 'init' ) );
                 add_action( 'wp_head', array( $this->cc, 'set_styles' ) );
+                add_action( 'wp_footer', array( $this->cc, 'set_scripts' ), 9000 );
                 add_action( 'admin_init', array( $this->cc, 'admin_init' ) );
                 add_action( 'admin_menu', array( $this->cc, 'admin_menu' ) );
                 add_action( 'admin_enqueue_scripts', array( $this->cc, 'admin_enqueue_scripts' ) );
+                add_action( 'berocket_enqueue_media', array( $this, 'wp_enqueue_media' ) );
 
                 add_action( 'wp_ajax_br_' . $this->cc->info[ 'plugin_name' ] . '_settings_save', array(
                     $this->cc,
@@ -84,8 +119,26 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
                 if( empty($this->plugin_version_capability) || $this->plugin_version_capability < 10 ) {
                     add_filter('berocket_admin_notices_subscribe_plugins', array($this, 'admin_notices_subscribe_plugins'));
                 }
+                $this->libraries = new BeRocket_framework_libraries($this->active_libraries, $this->info, $this->values, $this->get_option());
+                add_filter('BeRocket_admin_init_user_capabilities', array($this, 'init_user_capabilities'));
             }
             do_action($this->info[ 'plugin_name' ].'_framework_construct', $this->cc);
+            add_filter('brfr_get_plugin_version_capability_'.$this->cc->info['plugin_name'], array($this, 'get_plugin_version_capability'));
+        }
+        public function include_once_files() {
+            foreach (glob($this->info['plugin_dir'] . "/includes/*.php") as $filename)
+            {
+                include_once($filename);
+            }
+        }
+        public function init_check_lib() {
+            if( empty($this->check_lib) ) {
+                include_once('libraries/check_init.php');
+                $this->check_lib = new BeRocket_framework_check_init_lib($this->check_init_array);
+            }
+        }
+        public function get_plugin_version_capability($version) {
+            return $this->plugin_version_capability;
         }
         public function admin_notices_subscribe_plugins($plugins) {
             $plugins[] = $this->info['id'];
@@ -95,7 +148,8 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
             wp_print_styles('font-awesome');
         }
         public function init_validation() {
-            return true;
+            $this->init_check_lib();
+            return $this->check_lib->check();
         }
 
         public function plugins_loaded() {
@@ -106,6 +160,12 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
 
         public function sanitize_comment_cookies() {
             if( ! empty($this->post) ) {
+                if( ! empty($_POST[ $this->cc->values[ 'settings_name' ] ]['addons']) ) {
+                    $this->post['addons'] = $_POST[ $this->cc->values[ 'settings_name' ] ]['addons'];
+                }
+                if( ! empty($_POST[ $this->cc->values[ 'settings_name' ] ]['template']) ) {
+                    $this->post['template'] = $_POST[ $this->cc->values[ 'settings_name' ] ]['template'];
+                }
                 $_POST[ $this->cc->values[ 'settings_name' ] ] = $this->post;
             }
         }
@@ -115,10 +175,10 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
          *
          * @return array
          */
-        public function get_product_data_berocket() {
-            $products = get_transient($this->info[ 'plugin_name' ] . '_paid_info');
+        public static function get_product_data_berocket($plugin_id) {
+            $products = get_transient('berocket_' . $plugin_id . '_paid_info');
             if( $products === FALSE ) {
-                $response = wp_remote_post('https://berocket.com/main/get_product_data/'.$this->info['id'], array(
+                $response = wp_remote_post('https://berocket.com/main/get_product_data/'.$plugin_id, array(
                     'method' => 'POST',
                     'timeout' => 15,
                     'redirection' => 5,
@@ -129,15 +189,19 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
                     $out = wp_remote_retrieve_body($response);
                     if( !empty($out) && json_decode($out) ) {
                         $products = json_decode($out, true);
-                        set_transient($this->info[ 'plugin_name' ] . '_paid_info', $products, WEEK_IN_SECONDS);
+                        set_transient('berocket_' . $plugin_id . '_paid_info', $products, WEEK_IN_SECONDS);
                     } else {
-                        set_transient($this->info[ 'plugin_name' ] . '_paid_info', '', DAY_IN_SECONDS);
+                        set_transient('berocket_' . $plugin_id . '_paid_info', '', DAY_IN_SECONDS);
                     }
                 } else {
-                    set_transient($this->info[ 'plugin_name' ] . '_paid_info', '', DAY_IN_SECONDS);
+                    set_transient('berocket_' . $plugin_id . '_paid_info', '', DAY_IN_SECONDS);
                 }
             }
             return $products;
+        }
+
+        public function clear_product_data_transient() {
+            delete_transient($this->info[ 'plugin_name' ] . '_paid_info');
         }
 
         /**
@@ -146,7 +210,7 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
          * @return void
          */
         public function activation() {
-            add_option( $this->cc->values[ 'settings_name' ], self::sanitize_option( $this->cc->defaults ) );
+            add_option( $this->cc->values[ 'settings_name' ], $this->sanitize_option( $this->cc->defaults ) );
             do_action('brfr_activate_' . $this->cc->info[ 'plugin_name' ]);
         }
 
@@ -174,6 +238,9 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
             $this->cc->info[ 'plugin' ]             = plugin_basename( $this->cc->info[ 'plugin_file' ] );
             $this->cc->info[ 'name' ]               = $info[ 'Name' ];
             $this->cc->info[ 'version_capability' ] = $this->plugin_version_capability;
+            if( ! empty($this->cc->values['free_slug']) ) {
+                $this->cc->info[ 'free_slug' ] = $this->cc->values['free_slug'];
+            }
 
             $plugins[] = $this->cc->info;
 
@@ -185,6 +252,7 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
                 $plugin = array(
                     'id'            => $this->info['id'],
                     'name'          => $this->info['name'],
+                    'plugin_name'   => $this->info['plugin_name'],
                     'free_slug'     => $this->values['free_slug'],
                 );
                 $plugins[$this->info['id']] = $plugin;
@@ -211,18 +279,29 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
         public function plugin_row_meta( $links, $file ) {
             $plugin_base_slug = plugin_basename( $this->cc->info[ 'plugin_file' ] );
             if ( $file == $plugin_base_slug ) {
+                if( ! empty($this->plugin_version_capability) && $this->plugin_version_capability > 10 ) {
+                    $meta_data = '?utm_source=paid_plugin&utm_medium=plugins&utm_campaign='.$this->info['plugin_name'];
+                } else {
+                    $meta_data = '?utm_source=free_plugin&utm_medium=plugins&utm_campaign='.$this->info['plugin_name'];
+                }
                 $row_meta = array(
                     'docs'    => '<a href="https://berocket.com/docs/plugin/' .
-                                 $this->cc->values[ 'premium_slug' ] . '" title="' .
+                                 $this->cc->values[ 'premium_slug' ] . $meta_data . '" title="' .
                                  __( 'View Plugin Documentation', 'BeRocket_domain' ) .
                                  '" target="_blank">' . __( 'Docs', 'BeRocket_domain' ) . '</a>',
                 );
-                if( ! empty($this->plugin_version_capability) && $this->plugin_version_capability > 10 ) {
-                    $row_meta['premium'] = '<a href="https://berocket.com/support/product/' . $this->cc->values[ 'premium_slug' ] .
+                if( ! empty($this->plugin_version_capability) && $this->plugin_version_capability == 3 ) {
+                    if( ! empty($this->cc->values[ 'free_slug' ]) ) {
+                        $row_meta['support'] = '<a href="https://wordpress.org/support/plugin/' . $this->cc->values[ 'free_slug' ] .
+                                 '/' . $meta_data . '" title="' . __( 'View Support Page', 'BeRocket_domain' ) .
+                                 '" target="_blank">' . __( 'Support', 'BeRocket_domain' ) . '</a>';
+                    }
+                } elseif( ! empty($this->plugin_version_capability) && $this->plugin_version_capability > 10 ) {
+                    $row_meta['premium'] = '<a href="https://berocket.com/support/product/' . $this->cc->values[ 'premium_slug' ] . $meta_data .
                                  '" title="' . __( 'View Premium Support Page', 'BeRocket_domain' ) .
                                  '" target="_blank">' . __( 'Premium Support', 'BeRocket_domain' ) . '</a>';
                 } else {
-                    $row_meta['premium'] = '<a href="https://berocket.com/product/' . $this->cc->values[ 'premium_slug' ] .
+                    $row_meta['premium'] = '<a href="https://berocket.com/product/' . $this->cc->values[ 'premium_slug' ] . $meta_data .
                                  '" title="' . __( 'View Premium Version Page', 'BeRocket_domain' ) .
                                  '" target="_blank">' . __( 'Premium Version', 'BeRocket_domain' ) . '</a>';
                 }
@@ -241,8 +320,7 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
             $global_option = $this->get_global_option();
             wp_enqueue_script( "jquery" );
             if( is_admin() ) {
-                self::register_font_awesome();
-                wp_enqueue_style( 'font-awesome' );
+                $this->register_font_awesome('fa5live');
             } elseif( ! empty($this->framework_data['fontawesome_frontend']) ) {
                 $this->enqueue_fontawesome();
             }
@@ -268,21 +346,24 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
                     }
                 }"
             );
+            if ( function_exists('icl_object_id') ) {
+                include_once('libraries/wpml_compatibility.php');
+            }
         }
 
         public function enqueue_fontawesome($force = false) {
             $global_option = $this->get_global_option();
             if( empty($global_option['fontawesome_frontend_disable']) ) {
                 if( br_get_value_from_array($global_option, 'fontawesome_frontend_version') == 'fontawesome5' ) {
-                    self::register_font_awesome('fa5');
+                    $this->register_font_awesome('fa5');
                     wp_enqueue_style( 'font-awesome-5' );
                 } else {
-                    self::register_font_awesome('fa4');
+                    $this->register_font_awesome('fa4');
                     wp_enqueue_style( 'font-awesome' );
                 }
             } else {
                 if( br_get_value_from_array($global_option, 'fontawesome_frontend_version') == 'fontawesome5' ) {
-                    self::register_font_awesome('fa5c');
+                    $this->register_font_awesome('fa5c');
                     wp_enqueue_style( 'font-awesome-5-compat' );
                 }
             }
@@ -295,7 +376,42 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
          */
         public function set_styles() {
             $options = $this->get_option();
-            echo '<style>' . $options[ 'custom_css' ] . '</style>';
+            $custom_css = berocket_sanitize_array($options[ 'custom_css' ]);
+            echo '<style>' . $custom_css . '</style>';
+        }
+        public function set_scripts() {
+            $options = $this->get_option();
+            $javascript = br_get_value_from_array($options, array('javascript'));
+            $is_admin = current_user_can($this->option_page_capability());
+            if(is_array($javascript)) {
+                $html = '<script>';
+                foreach($javascript as $trigger => $script) {
+                    $function_name = strtolower($this->info['plugin_name'] . '_' . $trigger);
+                    $function_name = preg_replace("/[^a-z0-9_\s-]/", "", $function_name);
+                    $function_name = 'brjst_' . preg_replace("/[\s_-]+/", "_", $function_name);
+                    $html .= '
+                    function '.$function_name.'() {
+                        try {
+                            '.$script.'
+                        } catch(err){
+                    ';
+                    if( $is_admin ) {
+                        $html .= 'alert("You have some incorrect custom JavaScript code (Plugin: '.$this->info['full_name'].', Trigger: '.$trigger.')");
+                        console.log(err);';
+                    }
+                    $html .= '
+                        }
+                    };
+                    ';
+                    if( $trigger == 'load' ) {
+                        $html .='jQuery(document).ready('.$function_name.');';
+                    } else {
+                        $html .='jQuery(document).on("'.$trigger.'", '.$function_name.');';
+                    }
+                }
+                $html .= '</script>';
+                echo $html;
+            }
         }
 
         /**
@@ -306,10 +422,14 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
          * @return void
          */
         public function admin_init() {
+            add_action('upgrader_process_complete', array($this, 'clear_product_data_transient'));
+            if( is_admin() ) {
+                $this->plugin_version_check();
+            }
             if( isset($this->plugin_version_capability) && $this->plugin_version_capability <= 5 ) {
                 berocket_admin_notices::generate_subscribe_notice();
                 if( empty($this->feature_list) || ! is_array($this->feature_list) || ! count($this->feature_list) ) {
-                    $products_info = $this->get_product_data_berocket();
+                    $products_info = $this->get_product_data_berocket($this->info['id']);
                     if( is_array($products_info) && isset($products_info['difference']) && is_array($products_info['difference']) ) {
                         $this->feature_list = $products_info['difference'];
                     }
@@ -318,39 +438,47 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
             require_once( plugin_dir_path( __FILE__ ) . 'includes/settings_fields.php');
             wp_register_script(
                 'berocket_framework_admin',
-                plugins_url( 'berocket/js/admin.js', $this->cc->info[ 'plugin_file' ] ),
+                plugins_url( 'assets/js/admin.js', __FILE__ ),
                 array( 'jquery' ),
                 $this->cc->info[ 'version' ]
+            );
+            wp_localize_script(
+                'berocket_framework_admin',
+                'berocket_framework_admin_text',
+                array(
+                    'wizard_next'  => __('Next', 'BeRocket_domain'),
+                    'wizard_close' => __('Close', 'BeRocket_domain'),
+                )
             );
 
             wp_register_style(
                 'berocket_framework_admin_style',
-                plugins_url( 'berocket/css/admin.css', $this->cc->info[ 'plugin_file' ] ),
+                plugins_url( 'assets/css/admin.css', __FILE__ ),
                 "",
                 $this->cc->info[ 'version' ]
             );
 
             wp_register_style(
                 'berocket_framework_global_admin_style',
-                plugins_url( 'berocket/css/global-admin.css', $this->cc->info[ 'plugin_file' ] ),
+                plugins_url( 'assets/css/global-admin.css', __FILE__ ),
                 "",
                 $this->cc->info[ 'version' ]
             );
 
             wp_register_script(
                 'berocket_widget-colorpicker',
-                plugins_url( 'berocket/js/colpick.js', $this->cc->info[ 'plugin_file' ] ),
+                plugins_url( 'assets/js/colpick.js', __FILE__ ),
                 array( 'jquery' )
             );
 
             wp_register_style(
                 'berocket_widget-colorpicker-style',
-                plugins_url( 'berocket/css/colpick.css', $this->cc->info[ 'plugin_file' ] )
+                plugins_url( 'assets/css/colpick.css', __FILE__ )
             );
 
             wp_register_style(
                 'berocket_font_awesome',
-                plugins_url( 'berocket/css/font-awesome.min.css', $this->cc->info[ 'plugin_file' ] )
+                plugins_url( 'assets/css/font-awesome.min.css', __FILE__ )
             );
             wp_localize_script( 'berocket_framework_admin', 'berocket_framework_admin', array(
                 'security' => wp_create_nonce("search-products")
@@ -378,9 +506,8 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
             add_filter('option_page_capability_'.$this->cc->values[ 'option_page' ], array($this, 'option_page_capability'));
         }
 
-        public function option_page_capability($capability) {
-            $capability = 'manage_woocommerce';
-            return $capability;
+        public function option_page_capability($capability = '') {
+            return 'manage_berocket';
         }
 
         /**
@@ -398,7 +525,7 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
                     'berocket_account',
                     $this->cc->info[ 'norm_name' ] . ' ' . __( 'Settings', 'BeRocket_domain' ),
                     $this->cc->info[ 'norm_name' ],
-                    'manage_woocommerce',
+                    $this->option_page_capability(),
                     $this->cc->values[ 'option_page' ],
                     array(
                         $this->cc,
@@ -437,8 +564,10 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
         public function display_admin_settings( $tabs_info = array(), $data = array(), $setup_style = array() ) {
             $plugin_info = get_plugin_data( $this->cc->info[ 'plugin_file' ] );
             global $wp;
+            $settings_url = add_query_arg( NULL, NULL );
+            $settings_url = esc_url_raw($settings_url);
             $def_setup_style = array(
-                'settings_url'    => add_query_arg( NULL, NULL ),
+                'settings_url'    => $settings_url,
                 'use_filters_hook' => true,
                 'hide_header' => false,
                 'hide_header_links' => false,
@@ -472,6 +601,11 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
                 }
 
                 foreach ( $tabs_info as $tab_name => $tab_info ) {
+                    if( isset($tab_info['name']) ) {
+                        $display_name = $tab_info['name'];
+                    } else {
+                        $display_name = $tab_name;
+                    }
                     $page_menu .= '<li>';
 
                     $page_menu .= '<a href="' . ( empty($tab_info['link']) ? add_query_arg('tab', sanitize_title( $tab_name ), $setup_style['settings_url']) : $tab_info['link'] ) . 
@@ -482,18 +616,21 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
                     if ( $tab_info['icon'] ) {
                         $page_menu .= '<span class="fa fa-' . $tab_info['icon'] . '"></span>';
                     }
-                    $page_menu .= $tab_name . '</a>';
+                    $page_menu .= $display_name . '</a>';
 
                     $page_menu .= '</li>';
 
-                    if ( $is_first ) {
+                    if ( ($selected_tab && sanitize_title( $tab_name ) == $_GET['tab'] ) || ( ! $selected_tab && $is_first ) ) {
                         if ( $tab_info['icon'] ) {
                             $title .= '<span class="fa fa-' . $tab_info['icon'] . '"></span>';
                         }
-                        $title .= $tab_name;
+                        $title .= $display_name;
                     }
 
                     $is_first = false;
+                }
+                if( ! $setup_style['hide_save_button'] ) {
+                    $page_menu .=  '<li class="berocket_framework_sidebar_save_button"><input type="submit" class="button-primary button" value="' . __( 'Save Changes', 'BeRocket_domain' ) . '" /></li>';
                 }
                 if( $setup_style['use_filters_hook'] ) {
                     $page_menu = apply_filters('brfr_page_menu_' . $setup_style['name_for_filters'], $page_menu, $tabs_info);
@@ -661,28 +798,33 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
                 }
 
                 if( ! $setup_style['hide_header'] ) {
+                    if( ! empty($this->plugin_version_capability) && $this->plugin_version_capability > 10 ) {
+                        $meta_data = '?utm_source=paid_plugin&utm_medium=settings&utm_campaign='.$this->info['plugin_name'];
+                    } else {
+                        $meta_data = '?utm_source=free_plugin&utm_medium=settings&utm_campaign='.$this->info['plugin_name'];
+                    }
                     echo "
                         <header>
                             <div class='br_logo_white'>
-                                <a href='https://berocket.com/products/' title='BeRocket' target='_blank'><img src='" . ( plugins_url( 'berocket/images/br_logo_white.png', $this->cc->info[ 'plugin_file' ] ) ) . "' /></a>
+                                <a href='https://berocket.com/products/{$meta_data}' title='BeRocket' target='_blank'><img src='" . ( plugins_url( 'assets/images/br_logo_white.webp', __FILE__ ) ) . "' /></a>
                             </div>
                             <nav class='premium'>";
                                 if( ! $setup_style['hide_header_links'] ) {
                                     $header_links = array(
                                         'documentation' => array(
                                             'text' => "<i class='fa fa-book'></i>",
-                                            'link' => apply_filters('brfr_docs_link_' . $setup_style['name_for_filters'], "https://berocket.com/docs/plugin/{$this->cc->values['premium_slug']}" )
+                                            'link' => apply_filters('brfr_docs_link_' . $setup_style['name_for_filters'], "https://berocket.com/docs/plugin/{$this->cc->values['premium_slug']}{$meta_data}" )
                                         )
                                     );
-                                    if( ! empty($this->plugin_version_capability) && $this->plugin_version_capability > 5 ) {
+                                    if( ! empty($this->plugin_version_capability) && $this->plugin_version_capability > 10 ) {
                                         $header_links['support'] = array(
                                             'text' => "<i class='fa fa-support'></i>",
-                                            'link' => apply_filters('brfr_support_link_' . $setup_style['name_for_filters'], "https://berocket.com/support/product/{$this->cc->values['premium_slug']}" )
+                                            'link' => apply_filters('brfr_support_link_' . $setup_style['name_for_filters'], "https://berocket.com/support/product/{$this->cc->values['premium_slug']}{$meta_data}" )
                                         );
                                     } elseif( ! empty($this->cc->values['free_slug']) ) {
                                         $header_links['support'] = array(
                                             'text' => "<i class='fa fa-support'></i>",
-                                            'link' => apply_filters('brfr_support_link_' . $setup_style['name_for_filters'], "https://wordpress.org/support/plugin/{$this->cc->values['free_slug']}" )
+                                            'link' => apply_filters('brfr_support_link_' . $setup_style['name_for_filters'], "https://wordpress.org/support/plugin/{$this->cc->values['free_slug']}{$meta_data}" )
                                         );
                                     }
                                     $header_links = apply_filters('brfr_header_links_' . $setup_style['name_for_filters'], $header_links);
@@ -714,14 +856,18 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
                     echo $page_content;
                     echo '<div class="clear-both"></div>';
                     if( ! $setup_style['hide_save_button'] ) {
-                        echo '<input type="submit" class="button-primary button" value="' . __( 'Save Changes', 'BeRocket_domain' ) . '" />';
+                        echo '<input type="submit" class="berocket_framework_default_save_button button-primary button" value="' . __( 'Save Changes', 'BeRocket_domain' ) . '" />';
                         echo '<div class="br_save_error"></div>';
                     }
                     if( ! $setup_style['hide_form'] ) {
                         echo '</form>';
                     }
                     if( ! $setup_style['hide_additional_blocks'] ) {
-                        require_once( plugin_dir_path( __FILE__ ) . 'templates/premium.php');
+                        if ( file_exists( $this->info['plugin_dir'] . '/templates/premium.php' ) ) {
+                            require_once( $this->info['plugin_dir'] . '/templates/premium.php' );
+                        } else {
+                            require_once( plugin_dir_path( __FILE__ ) . 'templates/premium.php');
+                        }
                     }
                 echo '</div>';
                 echo '<div class="clear-both"></div>';
@@ -766,7 +912,8 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
          *
          * @return void
          */
-        public static function admin_enqueue_scripts() {
+        public static function admin_enqueue_scripts() {}
+        public static function wp_enqueue_media () {
             if ( function_exists( 'wp_enqueue_media' ) ) {
                 wp_enqueue_media();
             } else {
@@ -777,7 +924,7 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
         }
         public function save_settings_callback($settings) {
             if ( isset( $settings ) ) {
-                $settings = self::sanitize_option( $settings );
+                $settings = $this->sanitize_option( $settings );
                 if( count($this->global_settings) ) {
                     $global_options = $this->get_global_option();
                     foreach($this->global_settings as $global_setting) {
@@ -815,7 +962,9 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
          * @return mixed
          */
         public function sanitize_option( $input ) {
-            $new_input = self::recursive_array_set( $this->cc->defaults, $input );
+            $new_input = $this->recursive_array_set( $this->cc->defaults, $input );
+            $new_input = berocket_sanitize_array($new_input);
+            wp_cache_delete( $this->cc->values[ 'settings_name' ], 'berocket_framework_option' );
             return apply_filters('brfr_sanitize_option_' . $this->cc->info[ 'plugin_name' ], $new_input, $input, $this->cc->defaults);
         }
 
@@ -827,7 +976,7 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
          *
          * @return mixed
          */
-        public function recursive_array_set( $default, $options ) {
+        public static function recursive_array_set( $default, $options ) {
             $result = array();
 
             foreach ( $default as $key => $value ) {
@@ -914,13 +1063,56 @@ if( ! class_exists( 'BeRocket_Framework' ) ) {
 
         public static function register_font_awesome($type = 'all') {
             if( $type == 'all' || $type == 'fa4' ) {
-                wp_register_style( 'font-awesome', plugins_url( 'css/font-awesome.min.css', __FILE__ ) );
+                wp_register_style( 'font-awesome', plugins_url( 'assets/css/font-awesome.min.css', __FILE__ ) );
             }
             if( $type == 'all' || $type == 'fa5' ) {
-                wp_register_style( 'font-awesome-5', plugins_url( 'css/fontawesome5.min.css', __FILE__ ) );
+                wp_register_style( 'font-awesome-5', plugins_url( 'assets/css/fontawesome5.min.css', __FILE__ ) );
             }
             if( $type == 'all' || $type == 'fa5c' ) {
-                wp_register_style( 'font-awesome-5-compat', plugins_url( 'css/fontawesome4-compat.min.css', __FILE__ ) );
+                wp_register_style( 'font-awesome-5-compat', plugins_url( 'assets/css/fontawesome4-compat.min.css', __FILE__ ) );
+            }
+            if( $type == 'fa5live' ) {
+                add_action('admin_footer', array(__CLASS__, 'fa5live'));
+                add_action('wp_footer', array(__CLASS__, 'fa5live'));
+                wp_enqueue_style( 'font-awesome-5-compat', plugins_url( 'assets/css/fontawesome4-compat.min.css', __FILE__ ) );
+            }
+        }
+        public static function fa5live() {
+            echo '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">';
+        }
+        public function plugin_version_check() {
+            $plugins = get_option('BeRocket_Framework_plugins_version_check');
+            if( empty($plugins) || ! is_array($plugins) ) {
+                $plugins = array();
+            }
+            if( ! isset($plugins[$this->info['plugin_name']]) ) {
+                $plugins[$this->info['plugin_name']] = '0';
+            }
+            if( $this->info['version'] != $plugins[$this->info['plugin_name']] ) {
+                $this->update_version($plugins[$this->info['plugin_name']], $this->info['version']);
+                $plugins[$this->info['plugin_name']] = $this->info['version'];
+            }
+            update_option('BeRocket_Framework_plugins_version_check', $plugins);
+        }
+        public function update_version($previous, $current) {
+            
+        }
+        public function init_user_capabilities($user_caps) {
+            $user_caps[] = $this->option_page_capability();
+            return $user_caps;
+        }
+    }
+    add_action('admin_init', 'BeRocket_admin_init_user_capabilities');
+    function BeRocket_admin_init_user_capabilities() {
+        global $wp_roles;
+        $role_names = $wp_roles->get_names();
+        $berocket_roles = apply_filters('BeRocket_admin_init_user_capabilities', array('manage_berocket', 'manage_berocket_account'));
+        foreach($role_names as $role_name => $role_text) {
+            $role_object = get_role( $role_name );
+            if( $role_object->has_cap( 'manage_options' ) ) {
+                foreach($berocket_roles as $berocket_role) {
+                    $role_object->add_cap( $berocket_role );
+                }
             }
         }
     }

@@ -52,7 +52,7 @@ $fonts_list = g_fonts_list();
                     <td><?php echo $designable['name'] ?></td>
                     <td class="admin-column-color">
                         <?php if ( $designable['has']['color'] ) { ?>
-                            <div class="colorpicker_field" data-color="<?php echo ( ! empty($options['styles'][$key]['color']) ) ? $options['styles'][$key]['color'] : '000000' ?>"></div>
+                            <div class="br_colorpicker_field" data-color="<?php echo ( ! empty($options['styles'][$key]['color']) ) ? $options['styles'][$key]['color'] : '000000' ?>"></div>
                             <input type="hidden" value="<?php echo ( ! empty($options['styles'][$key]['color']) ) ? $options['styles'][$key]['color'] : '' ?>" name="br_filters_options[styles][<?php echo $key ?>][color]" />
                             <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
                         <?php } else {
@@ -160,7 +160,7 @@ $fonts_list = g_fonts_list();
         <tr class="br_checkbox_radio_settings">
             <td><?php _e('Checkbox', 'BeRocket_AJAX_domain') ?></td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'checkbox', 'bcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'checkbox', 'bcolor'), '000000') ?>"></div>
                 <input class="br_border_color_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'checkbox', 'bcolor')) ?>" name="br_filters_options[styles_input][checkbox][bcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -174,12 +174,12 @@ $fonts_list = g_fonts_list();
                 <input class="br_size_set" type="text" placeholder="<?php _e('Theme Default', 'BeRocket_AJAX_domain') ?>" name="br_filters_options[styles_input][checkbox][fontsize]" value="<?php echo br_get_value_from_array($options, array('styles_input', 'checkbox', 'fontsize')); ?>" />
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'checkbox', 'fcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'checkbox', 'fcolor'), '000000') ?>"></div>
                 <input class="br_font_color_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'checkbox', 'fcolor')) ?>" name="br_filters_options[styles_input][checkbox][fcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'checkbox', 'backcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'checkbox', 'backcolor'), '000000') ?>"></div>
                 <input class="br_background_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'checkbox', 'backcolor')) ?>" name="br_filters_options[styles_input][checkbox][backcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -416,7 +416,7 @@ $fonts_list = g_fonts_list();
         <tr class="br_checkbox_radio_settings">
             <td><?php _e('Radio', 'BeRocket_AJAX_domain') ?></td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'radio', 'bcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'radio', 'bcolor'), '000000') ?>"></div>
                 <input class="br_border_color_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'radio', 'bcolor')) ?>" name="br_filters_options[styles_input][radio][bcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -430,12 +430,12 @@ $fonts_list = g_fonts_list();
                 <input class="br_size_set" type="text" placeholder="<?php _e('Theme Default', 'BeRocket_AJAX_domain') ?>" name="br_filters_options[styles_input][radio][fontsize]" value="<?php echo br_get_value_from_array($options, array('styles_input', 'radio', 'fontsize')) ?>" />
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'radio', 'fcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'radio', 'fcolor'), '000000') ?>"></div>
                 <input class="br_font_color_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'radio', 'fcolor')) ?>" name="br_filters_options[styles_input][radio][fcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'radio', 'backcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'radio', 'backcolor'), '000000') ?>"></div>
                 <input class="br_background_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'radio', 'backcolor')) ?>" name="br_filters_options[styles_input][radio][backcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -648,12 +648,12 @@ $fonts_list = g_fonts_list();
     <tbody>
         <tr>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'line_color'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'line_color'), '000000') ?>"></div>
                 <input type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'line_color')) ?>" name="br_filters_options[styles_input][slider][line_color]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'back_line_color'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'back_line_color'), '000000') ?>"></div>
                 <input type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'back_line_color')) ?>" name="br_filters_options[styles_input][slider][back_line_color]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -661,7 +661,7 @@ $fonts_list = g_fonts_list();
                 <input type="text" placeholder="<?php _e('Theme Default', 'BeRocket_AJAX_domain') ?>" name="br_filters_options[styles_input][slider][line_height]" value="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'line_height')) ?>" />
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'line_border_color'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'line_border_color'), '000000') ?>"></div>
                 <input type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'line_border_color')) ?>" name="br_filters_options[styles_input][slider][line_border_color]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -672,12 +672,12 @@ $fonts_list = g_fonts_list();
                 <input type="text" placeholder="<?php _e('Theme Default', 'BeRocket_AJAX_domain') ?>" name="br_filters_options[styles_input][slider][button_size]" value="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'button_size')) ?>" />
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'button_color'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'button_color'), '000000') ?>"></div>
                 <input type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'button_color')) ?>" name="br_filters_options[styles_input][slider][button_color]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'button_border_color'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'button_border_color'), '000000') ?>"></div>
                 <input type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'slider', 'button_border_color')) ?>" name="br_filters_options[styles_input][slider][button_border_color]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -700,7 +700,7 @@ $fonts_list = g_fonts_list();
 </table>
 <table class="wp-list-table widefat fixed posts">
     <thead>
-        <tr><th colspan="10" style="text-align: center; font-size: 2em;"><?php _e('Product count description before filtering with Update button', 'BeRocket_AJAX_domain') ?></th></tr>
+        <tr><th colspan="10" style="text-align: center; font-size: 2em;"><?php _e('Product count description before filtering with Apply Filters button', 'BeRocket_AJAX_domain') ?></th></tr>
         <tr>
             <th class="manage-column admin-column-color" scope="col"><?php _e('Background color', 'BeRocket_AJAX_domain') ?></th>
             <th class="manage-column admin-column-color" scope="col"><?php _e('Border color', 'BeRocket_AJAX_domain') ?></th>
@@ -717,12 +717,12 @@ $fonts_list = g_fonts_list();
     <tbody>
         <tr>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'back_color'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'back_color'), '000000') ?>"></div>
                 <input type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'back_color')) ?>" name="br_filters_options[styles_input][pc_ub][back_color]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'border_color'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'border_color'), '000000') ?>"></div>
                 <input type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'border_color')) ?>" name="br_filters_options[styles_input][pc_ub][border_color]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -730,7 +730,7 @@ $fonts_list = g_fonts_list();
                 <input type="text" placeholder="<?php _e('Theme Default', 'BeRocket_AJAX_domain') ?>" name="br_filters_options[styles_input][pc_ub][font_size]" value="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'font_size')); ?>" />
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'font_color'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'font_color'), '000000') ?>"></div>
                 <input type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'font_color')) ?>" name="br_filters_options[styles_input][pc_ub][font_color]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -738,12 +738,12 @@ $fonts_list = g_fonts_list();
                 <input type="text" placeholder="<?php _e('Theme Default', 'BeRocket_AJAX_domain') ?>" name="br_filters_options[styles_input][pc_ub][show_font_size]" value="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'show_font_size')); ?>" />
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'show_font_color'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'show_font_color'), '000000') ?>"></div>
                 <input type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'show_font_color')) ?>" name="br_filters_options[styles_input][pc_ub][show_font_color]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'show_font_color_hover'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'show_font_color_hover'), '000000') ?>"></div>
                 <input type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'show_font_color_hover')) ?>" name="br_filters_options[styles_input][pc_ub][show_font_color_hover]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -751,12 +751,12 @@ $fonts_list = g_fonts_list();
                 <input type="text" placeholder="<?php _e('Theme Default', 'BeRocket_AJAX_domain') ?>" name="br_filters_options[styles_input][pc_ub][close_size]" value="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'close_size')); ?>" />
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'close_font_color'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'close_font_color'), '000000') ?>"></div>
                 <input type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'close_font_color')) ?>" name="br_filters_options[styles_input][pc_ub][close_font_color]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'close_font_color_hover'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'close_font_color_hover'), '000000') ?>"></div>
                 <input type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'pc_ub', 'close_font_color_hover')) ?>" name="br_filters_options[styles_input][pc_ub][close_font_color_hover]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -788,7 +788,7 @@ $fonts_list = g_fonts_list();
         <tr class="br_onlyTitle_title_radio_settings">
             <td><?php _e('Title', 'BeRocket_AJAX_domain') ?></td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_title', 'bcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_title', 'bcolor'), '000000') ?>"></div>
                 <input class="br_border_color_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_title', 'bcolor')) ?>" name="br_filters_options[styles_input][onlyTitle_title][bcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -802,12 +802,12 @@ $fonts_list = g_fonts_list();
                 <input class="br_size_set" type="text" placeholder="<?php _e('Theme Default', 'BeRocket_AJAX_domain') ?>" name="br_filters_options[styles_input][onlyTitle_title][fontsize]" value="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_title', 'fontsize')); ?>" />
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_title', 'fcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_title', 'fcolor'), '000000') ?>"></div>
                 <input class="br_font_color_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_title', 'fcolor')) ?>" name="br_filters_options[styles_input][onlyTitle_title][fcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_title', 'backcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_title', 'backcolor'), '000000') ?>"></div>
                 <input class="br_background_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_title', 'backcolor')) ?>" name="br_filters_options[styles_input][onlyTitle_title][backcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -815,7 +815,7 @@ $fonts_list = g_fonts_list();
         <tr class="br_onlyTitle_title_radio_settings">
             <td><?php _e('Title opened', 'BeRocket_AJAX_domain') ?></td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_titleopened', 'bcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_titleopened', 'bcolor'), '000000') ?>"></div>
                 <input class="br_border_color_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_titleopened', 'bcolor')) ?>" name="br_filters_options[styles_input][onlyTitle_titleopened][bcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -829,12 +829,12 @@ $fonts_list = g_fonts_list();
                 <input class="br_size_set" type="text" placeholder="<?php _e('Theme Default', 'BeRocket_AJAX_domain') ?>" name="br_filters_options[styles_input][onlyTitle_titleopened][fontsize]" value="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_titleopened', 'fontsize')); ?>" />
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_titleopened', 'fcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_titleopened', 'fcolor'), '000000') ?>"></div>
                 <input class="br_font_color_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_titleopened', 'fcolor')) ?>" name="br_filters_options[styles_input][onlyTitle_titleopened][fcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_titleopened', 'backcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_titleopened', 'backcolor'), '000000') ?>"></div>
                 <input class="br_background_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_titleopened', 'backcolor')) ?>" name="br_filters_options[styles_input][onlyTitle_titleopened][backcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -842,7 +842,7 @@ $fonts_list = g_fonts_list();
         <tr class="br_onlyTitle_filter_radio_settings">
             <td><?php _e('Filter', 'BeRocket_AJAX_domain') ?></td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_filter', 'bcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_filter', 'bcolor'), '000000') ?>"></div>
                 <input class="br_border_color_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_filter', 'bcolor')) ?>" name="br_filters_options[styles_input][onlyTitle_filter][bcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -856,12 +856,12 @@ $fonts_list = g_fonts_list();
                 <input class="br_size_set" type="text" placeholder="<?php _e('Theme Default', 'BeRocket_AJAX_domain') ?>" name="br_filters_options[styles_input][onlyTitle_filter][fontsize]" value="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_filter', 'fontsize')) ?>" />
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_filter', 'fcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_filter', 'fcolor'), '000000') ?>"></div>
                 <input class="br_font_color_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_filter', 'fcolor')) ?>" name="br_filters_options[styles_input][onlyTitle_filter][fcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
             <td class="admin-column-color">
-                <div class="colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_filter', 'backcolor'), '000000') ?>"></div>
+                <div class="br_colorpicker_field" data-color="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_filter', 'backcolor'), '000000') ?>"></div>
                 <input class="br_background_set" type="hidden" value="<?php echo br_get_value_from_array($options, array('styles_input', 'onlyTitle_filter', 'backcolor')) ?>" name="br_filters_options[styles_input][onlyTitle_filter][backcolor]" />
                 <input type="button" value="<?php _e('Default', 'BeRocket_AJAX_domain') ?>" class="theme_default button tiny-button">
             </td>
@@ -878,7 +878,7 @@ $fonts_list = g_fonts_list();
 </table>
 <table class="form-table">
     <tr>
-        <th scope="row"><?php _e('Loading products icon', 'BeRocket_AJAX_domain') ?></th>
+        <th scope="row"><?php _e('Loading icon', 'BeRocket_AJAX_domain') ?></th>
         <td>
             <?php echo berocket_font_select_upload('', 'br_filters_options_ajax_load_icon', 'br_filters_options[ajax_load_icon]', br_get_value_from_array($options, 'ajax_load_icon'), false); ?>
         </td>
@@ -886,12 +886,12 @@ $fonts_list = g_fonts_list();
 </table>
 <table class="form-table">
     <tr>
-        <th scope="row"><?php _e('Text at load icon', 'BeRocket_AJAX_domain') ?></th>
+        <th scope="row"><?php _e('Loading icon text', 'BeRocket_AJAX_domain') ?></th>
         <td>
             <span><?php _e('Above:', 'BeRocket_AJAX_domain') ?> </span><input name="br_filters_options[ajax_load_text][top]" type='text' value='<?php echo br_get_value_from_array($options, array('ajax_load_text', 'top',)); ?>'/>
         </td>
         <td>
-            <span><?php _e('Under:', 'BeRocket_AJAX_domain') ?> </span><input name="br_filters_options[ajax_load_text][bottom]" type='text' value='<?php echo br_get_value_from_array($options, array('ajax_load_text', 'bottom')); ?>'/>
+            <span><?php _e('Below:', 'BeRocket_AJAX_domain') ?> </span><input name="br_filters_options[ajax_load_text][bottom]" type='text' value='<?php echo br_get_value_from_array($options, array('ajax_load_text', 'bottom')); ?>'/>
         </td>
         <td>
             <span><?php _e('Before:', 'BeRocket_AJAX_domain') ?> </span><input name="br_filters_options[ajax_load_text][left]" type='text' value='<?php echo br_get_value_from_array($options, array('ajax_load_text', 'left')); ?>'/>
@@ -903,24 +903,26 @@ $fonts_list = g_fonts_list();
 </table>
 <table class="form-table">
     <tr>
-        <th scope="row"><?php _e('Description show and hide', 'BeRocket_AJAX_domain') ?></th>
+        <th scope="row"><?php _e('Show and hide description', 'BeRocket_AJAX_domain') ?></th>
         <td>
-            <span><?php _e('Show on:', 'BeRocket_AJAX_domain') ?> </span>
+            <span><?php _e('Show when user:', 'BeRocket_AJAX_domain') ?> </span>
             <select name="br_filters_options[description][show]">
                 <option <?php echo ( $options['description']['show'] == 'click' ) ? 'selected' : '' ?> value="click"><?php _e('Click', 'BeRocket_AJAX_domain') ?></option>
-                <option <?php echo ( $options['description']['show'] == 'hover' ) ? 'selected' : '' ?> value="hover"><?php _e('Mouse over icon', 'BeRocket_AJAX_domain') ?></option>
+                <option <?php echo ( $options['description']['show'] == 'hover' ) ? 'selected' : '' ?> value="hover"><?php _e('Hovering over the icon', 'BeRocket_AJAX_domain') ?></option>
             </select>
         </td>
         <td>
-            <span><?php _e('Hide on:', 'BeRocket_AJAX_domain') ?> </span>
+            <span><?php _e('Hide when user:', 'BeRocket_AJAX_domain') ?> </span>
             <select name="br_filters_options[description][hide]">
                 <option <?php echo ( $options['description']['hide'] == 'click' ) ? 'selected' : '' ?> value="click"><?php _e('Click anywhere', 'BeRocket_AJAX_domain') ?></option>
-                <option <?php echo ( $options['description']['hide'] == 'mouseleave' ) ? 'selected' : '' ?> value="mouseleave"><?php _e('Mouse out of icon', 'BeRocket_AJAX_domain') ?></option>
+                <option <?php echo ( $options['description']['hide'] == 'mouseleave' ) ? 'selected' : '' ?> value="mouseleave"><?php _e('Move cursor outside the icon', 'BeRocket_AJAX_domain') ?></option>
             </select>
         </td>
     </tr>
+</table>
+<table class="form-table">
     <tr>
-        <th scope="row"><?php _e('Product count style', 'BeRocket_AJAX_domain') ?></th>
+        <th scope="row"><?php _e('Product quantity style', 'BeRocket_AJAX_domain') ?></th>
         <td>
             <select name="br_filters_options[styles_input][product_count]">
                 <option <?php echo ( $options['styles_input']['product_count'] ) ? 'selected' : '' ?> value=""><?php _e('4', 'BeRocket_AJAX_domain') ?></option>
@@ -936,9 +938,18 @@ $fonts_list = g_fonts_list();
                 <option <?php echo ( $options['styles_input']['product_count_position'] == 'right2em' ) ? 'selected' : '' ?> value="right2em"><?php _e('Right from name', 'BeRocket_AJAX_domain') ?></option>
             </select>
         </td>
+        <td>
+            <span><?php _e('Position on Image:', 'BeRocket_AJAX_domain') ?> </span>
+            <select name="br_filters_options[styles_input][product_count_position_image]">
+                <option value=""><?php _e('Normal', 'BeRocket_AJAX_domain') ?></option>
+                <option <?php echo ( br_get_value_from_array($options, array('styles_input','product_count_position_image') ) == 'right' ) ? 'selected' : '' ?> value="right"><?php _e('Right', 'BeRocket_AJAX_domain') ?></option>
+            </select>
+        </td>
     </tr>
+</table>
+<table class="form-table">
     <tr>
-        <th scope="row"><?php _e('Select(dropdown) Child Tree Indent', 'BeRocket_AJAX_domain') ?></th>
+        <th scope="row"><?php _e('Indent option for hierarchy in Drop-Down', 'BeRocket_AJAX_domain') ?></th>
         <td>
             <select name="br_filters_options[child_pre_indent]">
                 <option <?php echo ( $options['child_pre_indent'] ) ? 'selected' : '' ?> value=""><?php _e('-', 'BeRocket_AJAX_domain') ?></option>

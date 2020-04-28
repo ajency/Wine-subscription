@@ -8,6 +8,10 @@
  * @package     WooCommerce-Filters/Templates
  * @version  1.0.1
  */
+extract($berocket_query_var_title);
+global $berocket_unique_value;
+$berocket_unique_value++;
+$random_name = strval($berocket_unique_value);
 $child_parent = berocket_isset($child_parent);
 $is_child_parent = $child_parent == 'child';
 $is_child_parent_or = ( $child_parent == 'child' || $child_parent == 'parent' );
@@ -15,8 +19,6 @@ $child_parent_depth = berocket_isset($child_parent_depth, false, 0);
 if ( $child_parent == 'parent' ) {
     $child_parent_depth = 0;
 }
-$is_first = true;
-$random_name = rand();
 if ( $is_child_parent ) {
 ?>
 <li class="berocket_child_parent_sample select<?php if( ! empty($select_multiple) ) echo ' multiple'; ?>"><ul>
@@ -43,7 +45,7 @@ unset($terms[0]);
 } 
 $terms = array_values($terms);
     if( $is_child_parent && is_array(berocket_isset($terms)) && count($terms) == 0 ) {
-        if( BeRocket_AAPF_Widget::is_parent_selected($attribute, $child_parent_depth - 1) ) {
+        if( BeRocket_AAPF_Widget_functions::is_parent_selected($attribute, $child_parent_depth - 1) ) {
             echo '<li>'.$child_parent_no_values.'</li>';
         } else {
             echo '<li>'.$child_parent_previous.'</li>';
@@ -86,7 +88,7 @@ if( empty($term_taxonomy_echo) ) {
                 $parent_count = $term->depth;
             }
              ?>
-                <option value='<?php echo berocket_isset($term, 'term_id') ?>'
+                <option value=''
                     selected
                         <?php if( ! $is_child_parent_or && ! empty($hide_o_value) && berocket_isset($term, 'count') == 0 ) { echo ' hidden disabled'; $hiden_value = true; } ?>
                     ><?php for($i=0;$i<$parent_count;$i++){echo apply_filters('berocket_aapf_select_term_child_prefix', '-&nbsp;');}echo apply_filters('berocket_select_filter_term_name', berocket_isset($term, 'name'), $term) ?></option>

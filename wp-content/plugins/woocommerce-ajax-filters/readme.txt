@@ -1,11 +1,11 @@
 === Advanced AJAX Product Filters ===
 Plugin Name: Advanced AJAX Product Filters
 Contributors: dholovnia, berocket
-Donate link: http://berocket.com/product/woocommerce-ajax-products-filter
+Donate link: https://berocket.com/product/woocommerce-ajax-products-filter?utm_source=wordpress_org&utm_medium=donate&utm_campaign=ajax_filters
 Tags: filters, product filters, ajax product filters, ajax filter, ajax filter widget, color filter, size filter, product onsale filter, product preview, product category filter, product reset filter, product sort by filter, stock filter, product tag filter, price range filter, price box filter, advanced product filters, woocommerce filters, woocommerce product filters, woocommerce products filter, woocommerce ajax product filters, widget, plugin, woocommerce item filters, filters plugin, ajax filters plugin, filter woocommerce products, filter woocommerce products plugin, wc filters, wc filters products, wc products filters, wc ajax products filters, wc product filters, wc advanced product filters, woocommerce layered nav, woocommerce layered navigation, ajax filtered nav, ajax filtered navigation, price filter, ajax price filter, woocommerce product sorting, sidebar filter, sidebar ajax filter, taxonomy filter, category filter, attribute filter, attributes filter, woocommerce product sort, ajax products filter plugin for woocommerce, rocket, berocket, berocket woocommerce ajax products filter
-Requires at least: 4.0
-Tested up to: 5.0.3
-Stable tag: 1.3.0.2
+Requires at least: 5.0
+Tested up to: 5.4
+Stable tag: 1.4.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,12 +68,12 @@ WooCommerce AJAX Product Filters - Advanced product filtering ability for your W
 
 
 = Plugin Links: =
-[Paid Plugin](http://berocket.com/product/woocommerce-ajax-products-filter)
-[Demo](http://woocommerce-products-filter.berocket.com/shop/)
-[Demo Description](http://woocommerce-products-filter.berocket.com/)
+[Paid Plugin](https://berocket.com/l/filters-upgrade/?utm_source=wordpress_org&utm_medium=plugin_links&utm_campaign=ajax_filters)
+[Demo](https://woocommerce-products-filter.berocket.com/shop/?utm_source=wordpress_org&utm_medium=plugin_links&utm_campaign=ajax_filters)
+[Demo Description](https://woocommerce-products-filter.berocket.com/?utm_source=wordpress_org&utm_medium=plugin_links&utm_campaign=ajax_filters)
 
 = &#127852; Wanna try admin side? =
-[Admin Demo](http://berocket.com/product/woocommerce-ajax-products-filter#try-admin) - Get access to this plugin's admin and try it from inside. Change things and watch how they work.
+[Admin Demo](https://berocket.com/product/woocommerce-ajax-products-filter?utm_source=wordpress_org&utm_medium=admin_demo&utm_campaign=ajax_filters#try-admin) - Get access to this plugin's admin and try it from inside. Change things and watch how they work.
 
 = Premium plugin video =
 [youtube https://youtu.be/8gaMj-IxUj0]
@@ -91,9 +91,6 @@ Advanced AJAX Product Filters has been tested and compatibility is certain with 
 &#128312; [**Product Preview for WooCommerce**](https://wordpress.org/plugins/product-preview-for-woocommerce/)
 &#128312; [**Products Compare for WooCommerce**](https://wordpress.org/plugins/products-compare-for-woocommerce/)
 &#128312; [**Wishlist and Waitlist for WooCommerce**](https://wordpress.org/plugins/wish-wait-list-for-woocommerce/)
-
-Nevertheless, it could be compatible with many other WooCommerce plugins that have not been tested yet. If you want to inform us about compatibility with other plugins, please, [email to us](http://berocket.com/contact).
-
 
 = Shortcode: =
 * In editor `[br_filters attribute=price type=slider title="Price Filter"]`
@@ -170,11 +167,11 @@ If none of the previous listed actions helps you solve the problem, then, submit
 
 
 = How can I get more features for my WooCommerce plugin? =
-You can get more features with the premium version of Advanced AJAX Product Filters, available on [BeRocket page](http://berocket.com/product/woocommerce-ajax-products-filter). Here you can read more about the premium features of the plugin and make it give it its best shot!
+You can get more features with the premium version of Advanced AJAX Product Filters, available on [BeRocket page](https://berocket.com/l/filters-upgrade/?utm_source=wordpress_org&utm_medium=faq&utm_campaign=ajax_filters). Here you can read more about the premium features of the plugin and make it give it its best shot!
 
 
 = How can I try the full-featured plugin? =
-You can try this plugin's admin side [here](http://berocket.com/product/woocommerce-ajax-products-filter#try-admin). Configure plugin the way you need to check the results.
+You can try this plugin's admin side [here](https://berocket.com/product/woocommerce-ajax-products-filter?utm_source=wordpress_org&utm_medium=faq&utm_campaign=ajax_filters#try-admin). Configure plugin the way you need to check the results.
 
 ---
 
@@ -186,6 +183,239 @@ You can try this plugin's admin side [here](http://berocket.com/product/woocomme
 ---
 
 == Changelog ==
+
+= 1.4.2.2 =
+* Fix - Critical error with older WooCommerce Product Table
+
+= 1.4.2.1 =
+* Enhancement - Compatibility WooCommerce Product Table 2.6
+* Fix - Fatal error with some plugins that call hooks incorrect
+
+= 1.4.2 =
+* Enhancement - Compatibility version: Wordpress 5.4 and WooCommerce 4.0
+* Enhancement - Compatibility with Math Rank SEO
+* Fix - PHP Notice on some sites
+
+= 1.4.1.9 =
+* Fix - Nested filters load
+* Fix - Rewrite rules save error
+* Fix - Work incorrect post__in variable
+* Fix - Media library uses on every admin page
+
+= 1.4.1.8 =
+* Enhancement - Remove some queries
+* Fix - Hide out of stock variations with price slider do not work
+* Fix - Hide out of stock variations work incorrect on some sites
+
+= 1.4.1.7 =
+* Fix - Avada 6.2.0 incompatibility. Products not editable
+
+= 1.4.1.6 =
+* Fix - PHP Warning/Notice on some site
+* Fix - Sorting in WooCommerce shortcodes works incorrect
+* Fix - Some styles do not affect option "Display styles only for pages with filters"
+
+= 1.4.1.5 =
+* Enhancement - Additional Tables compatibility with Polylang
+* Enhancement - Better compatibility with Load More and Grid/List plugins
+* Fix - Session start error for some admin pages
+* Fix - Nice URL do not work after first save
+* Fix - JavaScript errors in WordPress customization
+* Fix - Multiple category/attribute values in WooCommerce shortcode
+* Fix - Use unique class for color picker script
+* Fix - Remove title from HTML5 PushState
+* Fix - Group simple create from widget do not work
+* Fix - Variable products with out of stock variation still visible if query uses post__in parameter
+
+= 1.4.1.4 =
+* Fix - Correct count for attribute values with some WooCommerce Shortcodes
+* Fix - Option text not correct
+* Fix - Some variable products not excluded with disabled Additional table add-on
+
+= 1.4.1.3 =
+* Fix - "Hide variations that are out of stock" option do not work without "Additional table" add-on
+* Fix - WPML: "Hide variations that are out of stock" option work only on base language
+* Fix - WPML: "Additional table" add-on compatibility
+
+= 1.4.1.2 =
+* Fix - Categories work incorrect with WPML and Additional table addon
+* Fix - Nice URL do not work with WPML
+
+= 1.4.1.1 =
+* Fix - Price replacements do not work
+* Fix - Divi theme compatibility replace with another module
+* Fix - PHP notices for some sorting
+
+= 1.4.1 =
+* Enhancement - New recount options
+* Enhancement - Rename some options to be more correct
+* Enhancement - Group some options in advanced settings
+* Enhancement - Get attribute values with WordPress default functionality
+* Enhancement - Better sorting for hierarchical taxonomy (product categories)
+* Enhancement - Better sorting with slider by atribute
+* Enhancement - Some options work faster
+* Fix - Get correct price with recount option
+* Fix - Hide some options in filter settings
+
+= 1.4.0.5 =
+* Enhancement - Compatibility version: Wordpress 5.3 and WooCommerce 3.8
+* Fix - Additional tables: stuck and do not generate tables
+* Fix - Additional tables: slow generating of the data for categories
+* Fix - Product Category Value Limitation do not work
+
+= 1.4.0.4 =
+* Fix - Additional tables generation errors
+* Fix - Additional tables incorrect data to hide products
+* Fix - Custom filtering permalink with Product Table plugin
+
+= 1.4.0.3 =
+* Enhancement - Template optimizations
+
+= 1.4.0.2 =
+* Enhancement - Additional table generation withour WP-Cron
+* Enhancement - Option to disable AJAX Pagination
+* Enhancement - Write table generation errors and status
+
+= 1.4.0.1 =
+* Fix - Compatibility with other BeRocket plugins on activation
+
+= 1.4 =
+* Enhancement - Additional table for taxonomies (Product categories work faster with it)
+* Enhancement - Additional table for variable products
+* Enhancement - Better Compatibility with BodyCommerce
+* Enhancement - Better Compatibility with WooJetPack product visibility by user role option
+* Enhancement - "Hide out of stock variable" option also remove variable products, that do not have variation with selected attributes
+* Fix - Generating Additional tables on large amount of data
+
+= 1.3.7 =
+* Critical Update! Sanitize all settings. Can break some custom CSS/JavaScript.
+* Fix - Show notification about security problem
+
+= 1.3.6.1 =
+* Fix - preg_replace warning in the main.php
+
+= 1.3.6 =
+* Critical Update! Vulnerability found! Please update the plugin to the version 1.3.6
+
+= 1.3.5 =
+* Fix - hot fix for the issue with custom styles
+
+= 1.3.4.2 =
+* Fix - WPML incompatibility with new recount script
+* Fix - Purge cache after update
+
+= 1.3.4.1 =
+* Fix - WordPress database prefix was incorrect for some tables
+
+= 1.3.4 =
+* Enhancement - More correct filters recount
+* Enhancement - More elemnts for translation
+* Fix - Order by element always displayed
+* Fix - Rewrite rules override every load
+* Fix - Some filters products count
+
+= 1.3.3.2 =
+* Fix - Attribute value recount on attribute and taxonomy pages
+
+= 1.3.3.1 =
+* Fix - WooCommerce Shortcode with multiple categories
+* Fix - Incorrect recount terms on some sites
+
+= 1.3.3 =
+* Enhancement - Filtering speed optimization
+* Enhancement - Multiple WooCommerce shortcode can work correct
+* Enhancement - Database query optimization and less query count
+
+= 1.3.2.8 =
+* Enhancement - Price slider speed woocommerce 3.6
+* Enhancement - WooCommerce shortcode add no products message
+* Fix - PHP notices
+* Fix - Remove some files
+
+= 1.3.2.7 =
+* Fix - Links to BeRocket
+* Fix - Compatibility with other BeRocket plugins
+* Fix - Categories default sorting is not working
+* Fix - Remove some php notices
+* Fix - Reset in above products position break other filters
+* Fix - Tax rates option for price
+
+= 1.3.2.6 =
+* Fix - Values Order - Default/Numeric, Order Type was not working with multigobyte values
+* Fix - PHP notices/errors
+
+= 1.3.2.5 =
+* Enhancement - Option to use Standard tax rates for price filter
+* Enhancement - Separate Query Vars addon option to set Default operator for URLs
+* Enhancement - Separate Query Vars addon lower case operator text in URLs
+* Enhancement - Option to set devices where scroll to the top will be used
+* Fix - Attribute slider
+* Fix - PHP notices/errors
+
+= 1.3.2.4 =
+* Fix - Incorrect description
+* Fix - Selected filters area Attribute name
+* Fix - Selected filters with Filters Conditions
+* Fix - Tags cloud
+
+= 1.3.2.3 =
+* Fix - Variation limitation with custom database prefix
+* Fix - Scrollbar update
+
+= 1.3.2.2 =
+* Fix - Notice map_meta_cap for BeRocket plugins
+
+= 1.3.2.1 =
+* Fix - Font-Awesome 5 in admin settings
+* Fix - Framework version
+
+= 1.3.2 =
+* Enhancement - Option to turn off multiple select for images and colors
+* Enhancement - Do not close widget if it is selected
+* Fix - Internet Explorer issue with colors
+* Fix - Attributes WooCommerce sorting in WooCommerce 3.6
+* Fix - Remove out of stock variations, when attribute slug in not Latin
+* Fix - Variations options with latest version of MySQL
+* Fix - Variations with post status trash in query
+
+= 1.3.1.8 =
+* Enhancement - Compatibility with Elementor and other plugins
+* Enhancement - Compatibility with other BeRocket plugins
+* Enhancement - Code Security
+
+= 1.3.1.7 =
+* Enhancement - Code Security
+
+= 1.3.1.6 =
+* Enhancement - Code Security
+
+= 1.3.1.5 =
+* Enhancement - Code Security
+
+= 1.3.1.4 =
+* Enhancement - Code Security
+* Fix - Categories order Default
+
+= 1.3.1.3 =
+* Enhancement - Code Security
+* Enhancement - Added Purge cache button
+
+= 1.3.1.2 =
+* Fix - Loading Icon
+* Fix - Creation filters/groups in customizer
+* Fix - Multiple sorting form
+* Fix - Better compatibility with Flatsome theme
+* Fix - Security problem
+* Fix - Code optimization
+* Fix - Addon Filtering Conditions
+
+= 1.3.1.1 =
+* Fix - Categories order
+
+= 1.3.1 =
+* Enhancement - Update BeRocket plugin framework 2.1
+* Fix - Hide widgets without values
+* Fix - Hide on mobile/tablet/desktop
 
 = 1.3.0.2 =
 * Enhancement - Features tab added

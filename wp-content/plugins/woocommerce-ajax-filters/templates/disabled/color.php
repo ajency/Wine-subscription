@@ -1,5 +1,8 @@
 <?php
-$random_name = rand();
+extract($berocket_query_var_title);
+global $berocket_unique_value;
+$berocket_unique_value++;
+$random_name = strval($berocket_unique_value);
 $hiden_value = false;
 $child_parent = berocket_isset($child_parent);
 $is_child_parent = $child_parent == 'child';
@@ -8,7 +11,6 @@ $child_parent_depth = berocket_isset($child_parent_depth, false, 0);
 if ( $child_parent == 'parent' ) {
     $child_parent_depth = 0;
 }
-$is_first = true;
 $item_i = 0;
 if ( is_array(berocket_isset($terms)) ) {
     if( berocket_isset($color_image_checked) == 'brchecked_custom' ) {
@@ -52,6 +54,7 @@ if ( is_array(berocket_isset($terms)) ) {
         echo '</style>';
     }
     foreach ( $terms as $term ) {
+        $is_first = ($term->term_id == 'R__term_id__R');
         $term_taxonomy_echo = berocket_isset($term, 'wpml_taxonomy');
         if( empty($term_taxonomy_echo) ) {
             $term_taxonomy_echo = berocket_isset($term, 'taxonomy');
@@ -161,11 +164,10 @@ if ( is_array(berocket_isset($terms)) ) {
             ?>
             </ul></li>
             <?php
-            $is_first = false;
         }
     } ?>
     <?php if( $is_child_parent && is_array(berocket_isset($terms)) && count($terms) == 1 ) {
-        if( BeRocket_AAPF_Widget::is_parent_selected($attribute, $child_parent_depth - 1) ) {
+        if( BeRocket_AAPF_Widget_functions::is_parent_selected($attribute, $child_parent_depth - 1) ) {
             echo '<li>'.$child_parent_no_values.'</li>';
         } else {
             echo '<li>'.$child_parent_previous.'</li>';
@@ -192,6 +194,6 @@ if ( is_array(berocket_isset($terms)) ) {
         }
     }
     if( empty($hide_button_value) ) { ?>
-        <li class="berocket_widget_show_values"<?php if( !$hiden_value ) echo 'style="display: none;"' ?>><?php _e('Show value(s)', 'BeRocket_AJAX_domain') ?><span class="show_button"></span></li>
+        <li class="berocket_widget_show_values"<?php if( !$hiden_value ) echo 'style="display: none;"' ?>><?php _e('Show value(s)', 'BeRocket_AJAX_domain') ?><span class="show_button fa"></span></li>
     <div style="clear: both;"></div>
 <?php } }

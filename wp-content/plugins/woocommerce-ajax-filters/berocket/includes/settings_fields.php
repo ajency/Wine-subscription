@@ -67,7 +67,7 @@ class BeRocket_framework_settings_fields {
     }
     function textarea($html, $field_item, $field_name, $value, $class, $extra) {
         $html .= $field_item['label_be_for'] . '<textarea name="' . $field_name
-              . '"' . $class . $extra . '>'. $value . '</textarea>' . $field_item['label_for'];
+              . '"' . $class . $extra . '>'. htmlentities($value) . '</textarea>' . $field_item['label_for'];
         return $html;
     }
     function color($html, $field_item, $field_name, $value, $class, $extra) {
