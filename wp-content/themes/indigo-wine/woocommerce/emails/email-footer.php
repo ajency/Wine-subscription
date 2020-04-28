@@ -13,12 +13,10 @@
  * @see 	    https://docs.woocommerce.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates/Emails
- * @version     2.3.0
+ * @version     3.7.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+defined( 'ABSPATH' ) || exit;
 
 ?>
 															</div>
@@ -33,15 +31,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 								</td>
 							</tr>
 							<tr>
-								<td align="center" valign="top">
+								<td valign="top">
 									<!-- Footer -->
-									<table border="0" cellpadding="10" cellspacing="0" width="600" id="template_footer">
+									<table border="0" cellpadding="10" cellspacing="0" width="100%" id="template_footer">
 										<tr>
 											<td valign="top">
 												<table border="0" cellpadding="10" cellspacing="0" width="100%">
 													<tr>
 														<td colspan="2" valign="middle" id="credit">
-															<?php echo wpautop( wp_kses_post( wptexturize( apply_filters( 'woocommerce_email_footer_text', get_option( 'woocommerce_email_footer_text' ) ) ) ) ); ?>
+															<?php echo wp_kses_post( wpautop( wptexturize( apply_filters( 'woocommerce_email_footer_text', get_option( 'woocommerce_email_footer_text' ) ) ) ) ); ?>
 														</td>
 													</tr>
 												</table>

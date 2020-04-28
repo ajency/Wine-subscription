@@ -13,7 +13,7 @@
  * @see 	    https://docs.woocommerce.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates/Emails
- * @version     2.5.0
+ * @version     3.7.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -25,11 +25,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<p><?php _e( "Hello, a note has just been added to your order:", 'woocommerce' ); ?></p>
+<?php /* translators: %s: Customer first name */ ?>	
+<p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
 
-<blockquote><?php echo wpautop( wptexturize( $customer_note ) ) ?></blockquote>
+<p><?php esc_html_e( "The following note has been added to your order:", 'woocommerce' ); ?></p>
 
-<p><?php _e( "For your reference, your order details are shown below.", 'woocommerce' ); ?></p>
+<blockquote><?php echo wpautop( wptexturize( make_clickable($customer_note) ) ) ?></blockquote>
+
+<p><?php esc_html_e( "As a reminder, here are your order details:", 'woocommerce' ); ?></p>
 
 <?php
 
@@ -51,6 +54,13 @@ do_action( 'woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text, 
  * @hooked WC_Emails::email_address() Shows email address
  */
 do_action( 'woocommerce_email_customer_details', $order, $sent_to_admin, $plain_text, $email );
+
+/**	
+ * Show user-defined additional content - this is set in each email's settings.	
+ */	
+if ( $additional_content ) {	
+	echo wp_kses_post( wpautop( wptexturize( $additional_content ) ) );	
+}
 
 /**
  * @hooked WC_Emails::email_footer() Output the email footer

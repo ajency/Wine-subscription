@@ -13,7 +13,7 @@
  * @see 	    https://docs.woocommerce.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates/Emails
- * @version     2.5.0
+ * @version     3.7.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -25,11 +25,27 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<?php if ( $order->has_status( 'pending' ) ) : ?>
-	<p><?php printf( __( 'An order has been created for you on %1$s. To pay for this order please use the following link: %2$s', 'woocommerce' ), get_bloginfo( 'name', 'display' ), '<a href="' . esc_url( $order->get_checkout_payment_url() ) . '">' . __( 'pay', 'woocommerce' ) . '</a>' ); ?></p>
-<?php endif; ?>
+<?php /* translators: %s: Customer first name */ ?>	
+<p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
 
-<?php
+<?php if ( $order->has_status( 'pending' ) ) { ?>
+	<p><?php printf( wp_kses(
+				__( 'An order has been created for you on %1$s. To pay for this order please use the following link: %2$s', 'woocommerce' ),
+				array(	
+					'a' => array(	
+						'href' => array(),	
+					),	
+				)
+			), esc_html(get_bloginfo( 'name', 'display' ) ), '<a href="' . esc_url( $order->get_checkout_payment_url() ) . '">' . __( 'Pay for this order', 'woocommerce' ) . '</a>' ); ?></p>
+<?php } else { ?>	
+	<p>	
+	<?php	
+	/* translators: %s Order date */	
+	printf( esc_html__( 'Here are the details of your order placed on %s:', 'woocommerce' ), esc_html( wc_format_datetime( $order->get_date_created() ) ) );	
+	?>	
+	</p>	
+	<?php	
+}
 
 /**
  * @hooked WC_Emails::order_details() Shows the order details table.
@@ -49,6 +65,13 @@ do_action( 'woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text, 
  * @hooked WC_Emails::email_address() Shows email address
  */
 do_action( 'woocommerce_email_customer_details', $order, $sent_to_admin, $plain_text, $email );
+	
+/**	
+ * Show user-defined additional content - this is set in each email's settings.	
+ */	
+if ( $additional_content ) {	
+	echo wp_kses_post( wpautop( wptexturize( $additional_content ) ) );	
+}
 
 /**
  * @hooked WC_Emails::email_footer() Output the email footer

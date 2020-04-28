@@ -13,7 +13,7 @@
  * @see 	https://docs.woocommerce.com/document/template-structure/
  * @author  WooThemes
  * @package WooCommerce/Templates/Emails
- * @version 2.4.0
+ * @version 4.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								}
 							?>
 						</div>
-						<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_container">
+						<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_container">
 							<tr>
 								<td align="center" valign="top">
 									<!-- Header -->

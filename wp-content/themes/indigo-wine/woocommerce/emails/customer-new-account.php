@@ -13,16 +13,18 @@
  * @see 	    https://docs.woocommerce.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates/Emails
- * @version     1.6.4
+ * @version     3.7.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+defined( 'ABSPATH' ) || exit;
 
 ?>
 
 <?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+
+<?php /* translators: %s: Customer username */ ?>
+<p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $user_login ) ); ?></p>
+<?php /* translators: %1$s: Site title, %2$s: Username, %3$s: My account link */ ?>
 
 	<p><?php printf( __( 'Thanks for creating an account on %1$s. Your username is %2$s', 'woocommerce' ), esc_html( $blogname ), '<strong>' . esc_html( $user_login ) . '</strong>' ); ?></p>
 
@@ -34,4 +36,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<p><?php printf( __( 'You can access your account area to view your orders and change your password here: %s.', 'woocommerce' ), make_clickable( esc_url( wc_get_page_permalink( 'myaccount' ) ) ) ); ?></p>
 
-<?php do_action( 'woocommerce_email_footer', $email );
+	<?php
+/**
+ * Show user-defined additional content - this is set in each email's settings.
+ */
+if ( $additional_content ) {
+	echo wp_kses_post( wpautop( wptexturize( $additional_content ) ) );
+}
+
+do_action( 'woocommerce_email_footer', $email );
