@@ -2,6 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
+
 require_once vc_path_dir( 'CORE_DIR', 'access/abstract-class-vc-access.php' );
 
 /**
@@ -21,13 +22,13 @@ class Vc_Role_Access extends Vc_Access {
 	 *
 	 */
 	public function __construct() {
-		require_once( ABSPATH . 'wp-admin/includes/user.php' );
+		require_once ABSPATH . 'wp-admin/includes/user.php';
 	}
 
 	/**
 	 * @param $part
-	 *
-	 * @return Vc_Role_Access_Controller
+	 * @return \Vc_Role_Access_Controller
+	 * @throws \Exception
 	 */
 	public function part( $part ) {
 		$role_name = $this->getRoleName();
@@ -37,11 +38,12 @@ class Vc_Role_Access extends Vc_Access {
 		$key = $part . '_' . $role_name;
 		if ( ! isset( $this->parts[ $key ] ) ) {
 			require_once vc_path_dir( 'CORE_DIR', 'access/class-vc-role-access-controller.php' );
-			/** @var $role_access_controller Vc_Role_Access_Controller */
-			$role_access_controller = $this->parts[ $key ] = new Vc_Role_Access_Controller( $part );
+			/** @var Vc_Role_Access_Controller $role_access_controller */
+			$this->parts[ $key ] = new Vc_Role_Access_Controller( $part );
+			$role_access_controller = $this->parts[ $key ];
 			$role_access_controller->setRoleName( $this->getRoleName() );
 		}
-		/** @var $role_access_controller Vc_Role_Access_Controller */
+		/** @var Vc_Role_Access_Controller $role_access_controller */
 		$role_access_controller = $this->parts[ $key ];
 		$role_access_controller->setValidAccess( $this->getValidAccess() ); // send current status to upper level
 		$this->setValidAccess( true ); // reset
@@ -52,9 +54,10 @@ class Vc_Role_Access extends Vc_Access {
 	/**
 	 * Set role to get access to data.
 	 *
-	 * @param $role
-	 *
+	 * @param $roleName
 	 * @return $this
+	 * @internal param $role
+	 *
 	 */
 	public function who( $roleName ) {
 		$this->roleName = $roleName;

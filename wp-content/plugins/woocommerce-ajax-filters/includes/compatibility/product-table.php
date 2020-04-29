@@ -2,7 +2,11 @@
 class BeRocket_AAPF_compat_product_table {
     function __construct() {
         add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ), 1 );
+        $filter_nn_name = apply_filters('berocket_aapf_filter_variable_name_nn', 'filters');
         if(defined('DOING_AJAX') && DOING_AJAX && !empty($_POST['action']) && $_POST['action'] == 'wcpt_load_products') {
+            if( ! empty($_POST[$filter_nn_name]) ) {
+                $_GET[$filter_nn_name] = $_POST[$filter_nn_name];
+            }
             $table_id = filter_input( INPUT_POST, 'table_id', FILTER_SANITIZE_STRING );
             $table_transient = get_transient( $table_id );
             unset($table_transient['total_posts']);
@@ -11,9 +15,8 @@ class BeRocket_AAPF_compat_product_table {
         }
     }
     public static function plugins_loaded() {
-        if( class_exists('WC_Product_Table_Plugin') 
-        && function_exists('WC_Product_Table') 
-        && version_compare(WC_Product_Table_Plugin::VERSION, '2.1.3', '>') ) {
+        if( class_exists('WC_Product_Table_Plugin')
+        && ( function_exists( 'Barn2\Plugin\WC_Product_Table\wc_product_table' ) || (function_exists( 'wc_product_table' ) && version_compare(WC_Product_Table_Plugin::VERSION, '2.1.3', '>')) ) ) {
             add_filter('aapf_localize_widget_script', array( __CLASS__, 'aapf_localize_widget_script' ));
             add_action( 'wc_product_table_get_table', array( __CLASS__, 'wc_product_table_get_table' ), 10, 1 );
             self::not_ajax_functions();
@@ -40,9 +43,6 @@ class BeRocket_AAPF_compat_product_table {
         if( empty($table_args['berocket_ajax']) ) {
             return $query_vars;
         }
-        if(defined('DOING_AJAX') && DOING_AJAX && !empty($_POST['action']) && $_POST['action'] == 'wcpt_load_products' && ! empty($_POST['filters'])) {
-            $_GET['filters'] = $_POST['filters'];
-        }
         $BeRocket_AAPF = BeRocket_AAPF::getInstance();
         $query_vars = $BeRocket_AAPF->woocommerce_filter_query_vars($query_vars);
         return $query_vars;
@@ -53,4 +53,3 @@ class BeRocket_AAPF_compat_product_table {
         return $localize;
     }
 }
-new BeRocket_AAPF_compat_product_table();

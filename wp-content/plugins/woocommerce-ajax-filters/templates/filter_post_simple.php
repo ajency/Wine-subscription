@@ -1,9 +1,10 @@
 <?php
 $attributes        = br_aapf_get_attributes();
-$categories        = BeRocket_AAPF_Widget::get_product_categories( '' );
-$categories        = BeRocket_AAPF_Widget::set_terms_on_same_level( $categories );
+$categories        = BeRocket_AAPF_Widget_functions::get_product_categories( '' );
+$categories        = BeRocket_AAPF_Widget_functions::set_terms_on_same_level( $categories );
 $tags              = get_terms( 'product_tag' );
-$custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => true ) );
+$custom_taxonomies = get_object_taxonomies( 'product' );
+$custom_taxonomies = array_combine($custom_taxonomies, $custom_taxonomies);
 ?>
 <div class="widget-liquid-right tab-item  current">
 <div>
@@ -95,25 +96,7 @@ $custom_taxonomies = get_taxonomies( array( "_builtin" => false, "public" => tru
     <div class="br_admin_half_size_left br_type_select_block"<?php if( $instance['filter_type'] == 'date' ) echo 'style="display: none;"'; ?>>
         <label class="br_admin_center"><?php _e('Type', 'BeRocket_AJAX_domain') ?></label>
         <?php
-        $berocket_admin_filter_types = array(
-            'tag' => array('checkbox','radio','select','color','image','tag_cloud'),
-            'product_cat' => array('checkbox','radio','select','color','image'),
-            'sale' => array('checkbox','radio','select'),
-            'custom_taxonomy' => array('checkbox','radio','select','color','image'),
-            'attribute' => array('checkbox','radio','select','color','image'),
-            'price' => array('slider'),
-            'filter_by' => array('checkbox','radio','select','color','image'),
-        );
-        $berocket_admin_filter_types_by_attr = array(
-            'checkbox' => array('value' => 'checkbox', 'text' => 'Checkbox'),
-            'radio' => array('value' => 'radio', 'text' => 'Radio'),
-            'select' => array('value' => 'select', 'text' => 'Select'),
-            'color' => array('value' => 'color', 'text' => 'Color'),
-            'image' => array('value' => 'image', 'text' => 'Image'),
-            'slider' => array('value' => 'slider', 'text' => 'Slider'),
-            'tag_cloud' => array('value' => 'tag_cloud', 'text' => 'Tag cloud'),
-        );
-        list($berocket_admin_filter_types, $berocket_admin_filter_types_by_attr) = apply_filters( 'berocket_admin_filter_types_by_attr', array($berocket_admin_filter_types, $berocket_admin_filter_types_by_attr), 'simple' );
+        list($berocket_admin_filter_types, $berocket_admin_filter_types_by_attr) = berocket_aapf_get_filter_types('simple');
         $select_options_variants = array();
         if ( $instance['filter_type'] == 'tag' ) {
             $select_options_variants = $berocket_admin_filter_types['tag'];

@@ -2,13 +2,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce AJAX Products Filter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-21 14:02+0000\n"
-"PO-Revision-Date: 2017-12-21 14:30+0000\n"
-"Last-Translator: 123 124 <djcrazysait@mail.ru>\n"
-"Language-Team: Russian\n"
-"Language: ru-RU\n"
+"POT-Creation-Date: 2019-12-09 13:44+0000\n"
+"PO-Revision-Date: 2019-12-09 14:36+0000\n"
+"Last-Translator: root <root@root.com>\n"
+"Language-Team: Русский\n"
+"Language: ru_RU\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
-"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2)\n"
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,165 +21,863 @@ msgstr ""
 "esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
 "esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
 "X-Loco-Target-Locale: ru_RU\n"
-"X-Generator: Loco - https://localise.biz/"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3"
 
-#: woocommerce-filters.php:233
-msgid "View Plugin Settings"
-msgstr "Показать настройка плагина"
+#. Name of the plugin
+#: main.php:62
+msgid "WooCommerce AJAX Products Filter"
+msgstr "WooCommerce AJAX Products Filter"
 
-#: woocommerce-filters.php:233
-msgid "Settings"
-msgstr "Настройки"
+#: main.php:63
+msgid "Product Filters"
+msgstr "Фильтры продуктов"
 
-#: woocommerce-filters.php:241
-msgid "View Plugin Documentation"
-msgstr "Показать документацию плагина"
+#: main.php:73 main.php:1482
+msgid "There are no products meeting your criteria"
+msgstr "Нет товаров, соответствующих вашим критериям"
 
-#: woocommerce-filters.php:241
-msgid "Docs"
-msgstr "Документация"
-
-#: woocommerce-filters.php:242
-msgid "View Premium Support Page"
-msgstr "Показать Премиум Страницу поддержки"
-
-#: woocommerce-filters.php:242
-msgid "Premium Support"
-msgstr "Премиум Поддержка"
-
-#: templates/filters_information.php:2
-msgid "How to hide filter on page load?"
-msgstr "Как скрыть фильтры при загрузке страницы?"
-
-#: templates/filters_information.php:3
-#, php-format
-msgid "Enable in <strong>%s</strong> option <strong>%s</strong>"
-msgstr "Включите в <strong>%s</strong> опцию <strong>%s</strong>"
-
-#: templates/filters_information.php:4
-msgid "How to add reset filters button?"
-msgstr "Как добавить кнопку сброса фильтров?"
-
-#: templates/filters_information.php:5 templates/filters_information.php:7
-#, php-format
-msgid "Select <strong>%s</strong> in option <strong>%s</strong>"
-msgstr "Выберете <strong>%s</strong> в опции <strong>%s</strong>"
-
-#: templates/filters_information.php:6
+#: main.php:326
 msgid ""
-"How to add update products button? (to filter products only after click on "
-"button)"
+"<strong>Please update all BeRocket plugins to the most recent version. "
+"WooCommerce AJAX Products Filter is not working correctly with older "
+"versions.</strong>"
 msgstr ""
-"Как добавить кнопку обновления продуктов? (для фильтрации продуктов только "
-"после нажатия на кнопку)"
+"<strong> Пожалуйста, обновите все плагины BeRocket до последней версии. "
+"WooCommerce AJAX Products Filter работает некорректно со старыми версиями. "
+"</strong>"
 
-#: templates/groups_information.php:2
-msgid ""
-"Do not use multiple filters with same attribute on one page! We will not "
-"guarantee normal filters works in that case."
-msgstr ""
-"Не используйте несколько фильтров с одинаковым атрибутом на одной странице. "
-"Мы не гарантируем нормальную работу фильтров в этом случае."
+#: main.php:397
+msgid "General"
+msgstr "Главные"
 
-#: templates/groups_information.php:3
-msgid ""
-"P.S. No, using sub-categories for different filters is not normal. Please "
-"use attributes instead"
-msgstr ""
-"P.S. Нет, использовать подкатегории для разных фильтров не нормально. "
-"Пожалуйста используйте атрибуты вместо этого"
+#: main.php:401
+msgid "Elements"
+msgstr "Элементы"
 
-#: templates/groups_information.php:4 includes/new_filters.php:428
-msgid "Conditions"
-msgstr "Условия"
+#: main.php:405
+msgid "Selectors"
+msgstr "Селекторы"
 
-#: templates/groups_information.php:5
-msgid "Group without any condition will be displayed on all pages"
-msgstr "Группы без условий будут отображаться на всех страницах"
+#: main.php:409
+msgid "SEO"
+msgstr "SEO"
 
-#: templates/groups_information.php:6
-msgid "Connection between condition can be AND and OR"
-msgstr "Соединение между условиями может быть И и ИЛИ"
+#: main.php:413
+msgid "Advanced"
+msgstr "Продвинутые"
 
-#: templates/groups_information.php:7
-msgid "<strong>AND</strong> uses between condition in one section"
-msgstr "<strong>И</strong> используется между условиями в одной секции"
+#: main.php:417
+msgid "Design"
+msgstr "Дизайн"
 
-#: templates/groups_information.php:8
-msgid "<strong>OR</strong> uses between different sections with conditions"
-msgstr "<strong>ИЛИ</strong> используется между разными секциями с условиями"
+#: main.php:421
+msgid "JavaScript/CSS"
+msgstr "JavaScript/CSS"
 
-#: templates/groups_information.php:9
-msgid "To display one group on different pages use OR condition"
-msgstr ""
-"Для отображения одной группы на разных страницах используйте условие ИЛИ"
+#: main.php:426 includes/custom_post.php:645
+msgid "Filters"
+msgstr "Фильтры"
 
-#: templates/filters_group.php:11
-msgid "Add filter"
-msgstr "Добавить фильтр"
+#: main.php:431
+msgid "License"
+msgstr "Лицензия"
 
-#: templates/filters_group.php:12 includes/new_widget.php:135
-msgid "Manage filters"
-msgstr "Управлять фильтрами"
+#: main.php:435
+msgid "Add-ons"
+msgstr "Дополнения"
 
-#: templates/filters_group.php:27 templates/filters_group.php:44
-#: includes/new_filters.php:32 includes/new_filters.php:63
-msgid "Edit"
-msgstr "Редактировать"
+#: main.php:445
+msgid "\"No Products\" message"
+msgstr "Сообщение «Нет товаров»"
 
-#: templates/filter_post.php:32 templates/admin-settings.php:1277
-#: templates/admin.php:37 includes/new_filters.php:237
-msgid "Rating"
-msgstr "Рейтинг"
+#: main.php:451
+msgid "Products Per Page"
+msgstr "Продукты на странице"
 
-#: templates/filter_post.php:140 templates/admin-settings.php:1353
-#: templates/admin.php:145
-msgid "Enable Slider Inputs"
-msgstr "Включить Поля Слайдера"
-
-#: templates/filter_post.php:197 templates/admin-settings.php:119
-#: templates/admin-settings.php:1405 templates/admin.php:203
-msgid "Attribute Values count"
+#: main.php:457
+msgid "Number of Attribute Values"
 msgstr "Количество Значений Атрибута"
 
-#: templates/filter_post.php:198 templates/admin-settings.php:1406
-#: templates/admin.php:204
-msgid "From settings"
-msgstr "С настроек"
+#: main.php:461
+msgid ""
+"Attribute Values count that will be displayed. Other values will be hidden "
+"and can be displayed by pressing the button. Option <strong>Hide the "
+"Show/Hide value(s) button in the filters</strong> must be disabled"
+msgstr ""
+"Количество значений атрибутов, которое будет отображаться. Другие значения "
+"будут скрыты и могут быть отображены нажатием кнопки. Опция <strong> Скрыть "
+"кнопку «Показать/Скрыть значения» </strong> должна быть отключена"
 
-#: templates/filter_post.php:207 templates/admin-settings.php:1415
-#: templates/admin.php:213
-msgid "Use specific number style"
-msgstr "Использовать другие стили чисел"
+#: main.php:464
+msgid "Sorting drop-down control"
+msgstr "Контроль сортировки"
 
-#: templates/admin-settings.php:28
+#: main.php:468
+msgid "Take control over WooCommerce's sorting selectbox?"
+msgstr "Взять под контроль поле выбора сортировки WooCommerce?"
+
+#: main.php:471
+msgid "Jump to first page"
+msgstr "Переходить на первую страницу"
+
+#: main.php:475
+msgid "Check if you want load first page after filters change"
+msgstr "Включите, если нужно Вам загружать первую страницу после фильтрации"
+
+#: main.php:478
+msgid "Scroll to the top"
+msgstr "Прокрутить страницу наверх"
+
+#: main.php:481 main.php:562
+msgid "Selected filters position"
+msgstr "Позиция выбранных фильтров"
+
+#: main.php:486 templates/filter_post.php:632
+msgid "Disable"
+msgstr "Выключено"
+
+#: main.php:487
+msgid "Mobile and Desktop"
+msgstr "Мобильные и Персональные компьютеры "
+
+#: main.php:488 includes/custom_post.php:299 includes/custom_post.php:611
+msgid "Mobile"
+msgstr "Мобильных"
+
+#: main.php:489 includes/custom_post.php:307 includes/custom_post.php:619
+msgid "Desktop"
+msgstr "Персональных компьютерах "
+
+#: main.php:498
+msgid "px from products top."
+msgstr "px от продуктов сверху."
+
+#: main.php:498
+msgid "Use this to fix top scroll."
+msgstr "Используйте это для исправления скролла сверху"
+
+#: main.php:503
+msgid "Values count and output"
+msgstr "Пересчет и вывод значений"
+
+#: main.php:507
+msgid "All non-empty values are shown and use basic counting"
+msgstr ""
+"Отображаются все непустые значения и будет использоваться стандартный "
+"пересчет"
+
+#: main.php:508
+msgid "Remove empty values based on page(category/tag/etc)"
+msgstr ""
+"Удаляются пустые значения на основных страницах(категорий/тегов/и т. д.)"
+
+#: main.php:509
+msgid ""
+"All non-empty values are shown and filters are considered while counting "
+"attribute values"
+msgstr ""
+"Отображаются все непустые значения и учитываются фильтры при пересчете "
+"значений атрибутов"
+
+#: main.php:510
+msgid ""
+"Remove empty values based on page(category/tag/etc). Filters are considered "
+"while counting attribute values and empty values based on filters are hidden"
+msgstr ""
+"Удаляются пустые значения на основных страницах (категорий/тегов/и т. д.). "
+"Фильтры учитываются при пересчете значений атрибутов, а пустые значения "
+"после фильтрации будут скрыты"
+
+#: main.php:511
+msgid ""
+"Filters are considered while counting attribute values. Empty values are "
+"removed server side"
+msgstr ""
+"Фильтры учитываются при пересчете значений атрибутов. Пустые значения "
+"удаляются на стороне сервера"
+
+#: main.php:513
+msgid "Variable variant work slower, but remove variations that out of stock"
+msgstr ""
+
+#: main.php:518
+msgid "Hide values"
+msgstr "Скрыть значения"
+
+#: main.php:524
+msgid "Hide values without products"
+msgstr "Скрыть значения без продуктов"
+
+#: main.php:530
+msgid "Hide selected values"
+msgstr "Скрыть выбранные значения"
+
+#: main.php:536
+msgid "Hide blank widgets"
+msgstr "Скрыть пустые виджеты"
+
+#: main.php:541
+msgid "Select2"
+msgstr "Select2"
+
+#: main.php:548
+msgid "Use Select2 script for dropdown menu"
+msgstr "Использовать скрипт Select2 для выпадающего меню"
+
+#: main.php:555
+msgid ""
+"Fixed CSS styles for Select2 (do not enable if Select2 work correct. Option "
+"can break Select2 in other plugins or themes)"
+msgstr ""
+"Исправление стили CSS для Select2 (не включайте, если Select2 работает "
+"правильно. Опция может сломать Select2 в других плагинах или темах)"
+
+#: main.php:566
+msgid "WooCommerce Description(in header)"
+msgstr "Описание WooCommerce(в заголовке)"
+
+#: main.php:567
+msgid "WooCommerce Before Shop Loop"
+msgstr "Перед WooCommerce Shop Loop"
+
+#: main.php:568
+msgid "WooCommerce After Shop Loop"
+msgstr "После WooCommerce Shop Loop"
+
+#: main.php:573
+msgid "Display Selected Filters"
+msgstr "Отображать выбранные фильтры"
+
+#: main.php:580
+msgid "Show selected filters above products"
+msgstr "Показать выбранные фильтры над продуктами"
+
+#: main.php:587
+msgid ""
+"Hide selected filters area if nothing selected(affect only area above "
+"products)"
+msgstr ""
+"Скрыть область выбранных фильтров, если ничего не выбрано (влияет только на "
+"область над продуктами)"
+
+#: main.php:598
+msgid "Products Selector"
+msgstr "Селектор Продуктов"
+
+#: main.php:603 main.php:648
+msgid ""
+"Selector for tag that is holding products. Don't change this if you don't "
+"know what it is"
+msgstr ""
+"Селектор для тега, который содержит товары. Не меняйте это, если Вы не "
+"знаете, что это такое"
+
+#: main.php:606
+msgid "Products Quantity Selector"
+msgstr "Селектор количества продуктов"
+
+#: main.php:613
+msgid ""
+"Selector for tag with product result count(\"Showing 1–8 of 61 results\"). "
+"Don't change this if you don't know what it is"
+msgstr ""
+"Селектор для тега с результатов количества продуктов(«Показано 1–8 из 61 "
+"результатов»). Не меняйте это, если Вы не знаете, что это такое"
+
+#: main.php:619
+msgid "Enable if page doesn't have product count block"
+msgstr "Включить, если на странице нет блока подсчета товаров"
+
+#: main.php:624
+msgid "Products Sorting Selector"
+msgstr "Селектор для блока с сортировкой продуктов"
+
+#: main.php:630
+msgid ""
+"Selector for order by form with drop down menu. Don't change this if you "
+"don't know what it is"
+msgstr ""
+"Селектор для блока сортировки. Не меняйте это, если Вы не знаете, что это "
+"такое"
+
+#: main.php:636
+msgid "Enable if page doesn't have order by drop down menu"
+msgstr "Включить, если страница не имеет порядка в выпадающем меню"
+
+#: main.php:641
+msgid "Products Pagination Selector"
+msgstr "Селектор страниц"
+
+#: main.php:654
+msgid ""
+"Enable if page doesn't have pagination.<strong>Page with lazy load also has "
+"pagination</strong>"
+msgstr ""
+"Включите, если страница не имеет нумерации страниц. <strong> Страница с "
+"отложенной загрузкой также имеет нумерацию страниц </strong>"
+
+#: main.php:660
+msgid "Disable AJAX Pagination"
+msgstr "Отключить пагинацию AJAX"
+
+#: main.php:667
+msgid "Refresh URL when filtering"
+msgstr "Обновить URL при фильтрации"
+
+#: main.php:672
+msgid ""
+"If this option is on URL will be changed when filter is selected/changed"
+msgstr ""
+"Если эта опция включена, URL будет изменен при выборе / изменении фильтра."
+
+#: main.php:675
+msgid "Use slug in URL"
+msgstr "Используйте slug в URL"
+
+#: main.php:680
+msgid "Use attribute slug instead ID"
+msgstr "Используйте атрибут slug вместо ID"
+
+#: main.php:683
+msgid "URL decoding"
+msgstr "Декодирование URL"
+
+#: main.php:688
+msgid "Decode all symbols in URL to prevent errors on server side"
+msgstr ""
+"Расшифровует все символы в URL, чтобы избежать ошибок на стороне сервера"
+
+#: main.php:691
+msgid "SEO Meta, Title"
+msgstr "SEO Мета, Заголовки"
+
+#: main.php:696
+msgid "Meta Description, Page title and Page Header with filters"
+msgstr "Мета-описание, заголовок страницы и заголовок страницы с фильтрами"
+
+#: main.php:699
+msgid "SEO Elements"
+msgstr "SEO Элементы"
+
+#: main.php:706 templates/filters_group_simple.php:2
+#: templates/filter_post_simple.php:11 includes/paid.php:1617
+#: includes/paid.php:1787 templates/settings/design.php:789
+msgid "Title"
+msgstr "Название"
+
+#: main.php:712
+msgid "Header"
+msgstr "Заголовок"
+
+#: main.php:718 templates/filter_post.php:502
+msgid "Description"
+msgstr "Описание"
+
+#: main.php:723
+msgid "SEO elements structure"
+msgstr "SEO структура элементов"
+
+#: main.php:728
+msgid "{title} with [attribute] [values] and [attribute] [values]"
+msgstr "{title} with [attribute] [values] and [attribute] [values]"
+
+#: main.php:729
+msgid "{title} [attribute]:[values];[attribute]:[values]"
+msgstr "{title} [attribute]:[values];[attribute]:[values]"
+
+#: main.php:730
+msgid ""
+"[attribute 1 values] {title} with [attribute] [values] and [attribute] "
+"[values]"
+msgstr ""
+"[attribute 1 values] {title} with [attribute] [values] and [attribute] "
+"[values]"
+
+#: main.php:731
+msgid "{title} - [values] / [values]"
+msgstr "{title} - [values] / [values]"
+
+#: main.php:738
+msgid "\"No Products\" class"
+msgstr "Класс \"Нет продуктов\""
+
+#: main.php:742
+msgid "Add class and use it to style \"No Products\" box"
+msgstr "Добавить класс для стилей \"Нет продуктов\""
+
+#: main.php:745
+msgid "Display products"
+msgstr "Отображать продукты"
+
+#: main.php:749
+msgid ""
+"Display always products when filters selected. Use this when you have "
+"categories and subcategories on shop pages, but you want to display products "
+"on filtering"
+msgstr ""
+"Всегда отображать продукты когда выбраны фильтры. Используйте это когда у "
+"Вас есть категории и подкатегории на странице магазина, но вам нужно "
+"отображать продукты при фильтрации."
+
+#: main.php:752
+msgid "Use Tax options in price filters"
+msgstr "Использование налогов в фильтрах цен"
+
+#: main.php:753
+msgid "Only Standard tax rates will be applied for prices"
+msgstr "Только стандартные налоговые ставки будут применяться к ценам"
+
+#: main.php:757
+msgid "Do not use (filter price as it is set in products)"
+msgstr "Не использовать (цены в фильтрах будут как указаны в продуктах)"
+
+#: main.php:758
+msgid "Use tax options"
+msgstr "Используйте настройки налогов"
+
+#: main.php:763
+msgid "Page same as filter"
+msgstr "Страница такая же как фильтр"
+
+#: main.php:767 templates/filter_post.php:171 templates/filter_post.php:359
+#: templates/filter_post.php:466 includes/paid.php:1746
+#: templates/settings/design.php:57 templates/settings/design.php:165
+#: templates/settings/design.php:179 templates/settings/design.php:184
+#: templates/settings/design.php:421 templates/settings/design.php:435
+#: templates/settings/design.php:440 templates/settings/design.php:653
+#: templates/settings/design.php:658 templates/settings/design.php:666
+#: templates/settings/design.php:677 templates/settings/design.php:682
+#: templates/settings/design.php:722 templates/settings/design.php:727
+#: templates/settings/design.php:735 templates/settings/design.php:743
+#: templates/settings/design.php:748 templates/settings/design.php:756
+#: templates/settings/design.php:761 templates/settings/design.php:793
+#: templates/settings/design.php:807 templates/settings/design.php:812
+#: templates/settings/design.php:820 templates/settings/design.php:834
+#: templates/settings/design.php:839 templates/settings/design.php:847
+#: templates/settings/design.php:861 templates/settings/design.php:866
+#: templates/paid/filters_group.php:29
+msgid "Default"
+msgstr "По умолчанию"
+
+#: main.php:768
+msgid "Remove value"
+msgstr "Удалить значение"
+
+#: main.php:769
+msgid "Leave only one value"
+msgstr "Оставить только одно значение"
+
+#: main.php:772
+msgid ""
+"On Category, Tag, Attribute page filter for it will remove value or leave "
+"only one value"
+msgstr ""
+"На странице категории, тега, атрибута для фильтра будет удалено значение или "
+"останется только одно значение"
+
+#: main.php:776
+msgid "Variable Products and Variations options"
+msgstr "Опции Вариативных Продуктов и Вариаций"
+
+#: main.php:779
+msgid "Hide variations that are out of stock"
+msgstr "Скрыть вариации которых нет в наличии"
+
+#: main.php:785 includes/paid.php:124 includes/paid.php:136
+#: includes/paid.php:1862
+msgid "Disabled"
+msgstr "Отключить"
+
+#: main.php:786
+msgid "Enabled"
+msgstr "Включить"
+
+#: main.php:787
+msgid "Enabled only with selected \"Out of stock\" filter"
+msgstr "Включить если выбрано в фильтрах \"Нет в наличии\""
+
+#: main.php:791
+msgid "Hide variable products if variations with selected filters out of stock"
+msgstr ""
+"Скрывать вариации продуктов, если вариаций с выбранными фильтрами нет в "
+"наличии"
+
+#: main.php:798
+msgid ""
+"Use it for attributes values to display more correct count with option "
+"Reload amount of products"
+msgstr ""
+"Используйте для значений атрибутов, чтобы отобразить более правильный счет с "
+"опцией Перезагружать количество продуктов"
+
+#: main.php:805
+msgid ""
+"Fix WPEngine query issue (Also can work with other hostings if they limit "
+"query size)"
+msgstr ""
+"Исправление проблемы с запросом WPEngine (также может работать с другими "
+"хостингами, если они ограничивают размер запроса)"
+
+#: main.php:811
+msgid "Incompatibility Fixes"
+msgstr "Исправления Несовместимостей"
+
+#: main.php:814
+msgid "Add position relative to products"
+msgstr "Добавление position relative к продуктам"
+
+#: main.php:818
+msgid "Fix for correct displaying loading block"
+msgstr "Исправление для правильного отображение блока загрузки"
+
+#: main.php:821
+msgid "Display styles only for pages with filters"
+msgstr "Стили отображения только для страниц с фильтрами"
+
+#: main.php:825
+msgid "On some sites it can cause some visual problem on page loads"
+msgstr ""
+"На некоторых сайтах это может вызвать некоторые визуальные проблемы при "
+"загрузке страниц."
+
+#: main.php:828
+msgid "Products per line"
+msgstr "Исправление количества продуктов в строку"
+
+#: main.php:832
+msgid "Change this only if after filtering count of products per row changes."
+msgstr ""
+"Изменяйте это, только если после фильтрации изменяется количество товаров в "
+"строке."
+
+#: main.php:835
+msgid "Fix for sites with AJAX"
+msgstr "Исправление для сайтов с AJAX"
+
+#: main.php:839
+msgid "Add JavaScript files to all pages."
+msgstr "Добавить файлы JavaScript на все страницы."
+
+#: main.php:842
+msgid "Fix for search page"
+msgstr "Исправление для страницы поиска"
+
+#: main.php:846
+msgid "Disable redirection, when search page return only one product"
+msgstr ""
+"Отключить перенаправление, когда страница поиска возвращает только один "
+"продукт"
+
+#: main.php:849
+msgid "Use Tags as custom taxonomies"
+msgstr "Используйте теги, такие как пользовательские таксономии"
+
+#: main.php:853
+msgid "Try to enable this if widget with tags didn't work."
+msgstr "Попробуйте включить это, если виджет с тегами не работает."
+
+#: main.php:856
+msgid "GET query"
+msgstr "Запрос GET"
+
+#: main.php:860
+msgid "Use GET query instead POST for filtering"
+msgstr "Используйте GET-запрос вместо POST для фильтрации"
+
+#: main.php:863
+msgid "Alternative Load (DEPRECATED)"
+msgstr "Альтернативная загрузка (УСТАРЕВШАЯ)"
+
+#: main.php:870
+msgid ""
+"Use it on your own risk. Some features do not work with alternative load "
+"methods. All this methods are not supported. If you have problems with any "
+"of them just turn this option off"
+msgstr ""
+"Используйте это на свой страх и риск. Некоторые функции не работают с "
+"альтернативными методами загрузки. Все эти методы не поддерживаются. Если у "
+"Вас есть проблемы с любым из них, просто отключите эту опцию"
+
+#: main.php:877
+msgid "WordPress AJAX (deprecated)"
+msgstr "WordPress AJAX (устаревшая)"
+
+#: main.php:878
+msgid "PHP (deprecated)"
+msgstr "PHP (устаревшая)"
+
+#: main.php:879
+msgid "JavaScript (deprecated)"
+msgstr "JavaScript (устаревшая)"
+
+#: main.php:882
+msgid "Use"
+msgstr "Использование"
+
+#: main.php:883
+msgid "load method"
+msgstr "метод загрузки"
+
+#: main.php:884
+msgid "Some features do not work with alternative load method"
+msgstr "Некоторые функции не работают с альтернативным методом загрузки"
+
+#: main.php:890
+msgid "Tools"
+msgstr "Инструменты"
+
+#: main.php:893
+msgid "Turn off all filters"
+msgstr "Выключите все фильтры"
+
+#: main.php:897
+msgid ""
+"If you want to hide filters without losing current configuration just turn "
+"them off"
+msgstr ""
+"Если Вы хотите скрыть фильтры без потери текущей конфигурации, просто "
+"отключите их"
+
+#: main.php:916
+msgid "Disable Font Awesome"
+msgstr "Отключить Font Awesome"
+
+#: main.php:920
+msgid ""
+"Don't loading css file for Font Awesome on site front end. Use it only if "
+"you doesn't uses Font Awesome icons in widgets or you have Font Awesome in "
+"your theme."
+msgstr ""
+"Не загружайте файл CSS для Font Awesome на сайт. Используйте его, только "
+"если Вы не используете иконки Font Awesome в виджетах или у Вас есть Font "
+"Awesome в вашей теме."
+
+#: main.php:923
+msgid "Font Awesome Version"
+msgstr "Версия Font Awesome"
+
+#: main.php:927
+msgid "Font Awesome 4"
+msgstr "Font Awesome 4"
+
+#: main.php:928
+msgid "Font Awesome 5"
+msgstr "Font Awesome 5"
+
+#: main.php:931
+msgid ""
+"Version of Font Awesome that will be used on front end. Please select "
+"version that you have in your theme"
+msgstr ""
+"Версия Font Awesome, которая будет использоваться в интерфейсе. Пожалуйста, "
+"выберите версию, которая в вашей теме"
+
+#: main.php:934
+msgid "Before Update:"
+msgstr "Перед обновлением:"
+
+#: main.php:938
+msgid "If you want to add own actions on filter activation, eg: alert('1');"
+msgstr ""
+"Если Вы хотите добавить собственные действия при активации фильтра, например:"
+" alert ('1');"
+
+#: main.php:941
+msgid "During Update:"
+msgstr "Во время обновления:"
+
+#: main.php:945
+msgid ""
+"If you want to add own actions right on products update. You can manipulate "
+"data here, try: data.products = 'Ha!';"
+msgstr ""
+"Если Вы хотите добавить собственные действия прямо на обновление продуктов. "
+"Вы можете манипулировать данными здесь, попробуйте: data.products = 'Ha!';"
+
+#: main.php:948
+msgid "After Update:"
+msgstr "После обновления:"
+
+#: main.php:952
+msgid "If you want to add own actions after products updated, eg: alert('1');"
+msgstr ""
+"Если Вы хотите добавить собственные действия после обновления продуктов, "
+"например: alert ('1');"
+
+#: main.php:978 templates/filters_information.php:2
 msgid "SETUP WIZARD"
 msgstr "МАСТЕР УСТАНОВКИ"
 
-#: templates/admin-settings.php:30
+#: main.php:980
 msgid "RUN SETUP WIZARD"
-msgstr "ЗАПУСТИТЬ МАСТЕР УСТАНОВКИ"
+msgstr "ЗАПУСТИТЬ МАСТЕР НАСТРОЙКИ"
 
-#: templates/admin-settings.php:32
+#: main.php:982
 msgid "Run it to setup plugin options step by step"
-msgstr "Запустите это для настройки опций плагина шаг за шагом"
+msgstr "Запустите его, чтобы шаг за шагом настроить параметры плагина"
 
-#: templates/admin-settings.php:60 includes/wizard.php:67
-msgid "Get selectors automatically (BETA)"
-msgstr "Получить селекторы автоматически (БЕТА)"
+#: main.php:991 main.php:1002
+msgid "Creating products"
+msgstr "Создание продуктов"
 
-#: templates/admin-settings.php:64 includes/wizard.php:74
-msgid "Please do not use it on live sites. If something went wrong write us."
-msgstr ""
-"Пожалуйста не используйте это на живом сайте. Если что-то пошло не так "
-"напишите в поддержку"
+#: main.php:992 main.php:1003
+msgid "Gettings selectors"
+msgstr "Получение селекторов"
 
-#: templates/admin-settings.php:122
+#: main.php:993 main.php:1004
+msgid "Removing products"
+msgstr "Удаление продуктов"
+
+#: main.php:994
+msgid "Error:"
+msgstr "Ошибка:"
+
+#: main.php:997
 msgid ""
-"Attribute Values count that will be displayed. Other values will be hidden "
-"and can be displayed by pressing the button. Option <strong>Hide \"Show/Hide "
-"value(s)\" button</strong> must be disabled"
+"IMPORTANT: It will generate some products on your site. Please disable all "
+"SEO plugins and plugins, that doing anything on product creating."
 msgstr ""
+"ВАЖНО: Он будет генерировать некоторые продукты на вашем сайте. Пожалуйста, "
+"отключите все плагины SEO и плагины, которые делают что-либо при создании "
+"продукта."
+
+#: main.php:998
+msgid ""
+"Script was runned, but page closed until end. Please stop it to prevent any "
+"problems on your site"
+msgstr ""
+"Скрипт запущен, не закрывайте страницу до окончания. Пожалуйста, остановите "
+"это, чтобы предотвратить любые проблемы на вашем сайте"
+
+#: main.php:999
+msgid "Auto-Selectors"
+msgstr "Авто-Селекторы"
+
+#: main.php:1000
+msgid "Stop"
+msgstr "Стоп"
+
+#: main.php:1001
+msgid "Steps:"
+msgstr "Шаг:"
+
+#: main.php:1007
+msgid "Get selectors automatically"
+msgstr "Получить селекторы автоматически"
+
+#: main.php:1009
+msgid "How it work:"
+msgstr "Как это работает:"
+
+#: main.php:1011
+msgid "Run Auto-selector"
+msgstr "Запустить автоматический выбор"
+
+#: main.php:1012
+msgid ""
+"Wait until end <strong style=\"color:red;\">do not close this page</strong>"
+msgstr ""
+"Дождитесь окончания <strong style = \"color: red;\"> не закрывайте эту "
+"страницу </strong>"
+
+#: main.php:1013
+msgid "Save settings with new selectors"
+msgstr "Сохранить настройки с новыми селекторами"
+
+#: main.php:1022 main.php:1036
+msgid "Purge Cache"
+msgstr "Очистить кэш"
+
+#: main.php:1038
+msgid "Clear attribute/custom taxonomy cache for plugin"
+msgstr "Очистить кэш атрибутов/пользовательских таксономий для плагина"
+
+#: main.php:1056
+msgid "Replace old widgets"
+msgstr "Заменить старые виджеты"
+
+#: main.php:1069
+msgid "Widget replaced"
+msgstr "Виджет заменен"
+
+#: main.php:1070
+msgid "Replacing widgets... Please wait"
+msgstr "Замена виджетов ... Пожалуйста, подождите"
+
+#: main.php:1074
+msgid "Replace widgets"
+msgstr "Заменить виджеты"
+
+#: main.php:1076
+msgid "No old widgets"
+msgstr "Нет старых виджетов"
+
+#: main.php:1079
+msgid "Replace deprecated widgets with new single filter widgets"
+msgstr "Заменить устаревшие виджеты фильтров новыми виджетами"
+
+#: main.php:1102
+msgid "Custom CSS Style:"
+msgstr "Пользовательский Стиль CSS:"
+
+#: main.php:1266 includes/paid.php:1649 templates/settings/design.php:161
+msgid "Checkbox"
+msgstr "Флажок"
+
+#: main.php:1267 includes/paid.php:1650 templates/settings/design.php:417
+msgid "Radio"
+msgstr "Переключатель"
+
+#: main.php:1268 includes/paid.php:1648
+msgid "Select"
+msgstr "Выбор"
+
+#: main.php:1269 includes/paid.php:1651 templates/settings/design.php:12
+#: templates/settings/design.php:27
+msgid "Color"
+msgstr "Цвет"
+
+#: main.php:1270 includes/paid.php:1652
+msgid "Image"
+msgstr "Картинки"
+
+#: main.php:1271 templates/settings/design.php:634
+msgid "Slider"
+msgstr "Слайдер"
+
+#: main.php:1272
+msgid "Tag cloud"
+msgstr "Облако Тегов"
+
+#: main.php:1547 templates/color.php:206 templates/checkbox.php:140
+#: templates/disabled/color.php:197 templates/disabled/checkbox.php:130
+msgid "Show value(s)"
+msgstr "Показать значение(я)"
+
+#: main.php:1548
+msgid "Hide value(s)"
+msgstr "Скрыть значение(я)"
+
+#: main.php:1549
+msgid "Unselect all"
+msgstr "Сбросить все"
+
+#: main.php:1550
+msgid "Nothing is selected"
+msgstr "Ничего не выбрано"
+
+#: main.php:1551
+msgid "products"
+msgstr "продукты"
+
+#: main.php:1639
+msgid "Activate WooCommerce plugin before"
+msgstr "Активируйте плагин WooCommerce перед "
+
+#: main.php:1645
+msgid "Update WooCommerce plugin"
+msgstr "Обновите плагин WooCommerce"
 
 #: templates/admin.php:2
 msgid ""
@@ -190,2093 +888,1951 @@ msgstr ""
 "Group</strong> вместо этого."
 
 #: templates/admin.php:3
-msgid "Create new filter from this one"
-msgstr ""
-
-#: templates/admin.php:4
-msgid ""
-"<strong>IMPORTANT</strong> new filter will be without page/category "
-"limitation."
-msgstr ""
-
-#: templates/admin.php:5
 #, php-format
 msgid "You can add filter to %s that has limitation"
-msgstr ""
+msgstr "Пользовательский CSS для выбранного блока"
 
-#: templates/admin.php:5
+#: templates/admin.php:3
 msgid "Filters group"
-msgstr ""
+msgstr "Группа фильтров"
 
-#: includes/new_filters.php:27 includes/new_filters.php:28
-msgid "Product Filter"
-msgstr ""
+#: templates/filters_group_simple.php:6 templates/filters_group.php:12
+msgid "Filters In Group"
+msgstr "Фильтры в группе"
 
-#: includes/new_filters.php:29
-msgctxt "Admin menu name"
-msgid "Product Filters"
-msgstr ""
+#: templates/filters_group_simple.php:16 templates/filters_group.php:22
+msgid "Add filter"
+msgstr "Добавить фильтр"
 
-#: includes/new_filters.php:30
-msgid "Add Filter"
-msgstr ""
+#: templates/filters_group_simple.php:17 includes/new_widget.php:283
+msgid "Create Filter"
+msgstr "Создать фильтр"
 
-#: includes/new_filters.php:31
-msgid "Add New Filter"
-msgstr ""
+#: templates/filters_group_simple.php:32 templates/filters_group_simple.php:57
+#: includes/new_widget.php:127 includes/new_widget.php:281
+#: includes/custom_post.php:50 includes/custom_post.php:522
+msgid "Edit"
+msgstr "Редактировать"
 
-#: includes/new_filters.php:33
-msgid "Edit Filter"
-msgstr ""
+#: templates/filters_group_simple.php:42 templates/filter_post_simple.php:153
+msgid "Need more options? Create it on "
+msgstr "Нужно больше опций? Создайте на странице "
 
-#: includes/new_filters.php:34
-msgid "New Filter"
-msgstr ""
-
-#: includes/new_filters.php:35
-msgid "View Filters"
-msgstr ""
-
-#: includes/new_filters.php:36
-msgid "View Filter"
-msgstr ""
-
-#: includes/new_filters.php:37
-msgid "Search Product Filters"
-msgstr ""
-
-#: includes/new_filters.php:38
-msgid "No Product Filters found"
-msgstr ""
-
-#: includes/new_filters.php:39
-msgid "No Product Filters found in trash"
-msgstr ""
-
-#: includes/new_filters.php:41
-msgid "This is where you can add Product Filters."
-msgstr ""
-
-#: includes/new_filters.php:58 includes/new_filters.php:59
-msgid "Product Filter Group"
-msgstr ""
-
-#: includes/new_filters.php:60
-msgctxt "Admin menu name"
-msgid "Product Filter Groups"
-msgstr ""
-
-#: includes/new_filters.php:61
-msgid "Add Filter Group"
-msgstr ""
-
-#: includes/new_filters.php:62
-msgid "Add New Filter Group"
-msgstr ""
-
-#: includes/new_filters.php:64
-msgid "Edit Filter Group"
-msgstr ""
-
-#: includes/new_filters.php:65
-msgid "New Filter Group"
-msgstr ""
-
-#: includes/new_filters.php:66
-msgid "View Filter Groups"
-msgstr ""
-
-#: includes/new_filters.php:67
-msgid "View Filter Group"
-msgstr ""
-
-#: includes/new_filters.php:68
-msgid "Search Product Filter Groups"
-msgstr ""
-
-#: includes/new_filters.php:69
-msgid "No Product Filter Groups found"
-msgstr ""
-
-#: includes/new_filters.php:70
-msgid "No Product Filter Groups found in trash"
-msgstr ""
-
-#: includes/new_filters.php:72
-msgid "This is where you can add Product Filter Groups."
-msgstr ""
-
-#: includes/new_filters.php:140
-msgid "Name"
-msgstr ""
-
-#: includes/new_filters.php:141
-msgid "Data"
-msgstr ""
-
-#: includes/new_filters.php:163 includes/new_filters.php:381
-msgid "Restore this item from the Trash"
-msgstr ""
-
-#: includes/new_filters.php:163 includes/new_filters.php:381
-msgid "Restore"
-msgstr ""
-
-#: includes/new_filters.php:165 includes/new_filters.php:383
-msgid "Move this item to the Trash"
-msgstr ""
-
-#: includes/new_filters.php:165 includes/new_filters.php:383
-msgid "Trash"
-msgstr ""
-
-#: includes/new_filters.php:167 includes/new_filters.php:385
-msgid "Delete this item permanently"
-msgstr ""
-
-#: includes/new_filters.php:167 includes/new_filters.php:285
-#: includes/new_filters.php:385
-msgid "Delete Permanently"
-msgstr ""
-
-#: includes/new_filters.php:193
-msgid "Widget type: "
-msgstr ""
-
-#: includes/new_filters.php:205 includes/new_filters.php:222
-msgid "Attribute: "
-msgstr ""
-
-#: includes/new_filters.php:207 includes/new_filters.php:231
-msgid "Custom Taxonomy: "
-msgstr ""
-
-#: includes/new_filters.php:247 includes/new_filters.php:425
-msgid "Save content"
-msgstr ""
-
-#: includes/new_filters.php:249
-msgid "FAQ"
-msgstr ""
-
-#: includes/new_filters.php:250 includes/new_filters.php:429
-msgid "Product Filter settings"
-msgstr ""
-
-#: includes/new_filters.php:255 includes/new_filters.php:434
-msgid "You need save it to get shortcode"
-msgstr ""
-
-#: includes/new_filters.php:287
-msgid "Move to Trash"
-msgstr ""
-
-#: includes/new_filters.php:297
-msgid "Save"
-msgstr ""
-
-#: includes/new_filters.php:297
-msgid "Save/update notice"
-msgstr ""
-
-#: includes/new_filters.php:351
-msgid "Group Name"
-msgstr ""
-
-#: includes/new_filters.php:352
-msgid "Filters"
-msgstr ""
-
-#: includes/new_filters.php:427
-msgid "Information"
-msgstr ""
-
-#: includes/new_filters.php:479
-msgid "Equal"
-msgstr ""
-
-#: includes/new_filters.php:480
-msgid "Not equal"
-msgstr ""
-
-#: includes/new_filters.php:483
-msgid "Equal or less"
-msgstr ""
-
-#: includes/new_filters.php:486
-msgid "Equal or more"
-msgstr ""
-
-#: includes/new_filters.php:547
-msgid "Select attribute"
-msgstr ""
-
-#: includes/new_widget.php:59
+#: templates/filters_group_simple.php:43 includes/new_widget.php:95
 msgid "Manage groups"
-msgstr ""
-
-#: includes/new_widget.php:62
-msgid "Group"
-msgstr ""
-
-#: includes/wizard.php:57
-msgid "IMPORTANT"
-msgstr ""
-
-#: includes/wizard.php:58
-msgid ""
-"Selectors can be different for each theme. Please setup correct selectors, "
-"otherwise plugin can doesn't work or some features can work incorrect"
-msgstr ""
-
-#: includes/wizard.php:59
-msgid ""
-"You can try to setup it via \"Auto-selectors\" and plugin will try get "
-"selectors for your theme, this take a while."
-msgstr ""
-
-#: includes/wizard.php:60
-msgid ""
-"Manually you can check selectors on your shop page or contact <strong>theme "
-"author</strong> with question about it."
-msgstr ""
-
-#: includes/wizard.php:61
-msgid ""
-"Also theme with Isotope/Masonry or any type of the image Lazy-Load required "
-"custom JavaScript. Please contact your <strong>theme author</strong> to get "
-"correct JavaScript code for it"
-msgstr ""
-
-#: includes/wizard.php:62
-msgid ""
-"JavaScript for some theme you can find in <a href=\"http://berocket."
-"com/docs/plugin/woocommerce-ajax-products-filter#theme_setup\" "
-"target=\"_blank\">BeRocket Documentation</a>"
-msgstr ""
-
-#: includes/wizard.php:111
-msgid "Removed elements"
-msgstr ""
-
-#: includes/wizard.php:113
-msgid ""
-"Select elements that your shop page doesn't have to prevent any errors with "
-"it"
-msgstr ""
-
-#: includes/wizard.php:117
-msgid "Products count"
-msgstr ""
-
-#: includes/wizard.php:122
-msgid "Products order by drop down"
-msgstr ""
-
-#: includes/wizard.php:127
-msgid "Pagination"
-msgstr ""
-
-#: includes/wizard.php:133
-msgid "You need some custom JavaScript/CSS code?"
-msgstr ""
-
-#: includes/wizard.php:135
-msgid "User custom CSS style"
-msgstr ""
-
-#: includes/wizard.php:137
-msgid "JavaScript Before Products Update"
-msgstr ""
-
-#: includes/wizard.php:139
-msgid "JavaScript On Products Update"
-msgstr ""
-
-#: includes/wizard.php:141
-msgid "JavaScript After Products Update"
-msgstr ""
-
-#: includes/wizard.php:158 includes/wizard.php:251 includes/wizard.php:392
-#: includes/wizard.php:470
-msgid "Next Step"
-msgstr ""
-
-#: includes/wizard.php:187
-msgid "SEO friendly URLs"
-msgstr ""
-
-#: includes/wizard.php:190
-msgid "Page URL will be changed after filtering."
-msgstr ""
-
-#: includes/wizard.php:195
-msgid "Without this option after page reload filter will be unselected"
-msgstr ""
-
-#: includes/wizard.php:196
-msgid "Also back button doesn't load previous selected filters"
-msgstr ""
-
-#: includes/wizard.php:200
-msgid "Use slug"
-msgstr ""
-
-#: includes/wizard.php:203
-msgid "Replace attribute values ID to Slug in SEO friendly URLs."
-msgstr ""
-
-#: includes/wizard.php:208
-msgid ""
-"<strong>IMPORTANT</strong> Please check that Slug for all attribute values "
-"without those symbols - _ +"
-msgstr ""
-
-#: includes/wizard.php:212
-msgid "Nice permalink URL"
-msgstr ""
-
-#: includes/wizard.php:215
-msgid "Use WordPress permalinks instead GET query"
-msgstr ""
-
-#: includes/wizard.php:220
-msgid ""
-"<strong>IMPORTANT</strong> WordPress permalinks must be set to Post "
-"name(Custom structure: /%postname%/ )"
-msgstr ""
-
-#: includes/wizard.php:221
-msgid ""
-"Not working on any custom page(Generated with any page builder or with help "
-"of shortcodes)"
-msgstr ""
-
-#: includes/wizard.php:222
-msgid "Not compatible with any other plugin that change WooCommerce permalinks"
-msgstr ""
-
-#: includes/wizard.php:288
-msgid "Presets"
-msgstr ""
-
-#: includes/wizard.php:290
-msgid "You can select some preset or setup each settings manually"
-msgstr ""
-
-#: includes/wizard.php:292
-msgid "Custom"
-msgstr ""
-
-#: includes/wizard.php:293
-msgid "Show all attributes (very fast)"
-msgstr ""
-
-#: includes/wizard.php:294
-msgid "Hide empty attributes by page (fast)"
-msgstr ""
-
-#: includes/wizard.php:295
-msgid "Hide empty attribute by filters (slow)"
-msgstr ""
-
-#: includes/wizard.php:301
-msgid "Show all attributes"
-msgstr ""
-
-#: includes/wizard.php:302
-msgid ""
-"Display all attribute values, including attribute values without products, "
-"but work realy fast. If you have a lot of products(2000 and more) then it "
-"will be better solution. But check that all attribute values in your shop "
-"has attribute"
-msgstr ""
-
-#: includes/wizard.php:307
-msgid "Hide empty attributes by page"
-msgstr ""
-
-#: includes/wizard.php:308
-msgid ""
-"Display only attribute values with products, but do not check selected "
-"filters. Any first selected filter will return products, but next filters "
-"can return \"no products\" message"
-msgstr ""
-
-#: includes/wizard.php:313
-msgid "Hide empty attribute by filters"
-msgstr ""
-
-#: includes/wizard.php:314
-msgid ""
-"Display only attribute values with products. Only attribute values with "
-"products will be used, also after any filtering. But it work slow, because "
-"recount products for each attribute. Can work slow on bad server and with a "
-"lot of products"
-msgstr ""
-
-#: includes/wizard.php:328
-msgid ""
-"Uses all attribute values in filters, uses also values without products for "
-"your shop. Can fix some problems with displaying filters on pages"
-msgstr ""
-
-#: includes/wizard.php:363
-msgid ""
-"Slow down site load speed, because uses additional query for each filter. "
-"Replaces attribute values using selected filters to use correct count of "
-"products for each value. \"Hide values without products\" option do not work "
-"without this option. Also uses to display correct products count with "
-"attribute values after filtering"
-msgstr ""
-
-#: includes/wizard.php:423
-msgid ""
-"Load first page after any filter changes. Can fix some problem with \"no "
-"products\" message after filtering"
-msgstr ""
-"Загружать первую страницу после любых изменений фильтров. Может исправить "
-"некоторые проблемы с сообщением \"нет продуктов\" после фильтрации"
-
-#: includes/wizard.php:441
-msgid ""
-"Show selected filters above products. Also you can use widget to show "
-"selected filters"
-msgstr ""
-"Отображать выбранные фильтры перед продуктами. Так же вы можете использовать "
-"виджет для отображения выбранных фильтров"
-
-#: includes/wizard.php:459
-msgid ""
-"Disable redirection, when search page return only one product<br>Enable it "
-"only if you will use filters on search page"
-msgstr ""
-"Отключить перенаправление, когда страница поиска возвращает только один "
-"продукт<br>Включайте только если вы будете использовать фильтре на странице "
-"поиска"
-
-#: includes/wizard.php:494
-msgid "Plugin ready to use"
-msgstr "Плагин готов к использованию"
-
-#: includes/wizard.php:496
-msgid "Widget"
-msgstr "Виджет"
-
-#: includes/wizard.php:497
-msgid "Now you can add widgets AJAX Product Filters to your side bar"
-msgstr ""
-"Теперь вы можете добавить  виджеты AJAX Product Filters в боковую панель"
-
-#: includes/wizard.php:498
-msgid ""
-"More information about widget options you can get on <a target=\"_blank\" "
-"href=\"http://berocket.com/docs/plugin/woocommerce-ajax-products-"
-"filter#widget\">BeRocket Documentation</a>"
-msgstr ""
-"Больше информации о настройках виджета вы можете получить на странице <a "
-"target=\"_blank\" href=\"http://berocket.com/docs/plugin/woocommerce-ajax-"
-"products-filter#widget\">BeRocket Documentation</a>"
-
-#: includes/wizard.php:502
-msgid "Open plugin settings"
-msgstr "Открыть настройки плагина"
-
-#: includes/widget.php:128
-msgid "AJAX Product Filters (Deprecated)"
-msgstr "AJAX Product Filters (Устаревший)"
-
-#: includes/widget.php:633
-msgid "1 star"
-msgstr "1 звезда"
-
-#: includes/widget.php:633
-msgid ""
-"<i class=\"fa fa-star\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-"
-"star-o\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-star-o\"></i>"
-msgstr ""
-"<i class=\"fa fa-star\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-"
-"star-o\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-star-o\"></i>"
-
-#: includes/widget.php:636
-msgid "2 stars"
-msgstr "2 звезды"
-
-#: includes/widget.php:636
-msgid ""
-"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
-"star-o\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-star-o\"></i>"
-msgstr ""
-"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
-"star-o\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-star-o\"></i>"
-
-#: includes/widget.php:639
-msgid "3 stars"
-msgstr "3звезды"
-
-#: includes/widget.php:639
-msgid ""
-"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
-"star\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-star-o\"></i>"
-msgstr ""
-"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
-"star\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-star-o\"></i>"
-
-#: includes/widget.php:642
-msgid "4 stars"
-msgstr "4 звезды"
-
-#: includes/widget.php:642
-msgid ""
-"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
-"star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-star-o\"></i>"
-msgstr ""
-"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
-"star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-star-o\"></i>"
-
-#: includes/widget.php:645
-msgid "5 stars"
-msgstr "5 звёзд"
-
-#: includes/widget.php:645
-msgid ""
-"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
-"star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i>"
-msgstr ""
-"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
-"star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i>"
-
-#: woocommerce-filters.php:384
-msgid "There are no products meeting your criteria"
-msgstr "Нет товаров, отвечающих вашим критериям"
-
-#: woocommerce-filters.php:447 templates/checkbox.php:117
-#: templates/color.php:114
-msgid "Show value(s)"
-msgstr "Показать значения"
-
-#: woocommerce-filters.php:448
-msgid "Hide value(s)"
-msgstr "Скрыть значения"
-
-#: woocommerce-filters.php:449
-msgid "Unselect all"
-msgstr "Убрать все фильтры"
-
-#: woocommerce-filters.php:450
-msgid "Nothing is selected"
-msgstr "Фильтры не выбраны"
-
-#: woocommerce-filters.php:451
-msgid "products"
-msgstr "продукты"
-
-#: woocommerce-filters.php:509
-msgid "Activate WooCommerce plugin before"
-msgstr "Сначала активируйте WooCommerce"
-
-#: woocommerce-filters.php:516
-msgid "Update WooCommerce plugin"
-msgstr "Обновите WooCommerce"
-
-#: woocommerce-filters.php:522 woocommerce-filters.php:527
-msgid "Product Filters Settings"
-msgstr "Настройки Фильтров для Продуктов"
-
-#: woocommerce-filters.php:522 woocommerce-filters.php:527
-msgid "Product Filters"
-msgstr "Фильтры для Продуктов"
-
-#: templates/filters_information.php:3 templates/filter_post.php:194
-#: templates/admin-settings.php:1402 templates/admin.php:200
-msgid "Advanced Settings"
-msgstr "Продвинутые Настройки"
-
-#: templates/filters_information.php:3 templates/filter_post.php:226
-#: templates/filter_post.php:413 templates/admin-settings.php:1434
-#: templates/admin-settings.php:1635 templates/admin.php:232
-#: templates/admin.php:420
-msgid "Hide this widget on load?"
-msgstr "Скрыть этот виджет при загрузке?"
-
-#: templates/filters_information.php:5 templates/filter_post.php:14
-#: templates/admin-settings.php:1252 templates/admin.php:12
-#: includes/new_filters.php:189
-msgid "Reset Products button"
-msgstr "Кнопка Обнуления фильтров"
-
-#: templates/filters_information.php:5 templates/filters_information.php:7
-#: templates/filter_post.php:10 templates/admin-settings.php:1248
-#: templates/admin.php:8
+msgstr "Управление группами"
+
+#: templates/filters_group_simple.php:44 templates/filter_post_simple.php:155
+msgid " page"
+msgstr " "
+
+#: templates/filters_group.php:4 includes/new_widget.php:102
+#: includes/new_widget.php:256
+msgid "Custom CSS class"
+msgstr "Пользовательский CSS класс"
+
+#: templates/filters_group.php:7
+msgid "use white space for multiple classes"
+msgstr "использовать пробел для нескольких классов"
+
+#: templates/filters_group.php:23 templates/filter_post_simple.php:154
+#: includes/new_widget.php:253
+msgid "Manage filters"
+msgstr "Управление фильтрами"
+
+#: templates/filters_group.php:40 templates/filters_group.php:60
+msgid "Width"
+msgstr "Ширина"
+
+#: templates/include_exclude_list.php:3
+msgid "Include / Exclude List"
+msgstr "список «Включения / Исключения»"
+
+#: templates/color_ajax.php:3
+msgid "Color pick"
+msgstr "Выбор цвета"
+
+#: templates/color_ajax.php:3
+msgid "Image pick"
+msgstr "Выбор изображения"
+
+#: templates/filter_post.php:12 templates/filters_information.php:7
+#: templates/filters_information.php:9
 msgid "Widget Type"
 msgstr "Тип Виджета"
 
-#: templates/filters_information.php:7 templates/filter_post.php:13
-#: templates/admin-settings.php:1251 templates/admin.php:11
-#: includes/new_filters.php:188
-msgid "Update Products button"
-msgstr "Кнопка Обновления Продуктов"
-
-#: templates/include_exclude_list.php:2
-msgid "Include / Exclude List"
-msgstr "Включая / Исключая список"
-
-#: templates/filter_post.php:12 templates/admin-settings.php:1250
-#: templates/admin.php:10 includes/new_filters.php:187
-#: includes/new_widget.php:138
+#: templates/filter_post.php:16 includes/new_widget.php:260
+#: includes/divi-builder.php:26 includes/custom_post.php:350
+#: includes/visual-composer.php:26 templates/settings/design.php:843
+#: addons/deprecated_compat/widget.php:263
+#: includes/filters/display_widget.php:235
 msgid "Filter"
 msgstr "Фильтр"
 
-#: templates/filter_post.php:15 templates/admin-settings.php:1253
-#: templates/admin.php:13 includes/new_filters.php:190
-msgid "Selected Filters area"
-msgstr "Область с Выбранными Фильтрами"
-
-#: templates/filter_post.php:16 templates/admin-settings.php:1254
-#: templates/admin.php:14 includes/new_filters.php:191
-msgid "Search Box"
-msgstr "Блок Поиска"
-
-#: templates/filter_post.php:22 templates/filter_post.php:464
-#: templates/admin-settings.php:1267 templates/admin-settings.php:1683
-#: templates/admin.php:27 templates/admin.php:471
+#: templates/filter_post.php:36 templates/filter_post_simple.php:18
+#: includes/paid.php:1621
 msgid "Filter By"
 msgstr "Фильтровать по"
 
-#: templates/filter_post.php:24 templates/filter_post.php:37
-#: templates/filter_post.php:457 templates/filter_post.php:466
-#: templates/filter_post.php:472 templates/admin-settings.php:1269
-#: templates/admin-settings.php:1282 templates/admin-settings.php:1676
-#: templates/admin-settings.php:1685 templates/admin-settings.php:1691
-#: templates/admin.php:29 templates/admin.php:42 templates/admin.php:464
-#: templates/admin.php:473 templates/admin.php:479 includes/new_filters.php:197
+#: templates/filter_post.php:41 templates/filter_post.php:83
+#: templates/filter_post_simple.php:23 templates/filter_post_simple.php:65
+#: includes/custom_post.php:360 includes/custom_post.php:437
+#: includes/paid.php:1614 includes/paid.php:1623 includes/paid.php:1629
+#: addons/deprecated_compat/widget.php:171
+#: includes/filters/display_widget.php:161
 msgid "Attribute"
-msgstr "Аттрибуты"
+msgstr "Атрибуты"
 
-#: templates/filter_post.php:25 templates/admin-settings.php:1270
-#: templates/admin.php:30 includes/new_filters.php:224
-msgid "Stock status"
-msgstr "Наличие"
-
-#: templates/filter_post.php:26 templates/admin-settings.php:1271
-#: templates/admin.php:31 includes/new_filters.php:226
-msgid "Product sub-categories"
-msgstr "Подкатегории Продуктов"
-
-#: templates/filter_post.php:27 templates/filter_post.php:467
-#: templates/admin-settings.php:1272 templates/admin-settings.php:1686
-#: templates/admin.php:32 templates/admin.php:474 includes/new_filters.php:198
-#: includes/new_filters.php:209 includes/new_filters.php:228
+#: templates/filter_post.php:45 templates/filter_post_simple.php:27
+#: includes/custom_post.php:361 includes/custom_post.php:373
+#: includes/custom_post.php:392 includes/custom_post.php:441
+#: includes/paid.php:1624 addons/deprecated_compat/widget.php:175
+#: includes/filters/display_widget.php:165
 msgid "Tag"
 msgstr "Теги"
 
-#: templates/filter_post.php:28 templates/filter_post.php:468
-#: templates/admin-settings.php:1273 templates/admin-settings.php:1687
-#: templates/admin.php:33 templates/admin.php:475 includes/new_filters.php:199
-msgid "Custom Taxonomy"
-msgstr "Пользовательская таксономия"
+#: templates/filter_post.php:49 templates/filter_post_simple.php:31
+#: includes/custom_post.php:445 includes/paid.php:435
+#: addons/deprecated_compat/widget.php:179
+#: includes/filters/display_widget.php:169
+msgid "Product Category"
+msgstr "Категория продукта"
 
-#: templates/filter_post.php:29 templates/admin-settings.php:1274
-#: templates/admin.php:34 includes/new_filters.php:233
-msgid "Date"
-msgstr "Дата"
+#: templates/filter_post.php:56 templates/filter_post_simple.php:38
+#: includes/custom_post.php:403 includes/custom_post.php:452
+#: addons/deprecated_compat/widget.php:186
+#: includes/filters/display_widget.php:176
+msgid "Rating"
+msgstr "Рейтинг"
 
-#: templates/filter_post.php:30 templates/admin-settings.php:1275
-#: templates/admin.php:35 includes/new_filters.php:235
-msgid "Sale"
-msgstr "Распродажа"
-
-#: templates/filter_post.php:39 templates/admin-settings.php:1284
-#: templates/admin.php:44 includes/new_filters.php:217
+#: templates/filter_post.php:85 templates/filter_post_simple.php:67
+#: includes/custom_post.php:381
 msgid "Price"
 msgstr "Цена"
 
-#: templates/filter_post.php:46 templates/filter_post.php:480
-#: templates/admin-settings.php:1291 templates/admin-settings.php:1699
-#: templates/admin.php:51 templates/admin.php:487
+#: templates/filter_post.php:92 templates/filter_post_simple.php:74
+#: includes/paid.php:1637
 msgid "Custom Taxonomies"
 msgstr "Пользовательские таксономии"
 
-#: templates/filter_post.php:55 templates/filter_post.php:489
-#: templates/admin-settings.php:1300 templates/admin-settings.php:1708
-#: templates/admin.php:60 templates/admin.php:496
+#: templates/filter_post.php:115 templates/filter_post_simple.php:97
+#: includes/paid.php:1646
 msgid "Type"
 msgstr "Тип"
 
-#: templates/filter_post.php:78 templates/admin-settings.php:1307
-#: templates/admin.php:83
+#: templates/filter_post.php:162 templates/filter_post_simple.php:143
 msgid "Operator"
 msgstr "Оператор"
 
-#: templates/filter_post.php:85 templates/admin-settings.php:1314
-#: templates/admin.php:90
+#: templates/filter_post.php:169
 msgid "Values Order"
 msgstr "Сортировка Значений"
 
-#: templates/filter_post.php:87 templates/filter_post.php:339
-#: templates/admin-settings.php:404 templates/admin-settings.php:512
-#: templates/admin-settings.php:526 templates/admin-settings.php:531
-#: templates/admin-settings.php:768 templates/admin-settings.php:782
-#: templates/admin-settings.php:787 templates/admin-settings.php:1000
-#: templates/admin-settings.php:1005 templates/admin-settings.php:1013
-#: templates/admin-settings.php:1024 templates/admin-settings.php:1029
-#: templates/admin-settings.php:1069 templates/admin-settings.php:1074
-#: templates/admin-settings.php:1082 templates/admin-settings.php:1090
-#: templates/admin-settings.php:1095 templates/admin-settings.php:1103
-#: templates/admin-settings.php:1108 templates/admin-settings.php:1316
-#: templates/admin-settings.php:1546 templates/admin.php:92
-#: templates/admin.php:345
-msgid "Default"
-msgstr "По умолчанию"
+#: templates/filter_post.php:172
+msgid "Alpha"
+msgstr "По алфавиту"
 
-#: templates/filter_post.php:130 templates/admin-settings.php:1337
-#: templates/admin.php:135
+#: templates/filter_post.php:172
+msgid "Numeric"
+msgstr "Числовая"
+
+#: templates/filter_post.php:178
+msgid "Order Type"
+msgstr "Тип сортировки"
+
+#: templates/filter_post.php:180
+msgid "Ascending"
+msgstr "По возрастанию"
+
+#: templates/filter_post.php:180
+msgid "Descending"
+msgstr "По убывания"
+
+#: templates/filter_post.php:222
+msgid "Ranges: 1,100,200,1000"
+msgstr "Диапазон: 1,100,200,1000"
+
+#: templates/filter_post.php:225
+msgid "1.00-100.00, 101.00-200.00, 201.00-1000.00"
+msgstr "1.00-100.00, 101.00-200.00, 201.00-1000.00"
+
+#: templates/filter_post.php:226
+msgid "1.00-100.00, 100.00-200.00, 200.00-1000.00"
+msgstr "1.00-100.00, 100.00-200.00, 200.00-1000.00"
+
+#: templates/filter_post.php:227
+msgid "1.00-99.99, 100.00-199.99, 200.00-999.99"
+msgstr "1.00-99.99, 100.00-199.99, 200.00-999.99"
+
+#: templates/filter_post.php:239
 msgid "Hide first and last ranges without products"
 msgstr "Скрыть первые и последние диапазоны без продуктов"
 
-#: templates/filter_post.php:134 templates/admin.php:139
+#: templates/filter_post.php:244
+msgid "Show last range to the infinity"
+msgstr "Заменить последнее значение диапазона знаком бесконечности"
+
+#: templates/filter_post.php:248
+msgid "Infinity text"
+msgstr "Текст вместо знака бесконечности"
+
+#: templates/filter_post.php:263 templates/filter_post.php:429
+msgid "Disable multiple selection?"
+msgstr "Отключить множественный выбор"
+
+#: templates/filter_post.php:269
 msgid "Text before price:"
 msgstr "Текст перед ценой: "
 
-#: templates/filter_post.php:136 templates/admin.php:141
+#: templates/filter_post.php:273
 msgid "after:"
 msgstr "после: "
 
-#: templates/filter_post.php:143 templates/admin-settings.php:1356
-#: templates/admin.php:148
+#: templates/filter_post.php:280
+msgid "Enable Slider Inputs"
+msgstr "Включить Поля Слайдера"
+
+#: templates/filter_post.php:284
 msgid "Use custom values(comma separated):"
 msgstr "Использовать пользовательские значения (разделяйте запятой): "
 
-#: templates/filter_post.php:145 templates/admin-settings.php:1358
-#: templates/admin.php:150
+#: templates/filter_post.php:286
 msgid "* use numeric values only, strings will not work as expected"
 msgstr ""
 "* используйте только числовые значения, текстовые значения не работают как "
 "ожидается"
 
-#: templates/filter_post.php:152 templates/admin-settings.php:1365
-#: templates/admin.php:157
+#: templates/filter_post.php:294
 msgid "Use current product category to get child"
 msgstr "Использовать текущую категорию, что бы получить дочерние"
 
-#: templates/filter_post.php:156 templates/admin-settings.php:1394
-#: templates/admin.php:161
+#: templates/filter_post.php:299
 msgid "Deep level:"
 msgstr "Уровень глубины: "
 
-#: templates/filter_post.php:161 templates/admin-settings.php:1808
-#: templates/admin.php:166 templates/admin.php:620
+#: templates/filter_post.php:305
 msgid "Product Category:"
 msgstr "Категория Продуктов: "
 
-#: templates/filter_post.php:169 templates/admin-settings.php:1377
-#: templates/admin.php:174
+#: templates/filter_post.php:313
 msgid "None"
 msgstr "Нет"
 
-#: templates/filter_post.php:202 templates/admin-settings.php:1410
-#: templates/admin.php:208
-msgid "Use default values for slider"
-msgstr "Использовать установленные значения для слайдера"
-
-#: templates/filter_post.php:211 templates/admin-settings.php:289
-#: templates/admin-settings.php:1419 templates/admin.php:217
-msgid "Thousand Separator"
-msgstr "Разделитель тысяч"
-
-#: templates/filter_post.php:215 templates/admin-settings.php:295
-#: templates/admin-settings.php:1423 templates/admin.php:221
-msgid "Decimal Separator"
-msgstr "Десятичный разделитель"
-
-#: templates/filter_post.php:219 templates/admin-settings.php:301
-#: templates/admin-settings.php:1427 templates/admin.php:225
-msgid "Number Of Decimal"
-msgstr "Количество десятичных чисел"
-
-#: templates/filter_post.php:230 templates/admin-settings.php:1438
-#: templates/admin.php:236
-msgid "Show product count per attributes?"
-msgstr "Отображать количество продуктов возле атрибутов?"
-
-#: templates/filter_post.php:234 templates/filter_post.php:407
-#: templates/admin-settings.php:1442 templates/admin-settings.php:1629
-#: templates/admin.php:240 templates/admin.php:414
-msgid "Hide collapse arrow?"
-msgstr "Спрятать стрелку для сворачивания виджета?"
-
-#: templates/filter_post.php:238 templates/admin-settings.php:1446
-#: templates/admin.php:244
-msgid "Hide all child values?"
-msgstr "Скрыть все дочерние значения?"
-
-#: templates/filter_post.php:242 templates/admin.php:248
-msgid "Display value with color/image box?"
-msgstr "Отображать значение возле цвета/изображения?"
-
-#: templates/filter_post.php:245 templates/admin-settings.php:1453
-#: templates/admin.php:251
-msgid "Values per row"
-msgstr "Значений в строке"
-
-#: templates/filter_post.php:254 templates/admin-settings.php:1462
-#: templates/admin.php:260
-msgid "Icons"
-msgstr "Иконки"
-
-#: templates/filter_post.php:256 templates/admin-settings.php:1464
-#: templates/admin.php:262
-msgid "Title Icons"
-msgstr "Иконки названия"
-
-#: templates/filter_post.php:258 templates/filter_post.php:264
-#: templates/filter_post.php:519 templates/admin-settings.php:1466
-#: templates/admin-settings.php:1472 templates/admin-settings.php:1738
-#: templates/admin.php:264 templates/admin.php:270 templates/admin.php:526
-msgid "Before"
-msgstr "Перед"
-
-#: templates/filter_post.php:259 templates/filter_post.php:265
-#: templates/filter_post.php:520 templates/admin-settings.php:1467
-#: templates/admin-settings.php:1473 templates/admin-settings.php:1739
-#: templates/admin.php:265 templates/admin.php:271 templates/admin.php:527
-msgid "After"
-msgstr "После"
-
-#: templates/filter_post.php:262 templates/admin-settings.php:1470
-#: templates/admin.php:268
-msgid "Value Icons"
-msgstr "Иконки значений"
-
-#: templates/filter_post.php:271 templates/admin-settings.php:1479
-#: templates/admin.php:277
-msgid "Description"
-msgstr "Описание"
-
-#: templates/filter_post.php:275 templates/admin-settings.php:1483
-#: templates/admin.php:281
-msgid "CSS Class"
-msgstr "CSS класс"
-
-#: templates/filter_post.php:277 templates/admin-settings.php:1485
-#: templates/admin.php:283
-msgid "(use white space for multiple classes)"
-msgstr "(используйте пробел для разделения классов)"
-
-#: templates/filter_post.php:282 templates/admin-settings.php:1489
-#: templates/admin.php:288
-msgid "Tags Cloud Height:"
-msgstr "Высота Облака Тегов: "
-
-#: templates/filter_post.php:286 templates/admin-settings.php:1493
-#: templates/admin.php:292
-msgid "Min Font Size:"
-msgstr "Минимальный Размер Шрифта: "
-
-#: templates/filter_post.php:290 templates/admin-settings.php:1497
-#: templates/admin.php:296
-msgid "Max Font Size:"
-msgstr "Максимальный Размер Шрифта: "
-
-#: templates/filter_post.php:294 templates/admin-settings.php:1501
-#: templates/admin.php:300
-msgid "Max Tags Count:"
-msgstr "Максимальное Количество Тегов: "
-
-#: templates/filter_post.php:302 templates/admin-settings.php:1509
-#: templates/admin.php:308
-msgid "Use min price"
-msgstr "Использовать пользовательскую минимальную цену"
-
-#: templates/filter_post.php:311 templates/admin-settings.php:1518
-#: templates/admin.php:317
-msgid "Use max price"
-msgstr "Использовать пользовательскую максимальную цену"
-
-#: templates/filter_post.php:320 templates/admin-settings.php:1527
-#: templates/admin.php:326
-msgid "Filter Box Height:"
-msgstr "Высота Блока с Фильтром"
-
-#: templates/filter_post.php:324 templates/admin-settings.php:1531
-#: templates/admin.php:330
-msgid "Scroll Theme:"
-msgstr "Тема для Полосы Прокрутки: "
-
-#: templates/filter_post.php:337 templates/admin-settings.php:1544
-#: templates/admin.php:343
-msgid "Child/Parent Limitation"
-msgstr "Родительские ограничения"
-
-#: templates/filter_post.php:340 templates/admin-settings.php:1547
-#: templates/admin.php:346
-msgid "Child Count"
-msgstr "Количество дочерних "
-
-#: templates/filter_post.php:341 templates/admin-settings.php:1548
-#: templates/admin.php:347
-msgid "Parent"
-msgstr "Родитель"
-
-#: templates/filter_post.php:342 templates/filter_post.php:372
-#: templates/admin-settings.php:1549 templates/admin-settings.php:1583
-#: templates/admin.php:348 templates/admin.php:378
-msgid "Child"
-msgstr "Наследник"
-
-#: templates/filter_post.php:346 templates/admin-settings.php:1553
-#: templates/admin.php:352
-msgid "Child depth"
-msgstr "Глубина наследствия"
-
-#: templates/filter_post.php:348 templates/filter_post.php:382
-#: templates/admin-settings.php:1555 templates/admin-settings.php:1593
-#: templates/admin.php:354 templates/admin.php:388
-msgid "\"No values\" messages"
-msgstr "Сообщение \"Нет значений\""
-
-#: templates/filter_post.php:350 templates/filter_post.php:386
-#: templates/admin-settings.php:1557 templates/admin-settings.php:1597
-#: templates/admin.php:356 templates/admin.php:392
-msgid "\"Select previous\" messages"
-msgstr "Сообщение \"Выберете предыдущее\""
-
-#: templates/filter_post.php:352 templates/admin-settings.php:1559
-#: templates/admin.php:358
-msgid "\"No Products\" messages"
-msgstr "Сообщение \"Нет продуктов\""
-
-#: templates/filter_post.php:356 templates/admin-settings.php:1571
-#: templates/admin.php:362
-msgid "Child count"
-msgstr "Количество дочерних"
-
-#: templates/filter_post.php:374 templates/filter_post.php:460
-#: templates/admin-settings.php:1261 templates/admin-settings.php:1585
-#: templates/admin-settings.php:1679 templates/admin.php:21
-#: templates/admin.php:380 templates/admin.php:467
-msgid "Title"
-msgstr "Название"
-
-#: templates/filter_post.php:378 templates/admin-settings.php:1589
-#: templates/admin.php:384
-msgid "\"No products\" messages"
-msgstr "Сообщение \"Нет продуктов\""
-
-#: templates/filter_post.php:401 templates/admin-settings.php:1623
-#: templates/admin.php:408
-msgid "Show if nothing is selected"
-msgstr "Показать если ничего не выбрано"
-
-#: templates/filter_post.php:419 templates/admin-settings.php:1641
-#: templates/admin.php:426
-msgid "Attributes"
-msgstr "Атрибуты"
-
-#: templates/filter_post.php:422 templates/admin-settings.php:1643
-#: templates/admin.php:429
-msgid "URL to search"
-msgstr "Ссылка для поиска"
-
-#: templates/filter_post.php:424 templates/admin-settings.php:1645
-#: templates/admin.php:431
-msgid "Shop page"
-msgstr "Страница магазина"
-
-#: templates/filter_post.php:425 templates/admin-settings.php:1646
-#: templates/admin.php:432
-msgid "Category page"
-msgstr "Страница категории"
-
-#: templates/filter_post.php:426 templates/admin-settings.php:1647
-#: templates/admin.php:433
-msgid "URL"
-msgstr "Ссылка"
-
-#: templates/filter_post.php:430 templates/admin-settings.php:1650
-#: templates/admin.php:437
-msgid "Category"
-msgstr "Категория"
-
-#: templates/filter_post.php:440 templates/admin-settings.php:1659
-#: templates/admin.php:447
-msgid "URL for search"
-msgstr "Ссылка для поиска"
-
-#: templates/filter_post.php:444 templates/admin-settings.php:1663
-#: templates/admin.php:451
-msgid "Attributes count"
-msgstr "Количество атрибутов"
-
-#: templates/filter_post.php:491 templates/admin-settings.php:1710
-#: templates/admin.php:498
-msgid "Select"
-msgstr "Выпадающий список"
-
-#: templates/filter_post.php:492 templates/admin-settings.php:508
-#: templates/admin-settings.php:1711 templates/admin.php:499
-msgid "Checkbox"
-msgstr "Флажок"
-
-#: templates/filter_post.php:493 templates/admin-settings.php:764
-#: templates/admin-settings.php:1712 templates/admin.php:500
-msgid "Radio"
-msgstr "Переключатель"
-
-#: templates/filter_post.php:494 templates/admin-settings.php:359
-#: templates/admin-settings.php:374 templates/admin-settings.php:1713
-#: templates/admin.php:501
-msgid "Color"
-msgstr "Цвет"
-
-#: templates/filter_post.php:495 templates/admin-settings.php:1714
-#: templates/admin.php:502
-msgid "Image"
-msgstr "Изображение"
-
-#: templates/filter_post.php:507 templates/admin-settings.php:1726
-#: templates/admin.php:514
-msgid "Styles"
-msgstr "Стили"
-
-#: templates/filter_post.php:510 templates/admin-settings.php:1729
-#: templates/admin.php:517
-msgid "Elements position"
-msgstr "Позиция элементов"
-
-#: templates/filter_post.php:512 templates/admin-settings.php:1731
-#: templates/admin.php:519
-msgid "Vertical"
-msgstr "Вертикально"
-
-#: templates/filter_post.php:513 templates/admin-settings.php:1732
-#: templates/admin.php:520
-msgid "Horizontal"
-msgstr "Горизонтально"
-
-#: templates/filter_post.php:517 templates/admin-settings.php:1736
-#: templates/admin.php:524
-msgid "Search button position"
-msgstr "Позиция кнопки поиска"
-
-#: templates/filter_post.php:521 templates/admin-settings.php:1740
-#: templates/admin.php:528
-msgid "Before and after"
-msgstr "До и после"
-
-#: templates/filter_post.php:525 templates/admin-settings.php:1744
-#: templates/admin.php:532
-msgid "Search button text"
-msgstr "Текст на кнопке поиска"
-
-#: templates/filter_post.php:529 templates/admin-settings.php:1052
-#: templates/admin-settings.php:1748 templates/admin.php:536
-msgid "Background color"
-msgstr "Цвет фона"
-
-#: templates/filter_post.php:534 templates/admin-settings.php:1753
-#: templates/admin.php:541
-msgid "Background transparency"
-msgstr "Прозрачность фона"
-
-#: templates/filter_post.php:538 templates/admin-settings.php:1755
-#: templates/admin.php:545
-msgid "100%"
-msgstr "100%"
-
-#: templates/filter_post.php:539 templates/admin-settings.php:1756
-#: templates/admin.php:546
-msgid "90%"
-msgstr "90%"
-
-#: templates/filter_post.php:540 templates/admin-settings.php:1757
-#: templates/admin.php:547
-msgid "80%"
-msgstr "80%"
-
-#: templates/filter_post.php:541 templates/admin-settings.php:1758
-#: templates/admin.php:548
-msgid "70%"
-msgstr "70%"
-
-#: templates/filter_post.php:542 templates/admin-settings.php:1759
-#: templates/admin.php:549
-msgid "60%"
-msgstr "60%"
-
-#: templates/filter_post.php:543 templates/admin-settings.php:1760
-#: templates/admin.php:550
-msgid "50%"
-msgstr "50%"
-
-#: templates/filter_post.php:544 templates/admin-settings.php:1761
-#: templates/admin.php:551
-msgid "40%"
-msgstr "40%"
-
-#: templates/filter_post.php:545 templates/admin-settings.php:1762
-#: templates/admin.php:552
-msgid "30%"
-msgstr "30%"
-
-#: templates/filter_post.php:546 templates/admin-settings.php:1763
-#: templates/admin.php:553
-msgid "20%"
-msgstr "20%"
-
-#: templates/filter_post.php:547 templates/admin-settings.php:1764
-#: templates/admin.php:554
-msgid "10%"
-msgstr "10%"
-
-#: templates/filter_post.php:548 templates/admin-settings.php:1765
-#: templates/admin.php:555
-msgid "0%"
-msgstr "0%"
-
-#: templates/filter_post.php:559 templates/admin-settings.php:1769
-#: templates/admin.php:566
-msgid "Button background color"
-msgstr "Цвет фона кнопки"
-
-#: templates/filter_post.php:564 templates/admin-settings.php:1774
-#: templates/admin.php:571
-msgid "Button background color on mouse over"
-msgstr "Цвет фона кнопки при наведении"
-
-#: templates/filter_post.php:569 templates/admin-settings.php:1779
-#: templates/admin.php:576
-msgid "Button text color"
-msgstr "Цвет текста на кнопке"
-
-#: templates/filter_post.php:574 templates/admin-settings.php:1784
-#: templates/admin.php:581
-msgid "Button text color on mouse over"
-msgstr "Цвет текста на кнопке при наведении"
-
-#: templates/filter_post.php:596 templates/admin-settings.php:1792
-#: templates/admin.php:604
-msgid "Widget Output Limitations"
-msgstr "Ограничение Отображения Виджета"
-
-#: templates/filter_post.php:601 templates/admin-settings.php:1797
-#: templates/admin.php:609
-msgid "Hide this widget on mobile?"
-msgstr "Скрыть этот виджет на мобильных устройствах?"
-
-#: templates/filter_post.php:605 templates/admin-settings.php:1864
-#: templates/admin.php:690
-msgid "Product Category Value Limitation"
-msgstr "Ограничение Отображения по Категориям"
-
-#: templates/filter_post.php:610 templates/admin-settings.php:216
-#: templates/admin-settings.php:1869 templates/admin.php:695
-msgid "Disable"
-msgstr "Выключено"
-
-#: templates/filter_post.php:640 templates/admin-settings.php:1887
-#: templates/admin.php:725
-msgid "Disabled"
-msgstr "Отключено"
-
-#: templates/filter_post.php:641 templates/admin-settings.php:1888
-#: templates/admin.php:726
-msgid "Display only"
-msgstr "Отображать только"
-
-#: templates/filter_post.php:642 templates/admin-settings.php:1889
-#: templates/admin.php:727 includes/functions.php:2134
-msgid "Remove"
-msgstr "Удалить"
-
-#: templates/filter_post.php:644 templates/admin-settings.php:1891
-#: templates/admin.php:729
-msgid "values selected in Include / Exclude List"
-msgstr "значения выбранные в Включая / Исключая списке"
-
-#: templates/color_ajax.php:2
-msgid "Color pick"
-msgstr "Выбор цвета"
-
-#: templates/color_ajax.php:2
-msgid "Image pick"
-msgstr "Выбор изображения"
-
-#: templates/admin-settings.php:19
-msgid "General"
-msgstr "Основные"
-
-#: templates/admin-settings.php:20
-msgid "Design"
-msgstr "Дизайн"
-
-#: templates/admin-settings.php:21 templates/admin-settings.php:247
-msgid "JavaScript"
-msgstr "JavaScript"
-
-#: templates/admin-settings.php:22
-msgid "Custom CSS"
-msgstr "Пользовательский CSS"
-
-#: templates/admin-settings.php:23 includes/new_filters.php:142
-#: includes/new_filters.php:248 includes/new_filters.php:353
-#: includes/new_filters.php:426
-msgid "Shortcode"
-msgstr "Shortcode"
-
-#: templates/admin-settings.php:37
-msgid "\"No Products\" message"
-msgstr "Сообщение \"Нет продуктов\""
-
-#: templates/admin-settings.php:41
-msgid "Text that will be shown if no products found"
-msgstr "Текст, который будет отображаться если продукты не найдены"
-
-#: templates/admin-settings.php:45
-msgid "Add position relative to products holder"
-msgstr "Добавить position:relative для блока с продуктами"
-
-#: templates/admin-settings.php:48
-msgid "Fix for correct displaying loading block"
-msgstr "Исправления для корректного отображения блока загрузки"
-
-#: templates/admin-settings.php:52
-msgid "\"No Products\" class"
-msgstr "Класс для блока \"Нет продуктов\""
-
-#: templates/admin-settings.php:56
-msgid "Add class and use it to style \"No Products\" box"
-msgstr ""
-"Добавьте класс и используйте его для стилизации блока \"Нет продуктов\""
-
-#: templates/admin-settings.php:69
-msgid "Products selector"
-msgstr "Селектор продуктов"
-
-#: templates/admin-settings.php:73 templates/admin-settings.php:105
-msgid ""
-"Selector for tag that is holding products. Don't change this if you don't "
-"know what it is"
-msgstr ""
-"Селектор для блока со всеми продуктами. Не меняйте, если не знаете что это"
-
-#: templates/admin-settings.php:77 includes/wizard.php:95
-msgid "Product count selector"
-msgstr "Селектор количества продуктов"
-
-#: templates/admin-settings.php:81
-msgid ""
-"Selector for tag with product result count(\"Showing 1–8 of 61 results\"). "
-"Don't change this if you don't know what it is"
-msgstr ""
-"Селектор для блока с количеством продуктов (\"Отображается 1-8 из 61 "
-"результата\"). Не меняйте, если не знаете что это"
-
-#: templates/admin-settings.php:84
-msgid "Remove product count"
-msgstr "Убрать количество продуктов"
-
-#: templates/admin-settings.php:89 includes/wizard.php:103
-msgid "Product order by selector"
-msgstr "Селектор для блока с сортировкой продуктов"
-
-#: templates/admin-settings.php:93
-msgid ""
-"Selector for order by form with drop down menu. Don't change this if you "
-"don't know what it is"
-msgstr ""
-"Селектор для блока сортировки продуктов, форма с выпадающим списком. Не "
-"меняйте, если не знаете что это"
-
-#: templates/admin-settings.php:96
-msgid "Remove order by drop down menu"
-msgstr "Убрать выпадающий список для сортировки"
-
-#: templates/admin-settings.php:101
-msgid "Products pagination selector"
-msgstr "Селектор для разбивки на страницы"
-
-#: templates/admin-settings.php:108
-msgid "Remove pagination"
-msgstr "Убрать разбивку на страницы"
-
-#: templates/admin-settings.php:113
-msgid "Products Per Page"
-msgstr "Продуктов на страницу"
-
-#: templates/admin-settings.php:126
-msgid "Sorting control"
-msgstr "Управлять сортировкой"
-
-#: templates/admin-settings.php:129
-msgid "Take control over WooCommerce's sorting selectbox?"
-msgstr "Взять контроль над блоком сортировки продуктов WooCommerce?"
-
-#: templates/admin-settings.php:133
-msgid "SEO friendly urls"
-msgstr "SEO дружелюбные ссылки"
-
-#: templates/admin-settings.php:136
-msgid ""
-"If this option is on url will be changed when filter is selected/changed"
-msgstr "Если опция включена, то ссылка будет меняться при выборе фильтров"
-
-#: templates/admin-settings.php:138
-msgid "Use slug in URL"
-msgstr "Использовать Ярлыки в ссылках"
-
-#: templates/admin-settings.php:140
-msgid "Nice URL"
-msgstr "Красивые ссылки"
-
-#: templates/admin-settings.php:141
-msgid ""
-"Works only with SEO friendly urls. WordPress permalinks must be set to Post "
-"name(Custom structure: /%postname%/ )"
-msgstr ""
-"Работает только с SEO дружелюбные ссылки. WordPress Постоянные ссылки должны "
-"быть установлены как Название записи( Произвольно: /%postname%/ )"
-
-#: templates/admin-settings.php:145
-msgid "Turn all filters off"
-msgstr "Выключить все фильтры"
-
-#: templates/admin-settings.php:148
-msgid ""
-"If you want to hide filters without losing current configuration just turn "
-"them off"
-msgstr ""
-"Если вы хотите убрать все фильтры без потери данных просто отключите их"
-
-#: templates/admin-settings.php:152 includes/wizard.php:318
-msgid "Show all values"
-msgstr "Показать все значения"
-
-#: templates/admin-settings.php:155 includes/wizard.php:322
-msgid "Check if you want to show not used attribute values too"
-msgstr "Включите если вы хотите показать не используемые значения тоже"
-
-#: templates/admin-settings.php:159 includes/wizard.php:332
-msgid "Hide values"
-msgstr "Спрятать значения"
-
-#: templates/admin-settings.php:162 includes/wizard.php:336
-msgid "Hide values without products"
-msgstr "Спрятать значения без продуктов"
-
-#: templates/admin-settings.php:164 includes/wizard.php:340
-msgid "Hide selected values"
-msgstr "Спрятать выбранные значения"
-
-#: templates/admin-settings.php:166 includes/wizard.php:344
-msgid "Hide empty widget"
-msgstr "Прятать пустые виджеты"
-
-#: templates/admin-settings.php:168 includes/wizard.php:348
-msgid "Hide \"Show/Hide value(s)\" button"
-msgstr "Прятать кнопку \"Показать/Скрыть значения\""
-
-#: templates/admin-settings.php:172 includes/wizard.php:419
-msgid "Jump to first page"
-msgstr "Переходить на первую страницу"
-
-#: templates/admin-settings.php:175
-msgid "Check if you want load first page after filters change"
-msgstr "Включите если вам нужно загружать первую страницу после фильтрации"
-
-#: templates/admin-settings.php:179 includes/wizard.php:428
-msgid "Scroll page to the top"
-msgstr "Прокрутить страницу наверх"
-
-#: templates/admin-settings.php:182 includes/wizard.php:432
-msgid "Check if you want scroll page to the top of shop after filters change"
-msgstr ""
-"Включите если вам нужно что бы страница прокручивалась наверх после "
-"применения фильтров"
-
-#: templates/admin-settings.php:186
-msgid "px from products top."
-msgstr "пикселей от верхнего края продуктов"
-
-#: templates/admin-settings.php:187
-msgid "Use this to fix top scroll."
-msgstr "Используйте для корректировки прокрутки"
-
-#: templates/admin-settings.php:191 includes/wizard.php:353
-msgid "Reload amount of products"
-msgstr "Перезагружать количество продуктов"
-
-#: templates/admin-settings.php:194 includes/wizard.php:357
-msgid "Use filters on products count display"
-msgstr "Использовать фильтры на основе отображаемых продуктов"
-
-#: templates/admin-settings.php:195
-msgid ""
-"Can slow down page load and filtering speed. Also do not use it with more "
-"then 5000 products."
-msgstr "Может замедлить загрузку страницы и скорость фильтрации"
-
-#: templates/admin-settings.php:199 includes/wizard.php:437
-msgid "Show selected filters"
-msgstr "Отображать выбранные фильтры"
-
-#: templates/admin-settings.php:202
-msgid "Show selected filters above products"
-msgstr "Отображать выбранные фильтры над продуктами"
-
-#: templates/admin-settings.php:206 includes/wizard.php:446
-msgid "Display products"
-msgstr "Отображать продукты"
-
-#: templates/admin-settings.php:209 includes/wizard.php:450
-msgid ""
-"Display always products when filters selected. Use this when you have "
-"categories and subcategories on shop pages, but you want to display products "
-"on filtering"
-msgstr ""
-"Всегда отображать продукты когда выбраны фильтры. Используйте это когда у "
-"вас есть категории и подкатегории на странице магазина, но вам нужно "
-"отображать продукты при фильтрации."
-
-#: templates/admin-settings.php:213
-msgid "Data cache"
-msgstr "Кэш данных"
-
-#: templates/admin-settings.php:217
-msgid "WordPress Cache"
-msgstr "WordPress Кэш"
-
-#: templates/admin-settings.php:218
-msgid "Persistent Cache Plugins"
-msgstr "Плагины с постоянным кэшем"
-
-#: templates/admin-settings.php:223
-msgid "Show products count before filtering"
-msgstr "Отображать количество продуктов перед фильтрацией"
-
-#: templates/admin-settings.php:226
-msgid "Show products count before filtering, when using update button"
-msgstr ""
-"Отображать количество продуктов перед фильтрацией, когда используется кнопка "
-"для обновления продуктов"
-
-#: templates/admin-settings.php:228
-msgid "Text that means products"
-msgstr "Текст который обозначает продукты"
-
-#: templates/admin-settings.php:232
-msgid "Text for show button"
-msgstr "Текст для кнопки показать продукты"
-
-#: templates/admin-settings.php:238
-msgid "Template ajax load fix"
-msgstr "Исправление для AJAX загрузки"
-
-#: templates/admin-settings.php:241
-msgid "Use all plugins on ajax load(can slow down products loading)"
-msgstr ""
-"Использует все плагины при загрузке страницы (может замедлить загрузку "
-"продуктов)"
-
-#: templates/admin-settings.php:243
-msgid "Use"
-msgstr "Использовать"
-
-#: templates/admin-settings.php:245
-msgid "PHP"
-msgstr "PHP"
-
-#: templates/admin-settings.php:246
-msgid "JavaScript (jQuery)"
-msgstr "JavaScript (jQuery)"
-
-#: templates/admin-settings.php:249
-msgid "for fix"
-msgstr "для исправления"
-
-#: templates/admin-settings.php:252
-msgid ""
-"PHP - loads the full page and cuts products from the page via PHP. Slow down "
-"server, but users take only needed information."
-msgstr ""
-"PHP - загружает всю страницу и вырезает продукты со страницы с помощью PHP. "
-"Замедляет работу сервера, но пользователь получает только нужную информацию."
-
-#: templates/admin-settings.php:256
-msgid ""
-"JavaScript (jQuery) - loads the full page and copy all products from the "
-"loaded page to the current page using JQuery. Slow down server and users "
-"take the full page. Works good with different themes and plugins."
-msgstr ""
-"JavaScript (jQuery) - загружает всю страницу и копирует продукты  на текущую "
-"страницу при помощи JQuery. Замедляет сервер и пользователь получает всю "
-"страницу. Наилучшая совместимость с разными темами и плагинами."
-
-#: templates/admin-settings.php:260
-msgid ""
-"JavaScript - loads the full page and cuts products from the page via "
-"JavaScript. Slow down server and users take the full page. Works like PHP "
-"method."
-msgstr ""
-"PHP - загружает всю страницу и вырезает продукты со страницы с помощью "
-"JavaScript. Замедляет работу сервера и пользователь получает всю страницу. "
-"Работает как метод PHP."
-
-#: templates/admin-settings.php:262
-msgid "Some features work only with JavaScript (jQuery) fix"
-msgstr "Некоторые функции работают только с JavaScript (jQuery) исправлением"
-
-#: templates/admin-settings.php:267
-msgid "Old slider compatibility"
-msgstr "Совместимость со старыми слайдерами"
-
-#: templates/admin-settings.php:270
-msgid ""
-"Slow down filtering with sliders. Enable it only if you have some problem "
-"with slider filters"
-msgstr ""
-"Замедляет фильтрацию при помощи слайдеров. Включите только если у вас есть "
-"проблемы с фильтрацией слайдеров."
-
-#: templates/admin-settings.php:274
-msgid "Display styles only for pages with filters"
-msgstr "Отображать стили только на страницах с фильтрами"
-
-#: templates/admin-settings.php:277
-msgid "On some sites it can cause some visual problem on page loads"
-msgstr ""
-"На некоторых сайтах это может вызывать некоторые визуальные проблемы при "
-"загрузке страницы."
-
-#: templates/admin-settings.php:281
-msgid "Product per row fix"
-msgstr "Исправление количества продуктов на строку"
-
-#: templates/admin-settings.php:285
-msgid "Change this only if after filtering count of products per row changes."
-msgstr ""
-"Изменяйте это только если количество продуктов на строку меняется после "
-"фильтрации"
-
-#: templates/admin-settings.php:307
-msgid "Fix for sites with AJAX"
-msgstr "Исправление для сайтов с AJAX"
-
-#: templates/admin-settings.php:310
-msgid "Add JavaScript files to all pages."
-msgstr "Добавляет JavaScript файлы на все страницы"
-
-#: templates/admin-settings.php:314 includes/wizard.php:455
-msgid "Search page fix"
-msgstr "Исправление для страницы поиска"
-
-#: templates/admin-settings.php:317
-msgid "Disable redirection, when search page return only one product"
-msgstr ""
-"Отключает перенаправление, когда страница поиска возвращает только один "
-"продукт"
-
-#: templates/admin-settings.php:321
-msgid "Use Tags like custom taxonomy"
-msgstr "Использовать тэги как пользовательские таксономии"
-
-#: templates/admin-settings.php:324
-msgid "Try to enable this if widget with tags didn't work."
-msgstr "Включите это, если виджет с тэгами не работает"
-
-#: templates/admin-settings.php:328
-msgid "Disable loading Font Awesome on front end"
-msgstr "Отключить загрузку Font Awesome на страницах сайта"
-
-#: templates/admin-settings.php:331
-msgid ""
-"Don't loading css file for Font Awesome on site front end. Use this only if "
-"you doesn't uses Font Awesome icons in widgets or you have Font Awesome in "
-"your theme."
-msgstr ""
-"Не загружает CSS файл Font Awesome на страницах сайта. Используйте только "
-"если вы не используете иконки Font Awesome в виджетах или у вас есть Font "
-"Awesome в вашей теме."
-
-#: templates/admin-settings.php:335
-msgid "Plugin key"
-msgstr "Ключ продукта"
-
-#: templates/admin-settings.php:339
-msgid "Key for plugin from BeRocket.com"
-msgstr "Ключ для плагина с BeRocket.com"
-
-#: templates/admin-settings.php:347 templates/admin-settings.php:1184
-#: templates/admin-settings.php:1215 templates/admin-settings.php:1236
-msgid "Save Changes"
-msgstr "Сохранить изменения"
-
-#: templates/admin-settings.php:355 templates/admin-settings.php:370
-msgid "Select All"
-msgstr "Выбрать всё"
-
-#: templates/admin-settings.php:358 templates/admin-settings.php:373
-#: templates/admin-settings.php:495
-msgid "Element"
-msgstr "Элемент"
-
-#: templates/admin-settings.php:360 templates/admin-settings.php:375
-msgid "Font Family"
-msgstr "Шрифт"
-
-#: templates/admin-settings.php:361 templates/admin-settings.php:376
-msgid "Font-Weight"
-msgstr "Толщина шрифта"
-
-#: templates/admin-settings.php:361 templates/admin-settings.php:376
-msgid "(depends on font)"
-msgstr "(Зависит от шрифта)"
-
-#: templates/admin-settings.php:362 templates/admin-settings.php:377
-msgid "Font-Size"
-msgstr "Размер шрифта"
-
-#: templates/admin-settings.php:363 templates/admin-settings.php:378
-#: templates/admin-settings.php:503
-msgid "Theme"
-msgstr "Тема"
-
-#: templates/admin-settings.php:382 templates/admin-settings.php:973
-#: templates/admin-settings.php:1042 templates/admin-settings.php:1115
-msgid "Set all to theme default"
-msgstr "Установить всё по умолчанию"
-
-#: templates/admin-settings.php:395
-msgid "Select Element"
-msgstr "Выбрать элемент"
-
-#: templates/admin-settings.php:406 templates/admin-settings.php:418
-#: templates/admin-settings.php:459 templates/admin-settings.php:466
-#: templates/admin-settings.php:481
-msgid "N/A"
-msgstr "Н/Д"
-
-#: templates/admin-settings.php:412 templates/admin-settings.php:427
-#: templates/admin-settings.php:464 templates/admin-settings.php:515
-#: templates/admin-settings.php:518 templates/admin-settings.php:521
-#: templates/admin-settings.php:771 templates/admin-settings.php:774
-#: templates/admin-settings.php:777 templates/admin-settings.php:1008
-#: templates/admin-settings.php:1016 templates/admin-settings.php:1019
-#: templates/admin-settings.php:1032 templates/admin-settings.php:1035
-#: templates/admin-settings.php:1077 templates/admin-settings.php:1085
-#: templates/admin-settings.php:1098
-msgid "Theme Default"
-msgstr "По умолчанию"
-
-#: templates/admin-settings.php:472
-msgid "Without Theme"
-msgstr "Без темы"
-
-#: templates/admin-settings.php:493
-msgid "Checkbox / Radio"
-msgstr "Checkbox / Radio"
-
-#: templates/admin-settings.php:496 templates/admin-settings.php:1053
-msgid "Border color"
-msgstr "Цвет границы"
-
-#: templates/admin-settings.php:497
-msgid "Border width"
-msgstr "Ширина границы"
-
-#: templates/admin-settings.php:498
-msgid "Border radius"
-msgstr "Закругление углов"
-
-#: templates/admin-settings.php:499
-msgid "Size"
-msgstr "Размер"
-
-#: templates/admin-settings.php:500 templates/admin-settings.php:1055
-msgid "Font color"
-msgstr "Цвет шрифта"
-
-#: templates/admin-settings.php:501
-msgid "Background"
-msgstr "Задний фон"
-
-#: templates/admin-settings.php:502
-msgid "Icon"
-msgstr "Иконка"
-
-#: templates/admin-settings.php:981
-msgid "Slider"
-msgstr "Слайдер"
-
-#: templates/admin-settings.php:983
-msgid "Line color"
-msgstr "Цвет линии"
-
-#: templates/admin-settings.php:984
-msgid "Back line color"
-msgstr "Цвет заднего фона линии"
-
-#: templates/admin-settings.php:985
-msgid "Line height"
-msgstr "Высота линии"
-
-#: templates/admin-settings.php:986
-msgid "Line border color"
-msgstr "Цвет границы линии"
-
-#: templates/admin-settings.php:987
-msgid "Line border width"
-msgstr "Ширина границы линии"
-
-#: templates/admin-settings.php:988
-msgid "Button size"
-msgstr "Размер кнопки"
-
-#: templates/admin-settings.php:989
-msgid "Button color"
-msgstr "Цвет кнопки"
-
-#: templates/admin-settings.php:990
-msgid "Button border color"
-msgstr "Цвет границы кнопки"
-
-#: templates/admin-settings.php:991
-msgid "Button border width"
-msgstr "Ширина границы кнопки"
-
-#: templates/admin-settings.php:992
-msgid "Button border radius"
-msgstr "Закругление углов кнопки"
-
-#: templates/admin-settings.php:1050
-msgid "Product count description before filtering with Update button"
-msgstr "Описание количества товаров перед фильтрацией с кнопкой «Обновить»"
-
-#: templates/admin-settings.php:1054
-msgid "Font size"
-msgstr "Размер шрифта"
-
-#: templates/admin-settings.php:1056
-msgid "Show button font size"
-msgstr "Размер шрифта кнопки \"Показать\""
-
-#: templates/admin-settings.php:1057
-msgid "Show button font color"
-msgstr "Цвет шрифта кнопки \"Показать\""
-
-#: templates/admin-settings.php:1058
-msgid "Show button font color on mouse over"
-msgstr "Цвет шрифта кнопки \"Показать\" при наведении"
-
-#: templates/admin-settings.php:1059
-msgid "Close button size"
-msgstr "Размер кнопки \"Закрыть\""
-
-#: templates/admin-settings.php:1060
-msgid "Close button font color"
-msgstr "Цвет шрифта кнопки \"Закрыть\""
-
-#: templates/admin-settings.php:1061
-msgid "Close button font color on mouse over"
-msgstr "Цвет шрифта кнопки \"Закрыть\" при наведении"
-
-#: templates/admin-settings.php:1123
-msgid "Loading products icon"
-msgstr "Иконка загрузки продуктов"
-
-#: templates/admin-settings.php:1131
-msgid "Text at load icon"
-msgstr "Текст возле иконки загрузки"
-
-#: templates/admin-settings.php:1133
-msgid "Above:"
-msgstr "Выше:"
-
-#: templates/admin-settings.php:1136
-msgid "Under:"
-msgstr "Ниже:"
-
-#: templates/admin-settings.php:1139
-msgid "Before:"
-msgstr "Перед:"
-
-#: templates/admin-settings.php:1142
-msgid "After:"
-msgstr "После:"
-
-#: templates/admin-settings.php:1148
-msgid "Description show and hide"
-msgstr "Показать и скрыть описание"
-
-#: templates/admin-settings.php:1150
-msgid "Show on:"
-msgstr "Показать при:"
-
-#: templates/admin-settings.php:1152
-msgid "Click"
-msgstr "Нажатии"
-
-#: templates/admin-settings.php:1153
-msgid "Mouse over icon"
-msgstr "Наведении на иконку"
-
-#: templates/admin-settings.php:1157
-msgid "Hide on:"
-msgstr "Скрывать при:"
-
-#: templates/admin-settings.php:1159
-msgid "Click anywhere"
-msgstr "Нажатии в любом месте"
-
-#: templates/admin-settings.php:1160
-msgid "Mouse out of icon"
-msgstr "Курсор вне иконки"
-
-#: templates/admin-settings.php:1165
-msgid "Product count style"
-msgstr "Стиль количества продуктов"
-
-#: templates/admin-settings.php:1168
-msgid "4"
-msgstr "4"
-
-#: templates/admin-settings.php:1169
-msgid "(4)"
-msgstr "(4)"
-
-#: templates/admin-settings.php:1170
-msgid "[4]"
-msgstr "[4]"
-
-#: templates/admin-settings.php:1174
-msgid "Position:"
-msgstr "Позиция:"
-
-#: templates/admin-settings.php:1176
-msgid "Normal"
-msgstr "Нормальная"
-
-#: templates/admin-settings.php:1177
-msgid "Right"
-msgstr "Справа"
-
-#: templates/admin-settings.php:1178
-msgid "Right from name"
-msgstr "Справа от имени"
-
-#: templates/admin-settings.php:1190
-msgid "Before Update:"
-msgstr "Перед обновлением"
-
-#: templates/admin-settings.php:1194
-msgid "If you want to add own actions on filter activation, eg: alert('1');"
-msgstr ""
-"Если вы хотите добавить своё действие при выборе фильтра, например: "
-"alert('1');"
-
-#: templates/admin-settings.php:1198
-msgid "On Update:"
-msgstr "При обновлении:"
-
-#: templates/admin-settings.php:1202
-msgid ""
-"If you want to add own actions right on products update. You can manipulate "
-"data here, try: data.products = 'Ha!';"
-msgstr ""
-"Если вы хотите добавить своё действие при обновлении продуктов. Здесь вы "
-"можете менять данные, попробуйте: data.products = 'Ha!';"
-
-#: templates/admin-settings.php:1206
-msgid "After Update:"
-msgstr "После обновления:"
-
-#: templates/admin-settings.php:1210
-msgid "If you want to add own actions after products updated, eg: alert('1');"
-msgstr ""
-"Если вы хотите добавить своё действие после обновления продуктов, например: "
-"alert('1');"
-
-#: templates/admin-settings.php:1221
-msgid "User custom CSS style:"
-msgstr "Пользовательские стили CSS:"
-
-#: templates/admin-settings.php:1227
-msgid "Definitions:"
-msgstr "Определения"
-
-#: templates/admin-settings.php:1229
-msgid "widget block."
-msgstr "Блок с виджетом."
-
-#: templates/admin-settings.php:1230
-msgid "widget title."
-msgstr "заголовок виджета"
-
-#: templates/admin-settings.php:1341
-msgid "Text before price"
-msgstr "текст перед ценой"
-
-#: templates/admin-settings.php:1345
-msgid "Text after price"
-msgstr "Текст после цены"
-
-#: templates/admin-settings.php:1371
-msgid "Product Category"
-msgstr "Категория продукта"
-
-#: templates/admin-settings.php:1450
-msgid "Display value with color box?"
-msgstr "Отображать значения с блоком цвета?"
-
-#: templates/admin-settings.php:1802 templates/admin.php:614
-msgid "All"
-msgstr "Все"
-
-#: templates/admin-settings.php:1803 templates/admin.php:615
-msgid "Logged In only"
-msgstr "Те кто вошли только"
-
-#: templates/admin-settings.php:1804 templates/admin.php:616
-msgid "Not Logged In only"
-msgstr "Те кто не вошли только"
-
-#: templates/admin-settings.php:1811 templates/admin.php:623
-msgid "include subcats?"
-msgstr "включая подкатегории?"
-
-#: templates/admin-settings.php:1830 templates/admin.php:651
-msgid "Display widget pages"
-msgstr "Страницы для отображения виджета"
-
-#: templates/admin-settings.php:1835 templates/admin.php:657
-#: includes/new_filters.php:502
-msgid "shop"
-msgstr "магазин"
-
-#: templates/admin-settings.php:1839 templates/admin.php:661
-#: includes/new_filters.php:503
-msgid "product category"
-msgstr "категории продуктов"
-
-#: templates/admin-settings.php:1843 templates/admin.php:665
-#: includes/new_filters.php:504
-msgid "product attributes"
-msgstr "атрибуты продуктов"
-
-#: templates/admin-settings.php:1847 templates/admin.php:669
-#: includes/new_filters.php:505
-msgid "product tags"
-msgstr "теги продуктов"
-
-#: templates/admin-settings.php:1901
-msgid "Get Shortcode"
-msgstr "Получить Shortcode"
-
-#: templates/select.php:28 templates/select.php:71
+#: templates/filter_post.php:338
+msgid "First Element Text"
+msgstr "Текст первого элемента"
+
+#: templates/filter_post.php:339 addons/deprecated_compat/widget.php:819
+#: includes/filters/display_widget.php:506
 msgid "Any"
 msgstr "Всё"
 
-#: templates/admin.php:673 includes/new_filters.php:506
-msgid "single product"
-msgstr "один продукт"
+#: templates/filter_post.php:344
+msgid "Multiple select"
+msgstr "Множественный выбор"
 
-#: includes/functions.php:52
-msgid "BeRocket AJAX Product Filters Nice URL settings"
-msgstr "BeRocket AJAX Фильтры для Продуктов. Настройка для Красивых Ссылок"
+#: templates/filter_post.php:349 templates/filters_information.php:5
+msgid "Advanced Settings"
+msgstr "Продвинутые Настройки"
 
-#: includes/functions.php:698
+#: templates/filter_post.php:355
+msgid "Attribute Values count"
+msgstr "Количество Значений Атрибута"
+
+#: templates/filter_post.php:356
+msgid "From settings"
+msgstr "С настроек"
+
+#: templates/filter_post.php:357
+msgid "Show/Hide button"
+msgstr "Кнопка Показать/Скрыть"
+
+#: templates/filter_post.php:360
+msgid "Always visible"
+msgstr "Всегда видимый"
+
+#: templates/filter_post.php:361
+msgid "Always hidden"
+msgstr "Всегда скрытый"
+
+#: templates/filter_post.php:369
+msgid "Use specific number style"
+msgstr "Использовать другие стили чисел"
+
+#: templates/filter_post.php:373
+msgid "Thousand Separator"
+msgstr "Разделитель тысяч"
+
+#: templates/filter_post.php:377 includes/paid.php:94
+msgid "Decimal Separator"
+msgstr "Десятичный разделитель"
+
+#: templates/filter_post.php:381 includes/paid.php:100
+msgid "Number Of Decimal"
+msgstr "Количество знаков после запятой"
+
+#: templates/filter_post.php:396
+msgid "Enable collapse option"
+msgstr "Включить опцию свертывания"
+
+#: templates/filter_post.php:402
+msgid "Collapse this widget on load?"
+msgstr "Свернуть этот виджет при загрузке?"
+
+#: templates/filter_post.php:408 templates/filter_post.php:580
+msgid "Hide collapse arrow?"
+msgstr "Скрыть стрелку для сворачивания виджета?"
+
+#: templates/filter_post.php:415
+msgid "Show hierarchical values as a tree with hidden child values on load?"
+msgstr ""
+"Показать иерархические значения в виде дерева со скрытыми дочерними "
+"значениями при загрузке?"
+
+#: templates/filter_post.php:425
+msgid "Display value with color/image box?"
+msgstr "Отображать значение возле цвета/изображения?"
+
+#: templates/filter_post.php:432
+msgid "Size of blocks(Height x Width)"
+msgstr "Размер блока(Высота х Ширина)"
+
+#: templates/filter_post.php:436
+msgid "2em x 2em"
+msgstr "2em x 2em"
+
+#: templates/filter_post.php:437
+msgid "1em x 1em"
+msgstr "1em x 1em"
+
+#: templates/filter_post.php:438
+msgid "1em x 2em"
+msgstr "1em x 2em"
+
+#: templates/filter_post.php:439
+msgid "2em x 3em"
+msgstr "2em x 3em"
+
+#: templates/filter_post.php:440
+msgid "2em x 4em"
+msgstr "2em x 4em"
+
+#: templates/filter_post.php:441
+msgid "3em x 3em"
+msgstr "3em x 3em"
+
+#: templates/filter_post.php:442
+msgid "3em x 4em"
+msgstr "3em x 4em"
+
+#: templates/filter_post.php:443
+msgid "3em x 5em"
+msgstr "3em x 5em"
+
+#: templates/filter_post.php:444
+msgid "4em x 4em"
+msgstr "4em x 4em"
+
+#: templates/filter_post.php:445
+msgid "4em x 5em"
+msgstr "4em x 5em"
+
+#: templates/filter_post.php:446
+msgid "5em x 5em"
+msgstr "5em x 5em"
+
+#: templates/filter_post.php:447
+msgid "Custom size"
+msgstr "Пользовательский размер"
+
+#: templates/filter_post.php:455
+msgid "Custom size(Height x Width)"
+msgstr "Пользовательский размер(Высота х Ширина)"
+
+#: templates/filter_post.php:462
+msgid "Checked type"
+msgstr "Стиль выбора"
+
+#: templates/filter_post.php:467
+msgid "Rotate"
+msgstr "Поворот"
+
+#: templates/filter_post.php:468
+msgid "Scale"
+msgstr "Масштаб"
+
+#: templates/filter_post.php:469
+msgid "Blue Shadow"
+msgstr "Blue Shadow"
+
+#: templates/filter_post.php:470
+msgid "Custom CSS"
+msgstr "Пользовательский CSS"
+
+#: templates/filter_post.php:478
+msgid "Custom CSS for Checked block"
+msgstr "Пользовательский CSS для блока выбора"
+
+#: templates/filter_post.php:485
+msgid "Icons"
+msgstr "Иконки"
+
+#: templates/filter_post.php:487
+msgid "Title Icons"
+msgstr "Иконки названия"
+
+#: templates/filter_post.php:489 templates/filter_post.php:495
+#: includes/paid.php:1676 templates/paid/filters_search_box.php:43
+msgid "Before"
+msgstr "Перед"
+
+#: templates/filter_post.php:490 templates/filter_post.php:496
+#: includes/paid.php:1677 templates/paid/filters_search_box.php:44
+msgid "After"
+msgstr "После"
+
+#: templates/filter_post.php:493
+msgid "Value Icons"
+msgstr "Иконки значений"
+
+#: templates/filter_post.php:506
+msgid "CSS Class"
+msgstr "CSS класс"
+
+#: templates/filter_post.php:508
+msgid "(use white space for multiple classes)"
+msgstr "(используйте пробел для разделения классов)"
+
+#: templates/filter_post.php:513
+msgid "Tags Cloud Height:"
+msgstr "Высота Облака Тегов: "
+
+#: templates/filter_post.php:517
+msgid "Min Font Size:"
+msgstr "Минимальный Размер Шрифта: "
+
+#: templates/filter_post.php:521
+msgid "Max Font Size:"
+msgstr "Максимальный Размер Шрифта: "
+
+#: templates/filter_post.php:525
+msgid "Max Tags Count:"
+msgstr "Максимальное Количество Тегов: "
+
+#: templates/filter_post.php:533
+msgid "Use min price"
+msgstr "Использовать пользовательскую минимальную цену"
+
+#: templates/filter_post.php:542
+msgid "Use max price"
+msgstr "Использовать пользовательскую максимальную цену"
+
+#: templates/filter_post.php:551
+msgid "Filter Box Height:"
+msgstr "Высота Блока с Фильтром"
+
+#: templates/filter_post.php:555
+msgid "Scroll Theme:"
+msgstr "Тема для Полосы Прокрутки: "
+
+#: templates/filter_post.php:574
+msgid "Show if nothing is selected"
+msgstr "Показать если ничего не выбрано"
+
+#: templates/filter_post.php:586 templates/filters_information.php:5
+msgid "Hide this widget on load?"
+msgstr "Скрыть этот виджет при загрузке?"
+
+#: templates/filter_post.php:625
+msgid "Widget Output Limitations"
+msgstr "Ограничение Отображения Виджета"
+
+#: templates/filter_post.php:627
+msgid "Product Category Value Limitation"
+msgstr "Ограничение Отображения по Категориям"
+
+#: templates/filter_post.php:655
+msgid "Hide button"
+msgstr "Скрыть кнопку"
+
+#: templates/filter_post.php:657
+msgid "Do not hide"
+msgstr "Не прятать"
+
+#: templates/filter_post.php:658
+msgid "Hide only when no filters on page"
+msgstr "Скрыть только когда нет фильтров на странице"
+
+#: templates/filter_post.php:659
+msgid "Hide when no filters on page or page not filtered"
+msgstr "Скрыть, когда нет фильтров на странице или страница не отфильтрована"
+
+#: templates/groups_information.php:2 templates/filters_information.php:3
+msgid "Get more information on BeRocket Documentation"
+msgstr "Получить больше информации о документации BeRocket"
+
+#: templates/groups_information.php:3
+msgid ""
+"Do not use multiple filters with same attribute on one page! We will not "
+"guarantee normal filters works in that case."
+msgstr ""
+"Не используйте несколько фильтров с одинаковым атрибутом на одной странице. "
+"Мы не гарантируем нормальную работу фильтров в этом случае."
+
+#: templates/groups_information.php:4
+msgid ""
+"P.S. No, using sub-categories for different filters is not normal. Please "
+"use attributes instead"
+msgstr ""
+"P.S. Нет, использовать подкатегории для разных фильтров не нормально. "
+"Пожалуйста используйте атрибуты вместо этого"
+
+#: templates/groups_information.php:5 includes/custom_post.php:134
+#: includes/custom_post.php:563
+msgid "Conditions"
+msgstr "Условия"
+
+#: templates/groups_information.php:6
+msgid "Group without any condition will be displayed on all pages"
+msgstr "Группы без условий будут отображаться на всех страницах"
+
+#: templates/groups_information.php:7
+msgid "Connection between condition can be AND and OR"
+msgstr "Соединение между условиями может быть И и ИЛИ"
+
+#: templates/groups_information.php:8
+msgid "<strong>AND</strong> uses between condition in one section"
+msgstr "<strong>И</strong> используется между условиями в одной секции"
+
+#: templates/groups_information.php:9
+msgid "<strong>OR</strong> uses between different sections with conditions"
+msgstr "<strong>ИЛИ</strong> используется между разными секциями с условиями"
+
+#: templates/groups_information.php:10
+msgid "To display one group on different pages use OR condition"
+msgstr ""
+"Для отображения одной группы на разных страницах используйте условие ИЛИ"
+
+#: templates/filters_information.php:4
+msgid "How to hide filter on page load?"
+msgstr "Как скрыть фильтры при загрузке страницы?"
+
+#: templates/filters_information.php:5
+#, php-format
+msgid "Enable in <strong>%s</strong> option <strong>%s</strong>"
+msgstr "Включите в <strong>%s</strong> опцию <strong>%s</strong>"
+
+#: templates/filters_information.php:6
+msgid "How to add reset filters button?"
+msgstr "Как добавить кнопку сброса фильтров?"
+
+#: templates/filters_information.php:7 templates/filters_information.php:9
+#, php-format
+msgid "Select <strong>%s</strong> in option <strong>%s</strong>"
+msgstr "Выберете <strong>%s</strong> в опции <strong>%s</strong>"
+
+#: templates/filters_information.php:7 includes/custom_post.php:352
+#: includes/display_filter/reset_button.php:10
+msgid "Reset Products button"
+msgstr "Кнопка Сброса фильтров"
+
+#: templates/filters_information.php:8
+msgid ""
+"How to add update products button? (to filter products only after click on "
+"button)"
+msgstr ""
+"Как добавить кнопку обновления продуктов? (для фильтрации продуктов только "
+"после нажатия на кнопку)"
+
+#: templates/filters_information.php:9 includes/custom_post.php:351
+#: includes/display_filter/update_button.php:10
+msgid "Update Products button"
+msgstr "Кнопка Фильтрации Продуктов"
+
+#: templates/filters_information.php:17
+msgid ""
+"Title will be displayed as widget title.<br>You can write text, that want to "
+"display above filter"
+msgstr ""
+"Заголовок будет отображаться как заголовок виджета. <br> Вы можете написать "
+"текст, который хотите отобразить над фильтром"
+
+#: templates/filters_information.php:24
+msgid ""
+"Where filters must be displayed.<br>Filter will be displayed on all pages if "
+"do not have conditions.<br><strong>Please first try to add filter without "
+"any condition to check that it works</strong>"
+msgstr ""
+"Где должны отображаться фильтры. <br> Фильтр будет отображаться на всех "
+"страницах, если нет условий. <br> <strong> Сначала попробуйте добавить "
+"фильтр без каких-либо условий, чтобы убедиться, что он работает </strong>."
+
+#: templates/filters_information.php:31
+msgid ""
+"All that can be displayed you can select there<h3>Variants:</h3><ul><li>"
+"<strong>Filter</strong>(main type) - filters by attributes, categories, "
+"price etc.</li><li><strong>Update Products button</strong> - button to apply "
+"filters to products. Filter will applies only after click on update "
+"button</li><li><strong>Reset Products button</strong> - button to disable "
+"all selected filters</li><li><strong>Selected Filters area</strong> - "
+"display selected filters and provide possibility to disable it in one "
+"place</li></ul>"
+msgstr ""
+"Тут можно выбрать все что нужно отобразить<h3>Варианты:</h3><ul><li><strong>"
+"Фильтры</strong>(main type) - фильтры по атрибутам, категориям, цене и т. д."
+"</li><li><strong>Кнопка Обновить Продукты</strong> - кнопка, чтобы применить "
+"фильтры к продуктам. Фильтр будет применяться только после нажатия на кнопку "
+"обновления</li><li><strong>Кнопка «Сбросить товары»</strong> - кнопка для "
+"отключения всех выбранных фильтров</li><li><strong>Область выбранных "
+"фильтров</strong> - отображать выбранные фильтры и предоставлять возможность "
+"отключить их в одном месте</li></ul>"
+
+#: templates/filters_information.php:35
+msgid ""
+"Select attribute that you need to filter by.<br>You can use for filtering "
+"price, attributes, categories, tags etc"
+msgstr ""
+"Выберите атрибут, по которому нужно выполнить фильтрацию. <br> Вы можете "
+"использовать для фильтрации цену, атрибуты, категории, теги и т. д."
+
+#: templates/filters_information.php:42
+msgid "Filter selection type. This option change how filter will be look like."
+msgstr "Тип выбора фильтра. Эта опция изменяет внешний вид фильтра."
+
+#: templates/filters_information.php:49 templates/filters_information.php:72
+msgid ""
+"Shortcode to use this filters in any place of your site will be displayed "
+"there<br><strong>Please use widgets if you do not know how shortcode "
+"works</strong>"
+msgstr ""
+"Шорткод для использования фильтров в любом месте вашего сайта.<br> <strong> "
+"Используйте виджеты, если Вы не знаете, как работает шорткод </strong>"
+
+#: templates/filters_information.php:53
+msgid "Save filter after setup to use it in widgets"
+msgstr "Сохранить фильтр после настройки, чтобы использовать его в виджетах"
+
+#: templates/filters_information.php:59 templates/filters_information.php:68
+msgid ""
+"You can use widget to display filters on your shop page.<br><strong>Use "
+"sidebar, that displayed on shop page</strong>"
+msgstr ""
+"Вы можете использовать виджет для отображения фильтров на странице своего "
+"магазина. <br> <strong> Использовать боковую панель, которая отображается на "
+"странице магазина </strong>"
+
+#: includes/functions.php:764
 msgid "Widget Title"
 msgstr "Название Виджета"
 
-#: includes/functions.php:710
+#: includes/functions.php:776
 msgid "Label(checkbox/radio)"
 msgstr ""
 "Надпись (checkbox/radio)\n"
 
-#: includes/functions.php:722
-msgid "Select-box"
+#: includes/functions.php:788
+msgid "Drop-Down"
 msgstr "Выпадающий Список"
 
-#: includes/functions.php:734
+#: includes/functions.php:800
 msgid "Slider Inputs"
-msgstr "Поля для ввода у слайдера"
+msgstr "Поля для ввода в слайдере"
 
-#: includes/functions.php:746
+#: includes/functions.php:812
 msgid "Description Block"
 msgstr "Блок с Описанием"
 
-#: includes/functions.php:758
-msgid "Description Border"
-msgstr "Граница Блока с Описанием"
+#: includes/functions.php:824
+msgid "Description Block Border"
+msgstr "Граница Блока Описания"
 
-#: includes/functions.php:770
-msgid "Description Title Text"
-msgstr "Заглавие Блока с Описанием"
+#: includes/functions.php:836
+msgid "Description Block Title"
+msgstr "Заголовок Блока Описания"
 
-#: includes/functions.php:782
-msgid "Description Text"
-msgstr "Текст Блока с Описанием"
+#: includes/functions.php:848
+msgid "Description Block Text"
+msgstr "Текст Блока Описания"
 
-#: includes/functions.php:794
+#: includes/functions.php:860
 msgid "Selected filters area text"
-msgstr "Выбранные Фильтры Область с Текстом"
+msgstr "Текст Области Выбранных Фильтров"
 
-#: includes/functions.php:806
-msgid "Selected filters mouse over text"
-msgstr "Выбранные Фильтры Курсор над Текстом"
+#: includes/functions.php:872
+msgid "Selected filters area mouse over the text"
+msgstr "Текст при наведении курсора Области Выбранных Фильтров"
 
-#: includes/functions.php:818
-msgid "Selected filters link background"
-msgstr "Выбранные Фильтры Фон Ссылки"
+#: includes/functions.php:884
+msgid "Selected filters area link background"
+msgstr "Фон ссылки в Область Выбранных Фильтров"
 
-#: includes/functions.php:830
-msgid "Selected filters link border"
-msgstr "Выбранные Фильтры Граница Ссылки"
+#: includes/functions.php:896
+msgid "Selected filters area link border"
+msgstr "Рамка для ссылки в Область Выбранных Фильтров"
 
-#: includes/functions.php:2126
-msgid "Font awesome"
-msgstr "Font Awesome"
+#: includes/new_widget.php:5
+msgid "AAPF Filters Group"
+msgstr "AAPF Группа Фильтров"
 
-#: includes/functions.php:2131
-msgid "Upload"
-msgstr "Загрузить"
+#: includes/new_widget.php:6
+msgid "AJAX Product Filters. Group of filters"
+msgstr "AJAX Фильтры Продуктов. Группа фильтров"
 
-#: includes/widget.php:122
-msgid "Add Filters to Products page"
-msgstr "Добавить фильтры на страницу продуктов"
+#: includes/new_widget.php:106 includes/divi-builder.php:79
+#: includes/paid.php:282
+msgid "Group"
+msgstr "Группа"
 
-#: includes/widget.php:614 includes/widget.php:2604 includes/widget.php:2853
+#: includes/new_widget.php:112 includes/divi-builder.php:70
+msgid "--Please select group--"
+msgstr "--Пожалуйста, выберите группу--"
+
+#: includes/new_widget.php:129
+msgid "Create Group"
+msgstr "Создать группу"
+
+#: includes/new_widget.php:136
+msgid "AAPF Filter Single"
+msgstr "AAPF Один Фильтр"
+
+#: includes/new_widget.php:137
+msgid "AJAX Product Filters. Single Filter"
+msgstr "AJAX Фильтры Продуктов. Одиночный фильтр"
+
+#: includes/new_widget.php:266 includes/divi-builder.php:17
+#: includes/visual-composer.php:10 includes/visual-composer.php:36
+msgid "--Please select filter--"
+msgstr "--Пожалуйста, выберите фильтр--"
+
+#: includes/divi-builder.php:6 includes/visual-composer.php:19
+msgid "Single Filter"
+msgstr "Одиночный фильтр"
+
+#: includes/divi-builder.php:59 includes/visual-composer.php:45
+msgid "Group Filter"
+msgstr "Группа фильтров"
+
+#: includes/custom_post.php:43 includes/custom_post.php:45
+#: includes/custom_post.php:46
+msgid "Product Filter"
+msgstr "Фильтры продуктов"
+
+#: includes/custom_post.php:47
+msgctxt "Admin menu name"
+msgid "Filters"
+msgstr "Фильтры"
+
+#: includes/custom_post.php:48
+msgid "Add Filter"
+msgstr "Добавить фильтр"
+
+#: includes/custom_post.php:49
+msgid "Add New Filter"
+msgstr "Добавить новый фильтр"
+
+#: includes/custom_post.php:51
+msgid "Edit Filter"
+msgstr "Редактировать фильтр"
+
+#: includes/custom_post.php:52
+msgid "New Filter"
+msgstr "Новый фильтр"
+
+#: includes/custom_post.php:53
+msgid "View Filters"
+msgstr "Просмотр фильтров"
+
+#: includes/custom_post.php:54
+msgid "View Filter"
+msgstr "Просмотр фильтра"
+
+#: includes/custom_post.php:55
+msgid "Search Product Filters"
+msgstr "Поиск Фильтров Продуктов"
+
+#: includes/custom_post.php:56
+msgid "No Product Filters found"
+msgstr "Нет продуктов после фильтрации"
+
+#: includes/custom_post.php:57
+msgid "No Product Filters found in trash"
+msgstr "Фильтры товаров не найдены в корзине"
+
+#: includes/custom_post.php:59
+msgid "This is where you can add Product Filters."
+msgstr "Здесь Вы можете добавить фильтры продуктов."
+
+#: includes/custom_post.php:135
+msgid "Product Filter Settings"
+msgstr "Настройки Фильтра Продуктов"
+
+#: includes/custom_post.php:136 includes/custom_post.php:340
+#: includes/custom_post.php:565 includes/custom_post.php:646
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: includes/custom_post.php:137
+msgid "FAQ"
+msgstr "FAQ"
+
+#: includes/custom_post.php:143
+msgid "Setup Widget"
+msgstr "Настройка Виджета"
+
+#: includes/custom_post.php:227
+msgid ""
+"Widget to display single filter in your sidebar. Add it to needed sidebar"
+msgstr ""
+"Виджет для отображения одного фильтра на боковой панели. Добавьте его на "
+"нужную боковую панель"
+
+#: includes/custom_post.php:261
+msgid "Select filter that must be displayed in sidebar"
+msgstr "Выберите фильтр, который должен отображаться на боковой панели"
+
+#: includes/custom_post.php:266
+msgid "Save widget and check it on shop page"
+msgstr "Сохранить виджет и проверить его на странице магазина"
+
+#: includes/custom_post.php:295
+msgid "Hide this filter on:"
+msgstr "Скрыть этот фильтр на:"
+
+#: includes/custom_post.php:303 includes/custom_post.php:615
+msgid "Tablet"
+msgstr "Планшетах"
+
+#: includes/custom_post.php:318 includes/custom_post.php:638
+msgid "You need save it to get shortcode"
+msgstr "Что бы получить шорткод, Вам нужно его сохранить"
+
+#: includes/custom_post.php:332
+msgid "Now you can use saved filters in widgets"
+msgstr "Теперь Вы можете использовать сохраненные фильтры в виджетах"
+
+#: includes/custom_post.php:333
+msgid "Add widget <strong>AAPF Filter Single</strong> on "
+msgstr "Добавьте виджет <strong>AAPF Filter Single</strong> на "
+
+#: includes/custom_post.php:334
+msgid "WIDGET PAGE"
+msgstr "СТРАНИЦЕ ВИДЖЕТОВ"
+
+#: includes/custom_post.php:339
+msgid "Data"
+msgstr "Данные"
+
+#: includes/custom_post.php:353 includes/display_filter/selected_area.php:14
+msgid "Selected Filters area"
+msgstr "Область с Выбранными Фильтрами"
+
+#: includes/custom_post.php:354 includes/paid.php:1505
+msgid "Search Box (DEPRECATED)"
+msgstr "Поле поиска (УСТАРЕЛО)"
+
+#: includes/custom_post.php:356
+msgid "Widget type: "
+msgstr "Тип виджета:"
+
+#: includes/custom_post.php:362 includes/paid.php:1474 includes/paid.php:1625
+msgid "Custom Taxonomy"
+msgstr "Пользовательская таксономия"
+
+#: includes/custom_post.php:369 includes/custom_post.php:386
+msgid "Attribute: "
+msgstr "Атрибут:"
+
+#: includes/custom_post.php:371 includes/custom_post.php:396
+msgid "Custom Taxonomy: "
+msgstr "Пользовательские Таксономии:"
+
+#: includes/custom_post.php:388 includes/paid.php:1478
+msgid "Stock status"
+msgstr "Наличие"
+
+#: includes/custom_post.php:390 includes/paid.php:1470
+msgid "Product sub-categories"
+msgstr "Подкатегории Продуктов"
+
+#: includes/custom_post.php:399 includes/paid.php:1482
+msgid "Date"
+msgstr "Дата"
+
+#: includes/custom_post.php:401 includes/paid.php:1486
+msgid "Sale"
+msgstr "Распродажа"
+
+#: includes/custom_post.php:515 includes/custom_post.php:517
+#: includes/custom_post.php:518
+msgid "Product Filter Group"
+msgstr "Группы фильтров продуктов"
+
+#: includes/custom_post.php:519
+msgctxt "Admin menu name"
+msgid "Groups"
+msgstr "Группы"
+
+#: includes/custom_post.php:520
+msgid "Add Filter Group"
+msgstr "Добавить группу фильтров"
+
+#: includes/custom_post.php:521
+msgid "Add New Filter Group"
+msgstr "Создать новую группу фильтров"
+
+#: includes/custom_post.php:523
+msgid "Edit Filter Group"
+msgstr "Редактировать группу фильтров"
+
+#: includes/custom_post.php:524
+msgid "New Filter Group"
+msgstr "Новая группа фильтров"
+
+#: includes/custom_post.php:525
+msgid "View Filter Groups"
+msgstr "Просмотр групп фильтров"
+
+#: includes/custom_post.php:526
+msgid "View Filter Group"
+msgstr "Просмотр группы фильтров"
+
+#: includes/custom_post.php:527
+msgid "Search Product Filter Groups"
+msgstr "Поиск групп фильтров товаров"
+
+#: includes/custom_post.php:528
+msgid "No Product Filter Groups found"
+msgstr "Группы фильтров товаров не найдены"
+
+#: includes/custom_post.php:529
+msgid "No Product Filter Groups found in trash"
+msgstr "Группы товаров не найдены в корзине"
+
+#: includes/custom_post.php:531
+msgid "This is where you can add Product Filter Groups."
+msgstr "Здесь Вы можете добавить группы фильтров продуктов."
+
+#: includes/custom_post.php:564
+msgid "Group Settings"
+msgstr "Настройки Групп"
+
+#: includes/custom_post.php:566
+msgid "Information"
+msgstr "Информация"
+
+#: includes/custom_post.php:607
+msgid "Hide this group on:"
+msgstr "Скрыть эту группу на:"
+
+#: includes/custom_post.php:695 includes/paid.php:590 includes/paid.php:621
+#: addons/custom_sidebar/sidebar_include.php:37
+msgid "SHOW FILTERS"
+msgstr "ПОКАЗАТЬ ФИЛЬТРЫ"
+
+#: includes/paid.php:81
+msgid "Hide the Show/Hide value(s) button in the filters"
+msgstr "Скрыть кнопку “Показать/Скрыть значение(я)” в фильтрах"
+
+#: includes/paid.php:88
+msgid "Thousands Separator"
+msgstr "Разделитель тысяч"
+
+#: includes/paid.php:112
+msgid "Use links for checkboxes and radio filter"
+msgstr "Использовать ссылки для флажков и переключателей фильтров"
+
+#: includes/paid.php:119
+msgid "Use noindex for links"
+msgstr "Используйте noindex для ссылок"
+
+#: includes/paid.php:125 includes/paid.php:137
+msgid "Second+ levels"
+msgstr "Вторые+ уровни"
+
+#: includes/paid.php:126 includes/paid.php:138
+msgid "All levels"
+msgstr "Все уровни"
+
+#: includes/paid.php:131
+msgid "Use nofollow for links"
+msgstr "Используйте nofollow для ссылок"
+
+#: includes/paid.php:149
+msgid "Nice URLs"
+msgstr "Хорошие URL"
+
+#: includes/paid.php:154
+msgid ""
+"Works only with SEO friendly urls. WordPress permalinks must be set to Post "
+"name(Custom structure: /%postname%/ )"
+msgstr ""
+"Работает только с SEO дружественными URL. Постоянные ссылки WordPress должны "
+"быть установлены на «Имя публикации» (пользовательская структура: /% "
+"postname% /)"
+
+#: includes/paid.php:157
+msgid "Base Canonical URL"
+msgstr "Не отображать фильтры в Canonical"
+
+#: includes/paid.php:161
+msgid "Use canonical tag without filters on WooCommerce pages"
+msgstr "Используйте канонический тег без фильтров на страницах WooCommerce"
+
+#: includes/paid.php:165 includes/paid.php:1667
+#: templates/paid/filters_search_box.php:34
+msgid "Elements position"
+msgstr "Позиция элементов"
+
+#: includes/paid.php:167
+msgid "Show the number of products before filtering"
+msgstr "Показывать количество продуктов до фильтрации"
+
+#: includes/paid.php:173
+msgid "Show products count before filtering, when using update button"
+msgstr ""
+"Показывать количество продуктов до фильтрации при использовании кнопки "
+"обновления"
+
+#: includes/paid.php:179
+msgid "Text that means products"
+msgstr "Текст вместо \"products\""
+
+#: includes/paid.php:185
+msgid "Text for show button"
+msgstr "Текст для кнопки показать"
+
+#: includes/paid.php:198
+msgid "Data cache"
+msgstr "Кэш данных"
+
+#: includes/paid.php:202
+msgid "Turned off"
+msgstr "Выключено"
+
+#: includes/paid.php:203
+msgid "WordPress Cache"
+msgstr "WordPress Кэш"
+
+#: includes/paid.php:204
+msgid "Persistent Cache Plugins"
+msgstr "Плагины постоянного кэширования"
+
+#: includes/paid.php:215
+msgid "Display variation image"
+msgstr "Отображать картинку вариации"
+
+#: includes/paid.php:219
+msgid "Display variation image instead of product's when filtering"
+msgstr ""
+"Показывать после фильтрации изображение вариации вместо изображения продукта."
+
+#: includes/paid.php:222
+msgid "Display variation price"
+msgstr "Показывать цену вариации"
+
+#: includes/paid.php:226
+msgid "Display variation price instead of product's when filtering"
+msgstr "Показывать после фильтрации цену вариации вместо цены продукта."
+
+#: includes/paid.php:229
+msgid "Remember variation options"
+msgstr "Запомнить выбор вариации"
+
+#: includes/paid.php:235
+msgid "Use variation options only after search"
+msgstr "Использовать выбор вариации только после поиска"
+
+#: includes/paid.php:247
+msgid "Slider has a lot of values"
+msgstr "Ползунок имеет много значений"
+
+#: includes/paid.php:251
+msgid ""
+"Enable it if slider has more than 250 values. Hierarchical taxonomy can work "
+"incorrect with sliders"
+msgstr ""
+"Включите настройку, если ползунок имеет более 250 значений. Иерархическая "
+"таксономия может работать некорректно с ползунками"
+
+#: includes/paid.php:261
+msgid "Elements over products"
+msgstr "Элементы над продуктами"
+
+#: includes/paid.php:286
+msgid "Add group"
+msgstr "Добавить группу"
+
+#: includes/paid.php:386 templates/paid/filters_group.php:68
+#: addons/custom_sidebar/sidebar_include.php:56
+msgid "Collapse Button style"
+msgstr "Стиль кнопки «Свернуть»"
+
+#: includes/paid.php:406
+msgid "Collapse Button Icon style"
+msgstr "Стиль значка кнопки «Свернуть»"
+
+#: includes/paid.php:479
+msgid "Search Box"
+msgstr "Блок Поиска"
+
+#: includes/paid.php:490 includes/paid.php:1496
+msgid "Ranges"
+msgstr "Диапазон"
+
+#: includes/paid.php:561
+msgid "Hide \"Show/Hide value(s)\" button"
+msgstr "Скрыть кнопку “Показать/Скрыть значение(я)”"
+
+#: includes/paid.php:1576
+msgid "Attributes"
+msgstr "Атрибуты"
+
+#: includes/paid.php:1579 templates/paid/filters_search_box.php:9
+msgid "URL to search"
+msgstr "Ссылка для поиска"
+
+#: includes/paid.php:1581 templates/paid/filters_search_box.php:11
+msgid "Shop page"
+msgstr "Страница магазина"
+
+#: includes/paid.php:1582 templates/paid/filters_search_box.php:12
+msgid "Category page"
+msgstr "Страница категории"
+
+#: includes/paid.php:1583 templates/paid/filters_search_box.php:13
+msgid "URL"
+msgstr "Ссылка"
+
+#: includes/paid.php:1587 templates/paid/filters_search_box.php:17
+msgid "Category"
+msgstr "Категория"
+
+#: includes/paid.php:1597 templates/paid/filters_search_box.php:27
+msgid "URL for search"
+msgstr "Ссылка для поиска"
+
+#: includes/paid.php:1601
+msgid "Attributes count"
+msgstr "Количество атрибутов"
+
+#: includes/paid.php:1664 templates/paid/filters_search_box.php:31
+msgid "Styles"
+msgstr "Стили"
+
+#: includes/paid.php:1669 templates/paid/filters_search_box.php:36
+msgid "Vertical"
+msgstr "Вертикально"
+
+#: includes/paid.php:1670 templates/paid/filters_search_box.php:37
+msgid "Horizontal"
+msgstr "Горизонтально"
+
+#: includes/paid.php:1674 templates/paid/filters_search_box.php:41
+msgid "Search button position"
+msgstr "Позиция кнопки поиска"
+
+#: includes/paid.php:1678 templates/paid/filters_search_box.php:45
+msgid "Before and after"
+msgstr "До и после"
+
+#: includes/paid.php:1682 templates/paid/filters_search_box.php:49
+msgid "Search button text"
+msgstr "Текст на кнопке поиска"
+
+#: includes/paid.php:1686 templates/settings/design.php:705
+#: templates/paid/filters_search_box.php:53
+msgid "Background color"
+msgstr "Цвет фона"
+
+#: includes/paid.php:1691 templates/paid/filters_search_box.php:58
+msgid "Background transparency"
+msgstr "Прозрачность фона"
+
+#: includes/paid.php:1695 templates/paid/filters_search_box.php:62
+msgid "100%"
+msgstr "100%"
+
+#: includes/paid.php:1696 templates/paid/filters_search_box.php:63
+msgid "90%"
+msgstr "90%"
+
+#: includes/paid.php:1697 templates/paid/filters_search_box.php:64
+msgid "80%"
+msgstr "80%"
+
+#: includes/paid.php:1698 templates/paid/filters_search_box.php:65
+msgid "70%"
+msgstr "70%"
+
+#: includes/paid.php:1699 templates/paid/filters_search_box.php:66
+msgid "60%"
+msgstr "60%"
+
+#: includes/paid.php:1700 templates/paid/filters_search_box.php:67
+msgid "50%"
+msgstr "50%"
+
+#: includes/paid.php:1701 templates/paid/filters_search_box.php:68
+msgid "40%"
+msgstr "40%"
+
+#: includes/paid.php:1702 templates/paid/filters_search_box.php:69
+msgid "30%"
+msgstr "30%"
+
+#: includes/paid.php:1703 templates/paid/filters_search_box.php:70
+msgid "20%"
+msgstr "20%"
+
+#: includes/paid.php:1704 templates/paid/filters_search_box.php:71
+msgid "10%"
+msgstr "10%"
+
+#: includes/paid.php:1705 templates/paid/filters_search_box.php:72
+msgid "0%"
+msgstr "0%"
+
+#: includes/paid.php:1716 templates/paid/filters_search_box.php:83
+msgid "Button background color"
+msgstr "Цвет фона кнопки"
+
+#: includes/paid.php:1721 templates/paid/filters_search_box.php:88
+msgid "Button background color on mouse over"
+msgstr "Цвет фона кнопки при наведении"
+
+#: includes/paid.php:1726 templates/paid/filters_search_box.php:93
+msgid "Button text color"
+msgstr "Цвет текста на кнопке"
+
+#: includes/paid.php:1731 templates/paid/filters_search_box.php:98
+msgid "Button text color on mouse over"
+msgstr "Цвет текста на кнопке при наведении"
+
+#: includes/paid.php:1744
+msgid "Child/Parent Limitation"
+msgstr "Ограничение Дочерних/Родительских"
+
+#: includes/paid.php:1747
+msgid "Child Count"
+msgstr "Количество дочерних"
+
+#: includes/paid.php:1748
+msgid "Parent"
+msgstr "Родительские"
+
+#: includes/paid.php:1749 includes/paid.php:1785
+msgid "Child"
+msgstr "Дочерние"
+
+#: includes/paid.php:1753
+msgid "Child depth"
+msgstr "Дочернее дерево"
+
+#: includes/paid.php:1756 includes/paid.php:1795
+msgid "\"No values\" messages"
+msgstr "Сообщения «Нет значений»"
+
+#: includes/paid.php:1760 includes/paid.php:1799
+msgid "\"Select previous\" messages"
+msgstr "«Выбрать предыдущие» сообщения"
+
+#: includes/paid.php:1764
+msgid "\"No Products\" messages"
+msgstr "Сообщения \"Нет товаров\""
+
+#: includes/paid.php:1769
+msgid "Child count"
+msgstr "Количество дочерних"
+
+#: includes/paid.php:1791
+msgid "\"No products\" messages"
+msgstr "Сообщения \"Нет товаров\""
+
+#: includes/paid.php:1812
+msgid "Date Month Dropdown menu"
+msgstr "Выпадающий список для месяца"
+
+#: includes/paid.php:1818
+msgid "Date Year Dropdown menu"
+msgstr "Выпадающий список для года"
+
+#: includes/paid.php:1822
+msgid "Date visual style"
+msgstr "Визуальный стиль даты"
+
+#: includes/paid.php:1863
+msgid "Display only"
+msgstr "Показывать"
+
+#: includes/paid.php:1864
+msgid "Remove"
+msgstr "Удалить"
+
+#: includes/paid.php:1866
+msgid "values selected in Include / Exclude List"
+msgstr "«Включить / Исключить» значения, выбранные в списке "
+
+#: includes/paid.php:1888
+msgid "Use as numeric"
+msgstr "Использовать как числовой"
+
+#: includes/paid.php:1901
+msgid "Show product count per attribute value?"
+msgstr "Показывать количество продуктов для каждого атрибута?"
+
+#: includes/paid.php:1912
+msgid "Values per row"
+msgstr "Значений в строке"
+
+#: includes/paid.php:2049 includes/paid.php:2894
+#: includes/widget_functions.php:189 includes/widget_functions.php:462
+#: addons/deprecated_compat/widget.php:1756
+#: addons/deprecated_compat/widget.php:2029
 msgid "In stock"
 msgstr "В наличии"
 
-#: includes/widget.php:615 includes/widget.php:2605 includes/widget.php:2854
+#: includes/paid.php:2056 includes/paid.php:2895
+#: includes/widget_functions.php:190 includes/widget_functions.php:463
+#: addons/deprecated_compat/widget.php:1757
+#: addons/deprecated_compat/widget.php:2030
 msgid "Out of stock"
 msgstr "Нет в наличии"
 
-#: includes/widget.php:623
+#: includes/paid.php:2076 includes/paid.php:2898
 msgid "On sale"
-msgstr "На распродаже"
+msgstr "Со скидкой"
 
-#: includes/widget.php:624
+#: includes/paid.php:2083 includes/paid.php:2899
 msgid "Not on sale"
-msgstr "Не на распродаже"
+msgstr "Без скидки"
 
-#. Name of the plugin
-msgid "WooCommerce AJAX Products Filter"
-msgstr "WooCommerce AJAX Products Filter"
-
-#. Description of the plugin
-msgid "Unlimited AJAX products filters to make your shop perfect"
-msgstr "Бесконечные AJAX фильтры для продуктов. Сделайте ваш магазин лучше"
-
-#. URI of the plugin
-msgid "http://berocket.com/product/woocommerce-ajax-products-filter"
-msgstr "http://berocket.com/product/woocommerce-ajax-products-filter"
+#: includes/paid.php:3051
+msgid "Nice URLs settings"
+msgstr "Настройки хороших URL"
 
 #. Author of the plugin
+#: includes/visual-composer.php:21 includes/visual-composer.php:47
 msgid "BeRocket"
 msgstr "BeRocket"
 
+#: templates/settings/design.php:8 templates/settings/design.php:23
+msgid "Select All"
+msgstr "Выбрать всё"
+
+#: templates/settings/design.php:11 templates/settings/design.php:26
+#: templates/settings/design.php:148 templates/settings/design.php:778
+msgid "Element"
+msgstr "Элемент"
+
+#: templates/settings/design.php:13 templates/settings/design.php:28
+msgid "Font Family"
+msgstr "Шрифт"
+
+#: templates/settings/design.php:14 templates/settings/design.php:29
+msgid "Font-Weight"
+msgstr "Толщина шрифта"
+
+#: templates/settings/design.php:14 templates/settings/design.php:29
+msgid "(depends on font)"
+msgstr "(Зависит от шрифта)"
+
+#: templates/settings/design.php:15 templates/settings/design.php:30
+msgid "Font-Size"
+msgstr "Размер шрифта"
+
+#: templates/settings/design.php:16 templates/settings/design.php:31
+#: templates/settings/design.php:156
+msgid "Theme"
+msgstr "Тема"
+
+#: templates/settings/design.php:35 templates/settings/design.php:626
+#: templates/settings/design.php:695 templates/settings/design.php:768
+#: templates/settings/design.php:873
+msgid "Set all to theme default"
+msgstr "Установить всё по умолчанию"
+
+#: templates/settings/design.php:48
+msgid "Select Element"
+msgstr "Выбрать элемент"
+
+#: templates/settings/design.php:59 templates/settings/design.php:71
+#: templates/settings/design.php:112 templates/settings/design.php:119
+#: templates/settings/design.php:134
+msgid "N/A"
+msgstr "Н/Д"
+
+#: templates/settings/design.php:65 templates/settings/design.php:80
+#: templates/settings/design.php:117 templates/settings/design.php:168
+#: templates/settings/design.php:171 templates/settings/design.php:174
+#: templates/settings/design.php:424 templates/settings/design.php:427
+#: templates/settings/design.php:430 templates/settings/design.php:661
+#: templates/settings/design.php:669 templates/settings/design.php:672
+#: templates/settings/design.php:685 templates/settings/design.php:688
+#: templates/settings/design.php:730 templates/settings/design.php:738
+#: templates/settings/design.php:751 templates/settings/design.php:796
+#: templates/settings/design.php:799 templates/settings/design.php:802
+#: templates/settings/design.php:823 templates/settings/design.php:826
+#: templates/settings/design.php:829 templates/settings/design.php:850
+#: templates/settings/design.php:853 templates/settings/design.php:856
+msgid "Theme Default"
+msgstr "По умолчанию"
+
+#: templates/settings/design.php:125
+msgid "Without Theme"
+msgstr "Без темы"
+
+#: templates/settings/design.php:146
+msgid "Checkbox / Radio"
+msgstr "Флажок / Переключатель"
+
+#: templates/settings/design.php:149 templates/settings/design.php:706
+#: templates/settings/design.php:779
+msgid "Border color"
+msgstr "Цвет границы"
+
+#: templates/settings/design.php:150 templates/settings/design.php:780
+msgid "Border width"
+msgstr "Ширина границы"
+
+#: templates/settings/design.php:151 templates/settings/design.php:781
+msgid "Border radius"
+msgstr "Закругление углов"
+
+#: templates/settings/design.php:152 templates/settings/design.php:782
+msgid "Size"
+msgstr "Размер"
+
+#: templates/settings/design.php:153 templates/settings/design.php:708
+#: templates/settings/design.php:783
+msgid "Font color"
+msgstr "Цвет шрифта"
+
+#: templates/settings/design.php:154 templates/settings/design.php:784
+msgid "Background"
+msgstr "Задний фон"
+
+#: templates/settings/design.php:155
+msgid "Icon"
+msgstr "Иконка"
+
+#: templates/settings/design.php:636
+msgid "Line color"
+msgstr "Цвет линии"
+
+#: templates/settings/design.php:637
+msgid "Back line color"
+msgstr "Цвет заднего фона линии"
+
+#: templates/settings/design.php:638
+msgid "Line height"
+msgstr "Высота линии"
+
+#: templates/settings/design.php:639
+msgid "Line border color"
+msgstr "Цвет границы линии"
+
+#: templates/settings/design.php:640
+msgid "Line border width"
+msgstr "Ширина границы линии"
+
+#: templates/settings/design.php:641
+msgid "Button size"
+msgstr "Размер кнопки"
+
+#: templates/settings/design.php:642
+msgid "Button color"
+msgstr "Цвет кнопки"
+
+#: templates/settings/design.php:643
+msgid "Button border color"
+msgstr "Цвет границы кнопки"
+
+#: templates/settings/design.php:644
+msgid "Button border width"
+msgstr "Ширина границы кнопки"
+
+#: templates/settings/design.php:645
+msgid "Button border radius"
+msgstr "Закругление углов кнопки"
+
+#: templates/settings/design.php:703
+msgid "Product count description before filtering with Apply Filters button"
+msgstr ""
+"Описание количества товаров перед фильтрацией с кнопкой «Кнопка Фильтрации "
+"Продуктов»"
+
+#: templates/settings/design.php:707
+msgid "Font size"
+msgstr "Размер шрифта"
+
+#: templates/settings/design.php:709
+msgid "Show button font size"
+msgstr "Размер шрифта кнопки \"Показать\""
+
+#: templates/settings/design.php:710
+msgid "Show button font color"
+msgstr "Цвет шрифта кнопки \"Показать\""
+
+#: templates/settings/design.php:711
+msgid "Show button font color on mouse over"
+msgstr "Цвет шрифта кнопки \"Показать\" при наведении"
+
+#: templates/settings/design.php:712
+msgid "Close button size"
+msgstr "Размер кнопки \"Закрыть\""
+
+#: templates/settings/design.php:713
+msgid "Close button font color"
+msgstr "Цвет шрифта кнопки \"Закрыть\""
+
+#: templates/settings/design.php:714
+msgid "Close button font color on mouse over"
+msgstr "Цвет шрифта кнопки \"Закрыть\" при наведении"
+
+#: templates/settings/design.php:776
+msgid "Show title only Styles"
+msgstr "Стили для отображаемых названий"
+
+#: templates/settings/design.php:816
+msgid "Title opened"
+msgstr "Название при открытии"
+
+#: templates/settings/design.php:881
+msgid "Loading icon"
+msgstr "Иконка загрузки"
+
+#: templates/settings/design.php:889
+msgid "Loading icon text"
+msgstr "Текст возле иконки загрузки"
+
+#: templates/settings/design.php:891
+msgid "Above:"
+msgstr "Выше:"
+
+#: templates/settings/design.php:894
+msgid "Below:"
+msgstr "Ниже:"
+
+#: templates/settings/design.php:897
+msgid "Before:"
+msgstr "Перед:"
+
+#: templates/settings/design.php:900
+msgid "After:"
+msgstr "После:"
+
+#: templates/settings/design.php:906
+msgid "Show and hide description"
+msgstr "Показать и скрыть описание"
+
+#: templates/settings/design.php:908
+msgid "Show when user:"
+msgstr "Показывать при:"
+
+#: templates/settings/design.php:910
+msgid "Click"
+msgstr "Нажатии"
+
+#: templates/settings/design.php:911
+msgid "Hovering over the icon"
+msgstr "Наведении курсора на иконку"
+
+#: templates/settings/design.php:915
+msgid "Hide when user:"
+msgstr "Скрыть при:"
+
+#: templates/settings/design.php:917
+msgid "Click anywhere"
+msgstr "Нажатии в любом месте"
+
+#: templates/settings/design.php:918
+msgid "Move cursor outside the icon"
+msgstr "Переместить курсор за пределы значка"
+
+#: templates/settings/design.php:925
+msgid "Product quantity style"
+msgstr "Стиль для количества продуктов"
+
+#: templates/settings/design.php:928
+msgid "4"
+msgstr "4"
+
+#: templates/settings/design.php:929
+msgid "(4)"
+msgstr "(4)"
+
+#: templates/settings/design.php:930
+msgid "[4]"
+msgstr "[4]"
+
+#: templates/settings/design.php:934
+msgid "Position:"
+msgstr "Позиция:"
+
+#: templates/settings/design.php:936 templates/settings/design.php:944
+msgid "Normal"
+msgstr "Нормальная"
+
+#: templates/settings/design.php:937 templates/settings/design.php:945
+msgid "Right"
+msgstr "Справа"
+
+#: templates/settings/design.php:938
+msgid "Right from name"
+msgstr "Справа от имени"
+
+#: templates/settings/design.php:942
+msgid "Position on Image:"
+msgstr "Позиция на картинке:"
+
+#: templates/settings/design.php:952
+msgid "Indent option for hierarchy in Drop-Down"
+msgstr "Вариант отступа для дерева дочерних"
+
+#: templates/settings/design.php:955
+msgid "-"
+msgstr "-"
+
+#: templates/settings/design.php:956
+msgid "space"
+msgstr "пробел"
+
+#: templates/settings/design.php:957
+msgid "2 spaces"
+msgstr "2 пробела"
+
+#: templates/settings/design.php:958
+msgid "tab"
+msgstr "таб"
+
+#: templates/paid/filters_group.php:3
+msgid "Show filters above products"
+msgstr "Показать фильтры над продуктами"
+
+#: templates/paid/filters_group.php:20
+msgid "Display filters in line"
+msgstr "Выводить фильтры в линию"
+
+#: templates/paid/filters_group.php:26
+msgid "Display filters in line max count"
+msgstr "Максимальное количество фильтров в линию"
+
+#: templates/paid/filters_group.php:41
+msgid "Min Width for Filter"
+msgstr "Минимальная ширина фильтра"
+
+#: templates/paid/filters_group.php:47
+msgid "Show title only"
+msgstr "Показывать только название фильтра"
+
+#: templates/paid/filters_group.php:50
+msgid ""
+"Only title will be visible. Filter will be displayed after click on title "
+"and hide after click everywhere else"
+msgstr ""
+"Только заголовок будет виден. Фильтр будет отображаться после нажатия на "
+"заголовок и скрываться после нажатия в другом месте"
+
+#: templates/paid/filters_group.php:54
+msgid "Display filters on mouse over"
+msgstr "Показывать фильтры после нажатия мишкой"
+
+#: templates/paid/filters_group.php:57
+msgid "Display on mouse over and hide on mouse leave"
+msgstr "Отображение при наведении курсора мыши и скрыть при убирание курсора"
+
+#: templates/paid/filters_group.php:61
+msgid "Collapsed on page load"
+msgstr "Свернуть при загрузке страницы"
+
+#: templates/paid/filters_group.php:64
+msgid ""
+"Collapse group on page load and show icon instead. When icon is clicked "
+"filters will be shown"
+msgstr ""
+"При загрузке страницы фильтры над продуктам будут спрятаны, а вместо "
+"фильтров будет выведена кнопка. При нажатии кнопки будут показаны фильтры"
+
+#: templates/paid/filters_search_box.php:4
+msgid "Use Group as Search Box"
+msgstr "Использовать группу как блок поиска"
+
+#: addons/filtering_conditions/filtering_conditions.php:9
+#: addons/filtering_conditions/add_conditions.php:39
+msgid "Nested Filters (BETA)"
+msgstr "Условия после фильтрации (БЕТА)"
+
+#: addons/filtering_conditions/filtering_conditions.php:10
+msgid ""
+"The ability to set conditions for the filters based on other filters status"
+msgstr ""
+"Возможность устанавливать условия для фильтров на основе статуса других "
+"фильтров"
+
+#: addons/filtering_conditions/add_conditions.php:47
+msgid ""
+"Use this to display products only after filtering by some attribute and value"
+msgstr ""
+"Используйте это для отображения товаров только после фильтрации по "
+"некоторому атрибуту и значению"
+
+#: addons/custom_sidebar/custom_sidebar.php:9
+msgid "Custom Sidebar"
+msgstr "Пользовательская Боковая Панель"
+
+#: addons/custom_sidebar/sidebar_include.php:52
+msgid "Custom Sidebar Styles"
+msgstr "Пользовательский Стиль Боковой Панели"
+
+#: addons/custom_sidebar/sidebar_include.php:65
+msgid "First"
+msgstr "First"
+
+#: addons/custom_sidebar/sidebar_include.php:66
+msgid "Second"
+msgstr "Second"
+
+#: addons/custom_sidebar/sidebar_include.php:67
+msgid "Third"
+msgstr "Third"
+
+#: addons/custom_sidebar/sidebar_include.php:68
+msgid "Fourth"
+msgstr "Fourth"
+
+#: addons/custom_sidebar/sidebar_include.php:69
+msgid "Fifth"
+msgstr "Fifth"
+
+#: addons/custom_sidebar/sidebar_include.php:70
+msgid "Sixth"
+msgstr "Sixth"
+
+#: addons/custom_sidebar/sidebar_include.php:90
+msgid "BeRocket AJAX Filters"
+msgstr "BeRocket AJAX Filters"
+
+#: addons/custom_sidebar/sidebar_include.php:92
+msgid "Sidebar for BeRocket AJAX Filters"
+msgstr "Боковая Панель для BeRocket AJAX Фильтров"
+
+#: addons/custom_sidebar/sidebar_include.php:103
+msgid "Close &#10005;"
+msgstr "Закрыть &#10005;"
+
+#: addons/divi_theme_compat/divi_theme_compat.php:21
+msgid "DIVI Theme Compatibility"
+msgstr "Совместимость с Темой DIVI"
+
+#: addons/divi_theme_compat/divi_theme_compat.php:23
+msgid ""
+"Replace DIVI products module with custom products module, that has "
+"additional option. Provide better compatibility with filters"
+msgstr ""
+"Заменяет модуль продуктов DIVI модулем пользовательских продуктов, который "
+"имеет дополнительную опцию. Обеспечивает лучшую совместимость с фильтрами"
+
+#: addons/deprecated_compat/deprecated_compat.php:9
+msgid "Deprecated Widget"
+msgstr "Устаревший Виджет"
+
+#: addons/deprecated_compat/deprecated_compat.php:11
+msgid ""
+"<span style=\"color: red;\">DO NOT USE<br>IT WILL BE REMOVED IN THE "
+"FUTURE</span><br>Uses for compatibility with old filters"
+msgstr ""
+"<span style=\"color: red;\">НЕ ИСПОЛЬЗУЙТЕ<br>ЭТО БУДЕТ УДАЛЕННО В СЛЕДУЮЩЕЙ "
+"ВЕРСИИ</span><br>Используется для совместимости со старыми фильтрами"
+
+#: addons/deprecated_compat/widget.php:124
+#: includes/filters/display_widget.php:123
+msgid "Add Filters to Products page"
+msgstr "Добить фильтры на страницу продуктов"
+
+#: addons/deprecated_compat/widget.php:130
+#: includes/filters/display_widget.php:129
+msgid "AJAX Product Filters (Deprecated)"
+msgstr "Фильтры продуктов AJAX(УСТАРЕЛО)"
+
+#: addons/deprecated_compat/widget.php:550
+#: includes/filters/display_widget.php:445
+msgid "1 star"
+msgstr "1 звезда"
+
+#: addons/deprecated_compat/widget.php:550
+#: includes/filters/display_widget.php:445
+msgid ""
+"<i class=\"fa fa-star\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-"
+"star-o\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-star-o\"></i>"
+msgstr ""
+"<i class=\"fa fa-star\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-"
+"star-o\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-star-o\"></i>"
+
+#: addons/deprecated_compat/widget.php:553
+#: includes/filters/display_widget.php:446
+msgid "2 stars"
+msgstr "2 звезды"
+
+#: addons/deprecated_compat/widget.php:553
+#: includes/filters/display_widget.php:446
+msgid ""
+"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
+"star-o\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-star-o\"></i>"
+msgstr ""
+"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
+"star-o\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-star-o\"></i>"
+
+#: addons/deprecated_compat/widget.php:556
+#: includes/filters/display_widget.php:447
+msgid "3 stars"
+msgstr "3 звезды"
+
+#: addons/deprecated_compat/widget.php:556
+#: includes/filters/display_widget.php:447
+msgid ""
+"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
+"star\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-star-o\"></i>"
+msgstr ""
+"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
+"star\"></i><i class=\"fa fa-star-o\"></i><i class=\"fa fa-star-o\"></i>"
+
+#: addons/deprecated_compat/widget.php:559
+#: includes/filters/display_widget.php:448
+msgid "4 stars"
+msgstr "4 звезды"
+
+#: addons/deprecated_compat/widget.php:559
+#: includes/filters/display_widget.php:448
+msgid ""
+"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
+"star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-star-o\"></i>"
+msgstr ""
+"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
+"star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-star-o\"></i>"
+
+#: addons/deprecated_compat/widget.php:562
+#: includes/filters/display_widget.php:449
+msgid "5 stars"
+msgstr "5 звезд"
+
+#: addons/deprecated_compat/widget.php:562
+#: includes/filters/display_widget.php:449
+msgid ""
+"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
+"star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i>"
+msgstr ""
+"<i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-"
+"star\"></i><i class=\"fa fa-star\"></i><i class=\"fa fa-star\"></i>"
+
+#: addons/separate_link/separate_vars.php:27
+msgid "Default operator for URLs"
+msgstr "Оператор по умолчанию для URL"
+
+#: addons/separate_link/separate_vars.php:31
+msgid "OR"
+msgstr "ИЛИ"
+
+#: addons/separate_link/separate_vars.php:32
+msgid "AND"
+msgstr "И"
+
+#: addons/separate_link/separate_vars.php:35
+msgid "Default operator will not be added to the URL"
+msgstr "Оператор по умолчанию для URL"
+
+#: addons/separate_link/separate_link.php:9
+msgid "Link like WooCommerce (BETA)"
+msgstr "Ссылка как у WooCommerce (БЕТА)"
+
+#: addons/separate_link/separate_link.php:10
+msgid ""
+"Links after filtering will look like Woocommerce.<br>\n"
+"            <i>Example:</i><br><span style=\"color: #aaf;\">https://example."
+"com/shop/?pa-color=bronze,green&pa-product_cat_operator=or&pa-"
+"product_cat=dress</span>\n"
+"            <a class=\"button\" href=\"https://docs.berocket."
+"com/docs_section/link-like-woocommerce-beta\" target=\"_blank\">Read more</a>"
+msgstr ""
+"Ссылки после фильтрации будут выглядеть как Woocommerce.<br>\n"
+"            <i>Example:</i><br><span style=\"color: #aaf;\">https://example."
+"com/shop/?pa-color=bronze,green&pa-product_cat_operator=or&pa-"
+"product_cat=dress</span>\n"
+"            <a class=\"button\" href=\"https://docs.berocket."
+"com/docs_section/link-like-woocommerce-beta\" target=\"_blank\">Read more</a>"
+
+#: addons/additional_tables/additional_tables.php:59
+msgid "Additional Tables (BETA)"
+msgstr "Дополнительные таблицы (БЕТА)"
+
+#: addons/additional_tables/additional_tables.php:60
+msgid ""
+"Create 4 additional tables.<ul><li>Table to speed up hierarchical taxonomies "
+"recount: <strong>Product categories</strong>, <strong>Brands</strong> "
+"etc</li><li>3 tables to speed up functions for variation filtering</li></ul>"
+msgstr ""
+"Создается 4 дополнительных таблицы. <ul><li>Таблица для ускорения пересчета "
+"иерархических таксономий: <strong>Категории продктов</strong>, <strong>"
+"Бренды</strong> и т.д. </li><li>3 таблицы для ускорения функций фильтрации "
+"вариаций</li></ul>"
+
+#: addons/additional_tables/additional_tables.php:106
+msgid ""
+"Additional tables was succesfully generated. They will be used automatically "
+"when needed."
+msgstr ""
+"Дополнительные таблицы были успешно созданы. Они будут использоваться "
+"автоматически при необходимости."
+
+#: addons/additional_tables/additional_tables.php:134
+#, php-format
+msgid ""
+"Additional tables are generating. They will be used after generation is "
+"completed. Current status is <strong><span "
+"class=\"braapf_additional_table_status\">%d</span>%s</strong>"
+msgstr ""
+"Дополнительные таблицы создаются. Они будут использованы после завершения "
+"генерации. Текущий статус <strong><span "
+"class=\"braapf_additional_table_status\">%d</span>%s</strong>"
+
+#: includes/addons/seo_meta_title.php:14 includes/addons/seo_meta_title.php:19
+#: includes/addons/seo_meta_title.php:53 includes/addons/seo_meta_title.php:63
+#: includes/addons/seo_meta_title.php:85
+msgid " and "
+msgstr " и "
+
+#: includes/addons/seo_meta_title.php:15 includes/addons/seo_meta_title.php:54
+#: includes/addons/seo_meta_title.php:86
+msgid " or "
+msgstr " или "
+
+#: includes/addons/seo_meta_title.php:22 includes/addons/seo_meta_title.php:69
+msgid " with "
+msgstr " с "
+
+#: includes/addons/seo_meta_title.php:90
+msgid " / "
+msgstr "/"
+
+#: includes/addons/seo_meta_title.php:93
+msgid " - "
+msgstr "-"
+
+#. Description of the plugin
+msgid "Unlimited AJAX products filters to make your shop perfect"
+msgstr "Бесконечные AJAX фильтры для продуктов. Сделайте Ваш магазин лучше"
+
+#. URI of the plugin
+msgid ""
+"https://berocket.com/product/woocommerce-ajax-products-filter?"
+"utm_source=paid_plugin&utm_medium=plugins&utm_campaign=ajax_filters"
+msgstr ""
+"https://berocket.com/product/woocommerce-ajax-products-filter?"
+"utm_source=paid_plugin&utm_medium=plugins&utm_campaign=ajax_filters"
+
 #. Author URI of the plugin
-msgid "http://berocket.com"
-msgstr "http://berocket.com"
+msgid ""
+"https://berocket.com?"
+"utm_source=paid_plugin&utm_medium=plugins&utm_campaign=ajax_filters"
+msgstr ""
+"https://berocket.com?"
+"utm_source=paid_plugin&utm_medium=plugins&utm_campaign=ajax_filters"

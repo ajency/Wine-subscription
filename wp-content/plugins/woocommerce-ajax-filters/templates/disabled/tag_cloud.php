@@ -8,6 +8,7 @@
 * @package     WooCommerce-Filters/Templates
 * @version  1.0.1
 */
+extract($berocket_query_var_title);
 $term_i = 0;
 foreach ( $terms as $term ) { ?>
     <li title="<?php echo $term->count; ?>" class="berocket_tag_cloud_element berocket_disabled_filter_element">

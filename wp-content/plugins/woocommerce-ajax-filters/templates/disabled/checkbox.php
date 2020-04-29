@@ -10,7 +10,10 @@
 */
 ?>
 <?php
-$random_name = rand();
+extract($berocket_query_var_title);
+global $berocket_unique_value;
+$berocket_unique_value++;
+$random_name = strval($berocket_unique_value);
 $hiden_value = false;
 $child_parent = berocket_isset($child_parent);
 $is_child_parent = $child_parent == 'child';
@@ -19,11 +22,11 @@ $child_parent_depth = berocket_isset($child_parent_depth, false, 0);
 if ( $child_parent == 'parent' ) {
     $child_parent_depth = 0;
 }
-$is_first = true;
 $added_categories = array();
 $item_i = 0;
 if ( ! empty($terms) ):
     foreach( $terms as $term ):
+        $is_first = ($term->term_id == 'R__term_id__R');
         $term_taxonomy_echo = berocket_isset($term, 'wpml_taxonomy');
         if( empty($term_taxonomy_echo) ) {
             $term_taxonomy_echo = berocket_isset($term, 'taxonomy');
@@ -73,7 +76,7 @@ if ( ! empty($terms) ):
                        class="berocket_label_widgets<?php if( br_is_term_selected( $term, true, $is_child_parent_or, $child_parent_depth ) != '') echo ' berocket_checked'; ?>">
                     <?php
                     echo apply_filters( 'berocket_check_radio_color_filter_term_text_disabled', ( ( ! empty($icon_before_value) ? ( ( substr( $icon_before_value, 0, 3) == 'fa-' ) ? '<i class="fa '.$icon_before_value.'"></i>' : '<i class="fa"><img class="berocket_widget_icon" src="'.$icon_before_value.'" alt=""></i>' ) : '' ) . 
-                    apply_filters('berocket_radio_filter_term_name', berocket_isset($term, 'name'), $term) . 
+                    apply_filters('berocket_radio_filter_term_name', htmlentities(berocket_isset($term, 'name'), ENT_QUOTES), $term) . 
                     ( ! empty($icon_after_value) ? ( ( substr( $icon_after_value, 0, 3) == 'fa-' ) ? '<i class="fa '.$icon_after_value.'"></i>' : '<i class="fa"><img class="berocket_widget_icon" src="'.$icon_after_value.'" alt=""></i>' ) : '' ) ), $term, $operator, FALSE );
                     ?>
                 </label>
@@ -94,11 +97,10 @@ if ( ! empty($terms) ):
         }
         if ( $is_child_parent && $is_first ) {
             ?></ul></li><?php
-            $is_first = false;
         }
     endforeach;?>
     <?php if( $is_child_parent && is_array(berocket_isset($terms)) && count($terms) == 1 ) {
-        if( BeRocket_AAPF_Widget::is_parent_selected($attribute, $child_parent_depth - 1) ) {
+        if( BeRocket_AAPF_Widget_functions::is_parent_selected($attribute, $child_parent_depth - 1) ) {
             echo '<li>'.$child_parent_no_values.'</li>';
         } else {
             echo '<li>'.$child_parent_previous.'</li>';
@@ -125,5 +127,5 @@ if ( ! empty($terms) ):
         }
     }
     if( empty($hide_button_value) ) { ?>
-        <li class="berocket_widget_show_values"<?php if( !$hiden_value ) echo 'style="display: none;"' ?>><?php _e('Show value(s)', 'BeRocket_AJAX_domain') ?><span class="show_button"></span></li>
+        <li class="berocket_widget_show_values"<?php if( !$hiden_value ) echo 'style="display: none;"' ?>><?php _e('Show value(s)', 'BeRocket_AJAX_domain') ?><span class="show_button fa"></span></li>
 <?php } endif; ?>

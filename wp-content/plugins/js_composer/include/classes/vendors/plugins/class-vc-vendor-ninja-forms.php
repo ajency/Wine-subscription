@@ -7,7 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Ninja Forms vendor
  * @since 4.4
  */
-class Vc_Vendor_NinjaForms implements Vc_Vendor_Interface {
+class Vc_Vendor_NinjaForms {
+	private static $ninjaCount;
 
 	/**
 	 * Implement interface, map ninja forms shortcode
@@ -17,47 +18,22 @@ class Vc_Vendor_NinjaForms implements Vc_Vendor_Interface {
 		vc_lean_map( 'ninja_form', array(
 			$this,
 			'addShortcodeSettings',
-		));
-	}
+		) );
 
-	/**
-	 * Add Shortcode To Visual Composer
-	 *
-	 * @param array $ninja_forms - list of ninja forms (ID->NAME)
-	 *
-	 * @since 4.4
-	 *
-	 * @deprecated 4.9
-	 */
-	public function mapNinjaForms( $ninja_forms = array() ) {
-		// We map only [ninja_form] shortcode same as contact-form-7
-		vc_map( array(
-				'base' => 'ninja_forms_display_form',
-				'name' => __( 'Ninja Forms', 'js_composer' ),
-				'icon' => 'icon-wpb-ninjaforms',
-				'category' => __( 'Content', 'js_composer' ),
-				'description' => __( 'Place Ninja Form', 'js_composer' ),
-				'params' => array(
-					array(
-						'type' => 'dropdown',
-						'heading' => __( 'Select ninja form', 'js_composer' ),
-						'param_name' => 'id',
-						'value' => $ninja_forms,
-						'save_always' => true,
-						'description' => __( 'Choose previously created ninja form from the drop down list.', 'js_composer' ),
-					),
-				),
-			) );
+		add_filter( 'vc_frontend_editor_load_shortcode_ajax_output', array(
+			$this,
+			'replaceIds',
+		) );
 	}
 
 	/**
 	 * Mapping settings for lean method.
 	 *
-	 * @since 4.9
-	 *
 	 * @param $tag
 	 *
 	 * @return array
+	 * @since 4.9
+	 *
 	 */
 	public function addShortcodeSettings( $tag ) {
 
@@ -65,27 +41,29 @@ class Vc_Vendor_NinjaForms implements Vc_Vendor_Interface {
 
 		return array(
 			'base' => $tag,
-			'name' => __( 'Ninja Forms', 'js_composer' ),
+			'name' => esc_html__( 'Ninja Forms', 'js_composer' ),
 			'icon' => 'icon-wpb-ninjaforms',
-			'category' => __( 'Content', 'js_composer' ),
-			'description' => __( 'Place Ninja Form', 'js_composer' ),
+			'category' => esc_html__( 'Content', 'js_composer' ),
+			'description' => esc_html__( 'Place Ninja Form', 'js_composer' ),
 			'params' => array(
 				array(
 					'type' => 'dropdown',
-					'heading' => __( 'Select ninja form', 'js_composer' ),
+					'heading' => esc_html__( 'Select ninja form', 'js_composer' ),
 					'param_name' => 'id',
 					'value' => $ninja_forms,
 					'save_always' => true,
-					'description' => __( 'Choose previously created ninja form from the drop down list.', 'js_composer' ),
+					'description' => esc_html__( 'Choose previously created ninja form from the drop down list.', 'js_composer' ),
 				),
 			),
 		);
 	}
 
-	private function get_forms()
-	{
+	/**
+	 * @return array
+	 */
+	private function get_forms() {
 		$ninja_forms = array();
-		if( $this->is_ninja_forms_three() ) {
+		if ( $this->is_ninja_forms_three() ) {
 
 			$ninja_forms_data = ninja_forms_get_all_forms();
 
@@ -112,8 +90,44 @@ class Vc_Vendor_NinjaForms implements Vc_Vendor_Interface {
 		return $ninja_forms;
 	}
 
-    private function is_ninja_forms_three()
-    {
-        return ( version_compare( get_option( 'ninja_forms_version', '0.0.0' ), '3.0', '<' ) || get_option( 'ninja_forms_load_deprecated', FALSE ) );
+	/**
+	 * @return bool
+	 */
+	private function is_ninja_forms_three() {
+		return ( version_compare( get_option( 'ninja_forms_version', '0.0.0' ), '3.0', '<' ) || get_option( 'ninja_forms_load_deprecated', false ) );
+	}
+
+	/**
+	 * @param $output
+	 * @return mixed
+	 */
+	public function replaceIds( $output ) {
+		if ( is_null( self::$ninjaCount ) ) {
+			self::$ninjaCount = 1;
+		} else {
+			self::$ninjaCount ++;
+		}
+		$patterns = array(
+			'(nf-form-)(\d+)(-cont)',
+			'(nf-form-title-)(\d+)()',
+			'(nf-form-errors-)(\d+)()',
+			'(form.id\s*=\s*\')(\d+)(\')',
+		);
+		$time = time() . self::$ninjaCount . rand( 100, 999 );
+		foreach ( $patterns as $pattern ) {
+			$output = preg_replace( '/' . $pattern . '/', '${1}' . $time . '${3}', $output );
+		}
+		$replaceTo = <<<JS
+if (typeof nfForms !== 'undefined') {
+  nfForms = nfForms.filter( function(item) {
+    if (item && item.id) {
+      return document.querySelector('#nf-form-' + item.id + '-cont')
     }
+  })
+}
+JS;
+		$response = str_replace( 'var nfForms', $replaceTo . ';var nfForms', $output );
+
+		return $response;
+	}
 }

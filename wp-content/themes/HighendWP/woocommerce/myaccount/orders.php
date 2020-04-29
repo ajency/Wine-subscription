@@ -15,12 +15,10 @@
  * @see   https://docs.woocommerce.com/document/template-structure/
  * @author  WooThemes
  * @package WooCommerce/Templates
- * @version 2.6.0
+   * @version 3.7.0
  */
+defined( 'ABSPATH' ) || exit;
 
-if ( ! defined( 'ABSPATH' ) ) {
-  exit;
-}
 
 do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 

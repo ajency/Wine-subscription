@@ -13,16 +13,13 @@
  * @see 	    https://docs.woocommerce.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     3.0.0
+ * @version 3.6.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+defined( 'ABSPATH' ) || exit;
 
-?>
+global $product;
 
-<?php
 	/**
 	 * woocommerce_before_single_product hook.
 	 *
@@ -36,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 }
 ?>
 
-<div id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
+<div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 
 <div class="go-back">
 	<a href="<?php echo apply_filters( 'custom_return_to_shop_redirect', $post->ID ); ?>" class="go-back__link"><i class="fa fa-angle-left" aria-hidden="true"></i>

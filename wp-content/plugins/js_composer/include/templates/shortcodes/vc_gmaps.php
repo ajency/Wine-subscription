@@ -9,12 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @var $link
  * @var $size
  * @var $el_class
+ * @var $el_id
  * @var $css
+ * @var $css_animation
  * Shortcode class
- * @var $this WPBakeryShortCode_VC_Gmaps
+ * @var WPBakeryShortCode_Vc_Gmaps $this
  */
-$title = $link = $size = $el_class = $css = '';
-$output = '';
+$title = $link = $size = $el_class = $css = $css_animation = '';
 $atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 extract( $atts );
 
@@ -27,29 +28,36 @@ if ( '' === $link ) {
 }
 $link = trim( vc_value_from_safe( $link ) );
 $bubble = ( '' !== $bubble && '0' !== $bubble ) ? '&amp;iwloc=near' : '';
-$size = str_replace( array( 'px', ' ' ), array( '', '' ), $size );
+$size = str_replace( array(
+	'px',
+	' ',
+), array(
+	'',
+	'',
+), $size );
 
 if ( is_numeric( $size ) ) {
 	$link = preg_replace( '/height="[0-9]*"/', 'height="' . $size . '"', $link );
 }
 
 $class_to_filter = 'wpb_gmaps_widget wpb_content_element' . ( '' === $size ? ' vc_map_responsive' : '' );
-$class_to_filter .= vc_shortcode_custom_css_class( $css, ' ' ) . $this->getExtraClass( $el_class );
+$class_to_filter .= vc_shortcode_custom_css_class( $css, ' ' ) . $this->getExtraClass( $el_class ) . $this->getCSSAnimation( $css_animation );
 $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, $class_to_filter, $this->settings['base'], $atts );
 
-?>
-<div class="<?php echo esc_attr( $css_class ); ?>">
-	<?php echo wpb_widget_title( array( 'title' => $title, 'extraclass' => 'wpb_map_heading' ) ); ?>
-	<div class="wpb_wrapper">
-		<div class="wpb_map_wraper">
-			<?php
-			if ( preg_match( '/^\<iframe/', $link ) ) {
-				echo $link;
-			} else {
-				// TODO: refactor or remove outdated/deprecated attributes that is not mapped in gmaps.
-				echo '<iframe width="100%" height="' . $size . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="' . $link . '&amp;t=' . $type . '&amp;z=' . $zoom . '&amp;output=embed' . $bubble . '"></iframe>';
-			}
-			?>
-		</div>
-	</div>
-</div>
+$output = '';
+$output .= '<div class="' . esc_attr( $css_class ) . '"' . ( ! empty( $el_id ) ? ' id="' . esc_attr( $el_id ) . '"' : '' ) . '>';
+$output .= wpb_widget_title( array(
+	'title' => $title,
+	'extraclass' => 'wpb_map_heading',
+) );
+
+$output .= '<div class="wpb_wrapper"><div class="wpb_map_wraper">';
+if ( preg_match( '/^\<iframe/', $link ) ) {
+	$output .= $link;
+} else {
+	// TODO: refactor or remove outdated/deprecated attributes that is not mapped in gmaps.
+	$output .= '<iframe width="100%" height="' . esc_attr( $size ) . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="' . esc_url( $link ) . '&amp;t=' . esc_attr( $type ) . '&amp;z=' . esc_attr( $zoom ) . '&amp;output=embed' . esc_attr( $bubble ) . '"></iframe>';
+}
+$output .= '</div></div></div>';
+
+return $output;

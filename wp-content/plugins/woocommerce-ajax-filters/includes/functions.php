@@ -1,4 +1,54 @@
 <?php
+if( ! function_exists( 'br_set_value_to_array' ) ){
+    function br_set_value_to_array(&$arr, $index, $value = '') {
+        if( ! isset($arr) || ! is_array($arr) ) {
+            $arr = array();
+        }
+        if( ! is_array($index) ) {
+            $index = array($index);
+        }
+        $array = &$arr;
+        foreach($index as $i) {
+            if( ! isset($array[$i]) ) {
+                $array[$i] = array();
+            }
+            $array2 = &$array[$i];
+            unset($array);
+            $array = &$array2;
+        }
+        $array = $value;
+        return $arr;
+    }
+}
+if( ! function_exists('braapf_filters_must_be_recounted') ) {
+    function braapf_filters_must_be_recounted($type = 'different') {
+        $BeRocket_AAPF = BeRocket_AAPF::getInstance();
+        $br_options = $BeRocket_AAPF->get_option();
+        if( $type === 'different' ) {
+            return in_array(br_get_value_from_array($br_options, 'recount_hide'), array('recount', 'removeFirst_recount', 'removeRecount'));
+        } elseif( $type === 'first' ) {
+            return in_array(br_get_value_from_array($br_options, 'recount_hide'), array('removeFirst', 'removeFirst_recount', 'removeRecount'));
+        } elseif( $type === 'none' ) {
+            return ( ! br_get_value_from_array($br_options, 'recount_hide') || br_get_value_from_array($br_options, 'recount_hide') !== 'disable' );
+        } else {
+            return ( br_get_value_from_array($br_options, 'recount_hide') && br_get_value_from_array($br_options, 'recount_hide') !== 'disable' );
+        }
+    }
+}
+if( ! function_exists( 'berocket_aapf_insert_to_array' ) ){
+    function berocket_aapf_insert_to_array($array, $key_in_array, $array_to_insert, $before = false) {
+        $position = array_search($key_in_array, array_keys($array), true);
+        if( $position !== FALSE ) {
+            if( ! $before ) {
+                $position++;
+            }
+            $array = array_slice($array, 0, $position, true) +
+                                $array_to_insert +
+                                array_slice($array, $position, NULL, true);
+        }
+        return $array;
+    }
+}
 if( ! function_exists( 'br_get_current_language_code' ) ){
     /**
      * Permalink block in settings
@@ -125,6 +175,7 @@ if ( ! function_exists( 'br_is_term_selected' ) ) {
      * @return string ' selected="selected"' if selected, empty string '' if not selected
      */
     function br_is_term_selected( $term, $checked = FALSE, $child_parent = FALSE, $depth = 0 ) {
+        //TODO: Notice: Trying to get property 'taxonomy' of non-object
         $term_taxonomy = $term->taxonomy;
         if( $term_taxonomy == '_rating' ) {
             $term_taxonomy = 'product_visibility';
@@ -180,44 +231,97 @@ if ( ! function_exists( 'br_get_selected_term' ) ) {
      * @return array selected terms
      */
     function br_get_selected_term( $taxonomy ) {
-        $term = array();
+        $term_ids = array();
         if ( ! empty($_POST['terms']) ) {
             foreach ( $_POST['terms'] as $p_term ) {
                 if ( ! empty($p_term[0]) and $p_term[0] == $taxonomy ) {
-                    $term[] = ( empty($p_term[1]) ? '' : $p_term[1] );
+                    $term_ids[] = ( empty($p_term[1]) ? '' : $p_term[1] );
                 }
             }
         }
         if ( ! empty($_POST['limits']) ) {
-            foreach ( $_POST['limits'] as $p_term ) {
-                if ( ! empty($p_term[0]) && $p_term[0] == $taxonomy ) {
-                    if ( ! is_numeric( $p_term[1] ) || ! is_numeric( $p_term[2] ) ) {
-                        $all_terms_name = array();
-                        $terms          = get_terms( $p_term[0] );
-                        $is_numeric = true;
-                        foreach ( $terms as $term_ar ) {
-                            array_push( $all_terms_name, $term_ar->name );
-                            if( ! is_numeric( substr( $term_ar->name[0], 0, 1 ) ) ) {
-                                $is_numeric = false;
-                            }
+            foreach ( $_POST['limits'] as $v ) {
+                if ( ! empty($v[0]) && $v[0] == $taxonomy ) {
+                    $v[1] = urldecode( $v[1] );
+                    $v[2] = urldecode( $v[2] );
+                    $all_terms_name = array();
+                    $all_terms_slug = array();
+                    $terms = get_terms( $v[0] );
+                    
+                    $wc_order_by = wc_attribute_orderby( $v[0] );
+                    BeRocket_AAPF_Widget_functions::sort_terms( $terms, array(
+                        "wc_order_by"     => $wc_order_by,
+                        "order_values_by" => '',
+                        "filter_type"     => 'attribute',
+                        "order_values_type"=> SORT_ASC
+                    ) );
+                    $is_numeric = true;
+                    $is_with_string = false;
+                    if( is_wp_error ( $all_terms_name ) ) {
+                        BeRocket_updater::$error_log[] = $all_terms_name->errors;
+                    }
+                    if( ! is_numeric($v[1]) || ! is_numeric($v[2]) ) {
+                        $is_with_string = true;
+                    }
+                    foreach ( $terms as $term ) {
+                        if( ! is_numeric( substr( $term->name[0], 0, 1 ) ) ) {
+                            $is_numeric = false;
                         }
-                        if( $is_numeric ) {
-                            sort( $all_terms_name, SORT_NUMERIC );
-                        } else {
-                            sort( $all_terms_name );
+                        if( ! is_numeric( $term->name ) ) {
+                            $is_with_string = true;
                         }
-                        $start_terms    = array_search( $p_term[1], $all_terms_name );
-                        $end_terms      = array_search( $p_term[2], $all_terms_name );
+                        array_push( $all_terms_name, $term->slug );
+                        array_push( $all_terms_slug, $term->name );
+                    }
+                    if( $is_numeric ) {
+                        array_multisort( $all_terms_slug, SORT_NUMERIC, $all_terms_name, $all_terms_slug );
+                    } else {
+                        //array_multisort( $all_terms_name, $all_terms_name, $all_terms_slug );
+                    }
+                    $taxonomy_terms = get_terms(array('fields' => 'id=>slug', 'taxonomy' => $v[0]));
+                    if( $is_with_string ) {
+                        $start_terms    = array_search( $v[1], $all_terms_name );
+                        $end_terms      = array_search( $v[2], $all_terms_name );
                         $all_terms_name = array_slice( $all_terms_name, $start_terms, ( $end_terms - $start_terms + 1 ) );
-                        foreach ( $all_terms_name as $term_name ) {
-                            $term_id = get_term_by ( 'name', $term_name, $taxonomy );
-                            $term[] = $term_id->term_id;
+                        $search = $all_terms_name;
+                    } else {
+                        $start_terms = false;
+                        $end_terms = false;
+                        $previous_pos = false;
+                        $search = array();
+                        foreach($all_terms_slug as $term_pos => $term) {
+                            if( $term >= $v[1] && $start_terms === false ) {
+                                $start_terms = $term_pos;
+                            }
+                            if( $end_terms === false ) {
+                                if( $term > $v[2] ) {
+                                    if( $previous_pos !== false ) {
+                                        $end_terms = $previous_pos;
+                                    }
+                                } elseif( $term == $v[2] ) {
+                                    $end_terms = $term_pos;
+                                }
+                            }
+                            $previous_pos = $term_pos;
+                        }
+                        if( $start_terms > $end_terms ) {
+                            $search = array();
+                        } elseif( $v[1] > $v[2] ) {
+                            $search = array();
+                        } else {
+                            $search = array_slice( $all_terms_name, $start_terms, ( $end_terms - $start_terms + 1 ) );
+                        }
+                    }
+                    foreach($search as $search_el) {
+                        $id = array_search($search_el, $taxonomy_terms);
+                        if( $id !== FALSE ) {
+                            $term_ids[] = $id;
                         }
                     }
                 }
             }
         }
-        return $term;
+        return $term_ids;
     }
 }
 
@@ -258,6 +362,7 @@ if( ! function_exists( 'br_aapf_parse_order_by' ) ) {
         // needed for woocommerce sorting funtionality
         if ( ! empty($orderby) and ! empty($order) ) {
 
+            $BeRocket_AAPF = BeRocket_AAPF::getInstance();
             // Get ordering from query string unless defined
             $orderby = strtolower( $orderby );
             $order   = strtoupper( $order );
@@ -283,15 +388,17 @@ if( ! function_exists( 'br_aapf_parse_order_by' ) ) {
                     $args['meta_key'] = 'total_sales';
 
                     // Sorting handled later though a hook
-                    add_filter( 'posts_clauses', array( 'BeRocket_AAPF', 'order_by_popularity_post_clauses' ) );
+                    add_filter( 'posts_clauses', array( $BeRocket_AAPF, 'order_by_popularity_post_clauses' ) );
                     break;
                 case 'rating' :
                     // Sorting handled later though a hook
-                    add_filter( 'posts_clauses', array( 'BeRocket_AAPF', 'order_by_rating_post_clauses' ) );
+                    add_filter( 'posts_clauses', array( $BeRocket_AAPF, 'order_by_rating_post_clauses' ) );
                     break;
                 case 'title' :
                     $args['orderby']  = 'title';
                     $args['order']    = $order == 'DESC' ? 'DESC' : 'ASC';
+                    break;
+                default:
                     break;
             }
         }
@@ -399,12 +506,21 @@ if( ! function_exists( 'br_aapf_args_parser_attributes_terms' ) ) {
             'taxonomy'  => 'product_cat',
             'return'    => 'terms'
         ), $args);
-        $md5 = $wpdb->get_var("SELECT MD5(GROUP_CONCAT(CONCAT(t.slug, t.term_id, tt.parent, tt.count))) FROM {$wpdb->terms} AS t INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy IN ('{$args['taxonomy']}')");
+        $md5 = $wpdb->get_var(
+            $wpdb->prepare("SELECT MD5(GROUP_CONCAT(CONCAT(t.slug, t.term_id, tt.parent, tt.count))) 
+                FROM $wpdb->terms AS t 
+                INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id 
+                WHERE tt.taxonomy IN ('%s')", 
+                $args['taxonomy']
+            )
+        );
+        $md5 = apply_filters('BRaapf_cache_check_md5', $md5, 'br_aapf_args_parser_attributes_terms', $args);
         $attributes_terms = get_option( apply_filters('br_aapf_md5_cache_text', 'br_get_taxonomy_args_parser_'.$args['taxonomy']) );
         if( empty($attributes_terms) || $attributes_terms['md5'] != $md5 ) {
             $attributes_terms = array(
                 'terms' => array(),
-                'md5'   => $md5
+                'md5'   => $md5,
+                'time'  => time()
             );
 
             $terms = get_terms( array( $args['taxonomy'] ), array( 'orderby' => 'name', 'order' => 'ASC' ) );
@@ -437,14 +553,18 @@ if( ! function_exists( 'br_aapf_args_converter' ) ) {
             $_GET['filters'] = urldecode($_GET['filters']);
         }
         $_POST['terms'] = array();
+        $_POST['add_terms'] = array();
         $_POST['limits'] = array();
         $_POST['price'] = array();
+        $_POST['price_ranges'] = array();
         $filters = array();
-        if ( preg_match( "~\|~", $_GET['filters'] ) ) {
+        if ( ! empty($_GET['filters' ]) && preg_match( "~\|~", $_GET['filters'] ) ) {
             $filters = explode( "|", $_GET['filters'] );
-        } elseif( $_GET['filters' ]) {
+        } elseif( ! empty($_GET['filters' ]) ) {
             $filters[0] = $_GET['filters'];
-        }   
+        }
+
+        global $br_url_parser_middle_result;
         foreach ( $filters as $filter ) {
             if( isset($min) ) {
                 unset($min);
@@ -456,88 +576,82 @@ if( ! function_exists( 'br_aapf_args_converter' ) ) {
                 list( $attribute, $value ) = explode( "[", trim( preg_replace( "~\]~", "", $filter) ), 2 );
                 $attribute = berocket_wpml_attribute_untranslate($attribute);
                 $value = html_entity_decode($value);
-                if( term_exists( sanitize_title($value), 'pa_'.$attribute ) ) {
-                    $value = array($value);
-                    $operator = 'OR';
-                } elseif ( preg_match( "~\*~", $value ) ) {
-                    $value = explode( "-", $value );
-                } elseif ( preg_match( "~\+~", $value ) ) {
-                    $value    = explode( "+", $value );
-                    $operator = 'AND';
-                } elseif ( preg_match( "~\-~", $value ) ) {
-                    $value = explode( "-", $value );
-                    if( ! empty($br_options['slug_urls']) && $attribute != '_stock_status' && $attribute != '_sale' ) {
-                        /*for( $i = 0; $i < count($value); $i++ ) {
-                            $value[$i] = urldecode( $value[$i] );
-                            while( 1 ) {
-                                if ( ! term_exists( $value[$i], $attribute ) && ! term_exists( $value[$i], 'pa_'.$attribute ) ) {
-                                    if( $i + 1 < count($value) )
-                                    {
-                                        $value[$i] = $value[$i].'-'.urldecode( $value[$i+1] );
-                                        unset( $value[$i+1] );
-                                        $value = array_values ( $value );
-                                    } else {
-                                        break;
-                                    }
-                                } else {
-                                    $test_value = $value[$i].'-'.urldecode( $value[$i+1] );
-                                    if ( ! term_exists( $test_value, $attribute ) && ! term_exists( $test_value, 'pa_'.$attribute ) ) {
-                                        break;
-                                    } else {
-                                        if( $i + 1 < count($value) )
-                                        {
-                                            $value[$i] = $value[$i].'-'.urldecode( $value[$i+1] );
-                                            unset( $value[$i+1] );
-                                            $value = array_values ( $value );
-                                        } else {
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                        }*/
-
-                        $values = array();
-                        for ( $i = 0; $i < count( $value) ; $i++ ) {
-                            $values[ $i ] = urldecode( $value[ $i ] );
-                        }
-
-                        $value = array();
-                        $attribute_check = $attribute;
-                        if( $attribute == '_rating' ) {
-                            $attribute_check = 'product_visibility';
-                        }
-                        for ( $i = 0; $i < count( $values ); $i++ ) {
-                            $cur_value = $values;
-                            for ( $ii = count( $values ); $ii > 0; $ii-- ) {
-                                if ( ! term_exists( implode( '-', $cur_value ), $attribute_check ) && ! term_exists( implode( '-', $cur_value ), 'pa_' . $attribute_check ) ) {
-                                    array_pop( $cur_value );
-                                    if ( ! $cur_value ) {
-                                        break 2;
-                                    }
-                                } else {
-                                    $value[] = implode( '-', array_splice( $values, 0, count( $cur_value ) ) );
-                                    $i       = - 1;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    $operator = 'OR';
-                } elseif ( preg_match( "~\_~", $value ) ) {
-                    list( $min, $max ) = explode( "_", $value );
-                    if( $attribute == '_date' ) {
-                        $min = substr($min, 0, 2).'/'.substr($min, 2, 2).'/'.substr($min, 4, 4);
-                        $max = substr($max, 0, 2).'/'.substr($max, 2, 2).'/'.substr($max, 4, 4);
-                    }
-                    $operator = '';
-                } else {
-                    $value    = explode( " ", $value );
-                    $operator = 'OR';
+                
+                $braapf_sliders = br_get_value_from_array($_SESSION, 'braapf_sliders');
+                if( ! is_array($braapf_sliders) ) {
+                    $braapf_sliders = array();
                 }
-            }else{
+                $parse_type = 'default';
+                if( (! empty($braapf_sliders['pa_'.$attribute]) || ! empty($braapf_sliders[$attribute])) && preg_match( "~\_~", $value ) ) {
+                    $parse_type = 'slider';
+                } elseif( term_exists( sanitize_title($value), 'pa_'.$attribute ) ) {
+                    $parse_type = 'or';
+                } elseif ( preg_match( "~\*~", $value ) ) {
+                    $parse_type = 'price_range';
+                } elseif ( preg_match( "~\+~", $value ) ) {
+                    $parse_type = 'and';
+                } elseif ( preg_match( "~\-~", $value ) ) {
+                    $parse_type = 'or';
+                } elseif ( preg_match( "~\_~", $value ) ) {
+                    $parse_type = 'slider';
+                }
+                switch($parse_type) {
+                    case 'or':
+                        $value = explode( "-", $value );
+                        if( ! empty($br_options['slug_urls']) && $attribute != '_stock_status' && $attribute != '_sale' ) {
+                            $values = array();
+                            for ( $i = 0; $i < count( $value) ; $i++ ) {
+                                $values[ $i ] = urldecode( $value[ $i ] );
+                            }
+
+                            $value = array();
+                            $attribute_check = $attribute;
+                            if( $attribute == '_rating' ) {
+                                $attribute_check = 'product_visibility';
+                            }
+                            for ( $i = 0; $i < count( $values ); $i++ ) {
+                                $cur_value = $values;
+                                for ( $ii = count( $values ); $ii > 0; $ii-- ) {
+                                    if ( ! term_exists( implode( '-', $cur_value ), $attribute_check ) && ! term_exists( implode( '-', $cur_value ), 'pa_' . $attribute_check ) ) {
+                                        array_pop( $cur_value );
+                                        if ( ! $cur_value ) {
+                                            break 2;
+                                        }
+                                    } else {
+                                        $value[] = implode( '-', array_splice( $values, 0, count( $cur_value ) ) );
+                                        $i       = - 1;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        $operator = 'OR';
+                        break;
+                    case 'and':
+                        $value    = explode( "+", $value );
+                        $operator = 'AND';
+                        break;
+                    case 'slider':
+                        list( $min, $max ) = explode( "_", $value );
+                        if( $attribute == '_date' ) {
+                            $min = substr($min, 0, 2).'/'.substr($min, 2, 2).'/'.substr($min, 4, 4);
+                            $max = substr($max, 0, 2).'/'.substr($max, 2, 2).'/'.substr($max, 4, 4);
+                        }
+                        $operator = '';
+                        break;
+                    case 'price_range':
+                        $value = explode( "-", $value );
+                        break;
+                    default:
+                        $value    = explode( " ", $value );
+                        $operator = 'OR';
+                        break;
+                }
+            } else {
                 list( $attribute, $value ) = explode( "-", $filter, 2 );
             }
+
+            $br_url_parser_middle_result[ $attribute ] = $value;
 
             if ( $attribute == 'price' ) {
                 if ( isset( $min ) && isset( $max ) ) {
@@ -609,11 +723,39 @@ if( ! function_exists( 'br_aapf_args_converter' ) ) {
                         }
                     }
                 } else {
-                    $_POST['limits'][] = array( "pa_" . $attribute, $min, $max );
+                    if( taxonomy_exists('pa_'.$attribute) ) {
+                        $attribute = 'pa_'.$attribute;
+                    }
+                    $_POST['limits'][] = array( $attribute, $min, $max );
                 }
             }
         }
+        do_action('br_aapf_args_converter_after', $query);
     }
+}
+
+function br_widget_is_hide( $attribute, $widget_is_hide = false ) {
+    if ( $widget_is_hide ) {
+        if ( ! empty( $_POST['terms'] ) ) {
+            foreach ( $_POST['terms'] as $term ) {
+                if ( $term[0] == $attribute ) {
+                    return false;
+                }
+            }
+        }
+        if ( ! empty( $_POST['limits'] ) ) {
+            foreach ( $_POST['limits'] as $a ) {
+                if ( $a[0] == $attribute ) {
+                    return false;
+                }
+            }
+        }
+        if ( $attribute == 'price' and ( ! empty( $_POST['price'] ) or ! empty( $_POST['price_ranges'] ) ) ) {
+            return false;
+        }
+    }
+
+    return $widget_is_hide;
 }
 
 if ( ! function_exists( 'br_aapf_get_styled' ) ) {
@@ -644,7 +786,7 @@ if ( ! function_exists( 'br_aapf_get_styled' ) ) {
                 ),
             ),
             "selectbox"      => array(
-                "name" => __("Select-box", 'BeRocket_AJAX_domain'),
+                "name" => __("Drop-Down", 'BeRocket_AJAX_domain'),
                 "has"  => array(
                     "color"       => false,
                     "bold"        => false,
@@ -680,7 +822,7 @@ if ( ! function_exists( 'br_aapf_get_styled' ) ) {
                 ),
             ),
             "description_border"    => array(
-                "name" => __("Description Border", 'BeRocket_AJAX_domain'),
+                "name" => __("Description Block Border", 'BeRocket_AJAX_domain'),
                 "has"  => array(
                     "color"       => true,
                     "bold"        => false,
@@ -692,7 +834,7 @@ if ( ! function_exists( 'br_aapf_get_styled' ) ) {
                 ),
             ),
             "description_title"    => array(
-                "name" => __("Description Title Text", 'BeRocket_AJAX_domain'),
+                "name" => __("Description Block Title", 'BeRocket_AJAX_domain'),
                 "has"  => array(
                     "color"       => true,
                     "bold"        => true,
@@ -704,7 +846,7 @@ if ( ! function_exists( 'br_aapf_get_styled' ) ) {
                 ),
             ),
             "description_text"    => array(
-                "name" => __("Description Text", 'BeRocket_AJAX_domain'),
+                "name" => __("Description Block Text", 'BeRocket_AJAX_domain'),
                 "has"  => array(
                     "color"       => true,
                     "bold"        => true,
@@ -728,7 +870,7 @@ if ( ! function_exists( 'br_aapf_get_styled' ) ) {
                 ),
             ),
             "selected_area_hover"    => array(
-                "name" => __("Selected filters mouse over text", 'BeRocket_AJAX_domain'),
+                "name" => __("Selected filters area mouse over the text", 'BeRocket_AJAX_domain'),
                 "has"  => array(
                     "color"       => true,
                     "bold"        => true,
@@ -740,7 +882,7 @@ if ( ! function_exists( 'br_aapf_get_styled' ) ) {
                 ),
             ),
             "selected_area_block"    => array(
-                "name" => __("Selected filters link background", 'BeRocket_AJAX_domain'),
+                "name" => __("Selected filters area link background", 'BeRocket_AJAX_domain'),
                 "has"  => array(
                     "color"       => true,
                     "bold"        => false,
@@ -752,7 +894,7 @@ if ( ! function_exists( 'br_aapf_get_styled' ) ) {
                 ),
             ),
             "selected_area_border"    => array(
-                "name" => __("Selected filters link border", 'BeRocket_AJAX_domain'),
+                "name" => __("Selected filters area link border", 'BeRocket_AJAX_domain'),
                 "has"  => array(
                     "color"       => true,
                     "bold"        => false,
@@ -1549,9 +1691,16 @@ if ( ! function_exists( 'br_get_post_meta_price' ) ) {
     function br_get_post_meta_price( $object_id ) {
         global $wpdb;
 
-        $meta_list = $wpdb->get_row("SELECT meta_value FROM {$wpdb->postmeta} 
-        WHERE post_id = {$object_id} AND meta_key = '".apply_filters('berocket_price_filter_meta_key', '_price', 'functions_1553')."' 
-        ORDER BY meta_id ASC LIMIT 1", ARRAY_A );
+        $meta_list = $wpdb->get_row(
+            $wpdb->prepare(
+                "SELECT meta_value FROM {$wpdb->postmeta} 
+                WHERE post_id = %d AND meta_key = '%s' 
+                ORDER BY meta_id ASC LIMIT 1",
+                $object_id,
+                apply_filters('berocket_price_filter_meta_key', '_price', 'functions_1553')
+            ), 
+            ARRAY_A
+        );
 
         return maybe_unserialize( $meta_list['meta_value'] );
     }
@@ -1585,7 +1734,7 @@ if ( ! function_exists( 'br_get_taxonomy_id' ) ) {
         }
 
         $term = $wpdb->get_row(
-            $wpdb->prepare( "SELECT t.term_id, tt.term_taxonomy_id FROM $wpdb->terms AS t INNER JOIN $wpdb->term_taxonomy
+            $wpdb->prepare( "SELECT t.term_id, tt.term_taxonomy_id FROM {$wpdb->terms} AS t INNER JOIN {$wpdb->term_taxonomy}
                   AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy = '%s' AND $field = %s LIMIT 1", $taxonomy, $value )
         );
 
@@ -1687,7 +1836,7 @@ if ( ! function_exists( '_br_get_category_id' ) ) {
         }
 
         $term = $wpdb->get_row(
-            $wpdb->prepare( "SELECT t.term_id, tt.term_taxonomy_id FROM $wpdb->terms AS t INNER JOIN $wpdb->term_taxonomy
+            $wpdb->prepare( "SELECT t.term_id, tt.term_taxonomy_id FROM {$wpdb->terms} AS t INNER JOIN {$wpdb->term_taxonomy}
                   AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy = 'product_cat' AND $field = %s LIMIT 1", $value )
         );
 
@@ -1710,7 +1859,7 @@ if ( ! function_exists( 'br_get_category' ) ) {
     function br_get_category( $id ) {
         global $wpdb;
 
-        if ( ! $id = (int) $id or ! $term = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->terms WHERE term_id = %s", $id ) ) ) {
+        if ( ! $id = (int) $id or ! $term = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->terms} WHERE term_id = %d", $id ) ) ) {
             return false;
         }
 
@@ -1792,11 +1941,15 @@ if ( ! function_exists( 'br_wp_get_object_terms' ) ) {
             $select_this = 't.*, tt.*, tr.object_id';
         }
 
-        $query = "SELECT $select_this FROM $wpdb->terms AS t
-                  INNER JOIN $wpdb->term_taxonomy AS tt ON tt.term_id = t.term_id
-                  INNER JOIN $wpdb->term_relationships AS tr ON tr.term_taxonomy_id = tt.term_taxonomy_id
-                  WHERE tt.taxonomy = '$taxonomy' AND tr.object_id = $object_id
-                  ORDER BY t.term_id ASC";
+        $query = $wpdb->prepare(
+            "SELECT {$select_this} FROM {$wpdb->terms} AS t
+            INNER JOIN {$wpdb->term_taxonomy} AS tt ON tt.term_id = t.term_id
+            INNER JOIN {$wpdb->term_relationships} AS tr ON tr.term_taxonomy_id = tt.term_taxonomy_id
+            WHERE tt.taxonomy = %s AND tr.object_id = %d
+            ORDER BY t.term_id ASC",
+            $taxonomy,
+            $object_id
+        );
 
         if( BeRocket_AAPF::$debug_mode ) {
             $wpdb->show_errors();
@@ -1830,7 +1983,11 @@ if ( ! function_exists( 'br_wp_get_object_terms' ) ) {
             }
             $terms = array_merge( $terms, $_terms );
         } elseif ( 'tt_ids' == $fields ) {
-            $terms = $wpdb->get_col("SELECT tr.term_taxonomy_id FROM $wpdb->term_relationships AS tr INNER JOIN $wpdb->term_taxonomy AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id WHERE tr.object_id IN ($object_ids) AND tt.taxonomy IN ($taxonomies) $orderby $order");
+            $terms = $wpdb->get_col(
+                "SELECT tr.term_taxonomy_id FROM {$wpdb->term_relationships} AS tr 
+                INNER JOIN {$wpdb->term_taxonomy} AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id 
+                WHERE tr.object_id IN ({$object_ids}) AND tt.taxonomy IN ({$taxonomies}) {$orderby} {$order}"
+            );
             if( BeRocket_AAPF::$debug_mode ) {
                 ob_start();
                 if ( $wpdb->last_error ) {
@@ -2061,12 +2218,12 @@ if ( ! function_exists( 'br_filters_query' ) ) {
         if( ! isset($query[ 'join' ]) ) {
             $query[ 'join' ] = '';
         }
-        $query[ 'join' ]
-            .= "
+        /*$query[ 'join' ] .= "
                     INNER JOIN {$wpdb->term_relationships} AS term_relationships ON {$wpdb->posts}.ID = term_relationships.object_id
                     INNER JOIN {$wpdb->term_taxonomy} AS term_taxonomy USING( term_taxonomy_id )
                     INNER JOIN {$wpdb->terms} AS terms USING( term_id )
-                    " . $tax_query_sql[ 'join' ] . $meta_query_sql[ 'join' ];
+                    ";*/
+        $query[ 'join' ] .= $tax_query_sql[ 'join' ] . $meta_query_sql[ 'join' ];
         if( ! isset($query[ 'where' ]) ) {
             $query[ 'where' ] = '';
         }
@@ -2084,10 +2241,10 @@ if ( ! function_exists( 'br_filters_query' ) ) {
         if ( ! empty( $post__in ) ) {
             $query[ 'where' ] .= " AND {$wpdb->posts}.ID IN (\"" . implode( '","', $post__in ) . "\")";
         }
-        if( function_exists('wc_get_product_visibility_term_ids') ) {
+        /*if( function_exists('wc_get_product_visibility_term_ids') ) {
             $product_visibility_term_ids = wc_get_product_visibility_term_ids();
-            $query[ 'where' ] .= " AND {$wpdb->posts}.ID NOT IN (\"SELECT object_id FROM {$wpdb->term_relationships} WHERE term_taxonomy_id='" . $product_visibility_term_ids[ 'exclude-from-catalog' ] . "'\")";
-        }
+            $query[ 'where' ] .= " AND ( {$wpdb->posts}.ID NOT IN (SELECT object_id FROM {$wpdb->term_relationships} WHERE term_taxonomy_id='" . $product_visibility_term_ids[ 'exclude-from-catalog' ] . "') ) ";
+        }*/
 
         $query[ 'where' ] .= $old_join_posts;
         //$query['group_by'] = "GROUP BY {$wpdb->posts}.ID";
@@ -2098,86 +2255,135 @@ if ( ! function_exists( 'br_filters_query' ) ) {
 }
 
 if( ! function_exists('berocket_add_filter_to_link') ) {
-    function berocket_add_filter_to_link($attribute = '', $values = array(), $operator = 'OR', $remove_attribute = FALSE) {
-        if( ! is_array($values) ) {
-            $values = array($values);
+    add_filter( 'berocket_add_filter_to_link', 'berocket_add_filter_to_link', 100, 2 );
+    function berocket_add_filter_to_link( $current_url = false, $args = array() ) {
+        $args = array_merge( array(
+            'attribute'        => '',
+            'values'           => array(),
+            'operator'         => 'OR',
+            'remove_attribute' => false,
+            'slider'           => false
+        ), $args );
+
+        extract( $args );
+
+        if ( ! is_array( $values ) ) {
+            $values = array( $values );
         }
+
         $options = BeRocket_AAPF::get_aapf_option();
 
-        $current_url = "//" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-        $filters = (empty($_GET['filters']) ? '' : $_GET['filters']);
-        $current_url = remove_query_arg('filters', $current_url);
-        if( strpos($current_url, '?') === FALSE ) {
-            $url_string = $current_url;
+        if ( $current_url === false ) {
+            $current_url = "//" . $_SERVER[ 'HTTP_HOST' ] . $_SERVER[ 'REQUEST_URI' ];
+            $filters     = ( empty( $_GET[ 'filters' ] ) ? '' : $_GET[ 'filters' ] );
+        } else {
+            parse_str( parse_url( $current_url, PHP_URL_QUERY ), $filters );
+            $filters = br_get_value_from_array( $filters, 'filters' );
+        }
+
+        $current_url = remove_query_arg( 'filters', $current_url );
+        if ( strpos( $current_url, '?' ) === false ) {
+            $url_string   = $current_url;
             $query_string = '';
         } else {
-            list($url_string, $query_string) = explode('?', $current_url);
+            list( $url_string, $query_string ) = explode( '?', $current_url );
         }
-        list($url_string, $query_string, $filters) = apply_filters( 'berocket_add_filter_to_link_explode', array($url_string, $query_string, $filters) );
-        if( empty($options['seo_uri_decode']) ) {
-            $filters = urlencode($filters);
-            $filters = str_replace('+', urlencode('+'), $filters);
-            $filters = urldecode($filters);
+
+        list( $url_string, $query_string, $filters ) = apply_filters( 'berocket_add_filter_to_link_explode', array(
+            $url_string,
+            $query_string,
+            $filters
+        ) );
+
+        if ( empty( $options[ 'seo_uri_decode' ] ) ) {
+            $filters = urlencode( $filters );
+            $filters = str_replace( '+', urlencode( '+' ), $filters );
+            $filters = urldecode( $filters );
         }
-        if( substr($attribute, 0, 3) == 'pa_' ) {
-            $attribute = substr($attribute, 3);
+
+        if ( substr( $attribute, 0, 3 ) == 'pa_' ) {
+            $attribute = substr( $attribute, 3 );
         }
-        if( strpos('|'.$filters, '|'.$attribute.'[') === FALSE ) {
-            $filters = ( empty($filters) ? '' : $filters.'|' ).$attribute.'['.implode(($operator == 'OR' ? '-' : '+'), $values).']';
-            $filter_array = explode('|', $filters);
+
+        if ( strpos( '|' . $filters, '|' . $attribute . '[' ) === false ) {
+            $filters      = ( empty( $filters ) ? '' : $filters . '|' ) . $attribute . '[' . implode( ( $slider ? '_' : ( $operator == 'OR' ? '-' : '+' ) ), $values ) . ']';
+            $filter_array = explode( '|', $filters );
         } else {
-            $filter_array = explode('|', $filters);
-            foreach($filter_array as $filter_str_i => $filter_str) {
-                if( strpos($filter_str, $attribute.'[') !== FALSE ) {
+            $filter_array = explode( '|', $filters );
+            global $br_url_parser_middle_result;
+
+            foreach ( $filter_array as $filter_str_i => $filter_str ) {
+                if ( strpos( $filter_str, $attribute . '[' ) !== false ) {
                     $filter_str = str_replace($attribute.'[', '', $filter_str);
                     $filter_str = str_replace(']', '', $filter_str);
-                    $filter_values = array();
-                    if( strpos($filter_str, '+') !== FALSE ) {
+                    if ( $slider ) {
+                        $implode    = '_';
+                        $filter_str = '';
+                    } elseif ( $attribute == 'price' ) {
+                        $implode    = '-';
+                        $filter_str = '';
+                    } elseif ( strpos( $filter_str, '+' ) !== false ) {
                         $implode = '+';
-                    } elseif( strpos($filter_str, '-') !== FALSE ) {
+                    } elseif ( strpos( $filter_str, '-' ) !== false ) {
                         $implode = '-';
-                    } elseif( strpos($filter_str, '_') !== FALSE ) {
-                        $implode = ($operator == 'OR' ? '-' : '+');
+                    } elseif ( strpos( $filter_str, '_' ) !== false ) {
+                        $implode    = ( $operator == 'OR' ? '-' : '+' );
                         $filter_str = '';
                     } else {
-                        $implode = ($operator == 'OR' ? '-' : '+');
+                        $implode = ( $operator == 'OR' ? '-' : '+' );
                     }
-                    if( ! empty($filter_str) ) {
-                        $filter_values = explode($implode, $filter_str);
+
+                    $filter_values = $br_url_parser_middle_result[$attribute];
+                    if ( ! empty( $filter_str ) and ! $filter_values ) {
+                        $filter_values = explode( $implode, $filter_str );
                     }
-                    foreach($values as $value) {
-                        if( ($search_i = array_search($value, $filter_values) ) === FALSE ) {
-                            if( $remove_attribute ) {
-                                $filter_values = array($value);
+
+                    foreach ( $values as $value ) {
+                        if ( ( $search_i = array_search( $value, $filter_values ) ) === false ) {
+                            if ( $remove_attribute ) {
+                                $filter_values = array( $value );
                             } else {
                                 $filter_values[] = $value;
                             }
                         } else {
-                            unset($filter_values[$search_i]);
+                            unset( $filter_values[ $search_i ] );
                         }
                     }
-                    if( count($filter_values) ) {
-                        $filter_str = $attribute.'['.implode($implode, $filter_values).']';
-                        $filter_array[$filter_str_i] = $filter_str;
+
+                    if ( count( $filter_values ) ) {
+                        $filter_str                    = $attribute . '[' . implode( $implode, $filter_values ) . ']';
+                        $filter_array[ $filter_str_i ] = $filter_str;
                     } else {
-                        unset($filter_array[$filter_str_i]);
+                        unset( $filter_array[ $filter_str_i ] );
                     }
+
                     break;
                 }
             }
         }
+
         $implode = '|';
-        list($filter_array, $implode) = apply_filters('berocket_add_filter_to_link_filters_str', array($filter_array, $implode));
-        $filters = implode($implode, $filter_array);
-        list($url_string, $query_string, $filters) = apply_filters( 'berocket_add_filter_to_link_implode', array($url_string, $query_string, $filters) );
-        if( ! empty($query_string) ) {
+        list( $filter_array, $implode ) = apply_filters( 'berocket_add_filter_to_link_filters_str', array(
+            $filter_array,
+            $implode
+        ) );
+
+        $filters = implode( $implode, $filter_array );
+        list( $url_string, $query_string, $filters ) = apply_filters( 'berocket_add_filter_to_link_implode', array(
+            $url_string,
+            $query_string,
+            $filters
+        ) );
+
+        if ( ! empty( $query_string ) ) {
             $url_string .= '?' . $query_string;
         }
-        if( ! empty($filters) ) {
-            $url_string = add_query_arg('filters', $filters, $url_string);
+
+        if ( ! empty( $filters ) ) {
+            $url_string = add_query_arg( 'filters', $filters, $url_string );
         }
-        $filters = $url_string;
-        return $filters;
+
+        return $url_string;
     }
 }
 
@@ -2198,22 +2404,38 @@ if( ! function_exists('br_get_taxonomy_hierarchy') ) {
             'parent'   => 0,
             'depth'    => 0
         ), $args);
-        $default_terms = $wpdb->get_var("SELECT MD5(GROUP_CONCAT(CONCAT(t.slug, t.term_id, tt.parent, tt.count))) FROM {$wpdb->terms} AS t INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy IN ('{$args['taxonomy']}')");
+        $md5 = $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT MD5(GROUP_CONCAT(CONCAT(t.slug, t.term_id, tt.parent, tt.count, tt.term_taxonomy_id))) FROM $wpdb->terms AS t 
+                INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id 
+                WHERE tt.taxonomy IN (%s)",
+                $args['taxonomy']
+            )
+        );
+        $md5 = apply_filters('BRaapf_cache_check_md5', $md5, 'br_get_taxonomy_hierarchy', $args);
         $hierarchy_data = get_option( apply_filters('br_aapf_md5_cache_text', 'br_get_taxonomy_hierarchy_'.$args['taxonomy']) );
-        if( empty($hierarchy_data) || $hierarchy_data['md5'] != $default_terms ) {
+        if( empty($hierarchy_data) || $hierarchy_data['md5'] != $md5 ) {
             $hierarchy = br_generate_taxonomy_hierarchy($args['taxonomy']);
             $hierarchy_data = array(
                 'terms'     => $hierarchy,
                 'hierarchy' => array(),
-                'md5'       => $default_terms
+                'child'     => array(),
+                'md5'       => $md5,
+                'time'      => time()
             );
             foreach($hierarchy as $hierarchy_term) {
                 $hierarchy_data['hierarchy'][$hierarchy_term->term_id] = array($hierarchy_term->term_id);
                 foreach($hierarchy_term->child_list as $child_list_id => $child_list_array) {
                     $hierarchy_data['hierarchy'][$child_list_id] = array_merge(array($hierarchy_term->term_id), $child_list_array);
                 }
+                foreach($hierarchy_term->parent_list as $parent_list_id => $parent_list_array) {
+                    $hierarchy_data['child'][$parent_list_id] = $parent_list_array;
+                }
             }
             update_option( apply_filters('br_aapf_md5_cache_text', 'br_get_taxonomy_hierarchy_'.$args['taxonomy']), $hierarchy_data );
+        }
+        if( is_array($hierarchy_data) && isset($hierarchy_data[$args['return']]) ) {
+            return $hierarchy_data[$args['return']];
         }
         if( $args['return'] == 'all' ) {
             return $hierarchy_data;
@@ -2264,12 +2486,17 @@ if( ! function_exists('br_generate_taxonomy_hierarchy') ) {
                 $child_terms = br_generate_taxonomy_hierarchy($taxonomy, $term->term_id);
                 $term->child = array();
                 $term->child_list = array();
+                $term->parent_list = array($term->term_id => array($term->term_id));
                 if( ! empty($child_terms) && is_array($child_terms) && count($child_terms) ) {
                     foreach($child_terms as $child_term) {
                         $term->child[$child_term->term_id] = $child_term;
                         $term->child_list[$child_term->term_id] = array($child_term->term_id);
                         foreach($child_term->child_list as $child_list_id => $child_list_array) {
                             $term->child_list[$child_list_id] = array_merge(array($child_term->term_id), $child_list_array);
+                        }
+                        foreach($child_term->parent_list as $parent_list_id => $parent_list_array) {
+                            $term->parent_list[$term->term_id] = array_merge(array($parent_list_id), $term->parent_list[$term->term_id]);
+                            $term->parent_list[$parent_list_id] = $parent_list_array;
                         }
                     }
                 }
@@ -2283,7 +2510,15 @@ if( ! function_exists('br_generate_taxonomy_hierarchy') ) {
 if( ! function_exists('br_generate_child_relation') ) {
     function br_generate_child_relation($taxonomy) {
         global $wpdb;
-        $newmd5 = $wpdb->get_var("SELECT MD5(GROUP_CONCAT(CONCAT(t.slug, t.term_id, tt.parent, tt.count))) FROM {$wpdb->terms} AS t INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy IN ('{$taxonomy}')");
+        $newmd5 = $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT MD5(GROUP_CONCAT(CONCAT(t.slug, t.term_id, tt.parent, tt.count))) FROM $wpdb->terms AS t 
+                INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id 
+                WHERE tt.taxonomy IN (%s)",
+                $taxonomy
+            )
+        );
+        $newmd5 = apply_filters('BRaapf_cache_check_md5', $newmd5, 'br_generate_child_relation', $taxonomy);
         $md5 = get_option(apply_filters('br_aapf_md5_cache_text', 'br_generate_child_relation_'.$taxonomy));
         if($md5 != $newmd5) {
             $terms = get_terms( array(
@@ -2304,5 +2539,40 @@ if( ! function_exists('br_generate_child_relation') ) {
             }
             update_option(apply_filters('br_aapf_md5_cache_text', 'br_generate_child_relation_'.$taxonomy), $newmd5);
         }
+    }
+}
+
+if ( ! function_exists('berocket_format_number') ) {
+    function berocket_format_number( $number, $format = false ) {
+        if ( ! $format ) {
+            $BeRocket_AAPF = BeRocket_AAPF::getInstance();
+            $br_options    = $BeRocket_AAPF->get_option();
+            $format        = $br_options['number_style'];
+        }
+
+        return number_format( $number, $format['decimal_number'], $format['decimal_separate'], $format['thousand_separate']);
+    }
+}
+if( ! function_exists('berocket_aapf_get_filter_types') ) {
+    function berocket_aapf_get_filter_types ($type = 'widget') {
+        $berocket_admin_filter_types = array(
+            'tag' => array('checkbox','radio','select','color','image','tag_cloud'),
+            'product_cat' => array('checkbox','radio','select','color','image'),
+            'sale' => array('checkbox','radio','select'),
+            'custom_taxonomy' => array('checkbox','radio','select','color','image'),
+            'attribute' => array('checkbox','radio','select','color','image'),
+            'price' => array('slider'),
+            'filter_by' => array('checkbox','radio','select','color','image'),
+        );
+        $berocket_admin_filter_types_by_attr = array(
+            'checkbox' => array('value' => 'checkbox', 'text' => 'Checkbox'),
+            'radio' => array('value' => 'radio', 'text' => 'Radio'),
+            'select' => array('value' => 'select', 'text' => 'Select'),
+            'color' => array('value' => 'color', 'text' => 'Color'),
+            'image' => array('value' => 'image', 'text' => 'Image'),
+            'slider' => array('value' => 'slider', 'text' => 'Slider'),
+            'tag_cloud' => array('value' => 'tag_cloud', 'text' => 'Tag cloud'),
+        );
+        return apply_filters( 'berocket_admin_filter_types_by_attr', array($berocket_admin_filter_types, $berocket_admin_filter_types_by_attr), $type );
     }
 }

@@ -13,7 +13,7 @@
  * @see 	    https://docs.woocommerce.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     3.0.0
+ * @version     3.7.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,27 +23,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="woocommerce-order">
 
-	<?php if ( $order ) : ?>
+	<?php if ( $order ) : 
+		do_action( 'woocommerce_before_thankyou', $order->get_id() );
+		?>
 
 		<?php if ( $order->has_status( 'failed' ) ) : ?>
 
 			<div class="hb-notif-box error">
 				<div class="message-text">
-					<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed"><?php _e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.', 'woocommerce' ); ?></p>
+					<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed"><?php esc_html_e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.', 'woocommerce' ); ?></p>
 				</div>
 			</div>
 
 			<p><?php
 				if ( is_user_logged_in() )
-					_e( 'Please attempt your purchase again or go to your account page.', 'woocommerce' );
+					esc_html_e( 'Please attempt your purchase again or go to your account page.', 'woocommerce' );
 				else
-					_e( 'Please attempt your purchase again.', 'woocommerce' );
+					esc_html_e( 'Please attempt your purchase again.', 'woocommerce' );
 			?></p>
 
 			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed-actions">
-				<a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="button pay"><?php _e( 'Pay', 'woocommerce' ) ?></a>
+				<a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="button pay"><?php esc_html_e( 'Pay', 'woocommerce' ) ?></a>
 				<?php if ( is_user_logged_in() ) : ?>
-					<a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="button pay"><?php _e( 'My account', 'woocommerce' ); ?></a>
+					<a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="button pay"><?php esc_html_e( 'My account', 'woocommerce' ); ?></a>
 				<?php endif; ?>
 			</p>
 
@@ -58,24 +60,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
 
 				<li class="woocommerce-order-overview__order order">
-					<?php _e( 'Order number:', 'woocommerce' ); ?>
+					<?php esc_html_e( 'Order number:', 'woocommerce' ); ?>
 					<strong><?php echo $order->get_order_number(); ?></strong>
 				</li>
 
 				<li class="woocommerce-order-overview__date date">
-					<?php _e( 'Date:', 'woocommerce' ); ?>
+					<?php esc_html_e( 'Date:', 'woocommerce' ); ?>
 					<strong><?php echo wc_format_datetime( $order->get_date_created() ); ?></strong>
 				</li>
 
 				<li class="woocommerce-order-overview__total total">
-					<?php _e( 'Total:', 'woocommerce' ); ?>
+					<?php esc_html_e( 'Total:', 'woocommerce' ); ?>
 					<strong><?php echo $order->get_formatted_order_total(); ?></strong>
 				</li>
 
 				<?php if ( $order->get_payment_method_title() ) : ?>
 
 				<li class="woocommerce-order-overview__payment-method method">
-					<?php _e( 'Payment method:', 'woocommerce' ); ?>
+					<?php esc_html_e( 'Payment method:', 'woocommerce' ); ?>
 					<strong><?php echo wp_kses_post( $order->get_payment_method_title() ); ?></strong>
 				</li>
 

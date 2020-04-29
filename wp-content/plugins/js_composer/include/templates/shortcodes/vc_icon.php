@@ -19,16 +19,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @var $size
  * @var $align
  * @var $el_class
+ * @var $el_id
  * @var $link
  * @var $css_animation
  * @var $css
  * Shortcode class
- * @var $this WPBakeryShortCode_VC_Icon
+ * @var WPBakeryShortCode_Vc_Icon $this
  */
-$type = $icon_fontawesome = $icon_openiconic = $icon_typicons =
-$icon_entypo = $icon_linecons = $color = $custom_color =
-$background_style = $background_color = $custom_background_color =
-$size = $align = $el_class = $link = $css_animation = $css = $rel = '';
+$type = $icon_fontawesome = $icon_openiconic = $icon_typicons = $icon_entypo = $icon_linecons = $color = $custom_color = $background_style = $background_color = $custom_background_color = $size = $align = $el_class = $el_id = $link = $css_animation = $css = $rel = '';
 
 $atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 extract( $atts );
@@ -66,13 +64,20 @@ $rel = '';
 if ( ! empty( $url['rel'] ) ) {
 	$rel = ' rel="' . esc_attr( $url['rel'] ) . '"';
 }
-?>
-<div
-	class="vc_icon_element vc_icon_element-outer<?php echo strlen( $css_class ) > 0 ? ' ' . trim( esc_attr( $css_class ) ) : ''; ?> vc_icon_element-align-<?php echo esc_attr( $align ); ?><?php if ( $has_style ) { echo ' vc_icon_element-have-style'; } ?>">
-	<div class="vc_icon_element-inner vc_icon_element-color-<?php echo esc_attr( $color ); ?><?php if ( $has_style ) { echo ' vc_icon_element-have-style-inner'; } ?> vc_icon_element-size-<?php echo esc_attr( $size ); ?> vc_icon_element-style-<?php echo esc_attr( $background_style ); ?> vc_icon_element-background-color-<?php echo esc_attr( $background_color ); ?>"<?php echo $style ?>><span class="vc_icon_element-icon <?php echo $iconClass; ?>" <?php echo( 'custom' === $color ? 'style="color:' . esc_attr( $custom_color ) . ' !important"' : '' ); ?>></span><?php
-			if ( strlen( $link ) > 0 && strlen( $url['url'] ) > 0 ) {
-				echo '<a class="vc_icon_element-link" href="' . esc_attr( $url['url'] ) . '" ' . $rel . ' title="' . esc_attr( $url['title'] )
-				     . '" target="' . ( strlen( $url['target'] ) > 0 ? esc_attr( $url['target'] ) : '_self' ) . '"></a>';
-			}
-		?></div>
-</div>
+$output = '';
+$output .= '<div' . ( ! empty( $el_id ) ? ' id="' . esc_attr( $el_id ) . '"' : '' ) . ' class="vc_icon_element vc_icon_element-outer' . ( strlen( $css_class ) > 0 ? ' ' . esc_attr( trim( $css_class ) ) : '' ) . ' vc_icon_element-align-' . esc_attr( $align );
+if ( $has_style ) {
+	$output .= ' vc_icon_element-have-style';
+}
+$output .= '"><div class="vc_icon_element-inner vc_icon_element-color-' . esc_attr( $color );
+if ( $has_style ) {
+	$output .= ' vc_icon_element-have-style-inner';
+}
+$output .= ' vc_icon_element-size-' . esc_attr( $size ) . ' vc_icon_element-style-' . esc_attr( $background_style ) . ' vc_icon_element-background-color-' . esc_attr( $background_color ) . '" ' . $style . '><span class="vc_icon_element-icon ' . esc_attr( $iconClass ) . '" ' . ( 'custom' === $color ? 'style="color:' . esc_attr( $custom_color ) . ' !important"' : '' ) . '></span>';
+
+if ( strlen( $link ) > 0 && strlen( $url['url'] ) > 0 ) {
+	$output .= '<a class="vc_icon_element-link" href="' . esc_url( $url['url'] ) . '" ' . $rel . ' title="' . esc_attr( $url['title'] ) . '" target="' . ( strlen( $url['target'] ) > 0 ? esc_attr( $url['target'] ) : '_self' ) . '"></a>';
+}
+$output .= '</div></div>';
+
+return $output;

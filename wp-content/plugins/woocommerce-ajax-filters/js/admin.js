@@ -8,13 +8,13 @@ var berocket_admin_filter_types = {
     filter_by:['checkbox','radio','select','color','image']
 };
 var berocket_admin_filter_types_by_attr = {
-    checkbox:'<option value="checkbox">Checkbox</option>',
-    radio:'<option value="radio">Radio</option>',
-    select:'<option value="select">Select</option>',
-    color:'<option value="color">Color</option>',
-    image:'<option value="image">Image</option>',
-    slider:'<option value="slider">Slider</option>',
-    tag_cloud:'<option value="tag_cloud">Tag cloud</option>'
+    checkbox:'<option value="checkbox">'+aapf_admin_text.checkbox_text+'</option>',
+    radio:'<option value="radio">'+aapf_admin_text.radio_text+'</option>',
+    select:'<option value="select">'+aapf_admin_text.select_text+'</option>',
+    color:'<option value="color">'+aapf_admin_text.color_text+'</option>',
+    image:'<option value="image">'+aapf_admin_text.image_text+'</option>',
+    slider:'<option value="slider">'+aapf_admin_text.slider_text+'</option>',
+    tag_cloud:'<option value="tag_cloud">'+aapf_admin_text.tag_cloud_text+'</option>'
 };
 
 (function ($) {
@@ -23,7 +23,7 @@ var berocket_admin_filter_types_by_attr = {
         $('.get_shortcode').click( function ( event ) {
             event.preventDefault();
             $form = $(this).parents('form');
-            var params = $( '.colorpicker_field_input, .berocket_image_value' );
+            var params = $( '.br_colorpicker_field_input, .berocket_image_value' );
             var attr = $( '#berocket_sc_attribute' );
             var type = $( '#berocket_sc_type' );
             if ( params.length > 0 ) {
@@ -268,15 +268,22 @@ var berocket_admin_filter_types_by_attr = {
                                      || filter_type == 'product_cat'
                                      || filter_type == 'custom_taxonomy' && custom_taxonomy == 'product_cat' ) );
             berocket_aapf_show_hide( $('.berocket_aapf_widget_admin_non_price_tag_cloud', $parent), 
-                                     ( type == 'tag_cloud'
-                                     || type == 'slider' ) );
+                                     ( filter_type == 'date'
+                                     || ( filter_type != 'date'
+                                     && ( type == 'tag_cloud'
+                                     || type == 'slider' ) ) ) );
             berocket_aapf_show_hide( $('.berocket_aapf_widget_admin_non_price_tag_cloud_select', $parent), 
-                                     ( type == 'tag_cloud'
+                                     ( filter_type == 'date'
+                                     || ( filter_type != 'date'
+                                     && ( type == 'tag_cloud'
                                      || type == 'slider'
-                                     || type == 'select' ) );
+                                     || type == 'select' ) ) ) );
+            berocket_aapf_show_hide( $('.berocket_aapf_widget_admin_ranges_hide', $parent),
+                                     ( type == 'ranges' ) );
             berocket_aapf_show_hide( $('.berocket_aapf_widget_admin_price_attribute', $parent), 
                                      ( filter_type != 'attribute'
-                                     || attribute != 'price' ) );
+                                     || attribute != 'price'
+                                     || type != 'slider' ) );
             berocket_aapf_show_hide( $('.berocket_aapf_advanced_color_pick_settings', $parent), 
                                      ( type != 'color' && type != 'image' ) );
             berocket_aapf_show_hide( $('.berocket_aapf_product_sub_cat_current', $parent), 
@@ -294,14 +301,13 @@ var berocket_admin_filter_types_by_attr = {
             berocket_aapf_show_hide( $('.berocket_aapf_order_values_by', $parent), 
                                      ( filter_type == '_stock_status'
                                      || filter_type == 'attribute' && attribute == 'price'
-                                     || type == 'slider'
                                      || filter_type == 'date'
                                      || filter_type == '_sale'
                                      || filter_type == '_rating' ) );
             berocket_aapf_show_hide( $('.berocket_aapf_order_values_type', $parent), 
                                      ( ( filter_type != 'attribute'
                                      && filter_type != 'custom_taxonomy' )
-                                     || type == 'slider' )
+                                     || type == 'ranges')
                                      && filter_type != 'tag'
                                      && filter_type != '_rating' );
             berocket_aapf_show_hide( $('.berocket_attributes_slider_data', $parent), 
@@ -320,8 +326,11 @@ var berocket_admin_filter_types_by_attr = {
             berocket_aapf_show_hide( $('.berocket_options_for_select', $parent), 
                                      ( ( filter_type != 'attribute'
                                      && filter_type != 'custom_taxonomy'
+                                     && filter_type != 'product_cat'
                                      && filter_type != 'tag' )
                                      || type != 'select' ) );
+            berocket_aapf_show_hide( $('.br_aapf_date_style_select', $parent), 
+                                     ( filter_type != 'date' ) );
             if ( type == 'color' || type == 'image' ) {
                 var tax_color_name;
                 if ( filter_type == 'attribute' ) {
@@ -347,7 +356,9 @@ var berocket_admin_filter_types_by_attr = {
             }
             if( args.changed == 'filter_type' || args.changed == 'attribute' || args.changed == 'custom_taxonomy' || args.changed == 'type' ) {
                 var taxonomy_name = false;
-                if( filter_type == 'tag' ) {
+                if( filter_type == 'product_cat' ) {
+                    taxonomy_name = 'product_cat';
+                } else if( filter_type == 'tag' ) {
                     taxonomy_name = 'product_tag';
                 } else if( filter_type == 'attribute' && attribute != 'price' ) {
                     taxonomy_name = attribute;
@@ -466,17 +477,19 @@ var berocket_admin_filter_types_by_attr = {
             }
         });
 
-        $('.colorpicker_field, .colorpicker_field_sc').each(function (i,o){
-            $(o).css('backgroundColor', '#'+$(o).data('color'));
-            $(o).colpick({
-                layout: 'hex',
-                submit: 0,
-                color: '#'+$(o).data('color'),
-                onChange: function(hsb,hex,rgb,el,bySetColor) {
-                    $(el).removeClass('colorpicker_removed');
-                    $(el).css('backgroundColor', '#'+hex).next().val(hex).trigger('change');
-                }
-            })
+        $('.br_colorpicker_field').each(function (i,o){
+            if( typeof($(o).colpick) != 'undefined' ) {
+                $(o).css('backgroundColor', '#'+$(o).data('color'));
+                $(o).colpick({
+                    layout: 'hex',
+                    submit: 0,
+                    color: '#'+$(o).data('color'),
+                    onChange: function(hsb,hex,rgb,el,bySetColor) {
+                        $(el).removeClass('colorpicker_removed');
+                        $(el).css('backgroundColor', '#'+hex).next().val(hex).trigger('change');
+                    }
+                })
+            }
         });
 
         $(document).on('click', '.theme_default', function (event) {
@@ -488,8 +501,8 @@ var berocket_admin_filter_types_by_attr = {
         $(document).on('click', '.all_theme_default', function (event) {
             event.preventDefault();
             $table = $(this).parents('table');
-            $table.find('.colorpicker_field').css('backgroundColor', '#000000').colpickSetColor('#000000');
-            $table.find('.colorpicker_field').next().val('');
+            $table.find('.br_colorpicker_field').css('backgroundColor', '#000000').colpickSetColor('#000000');
+            $table.find('.br_colorpicker_field').next().val('');
             $table.find('select').val("");
             $table.find('input[type=text]').val("");
         });
@@ -514,21 +527,31 @@ var berocket_admin_filter_types_by_attr = {
                 $('.berocket_aapf_admin_widget_selected_area', $parent).hide();
                 $('.berocket_aapf_admin_search_box', $parent).hide();
                 $('.berocket_product_category_value_limit, .berocket_widget_output_limitation_block', $parent).show();
-            } else if( $(this).val() == 'update_button' || $(this).val() == 'reset_button' ) {
+                $('.berocket_widget_reset_button_block', $parent).hide();
+            } else if( $(this).val() == 'update_button' ) {
                 $('.berocket_aapf_admin_filter_widget_content', $parent).hide();
                 $('.berocket_aapf_admin_widget_selected_area', $parent).hide();
                 $('.berocket_aapf_admin_search_box', $parent).hide();
                 $('.berocket_product_category_value_limit, .berocket_widget_output_limitation_block', $parent).hide();
+                $('.berocket_widget_reset_button_block', $parent).hide();
+            } else if( $(this).val() == 'reset_button' ) {
+                $('.berocket_aapf_admin_filter_widget_content', $parent).hide();
+                $('.berocket_aapf_admin_widget_selected_area', $parent).hide();
+                $('.berocket_aapf_admin_search_box', $parent).hide();
+                $('.berocket_product_category_value_limit, .berocket_widget_output_limitation_block', $parent).hide();
+                $('.berocket_widget_reset_button_block', $parent).show();
             } else if( $(this).val() == 'selected_area' ) {
                 $('.berocket_aapf_admin_filter_widget_content', $parent).hide();
                 $('.berocket_aapf_admin_search_box', $parent).hide();
                 $('.berocket_aapf_admin_widget_selected_area', $parent).show();
                 $('.berocket_product_category_value_limit, .berocket_widget_output_limitation_block', $parent).hide();
+                $('.berocket_widget_reset_button_block', $parent).hide();
             } else if( $(this).val() == 'search_box' ) {
                 $('.berocket_aapf_admin_filter_widget_content', $parent).hide();
                 $('.berocket_aapf_admin_widget_selected_area', $parent).hide();
                 $('.berocket_aapf_admin_search_box', $parent).show();
                 $('.berocket_product_category_value_limit, .berocket_widget_output_limitation_block', $parent).hide();
+                $('.berocket_widget_reset_button_block', $parent).hide();
             }
         });
 
@@ -684,8 +707,10 @@ var berocket_admin_filter_types_by_attr = {
         $(document).on('change', '.berocket_seo_friendly_urls', berocket_change_seo_friendly_urls);
         $(document).on('change', '.berocket_nice_url', berocket_change_seo_friendly_urls);
         $(document).on('change', '.berocket_seo_meta_title', berocket_change_seo_meta_title);
+        $(document).on('change', '.berocket_use_links_filters', berocket_change_use_links_filters);
         berocket_change_seo_friendly_urls();
         berocket_change_seo_meta_title();
+        berocket_change_use_links_filters();
     })
 })(jQuery);
 function berocket_change_seo_friendly_urls() {
@@ -715,6 +740,15 @@ function  berocket_change_seo_meta_title() {
         jQuery('.berocket_seo_meta_title_elements').show();
     } else {
         jQuery('.berocket_seo_meta_title_elements').hide();
+    }
+}
+function  berocket_change_use_links_filters() {
+    if( jQuery('.berocket_use_links_filters').prop('checked') ) {
+        jQuery('.berocket_use_noindex').show();
+        jQuery('.berocket_use_nofollow').show();
+    } else {
+        jQuery('.berocket_use_noindex').hide();
+        jQuery('.berocket_use_nofollow').hide();
     }
 }
 var br_widget_setted = false;
@@ -841,18 +875,21 @@ var br_savin_ajax = false;
                 }
                 parent.css('position', 'relative');
                 parent.append($(html));
+                berocket_add_submit_function_to_element();
             });
         });
-        $(document).on('submit', '.berocket_simple_filter_creation', function(event) {
-            event.preventDefault();
-            $this = $(this);
-            var form_data = $this.serialize();
-            $.post($this.attr('action'), form_data, function(result) {
-                if( typeof(window[$this.data('function')]) == 'function' ) {
-                    window[$this.data('function')]($this, result);
-                }
-            }, 'json');
-        });
+        function berocket_add_submit_function_to_element() {
+            $('.berocket_simple_filter_creation:not(.berocket_submit_event_added)').on('submit', function(event) {
+                event.preventDefault();
+                $this = $(this);
+                var form_data = $this.serialize();
+                $.post($this.attr('action'), form_data, function(result) {
+                    if( typeof(window[$this.data('function')]) == 'function' ) {
+                        window[$this.data('function')]($this, result);
+                    }
+                }, 'json');
+            }).addClass('berocket_submit_event_added');
+        }
         $(document).on('click', '.berocket_simple_filter_creation .berocket_simple_close', function(event) {
             event.preventDefault();
             $(this).parents('.berocket_simple_filter_creation').remove();

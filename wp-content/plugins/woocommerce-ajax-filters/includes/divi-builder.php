@@ -6,10 +6,6 @@ function berocket_filter_et_builder_ready() {
                 $this->name       = __( 'Single Filter', 'BeRocket_AJAX_domain' );
                 $this->slug       = 'et_pb_br_filter_single';
 
-                $this->whitelisted_fields = array(
-                    'filter_id',
-                );
-
                 $this->fields_defaults = array(
                     'filter_id' => array(''),
                 );
@@ -36,7 +32,7 @@ function berocket_filter_et_builder_ready() {
                 return $fields;
             }
 
-            function shortcode_callback( $atts, $content = null, $function_name ) {
+            function render( $atts, $content = null, $function_name ) {
                 $html = '';
                 if( ! empty($atts['filter_id']) ) {
                     $html = do_shortcode('[br_filter_single filter_id='.$atts['filter_id'].']');
@@ -62,10 +58,6 @@ function berocket_filter_et_builder_ready() {
             function init() {
                 $this->name       = __( 'Group Filter', 'BeRocket_AJAX_domain' );
                 $this->slug       = 'et_pb_br_filters_group';
-
-                $this->whitelisted_fields = array(
-                    'group_id',
-                );
 
                 $this->fields_defaults = array(
                     'group_id' => array(''),
@@ -93,7 +85,7 @@ function berocket_filter_et_builder_ready() {
                 return $fields;
             }
 
-            function shortcode_callback( $atts, $content = null, $function_name ) {
+            function render( $atts, $content = null, $function_name ) {
                 $html = '';
                 if( ! empty($atts['group_id']) ) {
                     $html = do_shortcode('[br_filters_group group_id='.$atts['group_id'].']');
@@ -115,6 +107,33 @@ function berocket_filter_et_builder_ready() {
             }
         }
         new ET_Builder_Module_br_filters_group;
+
+        class ET_Builder_Module_braapf_filter_next extends ET_Builder_Module {
+            function init() {
+                $this->name       = __( 'BeRocket Filter Next Product', 'BeRocket_AJAX_domain' );
+                $this->slug       = 'et_pb_braapf_filter_next';
+                $this->fields_defaults = array();
+            }
+
+            function get_fields() {
+                $fields = array();
+                return $fields;
+            }
+
+            function render( $atts, $content = null, $function_name ) {
+                add_filter('berocket_aapf_wcshortcode_is_filtering', array($this, 'enable_filtering'));
+                return '';
+            }
+
+            protected function _add_additional_border_fields() {
+                $this->advanced_options["border"]['css'] = array();
+            }
+            function enable_filtering($enabled) {
+                remove_filter('berocket_aapf_wcshortcode_is_filtering', array($this, 'enable_filtering'));
+                return true;
+            }
+        }
+        new ET_Builder_Module_braapf_filter_next;
     }
 }
-add_action('et_builder_modules_load', 'berocket_filter_et_builder_ready');
+

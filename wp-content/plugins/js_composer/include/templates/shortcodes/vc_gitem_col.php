@@ -11,34 +11,25 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @var $css
  * @var $el_class
  * @var $featured_image
+ * @var $img_size
  * @var $content - shortcode content
  * Shortcode class
- * @var $this WPBakeryShortCode_VC_Gitem_Col
+ * @var WPBakeryShortCode_Vc_Gitem_Col $this
  */
-$width = $align = $css = $el_class = $featured_image = '';
+$width = $align = $css = $el_class = $featured_image = $img_size = '';
 
-$atts = shortcode_atts( array(
-	'width' => '1/1',
-	'align' => 'left',
-	'css' => '',
-	'el_class' => '',
-	'featured_image' => '',
-), $atts );
+$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
+
 extract( $atts );
 // TODO: Note that vc_map_get_attributes doesnt return align so it should be checked in next bug fix
 
 $style = '';
 $width = wpb_translateColumnWidthToSpan( $width );
-$css_class = $width
-	. ( strlen( $el_class ) ? ' ' . $el_class : '' )
-	. ' vc_gitem-col vc_gitem-col-align-' . $align
-	. vc_shortcode_custom_css_class( $css, ' ' );
+$css_class = $width . ( strlen( $el_class ) ? ' ' . $el_class : '' ) . ' vc_gitem-col vc_gitem-col-align-' . $align . vc_shortcode_custom_css_class( $css, ' ' );
 
 if ( 'yes' === $featured_image ) {
-	$style = '{{ post_image_background_image_css }}';
+	$style = '{{ post_image_background_image_css' . ':' . esc_attr( $img_size ) . ' }}';
 }
-echo '<div class="' . $css_class . '"'
-	. ( strlen( $style ) > 0 ? ' style="' . $style . '"' : '' )
-	. '>'
-	. do_shortcode( $content )
-	. '</div>';
+$output = '<div class="' . esc_attr( $css_class ) . '"' . ( strlen( $style ) > 0 ? ' style="' . esc_attr( $style ) . '"' : '' ) . '>' . do_shortcode( $content ) . '</div>';
+
+echo $output;

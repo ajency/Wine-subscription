@@ -33,6 +33,9 @@ class BeRocket_AAPF_single_filter extends BeRocket_custom_post_class {
     public $hook_name = 'berocket_aapf_single_filter';
     public $conditions;
     protected static $instance;
+    public $post_type_parameters = array(
+        'can_be_disabled' => true
+    );
     function __construct() {
         add_action('ajax_filters_framework_construct', array($this, 'init_conditions'));
         $this->post_name = 'br_product_filter';
@@ -56,7 +59,7 @@ class BeRocket_AAPF_single_filter extends BeRocket_custom_post_class {
             'description'     => __( 'This is where you can add Product Filters.', 'BeRocket_AJAX_domain' ),
             'public'          => true,
             'show_ui'         => true,
-            'capability_type' => 'product',
+            'capability_type' => 'single_filter',
             'map_meta_cap'    => true,
             'publicly_queryable'  => false,
             'exclude_from_search' => true,
@@ -71,6 +74,7 @@ class BeRocket_AAPF_single_filter extends BeRocket_custom_post_class {
             'data'                          => array(),
             'br_wp_footer'                  => false,
             'widget_type'                   => 'filter',
+            'reset_hide'                    => 'berocket_no_filters',
             'title'                         => '',
             'filter_type'                   => 'attribute',
             'attribute'                     => 'price',
@@ -288,7 +292,7 @@ class BeRocket_AAPF_single_filter extends BeRocket_custom_post_class {
         <div>
             <table>
                 <tr>
-                    <th><?php _e('Hide this group on:', 'BeRocket_AJAX_domain'); ?></th>
+                    <th><?php _e('Hide this filter on:', 'BeRocket_AJAX_domain'); ?></th>
                     <td>
                         <label>
                             <input type="checkbox" value="1" name="<?php echo $this->post_name; ?>[is_hide_mobile]"<?php if( ! empty($options['is_hide_mobile']) ) echo ' checked'; ?>>
@@ -347,9 +351,9 @@ class BeRocket_AAPF_single_filter extends BeRocket_custom_post_class {
                     'update_button' => __('Update Products button', 'BeRocket_AJAX_domain'),
                     'reset_button'  => __('Reset Products button', 'BeRocket_AJAX_domain'),
                     'selected_area' => __('Selected Filters area', 'BeRocket_AJAX_domain'),
-                    'search_box'    => __('Search Box', 'BeRocket_AJAX_domain')
+                    'search_box'    => __('Search Box (DEPRECATED)', 'BeRocket_AJAX_domain')
                 );
-                echo __('Widget type: ', 'BeRocket_AJAX_domain') . '<strong>' . ( isset($widget_types[$filter['widget_type']]) ? $widget_types[$filter['widget_type']] : $filter['widget_type'] ) . '</strong>';
+                echo __('Widget type: ', 'BeRocket_AJAX_domain') . '<strong>' . ( isset($widget_types[$filter['widget_type']]) ? $widget_types[$filter['widget_type']] : esc_html($filter['widget_type']) ) . '</strong>';
                 echo '<br>';
                 if( $filter['widget_type'] == 'search_box' ) {
                     $search_type = array(
@@ -362,9 +366,9 @@ class BeRocket_AAPF_single_filter extends BeRocket_custom_post_class {
                         if( $i > $filter['search_box_count']) break;
                         echo $i . ') ';
                         if( $search_box['type'] == 'attribute' ) {
-                            echo __('Attribute: ', 'BeRocket_AJAX_domain') . '<strong>' . $search_box['attribute'] . '</strong>';
+                            echo __('Attribute: ', 'BeRocket_AJAX_domain') . '<strong>' . esc_html($search_box['attribute']) . '</strong>';
                         } elseif( $search_box['type'] == 'custom_taxonomy' ) {
-                            echo __('Custom Taxonomy: ', 'BeRocket_AJAX_domain') . '<strong>' . $search_box['custom_taxonomy'] . '</strong>';
+                            echo __('Custom Taxonomy: ', 'BeRocket_AJAX_domain') . '<strong>' . esc_html($search_box['custom_taxonomy']) . '</strong>';
                         } elseif( $search_box['type'] == 'tag' ) {
                             echo __('Tag', 'BeRocket_AJAX_domain');
                         }
@@ -402,6 +406,8 @@ class BeRocket_AAPF_single_filter extends BeRocket_custom_post_class {
                 break;
             case "shortcode":
                 echo "[br_filter_single filter_id={$post->ID}]";
+                break;
+            default:
                 break;
         }
     }
@@ -476,7 +482,7 @@ class BeRocket_AAPF_single_filter extends BeRocket_custom_post_class {
             }
             $_POST['type']                    = $instance['type'];
             $_POST['tax_color_set']           = $_POST['br_widget_color'];
-            BeRocket_AAPF_Widget::color_listener();
+            BeRocket_AAPF_Widget_functions::color_listener();
         }
         $setup_wizard = get_option('berocket_aapf_filters_setup_wizard_list');
         if( ! is_array($setup_wizard) ) {
@@ -493,12 +499,15 @@ class BeRocket_AAPF_single_filter extends BeRocket_custom_post_class {
         }
     }
 }
-new BeRocket_AAPF_single_filter();
+
 
 class BeRocket_AAPF_group_filters extends BeRocket_custom_post_class {
     public $hook_name = 'berocket_aapf_group_filters';
     public $conditions;
     protected static $instance;
+    public $post_type_parameters = array(
+        'can_be_disabled' => true
+    );
     function __construct() {
         add_action('ajax_filters_framework_construct', array($this, 'init_conditions'));
         $this->post_name = 'br_filters_group';
@@ -522,7 +531,7 @@ class BeRocket_AAPF_group_filters extends BeRocket_custom_post_class {
                 'description'     => __( 'This is where you can add Product Filter Groups.', 'BeRocket_AJAX_domain' ),
             'public'          => true,
             'show_ui'         => true,
-            'capability_type' => 'product',
+            'capability_type' => 'group_filters',
             'map_meta_cap'    => true,
             'publicly_queryable'  => false,
             'exclude_from_search' => true,
@@ -661,12 +670,45 @@ class BeRocket_AAPF_group_filters extends BeRocket_custom_post_class {
             case "shortcode":
                 echo "[br_filters_group group_id={$post->ID}]";
                 break;
+            default:
+                break;
         }
     }
-    public function shortcode($atts = array()) {
-        ob_start();
-        the_widget( 'BeRocket_new_AAPF_Widget', $atts);
-        return ob_get_clean();
+    public function shortcode( $atts = array() ) {
+        if ( BeRocket_new_AAPF_Widget::check_widget_by_instance( $atts ) ) {
+            ob_start();
+
+            $BeRocket_AAPF_group_filters = BeRocket_AAPF_group_filters::getInstance();
+            $group_options               = $BeRocket_AAPF_group_filters->get_option( $atts['group_id'] );
+
+            if ( ! empty( $group_options[ 'group_is_hide' ] ) ) {
+                $extra_class   = '';
+                if ( ! empty( $group_options['hide_group'] ) and is_array( $group_options['hide_group'] ) ) {
+                    foreach ( $group_options['hide_group'] as $device => $active ) {
+                        if ( $active and $device ) {
+                            $extra_class .= ' berocket_hide_single_widget_on_' . $device;
+                        }
+                    }
+
+                }
+
+                echo '<a href="#toggle-filters" class="berocket_element_above_products_is_hide_toggle berocket_ajax_filters_toggle' . ( ( ! empty( $group_options[ 'group_is_hide_theme' ] ) ) ? ' theme-' . $group_options[ 'group_is_hide_theme' ] : '' ) . ( ( ! empty( $group_options['group_is_hide_icon_theme'] ) ) ? ' icon-theme-' . $group_options['group_is_hide_icon_theme'] : '' ) . $extra_class . '"><span><i></i><b></b><s></s></span>' . __( 'SHOW FILTERS', 'BeRocket_AJAX_domain' ) . '</a>';
+                echo '<div class="berocket_element_above_products berocket_element_above_products_is_hide br_is_hidden ' . $extra_class . '">';
+                if( ! empty($options['styles_in_footer']) ) {
+                    wp_enqueue_style('berocket_aapf_widget-themes');
+                }
+            }
+
+            the_widget( 'BeRocket_new_AAPF_Widget', $atts);
+
+            if ( ! empty( $group_options[ 'group_is_hide' ] ) ) {
+                echo '</div>';
+            }
+
+            return ob_get_clean();
+        }
+
+        return '';
     }
     public function get_option( $post_id ) {
         $options_test = get_post_meta( $post_id, $this->post_name, true );
@@ -698,4 +740,4 @@ class BeRocket_AAPF_group_filters extends BeRocket_custom_post_class {
         update_option('br_filters_options', $options);
     }
 }
-new BeRocket_AAPF_group_filters();
+

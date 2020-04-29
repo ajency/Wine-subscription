@@ -57,4 +57,4 @@ if( class_exists('WPBakeryShortCode') && function_exists('vc_map') ) {
     ) );
 }
 }
-add_action('vc_before_init', 'berocket_filter_vc_before_init', 100000);
+

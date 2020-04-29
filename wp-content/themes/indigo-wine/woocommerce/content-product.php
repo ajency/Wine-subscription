@@ -13,12 +13,10 @@
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @author  WooThemes
  * @package WooCommerce/Templates
- * @version 3.0.0
+ * @version 3.6.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+defined( 'ABSPATH' ) || exit;
 
 global $product, $woocommerce_loop;
 
@@ -99,7 +97,7 @@ if(explode("/", $category_slug)[0] == 'product-category'){
 }
 ?>
 
-<div <?php post_class( $classes ); ?>>
+<div <?php wc_product_class( $classes, $product ); ?>>
 
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 

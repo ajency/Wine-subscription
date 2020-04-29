@@ -33,6 +33,8 @@ if ( ! class_exists('BeRocket_custom_post_class') ) {
         public $meta_boxes = array();
         public $default_settings = array();
         public $post_settings, $post_name;
+        public $post_type_parameters = array();
+        public $addons = array();
         protected static $instance;
 
         public static function getInstance() {
@@ -48,8 +50,24 @@ if ( ! class_exists('BeRocket_custom_post_class') ) {
             {
                 static::$instance = $this;
             }
+            $this->post_type_parameters = array_merge(array(
+                'sortable' => false,
+                'can_be_disabled' => false,
+            ), $this->post_type_parameters);
             add_filter( 'init', array( $this, 'init' ) );
-            add_filter( 'admin_init', array( $this, 'admin_init' ) );
+            add_filter( 'admin_init', array( $this, 'admin_init' ), 15 );
+            add_filter( 'wp_insert_post_data', array( $this, 'wp_insert_post_data' ), 30, 2 );
+            if( $this->post_type_parameters['sortable'] ) {
+                include_once('custom_post/sortable.php');
+                $addons['sortable'] = new BeRocket_custom_post_sortable_addon_class($this);
+            }
+            if( $this->post_type_parameters['can_be_disabled'] ) {
+                include_once('custom_post/enable_disable.php');
+                $addons['can_be_disabled'] = new BeRocket_custom_post_enable_disable_addon_class($this);
+            }
+            if( ! empty($this->post_settings['capability_type']) && $this->post_settings['capability_type'] != 'product' ) {
+                add_filter('BeRocket_admin_init_user_capabilities', array($this, 'init_user_capabilities'));
+            }
         }
 
         function init() {
@@ -58,7 +76,7 @@ if ( ! class_exists('BeRocket_custom_post_class') ) {
         }
 
         public function get_custom_posts($args = array()) {
-            $args = array_merge(array(
+            $args = array_merge(apply_filters( 'berocket_custom_post_'.$this->post_name.'_get_custom_posts_args_default', array(
                 'posts_per_page'   => -1,
                 'offset'           => 0,
                 'category'         => '',
@@ -74,10 +92,15 @@ if ( ! class_exists('BeRocket_custom_post_class') ) {
                 'post_status'      => 'publish',
                 'fields'           => 'ids',
                 'suppress_filters' => false 
-            ), $args);
+            ) ), $args);
             $posts_array = new WP_Query($args);
             $posts_array = $posts_array->posts;
             return $posts_array;
+        }
+
+        public function get_custom_posts_frontend($args = array(), $additional = array()) {
+            $args = apply_filters('berocket_custom_post_'.$this->post_name.'_get_custom_posts_args_frontend', $args, $additional);
+            return $this->get_custom_posts($args);
         }
 
         public function add_meta_box($slug, $name, $callback = false, $position = 'normal', $priority = 'high') {
@@ -88,6 +111,12 @@ if ( ! class_exists('BeRocket_custom_post_class') ) {
         }
 
         public function admin_init() {
+            global $pagenow;
+            if( 'edit.php' == $pagenow && isset( $_GET['post_type'] ) && $_GET['post_type'] == $this->post_name ){
+                wp_enqueue_script( 'berocket_framework_admin' );
+                wp_enqueue_style( 'berocket_framework_admin_style' );
+                do_action('berocket_custom_post_'.$this->post_name.'_admin_init_only', $this->post_type_parameters);
+            }
             add_filter( 'bulk_actions-edit-'.$this->post_name, array( $this, 'bulk_actions_edit' ) );
             add_filter( 'views_edit-'.$this->post_name, array( $this, 'views_edit' ) );
             add_filter( 'manage_edit-'.$this->post_name.'_columns', array( $this, 'manage_edit_columns' ) );
@@ -98,12 +127,13 @@ if ( ! class_exists('BeRocket_custom_post_class') ) {
             add_filter( 'list_table_primary_column', array( $this, 'list_table_primary_column' ), 10, 2 );
 
             add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+            do_action( 'berocket_custom_post_'.$this->post_name.'_admin_init', $this->post_type_parameters);
         }
 
         public function admin_enqueue_scripts() {
             global $post;
             if ( ! empty( $post ) and $post->post_type == $this->post_name ) {
-                wp_register_style( 'font-awesome', plugins_url( '../css/font-awesome.min.css', __FILE__ ) );
+                wp_register_style( 'font-awesome', plugins_url( '../assets/css/font-awesome.min.css', __FILE__ ) );
             }
         }
 
@@ -111,6 +141,25 @@ if ( ! class_exists('BeRocket_custom_post_class') ) {
             if( $post->post_type == $this->post_name ) {
                 if( isset($actions['inline hide-if-no-js']) ) {
                     unset($actions['inline hide-if-no-js']);
+                }
+                if ( current_user_can( 'delete_post', $post->ID ) ) {
+                    if( $this->post_type_parameters['can_be_disabled'] ) {
+                        if( has_term('isdisabled', 'berocket_taxonomy_data', $post) ) {
+                            $actions['enable'] = sprintf(
+                                '<a href="%s" class="submitdelete aria-button-if-js" aria-label="%s">%s</a>',
+                                wp_nonce_url( "post.php?action=enable&amp;post=$post->ID", 'enable-post_' . $post->ID ),
+                                esc_attr( __( 'Enable', 'BeRocket_domain') ),
+                                _x( 'Enable', 'BeRocket_domain')
+                            );
+                        } else {
+                            $actions['disable'] = sprintf(
+                                '<a href="%s" class="submitdelete aria-button-if-js" aria-label="%s">%s</a>',
+                                wp_nonce_url( "post.php?action=disable&amp;post=$post->ID", 'disable-post_' . $post->ID ),
+                                esc_attr( __( 'Disable', 'BeRocket_domain') ),
+                                _x( 'Disable', 'BeRocket_domain')
+                            );
+                        }
+                    }
                 }
             }
             return $actions;
@@ -137,6 +186,7 @@ if ( ! class_exists('BeRocket_custom_post_class') ) {
             $columns = array();
             $columns["cb"]   = '<input type="checkbox" />';
             $columns["name"] = __( "Name", 'BeRocket_domain' );
+            $columns = apply_filters( 'berocket_custom_post_'.$this->post_name.'_manage_edit_columns', $columns, $this->post_type_parameters);
             return $columns;
         }
 
@@ -151,7 +201,10 @@ if ( ! class_exists('BeRocket_custom_post_class') ) {
                     echo 'ID:' . $post->ID . ' <strong>' . $title . '</strong>';
 
                     break;
+                default:
+                    break;
             }
+            do_action( 'berocket_custom_post_'.$this->post_name.'_columns_replace', $column, $this->post_type_parameters);
         }
 
         public  function add_meta_boxes () {
@@ -212,8 +265,7 @@ if ( ! class_exists('BeRocket_custom_post_class') ) {
                         <div id="delete-action">
                             <?php
                             global $pagenow;
-                            if( in_array( $pagenow, array( 'post-new.php' ) ) ) {
-                            } else {
+                            if( ! in_array( $pagenow, array( 'post-new.php' ) ) ) {
                                 if ( current_user_can( "delete_post", $post->ID ) ) {
                                     if ( ! EMPTY_TRASH_DAYS )
                                         $delete_text = __( 'Delete Permanently', 'BeRocket_domain' );
@@ -261,17 +313,20 @@ if ( ! class_exists('BeRocket_custom_post_class') ) {
         }
 
         public function wc_save_product( $post_id, $post ) {
+            do_action( 'berocket_custom_post_'.$this->post_name.'_wc_save_product_before', $post_id, $post, $this->post_type_parameters);
             if ( ! $this->wc_save_check( $post_id, $post ) ) {
                 return false;
             }
             $this->wc_save_product_without_check($post_id, $post);
+            do_action( 'berocket_custom_post_'.$this->post_name.'_wc_save_product_after', $post_id, $post, $this->post_type_parameters);
         }
         public function wc_save_product_without_check( $post_id, $post ) {
+            do_action( 'berocket_custom_post_'.$this->post_name.'_wc_save_product_without_check_before', $post_id, $post, $this->post_type_parameters);
             if ( isset( $_POST[$this->post_name] ) ) {
                 $post_data = berocket_sanitize_array($_POST[$this->post_name]);
 
                 if( is_array($post_data) ) {
-                    $settings = array_merge($this->default_settings, $post_data);
+                    $settings = BeRocket_Framework::recursive_array_set($this->default_settings, $post_data);
                 } else {
                     $settings = $post_data;
                 }
@@ -288,6 +343,7 @@ if ( ! class_exists('BeRocket_custom_post_class') ) {
                     do_action('berocket_copy_from_custom_post', $this->post_name, $post_id, $post);
                 }
             }
+            do_action( 'berocket_custom_post_'.$this->post_name.'_wc_save_product_without_check_after', $post_id, $post, $this->post_type_parameters);
         }
 
         public function get_option( $post_id ) {
@@ -315,6 +371,27 @@ if ( ! class_exists('BeRocket_custom_post_class') ) {
             $post = get_post($post_id);
             $this->wc_save_product_without_check($post_id, $post);
             return $post_id;
+        }
+        public function wp_insert_post_data($data, $post) {
+            if ( ! isset($post['ID']) || ! $post['ID'] ) return $data;
+            if ( $post['post_type'] !== $this->post_name ) return $data;
+            if( ! in_array($data['post_status'], array('publish', 'trash')) ) {
+                $data['post_status'] = 'publish';
+            }
+            return $data;
+        }
+        public function init_user_capabilities($user_caps) {
+            $cap_settings = $this->post_settings;
+            $cap_settings['capabilities'] = array();
+            if( ! isset($cap_settings['map_meta_cap']) ) {
+                $cap_settings['map_meta_cap'] = true;
+            }
+            $post_caps = get_post_type_capabilities((object)$cap_settings);
+            $post_caps = (array)$post_caps;
+            foreach($post_caps as $post_cap) {
+                $user_caps[] = $post_cap;
+            }
+            return $user_caps;
         }
     }
 }

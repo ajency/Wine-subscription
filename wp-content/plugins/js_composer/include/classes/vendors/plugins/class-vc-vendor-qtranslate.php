@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Class Vc_Vendor_Qtranslate
  * @since 4.3
  */
-class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
+class Vc_Vendor_Qtranslate {
 
 	/**
 	 * @since 4.3
@@ -27,8 +27,11 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 		$this->languages = $languages;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isValidPostType() {
-		return in_array( get_post_type(), vc_editor_post_types() );
+		return in_array( get_post_type(), vc_editor_post_types(), true );
 	}
 
 	/**
@@ -38,38 +41,41 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 		$this->setLanguages();
 		global $q_config;
 		add_filter( 'vc_frontend_get_page_shortcodes_post_content', array(
-			&$this,
+			$this,
 			'filterPostContent',
 		) );
 
 		add_action( 'vc_backend_editor_render', array(
-			&$this,
+			$this,
 			'enqueueJsBackend',
 		) );
 
 		add_action( 'vc_frontend_editor_render', array(
-			&$this,
+			$this,
 			'enqueueJsFrontend',
 		) );
 
 		add_action( 'vc_frontend_editor_render_template', array(
-			&$this,
+			$this,
 			'vcFrontEndEditorRender',
 		) );
-		add_filter( 'vc_nav_controls', array( &$this, 'vcNavControls' ) );
+		add_filter( 'vc_nav_controls', array(
+			$this,
+			'vcNavControls',
+		) );
 
 		add_filter( 'vc_nav_front_controls', array(
-			&$this,
+			$this,
 			'vcNavControlsFrontend',
 		) );
 
 		add_filter( 'vc_frontend_editor_iframe_url', array(
-			&$this,
+			$this,
 			'vcRenderEditButtonLink',
 		) );
 		if ( ! vc_is_frontend_editor() ) {
 			add_filter( 'vc_get_inline_url', array(
-				&$this,
+				$this,
 				'vcRenderEditButtonLink',
 			) );
 		}
@@ -78,7 +84,10 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 			$q_config['language'] = $q_lang;
 		}
 
-		add_action( 'init', array( &$this, 'qtransPostInit' ), 1000 );
+		add_action( 'init', array(
+			$this,
+			'qtransPostInit',
+		), 1000 );
 
 	}
 
@@ -187,10 +196,7 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 
 		if ( $this->isValidPostType() || apply_filters( 'vc_vendor_qtranslate_enqueue_js_backend', false ) ) {
 
-			wp_enqueue_script( 'vc_vendor_qtranslate_backend',
-				vc_asset_url( 'js/vendors/qtranslate_backend.js' ),
-				array( 'vc-backend-min-js' ), '1.0', true
-			);
+			wp_enqueue_script( 'vc_vendor_qtranslate_backend', vc_asset_url( 'js/vendors/qtranslate_backend.js' ), array( 'vc-backend-min-js' ), '1.0', true );
 		}
 	}
 
@@ -200,10 +206,7 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	public function enqueueJsFrontend() {
 		if ( $this->isValidPostType() ) {
 
-			wp_enqueue_script( 'vc_vendor_qtranslate_frontend',
-				vc_asset_url( 'js/vendors/qtranslate_frontend.js' ),
-				array( 'vc-frontend-editor-min-js' ), '1.0', true
-			);
+			wp_enqueue_script( 'vc_vendor_qtranslate_frontend', vc_asset_url( 'js/vendors/qtranslate_frontend.js' ), array( 'vc-frontend-editor-min-js' ), '1.0', true );
 			global $q_config;
 			$q_config['js']['qtrans_save'] = '';
 			$q_config['js']['qtrans_integrate_category'] = '';
@@ -221,8 +224,8 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	}
 
 	/**
-	 * @since 4.3
 	 * @return string
+	 * @since 4.3
 	 */
 	public function generateSelect() {
 		$output = '';
@@ -230,8 +233,7 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 			$output .= '<select id="vc_vendor_qtranslate_langs" class="vc_select vc_select-navbar" style="display:none;">';
 			$inline_url = vc_frontend_editor()->getInlineUrl();
 			foreach ( $this->languages as $lang ) {
-				$output .= '<option value="' . $lang . '" link="' . add_query_arg( array( 'qlang' => $lang ), $inline_url ) . '">' .
-				           qtrans_getLanguageName( $lang ) . '</option>';
+				$output .= '<option value="' . $lang . '" link="' . add_query_arg( array( 'qlang' => $lang ), $inline_url ) . '">' . qtrans_getLanguageName( $lang ) . '</option>';
 			}
 			$output .= '</select>';
 		}
@@ -240,8 +242,8 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	}
 
 	/**
-	 * @since 4.3
 	 * @return string
+	 * @since 4.3
 	 */
 	public function generateSelectFrontend() {
 		$output = '';
@@ -259,17 +261,20 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	}
 
 	/**
-	 * @since 4.3
-	 *
 	 * @param $list
 	 *
 	 * @return array
+	 * @since 4.3
+	 *
 	 */
 	public function vcNavControls( $list ) {
 		if ( $this->isValidPostType() ) {
 
 			if ( is_array( $list ) ) {
-				$list[] = array( 'qtranslate', $this->getControlSelectDropdown() );
+				$list[] = array(
+					'qtranslate',
+					$this->getControlSelectDropdown(),
+				);
 			}
 		}
 
@@ -277,11 +282,11 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	}
 
 	/**
-	 * @since 4.3
-	 *
 	 * @param $list
 	 *
 	 * @return array
+	 * @since 4.3
+	 *
 	 */
 	public function vcNavControlsFrontend( $list ) {
 		if ( $this->isValidPostType() ) {
@@ -298,8 +303,8 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	}
 
 	/**
-	 * @since 4.3
 	 * @return string
+	 * @since 4.3
 	 */
 	public function getControlSelectDropdown() {
 		return '<li class="vc_pull-right" > ' . $this->generateSelect() . '</li > ';
@@ -313,11 +318,11 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	}
 
 	/**
-	 * @since 4.3
-	 *
 	 * @param $link
 	 *
 	 * @return string
+	 * @since 4.3
+	 *
 	 */
 	public function vcRenderEditButtonLink( $link ) {
 		return add_query_arg( array( 'qlang' => qtrans_getLanguage() ), $link );
@@ -341,11 +346,11 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	}
 
 	/**
-	 * @since 4.3
-	 *
 	 * @param $content
 	 *
 	 * @return string
+	 * @since 4.3
+	 *
 	 */
 	public function filterPostContent( $content ) {
 		return qtrans_useCurrentLanguageIfNotFoundShowAvailable( $content );

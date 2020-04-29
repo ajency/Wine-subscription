@@ -31,7 +31,7 @@ if( ! class_exists('BeRocket_Setup_Wizard') ) {
                     )
                 );
                 add_action( 'admin_menu', array( $this, 'admin_menus' ) );
-                add_action( 'admin_init', array( $this, 'setup_wizard' ) );
+                add_action( 'admin_init', array( $this, 'setup_wizard' ), 100 );
             }
         }
         public function admin_menus() {
@@ -50,7 +50,8 @@ if( ! class_exists('BeRocket_Setup_Wizard') ) {
             wp_admin_css();
             wp_register_style( 'wizard-setup', plugins_url( 'admin.css', __FILE__ ) );
             wp_enqueue_style( 'wizard-setup' );
-            wp_enqueue_style( 'font-awesome' );
+            BeRocket_Framework::register_font_awesome('fa5');
+            wp_enqueue_style( 'font-awesome-5' );
 
             ob_start();
             $this->setup_wizard_header();
@@ -71,7 +72,7 @@ if( ! class_exists('BeRocket_Setup_Wizard') ) {
             if ( false === $step_index ) {
                 return '';
             }
-            return add_query_arg( 'step', $keys[ $step_index + 1 ], remove_query_arg( 'activate_error' ) );
+            return esc_url_raw(add_query_arg( 'step', $keys[ $step_index + 1 ], remove_query_arg( 'activate_error' ) ));
         }
         public function redirect_to_next_step() {
             wp_redirect( esc_url_raw( $this->get_next_step_link() ) );
@@ -90,7 +91,7 @@ if( ! class_exists('BeRocket_Setup_Wizard') ) {
                 <title><?php esc_html_e( 'WooCommerce &rsaquo; Setup Wizard', 'woocommerce' ); ?></title>
                 <?php do_action( 'admin_print_scripts' ); ?>
                 <?php do_action( 'admin_print_styles' ); ?>
-                <?php do_action( 'admin_head' ); ?>
+                <?php //do_action( 'admin_head' ); ?>
             </head>
             <body class="wp-admin wp-core-ui js">
                 <div class="br_framework_settings br_setup_wizard">
@@ -130,7 +131,7 @@ if( ! class_exists('BeRocket_Setup_Wizard') ) {
                         }
                     ?>" href="<?php
                         if ( array_search( $this->step, array_keys( $this->steps ) ) > array_search( $step_key, array_keys( $this->steps ) ) ) {
-                            echo add_query_arg( 'step', $step_key, remove_query_arg( 'activate_error' ) );
+                            echo esc_url_raw(add_query_arg( 'step', $step_key, remove_query_arg( 'activate_error' ) ));
                         } else {
                             echo '#'.$step_key;
                         }

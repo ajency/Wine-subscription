@@ -35,6 +35,8 @@ if( ! class_exists('BeRocket_error_notices') ) {
             if( empty($plugin_id) ) {
                 $plugin_id = br_get_value_from_array($_GET, 'plugin_id');
             }
+            $plugin_id = sanitize_key($plugin_id);
+            $plugin_id = intval($plugin_id);
             if( ! empty($plugin_id) && ( ! empty($_POST['clear_errors']) || ! empty($_GET['clear_errors']) ) ) {
                 self::clear_plugin_errors($plugin_id);
             }
@@ -48,7 +50,7 @@ if( ! class_exists('BeRocket_error_notices') ) {
             if( empty($plugin_id) ) {
                 return '';
             }
-            $block_id = rand();
+            $block_id = $plugin_id;
             $errors = self::get_plugin_error($plugin_id);
             $errors = array_reverse($errors);
             $html = '<h3>Error List</h3>';

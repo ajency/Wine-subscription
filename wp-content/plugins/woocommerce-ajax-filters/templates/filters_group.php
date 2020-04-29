@@ -35,7 +35,7 @@
                     <input type="hidden" name="'.$post_name.'[filters][]" value="' . $filter_id . '">
                     ' . $filter_post->post_title . ' <small>ID:' . $filter_id . '</small>
                     <i class="fa fa-times"></i>
-                    <a class="berocket_edit_filter fa fa-pencil" target="_blank" href="' . get_edit_post_link($filter_id) . '"></a>
+                    <a class="berocket_edit_filter fas fa-pencil-alt" target="_blank" href="' . get_edit_post_link($filter_id) . '"></a>
                     <div class="berocket_hidden_clickable_options">
                         ' . __('Width', 'BeRocket_AJAX_domain') . '<input type="text" name="'.$post_name.'[filters_data][' . $filter_id . '][width]" value="' . br_get_value_from_array($filters, array('filters_data', $filter_id, 'width')) . '" placeholder="100%">
                     </div>
@@ -55,7 +55,7 @@
             html += jQuery('.berocket_filter_list').find(':selected').data('name');
             html += ' <small>ID:'+jQuery('.berocket_filter_list').val()+'</small>';
             html += '<i class="fa fa-times"></i>';
-            html += ' <a class="berocket_edit_filter fa fa-pencil" target="_blank" href="'+jQuery('.berocket_filter_added_list').data('url')+'?post='+jQuery('.berocket_filter_list').val()+'&action=edit"></a>';
+            html += ' <a class="berocket_edit_filter fas fa-pencil-alt" target="_blank" href="'+jQuery('.berocket_filter_added_list').data('url')+'?post='+jQuery('.berocket_filter_list').val()+'&action=edit"></a>';
             html += '<div class="berocket_hidden_clickable_options">';
             html += '<?php _e('Width', 'BeRocket_AJAX_domain'); ?><input type="text" name="<?php echo $post_name; ?>[filters_data]['+jQuery('.berocket_filter_list').val()+'][width]" placeholder="100%" value="">';
             html += '</div>';
@@ -86,6 +86,7 @@
     line-height: 40px;
     height: 40px;
     border-right-width: 3px;
+    background-color: rgb(238, 238, 238);
 }
 .berocket_filter_added_list li .fa-bars {
     margin-right: 0.5em;
@@ -114,12 +115,13 @@
 }
 .berocket_filter_added_list .berocket_edit_filter {
     vertical-align: middle;
-    font-size: 0.5em;
+    font-size: 0.6em;
     float: right;
     line-height: 40px;
-    height: 2em;
     display: inline-block;
     color: #2c3b48;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 .berocket_filter_added_list li .fa-times:hover,
 .berocket_filter_added_list .berocket_edit_filter:hover {
@@ -147,5 +149,23 @@
 }
 .berocket_filter_added_list.berocket_hidden_clickable_enabled .berocket_hidden_clickable_options {
     display: inline-block;
+}
+@media screen and (max-width: 600px) {
+    .berocket_filter_added_list small,
+    .berocket_filter_added_list .berocket_edit_filter {
+        display: none;
+    }
+    .berocket_filter_added_list li {
+        position: relative;
+    }
+    .berocket_filter_added_list li .fa-times {
+        position: absolute;
+        top: 1px;
+        right: 0;
+        background-color: rgb(238, 238, 238);
+        margin: 0;
+        padding: 0 10px;
+        line-height: 38px;
+    }
 }
 </style>
