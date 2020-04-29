@@ -14,11 +14,9 @@
  * @see 	    http://docs.woothemes.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     2.5.0
+ * @version     3.6.0
  */
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 ?>
 <li class="clearfix hb-shipping-wrapper">
 	<span class="cart-total-title"><?php echo wp_kses_post( $package_name ); ?></span>
