@@ -4,9 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WPBakery Visual Composer helpers functions
+ * WPBakery WPBakery Page Builder helpers functions
  *
- * @package WPBakeryVisualComposer
+ * @package WPBakeryPageBuilder
  *
  */
 
@@ -18,9 +18,9 @@ if ( ! defined( 'WPB_VC_VERSION' ) ) {
 /**
  * @param array $params
  *
+ * @return array|bool
  * @since 4.2
  * vc_filter: vc_wpb_getimagesize - to override output of this function
- * @return array|bool
  */
 function wpb_getImageBySize( $params = array() ) {
 	$params = array_merge( array(
@@ -48,14 +48,14 @@ function wpb_getImageBySize( $params = array() ) {
 	global $_wp_additional_image_sizes;
 	$thumbnail = '';
 
-	if ( is_string( $thumb_size ) && ( ( ! empty( $_wp_additional_image_sizes[ $thumb_size ] ) && is_array( $_wp_additional_image_sizes[ $thumb_size ] ) ) || in_array( $thumb_size, array(
-				'thumbnail',
-				'thumb',
-				'medium',
-				'large',
-				'full',
-			) ) )
-	) {
+	$sizes = array(
+		'thumbnail',
+		'thumb',
+		'medium',
+		'large',
+		'full',
+	);
+	if ( is_string( $thumb_size ) && ( ( ! empty( $_wp_additional_image_sizes[ $thumb_size ] ) && is_array( $_wp_additional_image_sizes[ $thumb_size ] ) ) || in_array( $thumb_size, $sizes, true ) ) ) {
 		$attributes = array( 'class' => $thumb_class . 'attachment-' . $thumb_size );
 		$thumbnail = wp_get_attachment_image( $attach_id, $thumb_size, false, $attributes );
 	} elseif ( $attach_id ) {
@@ -63,10 +63,11 @@ function wpb_getImageBySize( $params = array() ) {
 			preg_match_all( '/\d+/', $thumb_size, $thumb_matches );
 			if ( isset( $thumb_matches[0] ) ) {
 				$thumb_size = array();
-				if ( count( $thumb_matches[0] ) > 1 ) {
+				$count = count( $thumb_matches[0] );
+				if ( $count > 1 ) {
 					$thumb_size[] = $thumb_matches[0][0]; // width
 					$thumb_size[] = $thumb_matches[0][1]; // height
-				} elseif ( count( $thumb_matches[0] ) > 0 && count( $thumb_matches[0] ) < 2 ) {
+				} elseif ( 1 === $count ) {
 					$thumb_size[] = $thumb_matches[0][0]; // width
 					$thumb_size[] = $thumb_matches[0][0]; // height
 				} else {
@@ -77,17 +78,17 @@ function wpb_getImageBySize( $params = array() ) {
 		if ( is_array( $thumb_size ) ) {
 			// Resize image to custom size
 			$p_img = wpb_resize( $attach_id, null, $thumb_size[0], $thumb_size[1], true );
-			$alt = trim( strip_tags( get_post_meta( $attach_id, '_wp_attachment_image_alt', true ) ) );
+			$alt = trim( wp_strip_all_tags( get_post_meta( $attach_id, '_wp_attachment_image_alt', true ) ) );
 			$attachment = get_post( $attach_id );
 			if ( ! empty( $attachment ) ) {
-				$title = trim( strip_tags( $attachment->post_title ) );
+				$title = trim( wp_strip_all_tags( $attachment->post_title ) );
 
 				if ( empty( $alt ) ) {
-					$alt = trim( strip_tags( $attachment->post_excerpt ) ); // If not, Use the Caption
+					$alt = trim( wp_strip_all_tags( $attachment->post_excerpt ) ); // If not, Use the Caption
 				}
 				if ( empty( $alt ) ) {
 					$alt = $title;
-				} // Finally, use the title
+				}
 				if ( $p_img ) {
 
 					$attributes = vc_stringify_attributes( array(
@@ -114,81 +115,82 @@ function wpb_getImageBySize( $params = array() ) {
 }
 
 /**
- * @param $width
- *
- * @deprecated 4.5
- * @since 4.2
- * @return string
+ * @param $id
+ * @param $size
+ * @return array|false|mixed|string
  */
-function wpb_getColumnControls( $width ) {
-	// _deprecated_function( 'wpb_getColumnControls', '4.5 (will be removed in 4.10)' );
+function vc_get_image_by_size( $id, $size ) {
+	global $_wp_additional_image_sizes;
 
-	switch ( $width ) {
-		case 'vc_col-md-2' :
-			$w = '1/6';
-			break;
-		case 'vc_col-sm-2' :
-			$w = '1/6';
-			break;
-		case 'vc_col-sm-3' :
-			$w = '1/4';
-			break;
-		case 'vc_col-sm-4' :
-			$w = '1/3';
-			break;
-		case 'vc_col-sm-6' :
-			$w = '1/2';
-			break;
-		case 'vc_col-sm-8' :
-			$w = '2/3';
-			break;
-		case 'vc_col-sm-9' :
-			$w = '3/4';
-			break;
-		case 'vc_col-sm-12' :
-			$w = '1/1';
-			break;
+	$sizes = array(
+		'thumbnail',
+		'thumb',
+		'medium',
+		'large',
+		'full',
+	);
+	if ( is_string( $size ) && ( ( ! empty( $_wp_additional_image_sizes[ $size ] ) && is_array( $_wp_additional_image_sizes[ $size ] ) ) || in_array( $size, $sizes, true ) ) ) {
+		return wp_get_attachment_image_src( $id, $size );
+	} else {
+		if ( is_string( $size ) ) {
+			preg_match_all( '/\d+/', $size, $thumb_matches );
+			if ( isset( $thumb_matches[0] ) ) {
+				$size = array();
+				$count = count( $thumb_matches[0] );
+				if ( $count > 1 ) {
+					$size[] = $thumb_matches[0][0]; // width
+					$size[] = $thumb_matches[0][1]; // height
+				} elseif ( 1 === $count ) {
+					$size[] = $thumb_matches[0][0]; // width
+					$size[] = $thumb_matches[0][0]; // height
+				} else {
+					$size = false;
+				}
+			}
+		}
+		if ( is_array( $size ) ) {
+			// Resize image to custom size
+			$p_img = wpb_resize( $id, null, $size[0], $size[1], true );
 
-		default :
-			$w = $width;
+			return $p_img['url'];
+		}
 	}
 
-	return $w;
+	return '';
 }
 
-/* Convert vc_col-sm-3 to 1/4
----------------------------------------------------------- */
 /**
+ *  Convert vc_col-sm-3 to 1/4
  * @param $width
  *
- * @since 4.2
  * @return string
+ * @since 4.2
  */
 function wpb_translateColumnWidthToFractional( $width ) {
 	switch ( $width ) {
-		case 'vc_col-sm-2' :
+		case 'vc_col-sm-2':
 			$w = '1/6';
 			break;
-		case 'vc_col-sm-3' :
+		case 'vc_col-sm-3':
 			$w = '1/4';
 			break;
-		case 'vc_col-sm-4' :
+		case 'vc_col-sm-4':
 			$w = '1/3';
 			break;
-		case 'vc_col-sm-6' :
+		case 'vc_col-sm-6':
 			$w = '1/2';
 			break;
-		case 'vc_col-sm-8' :
+		case 'vc_col-sm-8':
 			$w = '2/3';
 			break;
-		case 'vc_col-sm-9' :
+		case 'vc_col-sm-9':
 			$w = '3/4';
 			break;
-		case 'vc_col-sm-12' :
+		case 'vc_col-sm-12':
 			$w = '1/1';
 			break;
 
-		default :
+		default:
 			$w = is_string( $width ) ? $width : '1/1';
 	}
 
@@ -198,10 +200,11 @@ function wpb_translateColumnWidthToFractional( $width ) {
 /**
  * @param $width
  *
- * @since 4.2
  * @return bool|string
+ * @since 4.2
  */
 function wpb_translateColumnWidthToSpan( $width ) {
+	$output = $width;
 	preg_match( '/(\d+)\/(\d+)/', $width, $matches );
 
 	if ( ! empty( $matches ) ) {
@@ -210,24 +213,27 @@ function wpb_translateColumnWidthToSpan( $width ) {
 		if ( $part_x > 0 && $part_y > 0 ) {
 			$value = ceil( $part_x / $part_y * 12 );
 			if ( $value > 0 && $value <= 12 ) {
-				$width = 'vc_col-sm-' . $value;
+				$output = 'vc_col-sm-' . $value;
 			}
 		}
 	}
+	if ( preg_match( '/\d+\/5$/', $width ) ) {
+		$output = 'vc_col-sm-' . $width;
+	}
 
-	return $width;
+	return apply_filters( 'vc_translate_column_width_class', $output, $width );
 }
 
 /**
  * @param $content
  * @param bool $autop
  *
- * @since 4.2
  * @return string
+ * @since 4.2
  */
 function wpb_js_remove_wpautop( $content, $autop = false ) {
 
-	if ( $autop ) { // Possible to use !preg_match('('.WPBMap::getTagsRegexp().')', $content)
+	if ( $autop ) {
 		$content = wpautop( preg_replace( '/<\/?p\>/', "\n", $content ) . "\n" );
 	}
 
@@ -243,8 +249,8 @@ if ( ! function_exists( 'shortcode_exists' ) ) {
 	 *
 	 * @param bool $shortcode
 	 *
-	 * @since 4.2
 	 * @return bool
+	 * @since 4.2
 	 */
 	function shortcode_exists( $shortcode = false ) {
 		global $shortcode_tags;
@@ -261,55 +267,28 @@ if ( ! function_exists( 'shortcode_exists' ) ) {
 	}
 }
 
-/* Helper function which returns list of site attached images,
-   and if image is attached to the current post it adds class
-   'added'
----------------------------------------------------------- */
-if ( ! function_exists( 'siteAttachedImages' ) ) {
-	/**
-	 * @param array $att_ids
-	 *
-	 * @since 4.2
-	 * @return string
-	 */
-	function siteAttachedImages( $att_ids = array() ) {
-		_deprecated_function( 'siteAttachedImages',
-			'4.11',
-			'vc_siteAttachedImages' );
-
-		return vc_siteAttachedImages( $att_ids );
-	}
-}
-
-/* Helper function which returns list of site attached images,
-   and if image is attached to the current post it adds class
-   'added'
----------------------------------------------------------- */
 if ( ! function_exists( 'vc_siteAttachedImages' ) ) {
 	/**
+	 *  Helper function which returns list of site attached images, and if image is attached to the current post it adds class 'added'
 	 * @param array $att_ids
 	 *
-	 * @since 4.11
 	 * @return string
+	 * @since 4.11
 	 */
 	function vc_siteAttachedImages( $att_ids = array() ) {
 		$output = '';
 
-		$limit = (int) apply_filters( 'vc_site_attached_images_query_limit',
-			- 1 );
+		$limit = (int) apply_filters( 'vc_site_attached_images_query_limit', - 1 );
 		$media_images = get_posts( 'post_type=attachment&orderby=ID&numberposts=' . $limit );
 		foreach ( $media_images as $image_post ) {
-			$thumb_src = wp_get_attachment_image_src( $image_post->ID,
-				'thumbnail' );
+			$thumb_src = wp_get_attachment_image_src( $image_post->ID, 'thumbnail' );
 			$thumb_src = $thumb_src[0];
 
-			$class = ( in_array( $image_post->ID,
-				$att_ids ) ) ? ' class="added"' : '';
+			$class = ( in_array( $image_post->ID, $att_ids, true ) ) ? ' class="added"' : '';
 
 			$output .= '<li' . $class . '>
 						<img rel="' . esc_attr( $image_post->ID ) . '" src="' . esc_url( $thumb_src ) . '" />
-						<span class="img-added">' . __( 'Added',
-					'js_composer' ) . '</span>
+						<span class="img-added">' . esc_html__( 'Added', 'js_composer' ) . '</span>
 					</li>';
 		}
 
@@ -324,10 +303,10 @@ if ( ! function_exists( 'vc_siteAttachedImages' ) ) {
 /**
  * @param array $images IDs or srcs of images
  *
- * @since 4.2
  * @return string
+ * @since 5.8
  */
-function fieldAttachedImages( $images = array() ) {
+function vc_field_attached_images( $images = array() ) {
 	$output = '';
 
 	foreach ( $images as $image ) {
@@ -342,7 +321,7 @@ function fieldAttachedImages( $images = array() ) {
 			$output .= '
 			<li class="added">
 				<img rel="' . esc_attr( $image ) . '" src="' . esc_url( $thumb_src ) . '" />
-				<a href="#" class="vc_icon-remove"></a>
+				<a href="javascript:;" class="vc_icon-remove"><i class="vc-composer-icon vc-c-icon-close"></i></a>
 			</li>';
 		}
 	}
@@ -353,8 +332,8 @@ function fieldAttachedImages( $images = array() ) {
 /**
  * @param $param_value
  *
- * @since 4.2
  * @return array
+ * @since 4.2
  */
 function wpb_removeNotExistingImgIDs( $param_value ) {
 	$tmp = explode( ',', $param_value );
@@ -372,17 +351,6 @@ function wpb_removeNotExistingImgIDs( $param_value ) {
 /*
 * Resize images dynamically using wp built in functions
 * Victor Teixeira
-*
-* php 5.2+
-*
-* Exemplo de uso:
-*
-* <?php
-* $thumb = get_post_thumbnail_id();
-* $image = vt_resize( $thumb, '', 140, 110, true );
-* ?>
-* <img src="<?php echo $image[url]; ?>" width="<?php echo $image[width]; ?>" height="<?php echo $image[height]; ?>" />
-*
 */
 if ( ! function_exists( 'wpb_resize' ) ) {
 	/**
@@ -392,8 +360,8 @@ if ( ! function_exists( 'wpb_resize' ) ) {
 	 * @param int $height
 	 * @param bool $crop
 	 *
-	 * @since 4.2
 	 * @return array
+	 * @since 4.2
 	 */
 	function wpb_resize( $attach_id = null, $img_url = null, $width, $height, $crop = false ) {
 		// this is an attachment, so we have the ID
@@ -403,7 +371,7 @@ if ( ! function_exists( 'wpb_resize' ) ) {
 			$actual_file_path = get_attached_file( $attach_id );
 			// this is not an attachment, let's use the image url
 		} elseif ( $img_url ) {
-			$file_path = parse_url( $img_url );
+			$file_path = wp_parse_url( $img_url );
 			$actual_file_path = rtrim( ABSPATH, '/' ) . $file_path['path'];
 			$orig_size = getimagesize( $actual_file_path );
 			$image_src[0] = $img_url;
@@ -435,7 +403,7 @@ if ( ! function_exists( 'wpb_resize' ) ) {
 					return $vt_image;
 				}
 
-				if ( false == $crop ) {
+				if ( ! $crop ) {
 					// calculate the size proportionaly
 					$proportional_size = wp_constrain_dimensions( $image_src[1], $image_src[2], $width, $height );
 					$resized_img_path = $no_ext_path . '-' . $proportional_size[0] . 'x' . $proportional_size[1] . $extension;
@@ -509,22 +477,6 @@ if ( ! function_exists( 'wpb_resize' ) ) {
 	}
 }
 
-if ( ! function_exists( 'wpb_debug' ) ) {
-	/**
-	 * Returns bool if wpb_debug is provided in url - set visual composer debug mode.
-	 * Used for example in shortcodes (end block comment for example)
-	 * @since 4.2
-	 * @return bool
-	 */
-	function wpb_debug() {
-		if ( ( isset( $_GET['wpb_debug'] ) && 'true' === $_GET['wpb_debug'] ) || ( isset( $_GET['vc_debug'] ) && 'true' === $_GET['vc_debug'] ) ) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-}
-
 /**
  * Method adds css class to body tag.
  *
@@ -534,8 +486,8 @@ if ( ! function_exists( 'wpb_debug' ) ) {
  *
  * @param $classes
  *
- * @since 4.2
  * @return array
+ * @since 4.2
  */
 function js_composer_body_class( $classes ) {
 	$classes[] = 'wpb-js-composer js-comp-ver-' . WPB_VC_VERSION;
@@ -552,27 +504,29 @@ function js_composer_body_class( $classes ) {
 /**
  * @param $m
  *
- * @since 4.2
  * @return string
+ * @since 4.2
  */
 function vc_convert_shortcode( $m ) {
 	list( $output, $m_one, $tag, $attr_string, $m_four, $content ) = $m;
-	$result = $width = $el_position = '';
+	if ( 'vc_row' === $tag || 'vc_section' === $tag ) {
+		return $output;
+	}
+	$result = '';
+	$el_position = '';
+	$width = '1/1';
 	$shortcode_attr = shortcode_parse_atts( $attr_string );
 	extract( shortcode_atts( array(
 		'width' => '1/1',
 		'el_class' => '',
 		'el_position' => '',
 	), $shortcode_attr ) );
-	if ( 'vc_row' === $tag ) {
-		return $output;
-	}
 	// Start
 	if ( preg_match( '/first/', $el_position ) || empty( $shortcode_attr['width'] ) || '1/1' === $shortcode_attr['width'] ) {
 		$result = '[vc_row]';
 	}
 	if ( 'vc_column' !== $tag ) {
-		$result .= "\n" . '[vc_column width="' . $width . '"]';
+		$result .= '[vc_column width="' . $width . '"]';
 	}
 
 	// Tag
@@ -593,18 +547,18 @@ function vc_convert_shortcode( $m ) {
 		$result .= '[/vc_row]' . "\n";
 	}
 
-	return $result;
+	return trim( $result );
 }
 
 /**
  * @param $m
  *
- * @since 4.2
  * @return string
+ * @since 4.2
  */
 function vc_convert_tab_inner_shortcode( $m ) {
 	list( $output, $m_one, $tag, $attr_string, $m_four, $content ) = $m;
-	$result = $width = $el_position = '';
+	$result = '';
 	extract( shortcode_atts( array(
 		'width' => '1/1',
 		'el_class' => '',
@@ -619,12 +573,14 @@ function vc_convert_tab_inner_shortcode( $m ) {
 /**
  * @param $m
  *
- * @since 4.2
  * @return string
+ * @since 4.2
  */
 function vc_convert_inner_shortcode( $m ) {
 	list( $output, $m_one, $tag, $attr_string, $m_four, $content ) = $m;
-	$result = $width = $el_position = '';
+	$result = '';
+	$width = '';
+	$el_position = '';
 	extract( shortcode_atts( array(
 		'width' => '1/1',
 		'el_class' => '',
@@ -658,83 +614,85 @@ function vc_convert_inner_shortcode( $m ) {
 
 global $vc_row_layouts;
 $vc_row_layouts = array(
-	/*
- * How to count mask?
- * mask = column_count . sum of all numbers. Example layout 12_12 mask = (column count=2)(1+2+1+2=6)= 26
-*/
 	array(
 		'cells' => '11',
 		'mask' => '12',
 		'title' => '1/1',
-		'icon_class' => 'l_11',
+		'icon_class' => '1-1',
 	),
 	array(
 		'cells' => '12_12',
 		'mask' => '26',
 		'title' => '1/2 + 1/2',
-		'icon_class' => 'l_12_12',
+		'icon_class' => '1-2_1-2',
 	),
 	array(
 		'cells' => '23_13',
 		'mask' => '29',
 		'title' => '2/3 + 1/3',
-		'icon_class' => 'l_23_13',
+		'icon_class' => '2-3_1-3',
 	),
 	array(
 		'cells' => '13_13_13',
 		'mask' => '312',
 		'title' => '1/3 + 1/3 + 1/3',
-		'icon_class' => 'l_13_13_13',
+		'icon_class' => '1-3_1-3_1-3',
 	),
 	array(
 		'cells' => '14_14_14_14',
 		'mask' => '420',
 		'title' => '1/4 + 1/4 + 1/4 + 1/4',
-		'icon_class' => 'l_14_14_14_14',
+		'icon_class' => '1-4_1-4_1-4_1-4',
 	),
 	array(
 		'cells' => '14_34',
 		'mask' => '212',
 		'title' => '1/4 + 3/4',
-		'icon_class' => 'l_14_34',
+		'icon_class' => '1-4_3-4',
 	),
 	array(
 		'cells' => '14_12_14',
 		'mask' => '313',
 		'title' => '1/4 + 1/2 + 1/4',
-		'icon_class' => 'l_14_12_14',
+		'icon_class' => '1-4_1-2_1-4',
 	),
 	array(
 		'cells' => '56_16',
 		'mask' => '218',
 		'title' => '5/6 + 1/6',
-		'icon_class' => 'l_56_16',
+		'icon_class' => '5-6_1-6',
 	),
 	array(
 		'cells' => '16_16_16_16_16_16',
 		'mask' => '642',
 		'title' => '1/6 + 1/6 + 1/6 + 1/6 + 1/6 + 1/6',
-		'icon_class' => 'l_16_16_16_16_16_16',
+		'icon_class' => '1-6_1-6_1-6_1-6_1-6_1-6',
 	),
 	array(
 		'cells' => '16_23_16',
 		'mask' => '319',
 		'title' => '1/6 + 4/6 + 1/6',
-		'icon_class' => 'l_16_46_16',
+		'icon_class' => '1-6_2-3_1-6',
 	),
 	array(
 		'cells' => '16_16_16_12',
 		'mask' => '424',
 		'title' => '1/6 + 1/6 + 1/6 + 1/2',
-		'icon_class' => 'l_16_16_16_12',
+		'icon_class' => '1-6_1-6_1-6_1-2',
+	),
+	array(
+		'cells' => '15_15_15_15_15',
+		'mask' => '530',
+		'title' => '1/5 + 1/5 + 1/5 + 1/5 + 1/5',
+		'icon_class' => 'l_15_15_15_15_15',
 	),
 );
 
 /**
  * @param $width
  *
- * @since 4.2
  * @return string
+ * @since 4.2
  */
 function wpb_vc_get_column_width_indent( $width ) {
 	$identy = '11';
@@ -757,14 +715,13 @@ function wpb_vc_get_column_width_indent( $width ) {
 	return $identy;
 }
 
-/* Make any HEX color lighter or darker
----------------------------------------------------------- */
 /**
+ * Make any HEX color lighter or darker
  * @param $colour
  * @param $per
  *
- * @since 4.2
  * @return string
+ * @since 4.2
  */
 function vc_colorCreator( $colour, $per = 10 ) {
 	require_once 'class-vc-color-helper.php';
@@ -800,7 +757,7 @@ function vc_colorCreator( $colour, $per = 10 ) {
 			// In case of error return same as given
 			return $colour;
 		}
-	} else if ( stripos( $colour, 'rgb(' ) !== false ) {
+	} elseif ( stripos( $colour, 'rgb(' ) !== false ) {
 		$rgb = str_replace( array(
 			'rgba',
 			'rgb',
@@ -835,13 +792,12 @@ function vc_colorCreator( $colour, $per = 10 ) {
 	}
 }
 
-/* HEX to RGB converter
----------------------------------------------------------- */
 /**
+ * HEX to RGB converter
  * @param $color
  *
- * @since 4.2
  * @return array|bool
+ * @since 4.2
  */
 function vc_hex2rgb( $color ) {
 	$color = str_replace( '#', '', $color );
@@ -879,8 +835,8 @@ function vc_hex2rgb( $color ) {
  * @param $value
  * @param array $default
  *
- * @since 4.2
  * @return array
+ * @since 4.2
  */
 function vc_parse_multi_attribute( $value, $default = array() ) {
 	$result = $default;
@@ -898,26 +854,10 @@ function vc_parse_multi_attribute( $value, $default = array() ) {
 }
 
 /**
- * @param $string
- *
- * @deprecated 4.5
- * @since 4.2
- * @return string
- */
-function wpb_stripslashes_if_gpc_magic_quotes( $string ) {
-	// _deprecated_function( 'wpb_stripslashes_if_gpc_magic_quotes', '4.5 (will be removed in 4.10)', 'stripslashes' );
-	if ( get_magic_quotes_gpc() ) {
-		return stripslashes( $string );
-	} else {
-		return $string;
-	}
-}
-
-/**
  * @param $v
  *
- * @since 4.2
  * @return string
+ * @since 4.2
  */
 function vc_param_options_parse_values( $v ) {
 	return rawurldecode( $v );
@@ -927,8 +867,8 @@ function vc_param_options_parse_values( $v ) {
  * @param $name
  * @param $settings
  *
- * @since 4.2
  * @return bool
+ * @since 4.2
  */
 function vc_param_options_get_settings( $name, $settings ) {
 	if ( is_array( $settings ) ) {
@@ -945,8 +885,8 @@ function vc_param_options_get_settings( $name, $settings ) {
 /**
  * @param $atts
  *
- * @since 4.2
  * @return string
+ * @since 4.2
  */
 function vc_convert_atts_to_string( $atts ) {
 	$output = '';
@@ -962,18 +902,21 @@ function vc_convert_atts_to_string( $atts ) {
  * @param $tag
  * @param $param
  *
- * @since 4.2
  * @return array
+ * @throws \Exception
+ * @since 4.2
  */
 function vc_parse_options_string( $string, $tag, $param ) {
-	$options = $option_settings_list = array();
+	$options = array();
+	$option_settings_list = array();
 	$settings = WPBMap::getParam( $tag, $param );
 
 	foreach ( preg_split( '/\|/', $string ) as $value ) {
 		if ( preg_match( '/\:/', $value ) ) {
 			$split = preg_split( '/\:/', $value );
 			$option_name = $split[0];
-			$option_settings = $option_settings_list[ $option_name ] = vc_param_options_get_settings( $option_name, $settings['options'] );
+			$option_settings = vc_param_options_get_settings( $option_name, $settings['options'] );
+			$option_settings_list[ $option_name ] = $option_settings;
 			if ( isset( $option_settings['type'] ) && 'checkbox' === $option_settings['type'] ) {
 				$option_value = array_map( 'vc_param_options_parse_values', preg_split( '/\,/', $split[1] ) );
 			} else {
@@ -993,7 +936,7 @@ function vc_parse_options_string( $string, $tag, $param ) {
 				} elseif ( 'float' === $setting_option['value_type'] ) {
 					$options[ $setting_option['name'] ] = (float) $options[ $setting_option['name'] ];
 				} elseif ( 'boolean' === $setting_option['value_type'] ) {
-					$options[ $setting_option['name'] ] = (boolean) $options[ $setting_option['name'] ];
+					$options[ $setting_option['name'] ] = (bool) $options[ $setting_option['name'] ];
 				}
 			}
 		}
@@ -1003,44 +946,20 @@ function vc_parse_options_string( $string, $tag, $param ) {
 }
 
 /**
- * @since 4.2
- * @deprecated 4.2
- */
-function wpb_js_composer_check_version_schedule_deactivation() {
-	// _deprecated_function( 'wpb_js_composer_check_version_schedule_deactivation', '4.2 (will be removed in 4.10)' );
-	wp_clear_scheduled_hook( 'wpb_check_for_update' );
-	delete_option( 'wpb_js_composer_show_new_version_message' );
-}
-
-/**
- * Helper function to add new third-party adaptation class.
- * @deprecated 4.4
- * @since 4.3
- *
- * @param Vc_Vendor_Interface $vendor - instance of class.
- */
-function vc_add_vendor( Vc_Vendor_Interface $vendor ) {
-	// _deprecated_function( 'vc_add_vendor', '4.4 (will be removed in 4.10)', 'autoload logic' );
-	visual_composer()->vendorsManager()->add( $vendor );
-}
-
-/**
  * Convert string to a valid css class name.
- *
- * @since 4.3
  *
  * @param string $class
  *
  * @return string
+ * @since 4.3
+ *
  */
 function vc_build_safe_css_class( $class ) {
-	return preg_replace( '/\W+/', '', strtolower( str_replace( ' ', '_', strip_tags( $class ) ) ) );
+	return preg_replace( '/\W+/', '', strtolower( str_replace( ' ', '_', wp_strip_all_tags( $class ) ) ) );
 }
 
 /**
  * Include template from templates dir.
- *
- * @since 4.3
  *
  * @param $template
  * @param array $variables - passed variables to the template.
@@ -1048,6 +967,8 @@ function vc_build_safe_css_class( $class ) {
  * @param bool $once
  *
  * @return mixed
+ * @since 4.3
+ *
  */
 function vc_include_template( $template, $variables = array(), $once = false ) {
 	is_array( $variables ) && extract( $variables );
@@ -1061,20 +982,26 @@ function vc_include_template( $template, $variables = array(), $once = false ) {
 /**
  * Output template from templates dir.
  *
- * @since 4.4
- *
  * @param $template
  * @param array $variables - passed variables to the template.
  *
  * @param bool $once
  *
  * @return string
+ * @since 4.4
+ *
  */
 function vc_get_template( $template, $variables = array(), $once = false ) {
 	ob_start();
-	vc_include_template( $template, $variables, $once );
+	$output = vc_include_template( $template, $variables, $once );
 
-	return ob_get_clean();
+	if ( 1 === $output ) {
+		$output = ob_get_contents();
+	}
+
+	ob_end_clean();
+
+	return $output;
 }
 
 /**
@@ -1084,8 +1011,8 @@ if ( ! function_exists( 'lcfirst' ) ) {
 	/**
 	 * @param $str
 	 *
-	 * @since 4.3, fix #1093
 	 * @return mixed
+	 * @since 4.3, fix #1093
 	 */
 	function lcfirst( $str ) {
 		$str[0] = function_exists( 'mb_strtolower' ) ? mb_strtolower( $str[0] ) : strtolower( $str[0] );
@@ -1096,11 +1023,11 @@ if ( ! function_exists( 'lcfirst' ) ) {
 /**
  * VC Convert a value to studly caps case.
  *
- * @since 4.3
- *
- * @param  string $value
+ * @param string $value
  *
  * @return string
+ * @since 4.3
+ *
  */
 function vc_studly( $value ) {
 	$value = ucwords( str_replace( array(
@@ -1114,11 +1041,11 @@ function vc_studly( $value ) {
 /**
  * VC Convert a value to camel case.
  *
- * @since 4.3
- *
- * @param  string $value
+ * @param string $value
  *
  * @return string
+ * @since 4.3
+ *
  */
 function vc_camel_case( $value ) {
 	return lcfirst( vc_studly( $value ) );
@@ -1126,15 +1053,15 @@ function vc_camel_case( $value ) {
 
 /**
  * Enqueue icon element font
- * @todo move to separate folder
+ * @param $font
  * @since 4.4
  *
- * @param $font
+ * @todo move to separate folder
  */
 function vc_icon_element_fonts_enqueue( $font ) {
 	switch ( $font ) {
 		case 'fontawesome':
-			wp_enqueue_style( 'font-awesome' );
+			wp_enqueue_style( 'vc_font_awesome_5' );
 			break;
 		case 'openiconic':
 			wp_enqueue_style( 'vc_openiconic' );
@@ -1151,6 +1078,9 @@ function vc_icon_element_fonts_enqueue( $font ) {
 		case 'monosocial':
 			wp_enqueue_style( 'vc_monosocialiconsfont' );
 			break;
+		case 'material':
+			wp_enqueue_style( 'vc_material' );
+			break;
 		default:
 			do_action( 'vc_enqueue_font_icon_element', $font ); // hook to custom do enqueue style
 	}
@@ -1165,12 +1095,12 @@ function vc_icon_element_fonts_enqueue( $font ) {
  *      'target'=>'_self',      'target'=>'_blank',   'target'=>'_blank',
  *             -                'link'=>'google.com'  'link'=>'google.com'
  *
- * @since 4.4
- *
  * @param array $defaults
  * @param array $attributes
  *
  * @return array - merged attributes
+ *
+ * @since 4.4
  *
  * @see vc_map_get_attributes
  */
@@ -1180,38 +1110,42 @@ function vc_shortcode_attribute_parse( $defaults = array(), $attributes = array(
 	return $atts;
 }
 
+/**
+ * @param string $tagregexp
+ * @return string
+ */
 function vc_get_shortcode_regex( $tagregexp = '' ) {
 	if ( 0 === strlen( $tagregexp ) ) {
 		return get_shortcode_regex();
 	}
 
 	return '\\['                              // Opening bracket
-	       . '(\\[?)'                           // 1: Optional second opening bracket for escaping shortcodes: [[tag]]
-	       . "($tagregexp)"                     // 2: Shortcode name
-	       . '(?![\\w-])'                       // Not followed by word character or hyphen
-	       . '('                                // 3: Unroll the loop: Inside the opening shortcode tag
-	       . '[^\\]\\/]*'                   // Not a closing bracket or forward slash
-	       . '(?:' . '\\/(?!\\])'               // A forward slash not followed by a closing bracket
-	       . '[^\\]\\/]*'               // Not a closing bracket or forward slash
-	       . ')*?' . ')' . '(?:' . '(\\/)'                        // 4: Self closing tag ...
-	       . '\\]'                          // ... and closing bracket
-	       . '|' . '\\]'                          // Closing bracket
-	       . '(?:' . '('                        // 5: Unroll the loop: Optionally, anything between the opening and closing shortcode tags
-	       . '[^\\[]*+'             // Not an opening bracket
-	       . '(?:' . '\\[(?!\\/\\2\\])' // An opening bracket not followed by the closing shortcode tag
-	       . '[^\\[]*+'         // Not an opening bracket
-	       . ')*+' . ')' . '\\[\\/\\2\\]'             // Closing shortcode tag
-	       . ')?' . ')' . '(\\]?)';
+		. '(\\[?)'                           // 1: Optional second opening bracket for escaping shortcodes: [[tag]]
+		. "($tagregexp)"                     // 2: Shortcode name
+		. '(?![\\w\-])'                       // Not followed by word character or hyphen
+		. '('                                // 3: Unroll the loop: Inside the opening shortcode tag
+		. '[^\\]\\/]*'                   // Not a closing bracket or forward slash
+		. '(?:' . '\\/(?!\\])'               // A forward slash not followed by a closing bracket
+		. '[^\\]\\/]*'               // Not a closing bracket or forward slash
+		. ')*?' . ')' . '(?:' . '(\\/)'                        // 4: Self closing tag ...
+		. '\\]'                          // ... and closing bracket
+		. '|' . '\\]'                          // Closing bracket
+		. '(?:' . '('                        // 5: Unroll the loop: Optionally, anything between the opening and closing shortcode tags
+		. '[^\\[]*+'             // Not an opening bracket
+		. '(?:' . '\\[(?!\\/\\2\\])' // An opening bracket not followed by the closing shortcode tag
+		. '[^\\[]*+'         // Not an opening bracket
+		. ')*+' . ')' . '\\[\\/\\2\\]'             // Closing shortcode tag
+		. ')?' . ')' . '(\\]?)';
 }
 
 /**
  * Used to send warning message
  *
- * @since 4.5
- *
  * @param $message
  *
  * @return string
+ * @since 4.5
+ *
  */
 function vc_message_warning( $message ) {
 	return '<div class="wpb_element_wrapper"><div class="vc_message_box vc_message_box-standard vc_message_box-rounded vc_color-warning">
@@ -1228,7 +1162,7 @@ function vc_message_warning( $message ) {
  * @return string
  */
 function vc_extract_youtube_id( $url ) {
-	parse_str( parse_url( $url, PHP_URL_QUERY ), $vars );
+	parse_str( wp_parse_url( $url, PHP_URL_QUERY ), $vars );
 
 	if ( ! isset( $vars['v'] ) ) {
 		return '';
@@ -1237,10 +1171,34 @@ function vc_extract_youtube_id( $url ) {
 	return $vars['v'];
 }
 
-function vc_taxonomies_types() {
+/**
+ * @return string[]|\WP_Taxonomy[]
+ */
+/**
+ * @return string[]|\WP_Taxonomy[]
+ */
+/**
+ * @return string[]|\WP_Taxonomy[]
+ */
+/**
+ * @return string[]|\WP_Taxonomy[]
+ */
+/**
+ * @return string[]|\WP_Taxonomy[]
+ */
+function vc_taxonomies_types( $post_type = null ) {
 	global $vc_taxonomies_types;
-	if ( is_null( $vc_taxonomies_types ) ) {
-		$vc_taxonomies_types = get_taxonomies( array( 'public' => true ), 'objects' );
+	if ( is_null( $vc_taxonomies_types ) || $post_type ) {
+		$query = array( 'public' => true );
+		$vc_taxonomies_types = get_taxonomies( $query, 'objects' );
+		if ( ! empty( $post_type ) && is_array( $vc_taxonomies_types ) ) {
+			foreach ( $vc_taxonomies_types as $key => $taxonomy ) {
+				$arr = (array) $taxonomy;
+				if ( isset( $arr['object_type'] ) && ! in_array( $post_type, $arr['object_type'] ) ) {
+					unset( $vc_taxonomies_types[ $key ] );
+				}
+			}
+		}
 	}
 
 	return $vc_taxonomies_types;
@@ -1249,11 +1207,11 @@ function vc_taxonomies_types() {
 /**
  * Since
  *
- * @since 4.5.3
- *
  * @param $term
  *
  * @return array
+ * @since 4.5.3
+ *
  */
 function vc_get_term_object( $term ) {
 	$vc_taxonomies_types = vc_taxonomies_types();
@@ -1262,31 +1220,8 @@ function vc_get_term_object( $term ) {
 		'label' => $term->name,
 		'value' => $term->term_id,
 		'group_id' => $term->taxonomy,
-		'group' => isset( $vc_taxonomies_types[ $term->taxonomy ], $vc_taxonomies_types[ $term->taxonomy ]->labels, $vc_taxonomies_types[ $term->taxonomy ]->labels->name ) ? $vc_taxonomies_types[ $term->taxonomy ]->labels->name : __( 'Taxonomies', 'js_composer' ),
+		'group' => isset( $vc_taxonomies_types[ $term->taxonomy ], $vc_taxonomies_types[ $term->taxonomy ]->labels, $vc_taxonomies_types[ $term->taxonomy ]->labels->name ) ? $vc_taxonomies_types[ $term->taxonomy ]->labels->name : esc_html__( 'Taxonomies', 'js_composer' ),
 	);
-}
-
-/**
- * Extract width/height from string
- *
- * @param string $dimensions WxH
- *
- * @since 4.7
- *
- * @return mixed array(width, height) or false
- */
-function vcExtractDimensions( $dimensions ) {
-	$dimensions = str_replace( ' ', '', $dimensions );
-	$matches = null;
-
-	if ( preg_match( '/(\d+)x(\d+)/', $dimensions, $matches ) ) {
-		return array(
-			$matches[1],
-			$matches[2],
-		);
-	}
-
-	return false;
 }
 
 /**
@@ -1300,7 +1235,7 @@ function vcExtractDimensions( $dimensions ) {
  * @return bool
  */
 function vc_has_class( $class, $classes ) {
-	return in_array( $class, explode( ' ', strtolower( $classes ) ) );
+	return in_array( $class, explode( ' ', strtolower( $classes ), true ), true );
 }
 
 /**
@@ -1346,44 +1281,25 @@ function vc_stringify_attributes( $attributes ) {
 	return implode( ' ', $atts );
 }
 
+/**
+ * @return bool
+ */
+/**
+ * @return bool
+ */
+/**
+ * @return bool
+ */
+/**
+ * @return bool
+ */
+/**
+ * @return bool
+ */
 function vc_is_responsive_disabled() {
 	$disable_responsive = vc_settings()->get( 'not_responsive_css' );
 
 	return '1' === $disable_responsive;
-}
-
-/**
- * @deprecated 4.2
- * @since 4.2
- * @return mixed|string|void
- */
-function get_row_css_class() {
-	// _deprecated_function( 'get_row_css_class', '4.2 (will be removed in 4.10)' );
-	$custom = vc_settings()->get( 'row_css_class' );
-
-	return ! empty( $custom ) ? $custom : 'vc_row-fluid';
-}
-
-/**
- * @deprecated and will be removed
- * @since 4.2
- * @return int
- */
-function vc_get_interface_version() {
-	// _deprecated_function( 'vc_get_interface_version', '4.2 (will be removed in 4.10)' );
-
-	return 2;
-}
-
-/**
- * @deprecated and will be removed.
- * @since 4.2
- * @return int
- */
-function vc_get_initerface_version() {
-	// _deprecated_function( 'vc_get_initerface_version', '4.2 (will be removed in 4.10)' );
-
-	return vc_get_interface_version();
 }
 
 /**
@@ -1394,10 +1310,21 @@ function vc_get_initerface_version() {
  * @param null $tag
  *
  * @return string
+ * @throws \Exception
  */
 function vc_do_shortcode( $atts, $content = null, $tag = null ) {
-	return Vc_Shortcodes_Manager::getInstance()->getElementClass( $tag )
-	                                 ->output( $atts, $content );
+	ob_start();
+	echo Vc_Shortcodes_Manager::getInstance()->getElementClass( $tag )->output( $atts, $content );
+	$content = ob_get_clean();
+	// @codingStandardsIgnoreStart
+	global $wp_embed;
+	if ( is_object( $wp_embed ) ) {
+		$content = $wp_embed->run_shortcode( $content );
+		$content = $wp_embed->autoembed( $content );
+		// @codingStandardsIgnoreEnd
+	}
+
+	return $content;
 }
 
 /**
@@ -1412,12 +1339,32 @@ function vc_random_string( $length = 10 ) {
 	$len = strlen( $characters );
 	$str = '';
 	for ( $i = 0; $i < $length; $i ++ ) {
-		$str .= $characters[ rand( 0, $len - 1 ) ];
+		$str .= $characters[ wp_rand( 0, $len - 1 ) ];
 	}
 
 	return $str;
 }
 
+/**
+ * @param $str
+ * @return string|string[]|null
+ */
+/**
+ * @param $str
+ * @return string|string[]|null
+ */
+/**
+ * @param $str
+ * @return string|string[]|null
+ */
+/**
+ * @param $str
+ * @return string|string[]|null
+ */
+/**
+ * @param $str
+ * @return string|string[]|null
+ */
 function vc_slugify( $str ) {
 	$str = strtolower( $str );
 	$str = html_entity_decode( $str );
@@ -1425,4 +1372,39 @@ function vc_slugify( $str ) {
 	$str = preg_replace( '/ +/', '-', $str );
 
 	return $str;
+}
+
+/**
+ * WPBakery WPBakery Page Builder filter functions
+ *
+ * @package WPBakeryPageBuilder
+ */
+
+/**
+ * This filter should be applied to all content elements titles
+ *
+ * $params['extraclass'] Extra class name will be added
+ *
+ *
+ * To override content element title default html markup, paste this code in your theme's functions.php file
+ * vc_filter: wpb_widget_title
+ * add_filter('wpb_widget_title', 'override_widget_title', 10, 2);
+ * function override_widget_title($output = '', $params = array('')) {
+ *    $extraclass = (isset($params['extraclass'])) ? " ".$params['extraclass'] : "";
+ *    return '<h1 class="entry-title'.$extraclass.'">'.$params['title'].'</h1>';
+ * }
+ *
+ * @param array $params
+ *
+ * @return mixed|string
+ */
+function wpb_widget_title( $params = array( 'title' => '' ) ) {
+	if ( '' === $params['title'] ) {
+		return '';
+	}
+
+	$extraclass = ( isset( $params['extraclass'] ) ) ? ' ' . $params['extraclass'] : '';
+	$output = '<h2 class="wpb_heading' . esc_attr( $extraclass ) . '">' . esc_html( $params['title'] ) . '</h2>';
+
+	return apply_filters( 'wpb_widget_title', $output, $params );
 }

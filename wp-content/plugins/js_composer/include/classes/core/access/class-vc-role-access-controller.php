@@ -2,6 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
+
 require_once vc_path_dir( 'CORE_DIR', 'access/abstract-class-vc-access.php' );
 
 /**
@@ -24,7 +25,11 @@ class Vc_Role_Access_Controller extends Vc_Access {
 		'vc_column_inner_edit' => 'vc_row_edit',
 	);
 
-	function __construct( $part ) {
+	/**
+	 * Vc_Role_Access_Controller constructor.
+	 * @param $part
+	 */
+	public function __construct( $part ) {
 		$this->part = $part;
 	}
 
@@ -49,6 +54,7 @@ class Vc_Role_Access_Controller extends Vc_Access {
 	 * Get state of the Vc access rules part.
 	 *
 	 * @return mixed;
+	 * @throws \Exception
 	 */
 	public function getState() {
 		$role = $this->getRole();
@@ -70,11 +76,13 @@ class Vc_Role_Access_Controller extends Vc_Access {
 	 *
 	 * @param bool $value
 	 *
-	 * @return bool
+	 * @return $this
+	 * @throws \Exception
 	 */
 	public function setState( $value = true ) {
-		$this->getRole() && $this->getRole()
-		                         ->add_cap( $this->getStateKey(), $value );
+		$this->getRole() && $this->getRole()->add_cap( $this->getStateKey(), $value );
+
+		return $this;
 	}
 
 	/**
@@ -85,6 +93,7 @@ class Vc_Role_Access_Controller extends Vc_Access {
 	 * @param bool|true $check_state
 	 *
 	 * @return $this
+	 * @throws \Exception
 	 */
 	public function can( $rule = '', $check_state = true ) {
 		if ( null === $this->getRole() ) {
@@ -151,6 +160,7 @@ class Vc_Role_Access_Controller extends Vc_Access {
 	 * @param $rule
 	 *
 	 * @return bool
+	 * @throws \Exception
 	 */
 	public function getCapRule( $rule ) {
 		$rule = $this->getStateKey() . '/' . $rule;
@@ -163,6 +173,7 @@ class Vc_Role_Access_Controller extends Vc_Access {
 	 *
 	 * @param $rule
 	 * @param bool $value
+	 * @throws \Exception
 	 */
 	public function setCapRule( $rule, $value = true ) {
 		$role_rule = $this->getStateKey() . '/' . $rule;
@@ -171,6 +182,7 @@ class Vc_Role_Access_Controller extends Vc_Access {
 
 	/**
 	 * Get all capability for this part.
+	 * @throws \Exception
 	 */
 	public function getAllCaps() {
 		$role = $this->getRole();
@@ -212,10 +224,18 @@ class Vc_Role_Access_Controller extends Vc_Access {
 		return $this->roleName;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getStateKey() {
 		return self::$part_name_prefix . $this->getPart();
 	}
 
+	/**
+	 * @param $data
+	 * @return $this
+	 * @throws \Exception
+	 */
 	public function checkState( $data ) {
 		if ( $this->getValidAccess() ) {
 			$this->setValidAccess( $this->getState() === $data );
@@ -224,6 +244,9 @@ class Vc_Role_Access_Controller extends Vc_Access {
 		return $this;
 	}
 
+	/**
+	 * @return $this
+	 */
 	public function checkStateAny() {
 		if ( $this->getValidAccess() ) {
 			$args = func_get_args();
@@ -241,6 +264,10 @@ class Vc_Role_Access_Controller extends Vc_Access {
 		return (string) $this->get();
 	}
 
+	/**
+	 * @param $rule
+	 * @return mixed
+	 */
 	public function updateMergedCaps( $rule ) {
 		if ( isset( $this->mergedCaps[ $rule ] ) ) {
 			return $this->mergedCaps[ $rule ];

@@ -4,9 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WPBakery Visual Composer admin editor
+ * WPBakery WPBakery Page Builder admin editor
  *
- * @package WPBakeryVisualComposer
+ * @package WPBakeryPageBuilder
  *
  */
 
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 4.2
  */
-class Vc_Backend_Editor implements Vc_Editor_Interface {
+class Vc_Backend_Editor {
 
 	/**
 	 * @var
@@ -41,47 +41,56 @@ class Vc_Backend_Editor implements Vc_Editor_Interface {
 	 */
 	public function addHooksSettings() {
 		// @todo - fix_roles do this only if be editor is enabled.
-		add_action( 'wp_ajax_wpb_get_element_backend_html', array(
-			&$this,
-			'elementBackendHtml',
-		) );
 		// load backend editor
 		if ( function_exists( 'add_theme_support' ) ) {
 			add_theme_support( 'post-thumbnails' ); // @todo check is it needed?
 		}
 		add_action( 'add_meta_boxes', array(
-			&$this,
+			$this,
 			'render',
 		), 5 );
 		add_action( 'admin_print_scripts-post.php', array(
-			&$this,
+			$this,
+			'registerScripts',
+		) );
+		add_action( 'admin_print_scripts-post-new.php', array(
+			$this,
+			'registerScripts',
+		) );
+		add_action( 'admin_print_scripts-post.php', array(
+			$this,
 			'printScriptsMessages',
 		) );
 		add_action( 'admin_print_scripts-post-new.php', array(
-			&$this,
+			$this,
 			'printScriptsMessages',
 		) );
 
 	}
 
+	public function registerScripts() {
+		$this->registerBackendJavascript();
+		$this->registerBackendCss();
+		// B.C:
+		visual_composer()->registerAdminCss();
+		visual_composer()->registerAdminJavascript();
+	}
+
 	/**
 	 *    Calls add_meta_box to create Editor block. Block is rendered by WPBakeryVisualComposerLayout.
 	 *
-	 * @see WPBakeryVisualComposerLayout
+	 * @param $post_type
+	 * @throws \Exception
 	 * @since  4.2
 	 * @access public
+	 *
+	 * @see WPBakeryVisualComposerLayout
 	 */
 	public function render( $post_type ) {
 		if ( $this->isValidPostType( $post_type ) ) {
-			$this->registerBackendJavascript();
-			$this->registerBackendCss();
-			// B.C:
-			visual_composer()->registerAdminCss();
-			visual_composer()->registerAdminJavascript();
-
 			// meta box to render
-			add_meta_box( 'wpb_visual_composer', __( 'Visual Composer', 'js_composer' ), array(
-				&$this,
+			add_meta_box( 'wpb_visual_composer', esc_html__( 'WPBakery Page Builder', 'js_composer' ), array(
+				$this,
 				'renderEditor',
 			), $post_type, 'normal', 'high' );
 		}
@@ -102,14 +111,14 @@ class Vc_Backend_Editor implements Vc_Editor_Interface {
 			return false;
 		}
 		$this->post = $post;
-		$post_custom_css = strip_tags( get_post_meta( $post->ID, '_wpb_post_custom_css', true ) );
+		$post_custom_css = wp_strip_all_tags( get_post_meta( $post->ID, '_wpb_post_custom_css', true ) );
 		$this->post_custom_css = $post_custom_css;
 		vc_include_template( 'editors/backend_editor.tpl.php', array(
 			'editor' => $this,
 			'post' => $this->post,
 		) );
 		add_action( 'admin_footer', array(
-			&$this,
+			$this,
 			'renderEditorFooter',
 		) );
 		do_action( 'vc_backend_editor_render' );
@@ -133,11 +142,18 @@ class Vc_Backend_Editor implements Vc_Editor_Interface {
 	/**
 	 * Check is post type is valid for rendering VC backend editor.
 	 *
+	 * @param string $type
+	 *
 	 * @return bool
+	 * @throws \Exception
 	 */
 	public function isValidPostType( $type = '' ) {
-		if( 'vc_grid_item' === $type ) { return false; }
-		return vc_check_post_type( ! empty( $type ) ? $type : get_post_type() );
+		$type = ! empty( $type ) ? $type : get_post_type();
+		if ( 'vc_grid_item' === $type ) {
+			return false;
+		}
+
+		return apply_filters( 'vc_is_valid_post_type_be', vc_check_post_type( $type ), $type );
 	}
 
 	/**
@@ -161,78 +177,16 @@ class Vc_Backend_Editor implements Vc_Editor_Interface {
 	 * @access public
 	 */
 	public function enqueueEditorScripts() {
-		if($this->editorEnabled()) {
+		if ( $this->editorEnabled() ) {
 			$this->enqueueJs();
 			$this->enqueueCss();
 			WPBakeryShortCodeFishBones::enqueueCss();
 			WPBakeryShortCodeFishBones::enqueueJs();
 		} else {
 			wp_enqueue_script( 'vc-backend-actions-js' );
-			$this->enqueueCss(); //needed for navbar @todo split
+			$this->enqueueCss(); // needed for navbar @todo split
 		}
 		do_action( 'vc_backend_editor_enqueue_js_css' );
-	}
-
-	/**
-	 * Save generated shortcodes, html and visual composer status in posts meta.
-	 *
-	 * @deprecated 4.4
-	 * @since  3.0
-	 * @access public
-	 *
-	 * @param $post_id - current post id
-	 *
-	 * @return void
-	 */
-	public function save( $post_id ) {
-		_deprecated_function( '\Vc_Backend_Editor::save', '4.4 (will be removed in 4.10)', '\Vc_Post_Admin::save' );
-	}
-
-	/**
-	 * Create shortcode's string.
-	 *
-	 * @since  3.0
-	 * @access public
-	 * @deprecated 4.9
-	 */
-	public function elementBackendHtml() {
-		_deprecated_function( '\Vc_Backend_Editor::elementBackendHtml', '4.9 (will be removed in 4.10)' );
-		vc_user_access()
-			->checkAdminNonce()
-			->validateDie()
-			->wpAny( 'edit_posts', 'edit_pages' )
-			->validateDie()
-			->part( 'backend_editor' )
-			->can()// checks is backend_editor enabled( !== false )
-			->validateDie();
-
-		$data_element = vc_post_param( 'data_element' );
-
-		if ( 'vc_column' === $data_element && null !== vc_post_param( 'data_width' ) ) {
-			$output = do_shortcode( '[vc_column width="' . vc_post_param( 'data_width' ) . '"]' );
-			echo $output;
-		} elseif ( 'vc_row' === $data_element || 'vc_row_inner' === $data_element ) {
-			$output = do_shortcode( '[' . $data_element . ']' );
-			echo $output;
-		} else {
-			$output = do_shortcode( '[' . $data_element . ']' );
-			echo $output;
-		}
-		die();
-	}
-
-	/**
-	 * @deprecated 4.8
-	 * @return string
-	 */
-	public function showRulesValue() {
-		global $current_user;
-		wp_get_current_user();
-		/** @var $settings - get use group access rules */
-		$settings = vc_settings()->get( 'groups_access_rules' );
-		$role = is_object( $current_user ) && isset( $current_user->roles[0] ) ? $current_user->roles[0] : '';
-
-		return isset( $settings[ $role ]['show'] ) ? $settings[ $role ]['show'] : '';
 	}
 
 	public function registerBackendJavascript() {
@@ -250,7 +204,7 @@ class Vc_Backend_Editor implements Vc_Editor_Interface {
 		wp_register_script( 'wpb_json-js', vc_asset_url( 'lib/bower/json-js/json2.min.js' ), array(), WPB_VC_VERSION, true );
 		// used in post settings editor
 		wp_register_script( 'ace-editor', vc_asset_url( 'lib/bower/ace-builds/src-min-noconflict/ace.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
-		wp_register_script( 'webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js' ); // Google Web Font CDN
+		wp_register_script( 'webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js', array(), WPB_VC_VERSION, true ); // Google Web Font CDN
 
 		wp_localize_script( 'vc-backend-actions-js', 'i18nLocale', visual_composer()->getEditorsLocale() );
 	}
@@ -262,19 +216,19 @@ class Vc_Backend_Editor implements Vc_Editor_Interface {
 			/**
 			 * @deprecated, used for accordions/tabs/tours
 			 */
-			wp_register_style( 'ui-custom-theme', vc_asset_url( 'css/ui-custom-theme/jquery-ui-less.custom.min.css' ), array(), WPB_VC_VERSION, false );
+			wp_register_style( 'ui-custom-theme', vc_asset_url( 'css/ui-custom-theme/jquery-ui-less.custom.min.css' ), array(), WPB_VC_VERSION );
 
 			/**
 			 * @todo check vc_add-element-deprecated-warning for fa icon usage ( set to our font )
 			 * also used in vc_icon shortcode
 			 */
-			wp_register_style( 'font-awesome', vc_asset_url( 'lib/bower/font-awesome/css/font-awesome.min.css' ), array(), WPB_VC_VERSION, false );
-
+			wp_register_style( 'vc_font_awesome_5_shims', vc_asset_url( 'lib/bower/font-awesome/css/v4-shims.min.css' ), array(), WPB_VC_VERSION );
+			wp_register_style( 'vc_font_awesome_5', vc_asset_url( 'lib/bower/font-awesome/css/all.min.css' ), array( 'vc_font_awesome_5_shims' ), WPB_VC_VERSION );
 			/**
 			 * @todo check for usages
 			 * definetelly used in edit form param: css_animation, but curreny vc_add_shortcode_param doesn't accept css [ @todo refactor that ]
 			 */
-			wp_register_style( 'animate-css', vc_asset_url( 'lib/bower/animate-css/animate.min.css' ), array(), WPB_VC_VERSION, false );
+			wp_register_style( 'vc_animate-css', vc_asset_url( 'lib/bower/animate-css/animate.min.css' ), array(), WPB_VC_VERSION );
 		}
 	}
 
@@ -323,9 +277,9 @@ class Vc_Backend_Editor implements Vc_Editor_Interface {
 			// deprecated for tabs/accordion
 			'ui-custom-theme',
 			// used in deprecated message and also in vc-icon shortcode
-			'font-awesome',
+			'vc_font_awesome_5',
 			// used in css_animation edit form param
-			'animate-css',
+			'vc_animate-css',
 		);
 		$dependencies = array(
 			'js_composer',
@@ -342,6 +296,7 @@ class Vc_Backend_Editor implements Vc_Editor_Interface {
 
 	/**
 	 * @return bool
+	 * @throws \Exception
 	 */
 	public function editorEnabled() {
 		return vc_user_access()->part( 'backend_editor' )->can()->get();
