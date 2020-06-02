@@ -2848,5 +2848,94 @@ a[data-readmore-toggle]{
 	}
 }
 
+.berocket_single_filter_widget {
+	.widget-title {
+		color: #d1b57c;
+		font-size: 14px;
+		font-weight: 800;
+		margin-bottom: 10px;
+		text-transform: uppercase;
+		width: 100%; 
+	}
+	.berocket_aapf_widget {
+		li {
+			display: inline-block;
+			label {
+				background-color: transparent;
+				border-radius: 15px;
+				border: 1px solid #cccccc;
+				color: #969696;
+				cursor: pointer;
+				display: inline-block;
+				font-family: 'gotham_mediumregular';
+				font-size: 13px;
+				font-weight: 200;
+				line-height: 22px;
+				margin-bottom: 0.6em;
+				margin-right: 0.6em;
+				padding: 0.5em 1em 0.5em 1.8125em;
+				position: relative;
+				text-indent: unset;
+				text-transform: capitalize;
+				transition: all 0.5s ease;
+				&:hover {
+					background-color: #d8d8d8;
+					color: #022c4c;
+				}
+				&:after {
+					-webkit-font-smoothing: antialiased;
+					-webkit-transform: translateY(-50%);
+					color: #9c9c9c;
+					content: "\f02b" !important;
+					display: inline-block;
+					font-size: 0.9em;
+					font-size: inherit;
+					font: normal normal normal 14px/1 FontAwesome;
+					left: 10px;
+					padding-right: 0.3em;
+					position: absolute;
+					text-rendering: auto;
+					top: 50%;
+					transform: translateY(-50%);
+				}
+			}
+			input[type=checkbox] {
+				opacity: 1;
+				position: absolute;
+				visibility: hidden;
+				&:checked+label {
+					background-color: #d8d8d8;
+					color: #022c4c;
+				}
+			}
+		}
+	}
+}
+.product-row-fw-col {
+	div.products {
+		.col-6 {
+			width: 100%;
+		}
+	}
+}
+#main-content {
+	.hb-main-content {
+		.wine-banner-subtitle {
+			color: #022c4c !important;
+			font-family: 'gotham_mediumregular';
+			font-weight: 400;
+			position: absolute;
+			top: -40px;
+			vertical-align: middle;
+		}
+	}
+}
 
-
+#signup-box{
+	position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background: #fff;
+    padding: 30px;
+}
