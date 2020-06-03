@@ -2440,7 +2440,7 @@ a[data-readmore-toggle].more:before {
 }
 @media screen and (min-width: 999px) {
   #signup-box {
-    width: 18%;
+    width: 25%;
   }
 }
 #signup-box .subtitle {
@@ -2464,6 +2464,7 @@ a[data-readmore-toggle].more:before {
   border-bottom: 1px solid #d1b57c;
   border-radius: 3px;
   height: 15px;
+  color: #fff;
 }
 #signup-box input[type="submit"] {
   box-shadow: none;
