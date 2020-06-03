@@ -2938,7 +2938,15 @@ a[data-readmore-toggle]{
     z-index: 999;
     background: #022c4c;
     padding: 30px;
-    width: 70%;
+    @media screen and (max-width: 499px){
+    	width: 70%;
+    }
+    @media screen and (min-width: 500px){
+    	width: 40%;
+    }
+    @media screen and (min-width: 999px){
+    	width: 18%;
+    }
 	.subtitle{
 		font-size: 14px;
 	    font-weight: bold;

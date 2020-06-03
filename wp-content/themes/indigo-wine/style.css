@@ -2427,7 +2427,21 @@ a[data-readmore-toggle].more:before {
   z-index: 999;
   background: #022c4c;
   padding: 30px;
-  width: 70%;
+}
+@media screen and (max-width: 499px) {
+  #signup-box {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 500px) {
+  #signup-box {
+    width: 40%;
+  }
+}
+@media screen and (min-width: 999px) {
+  #signup-box {
+    width: 18%;
+  }
 }
 #signup-box .subtitle {
   font-size: 14px;
