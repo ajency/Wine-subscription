@@ -2450,8 +2450,20 @@ a[data-readmore-toggle].more:before {
   padding-bottom: 20px;
   color: rgba(255, 255, 255, 0.5);
 }
+@media screen and (max-width: 499px) {
+  #signup-box .subtitle {
+    padding-top: 0;
+    padding-bottom: 10px;
+  }
+}
 #signup-box p {
   padding: 10px 0;
+}
+@media screen and (max-width: 499px) {
+  #signup-box p {
+    padding: 0;
+    margin: 0 0 10px;
+  }
 }
 #signup-box label {
   display: inline;

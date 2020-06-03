@@ -2953,9 +2953,17 @@ a[data-readmore-toggle]{
 	    line-height: 20px;
 	    padding-bottom: 20px;
 	    color: rgba(255, 255, 255, 0.5);
+	    @media screen and (max-width: 499px){
+		    padding-top: 0;
+	    	padding-bottom: 10px;
+	    }
 	}
 	p{
 		padding: 10px 0;
+		@media screen and (max-width: 499px){
+	    	padding: 0;
+	    	margin: 0 0 10px;
+	    }
 	}
 	label{
 		display: inline;
