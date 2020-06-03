@@ -5,8 +5,10 @@
  */
 ?>
 <div id="signup-box">
-	<img src="<?php echo home_url('wp-content/uploads/2017/05/logo-diamond.png');?>"/>
-	<p class="subtitle">Keep me in the loop on latest news, special offers, tastings and events! </p>
+	<div class="top-content">
+		<img src="<?php echo home_url('wp-content/uploads/2017/05/logo-diamond.png');?>"/>
+		<p class="subtitle">Keep me in the loop on latest news, special offers, tastings and events! </p>
+	</div>
 	<?php echo do_shortcode('[contact-form-7 title="Signup"]'); ?>	
 </div>
 

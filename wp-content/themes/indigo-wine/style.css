@@ -2439,6 +2439,11 @@ a[data-readmore-toggle].more:before {
 #signup-box p {
   padding: 10px 0;
 }
+#signup-box label {
+  display: inline;
+  padding-left: 0;
+  color: rgba(255, 255, 255, 0.5);
+}
 #signup-box input {
   margin: 10px 0;
   border: 0;
