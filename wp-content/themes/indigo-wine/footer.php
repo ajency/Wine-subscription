@@ -5,7 +5,8 @@
  */
 ?>
 <div id="signup-box">
-	<p class="subtitle">Yes! Keep me in the loop on latest news, special offers, tastings and events! </p>
+	<img src="<?php echo home_url('wp-content/uploads/2017/05/logo-diamond.png');?>"/>
+	<p class="subtitle">Keep me in the loop on latest news, special offers, tastings and events! </p>
 	<?php echo do_shortcode('[contact-form-7 title="Signup"]'); ?>	
 </div>
 
