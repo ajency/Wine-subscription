@@ -388,6 +388,13 @@ jQuery(document).ready(function() {
         });
   });
 
+ 	setTimeout(function(){
+  	jQuery('#signup-box').show();
+  },3000);
+  jQuery('#signup-box .close_box').click(function(){
+  		jQuery('#signup-box').hide();
+  });
+  
 });
 
 

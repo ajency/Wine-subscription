@@ -2421,6 +2421,7 @@ a[data-readmore-toggle].more:before {
   vertical-align: middle;
 }
 #signup-box {
+  display: none;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -2499,6 +2500,16 @@ a[data-readmore-toggle].more:before {
   width: 50px;
   height: 50px;
   padding: 0 15px 0 0;
+}
+#signup-box .top-content .close_box {
+  cursor: pointer;
+}
+#signup-box .wpcf7-response-output {
+  color: #fff;
+  background: red;
+}
+#signup-box form .wpcf7-mail-sent-ok {
+  background: #2ecc71;
 }
 #simplemodal-login-container-osx.simplemodal-container {
   width: 550px !important;

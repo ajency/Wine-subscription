@@ -622,7 +622,8 @@ $main_html='<!doctype html>
      switch ($mail_type) {
         
         case 'registration_mail':
-                                                        
+                       
+        $rp_link = isset($data['rp_link']) ? '<p>'.$data['rp_link'].'</p><br>' : '';                                 
         $table_html.='
                         
                         <h1 style="text-align: center;font-weight: 100;margin-bottom: 15px;color: #022c4c;"><span style="border-bottom: 2px solid #dbc698;">D</span>ear '.$data['display_name'].'</h1>
@@ -630,6 +631,7 @@ $main_html='<!doctype html>
                         <div style="font-weight: 100;line-height: 1.5;font-size: 17px;">
 
                         <p>Welcome to <a href="'.$site_url.'" style="color: #dec07f;text-decoration: none;font-weight: 500;">Indigo Wine Co.</a> We\'re so excited to share this world of Wines with you! <br><br></p>
+                        '.$rp_link.'
                         
                     <div>
                 
