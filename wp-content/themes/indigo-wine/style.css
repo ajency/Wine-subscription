@@ -2506,7 +2506,7 @@ a[data-readmore-toggle].more:before {
   color: #ff353b;
 }
 body #to-top {
-  bottom: 30px;
+  bottom: 25px;
 }
 #simplemodal-login-container-osx.simplemodal-container {
   width: 550px !important;

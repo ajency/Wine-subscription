@@ -1753,6 +1753,7 @@ function user_signup ($contact_form, &$abort, $object){
             sync_mailchimp([
                 'email' => $_POST['email'],
                 'firstname' => $_POST['first-name'],
+                'lastname' => $_POST['last-name'],
                 'status' => 'subscribed'
             ]);
         }
@@ -1769,6 +1770,7 @@ function sync_mailchimp($data) {
         'status'        => $data['status'], 
         'merge_fields'  => array(
             'FNAME'         => $data['firstname'],
+            'LNAME'         => $data['lastname'],
         )
     ));
     $ch = curl_init($url);
