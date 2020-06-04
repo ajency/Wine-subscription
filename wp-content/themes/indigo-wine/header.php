@@ -51,6 +51,17 @@
   <?php wp_head(); ?>
 
   <!-- Theme Options Font Settings -->
+    <style type="text/css">
+    <?php if(is_user_logged_in()){ ?>
+        .why-caption .signup-link{
+            display:none;
+        }
+    <?php }else{ ?>
+        .why-caption .login-link{
+            display:none;
+        }
+    <?php } ?>
+    </style>
   <?php /*if( is_front_page() )*/ { ?>
     <style type="text/css">
       @media (min-width: 767px){
