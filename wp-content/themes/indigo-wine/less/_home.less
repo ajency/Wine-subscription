@@ -2938,30 +2938,22 @@ a[data-readmore-toggle]{
     bottom: 0;
     z-index: 999;
     background: #022c4c;
-    padding: 30px;
-    @media screen and (max-width: 499px){
-    	width: 70%;
-    }
-    @media screen and (min-width: 500px){
-    	width: 40%;
-    }
-    @media screen and (min-width: 999px){
-    	width: 25%;
-    }
+    padding: 30px 30px 0 30px;
+    width: 300px;
 	.subtitle{
 		font-size: 14px;
 	    font-weight: bold;
 	    line-height: 20px;
 	    padding-bottom: 20px;
+	    padding-top: 0;
 	    color: rgba(255, 255, 255, 0.5);
-	    @media screen and (max-width: 499px){
-		    padding-top: 0;
+	    @media screen and (max-width: 999px){
 	    	padding-bottom: 10px;
 	    }
 	}
 	p{
 		padding: 10px 0;
-		@media screen and (max-width: 499px){
+		@media screen and (max-width: 999px){
 	    	padding: 0;
 	    	margin: 0 0 10px;
 	    }
@@ -3002,15 +2994,24 @@ a[data-readmore-toggle]{
 		}
 		.close_box{
 			cursor: pointer;
+			color: #fff;
+			margin: 0 10px;
 		}
 	}
 	.wpcf7-response-output{
 		color:#fff;
-		background: red;
+		background: #ff353b;
 	}
 	form{
 		.wpcf7-mail-sent-ok{
 			background: rgb(46,204,113);
 		}
+		.required-label{
+			color: #ff353b;
+		}
 	}
+}
+
+body #to-top{
+	bottom: 30px;
 }
