@@ -1752,32 +1752,26 @@ function user_signup ($contact_form, &$abort, $object){
             ]);
             sync_mailchimp([
                 'email' => $_POST['email'],
-                'firstname' => $_POST['first-name']
+                'firstname' => $_POST['first-name'],
+                'status' => 'subscribed'
             ]);
         }
     }
 }
 
 function sync_mailchimp($data) {
-    return;
     $listId = MEMBERS_LIST; // Free members
-
     $memberId = md5(strtolower($data['email']));
     $dataCenter = substr(MAILCHIMP_KEY,strpos(MAILCHIMP_KEY,'-')+1);
     $url = 'https://' . $dataCenter . '.api.mailchimp.com/3.0/lists/' . $listId . '/members/' . $memberId;
-
     $json = json_encode(array(
         'email_address' => $data['email'],
-        'status'        => $data['status'], // "subscribed","unsubscribed","cleaned","pending"
+        'status'        => $data['status'], 
         'merge_fields'  => array(
             'FNAME'         => $data['firstname'],
-            // 'LNAME'         => $data['lastname']
-        ),
-        'tags'          => $data['tags']
+        )
     ));
-
     $ch = curl_init($url);
-
     curl_setopt($ch, CURLOPT_USERPWD, 'user:' . MAILCHIMP_KEY);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
