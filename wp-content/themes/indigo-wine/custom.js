@@ -394,7 +394,9 @@ jQuery(document).ready(function() {
   jQuery('#signup-box .close_box').click(function(){
   		jQuery('#signup-box').hide();
   });
-  
+  jQuery(".signup-link").click(function(){
+  		jQuery('#signup-box').show();
+  });
 });
 
 
