@@ -4,7 +4,8 @@
  * @subpackage Highend
  */
 ?>
-<?php if(!is_user_logged_in()){ ?>
+<?php if(!is_user_logged_in() && !is_cart() && !is_checkout() && !is_checkout_pay_page()){ ?>
+	<div></div>
 	<div id="signup-box">
 		<div class="top-content">
 			<img src="<?php echo home_url('wp-content/uploads/2017/05/logo-diamond.png');?>"/>
