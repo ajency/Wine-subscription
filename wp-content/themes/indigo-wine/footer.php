@@ -5,14 +5,16 @@
  */
 ?>
 <?php if(!is_user_logged_in() && !is_cart() && !is_checkout() && !is_checkout_pay_page()){ ?>
-	<div></div>
 	<div id="signup-box">
-		<div class="top-content">
-			<img src="<?php echo home_url('wp-content/uploads/2017/05/logo-diamond.png');?>"/>
-			<p class="subtitle">Keep me in the loop on latest news, special offers, tastings and events! </p>
-			<a class="close_box">X</a>
+		<div id="signup-overlay"></div>
+		<div id="signup-form">
+			<div class="top-content">
+				<img src="<?php echo home_url('wp-content/uploads/2017/05/logo-diamond.png');?>"/>
+				<p class="subtitle">Keep me in the loop on latest news, special offers, tastings and events! </p>
+				<a class="close_box">X</a>
+			</div>
+			<?php echo do_shortcode('[contact-form-7 title="Signup"]'); ?>	
 		</div>
-		<?php echo do_shortcode('[contact-form-7 title="Signup"]'); ?>	
 	</div>
 <?php } ?>
 <?php if ( vp_metabox('misc_settings.hb_onepage') && !vp_metabox('misc_settings.hb_disable_navigation')) { ?>
