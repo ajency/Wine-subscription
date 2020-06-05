@@ -2429,7 +2429,7 @@ a[data-readmore-toggle].more:before {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 10;
 }
 @media screen and (min-width: 767px) {
@@ -2445,6 +2445,7 @@ a[data-readmore-toggle].more:before {
   background: #022c4c;
   padding: 30px 30px 0 30px;
   width: 250px;
+  min-height: fit-content;
 }
 @media screen and (max-width: 767px) {
   #signup-box #signup-form {
