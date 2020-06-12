@@ -122,11 +122,12 @@ jQuery(function(){
 
 
 	// Menu height checking
-
-	if (jQuery(window).width() > 992) {
-	  	var menu_height = jQuery('.ind-custom-menu').outerHeight();
-		jQuery('.header-sep').css('margin-top',menu_height);
-	}
+	jQuery(window).load(function(){ 
+		if (jQuery(window).width() > 992) {
+		  	var menu_height = jQuery('.ind-custom-menu').outerHeight();
+			jQuery('.header-sep').css('margin-top',menu_height);
+		}
+	})
 
 	// featured product scroll
 

@@ -5747,3 +5747,30 @@ abbr {
   background-color: #022c4c;
   margin-bottom: 2em;
 }
+.producer-list {
+  display: grid;
+  margin: 30px 0;
+  grid-gap: 20px;
+}
+@media screen and (max-width: 500px) {
+  .producer-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media screen and (min-width: 501px) and (max-width: 998px) {
+  .producer-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 999px) {
+  .producer-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.producer-image {
+  display: block;
+  margin-bottom: 15px;
+}
+.producer-title {
+  font-size: 18px;
+}
