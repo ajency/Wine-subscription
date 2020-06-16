@@ -395,7 +395,7 @@ jQuery(document).ready(function() {
 	},6000);
 	jQuery('#signup-box .close_box').click(function(){
 		jQuery('#signup-box').hide();
-		setCookie('hide_subscribe_box', 'true', 7);
+		setCookie('hide_subscribe_box', 'true', 1);
 	});
 	jQuery(".signup-link").click(function(){
 		jQuery('#signup-box').show();
