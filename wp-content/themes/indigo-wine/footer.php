@@ -4,14 +4,14 @@
  * @subpackage Highend
  */
 ?>
-<?php if(!is_user_logged_in() && !is_cart() && !is_checkout() && !is_checkout_pay_page()){ ?>
+<?php if(!is_user_logged_in() && !is_cart() && !is_checkout() && !is_checkout_pay_page() && !isset($_SESSION['hide_subscribe_box'])){ ?>
 	<div id="signup-box">
 		<div id="signup-overlay"></div>
 		<div id="signup-form">
 			<div class="top-content">
 				<img src="<?php echo home_url('wp-content/uploads/2017/05/logo-diamond.png');?>"/>
 				<p class="subtitle">Keep me in the loop on latest news, special offers, tastings and events! </p>
-				<a class="close_box">X</a>
+				<a class="close_box" data-url="<?php echo admin_url('admin-ajax.php'); ?>">X</a>
 			</div>
 			<?php echo do_shortcode('[contact-form-7 title="Signup"]'); ?>	
 		</div>
