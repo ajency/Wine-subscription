@@ -1,5 +1,4 @@
 <?php
-
 function highend_child_theme_enqueue_styles() {
     $parent_style = 'highend-parent-style';
     wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
@@ -1798,7 +1797,3 @@ function signup_redirect() {
     <?php
 }
 
-add_action( 'wp_ajax_nopriv_hide_subscribe_box', 'hide_subscribe_box' );
-function correct_prices(){
-    $_SESSION['hide_subscribe_box'] = true;
-}
