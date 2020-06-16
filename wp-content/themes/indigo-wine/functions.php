@@ -1797,3 +1797,8 @@ function signup_redirect() {
     </script>
     <?php
 }
+
+add_action( 'wp_ajax_nopriv_hide_subscribe_box', 'hide_subscribe_box' );
+function correct_prices(){
+    $_SESSION['hide_subscribe_box'] = true;
+}

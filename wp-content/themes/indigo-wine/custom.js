@@ -390,9 +390,22 @@ jQuery(document).ready(function() {
 
  	setTimeout(function(){
   	jQuery('#signup-box').show();
-  },3000);
+  },6000);
   jQuery('#signup-box .close_box').click(function(){
   		jQuery('#signup-box').hide();
+		var result = $.ajax({
+		    url: $(this).attr('data-url'),
+		    type: 'GET',
+		    data: {
+		        action: 'hide_subscribe_box',
+		    },
+		    dataType:'json',
+		});
+		result.success( function( data ) {
+		});
+		result.fail( function( jqXHR, textStatus ) {
+		    console.log( textStatus );
+		});	
   });
   jQuery(".signup-link").click(function(){
   		jQuery('#signup-box').show();
