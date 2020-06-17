@@ -1,3 +1,6 @@
+.mb-2{
+	margin-bottom: 2em;
+}
 .producer
 {
 	&-list{
@@ -20,5 +23,38 @@
 	}
 	&-title{
 		font-size: 18px;
+	}
+	&-category{
+		&-image{
+			&-container{
+				min-height: 450px;
+				float: left;
+				width: 50%;
+			}
+		}
+		&-description{
+			&-title{
+				font-weight: bold;
+				margin-bottom: 20px;
+				position: relative;
+				&:before{
+					bottom: 0px;
+				    background-color: #232323;
+				    content: " ";
+				    position: absolute;
+				    left: 0;
+				    width: 100px;
+				    height: 1px;
+				    display: inline-block;
+				}
+			}
+			&-container{
+				float: left;
+				width: 50%;
+			}
+			&-inner{
+				margin: 20px 90px;
+			}
+		}
 	}
 }

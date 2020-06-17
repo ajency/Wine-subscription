@@ -14,7 +14,6 @@
  * @package WooCommerce/Templates
  * @version 3.4.0
  */
-
 defined( 'ABSPATH' ) || exit;
 
 get_header( 'shop' );
@@ -26,6 +25,38 @@ get_header( 'shop' );
  * @hooked woocommerce_breadcrumb - 20
  * @hooked WC_Structured_Data::generate_website_data() - 30
  */
+$sub_category = get_queried_object();
+// {"term_id":105,"name":"Arturo","slug":"arturo","term_group":0,"term_taxonomy_id":105,"taxonomy":"product_cat","description":"","parent":99,"count":1,"filter":"raw"}
+$thumbnail_id = get_woocommerce_term_meta( $sub_category->term_id, 'thumbnail_id', true ); 
+$imageURL = wp_get_attachment_image_src( $thumbnail_id, 'full')[0];
+if($sub_category->taxonomy == "product_cat"){
+	$category = get_term($sub_category->parent);
+	// {"term_id":99,"name":"Producers","slug":"producers","term_group":0,"term_taxonomy_id":99,"taxonomy":"product_cat","description":"","parent":0,"count":0,"filter":"raw"}
+	if($category->name == "Producers"){ 
+		$producer_page = true;
+		?>
+		<div class="producer-category-container">
+			<div class="producer-category-image-container" style="background-image:url(<?php echo $imageURL; ?>);">
+			</div>
+			<div class="producer-category-description-container">
+				<div class="producer-category-description-inner">
+					<h1 class="producer-category-description-title">
+						<?php echo $sub_category->name; ?>
+					</h1>
+					<div class="producer-category-description-info">
+						<?php echo $sub_category->description; ?>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix mb-2"></div>
+		</div>
+		<div class="clearfix"></div>
+	<?php
+	}
+}
+
+//echo $cateID;
+
 do_action( 'woocommerce_before_main_content' );
 
 ?>
@@ -38,7 +69,9 @@ do_action( 'woocommerce_before_main_content' );
 	 * @hooked woocommerce_taxonomy_archive_description - 10
 	 * @hooked woocommerce_product_archive_description - 10
 	 */
-	do_action( 'woocommerce_archive_description' );
+	if(!isset($producer_page)){
+		do_action( 'woocommerce_archive_description' );
+	}
 	?>
 <?php
 if ( woocommerce_product_loop() ) {
