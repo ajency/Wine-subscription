@@ -58,3 +58,46 @@
 		}
 	}
 }
+
+.view-panel{
+	float: left;
+	margin: 10px 10px 10px 0;
+}
+
+#main-wrapper{
+	.hb-woo-product-list{
+		display: flex;
+		.hb-buy-button{
+			position: relative;
+			opacity: 1;
+		}
+	}
+}
+.basel-products-loader{
+	position:relative;
+	display: none;
+	&:after {
+	    position: absolute;
+	    left: 50%;
+	    bottom: -50px;
+	    margin-left: -17px;
+	    -webkit-transition: all .3s ease-in-out;
+	    -moz-transition: all .3s ease-in-out;
+	    -o-transition: all .3s ease-in-out;
+	    transition: all .3s ease-in-out;
+	    content: " ";
+	    width: 35px;
+	    height: 35px;
+	    display: inline-block;
+	    vertical-align: middle;
+	    border: 2px solid #000;
+	    border-radius: 50%;
+	    border-left-color: transparent!important;
+	    border-right-color: transparent!important;
+	    animation: load-spin 450ms infinite linear;
+	    -o-animation: load-spin 450ms infinite linear;
+	    -ms-animation: load-spin 450ms infinite linear;
+	    -webkit-animation: load-spin 450ms infinite linear;
+	    -moz-animation: load-spin 450ms infinite linear;
+	}
+}

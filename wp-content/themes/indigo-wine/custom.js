@@ -401,6 +401,38 @@ jQuery(document).ready(function() {
 	jQuery(".signup-link").click(function(){
 		jQuery('#signup-box').show();
 	});
+
+	jQuery(".view-panel .view-options").click(function(e){
+		e.preventDefault();
+		jQuery(".row.products").css({
+			'opacity': 0
+		});
+		jQuery(".basel-products-loader").show();
+
+		var result = jQuery.ajax({
+            url: jQuery(this).attr('href'),
+            type: 'GET',
+            data: {
+                action: 'change_product_view',
+                category: jQuery(".producer-category-container").attr('data-cat'),
+                product_view_option: jQuery(this).attr('data-type'),
+            },
+            dataType:'json',
+        });
+
+		result.success( function( data ) {
+			jQuery('html,body').animate({ scrollTop: document.documentElement.scrollTop - 1 }, 'slow');
+			jQuery(".basel-products-loader").hide();
+            jQuery(".row.products").replaceWith(data.products);
+            jQuery(".row.products").css({
+				'opacity': 1
+			});
+            jQuery(".count-store").html("Showing "+data.count+" results");
+        });
+        result.fail( function( jqXHR, textStatus ) {
+            console.log( textStatus );
+        });
+	})
 });
 
 
@@ -451,4 +483,6 @@ function switch_checkbox(){
 		jQuery( 'div.create-account' ).hide();
 	}
 }
+
+
 

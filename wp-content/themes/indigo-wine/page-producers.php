@@ -25,11 +25,13 @@ Template Name: Producers Template
 		foreach ($subcats as $sc) {
 			$link = get_term_link( $sc->slug, $sc->taxonomy );
 			$thumbnail_id = get_woocommerce_term_meta( $sc->term_id, 'thumbnail_id', true ); 
-				$image = wp_get_attachment_url( $thumbnail_id );
-			echo '<li class="producer-single">
-				<a class="producer-image" href="'. $link .'"><img src="'.$image.'"></a>
-				<a class="producer-title" href="'. $link .'">'.$sc->name.'</a>
-			</li>';
+			$image = wp_get_attachment_image_src( $thumbnail_id, 'medium' );
+			if($image){
+				echo '<li class="producer-single">
+					<a class="producer-image" href="'. $link .'"><img src="'.$image[0].'"></a>
+					<a class="producer-title" href="'. $link .'">'.$sc->name.'</a>
+				</li>';
+			}
 		}
 		echo '</ul>';
 		?>

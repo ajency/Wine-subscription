@@ -1797,3 +1797,41 @@ function signup_redirect() {
     <?php
 }
 
+function product_view_container (){
+    echo '<div class= "view-panel">
+        <a class="grid-option view-options" data-type="grid" href="'.admin_url("admin-ajax.php").'">Grid</a>
+        <a class="list-option view-options" data-type="list" href="'.admin_url("admin-ajax.php").'">List</a>
+    </div>';
+}
+
+add_action ( 'woocommerce_before_shop_loop' ,  'product_view_container');
+
+add_action( 'wp_ajax_change_product_view', 'change_product_view' );
+add_action( 'wp_ajax_nopriv_change_product_view', 'change_product_view' );
+function change_product_view(){
+    ob_start();
+    $args = array(
+        'post_type' => 'product',
+        'posts_per_page' => 20,
+        'product_cat' => $_GET['category']
+    );
+    $count = 0;
+    $loop = new WP_Query( $args );
+    echo '<div class="row products clearfix products-4">';
+    if ( $loop->have_posts() ) {
+        while ( $loop->have_posts() ) : $loop->the_post();
+            $count++;
+            do_action( 'woocommerce_shop_loop' );
+            wc_get_template_part( 'content', 'product-'.$_GET['product_view_option'] );
+        endwhile;
+    } else {
+        echo __( 'No products found' );
+    }
+    echo '</div>';
+    $data['products'] = ob_get_contents();
+    $data['count'] = $count;
+    wp_reset_postdata();
+    ob_end_clean();
+    echo json_encode($data);
+    die();
+}

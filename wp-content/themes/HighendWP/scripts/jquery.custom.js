@@ -2477,12 +2477,10 @@ function hb_woo_stuff(){
 		var cart_text = $hb_woo_notif.data('cart-text');
 		var text = $hb_woo_notif.data('text');
 	}
-
 	$body.bind('added_to_cart', function() {
 		if ( $hb_woo_notif.length ){
-			var product_name = $j('.product-loading-icon.preloading.hb-spin').parent().parent().siblings('.hb-product-meta-wrapper').find('a h3').text();
+			var product_name = $j('.product-loading-icon.preloading.hb-spin').closest('.hb-woo-product').find('.woocommerce-loop-product__title').text();
 			var notif = $j('<li><div class="content"><i class="hb-moon-checkmark-2 hb-icon"></i><div class="text">' + product_name + ' ' + text +' </div><a class="cart-action" href="'+ cart_url +'">View Cart</a></div></li>');
-
 			if (product_name.length){
 				notif.appendTo('#hb-woo-notif').fadeIn(350);
 				setTimeout(function(){
