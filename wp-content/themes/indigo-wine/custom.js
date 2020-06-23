@@ -404,6 +404,7 @@ jQuery(document).ready(function() {
 
 	jQuery(".view-panel .view-options").click(function(e){
 		e.preventDefault();
+		setParam('view', jQuery(this).attr('data-type'));
 		jQuery(".row.products").css({
 			'opacity': 0
 		});
@@ -427,7 +428,7 @@ jQuery(document).ready(function() {
             jQuery(".row.products").css({
 				'opacity': 1
 			});
-            jQuery(".count-store").html("Showing "+data.count+" results");
+            //jQuery(".count-store").html(data.page_results);
         });
         result.fail( function( jqXHR, textStatus ) {
             console.log( textStatus );
@@ -482,6 +483,19 @@ function switch_checkbox(){
 		jQuery("#createaccount").attr("checked", false);
 		jQuery( 'div.create-account' ).hide();
 	}
+}
+
+function setParam(param, mode = ''){
+	var url = new URL(location.href);
+	if(mode){
+		url.searchParams.set(param, mode);
+	}
+	else{
+		url.searchParams.delete(param);
+	}
+	url.search = url.searchParams.toString();
+	var new_url = url.toString(); 
+	window.history.pushState('page2', 'Title', new_url);
 }
 
 

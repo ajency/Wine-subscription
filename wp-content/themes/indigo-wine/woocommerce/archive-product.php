@@ -68,8 +68,10 @@ do_action( 'woocommerce_before_main_content' );
 if(!isset($producer_page)){
 	do_action( 'woocommerce_archive_description' );
 }
+
 ?>
 <?php
+$product_view = isset($_GET['view']) ? $_GET['view'] : 'grid';
 if ( woocommerce_product_loop() ) {
 
 	/**
@@ -96,7 +98,7 @@ if ( woocommerce_product_loop() ) {
 			 * Hook: woocommerce_shop_loop.
 			 */
 			do_action( 'woocommerce_shop_loop' );
-			wc_get_template_part( 'content', 'product-list' );
+			wc_get_template_part( 'content', 'product-'.$product_view );
 		}
 	}
 

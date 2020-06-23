@@ -1810,10 +1810,13 @@ add_action( 'wp_ajax_change_product_view', 'change_product_view' );
 add_action( 'wp_ajax_nopriv_change_product_view', 'change_product_view' );
 function change_product_view(){
     ob_start();
+    $paged = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
+    echo 'paged = '.$paged;
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => 20,
-        'product_cat' => $_GET['category']
+        'product_cat' => $_GET['category'],
+        'paged' => $paged
     );
     $count = 0;
     $loop = new WP_Query( $args );
@@ -1829,7 +1832,19 @@ function change_product_view(){
     }
     echo '</div>';
     $data['products'] = ob_get_contents();
-    $data['count'] = $count;
+    $paged    = max( 1, $loop->get( 'paged' ) );
+    $per_page = $loop->get( 'posts_per_page' );
+    $total    = $loop->found_posts;
+    $first    = ( $per_page * $paged ) - $per_page + 1;
+    $last     = min( $total, $loop->get( 'posts_per_page' ) * $paged );
+
+    if ( 1 == $total ) {
+        $data['page_results'] = 'Showing the single result';
+    } elseif ( $total <= $per_page || -1 == $per_page ) {
+       $data['page_results'] = "Showing ".$total." results";
+    } else {
+        $data['page_results'] = "Showing ".$first."-".$last." of ".$total." results";
+    }
     wp_reset_postdata();
     ob_end_clean();
     echo json_encode($data);
