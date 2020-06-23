@@ -17,9 +17,18 @@
 			grid-template-columns: repeat(3, 1fr);
 		}
 	}
+	&-single{
+		margin: auto;
+	}
 	&-image{
 		display: block;
 		margin-bottom: 15px;
+		img{
+		    height: auto;
+		    width: 100%;
+		    min-height: 200px;
+		    object-fit: cover;
+		}
 	}
 	&-title{
 		font-size: 18px;
