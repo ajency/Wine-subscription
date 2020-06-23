@@ -1831,6 +1831,7 @@ function change_product_view(){
         echo __( 'No products found' );
     }
     echo '</div>';
+    $data['products'] = ob_get_contents();
     wp_reset_postdata();
     ob_end_clean();
     echo json_encode($data);
