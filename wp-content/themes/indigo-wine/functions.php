@@ -1811,7 +1811,6 @@ add_action( 'wp_ajax_nopriv_change_product_view', 'change_product_view' );
 function change_product_view(){
     ob_start();
     $paged = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
-    echo 'paged = '.$paged;
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => 20,
