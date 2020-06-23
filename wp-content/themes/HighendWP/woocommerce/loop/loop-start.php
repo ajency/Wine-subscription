@@ -15,5 +15,6 @@ if(empty($woocommerce_loop['columns'])) {
 if(is_shop() || is_product_category() || is_product_tag()) {
 	$woocommerce_loop['columns'] = 4;
 }
+
+echo "<div class='row products clearfix products-".$woocommerce_loop['columns']."' data-cat='".get_queried_object()->slug."' data-min='".$_GET['min_price']."' data-max='".$_GET['max_price']."' data-page='".get_url_var('page')."'>";
 ?>
-<div class="row products clearfix products-<?php echo $woocommerce_loop['columns']; ?>">

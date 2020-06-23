@@ -415,7 +415,11 @@ jQuery(document).ready(function() {
             type: 'GET',
             data: {
                 action: 'change_product_view',
-                category: jQuery(".producer-category-container").attr('data-cat'),
+                category: jQuery(".row.products").attr('data-cat'),
+                min_price: jQuery(".row.products").attr('data-min'),
+                max_price: jQuery(".row.products").attr('data-max'),
+                page: jQuery(".row.products").attr('data-page'),
+                orderby: jQuery(".woocommerce-ordering .orderby").val(),
                 product_view_option: jQuery(this).attr('data-type'),
             },
             dataType:'json',
@@ -428,7 +432,6 @@ jQuery(document).ready(function() {
             jQuery(".row.products").css({
 				'opacity': 1
 			});
-            //jQuery(".count-store").html(data.page_results);
         });
         result.fail( function( jqXHR, textStatus ) {
             console.log( textStatus );

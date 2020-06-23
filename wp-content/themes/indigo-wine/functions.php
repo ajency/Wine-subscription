@@ -1810,13 +1810,47 @@ add_action( 'wp_ajax_change_product_view', 'change_product_view' );
 add_action( 'wp_ajax_nopriv_change_product_view', 'change_product_view' );
 function change_product_view(){
     ob_start();
-    $paged = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => 20,
+        'post_status' => 'publish',
         'product_cat' => $_GET['category'],
-        'paged' => $paged
+        'paged' => $_GET['page'],
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'product_visibility',
+                'field'    => 'name',
+                'terms'    => 'exclude-from-catalog',
+                'operator' => 'NOT IN',
+            ),
+        ),
     );
+    if($_GET['min_price'] && $_GET['max_price']){
+        $args['meta_query'] = array(
+            array(
+                'key' => '_price',
+                'value' => array($_GET['min_price'], $_GET['max_price']),
+                'compare' => 'BETWEEN',
+                'type' => 'NUMERIC'
+            ),
+        );
+    }
+    switch ($_GET['orderby']) {
+        case 'date':
+            $args['orderby'] = 'date';  
+            $args['order'] = 'desc';   
+            break;
+        case 'price':
+            $args['orderby'] = 'meta_value_num';    
+            $args['meta_key'] = '_price';   
+            $args['order'] = 'asc';  
+            break;
+        case 'price-desc':
+             $args['orderby'] = 'meta_value_num';    
+            $args['meta_key'] = '_price';   
+            $args['order'] = 'desc';  
+            break;
+    }
     $count = 0;
     $loop = new WP_Query( $args );
     echo '<div class="row products clearfix products-4">';
@@ -1836,3 +1870,4 @@ function change_product_view(){
     echo json_encode($data);
     die();
 }
+

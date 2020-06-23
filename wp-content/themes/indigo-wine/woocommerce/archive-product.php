@@ -33,7 +33,7 @@ if($sub_category->taxonomy == "product_cat"){
 	if($category->name == "Producers"){ 
 		$producer_page = true;
 		?>
-		<div class="producer-category-container" data-cat="<?php echo $sub_category->slug; ?>">
+		<div class="producer-category-container">
 			<div class="producer-category-image-container" style="background-image:url(<?php echo $imageURL; ?>);">
 			</div>
 			<div class="producer-category-description-container">
@@ -52,7 +52,6 @@ if($sub_category->taxonomy == "product_cat"){
 	<?php
 	}
 }
-
 do_action( 'woocommerce_before_main_content' );
 
 ?>
