@@ -1871,3 +1871,15 @@ function change_product_view(){
     die();
 }
 
+function get_url_var($name)
+{
+    $strURL = $_SERVER['REQUEST_URI'];
+    $arrVals = explode("/",$strURL);
+    $found = 0;
+    foreach ($arrVals as $index => $value) 
+    {
+        if($value == $name) $found = $index;
+    }
+    $place = $found + 1;
+    return ($found == 0) ? 1 : $arrVals[$place];
+}
