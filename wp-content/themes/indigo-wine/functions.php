@@ -1831,20 +1831,6 @@ function change_product_view(){
         echo __( 'No products found' );
     }
     echo '</div>';
-    $data['products'] = ob_get_contents();
-    $paged    = max( 1, $loop->get( 'paged' ) );
-    $per_page = $loop->get( 'posts_per_page' );
-    $total    = $loop->found_posts;
-    $first    = ( $per_page * $paged ) - $per_page + 1;
-    $last     = min( $total, $loop->get( 'posts_per_page' ) * $paged );
-
-    if ( 1 == $total ) {
-        $data['page_results'] = 'Showing the single result';
-    } elseif ( $total <= $per_page || -1 == $per_page ) {
-       $data['page_results'] = "Showing ".$total." results";
-    } else {
-        $data['page_results'] = "Showing ".$first."-".$last." of ".$total." results";
-    }
     wp_reset_postdata();
     ob_end_clean();
     echo json_encode($data);
