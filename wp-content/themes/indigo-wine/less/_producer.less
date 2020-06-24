@@ -86,7 +86,7 @@
     			color: #232323;
 			}
 			&-container{
-				@media (min-width: 768px){
+				@media (min-width: 992px){
 					float: left;
 					width: 50%;
 				}
@@ -182,7 +182,6 @@
        -webkit-flex: 1 1 auto;
        	height: 100%;
        	@media (max-width: 991px){
-       		width: 100%;
        		height: auto;
        		text-align: center;
        		border-right: 0;
@@ -209,5 +208,8 @@
 	}
 	@media (max-width: 991px){
 		flex-direction: column;
+	}
+	@media (max-width: 599px){
+		padding-bottom: 35px;
 	}
 }
