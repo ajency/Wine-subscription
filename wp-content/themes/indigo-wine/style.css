@@ -5794,6 +5794,9 @@ abbr {
 .producer-title {
   font-size: 18px;
 }
+.producer-category-container {
+  font-family: 'gotham_lightregular';
+}
 .producer-category-image-container {
   background-size: cover;
   background-repeat: no-repeat;
@@ -5850,6 +5853,16 @@ abbr {
 .view-panel {
   float: left;
   margin: 10px 10px 10px 0;
+}
+.view-panel .view-options {
+  opacity: 0.4;
+}
+.view-panel .view-options i {
+  font-size: 18px;
+  padding: 0 6px;
+}
+.view-panel .view-options-active {
+  opacity: 1;
 }
 #main-wrapper .hb-woo-product-list {
   display: flex;
