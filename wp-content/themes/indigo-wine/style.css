@@ -5931,6 +5931,7 @@ abbr {
   }
 }
 .hb-woo-product-list {
+  align-items: center;
   border-bottom: 1px solid #f1f1f1;
   width: calc(85%);
   width: -webkit-calc(85%);
@@ -5954,6 +5955,7 @@ abbr {
   border-right: 1px solid #f1f1f1;
   flex: 1 1 auto;
   -webkit-flex: 1 1 auto;
+  height: 100%;
 }
 .hb-woo-product-list .hb-product-price {
   width: 20%;
@@ -5967,10 +5969,10 @@ abbr {
   text-align: center;
 }
 .hb-woo-product-list .hb-buy-button {
-  position: relative;
-  opacity: 1;
-  width: 100%;
-  display: inline-block;
-  padding: 10px;
+  position: unset !important;
+  width: 100% !important;
+  display: inline-block !important;
+  padding: 10px !important;
   text-align: center;
+  margin-top: 10px;
 }
