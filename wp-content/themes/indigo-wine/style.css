@@ -5959,6 +5959,7 @@ abbr {
 }
 @media (max-width: 991px) {
   .hb-woo-product-list .hb-product-meta {
+    width: auto;
     height: auto;
     text-align: center;
     border-right: 0;
@@ -5990,6 +5991,11 @@ abbr {
 }
 @media (max-width: 599px) {
   .hb-woo-product-list {
-    padding-bottom: 35px;
+    padding-bottom: 35px !important;
+  }
+}
+@media handheld, only screen and (max-width: 900px) and (min-width: 768px) {
+  .hb-equal-col-height.hb-equal-col-height .products-4 .hb-woo-product.hb-woo-product {
+    width: 100% !important;
   }
 }
