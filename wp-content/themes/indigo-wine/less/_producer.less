@@ -94,7 +94,7 @@
 			&-inner{
 				max-width: 100%;
 			    padding: 20px 15px 0 15px;
-				@media(min-width: 768px){
+				@media(min-width: 992px){
 					max-width: 500px;
     				padding: 20px 15px 0 80px;
 				}
@@ -181,6 +181,12 @@
 		flex: 1 1 auto;
        -webkit-flex: 1 1 auto;
        	height: 100%;
+       	@media (max-width: 991px){
+       		width: 100%;
+       		height: auto;
+       		text-align: center;
+       		border-right: 0;
+       	}
 	}
 	.hb-product-price{
 		width: 20%;
@@ -200,5 +206,8 @@
 		padding: 10px !important;
 		text-align: center;
 		margin-top: 10px;
+	}
+	@media (max-width: 991px){
+		flex-direction: column;
 	}
 }
