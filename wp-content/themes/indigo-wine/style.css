@@ -5836,7 +5836,7 @@ abbr {
   font-weight: 400;
   color: #232323;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .producer-category-description-container {
     float: left;
     width: 50%;
@@ -5846,7 +5846,7 @@ abbr {
   max-width: 100%;
   padding: 20px 15px 0 15px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .producer-category-description-inner {
     max-width: 500px;
     padding: 20px 15px 0 80px;
@@ -5949,13 +5949,20 @@ abbr {
   line-height: 1.5;
 }
 .hb-woo-product-list .hb-product-meta {
-  width: 100%;
+  width: 60%;
   padding: 0 15px;
   margin-right: 10px;
   border-right: 1px solid #f1f1f1;
   flex: 1 1 auto;
   -webkit-flex: 1 1 auto;
   height: 100%;
+}
+@media (max-width: 991px) {
+  .hb-woo-product-list .hb-product-meta {
+    height: auto;
+    text-align: center;
+    border-right: 0;
+  }
 }
 .hb-woo-product-list .hb-product-price {
   width: 20%;
@@ -5975,4 +5982,14 @@ abbr {
   padding: 10px !important;
   text-align: center;
   margin-top: 10px;
+}
+@media (max-width: 991px) {
+  .hb-woo-product-list {
+    flex-direction: column;
+  }
+}
+@media (max-width: 599px) {
+  .hb-woo-product-list {
+    padding-bottom: 35px;
+  }
 }
