@@ -182,6 +182,7 @@
        -webkit-flex: 1 1 auto;
        	height: 100%;
        	@media (max-width: 991px){
+       		width: auto;
        		height: auto;
        		text-align: center;
        		border-right: 0;
@@ -210,6 +211,11 @@
 		flex-direction: column;
 	}
 	@media (max-width: 599px){
-		padding-bottom: 35px;
+		padding-bottom: 35px !important;
+	}
+}
+@media handheld, only screen and (max-width: 900px) and (min-width: 768px){
+	.hb-equal-col-height.hb-equal-col-height .products-4 .hb-woo-product.hb-woo-product {
+		width: 100% !important;
 	}
 }
