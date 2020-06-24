@@ -5786,10 +5786,15 @@ abbr {
 .producer-title {
   font-size: 18px;
 }
-.producer-category-image-container {
-  min-height: 450px;
-  float: left;
-  width: 50%;
+@media (min-width: 768px) {
+  .producer-category-image-container {
+    min-height: 450px;
+    float: left;
+    width: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
 }
 .producer-category-description-title {
   font-weight: bold;
@@ -5806,12 +5811,26 @@ abbr {
   height: 1px;
   display: inline-block;
 }
-.producer-category-description-container {
-  float: left;
-  width: 50%;
+.producer-category-description-info {
+  font-size: 14px;
+  font-weight: 400;
+  color: #232323;
+}
+@media (min-width: 768px) {
+  .producer-category-description-container {
+    float: left;
+    width: 50%;
+  }
 }
 .producer-category-description-inner {
-  margin: 20px 90px;
+  max-width: 100%;
+  padding: 32px 15px 0 15px;
+}
+@media (min-width: 768px) {
+  .producer-category-description-inner {
+    max-width: 500px;
+    padding: 32px 15px 0 80px;
+  }
 }
 .view-panel {
   float: left;
