@@ -1864,7 +1864,7 @@ function change_product_view(){
             wc_get_template_part( 'content', 'product-'.$_GET['product_view_option'] );
         endwhile;
     } else {
-        echo __( 'No products found' );
+        echo '<p class="woocommerce-info">No products were found matching your selection.</p>';
     }
     echo '</div>';
     $data['products'] = ob_get_contents();
