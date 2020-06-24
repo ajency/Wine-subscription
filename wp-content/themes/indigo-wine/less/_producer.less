@@ -36,9 +36,14 @@
 	&-category{
 		&-image{
 			&-container{
-				min-height: 450px;
-				float: left;
-				width: 50%;
+				@media (min-width: 768px){
+					min-height: 450px;
+					float: left;
+					width: 50%;
+					background-repeat: no-repeat;
+	    			background-size: cover;
+	    			background-position: center;
+    			}
 			}
 		}
 		&-description{
@@ -57,12 +62,24 @@
 				    display: inline-block;
 				}
 			}
+			&-info{
+				font-size: 14px;
+    			font-weight: 400;
+    			color: #232323;
+			}
 			&-container{
-				float: left;
-				width: 50%;
+				@media (min-width: 768px){
+					float: left;
+					width: 50%;
+				}
 			}
 			&-inner{
-				margin: 20px 90px;
+				max-width: 100%;
+			    padding: 32px 15px 0 15px;
+				@media(min-width: 768px){
+					max-width: 500px;
+    				padding: 32px 15px 0 80px;
+				}
 			}
 		}
 	}
