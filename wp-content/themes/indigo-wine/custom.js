@@ -404,6 +404,8 @@ jQuery(document).ready(function() {
 
 	jQuery(".view-panel .view-options").click(function(e){
 		e.preventDefault();
+		jQuery(".view-panel .view-options").removeClass('view-options-active');
+		jQuery(this).addClass('view-options-active');
 		setParam('view', jQuery(this).attr('data-type'));
 		jQuery(".row.products").css({
 			'opacity': 0

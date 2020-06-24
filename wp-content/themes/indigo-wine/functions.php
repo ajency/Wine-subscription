@@ -1799,8 +1799,8 @@ function signup_redirect() {
 
 function product_view_container (){
     echo '<div class= "view-panel">
-        <a class="grid-option view-options" data-type="grid" href="'.admin_url("admin-ajax.php").'">Grid</a>
-        <a class="list-option view-options" data-type="list" href="'.admin_url("admin-ajax.php").'">List</a>
+        <a class="grid-option view-options" data-type="grid" href="'.admin_url("admin-ajax.php").'"><i class="fa fa-th" aria-hidden="true"></i></a>
+        <a class="list-option view-options" data-type="list" href="'.admin_url("admin-ajax.php").'"><i class="fa fa-list-ul" aria-hidden="true"></i></a>
     </div>';
 }
 
