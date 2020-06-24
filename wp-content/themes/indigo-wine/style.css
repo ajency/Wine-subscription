@@ -5793,6 +5793,7 @@ abbr {
 }
 .producer-title {
   font-size: 18px;
+  font-family: 'gotham_bookregular';
 }
 .producer-category-container {
   font-family: 'gotham_lightregular';
@@ -5818,6 +5819,7 @@ abbr {
   font-weight: bold;
   margin-bottom: 20px;
   position: relative;
+  font-family: 'gotham_mediumregular';
 }
 .producer-category-description-title:before {
   bottom: 0px;

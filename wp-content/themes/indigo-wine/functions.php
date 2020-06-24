@@ -1798,9 +1798,12 @@ function signup_redirect() {
 }
 
 function product_view_container (){
+    $view = isset($_GET['view']) ? $_GET['view'] : 'grid';
+    $grid_class = ($view == 'grid') ? 'view-options-active' : '';
+    $list_class = ($view == 'list') ? 'view-options-active' : '';
     echo '<div class= "view-panel">
-        <a class="grid-option view-options" data-type="grid" href="'.admin_url("admin-ajax.php").'"><i class="fa fa-th" aria-hidden="true"></i></a>
-        <a class="list-option view-options" data-type="list" href="'.admin_url("admin-ajax.php").'"><i class="fa fa-list-ul" aria-hidden="true"></i></a>
+        <a class="grid-option view-options '.$grid_class.'" data-type="grid" href="'.admin_url("admin-ajax.php").'"><i class="fa fa-th" aria-hidden="true"></i></a>
+        <a class="list-option view-options '.$list_class.'" data-type="list" href="'.admin_url("admin-ajax.php").'"><i class="fa fa-list-ul" aria-hidden="true"></i></a>
     </div>';
 }
 
