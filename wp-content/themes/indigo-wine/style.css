@@ -5801,7 +5801,7 @@ abbr {
   height: 320px;
   width: 100%;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .producer-category-image-container {
     min-height: 450px;
     float: left;
@@ -5839,12 +5839,12 @@ abbr {
 }
 .producer-category-description-inner {
   max-width: 100%;
-  padding: 32px 15px 0 15px;
+  padding: 20px 15px 0 15px;
 }
 @media (min-width: 768px) {
   .producer-category-description-inner {
     max-width: 500px;
-    padding: 32px 15px 0 80px;
+    padding: 20px 15px 0 80px;
   }
 }
 .view-panel {
