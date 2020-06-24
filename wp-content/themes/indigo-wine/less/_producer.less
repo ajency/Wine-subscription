@@ -157,6 +157,7 @@
 }
 @keyframes load-spin{100%{transform:rotate(360deg);transform:rotate(360deg)}}@-o-keyframes load-spin{100%{-o-transform:rotate(360deg);transform:rotate(360deg)}}@-ms-keyframes load-spin{100%{-ms-transform:rotate(360deg);transform:rotate(360deg)}}@-webkit-keyframes load-spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@-moz-keyframes load-spin{100%{-moz-transform:rotate(360deg);transform:rotate(360deg)}}
 .hb-woo-product-list{
+	align-items: center;
     border-bottom: 1px solid #f1f1f1;
     width: calc(100% - 15px);
     width: -webkit-calc(100% - 15px);
@@ -179,6 +180,7 @@
 		border-right: 1px solid #f1f1f1;
 		flex: 1 1 auto;
        -webkit-flex: 1 1 auto;
+       	height: 100%;
 	}
 	.hb-product-price{
 		width: 20%;
@@ -192,11 +194,11 @@
 		}
 	}
 	.hb-buy-button {
-		position: relative;
-		opacity: 1;
-		width: 100%;
-		display: inline-block;
-		padding: 10px;
+		position: unset !important;
+		width: 100% !important;
+		display: inline-block !important;
+		padding: 10px !important;
 		text-align: center;
+		margin-top: 10px;
 	}
 }
