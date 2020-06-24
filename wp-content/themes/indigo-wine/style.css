@@ -5786,6 +5786,13 @@ abbr {
 .producer-title {
   font-size: 18px;
 }
+.producer-category-image-container {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 320px;
+  width: 100%;
+}
 @media (min-width: 768px) {
   .producer-category-image-container {
     min-height: 450px;
