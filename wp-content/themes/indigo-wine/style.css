@@ -5948,6 +5948,11 @@ abbr {
   font-family: 'gotham_mediumregular';
   line-height: 1.5;
 }
+@media (max-width: 575px) {
+  .hb-woo-product-list .hb-woo-product-details h3 {
+    font-size: 16px;
+  }
+}
 .hb-woo-product-list .hb-product-meta {
   width: 60%;
   padding: 0 15px;
@@ -5976,6 +5981,11 @@ abbr {
   float: none;
   text-align: center;
 }
+@media (max-width: 991px) {
+  .hb-woo-product-list .hb-product-price {
+    width: 33%;
+  }
+}
 .hb-woo-product-list .hb-buy-button {
   position: unset !important;
   width: 100% !important;
@@ -5987,10 +5997,6 @@ abbr {
 @media (max-width: 991px) {
   .hb-woo-product-list {
     flex-direction: column;
-  }
-}
-@media (max-width: 599px) {
-  .hb-woo-product-list {
     padding-bottom: 35px !important;
   }
 }
