@@ -5772,10 +5772,18 @@ abbr {
 }
 .producer-single {
   margin: auto;
+  width: 100%;
 }
 .producer-image {
   display: block;
   margin-bottom: 15px;
+}
+.producer-image-bg {
+  height: 235px;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  background-repeat: no-repeat;
 }
 .producer-image img {
   height: auto;

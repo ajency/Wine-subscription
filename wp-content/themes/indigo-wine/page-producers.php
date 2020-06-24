@@ -28,7 +28,7 @@ Template Name: Producers Template
 			$image = wp_get_attachment_image_src( $thumbnail_id, 'medium' );
 			if($image){
 				echo '<li class="producer-single">
-					<a class="producer-image" href="'. $link .'"><img src="'.$image[0].'"></a>
+					<a class="producer-image" href="'. $link .'"><div class="producer-image-bg" style="background-image:url('.$image[0].');"></div></a>
 					<a class="producer-title" href="'. $link .'">'.$sc->name.'</a>
 				</li>';
 			}
