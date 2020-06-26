@@ -6041,3 +6041,12 @@ abbr {
     width: 100% !important;
   }
 }
+@media (max-width: 767px) {
+  .hb-main-content .wine-banner-subtitle {
+    position: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+  }
+}
