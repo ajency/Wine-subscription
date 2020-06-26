@@ -54,7 +54,7 @@
 			    height: 320px;
 			    width: 100%;
 				@media (min-width: 992px){
-					min-height: 450px;
+					min-height: 490px;
 					float: left;
 					width: 50%;
 					background-repeat: no-repeat;
@@ -68,7 +68,7 @@
 				text-align: left;
 			}
 			&-info{
-				font-size: 1.15em;
+				font-size: 14.7px;
 				font-family: 'gotham_bookregular';
 				color: #022c4c;
 				padding: 0;
@@ -107,14 +107,20 @@
 			opacity: 1;
 		}
 	}
+	@media (max-width: 599px){
+	    float: none;
+	    clear: both;
+	    text-align: center;
+	}
 }
 
 #main-wrapper{
 	.hb-woo-product-list{
 		display: flex;
-		.hb-buy-button{
-			position: relative;
-			opacity: 1;
+		.add_to_cart_button{
+			&.hb-buy-button{
+				opacity: 1;
+			}
 		}
 	}
 }
@@ -178,6 +184,22 @@
 			margin-bottom: 0.2em;
 		}
 	}
+	.hb-woo-image-wrap{
+	    margin: 0.5em;
+	    padding: 0;
+		&:hover {
+			.hb-more-details{
+				&.hb-more-details {
+    				bottom: 60px !important;
+				}
+			}
+		}
+	}
+	.hb-woo-product{
+		img{
+			width: 98%;
+		}
+	}
 	.hb-product-meta{
 		width: 60%;
 		padding: 0 15px;
@@ -185,7 +207,19 @@
 		border-right: 1px solid #f1f1f1;
 		flex: 1 1 auto;
        -webkit-flex: 1 1 auto;
-       	height: 100%;
+       	height: auto;
+       	.product-cat-title{
+       		display: none;
+       		@media (max-width: 992px){
+       			display: block;
+       		}
+       	}
+       	.product-title-cat{
+       		display: block;
+       		@media (max-width: 992px){
+       			display: none;
+       		}
+       	}
        	@media (max-width: 991px){
        		width: auto;
        		height: auto;
@@ -205,17 +239,21 @@
 		}
 		@media (max-width: 991px){
 			width: 33%;
+		    margin-top: 10px;
 		}
 	}
-	.hb-buy-button {
-		position: unset!important;
-		white-space: nowrap;
-		margin-top: 10px;
-	    background-color: #022c4c !important;
-	    color: #fff !important;
-	    font-family: 'gotham_lightregular';
-	    border: 0 !important;
-	    padding: .5em 1.5em !important;
+	.add_to_cart_button{
+		&.hb-buy-button{
+			position: unset;
+			white-space: nowrap;
+			width: 75%;
+			margin-top: 10px;
+		    background-color: #022c4c !important;
+		    color: #fff !important;
+		    font-family: 'gotham_lightregular';
+		    border: 0 !important;
+		    padding: .5em 1.5em !important;
+		}
 	}
 	@media (max-width: 991px){
 		flex-direction: column;
