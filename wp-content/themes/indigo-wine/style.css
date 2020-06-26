@@ -5941,7 +5941,7 @@ abbr {
   padding-left: 20px;
 }
 .hb-woo-product-list .hb-woo-product-details h3 {
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 500;
   text-decoration: none;
   border: 0;
@@ -5952,6 +5952,14 @@ abbr {
   .hb-woo-product-list .hb-woo-product-details h3 {
     font-size: 16px;
   }
+}
+.hb-woo-product-list .hb-woo-product-details .wine_notes {
+  font-size: 15px;
+  font-family: 'gotham_bookregular';
+  color: #022c4c;
+  padding: 0;
+  font-weight: 500;
+  margin-bottom: 0.2em;
 }
 .hb-woo-product-list .hb-product-meta {
   width: 60%;
