@@ -38,7 +38,7 @@ if($sub_category->taxonomy == "product_cat"){
 			</div>
 			<div class="producer-category-description-container">
 				<div class="producer-category-description-inner">
-					<h1 class="producer-category-description-title">
+					<h1 class="producer-category-description-title  site-title">
 						<?php echo $sub_category->name; ?>
 					</h1>
 					<div class="producer-category-description-info">

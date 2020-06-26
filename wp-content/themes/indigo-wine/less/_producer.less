@@ -65,25 +65,15 @@
 		}
 		&-description{
 			&-title{
-				font-weight: bold;
-				margin-bottom: 20px;
-				position: relative;
-				font-family: 'gotham_mediumregular';
-				&:before{
-					bottom: 0px;
-				    background-color: #232323;
-				    content: " ";
-				    position: absolute;
-				    left: 0;
-				    width: 100px;
-				    height: 1px;
-				    display: inline-block;
-				}
+				text-align: left;
 			}
 			&-info{
-				font-size: 14px;
-    			font-weight: 400;
-    			color: #232323;
+				font-size: 1.15em;
+				font-family: 'gotham_bookregular';
+				color: #022c4c;
+				padding: 0;
+				font-weight: 500;
+				margin-bottom: 0.2em;			
 			}
 			&-container{
 				@media (min-width: 992px){
@@ -108,6 +98,7 @@
 	margin: 10px 10px 10px 0;
 	.view-options{
 		opacity: 0.4;
+		color: #022c4c;
 		i{
 			font-size: 18px;
     		padding: 0 6px;
@@ -165,20 +156,23 @@
 		max-width: 100%;
 		padding-left: 20px;
 		h3{
-			font-size: 19px;
-		    font-weight: 500;
-		    text-decoration: none;
-		    border: 0;
-		    font-family: 'gotham_mediumregular';
-		    line-height: 1.5;
-		    @media (max-width: 575px){
-		    	font-size: 16px;
-		    }
+			font-weight: 600;
+			font-size: 1em;
+			color: #022c4c;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-family: 'gotham_bookregular';
+			margin: 0 0 .5em 0;
+			-webkit-transition: all .5s ease;
+			transition: all .5s ease;
+			padding: 0;
+			line-height: 18px;
 		}
 		.wine_notes{
-			font-size: 15px;
+			font-size: 13.3px;
 			font-family: 'gotham_bookregular';
-			color: #022c4c;
+			color: #232323;
 			padding: 0;
 			font-weight: 500;
 			margin-bottom: 0.2em;
@@ -204,7 +198,7 @@
 	    margin: 0 auto;
 	    text-align: center;
 		.price{
-			color: black !important;
+			color: #022c4c !important;
 		    position: unset;
 		    float: none;
 		    text-align: center;
@@ -214,12 +208,11 @@
 		}
 	}
 	.hb-buy-button {
-		position: unset !important;
-		width: 100% !important;
-		display: inline-block !important;
-		padding: 10px !important;
-		text-align: center;
-		margin-top: 10px;
+	    background-color: #022c4c !important;
+	    color: #fff !important;
+	    font-family: 'gotham_lightregular';
+	    border: 0 !important;
+	    padding: .5em 1.5em !important;
 	}
 	@media (max-width: 991px){
 		flex-direction: column;
