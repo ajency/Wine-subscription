@@ -207,13 +207,21 @@ if(explode("/", $category_slug)[0] == 'product-category'){
 				?>
 
 			</div>
+		<?php
+			$wine_notes = $product->get_attribute( 'wine-notes' );
+			echo "<p class = 'wine_notes'>";
 
-			
-			
-			<?php
-			// commented the products tags on client request
-			//$size = sizeof( get_the_terms( $post->ID, 'product_tag' ) ); ?>
-			<?php //echo wc_get_product_tag_list( $product->get_id(), '', '<div class="woo-cats"><span class="hb-woo-shop-cats">' . _n( '', '', $size, 'woocommerce' ) . ' ', '</span></div>' ); ?>
+			if(strlen($wine_notes)<=150)
+			{
+				echo $wine_notes;
+			}
+			else
+			{
+				$y=substr($wine_notes,0,150) . '...';
+				echo $y;
+			}
+			echo "</p>";
+		?>
 		</div>
 	
 		<?php

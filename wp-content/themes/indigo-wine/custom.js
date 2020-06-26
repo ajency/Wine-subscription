@@ -407,9 +407,7 @@ jQuery(document).ready(function() {
 		jQuery(".view-panel .view-options").removeClass('view-options-active');
 		jQuery(this).addClass('view-options-active');
 		setParam('view', jQuery(this).attr('data-type'));
-		jQuery(".row.products").css({
-			'opacity': 0
-		});
+		jQuery(".row.products").css({'opacity': 0});
 		jQuery(".basel-products-loader").show();
 
 		var result = jQuery.ajax({
@@ -428,12 +426,10 @@ jQuery(document).ready(function() {
         });
 
 		result.success( function( data ) {
-			jQuery('html,body').animate({ scrollTop: document.documentElement.scrollTop - 1 }, 'slow');
 			jQuery(".basel-products-loader").hide();
             jQuery(".row.products").replaceWith(data.products);
-            jQuery(".row.products").css({
-				'opacity': 1
-			});
+            jQuery(".row.products").css({'opacity': 1});
+            jQuery('html,body').animate({ scrollTop: document.documentElement.scrollTop - 1 }, 'slow');
         });
         result.fail( function( jqXHR, textStatus ) {
             console.log( textStatus );
