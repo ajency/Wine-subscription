@@ -217,7 +217,7 @@ if(explode("/", $category_slug)[0] == 'product-category'){
 			}
 			else
 			{
-				$y=substr($wine_notes,0,150) . '...';
+				$y=substr($wine_notes,0,120) . '...';
 				echo $y;
 			}
 			echo "</p>";
