@@ -5807,7 +5807,7 @@ abbr {
 }
 @media (min-width: 992px) {
   .producer-category-image-container {
-    min-height: 450px;
+    min-height: 490px;
     float: left;
     width: 50%;
     background-repeat: no-repeat;
@@ -5819,7 +5819,7 @@ abbr {
   text-align: left;
 }
 .producer-category-description-info {
-  font-size: 1.15em;
+  font-size: 14.7px;
   font-family: 'gotham_bookregular';
   color: #022c4c;
   padding: 0;
@@ -5857,11 +5857,17 @@ abbr {
 .view-panel .view-options-active {
   opacity: 1;
 }
+@media (max-width: 599px) {
+  .view-panel {
+    float: none;
+    clear: both;
+    text-align: center;
+  }
+}
 #main-wrapper .hb-woo-product-list {
   display: flex;
 }
-#main-wrapper .hb-woo-product-list .hb-buy-button {
-  position: relative;
+#main-wrapper .hb-woo-product-list .add_to_cart_button.hb-buy-button {
   opacity: 1;
 }
 .basel-products-loader {
@@ -5953,6 +5959,16 @@ abbr {
   font-weight: 500;
   margin-bottom: 0.2em;
 }
+.hb-woo-product-list .hb-woo-image-wrap {
+  margin: 0.5em;
+  padding: 0;
+}
+.hb-woo-product-list .hb-woo-image-wrap:hover .hb-more-details.hb-more-details {
+  bottom: 60px !important;
+}
+.hb-woo-product-list .hb-woo-product img {
+  width: 95%;
+}
 .hb-woo-product-list .hb-product-meta {
   width: 60%;
   padding: 0 15px;
@@ -5960,7 +5976,23 @@ abbr {
   border-right: 1px solid #f1f1f1;
   flex: 1 1 auto;
   -webkit-flex: 1 1 auto;
-  height: 100%;
+  height: auto;
+}
+.hb-woo-product-list .hb-product-meta .product-cat-title {
+  display: none;
+}
+@media (max-width: 992px) {
+  .hb-woo-product-list .hb-product-meta .product-cat-title {
+    display: block;
+  }
+}
+.hb-woo-product-list .hb-product-meta .product-title-cat {
+  display: block;
+}
+@media (max-width: 992px) {
+  .hb-woo-product-list .hb-product-meta .product-title-cat {
+    display: none;
+  }
 }
 @media (max-width: 991px) {
   .hb-woo-product-list .hb-product-meta {
@@ -5984,11 +6016,13 @@ abbr {
 @media (max-width: 991px) {
   .hb-woo-product-list .hb-product-price {
     width: 33%;
+    margin-top: 10px;
   }
 }
-.hb-woo-product-list .hb-buy-button {
-  position: unset!important;
+.hb-woo-product-list .add_to_cart_button.hb-buy-button {
+  position: unset;
   white-space: nowrap;
+  width: 75%;
   margin-top: 10px;
   background-color: #022c4c !important;
   color: #fff !important;
