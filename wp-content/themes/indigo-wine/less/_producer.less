@@ -114,16 +114,6 @@
 	}
 }
 
-#main-wrapper{
-	.hb-woo-product-list{
-		display: flex;
-		.add_to_cart_button{
-			&.hb-buy-button{
-				opacity: 1;
-			}
-		}
-	}
-}
 .basel-products-loader{
 	position:relative;
 	display: none;
@@ -154,6 +144,7 @@
 }
 @keyframes load-spin{100%{transform:rotate(360deg);transform:rotate(360deg)}}@-o-keyframes load-spin{100%{-o-transform:rotate(360deg);transform:rotate(360deg)}}@-ms-keyframes load-spin{100%{-ms-transform:rotate(360deg);transform:rotate(360deg)}}@-webkit-keyframes load-spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@-moz-keyframes load-spin{100%{-moz-transform:rotate(360deg);transform:rotate(360deg)}}
 .hb-woo-product-list{
+	display: flex;
 	align-items: center;
     border-bottom: 1px solid #f1f1f1;
     width: calc(100% - 15px);
@@ -186,7 +177,7 @@
 	}
 	.hb-woo-image-wrap{
 	    margin: 0.5em;
-	    padding: 0;
+	    padding: 0 !important;
 		&:hover {
 			.hb-more-details{
 				&.hb-more-details {
@@ -195,10 +186,8 @@
 			}
 		}
 	}
-	.hb-woo-product{
-		img{
-			width: 95%;
-		}
+	img{
+		width: auto !important;
 	}
 	.hb-product-meta{
 		width: 60%;
@@ -208,6 +197,7 @@
 		flex: 1 1 auto;
        -webkit-flex: 1 1 auto;
        	height: auto;
+       	border-bottom: 1px solid #eee !important;
        	.product-cat-title{
        		display: none;
        		@media (max-width: 992px){
@@ -247,6 +237,7 @@
 			position: unset;
 			white-space: nowrap;
 			width: 75%;
+			opacity: 1;
 			margin-top: 10px;
 		    background-color: #022c4c !important;
 		    color: #fff !important;
@@ -269,7 +260,7 @@
 .hb-main-content {
 	.wine-banner-subtitle{
 		@media (max-width: 767px){
-		    position: inherit;
+		    position: inherit !important;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
