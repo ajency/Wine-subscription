@@ -427,9 +427,12 @@ jQuery(document).ready(function() {
 
 		result.success( function( data ) {
 			jQuery(".basel-products-loader").hide();
+			jQuery(".row.products").css({'opacity': 1});
             jQuery(".row.products").replaceWith(data.products);
-            jQuery(".row.products").css({'opacity': 1});
-            jQuery('html,body').animate({ scrollTop: document.documentElement.scrollTop - 1 }, 'slow');
+            window.scroll({
+		  		top: document.documentElement.scrollTop + 1,
+		  		behavior: 'smooth'
+			});
         });
         result.fail( function( jqXHR, textStatus ) {
             console.log( textStatus );
