@@ -49,6 +49,16 @@ if($sub_category->taxonomy == "product_cat"){
 			<div class="clearfix mb-2"></div>
 		</div>
 		<div class="clearfix"></div>
+		<script type="text/javascript">
+			jQuery(document).ready(function(){
+				image_height = jQuery(".producer-category-image-container").outerHeight();
+				content_height = jQuery(".producer-category-description-container").outerHeight();
+				if(image_height < content_height){
+					jQuery(".producer-category-image-container").css("height", content_height+"px");
+				}
+			});
+			
+		</script>
 	<?php
 	}
 }
