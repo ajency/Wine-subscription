@@ -418,6 +418,7 @@ jQuery(document).ready(function() {
                 category: jQuery(".row.products").attr('data-cat'),
                 min_price: jQuery(".row.products").attr('data-min'),
                 max_price: jQuery(".row.products").attr('data-max'),
+                filter: jQuery(".row.products").attr('data-filter'),
                 page: jQuery(".row.products").attr('data-page'),
                 orderby: jQuery(".woocommerce-ordering .orderby").val(),
                 product_view_option: jQuery(this).attr('data-type'),
@@ -428,15 +429,7 @@ jQuery(document).ready(function() {
 		result.success( function( data ) {
 			jQuery(".basel-products-loader").hide();
 			jQuery(".row.products").css({'opacity': 1});
-		    category = jQuery(".row.products").attr('data-cat');
-            min_price = jQuery(".row.products").attr('data-min');
-            max_price = jQuery(".row.products").attr('data-max');
-            page = jQuery(".row.products").attr('data-page');
             jQuery(".row.products").replaceWith(data.products);
-            category = jQuery(".row.products").attr('data-cat', category);
-            min_price = jQuery(".row.products").attr('data-min', min_price);
-            max_price = jQuery(".row.products").attr('data-max', max_price);
-            page = jQuery(".row.products").attr('data-page', page);
             window.scroll({
 		  		top: document.documentElement.scrollTop + 1,
 		  		behavior: 'smooth'

@@ -1828,6 +1828,15 @@ function change_product_view(){
             ),
         ),
     );
+    $filters = array_filter(explode("-", $_GET['filter']));
+    if(!empty($filters)){
+        $args['tax_query']['relation'] = 'AND';
+        $args['tax_query'][1] = array(
+            'taxonomy'  => 'product_tag',
+            'field'     => 'term_id',
+            'terms'     => $filters,
+        );
+    }
     if($_GET['min_price'] && $_GET['max_price']){
         $args['meta_query'] = array(
             array(
@@ -1856,7 +1865,7 @@ function change_product_view(){
     }
     $count = 0;
     $loop = new WP_Query( $args );
-    echo '<div class="row products clearfix products-4">';
+    echo "<div class='row products clearfix products-4' data-cat='".$_GET['category']."' data-min='".$_GET['min_price']."' data-max='".$_GET['max_price']."' data-page='".$_GET['page']."' data-filter='".$_GET['filter']."'>";
     if ( $loop->have_posts() ) {
         while ( $loop->have_posts() ) : $loop->the_post();
             $count++;
@@ -1868,6 +1877,7 @@ function change_product_view(){
     }
     echo '</div>';
     $data['products'] = ob_get_contents();
+    $data['args'] = $args;
     wp_reset_postdata();
     ob_end_clean();
     echo json_encode($data);
