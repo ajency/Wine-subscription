@@ -1797,3 +1797,102 @@ function signup_redirect() {
     <?php
 }
 
+function product_view_container (){
+    $view = isset($_GET['view']) ? $_GET['view'] : 'grid';
+    $grid_class = ($view == 'grid') ? 'view-options-active' : '';
+    $list_class = ($view == 'list') ? 'view-options-active' : '';
+    echo '<div class= "view-panel">
+        <a class="grid-option view-options '.$grid_class.'" data-type="grid" href="'.admin_url("admin-ajax.php").'"><i class="fa fa-th" aria-hidden="true"></i></a>
+        <a class="list-option view-options '.$list_class.'" data-type="list" href="'.admin_url("admin-ajax.php").'"><i class="fa fa-list-ul" aria-hidden="true"></i></a>
+    </div>';
+}
+
+add_action ( 'woocommerce_before_shop_loop' ,  'product_view_container');
+
+add_action( 'wp_ajax_change_product_view', 'change_product_view' );
+add_action( 'wp_ajax_nopriv_change_product_view', 'change_product_view' );
+function change_product_view(){
+    ob_start();
+    $args = array(
+        'post_type' => 'product',
+        'posts_per_page' => 20,
+        'post_status' => 'publish',
+        'product_cat' => $_GET['category'],
+        'paged' => $_GET['page'],
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'product_visibility',
+                'field'    => 'name',
+                'terms'    => 'exclude-from-catalog',
+                'operator' => 'NOT IN',
+            ),
+        ),
+    );
+    $filters = array_filter(explode("-", $_GET['filter']));
+    if(!empty($filters)){
+        $args['tax_query']['relation'] = 'AND';
+        $args['tax_query'][1] = array(
+            'taxonomy'  => 'product_tag',
+            'field'     => 'term_id',
+            'terms'     => $filters,
+        );
+    }
+    if($_GET['min_price'] && $_GET['max_price']){
+        $args['meta_query'] = array(
+            array(
+                'key' => '_price',
+                'value' => array($_GET['min_price'], $_GET['max_price']),
+                'compare' => 'BETWEEN',
+                'type' => 'NUMERIC'
+            ),
+        );
+    }
+    switch ($_GET['orderby']) {
+        case 'date':
+            $args['orderby'] = 'date';  
+            $args['order'] = 'desc';   
+            break;
+        case 'price':
+            $args['orderby'] = 'meta_value_num';    
+            $args['meta_key'] = '_price';   
+            $args['order'] = 'asc';  
+            break;
+        case 'price-desc':
+             $args['orderby'] = 'meta_value_num';    
+            $args['meta_key'] = '_price';   
+            $args['order'] = 'desc';  
+            break;
+    }
+    $count = 0;
+    $loop = new WP_Query( $args );
+    echo "<div class='row products clearfix products-4' data-cat='".$_GET['category']."' data-min='".$_GET['min_price']."' data-max='".$_GET['max_price']."' data-page='".$_GET['page']."' data-filter='".$_GET['filter']."'>";
+    if ( $loop->have_posts() ) {
+        while ( $loop->have_posts() ) : $loop->the_post();
+            $count++;
+            do_action( 'woocommerce_shop_loop' );
+            wc_get_template_part( 'content', 'product-'.$_GET['product_view_option'] );
+        endwhile;
+    } else {
+        echo '<p class="woocommerce-info">No products were found matching your selection.</p>';
+    }
+    echo '</div>';
+    $data['products'] = ob_get_contents();
+    $data['args'] = $args;
+    wp_reset_postdata();
+    ob_end_clean();
+    echo json_encode($data);
+    die();
+}
+
+function get_url_var($name)
+{
+    $strURL = $_SERVER['REQUEST_URI'];
+    $arrVals = explode("/",$strURL);
+    $found = 0;
+    foreach ($arrVals as $index => $value) 
+    {
+        if($value == $name) $found = $index;
+    }
+    $place = $found + 1;
+    return ($found == 0) ? 1 : $arrVals[$place];
+}

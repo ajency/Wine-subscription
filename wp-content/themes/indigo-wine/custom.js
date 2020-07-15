@@ -122,11 +122,12 @@ jQuery(function(){
 
 
 	// Menu height checking
-
-	if (jQuery(window).width() > 992) {
-	  	var menu_height = jQuery('.ind-custom-menu').outerHeight();
-		jQuery('.header-sep').css('margin-top',menu_height);
-	}
+	jQuery(window).load(function(){ 
+		if (jQuery(window).width() > 992) {
+		  	var menu_height = jQuery('.ind-custom-menu').outerHeight();
+			jQuery('.header-sep').css('margin-top',menu_height);
+		}
+	})
 
 	// featured product scroll
 
@@ -400,6 +401,44 @@ jQuery(document).ready(function() {
 	jQuery(".signup-link").click(function(){
 		jQuery('#signup-box').show();
 	});
+
+	jQuery(".view-panel .view-options").click(function(e){
+		e.preventDefault();
+		jQuery(".view-panel .view-options").removeClass('view-options-active');
+		jQuery(this).addClass('view-options-active');
+		setParam('view', jQuery(this).attr('data-type'));
+		jQuery(".row.products").css({'opacity': 0});
+		jQuery(".basel-products-loader").show();
+
+		var result = jQuery.ajax({
+            url: jQuery(this).attr('href'),
+            type: 'GET',
+            data: {
+                action: 'change_product_view',
+                category: jQuery(".row.products").attr('data-cat'),
+                min_price: jQuery(".row.products").attr('data-min'),
+                max_price: jQuery(".row.products").attr('data-max'),
+                filter: jQuery(".row.products").attr('data-filter'),
+                page: jQuery(".row.products").attr('data-page'),
+                orderby: jQuery(".woocommerce-ordering .orderby").val(),
+                product_view_option: jQuery(this).attr('data-type'),
+            },
+            dataType:'json',
+        });
+
+		result.success( function( data ) {
+			jQuery(".basel-products-loader").hide();
+			jQuery(".row.products").css({'opacity': 1});
+            jQuery(".row.products").replaceWith(data.products);
+            window.scroll({
+		  		top: document.documentElement.scrollTop + 1,
+		  		behavior: 'smooth'
+			});
+        });
+        result.fail( function( jqXHR, textStatus ) {
+            console.log( textStatus );
+        });
+	})
 });
 
 
@@ -450,4 +489,19 @@ function switch_checkbox(){
 		jQuery( 'div.create-account' ).hide();
 	}
 }
+
+function setParam(param, mode = ''){
+	var url = new URL(location.href);
+	if(mode){
+		url.searchParams.set(param, mode);
+	}
+	else{
+		url.searchParams.delete(param);
+	}
+	url.search = url.searchParams.toString();
+	var new_url = url.toString(); 
+	window.history.pushState('page2', 'Title', new_url);
+}
+
+
 

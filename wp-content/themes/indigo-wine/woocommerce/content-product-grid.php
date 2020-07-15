@@ -15,9 +15,7 @@
  * @package WooCommerce/Templates
  * @version 3.6.0
  */
-
 defined( 'ABSPATH' ) || exit;
-
 global $product, $woocommerce_loop;
 
 // Store loop count we're currently on
@@ -95,8 +93,8 @@ $category_slug = add_query_arg( array(), $wp->request );
 if(explode("/", $category_slug)[0] == 'product-category'){
 	$_SESSION['category_slug'] = $category_slug;
 }
-?>
 
+?>
 <div <?php wc_product_class( $classes, $product ); ?>>
 
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
