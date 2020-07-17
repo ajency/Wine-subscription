@@ -25,7 +25,7 @@ Template Name: Producers Template
 		foreach ($subcats as $sc) {
 			$link = get_term_link( $sc->slug, $sc->taxonomy );
 			$thumbnail_id = get_woocommerce_term_meta( $sc->term_id, 'thumbnail_id', true ); 
-			$image = wp_get_attachment_image_src( $thumbnail_id, 'medium' );
+			$image = wp_get_attachment_image_src( $thumbnail_id, 'large' );
 			if($image){
 				echo '<li class="producer-single">
 					<a class="producer-image" href="'. $link .'"><div class="producer-image-bg" style="background-image:url('.$image[0].');"></div></a>
