@@ -221,7 +221,6 @@ if(explode("/", $category_slug)[0] == 'product-category'){
 					    // loop through each cat
 					    foreach($categories as $category) :
 					    	$parent_cat = get_term_by( 'id', $category->parent, 'product_cat' );
-					    	echo json_encode($parent_cat);
 					      // get the children (if any) of the current cat
 					      $children = get_categories( array ('taxonomy' => 'product_cat', 'parent' => $category->term_id ));
 
