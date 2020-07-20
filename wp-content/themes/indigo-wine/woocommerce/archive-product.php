@@ -56,6 +56,9 @@ if($sub_category->taxonomy == "product_cat"){
 				if(image_height < content_height){
 					jQuery(".producer-category-image-container").css("height", content_height+"px");
 				}
+				if (jQuery(window).width() < 767) {
+					jQuery(".producer-category-image-container").css("height", "320px");
+				}
 			});
 			
 		</script>

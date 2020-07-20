@@ -1643,6 +1643,9 @@ function discount_when_quantity_greater_than_5() {
           if($term->slug=='wine'){
             $total_qty=$total_qty+$product_qty;
           }
+          //if($term->slug == 'wine-packs'){
+          //  $total_qty=$total_qty+$product_qty*6;
+          //}
         }
 
     }
@@ -1863,12 +1866,11 @@ function change_product_view(){
             $args['order'] = 'desc';  
             break;
     }
-    $count = 0;
     $loop = new WP_Query( $args );
     echo "<div class='row products clearfix products-4' data-cat='".$_GET['category']."' data-min='".$_GET['min_price']."' data-max='".$_GET['max_price']."' data-page='".$_GET['page']."' data-filter='".$_GET['filter']."'>";
     if ( $loop->have_posts() ) {
-        while ( $loop->have_posts() ) : $loop->the_post();
-            $count++;
+        while ( $loop->have_posts() ) : 
+            $loop->the_post();
             do_action( 'woocommerce_shop_loop' );
             wc_get_template_part( 'content', 'product-'.$_GET['product_view_option'] );
         endwhile;
