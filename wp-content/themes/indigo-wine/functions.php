@@ -1643,9 +1643,9 @@ function discount_when_quantity_greater_than_5() {
           if($term->slug=='wine'){
             $total_qty=$total_qty+$product_qty;
           }
-          if($term->slug == 'wine-packs'){
-            $total_qty=$total_qty+$product_qty*6;
-          }
+          //if($term->slug == 'wine-packs'){
+          //  $total_qty=$total_qty+$product_qty*6;
+          //}
         }
 
     }
