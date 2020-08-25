@@ -1055,6 +1055,7 @@ function indigo_register_form() {
             <label for="name"><?php _e( 'Name', 'mydomain' ) ?><br />
                 <input type="text" name="name" id="name" class="input" value="<?php echo esc_attr( wp_unslash( $name ) ); ?>" size="25" /></label>
         </p>
+        <?php
     $first_name = ( ! empty( $_POST['first_name'] ) ) ? trim( $_POST['first_name'] ) : '';
         
         ?>
