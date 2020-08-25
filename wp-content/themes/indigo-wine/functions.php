@@ -1707,7 +1707,7 @@ add_action('woocommerce_view_order','indigo_view_order',10,1);
 
 add_action('wpcf7_before_send_mail', 'user_signup', 10, 3);
 function user_signup ($contact_form, &$abort, $object){
-    if ($contact_form->title == "Signup"){
+    if ($contact_form->title == "Signup" && $_POST['name'] == ""){
         $ulogin = $_POST['first-name'];
         $check = username_exists($ulogin);
         if (!empty($check)) {
