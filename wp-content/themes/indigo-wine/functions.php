@@ -1051,7 +1051,7 @@ add_filter( 'rul_before_user', 'login_redirect_peter', 10, 4 );
 add_action( 'register_form', 'indigo_register_form' );
 function indigo_register_form() {
     ?>
-        <p class="hidden-honeypot">
+        <p style="display: none;">
             <label for="name"><?php _e( 'Name', 'mydomain' ) ?><br />
                 <input type="text" name="name" id="name" class="input" value="<?php echo esc_attr( wp_unslash( $name ) ); ?>" size="25" /></label>
         </p>
