@@ -1050,7 +1050,11 @@ add_filter( 'rul_before_user', 'login_redirect_peter', 10, 4 );
 ////1. Add a new form element...
 add_action( 'register_form', 'indigo_register_form' );
 function indigo_register_form() {
-
+    ?>
+        <p class="hidden-honeypot">
+            <label for="name"><?php _e( 'Name', 'mydomain' ) ?><br />
+                <input type="text" name="name" id="name" class="input" value="<?php echo esc_attr( wp_unslash( $name ) ); ?>" size="25" /></label>
+        </p>
     $first_name = ( ! empty( $_POST['first_name'] ) ) ? trim( $_POST['first_name'] ) : '';
         
         ?>
@@ -1090,7 +1094,9 @@ function indigo_register_form() {
     //2. Add validation. In this case, we make sure first_name is required.
     add_filter( 'registration_errors', 'indigo_registration_errors', 10, 3 );
     function indigo_registration_errors( $errors, $sanitized_user_login, $user_email ) {
-        
+        if ( $_POST['name'] != '' ) {
+            $errors->add( 'first_name_error', __( '<strong>ERROR</strong>: Invalid fields entered.', 'mydomain' ) );
+        } 
         if ( empty( $_POST['first_name'] ) || ! empty( $_POST['first_name'] ) && trim( $_POST['first_name'] ) == '' ) {
             $errors->add( 'first_name_error', __( '<strong>ERROR</strong>: You must include a first name.', 'mydomain' ) );
         }  
