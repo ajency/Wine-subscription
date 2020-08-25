@@ -2529,11 +2529,11 @@ a[data-readmore-toggle].more:before {
 #signup-box #signup-form form .required-label {
   color: #ff353b;
 }
-#signup-box #signup-form .hidden-honeypot {
-  display: none;
-}
 body #to-top {
   bottom: 25px;
+}
+.hidden-honeypot {
+  display: none;
 }
 #simplemodal-login-container-osx.simplemodal-container {
   width: 550px !important;
