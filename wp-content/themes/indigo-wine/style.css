@@ -2532,6 +2532,9 @@ a[data-readmore-toggle].more:before {
 body #to-top {
   bottom: 25px;
 }
+.hidden-honeypot {
+  display: none;
+}
 #simplemodal-login-container-osx.simplemodal-container {
   width: 550px !important;
   left: 0 !important;

@@ -1050,7 +1050,12 @@ add_filter( 'rul_before_user', 'login_redirect_peter', 10, 4 );
 ////1. Add a new form element...
 add_action( 'register_form', 'indigo_register_form' );
 function indigo_register_form() {
-
+    ?>
+        <p style="display: none;">
+            <label for="name"><?php _e( 'Name', 'mydomain' ) ?><br />
+                <input type="text" name="name" id="name" class="input" value="<?php echo esc_attr( wp_unslash( $name ) ); ?>" size="25" /></label>
+        </p>
+        <?php
     $first_name = ( ! empty( $_POST['first_name'] ) ) ? trim( $_POST['first_name'] ) : '';
         
         ?>
@@ -1090,7 +1095,9 @@ function indigo_register_form() {
     //2. Add validation. In this case, we make sure first_name is required.
     add_filter( 'registration_errors', 'indigo_registration_errors', 10, 3 );
     function indigo_registration_errors( $errors, $sanitized_user_login, $user_email ) {
-        
+        if ( $_POST['name'] != '' ) {
+            $errors->add( 'first_name_error', __( '<strong>ERROR</strong>: Invalid fields entered.', 'mydomain' ) );
+        } 
         if ( empty( $_POST['first_name'] ) || ! empty( $_POST['first_name'] ) && trim( $_POST['first_name'] ) == '' ) {
             $errors->add( 'first_name_error', __( '<strong>ERROR</strong>: You must include a first name.', 'mydomain' ) );
         }  
@@ -1707,57 +1714,64 @@ add_action('woocommerce_view_order','indigo_view_order',10,1);
 
 add_action('wpcf7_before_send_mail', 'user_signup', 10, 3);
 function user_signup ($contact_form, &$abort, $object){
+
     if ($contact_form->title == "Signup"){
-        $ulogin = $_POST['first-name'];
-        $check = username_exists($ulogin);
-        if (!empty($check)) {
-            $suffix = 2;
-            while (!empty($check)) {
-                $alt_ulogin = $ulogin . '-' . $suffix;
-                $check = username_exists($alt_ulogin);
-                $suffix++;
-            }
-            $ulogin = $alt_ulogin;
-        }
-        if(email_exists($_POST['email'])){
+        if($_POST['name'] != ""){
             $abort = true;
-            $object->set_response("Email already exists.");       
-        }
-        elseif ( is_wp_error( $user ) ) {
-            $abort = true;
-            $object->set_response("There was an error creating the user. Please try again.");
+            $object->set_response("Invalid data entered.");
         }
         else{
-            $password = wp_generate_password(6, false);
-            $user_id = wp_insert_user( [
-                'user_login'    =>  $ulogin,
-                'user_email'    =>  $_POST['email'],
-                'user_pass'     =>  $password, 
-                'first_name'    =>  $_POST['first-name'],
-                'last_name'     =>  $_POST['last-name'],
-                'display_name'  =>  $_POST['first-name'].' '.  $_POST['last-name']
-            ] ) ;
-            $user = new WP_User( (int) $user_id );
-            $adt_rp_key = get_password_reset_key( $user );
-            $rp_link = '<a href="' . wp_login_url()."?action=rp&key=$adt_rp_key&login=" . rawurlencode($ulogin) . '">Click here to set your password</a>';
-            $data = [
-                'email' => $_POST['email'],
-                'display_name' => $user->display_name,
-                'rp_link' => $rp_link
-            ];
-            $subject = 'Welcome to Indigo Wine Co';
-            $message = generate_email_template('registration_mail', $data);
-            wp_mail( $_POST['email'], $subject, $message, $headers = '', $attachments = array() );
-            $user = wp_signon([
-                'user_login' => $_POST['email'],
-                'user_password' => $password,
-            ]);
-            sync_mailchimp([
-                'email' => $_POST['email'],
-                'firstname' => $_POST['first-name'],
-                'lastname' => $_POST['last-name'],
-                'status' => 'subscribed'
-            ]);
+            $ulogin = $_POST['first-name'];
+            $check = username_exists($ulogin);
+            if (!empty($check)) {
+                $suffix = 2;
+                while (!empty($check)) {
+                    $alt_ulogin = $ulogin . '-' . $suffix;
+                    $check = username_exists($alt_ulogin);
+                    $suffix++;
+                }
+                $ulogin = $alt_ulogin;
+            }
+            if(email_exists($_POST['email'])){
+                $abort = true;
+                $object->set_response("Email already exists.");       
+            }
+            elseif ( is_wp_error( $user ) ) {
+                $abort = true;
+                $object->set_response("There was an error creating the user. Please try again.");
+            }
+            else{
+                $password = wp_generate_password(6, false);
+                $user_id = wp_insert_user( [
+                    'user_login'    =>  $ulogin,
+                    'user_email'    =>  $_POST['email'],
+                    'user_pass'     =>  $password, 
+                    'first_name'    =>  $_POST['first-name'],
+                    'last_name'     =>  $_POST['last-name'],
+                    'display_name'  =>  $_POST['first-name'].' '.  $_POST['last-name']
+                ] ) ;
+                $user = new WP_User( (int) $user_id );
+                $adt_rp_key = get_password_reset_key( $user );
+                $rp_link = '<a href="' . wp_login_url()."?action=rp&key=$adt_rp_key&login=" . rawurlencode($ulogin) . '">Click here to set your password</a>';
+                $data = [
+                    'email' => $_POST['email'],
+                    'display_name' => $user->display_name,
+                    'rp_link' => $rp_link
+                ];
+                $subject = 'Welcome to Indigo Wine Co';
+                $message = generate_email_template('registration_mail', $data);
+                wp_mail( $_POST['email'], $subject, $message, $headers = '', $attachments = array() );
+                $user = wp_signon([
+                    'user_login' => $_POST['email'],
+                    'user_password' => $password,
+                ]);
+                sync_mailchimp([
+                    'email' => $_POST['email'],
+                    'firstname' => $_POST['first-name'],
+                    'lastname' => $_POST['last-name'],
+                    'status' => 'subscribed'
+                ]);
+            }
         }
     }
 }
