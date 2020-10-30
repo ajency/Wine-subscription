@@ -80,9 +80,10 @@ do_action( 'woocommerce_before_main_content' );
 $product_view = isset($_GET['view']) ? $_GET['view'] : 'grid';
 if(!isset($producer_page)){
 	do_action( 'woocommerce_archive_description' );
+}
+else{
 	$product_view = 'list';
 }
-
 ?>
 <?php
 
