@@ -28,8 +28,8 @@ Template Name: Producers Template
 			$image = wp_get_attachment_image_src( $thumbnail_id, 'large' );
 			if($image){
 				echo '<li class="producer-single">
-					<a class="producer-image" href="'. $link .'"><div class="producer-image-bg" style="background-image:url('.$image[0].');"></div></a>
-					<a class="producer-title" href="'. $link .'">'.$sc->name.'</a>
+					<a class="producer-image" href="'. $link .'?view=list"><div class="producer-image-bg" style="background-image:url('.$image[0].');"></div></a>
+					<a class="producer-title" href="'. $link .'?view=list">'.$sc->name.'</a>
 				</li>';
 			}
 		}
