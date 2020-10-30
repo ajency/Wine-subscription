@@ -32,6 +32,7 @@ if($sub_category->taxonomy == "product_cat"){
 	$category = get_term($sub_category->parent);
 	if($category->name == "Producers"){ 
 		$producer_page = true;
+		$_GET['view'] = 'list';
 		?>
 		<div class="producer-category-container">
 			<div class="producer-category-image-container" style="background-image:url(<?php echo $imageURL; ?>);">
@@ -77,16 +78,12 @@ do_action( 'woocommerce_before_main_content' );
  * @hooked woocommerce_taxonomy_archive_description - 10
  * @hooked woocommerce_product_archive_description - 10
  */
-$product_view = isset($_GET['view']) ? $_GET['view'] : 'grid';
 if(!isset($producer_page)){
 	do_action( 'woocommerce_archive_description' );
 }
-else{
-	$product_view = 'list';
-}
 ?>
 <?php
-
+$product_view = isset($_GET['view']) ? $_GET['view'] : 'grid';
 if ( woocommerce_product_loop() ) {
 
 	/**
