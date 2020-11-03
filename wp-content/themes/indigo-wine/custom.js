@@ -438,6 +438,12 @@ jQuery(document).ready(function() {
         result.fail( function( jqXHR, textStatus ) {
             console.log( textStatus );
         });
+	});
+
+	jQuery(".product-accordion .card-header").click(function(){
+		jQuery("#"+jQuery(this).find(".card-title").data('target')).slideToggle("slow", function(){
+			jQuery(this).closest(".card").find(".card-title").toggleClass('card-header-opened card-header-closed');
+		});
 	})
 });
 
