@@ -55,7 +55,7 @@ if ( ! empty( $product_tabs ) ) : ?>
 					if ( isset( $product_tab['callback'] ) ) {
 						call_user_func( $product_tabs[$wine_pack_prodcut_key]['callback'], $key, $product_tabs[$wine_pack_prodcut_key] );
 					}
-					$show_wine_pack_product = false;
+					//$show_wine_pack_product = false;
 				}
 				?>
 			</div>
