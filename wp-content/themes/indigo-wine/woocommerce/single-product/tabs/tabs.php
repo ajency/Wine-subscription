@@ -66,7 +66,7 @@ if ( ! empty( $product_tabs ) ) : ?>
 								</div>
 								<div id="product-description-<?php echo $index; ?>" class="card-content <?php echo (!$index) ? 'card-content-opened' : 'card-content-closed'; ?>">
 									<div class="card-body">
-										<?php echo $content_parts[1]; ?>
+										<p><?php echo $content_parts[1]; ?></p>
 									</div>
 								</div>
 							</div>
