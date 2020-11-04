@@ -3856,6 +3856,7 @@ body .woocommerce form .form-row .button {
   margin-bottom: 20px;
   background: #F8F8F8;
   position: relative;
+  border: 1px solid #e6e6e6;
 }
 .product-accordion .card .card-header {
   padding: 15px;
