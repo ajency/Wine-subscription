@@ -441,7 +441,7 @@ jQuery(document).ready(function() {
 	});
 
 	jQuery(".product-accordion .card-header").click(function(){
-		jQuery("#"+jQuery(this).find(".card-title").data('target')).slideToggle("slow", function(){
+		jQuery("#"+jQuery(this).find(".card-title").data('target')).slideToggle(500, function(){
 			jQuery(this).closest(".card").find(".card-title").toggleClass('card-header-opened card-header-closed');
 		});
 	})
