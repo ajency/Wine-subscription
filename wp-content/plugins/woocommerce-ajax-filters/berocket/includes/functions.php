@@ -116,6 +116,31 @@ if( ! function_exists( 'berocket_insert_to_array' ) ) {
     }
 }
 
+if( ! function_exists( 'berocket_insert_to_array_num' ) ) {
+    /**
+     * Public function to select color
+     *
+     * @param array $array - array with options
+     * @param string $key_in_array - key in array where additional options must be added
+     * @param array $array_to_insert - array with additional options
+     * @param boolean $before - insert additional options before option with key $key_in_array
+     *
+     * @return string html code with all needed blocks and buttons
+     */
+    function berocket_insert_to_array_num($array, $key_in_array, $array_to_insert, $before = false) {
+        $position = array_search($key_in_array, array_keys($array), true);
+        if( $position !== FALSE ) {
+            if( ! $before ) {
+                $position++;
+            }
+            $array = array_slice($array, 0, $position, true) +
+                                $array_to_insert +
+                                array_slice($array, $position, NULL, true);
+        }
+        return $array;
+    }
+}
+
 if( ! function_exists( 'br_color_picker' ) ) {
     /**
      * Public function to select color
@@ -403,16 +428,17 @@ if ( ! function_exists( 'berocket_font_select_upload' ) ) {
             readonly style="display:none;" class="' . $name . ' '.( ( $data_sc ) ? 'berocket_aapf_widget_sc ' : '' ).'berocket_aapf_icon_text_value"/><span class="berocket_aapf_selected_icon_show">
             ' . ( ( ! empty($value) ) ? ( ( substr( $value, 0, 3 ) == 'fa-' ) ? '<i class="fa ' . $value . '"></i>' : '<i class="fa">
             <image src="' . $value . '" alt=""></i>' ) : '' ) . '</span>';
+
         if ( $show_fa ) {
-            $result .= '<input type="button" class="berocket_aapf_font_awesome_icon_select button" value="'.__('Font awesome', 'BeRocket_domain').'"/>
+            $result .= '<input type="button" class="berocket_aapf_font_awesome_icon_select button fa fa-input" value="&#xf024"/>
             <div style="display: none;" class="berocket_aapf_select_icon"><div><p>Font Awesome Icons<i class="fa fa-times"></i></p>
             ' . $font_awesome . '</div></div>';
         }
         if ( $show_upload ) {
-            $result .= '<input type="button" class="berocket_aapf_upload_icon button" value="'.__('Upload', 'BeRocket_domain').'"/> ';
+            $result .= '<input type="button" class="berocket_aapf_upload_icon button fa fa-input" value="&#xf093"/> ';
         }
         if ( $show_remove ) {
-            $result .= '<input type="button" class="berocket_aapf_remove_icon button" value="'.__('Remove', 'BeRocket_domain').'"/>';
+            $result .= '<input type="button" class="berocket_aapf_remove_icon button fa fa-input" value="&#xf2ed"/>';
         }
         $result .= '</div>';
 
@@ -449,8 +475,10 @@ if( ! function_exists( 'berocket_isset' ) ){
     }
 }
 if( ! function_exists( 'berocket_sanitize_array' ) ){
-    function berocket_sanitize_array($array) {
-        if( is_array($array) ) {
+    function berocket_sanitize_array( $array ) {
+        if ( is_object( $array ) ) $array = (array) $array; // wp_check_invalid_utf8 is not working with objects
+
+        if ( is_array( $array ) ) {
             $array = array_map('berocket_sanitize_array', $array);
         } else {
             $filtered = wp_check_invalid_utf8( $array );

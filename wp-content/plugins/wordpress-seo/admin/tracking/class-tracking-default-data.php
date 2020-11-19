@@ -1,5 +1,7 @@
 <?php
 /**
+ * WPSEO plugin file.
+ *
  * @package WPSEO\Admin\Tracking
  */
 
@@ -14,16 +16,15 @@ class WPSEO_Tracking_Default_Data implements WPSEO_Collection {
 	 * @return array The collection data.
 	 */
 	public function get() {
-		return array(
+		return [
 			'siteTitle'    => get_option( 'blogname' ),
-			'siteEmail'    => get_option( 'admin_email' ),
 			'@timestamp'   => (int) date( 'Uv' ),
 			'wpVersion'    => $this->get_wordpress_version(),
 			'homeURL'      => home_url(),
 			'adminURL'     => admin_url(),
 			'isMultisite'  => is_multisite(),
 			'siteLanguage' => get_bloginfo( 'language' ),
-		);
+		];
 	}
 
 	/**

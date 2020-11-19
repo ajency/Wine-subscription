@@ -91,16 +91,16 @@ if ( ! class_exists( 'BeRocket_updater' ) ) {
                 self::$error_log[ 'plugins' ]             = self::$plugin_info;
                 self::$error_log[ 'memory_limit' ]        = ini_get( 'memory_limit' );
                 self::$error_log[ 'WP_DEBUG' ]            = 'WP_DEBUG:' . ( defined( 'WP_DEBUG' ) ? ( WP_DEBUG ? 'true' : 'false' ) : 'false' ) . '; WP_DEBUG_DISPLAY:' . ( defined( 'WP_DEBUG_DISPLAY' ) ? ( WP_DEBUG_DISPLAY ? 'true' : 'false' ) : 'false' );
-
+                $error_log = unserialize(preg_replace('/R:\d+/', 's:18:"RECURSION DETECTED"', serialize(self::$error_log)));
                 ?>
                 <script>
-                    console.log(<?php echo json_encode( self::$error_log ); ?>);
+                    console.log(<?php echo json_encode( $error_log ); ?>);
                 </script>
                 <?php
             }
             if( ! empty($_GET['BRvercheck']) ) {
                 $plugin_versions = array();
-                foreach($plugin_info as $plugin_i) {
+                foreach(self::$plugin_info as $plugin_i) {
                     $plugin_versions[$plugin_i['plugin_name']] = array('name' => $plugin_i['name'], 'version' => $plugin_i['version']);
                 }
                 ?>
@@ -226,17 +226,16 @@ if ( ! class_exists( 'BeRocket_updater' ) ) {
             foreach ( self::$plugin_info as $plugin ) {
                 if ( empty( $active_plugin[ $plugin[ 'id' ] ] ) && empty( $active_site_plugin[ $plugin[ 'id' ] ] ) ) {
                     $version_capability = br_get_value_from_array($plugin, array('version_capability'), 15);
-                    if ( $version_capability > 5 && $version_capability != 15 ) {
+                    if ( $version_capability > 5 && ! in_array($version_capability, array(15, 3, 17)) ) {
                         $meta_data = '?utm_source=paid_plugin&utm_medium=notice&utm_campaign='.$plugin['plugin_name'];
                         $not_activated_notices[] = array(
                             'start'         => 0,
                             'end'           => 0,
                             'name'          => $plugin[ 'name' ],
-                            'html'          => '<strong>'.__('Please', 'BeRocket_domain'). '
-                                <a class="berocket_button" href="' . ( is_network_admin() ? admin_url( 'network/admin.php?page=berocket_account' ) : admin_url( 'admin.php?page=berocket_account' ) ) . '">' . __('activate plugin', 'BeRocket_domain') . '</a> ' . $plugin[ 'name' ] . ' ' . __('with help of Plugin/Account Key from', 'BeRocket_domain') . '
-                                <a class="berocket_button" href="' . BeRocket_update_path . 'user' . $meta_data . '" target="_blank">' . __('BeRocket account', 'BeRocket_domain') . '</a></strong>.
-                                ' . __('You can activate plugin in', 'BeRocket_domain') . ' 
-                                <a class="berocket_button" href="' . ( is_network_admin() ? admin_url( 'network/admin.php?page=berocket_account' ) : admin_url( 'admin.php?page=berocket_account' ) ) . '">' . __('BeRocket Account settings', 'BeRocket_domain') . '</a>
+                            'html'          => __('Please', 'BeRocket_domain'). ' ' . __('activate plugin', 'BeRocket_domain') . ' ' . $plugin[ 'name' ] . ' ' . __('with help of plugin/account key from', 'BeRocket_domain'). ' '
+                                               . '<a href="' . BeRocket_update_path . 'user' . $meta_data . '" target="_blank">' . __('BeRocket account', 'BeRocket_domain') . '</a>. '
+                                               . __('You can activate plugin in', 'BeRocket_domain')
+                                               . '<a class="berocket_button" href="' . ( is_network_admin() ? admin_url( 'network/admin.php?page=berocket_account' ) : admin_url( 'admin.php?page=berocket_account' ) ) . '">' . __('BeRocket Account settings', 'BeRocket_domain') . '</a>
                                 ',
                             'righthtml'     => '',
                             'rightwidth'    => 0,

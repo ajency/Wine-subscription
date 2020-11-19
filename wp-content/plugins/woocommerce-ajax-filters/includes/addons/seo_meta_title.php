@@ -95,6 +95,20 @@ if( ! function_exists('BeRocket_AAPF_wcseo_title_visual4') ) {
         return $text_return;
     }
 }
+if( ! function_exists('BeRocket_AAPF_wcseo_title_visual5') ) {
+    function BeRocket_AAPF_wcseo_title_visual5($filters, $text, $section, $terms_filtered) {
+        $filters = array();
+        foreach($terms_filtered as $filter_attr => $filter_values) {
+            $filters[] =  ( ! empty($filter_values['name']) ? $filter_values['name'] . ': ' : ''). implode(', ', $filter_values['values']);
+        }
+        $filters = implode('; ', $filters);
+        $text_return = $text;
+        if( ! empty($filters) ) {
+            $text_return = $filters . ' - ' . $text_return;
+        }
+        return $text_return;
+    }
+}
 if( ! class_exists('BeRocket_AAPF_addon_woocommerce_seo_title') ) {
     class BeRocket_AAPF_addon_woocommerce_seo_title {
         public $terms_filtered = array();

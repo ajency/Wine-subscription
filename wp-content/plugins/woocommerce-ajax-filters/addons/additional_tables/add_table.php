@@ -14,7 +14,7 @@ class BeRocket_aapf_variations_tables {
         $current_terms = array(0);
         if( is_array($terms) && count($terms) ) {
             foreach($terms as $term) {
-                if( substr( $term[0], 0, 3 ) == 'pa_' ) {
+                if( substr( $term[0], 0, 3 ) == 'pa_' && ! empty($term[1]) ) {
                     $current_terms[] = $term[1];
                 }
             }
@@ -25,7 +25,7 @@ class BeRocket_aapf_variations_tables {
                     $current_attributes[] = sanitize_title('attribute_' . $attr);
                     foreach($term_ids as $term_id) {
                         $term = get_term($term_id);
-                        if( ! empty($term) && ! is_wp_error($term) ) {
+                        if( ! empty($term) && ! is_wp_error($term) && ! empty($term->term_id) ) {
                             $current_terms[] = $term->term_id;
                         }
                     }
@@ -215,9 +215,10 @@ class BeRocket_aapf_variations_tables {
     }
     function set_hierarhical_data_to_table($taxonomy) {
         global $wpdb;
+		$wpdb->query("SET SESSION group_concat_max_len = 1000000");
         $newmd5 = $wpdb->get_var(
             $wpdb->prepare(
-                "SELECT MD5(GROUP_CONCAT(CONCAT(tt.term_taxonomy_id, tt.term_id, tt.parent, tt.count))) FROM $wpdb->term_taxonomy AS tt 
+                "SELECT MD5(GROUP_CONCAT(tt.term_taxonomy_id+tt.term_id+tt.parent+tt.count)) FROM $wpdb->term_taxonomy AS tt 
                 WHERE tt.taxonomy IN (%s)",
                 $taxonomy
             )

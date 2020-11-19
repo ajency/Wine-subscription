@@ -3,8 +3,8 @@ Contributors: yikesinc, eherman24, liljimmi, yikesitskevin, metalandcoffee, mial
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
-Tested up to: 5.4
-Stable tag: 1.7.1
+Tested up to: 5.5
+Stable tag: 1.7.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,6 +74,19 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 
 == Changelog ==
+
+= 1.7.6 – October 19th, 2020 =
+* WooCommerce 4.6 tested.
+
+= 1.7.5 – September 18th, 2020 =
+* Swapping (deprecated) wp_make_content_images_responsive for wp_filter_content_tags in our content filter. Thanks @stephencd!
+
+= 1.7.4 – September 12th, 2020 =
+* WooCommerce 4.5.
+
+= 1.7.3 – August 19th, 2020 =
+* WooCommerce 4.4.
+* Fixes issues related to WordPress 5.5.
 
 = 1.7.1 – March 13th, 2020 =
 * Fixes a bug with product display in certain conditions.

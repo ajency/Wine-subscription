@@ -260,14 +260,32 @@ if( ! class_exists('BeRocket_conditions') ) {
         }
 
         public static function condition_product_stockstatus($html, $name, $options) {
-            $def_options = array('stockstatus' => 'in_stock', 'is_example' => false);
+            $def_options = array('in_stock' => '', 'out_of_stock' => '', 'is_on_backorder' => '', 'is_example' => false);
             $options = array_merge($def_options, $options);
-            $html .= '
-            <select '.(empty($options['is_example']) ? '' : 'data-').'name="' . $name . '[stockstatus]">
-                <option value="in_stock"' . ($options['stockstatus'] == 'in_stock' ? ' selected' : '') . '>' . __('In stock', 'BeRocket_domain') . '</option>
-                <option value="out_of_stock"' . ($options['stockstatus'] == 'out_of_stock' ? ' selected' : '') . '>' . __('Out of stock', 'BeRocket_domain') . '</option>
-                <option value="is_on_backorder"' . ($options['stockstatus'] == 'is_on_backorder' ? ' selected' : '') . '>' . __('On Backorder', 'BeRocket_domain') . '</option>
-            </select>';
+            if( ! empty($options['stockstatus']) ) {
+                if($options['stockstatus'] == 'in_stock') {
+                    $options['in_stock'] = '1';
+                } else {
+                    $options['is_on_backorder'] = '1';
+                    if( $options['stockstatus'] == 'out_of_stock' ) {
+                        $options['out_of_stock'] = '1';
+                    }
+                }
+            }
+            $stock_statuses = array(
+                'in_stock' => __('In stock', 'BeRocket_domain'),
+                'out_of_stock' => __('Out of stock', 'BeRocket_domain'),
+                'is_on_backorder' => __('On Backorder', 'BeRocket_domain')
+            );
+            foreach($stock_statuses as $stock_slug => $stock_name) {
+                $html .= '<label>';
+                $html .= '<input type="checkbox" value="1" ';
+                $html .= (empty($options['is_example']) ? '' : 'data-').'name="' . $name . '['.$stock_slug.']"';
+                $html .= (empty($options[$stock_slug]) ? '' : ' checked');
+                $html .= '>';
+                $html .= $stock_name;
+                $html .= '</label>';
+            }
             return $html;
         }
 
@@ -276,6 +294,87 @@ if( ! class_exists('BeRocket_conditions') ) {
             $options = array_merge($def_options, $options);
             $html .= static::supcondition($name, $options, array('equal_less' => true, 'equal_more' => true));
             $html .= '<label>' . __('Count of product', 'BeRocket_domain') . '<input type="number" min="0" '.(empty($options['is_example']) ? '' : 'data-').'name="' . $name . '[totalsales]" value="' . $options['totalsales'] . '"></label>';
+            return $html;
+        }
+
+        public static function extra_func_hierarchical_sort($terms) {
+            $sorts = array_column($terms, 'parent', 'term_id');
+            $array_sort = array_flip(array_keys($sorts));
+            $sorts = array_reverse($sorts, true);
+            $terms_sorted = array();
+            do{
+                $moved = false;
+                foreach($sorts as $term_id => $parent_id) {
+                    if( $parent_id == 0 ) {
+                        $terms_sorted = array($term_id => 0) + $terms_sorted;
+                        $moved = true;
+                        unset($sorts[$term_id]);
+                    } elseif(isset($terms_sorted[$parent_id])) {
+                        $terms_sorted = berocket_insert_to_array_num($terms_sorted, $parent_id, array($term_id => ($terms_sorted[$parent_id] + 1)));
+                        $moved = true;
+                        unset($sorts[$term_id]);
+                    }
+                }
+            } while(count($sorts) && $moved);
+            if( count($sorts) ) {
+                $sorts = array_reverse($sorts, true);
+                foreach($sorts as $term_id => $parent) {
+                    $terms_sorted[$term_id] = 0;
+                    unset($sorts[$term_id]);
+                }
+            }
+            $array_new_sort = array_flip(array_keys($terms_sorted));
+            foreach($array_sort as $term_id => &$sort_number) {
+                $sort_number = (isset($array_new_sort[$term_id]) ? $array_new_sort[$term_id] : 999999999);
+            }
+            $max_depth = 0;
+            foreach($terms as &$term) {
+                $term->depth = (isset($terms_sorted[$term->term_id]) ? $terms_sorted[$term->term_id] : 0);
+                if( $term->depth > $max_depth) {
+                    $max_depth = $term->depth;
+                }
+            }
+            if( isset($term) ) {
+                unset($term);
+            }
+            if( is_array($array_sort) && is_array($terms) && count($array_sort) == count($terms) ) {
+                array_multisort($array_sort, SORT_ASC, SORT_NUMERIC, $terms);
+            }
+            $temp_terms = $new_terms = array();
+            for($i = $max_depth; $i >= 0; $i--) {
+                foreach($terms as $term) {
+                    if( $term->depth == $i ) {
+                        if( isset($temp_terms[$term->term_id]) ) {
+                            $term->child = $temp_terms[$term->term_id];
+                        }
+                        if( $i != 0 ) {
+                            if( ! isset($temp_terms[$term->parent]) ) {
+                                $temp_terms[$term->parent] = array();
+                            }
+                            $temp_terms[$term->parent][$term->term_id] = $term;
+                        } else {
+                            $new_terms[$term->term_id] = $term;
+                        }
+                    }
+                }
+            }
+            return $new_terms;
+        }
+        
+        public static function extra_func_display_category_hierarchical($terms, $name, $options) {
+            $html = '<ul>';
+            foreach($terms as $category) {
+                $html .= '<li><label>'
+                . '<input type="checkbox" '.(empty($options['is_example']) ? '' : 'data-').'name="' . $name . '[category][]" value="' . $category->term_id . '"' . ( (! empty($options['category']) && is_array($options['category']) && in_array($category->term_id, $options['category']) ) ? ' checked' : '' ) . '>' 
+                . $category->name
+                . ' (' . $category->slug . ')'
+                . '</label>';
+                if( ! empty($category->child) ) {
+                    $html .= self::extra_func_display_category_hierarchical($category->child, $name, $options);
+                }
+                $html .= '</li>';
+            }
+            $html .= '</ul>';
             return $html;
         }
 
@@ -288,19 +387,17 @@ if( ! class_exists('BeRocket_conditions') ) {
             $product_categories = get_terms(array(
                 'taxonomy' => 'product_cat',
                 'hide_empty' => false,
+                'orderby'    => 'parent',
+                'order'      => 'DESC'
             ));
+            $product_categories = self::extra_func_hierarchical_sort($product_categories);
             if( is_array($product_categories) && count($product_categories) > 0 ) {
                 $def_options = array('category' => '', 'is_example' => false);
                 $options = array_merge($def_options, $options);
                 $html .= static::supcondition($name, $options);
                 $html .= '<label><input type="checkbox" '.(empty($options['is_example']) ? '' : 'data-').'name="' . $name . '[subcats]" value="1"' . (empty($options['subcats']) ? '' : ' checked') . '>' . __('Include subcategories', 'BeRocket_domain') . '</label>';
                 $html .= '<div style="max-height:150px;overflow:auto;border:1px solid #ccc;padding: 5px;">';
-                foreach($product_categories as $category) {
-                    $html .= '<div><label>
-                    <input type="checkbox" '.(empty($options['is_example']) ? '' : 'data-').'name="' . $name . '[category][]" value="' . $category->term_id . '"' . ( (! empty($options['category']) && is_array($options['category']) && in_array($category->term_id, $options['category']) ) ? ' checked' : '' ) . '>
-                    ' . $category->name . '
-                    </label></div>';
-                }
+                $html .= self::extra_func_display_category_hierarchical($product_categories, $name, $options);
                 $html .= '</div>';
             }
             return $html;
@@ -533,14 +630,19 @@ if( ! class_exists('BeRocket_conditions') ) {
         }
 
         public static function check_condition_product_stockstatus($show, $condition, $additional) {
-            if( $condition['stockstatus'] == 'is_on_backorder' ) {
-                $show = $additional['product']->is_on_backorder();
-            } else {
-                $show = $additional['product']->is_in_stock();
-                if( $condition['stockstatus'] == 'out_of_stock' ) {
-                    $show = ! $show;
+            if( ! empty($condition['stockstatus']) ) {
+                if($condition['stockstatus'] == 'in_stock') {
+                    $condition['in_stock'] = '1';
+                } else {
+                    $condition['is_on_backorder'] = '1';
+                    if( $condition['stockstatus'] == 'out_of_stock' ) {
+                        $condition['out_of_stock'] = '1';
+                    }
                 }
             }
+            $show = ( ( ! empty($condition['in_stock']) && $additional['product']->is_in_stock() ) 
+                   || ( ! empty($condition['out_of_stock']) && ! $additional['product']->is_in_stock() )
+                   || ( ! empty($condition['is_on_backorder']) && $additional['product']->is_on_backorder() ) );
             return $show;
         }
 
@@ -669,10 +771,20 @@ if( ! class_exists('BeRocket_conditions') ) {
 
         public static function check_condition_product_stockquantity($show, $condition, $additional) {
             $product = $additional['product'];
-            if( method_exists($product, 'get_stock_quantity') ) {
-                $product_stock = $product->get_stock_quantity('edit');
+            if( method_exists($product, 'get_type') && $product->get_type() == 'variable' ) {
+                $variations = $product->get_available_variations();
+                $product_stock = 0;
+                foreach($variations as $variation){
+                    $variation_id = $variation['variation_id'];
+                    $variation_obj = new WC_Product_variation($variation_id);
+                    $product_stock += intval($variation_obj->get_stock_quantity('edit'));
+                }
             } else {
-                $product_stock = $product->stock;
+                if( method_exists($product, 'get_stock_quantity') ) {
+                    $product_stock = $product->get_stock_quantity('edit');
+                } else {
+                    $product_stock = $product->stock;
+                }
             }
             $backorder = true;
             if( ! empty($condition['backorder']) && $condition['backorder'] != 'any' ) {

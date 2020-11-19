@@ -47,6 +47,47 @@ class BeRocket_AAPF_compat_woocommerce_variation {
         $action('berocket_aapf_recount_terms_query', array($this, 'faster_recount_add_data'), 60, 3);
         $action('berocket_query_result_recount', array($this, 'faster_recount_query_result'), 60, 3);
         $action('berocket_recount_cache_key', array($this, 'faster_recount_cache_key'), 60);
+        $action('berocket_aapf_get_advanced_price_temp_table', array($this, 'advanced_price_temp_table'), 60, 4);
+    }
+    public function advanced_price_temp_table($query_price, $where, $taxonomy_data, $terms_additional) {
+        global $wpdb;
+        $terms = br_get_value_from_array($_POST,'terms');
+        if( !empty($taxonomy_data) && ! empty($terms_additional) ) {
+            if( ! is_array($terms) ) {
+                $terms = array();
+            }
+            foreach($terms as $i => $term) {
+                if( $term[0] == $taxonomy_data['taxonomy'] ) {
+                    unset($terms[$i]);
+                }
+            }
+            foreach($terms_additional as $add_terms) {
+                $terms[] = array(
+                    $taxonomy_data['taxonomy'],
+                    $add_terms->term_id,
+                    $taxonomy_data['operator'],
+                    $add_terms->slug,
+                    'custom_taxonomy'
+                );
+            }
+        }
+        $limits_arr = br_get_value_from_array($_POST,'limits_arr');
+        list($terms, $current_terms, $current_attributes) = self::current_selected_data($terms, $limits_arr);
+        $query = self::out_of_stock_sql_array(array(), $terms, $limits_arr, false, $current_terms, $current_attributes);
+        $query = $query['subquery'];
+        unset($query['group']);
+        $query = self::implode_recursive($query);
+        $query = 'SELECT %1$s.ID as var_id, %1$s.post_parent as ID, IFNULL(variation_post.out_of_stock, 0) as out_of_stock from %1$s LEFT JOIN ('. $query . ') as variation_post ON (%1$s.ID = variation_post.var_id OR %1$s.post_parent = variation_post.ID)
+        WHERE %1$s.post_parent != 0 AND (variation_post.ID IS NULL OR %1$s.ID = variation_post.var_id)';
+        $query = str_replace(
+            array( '%1$s',          '%2$s',             '%3$s',                     '%4$s',                 '%5$s' ),
+            array( $wpdb->posts,    $wpdb->postmeta,    $wpdb->term_relationships,  $current_attributes,    $current_terms ),
+            $query
+        );
+        $query_price['join'] .= ' LEFT JOIN ('.$query.') as variation_check ON bapf_price_post.ID = variation_check.var_id';
+        $query_price['where'] .= ' AND ( bapf_price_post.post_parent = 0 OR variation_check.out_of_stock != 1)';
+        
+        return $query_price;
     }
     public function start_stock_status($terms, $taxonomy_data) {
         if( ! $this->is_init && $taxonomy_data['taxonomy'] == '_stock_status' ) {
@@ -70,8 +111,7 @@ class BeRocket_AAPF_compat_woocommerce_variation {
         }
         return $query;
     }
-    public static function out_of_stock_variable($input, $terms, $limits, $query = false) {
-        global $wpdb;
+    public static function current_selected_data($terms, $limits, $query = false) {
         if( $query === false ) {
             $get_queried_object = get_queried_object();
         } else {
@@ -88,13 +128,6 @@ class BeRocket_AAPF_compat_woocommerce_variation {
                 $get_queried_object->slug,
                 'attribute'
             );
-        }
-        $outofstock = wc_get_product_visibility_term_ids();
-        if( empty($outofstock['outofstock']) ) {
-            $outofstock = get_term_by( 'slug', 'outofstock', 'product_visibility' );
-            $outofstock = $outofstock->term_taxonomy_id;
-        } else {
-            $outofstock = $outofstock['outofstock'];
         }
         $current_terms = array();
         $current_attributes = array();
@@ -123,6 +156,19 @@ class BeRocket_AAPF_compat_woocommerce_variation {
         $current_attributes = array_unique($current_attributes);
         $current_terms = implode('","', $current_terms);
         $current_attributes = implode('","', $current_attributes);
+        return array($terms, $current_terms, $current_attributes);
+    }
+    public static function out_of_stock_sql_array($input, $terms, $limits, $query = false, $current_attributes = false, $current_terms = false) {
+        if( $current_attributes === false && $current_terms === false ) {
+            list($terms, $current_terms, $current_attributes) = self::current_selected_data($terms, $limits, $query);
+        }
+        $outofstock = wc_get_product_visibility_term_ids();
+        if( empty($outofstock['outofstock']) ) {
+            $outofstock = get_term_by( 'slug', 'outofstock', 'product_visibility' );
+            $outofstock = $outofstock->term_taxonomy_id;
+        } else {
+            $outofstock = $outofstock['outofstock'];
+        }
         $query_filtered_posts = apply_filters( 'berocket_aapf_wcvariation_filtering_main_query', array(
             'select'    => 'SELECT %1$s.id as var_id, %1$s.post_parent as ID, COUNT(%1$s.id) as meta_count',
             'from'      => 'FROM %1$s',
@@ -176,6 +222,12 @@ class BeRocket_AAPF_compat_woocommerce_variation {
             'having'        => 'HAVING post_count = 1 AND out_of_stock = 1',
         );
         $query = apply_filters('berocket_aapf_wcvariation_filtering_total_query', $query, $input, $terms, $limits, $current_attributes, $current_terms);
+        return $query;
+    }
+    public static function out_of_stock_variable($input, $terms, $limits, $query = false) {
+        global $wpdb;
+        list($terms, $current_terms, $current_attributes) = self::current_selected_data($terms, $limits, $query);
+        $query = self::out_of_stock_sql_array($input, $terms, $limits, $query, $current_attributes, $current_terms);
         $query = self::implode_recursive($query);
         $query = str_replace(
             array( '%1$s',          '%2$s',             '%3$s',                     '%4$s',                 '%5$s' ),
@@ -245,8 +297,10 @@ class BeRocket_AAPF_compat_woocommerce_variation {
         if( ! $use_filters ) return $query;
         $br_options = BeRocket_AAPF::get_aapf_option();
         if( ! empty($br_options['out_of_stock_variable_reload']) ) {
-            $new_post_terms = berocket_isset($_POST['terms']);
-            $new_post_limits = berocket_isset($_POST['limits_arr']);
+            $new_post_terms = br_get_value_from_array($_POST,'terms');
+            $new_post_limits = br_get_value_from_array($_POST,'limits_arr');
+            if( ! is_array($new_post_limits) ) $new_post_limits = array();
+            if( ! is_array($new_post_terms) ) $new_post_terms = array();
             if( is_array($new_post_terms) && count($new_post_terms) ) {
                 foreach($new_post_terms as $new_post_terms_i => $new_post_term) {
                     if( $new_post_term[0] == $taxonomy ) {

@@ -106,7 +106,13 @@ if( ! empty($old_filter_widgets) && is_array($old_filter_widgets) && count($old_
                         $sidebar_widget = $new_filter_to_old[$sidebar_widget];
                     }
                 }
+                if( isset($sidebar_widget) ) {
+                    unset($sidebar_widget);
+                }
             }
+        }
+        if( isset($sidebar_widgets) ) {
+            unset($sidebar_widgets);
         }
     }
     update_option('sidebars_widgets', $sidebars_widgets);

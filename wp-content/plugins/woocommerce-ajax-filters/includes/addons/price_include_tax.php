@@ -47,6 +47,9 @@ class BeRocket_AAPF_price_use_tax {
             foreach($price as &$prices) {
                 $prices = $this->$type($prices);
             }
+            if( isset($prices) ) {
+                unset($prices);
+            }
         } else {
             $price = $this->$type($price);
         }

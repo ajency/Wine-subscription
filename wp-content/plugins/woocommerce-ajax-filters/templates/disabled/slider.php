@@ -53,6 +53,9 @@ if( !$is_child_parent || count( $all_terms_name ) > 0 ) {
         foreach($all_terms_slug as &$all_term_slug) {
             $all_term_slug = str_replace("'", '&#39;', $all_term_slug);
         }
+        if( isset($all_term_slug) ) {
+            unset($all_term_slug);
+        }
     }
 ?>
 <li class='<?php echo berocket_isset($main_class) ?>'>

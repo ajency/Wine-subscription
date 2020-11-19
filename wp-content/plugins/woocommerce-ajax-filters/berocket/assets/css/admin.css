@@ -346,9 +346,11 @@
 }
 
 .br_framework_settings .button.tiny-button:not(.not_berocket_button) {
-    padding: 2px 13px;
+    padding: 0 13px;
     min-width: 40px;
     font-size: 13px;
+    box-shadow: none;
+    border-radius: 4px;
 }
 
 .br_framework_settings .br_colorpicker {
@@ -359,6 +361,7 @@
     display: inline-block;
     padding: 6px;
     cursor: pointer;
+    border-radius: 3px;
 }
 
 .br_framework_settings .berocket_color {
@@ -370,8 +373,10 @@
 }
 
 .br_framework_settings .br_colorpicker ~ .br_colorpicker_default {
-    margin: 0;
-    margin-left: 10px;
+    margin: 0 0 0 10px;
+    padding: 0;
+    height: 42px;
+    box-shadow: none;
 }
 
 .berocket_selected_image {
@@ -1441,6 +1446,9 @@
 .br_conditions .br_html_condition:first-child:before {
     display: none;
 }
+.br_html_condition label {
+    margin-right: 15px;
+}
 .br_html_condition .br_cond_select {
     margin-top: 40px;
     position: relative;
@@ -1479,9 +1487,52 @@
 }
 .br_cond_select {
     border: 1px solid #999;
-    padding: 0.5em;
+    padding: 1em 0.7em;
     margin-bottom: 0.5em;
     background-color: #eee;
+}
+.br_html_condition .br_current_cond,
+.br_cond.br_cond_product .br_framework_settings {
+    margin-top: 10px;
+}
+.br_cond.br_cond_category > select {
+    margin-right: 15px;
+}
+.br_cond.br_cond_category > div,
+.br_cond.br_cond_page_id > div {
+    margin-top: 10px;
+}
+.br_cond.br_cond_category > div ul {
+    margin: 0;
+}
+.br_cond.br_cond_sale select,
+.br_cond.br_cond_bestsellers input,
+.br_cond.br_cond_price input,
+.br_cond.br_cond_totalsales input,
+.br_cond.br_cond_product_rating select,
+.br_cond.br_cond_saleprice input,
+.br_cond.br_cond_regularprice input,
+.br_cond.br_cond_stockquantity input,
+.br_cond.br_cond_stockquantity label select{
+    margin-left: 10px;
+}
+.br_cond.br_cond_price input,
+.br_cond.br_cond_price select,
+.br_cond.br_cond_totalsales select,
+.br_cond.br_cond_age select ,
+.br_cond.br_cond_age input,
+.br_cond.br_cond_product_type select,
+.br_cond.br_cond_attribute select,
+.br_cond.br_cond_saleprice select,
+.br_cond.br_cond_saleprice input,
+.br_cond.br_cond_regularprice select,
+.br_cond.br_cond_regularprice input,
+.br_cond.br_cond_stockquantity select,
+.br_cond.br_cond_stockquantity input {
+    margin-right: 10px;
+}
+.br_cond.br_cond_product .br_framework_settings {
+    padding-bottom: 0;
 }
 .br_framework_settings .button.berocket_remove_condition:not(.not_berocket_button),
 .br_framework_settings .button.berocket_add_condition:not(.not_berocket_button),
@@ -1521,5 +1572,16 @@
 .br_framework_settings input[type=time],
 .br_framework_settings input[type=url],
 .br_framework_settings input[type=week]{
-    padding: 0 0 0 2px;
+    padding: 0 0 0 8px;
+}
+.br_label_for {
+    display: inline-block;
+    margin-left: 10px;
+}
+.br_cond_woo_category li {
+    margin: 0;
+}
+.br_cond_woo_category ul ul {
+    margin-left: 10px;
+    margin-top: 5px;
 }
