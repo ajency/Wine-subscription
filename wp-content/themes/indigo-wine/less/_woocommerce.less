@@ -1495,3 +1495,78 @@ body
   }
 }
 
+.product-accordion{
+  .card{
+    margin-bottom: 20px;
+    position: relative;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0px 0px 3px #00000047;
+    .card-header{
+      padding:15px;
+      cursor: pointer;
+      .card-title{
+        font-family: 'gotham_bookregular';
+        font-size: 1.15em;
+        line-height: 30px;
+        letter-spacing: 0px;
+        font-weight: 600;
+        color: #022c4c;
+        &.card-header-opened{
+          &:after{
+            transform: rotate(225deg);
+            -ms-transform: rotate(225deg);
+            -sand-transform: rotate(225deg);
+            -o-transform: rotate(225deg);
+            -webkit-transform: rotate(225deg);
+            -moz-transform: rotate(225deg);
+          }
+        }
+        &.card-header-closed{
+          &:after{
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+          }
+        }
+        &:after{
+          content: '';
+          border-style: solid;
+          display: block;
+          right: 20px;
+          position: absolute;
+          border-left: none;
+          border-top: none;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          -webkit-transition: all .3s ease;
+          -moz-transition: all .3s ease;
+          -o-transition: all .3s ease;
+          transition: all .3s ease;
+          border-width: 2px;
+          height: 10px;
+          width: 10px;
+          margin-top: -20px;
+        }
+      }
+    }
+    .card-content{
+      padding: 0 15px 15px 15px;
+      a{
+        color:#ff4c5e;
+        &:hover{
+          color:#ff4c5e!important;
+          text-decoration: underline;
+        }
+      }
+      &-opened{
+        display: block;
+      }
+      &-closed{
+        display: none;
+      }
+    }
+  }
+}
