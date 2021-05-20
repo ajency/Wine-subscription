@@ -130,7 +130,7 @@
 								<div class="site-offer">
 									<div class="message">
 										<span class="percent"></span>
-										<h2 class="title">Buy <b>6 bottles</b> and receive a further 10% off</h2>
+										<h2 class="title">Buy <b>6 bottles</b> and receive a further 10% off<span class="text-lowercase">(excludes discounted wines)</span></h2>
 									</div>
 									<i class="fa fa-times close" aria-hidden="true"></i>
 								</div>
