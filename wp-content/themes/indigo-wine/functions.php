@@ -1912,3 +1912,36 @@ function get_url_var($name)
     $place = $found + 1;
     return ($found == 0) ? 1 : $arrVals[$place];
 }
+
+add_action( 'init', 'custom_taxonomy_Item' );
+
+// Register Custom Taxonomy
+function custom_taxonomy_Item() {
+
+$labels = array(
+    'name' => 'Classifications',
+    'singular_name' => 'Classification',
+    'menu_name' => 'Classifications',
+    'all_items' => 'All Classifications',
+    'parent_item' => 'Parent Classifications',
+    'parent_item_colon' => 'Parent Classifications:',
+    'new_item_name' => 'New Classification Name',
+    'add_new_item' => 'Add New Classification',
+    'edit_item' => 'Edit Classification',
+    'update_item' => 'Update Classification',
+    'separate_items_with_commas' => 'Separate Classification with commas',
+    'search_items' => 'Search Classification',
+    'add_or_remove_items' => 'Add or remove Classification',
+    'choose_from_most_used' => 'Choose from the most popular Classification',
+    );
+$args = array(
+    'labels' => $labels,
+    'hierarchical' => true,
+    'public' => true,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'show_in_nav_menus' => true,
+    'show_tagcloud' => true,
+    );
+register_taxonomy( 'Classification', 'product', $args );
+}
