@@ -1945,3 +1945,36 @@ $args = array(
     );
 register_taxonomy( 'Classification', 'product', $args );
 }
+
+if (!function_exists('showclassification')) {
+    
+    function showclassification(){
+        $term_arr = array();
+        $terms = get_terms( array(
+            'taxonomy' => 'Classification',
+            'orderby' => 'name',
+            'hide_empty' => false,
+        ) );
+        foreach ( $terms as $term ) {
+            $class = $term->name;
+            $slug = $term->slug;
+            if(!array_key_exists($letter, $term_arr))
+                $term_arr[$letter] = array($slug => $class);
+            else
+                $term_arr[$letter][$slug] = $class;
+        }
+    
+        $output = '<div class="list-container widget_meta">';
+        foreach( $term_arr as $key_letter => $terms_in_letter ){
+            $output .= '<ul class="list">';
+                foreach( $terms_in_letter as $key => $value ){
+                    $slug = 'classification';
+                    $output .= '<li><a href="/'.$slug.'/'.$key.'/">'.$value.'</a></li>';
+                }
+            $output .= '</ul>';
+        }
+        $output .= '</div>';
+        return $output;
+    }
+    add_shortcode( 'showclassification', 'showclassification' );
+}
