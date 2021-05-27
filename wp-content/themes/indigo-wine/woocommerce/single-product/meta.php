@@ -49,7 +49,7 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 				  
 				    // $tax_terms_name = get_term_by('name', 'Awards' , $taxonomy );
 				    if ( $tax_term->name == 'Awards') {
-			     		echo '<p>' . get_field( 'award_count' ) . '</p>';
+			     		echo '<p class="count">' . get_field( 'award_count' ) . '</p>';
 		     		}
 				    echo '<p class="classification_name">'. $tax_term->name .'</p>';
 				    echo '</a>';

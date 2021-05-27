@@ -509,5 +509,12 @@ function setParam(param, mode = ''){
 	window.history.pushState('page2', 'Title', new_url);
 }
 
-
+jQuery(function($) {
+    var path = window.location.href; 
+    $('.list li a').each(function() {
+        if (this.href === path) {
+            $(this).addClass('current');
+        }
+    });
+});
 
