@@ -416,6 +416,7 @@ jQuery(document).ready(function() {
             data: {
                 action: 'change_product_view',
                 category: jQuery(".row.products").attr('data-cat'),
+                classification: jQuery(".row.products").attr('data-classification'),
                 min_price: jQuery(".row.products").attr('data-min'),
                 max_price: jQuery(".row.products").attr('data-max'),
                 filter: jQuery(".row.products").attr('data-filter'),
