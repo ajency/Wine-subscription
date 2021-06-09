@@ -1834,7 +1834,6 @@ function change_product_view(){
         'post_type' => 'product',
         'posts_per_page' => 20,
         'post_status' => 'publish',
-        'product_cat' => $_GET['category'],
         'paged' => $_GET['page'],
         'tax_query' => array(
             array(
@@ -1845,6 +1844,20 @@ function change_product_view(){
             ),
         ),
     );
+
+    if ($_GET['category'] != '') {
+        $args['product_cat'] = $_GET['category']; 
+    }
+
+    if ($_GET['classification'] != '') {
+        $args['tax_query'][]  =  array(
+            'taxonomy' => 'Classification',
+            'field'    => 'slug',
+            'terms'    =>  $_GET['classification'],
+        );
+    }
+
+
     $filters = array_filter(explode("-", $_GET['filter']));
     if(!empty($filters)){
         $args['tax_query']['relation'] = 'AND';
@@ -1881,7 +1894,10 @@ function change_product_view(){
             break;
     }
     $loop = new WP_Query( $args );
-    echo "<div class='row products clearfix products-4' data-cat='".$_GET['category']."' data-min='".$_GET['min_price']."' data-max='".$_GET['max_price']."' data-page='".$_GET['page']."' data-filter='".$_GET['filter']."'>";
+    
+    //print_r($args);
+
+    echo "<div class='row products clearfix products-4' data-cat='".$_GET['category']."' data-classification='".$_GET['classification']."' data-min='".$_GET['min_price']."' data-max='".$_GET['max_price']."' data-page='".$_GET['page']."' data-filter='".$_GET['filter']."'>";
     if ( $loop->have_posts() ) {
         while ( $loop->have_posts() ) : 
             $loop->the_post();

@@ -6168,6 +6168,9 @@ abbr {
   pointer-events: none;
   filter: grayscale(1);
 }
+.classification_block li .count{
+  margin-bottom: 0 !important;
+}
 .classification_block li.selected{
   opacity: 1;
   pointer-events: auto;
@@ -6213,3 +6216,7 @@ abbr {
 .list-container .list li a.current{
   color: #d1b57c;
 }
+@media (max-width: 767px){
+ul.berocket_aapf_widget{
+  margin-bottom: 0;
+}}

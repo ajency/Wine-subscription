@@ -416,6 +416,7 @@ jQuery(document).ready(function() {
             data: {
                 action: 'change_product_view',
                 category: jQuery(".row.products").attr('data-cat'),
+                classification: jQuery(".row.products").attr('data-classification'),
                 min_price: jQuery(".row.products").attr('data-min'),
                 max_price: jQuery(".row.products").attr('data-max'),
                 filter: jQuery(".row.products").attr('data-filter'),
@@ -509,5 +510,12 @@ function setParam(param, mode = ''){
 	window.history.pushState('page2', 'Title', new_url);
 }
 
-
+jQuery(function($) {
+    var path = window.location.href; 
+    $('.list li a').each(function() {
+        if (this.href === path) {
+            $(this).addClass('current');
+        }
+    });
+});
 
