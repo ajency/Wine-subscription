@@ -1600,6 +1600,9 @@ body
     opacity: .3;
     pointer-events: none;
     filter: grayscale(1);
+    .count {
+      margin-bottom: 0 !important;
+    }
   }
   li.selected {
     opacity: 1;
@@ -1649,5 +1652,10 @@ body
 @media screen and (max-width: 500px) {
   .classification_block {
     padding-bottom: 20px;
+  }
+}
+@media (max-width: 767px) {
+  ul.berocket_aapf_widget {
+    margin-bottom: 0;
   }
 }
